@@ -9770,7 +9770,7 @@ module.exports = function(Chart) {
 		var type = eventTypeMap[event.type] || event.type;
 		var pos = helpers.getRelativePosition(event, chart);
 		return createEvent(type, chart, pos.x, pos.y, event);
-	}
+	} 
 
 	function createResizer(handler) {
 		var iframe = document.createElement('iframe');
