@@ -21,6 +21,9 @@
 	.select_place {
 		float: right;
 	}
+	#buttons {
+		display: inline-block;
+	}
 </style>
 <meta charset="UTF-8">
 </head>
@@ -52,6 +55,10 @@
 			</table>
 		</div>
 	</div>
+
+	<input type="button" value="등록">
+	<input type="button" value="수정">
+
 	<footer>
 		<jsp:include page="../partial/footer.jsp"></jsp:include>
 	</footer>
