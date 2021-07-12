@@ -8,6 +8,7 @@
 	#footer {
 	background-color: #ccc;
 	clear: both;
+	height: 150px;
 	}
 </style>
 </head>

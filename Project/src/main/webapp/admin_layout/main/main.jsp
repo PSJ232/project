@@ -17,7 +17,7 @@
 	<nav>
 		<jsp:include page="../partial/nav.jsp"></jsp:include>
 	</nav>
-	<canvas id="myLineChart" style="display:inline-block; width:800px; height:400px;"></canvas>
+	<canvas id="myLineChart" style="display:inline-block; width: 800px; height:400px;"></canvas>
 	<canvas id="myChart" style="display:inline-block;"></canvas>
 	</div>
 	<footer>
@@ -52,6 +52,9 @@
 					borderColor: 'rgb(75, 192, 192)',
 					tension: 0.1
 				}]
+			},
+			options: {
+				responsive: false
 			}
 		});
 	</script>

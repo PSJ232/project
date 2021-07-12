@@ -7,6 +7,7 @@
 <style>
 	#header {
 		background-color: #ddd;
+		height: 200px;
 	}
 </style>
 </head>
