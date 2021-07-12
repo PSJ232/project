@@ -32,7 +32,7 @@
 				datasets: [{
 					backgroundColor: ["blue","red"],
 					hoverBackgroundColor: ["skyblue","pink"],
-					data: [5,5]
+					data: [5,5] 
 				}]
 			}, 
 				options: {
