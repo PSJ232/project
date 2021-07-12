@@ -21,9 +21,6 @@
 	.select_place {
 		float: right;
 	}
-	#buttons {
-		display: inline-block;
-	}
 </style>
 <meta charset="UTF-8">
 </head>
