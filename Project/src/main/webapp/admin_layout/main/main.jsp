@@ -7,6 +7,9 @@
 <title>메인</title>
 <script type="text/javascript" src="../script/Chart.js"></script>
 <style>
+	#cash,#card {
+		display: inline-block;
+	}
 </style>
 </head>
 <body>
@@ -17,6 +20,9 @@
 	<nav>
 		<jsp:include page="../partial/nav.jsp"></jsp:include>
 	</nav>
+	<div>
+	<h2 id="cash">현금 1000000원</h2><h2 id="card">카드 1000000원</h2>
+	</div>
 	<canvas id="myLineChart" style="display:inline-block; width: 800px; height:400px;"></canvas>
 	<canvas id="myChart" style="display:inline-block;"></canvas>
 	</div>
