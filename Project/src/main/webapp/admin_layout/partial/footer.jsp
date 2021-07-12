@@ -7,6 +7,7 @@
 <style>
 	#footer {
 	background-color: #ccc;
+	clear: both;
 	}
 </style>
 </head>
