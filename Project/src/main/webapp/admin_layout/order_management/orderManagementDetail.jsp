@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<title>주문관리상세</title>
 <style>
 	.container #delivery_info label, #payment_info label {
 		width: 150px; 
@@ -20,6 +21,7 @@
 	
 	.sub_container {
 		display: flex;
+		
 	}
 </style>
 </head>

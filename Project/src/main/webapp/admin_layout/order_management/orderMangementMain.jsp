@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>주문관리메인</title>
 <style>
-	.container #order_status li{
+	.order_container #order_status li{
 		display: inline-block;
 		background-color: #ccc;
 	}
-	.container #order_list {
+	.order_container #order_list {
 		width: 800px;
 	}
 </style>
@@ -21,7 +22,7 @@
 	<nav>
 		<jsp:include page="../partial/nav.jsp"></jsp:include>
 	</nav>
-	<div class="container">
+	<div class="order_container">
 		<h1>Order List</h1>
 		<ul id="order_status">
 			<li><a href="#">결제완료</a></li>
