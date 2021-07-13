@@ -1,6 +1,6 @@
 package vo;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class MemberBean {
 	private String m_id;
@@ -12,8 +12,8 @@ public class MemberBean {
 	private int g_id;
 	private String m_agree;
 	private String m_address;
-	private Timestamp m_rdate;
-	private String m_drop;
+	private Date m_rdate;
+	private Date m_drop;
 
 	public String getM_id() {
 		return m_id;
@@ -87,19 +87,19 @@ public class MemberBean {
 		this.m_address = m_address;
 	}
 
-	public Timestamp getM_rdate() {
+	public Date getM_rdate() {
 		return m_rdate;
 	}
 
-	public void setM_rdate(Timestamp m_rdate) {
+	public void setM_rdate(Date m_rdate) {
 		this.m_rdate = m_rdate;
 	}
 
-	public String getM_drop() {
+	public Date getM_drop() {
 		return m_drop;
 	}
 
-	public void setM_drop(String m_drop) {
+	public void setM_drop(Date m_drop) {
 		this.m_drop = m_drop;
 	}
 

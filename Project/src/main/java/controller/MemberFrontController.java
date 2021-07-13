@@ -13,6 +13,7 @@ import action.Action;
 import action.MemberJoinProAction;
 import vo.ActionForward;
 
+//서블릿 주소가 XXX.me 일 경우 MemberFrontController 로 해당 요청이 전달됨
 @WebServlet("*.me")
 public class MemberFrontController extends HttpServlet {
 	
@@ -45,6 +46,8 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("")) {
+			
 		}
 		
 		
@@ -62,7 +65,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else { // 임시 확인을 위한 코드
 			// ActionForward 객체가 null 일 경우 포워딩 작업 수행하지 않음
-			System.out.println("ActionForward 객체가 null 입니다!");
+			System.out.println("MemberFrontController - ActionForward 객체가 null 입니다!");
 		}
 		
 	}
