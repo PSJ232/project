@@ -15,21 +15,20 @@ public class MemberJoinProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-		Timestamp date=new Timestamp(System.currentTimeMillis());
 		
+		Timestamp date=new Timestamp(System.currentTimeMillis());
 		String m_birth = request.getParameter("year") + "-" + request.getParameter("month") + "-" + request.getParameter("day");
 		
 		MemberBean memberBean = new MemberBean();
 		memberBean.setM_id(request.getParameter("m_id"));
-		memberBean.setM_address(request.getParameter("m_address"));
-		memberBean.setM_agree(request.getParameter("m_agree"));
-		memberBean.setM_birth(m_birth);
-		memberBean.setM_drop(request.getParameter("m_drop"));
-		memberBean.setM_gender(Integer.parseInt(request.getParameter("m_gender")));
-		memberBean.setM_name(request.getParameter("m_name"));
 		memberBean.setM_pass(request.getParameter("m_pass"));
+		memberBean.setM_name(request.getParameter("m_name"));
 		memberBean.setM_phone(request.getParameter("m_phone"));
+		memberBean.setM_birth(m_birth);
+		memberBean.setM_gender(Integer.parseInt(request.getParameter("m_gender")));
+		memberBean.setM_agree(request.getParameter("m_agree"));
 		memberBean.setM_rdate(date);
+		memberBean.setM_drop(request.getParameter("m_drop"));
 		
 		MemberJoinProService memberJoinProService = new MemberJoinProService();
 		

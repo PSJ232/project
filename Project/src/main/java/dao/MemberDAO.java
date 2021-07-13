@@ -44,11 +44,11 @@ public class MemberDAO {
 			pstmt.setString(4, memberBean.getM_phone());
 			pstmt.setString(5, memberBean.getM_birth());
 			pstmt.setInt(6, memberBean.getM_gender());
-			pstmt.setInt(7, 0);
+			pstmt.setInt(7, 0);//회원등급 기본값
 			pstmt.setString(8, memberBean.getM_agree());
-			pstmt.setString(9, memberBean.getM_address());
+			pstmt.setString(9, null);//최근배송지
 			pstmt.setTimestamp(10, memberBean.getM_rdate());
-			pstmt.setString(11, memberBean.getM_drop());
+			pstmt.setString(11, null);//회원탈퇴
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
