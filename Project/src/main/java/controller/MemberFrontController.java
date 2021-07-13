@@ -36,6 +36,7 @@ public class MemberFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./member/join.jsp");
 			forward.setRedirect(false); // Dispatcher 방식은 생략 가능(기본값 false 이므로)
+			
 		} else if(command.equals("/MemberJoinPro.me")) {
 
 			action = new MemberJoinProAction();
@@ -46,6 +47,11 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/MemberLogin.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/login.jsp");
+			forward.setRedirect(false);
+			
 		} else if(command.equals("")) {
 			
 		}
