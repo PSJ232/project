@@ -10,7 +10,7 @@
 <h1>회원가입</h1>
 <hr>
 <form action="MemberJoinPro.me" method="post">
-이메일(아이디) <input type="text" name="m_id" placeholder = "예)kukka@kukk.kr"><input type="button" value="중복확인"><br>
+이메일(아이디) <input type="email" name="m_id" placeholder = "예)kukka@kukk.kr"><input type="button" value="중복확인"><br>
 비밀번호 <input type="password" name="m_pass" placeholder="비밀번호를 입력해주세요."><br>
 비밀번호확인 <input type="password" placeholder="비밀번호를 한 번 더 입력해주세요."><br>
 이름 <input type="text" name="m_name" placeholder="이름을 입력해주세요."><br>

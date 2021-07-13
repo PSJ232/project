@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.JdbcUtil;
@@ -31,6 +32,7 @@ public class MemberDAO {
 	
 	// 회원정보입력 작업(비즈니스 로직)을 수행하기 위한 insertMember() 메서드 정의
 	public int insertMember(MemberBean memberBean) {
+		
 		System.out.println("MemberDAO - insertMember()");
 		
 		int insertCount = 0;
@@ -53,6 +55,36 @@ public class MemberDAO {
 			// 가입날짜는 자동입력
 			
 			insertCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		return insertCount;
+	}
+	
+	// 로그인 작업(비즈니스 로직)을 수행하기 위한 userCheck() 메서드 정의
+//	public int userCheck(MemberBean memberBean) {
+	public int userCheck(MemberBean memberBean) {	
+		System.out.println("MemberDAO - userCheck()");
+		
+		int insertCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "SELECT * FROM member WHERE m_id=? and m_pass=?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, memberBean.getM_id());// 아이디=이메일
+			pstmt.setString(2, memberBean.getM_pass());
+			
+			ResultSet rs=pstmt.executeQuery();
+			
+			if(rs.next()) { // 값이 있으면 1,
+				insertCount = 1;
+			}
 			
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());

@@ -18,7 +18,7 @@ public class MemberJoinProService {
 		// 2. JdbcUtil 객체로부터 Connection Pool 에 저장된 Connection 객체 가져오기(공통)
 		Connection con = JdbcUtil.getConnection();
 		
-		// 3. memberDAO 클래스로부터 BoardDAO 객체 가져오기(공통)
+		// 3. memberDAO 클래스로부터 memberDAO 객체 가져오기(공통)
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		
 		// 4. memberDAO 객체의 setConnection() 메서드를 호출하여 Connection 객체 전달(공통)

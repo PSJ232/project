@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.MemberJoinProAction;
+import action.MemberLoginProAction;
 import vo.ActionForward;
 
 //서블릿 주소가 XXX.me 일 경우 MemberFrontController 로 해당 요청이 전달됨
@@ -51,6 +52,15 @@ public class MemberFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./member/login.jsp");
 			forward.setRedirect(false);
+			
+		} else if(command.equals("/MemberLoginPro.me")) {
+			action = new MemberLoginProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 		} else if(command.equals("")) {
 			
