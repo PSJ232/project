@@ -6,16 +6,20 @@
 <meta charset="UTF-8">
 <title>개인정보 수정</title>
 </head>
+<%
+String m_id = (String)session.getAttribute("m_id");
+
+%>
 <body>
 	<h1>개인정보 수정</h1>
 	<hr>
 	<form action="MemberUpdatePro.me" method="post">
 		<ul>
-			<li><label>이메일(아이디)</label><input type="text" name="m_id"></li>
+			<li><label>이메일(아이디)</label><input type="text" name="m_id" value="<%=m_id %>" readonly></li>
 			<li><label>신규 비밀번호</label><input type="password" name="m_pass" value="새 비밀번호를 입력해주세요."></li>
-			<li><label>이름</label><input type="text" name="m_name"></li>
-			<li><label>휴대폰 본인인증</label><input type="text" name="m_phone"></li>
-			<li><label>생년월일</label><input type="text" name="year"><input type="text" name="month"><input type="text" name="day"></li>
+			<li><label>이름</label><input type="text" name="m_name" required></li>
+			<li><label>휴대폰 본인인증</label><input type="text" name="m_phone" required></li>
+			<li><label>생년월일</label><input type="text" name="year" required><input type="text" name="month" required><input type="text" name="day" required></li>
 			<li><label>성별</label><input type="radio" name="m_gender" value="0">남
 									<input type="radio" name="m_gender" value="1">여</li>
 		</ul>

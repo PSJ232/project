@@ -40,7 +40,7 @@ public class MemberUpdateProAction implements Action {
 			out.print("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("MemberLogin.me"); 
+			forward.setPath("MemberUpdate.me");
 			forward.setRedirect(true);
 		}
 

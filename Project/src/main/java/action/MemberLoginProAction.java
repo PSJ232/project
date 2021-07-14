@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import svc.MemberLoginProService;
 import vo.ActionForward;
@@ -15,6 +17,7 @@ public class MemberLoginProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = null;
+		HttpSession session = request.getSession();
 		
 		MemberBean memberBean = new MemberBean();
 		
@@ -33,9 +36,10 @@ public class MemberLoginProAction implements Action {
 			out.print("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("MainList.hi"); // 메인화면 주소 미정, 임시주소
+			forward.setPath("./index.jsp"); // 메인화면 주소 미정, 임시주소
 			forward.setRedirect(true);
-			System.out.println("로그인 성공! 후작업 필요, 세션처리하면될듯?");
+			session.setAttribute("m_id", request.getParameter("m_id"));
+			System.out.println("로그인 성공!");
 		}
 		
 		// 포워딩 정보가 저장된 ActionForward 객체 리턴

@@ -16,9 +16,10 @@ public class MemberDeleteProAction implements Action {
 		ActionForward forward = null;
 		
 		// 회원 삭제
+		String m_pass = request.getParameter("m_pass");
 		String m_id = request.getParameter("m_id");
 		MemberDeleteProService memberDeleteProService = new MemberDeleteProService();
-		boolean isDeleteCount = memberDeleteProService.deleteMember(m_id);
+		boolean isDeleteCount = memberDeleteProService.deleteMember(m_id, m_pass);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		// 성공 시 로그인 화면으로 복귀
@@ -29,8 +30,8 @@ public class MemberDeleteProAction implements Action {
 			out.println("</script>");
 			
 			forward = new ActionForward();
-			forward.setPath("/MemberLogin.me");
-			forward.setRedirect(false);
+			forward.setPath("./index.jsp"); // 메인화면 주소 미정, 임시주소
+			forward.setRedirect(true);
 		} else {
 			// 실패 시 script로 실패했음을 표시
 			out.println("<script>");

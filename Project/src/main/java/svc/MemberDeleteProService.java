@@ -7,7 +7,7 @@ import static db.JdbcUtil.*;
 import static db.JdbcUtil.getConnection;
 
 public class MemberDeleteProService {
-	public boolean deleteMember(String m_id) {
+	public boolean deleteMember(String m_id, String m_pass) {
 		
 		//  글쓰기 작업 요청 처리 결과를 저장할 boolean 타입 변수 선언
 		boolean isDeleteSuccess = false;
@@ -21,7 +21,7 @@ public class MemberDeleteProService {
 		mdao.setConnection(con);
 		
 		// 공통작업 4. MemberDAO 객체 중 deleteMember() 수행
-		int deleteCount = mdao.deleteMember(m_id);
+		int deleteCount = mdao.deleteMember(m_id, m_pass);
 		
 		// +) 작업 성공 여부에 따라 commit, rollback 수행
 		if(deleteCount >0) {

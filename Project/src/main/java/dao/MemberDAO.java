@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.Closeable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -97,14 +96,14 @@ public class MemberDAO {
 		return insertCount;
 	}
 
-
+	// 회원정보수정(비즈니스 로직)를 수행하기 위한 updateMember() 메서드 정의
 	public int updateMember(MemberBean memberBean) {
 		System.out.println("MemberDAO - updateMember()");
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "UPDATE member SET m_pass=?,m_name=?,m_phone=?,m_birth=?,m_gender=?,m_agree=? where m_id=?";
+			String sql = "UPDATE member SET m_pass=?,m_name=?,m_phone=?,m_birth=?,m_gender=?,m_agree=? WHERE m_id=?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, memberBean.getM_pass());
@@ -123,17 +122,19 @@ public class MemberDAO {
 		}
 		return updateCount;
 	}
+	
 	// 회원정보 삭제(비즈니스 로직)를 수행하기 위한 deleteMember() 메서드 정의
-	public int deleteMember(String m_id) {
+	public int deleteMember(String m_id, String m_pass) {
 		System.out.println("MemberDAO - deleteMember()");
 		
 		PreparedStatement pstmt = null;
 		int deleteCount = 0;
 		
-		String sql = "DELETE FROM member WHERE m_id = ?";
+		String sql = "DELETE FROM member WHERE m_id=? AND m_pass=?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
+			pstmt.setString(2, m_pass);
 			deleteCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL문 오류! - " + e.getMessage());
