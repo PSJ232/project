@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
+import action.MemberUpdateProAction;
 import vo.ActionForward;
 
 //서블릿 주소가 XXX.me 일 경우 MemberFrontController 로 해당 요청이 전달됨
@@ -62,7 +63,20 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} else if(command.equals("")) {
+		} else if(command.equals("/MemberUpdateForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/update.jsp");
+			forward.setRedirect(false); 
+		} else if(command.equals("/MemberUpdatePro.me")) {
+			
+			action = new MemberUpdateProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			
 		}
 		

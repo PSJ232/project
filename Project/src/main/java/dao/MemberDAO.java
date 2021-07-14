@@ -94,6 +94,32 @@ public class MemberDAO {
 		
 		return insertCount;
 	}
+
+	public int updateMember(MemberBean memberBean) {
+		System.out.println("MemberDAO - updateMember()");
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "UPDATE member SET m_pass=?,m_name=?,m_phone=?,m_birth=?,m_gender=?,m_agree=? where m_id=?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, memberBean.getM_pass());
+			pstmt.setString(2, memberBean.getM_name());
+			pstmt.setString(3, memberBean.getM_phone());
+			pstmt.setString(4, memberBean.getM_birth());
+			pstmt.setInt(5, memberBean.getM_gender());
+			pstmt.setString(6, memberBean.getM_agree());
+			pstmt.setString(7, memberBean.getM_id());
+			
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		return updateCount;
+	}
 	
 
 }
