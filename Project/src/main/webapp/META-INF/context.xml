@@ -19,7 +19,9 @@
 url="jdbc:mysql://192.168.3.23:3306/team3_flower?useSSL=false"
 
 -->
-<!-- 집에서 개인 DB를 사용할 경우 이걸로 바꿔서 사용. 꼭 다시 학원 공용 DB 파일로 수정해놓고 커밋 할 것!!
+<!-- 집에서 개인 DB를 사용할 경우 이걸로 바꿔서 사용. 깃허브에 최종 PUSH 하기전에
+꼭 다시 학원 공용 DB 파일로 수정해놓고 commit하고 push 해주세요!!
+주말에는 집에서 다들 작업할 수 있도록 개인 DB로 바꿔두겠습니다.
 
 url="jdbc:mysql://localhost:3306/team3_flower?useSSL=false",
 
