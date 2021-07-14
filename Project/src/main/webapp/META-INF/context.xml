@@ -6,13 +6,24 @@
 		type="javax.sql.DataSource"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/team3_flower?useSSL=false"
+		url="jdbc:mysql://192.168.3.23:3306/team3_flower?useSSL=false"
 		username="root"
 		password="1234"
 		maxActive="500"
 	/>
 </Context>
 
+
+<!--학원에서 공용 DB를 사용할 경우
+
+url="jdbc:mysql://192.168.3.23:3306/team3_flower?useSSL=false"
+
+-->
+<!-- 집에서 개인 DB를 사용할 경우 이걸로 바꿔서 사용. 꼭 다시 학원 공용 DB 파일로 수정해놓고 커밋 할 것!!
+
+url="jdbc:mysql://localhost:3306/team3_flower?useSSL=false",
+
+-->
 
 
 
