@@ -29,7 +29,7 @@ public class MemberUpdateProAction implements Action {
 		memberBean.setM_agree(request.getParameter("m_agree"));
 		
 		MemberUpdateProService memberUpdateProService = new MemberUpdateProService();
-		boolean isUpdateSuccess = memberUpdateProService.updateMember(memberBean);
+		boolean isUpdateSuccess = memberUpdateProService.modifyMember(memberBean);
 		
 		if(!isUpdateSuccess) {
 			response.setContentType("text/html; charset=UTF-8");

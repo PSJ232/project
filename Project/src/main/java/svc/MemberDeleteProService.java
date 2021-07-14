@@ -7,8 +7,8 @@ import static db.JdbcUtil.*;
 import static db.JdbcUtil.getConnection;
 
 public class MemberDeleteProService {
-	public boolean deleteMember(String m_id, String m_pass) {
-		
+	public boolean dropMember(String m_id, String m_pass) {
+		System.out.println("MemberUpdateProService - dropMember()");
 		//  글쓰기 작업 요청 처리 결과를 저장할 boolean 타입 변수 선언
 		boolean isDeleteSuccess = false;
 		

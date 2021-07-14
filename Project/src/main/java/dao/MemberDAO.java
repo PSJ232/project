@@ -67,13 +67,12 @@ public class MemberDAO {
 	}
 	
 	// 로그인 작업(비즈니스 로직)을 수행하기 위한 userCheck() 메서드 정의
-//	public int userCheck(MemberBean memberBean) {
 	public int userCheck(MemberBean memberBean) {	
 		System.out.println("MemberDAO - userCheck()");
 		
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
-		
+		ResultSet rs = null;
 		try {
 			String sql = "SELECT * FROM member WHERE m_id=? and m_pass=?";
 			pstmt = con.prepareStatement(sql);
@@ -81,7 +80,7 @@ public class MemberDAO {
 			pstmt.setString(1, memberBean.getM_id());// 아이디=이메일
 			pstmt.setString(2, memberBean.getM_pass());
 			
-			ResultSet rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
 			if(rs.next()) { // 값이 있으면 1,
 				insertCount = 1;
@@ -91,10 +90,50 @@ public class MemberDAO {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		
 		return insertCount;
 	}
+	
+	// 회원정보를 불러오는 (비즈니스 로직)를 수행하기 위한 getMember() 메서드 정의
+//	public MemberBean getMember(String m_id) {	
+//		System.out.println("MemberDAO - getMember()");
+//		
+//		MemberBean memberBean = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+//		try {
+//			String sql = "SELECT * FROM member WHERE m_id=?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, m_id);// 아이디=이메일
+//			rs = pstmt.executeQuery();
+//			
+//			if(rs.next()) {
+//				memberBean = new MemberBean();
+//				memberBean.setM_id(rs.getString("m_id"));
+////				memberBean.setM_pass(rs.getString("m_pass"));
+//				memberBean.setM_name(rs.getString("m_name"));
+//				memberBean.setM_phone(rs.getString("m_phone"));
+//				memberBean.setM_birth(rs.getString("m_birth"));
+//				memberBean.setM_gender(rs.getInt("m_gender"));
+//				memberBean.setG_id(rs.getInt("g_id"));
+//				memberBean.setM_agree(rs.getString("m_agree"));
+//				memberBean.setM_address(rs.getString("m_address"));
+//				memberBean.setM_rdate(rs.getDate("m_rdate"));
+//				memberBean.setM_drop(rs.getDate("m_drop"));
+//			}
+//			
+//		} catch (SQLException e) {
+//			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+//		} finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		
+//		return memberBean;
+//	}
 
 	// 회원정보수정(비즈니스 로직)를 수행하기 위한 updateMember() 메서드 정의
 	public int updateMember(MemberBean memberBean) {

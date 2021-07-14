@@ -8,8 +8,8 @@ import vo.MemberBean;
 
 public class MemberUpdateProService {
 
-	public boolean updateMember(MemberBean memberBean) {
-		System.out.println("MemberUpdateProService - updateMember()");
+	public boolean modifyMember(MemberBean memberBean) {
+		System.out.println("MemberUpdateProService - modifyMember()");
 
 		boolean isUpdateSuccess = false;
 
