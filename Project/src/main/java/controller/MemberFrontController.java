@@ -35,7 +35,7 @@ public class MemberFrontController extends HttpServlet {
 		// 액션 클래스의 공통 타입(슈퍼클래스)인 Action 인터페이스 타입 변수 선언
 		Action action = null;
 		
-		if(command.equals("/MemberJoinForm.me")) {
+		if(command.equals("/MemberJoin.me")) {
 			forward = new ActionForward();
 			forward.setPath("./member/join.jsp");
 			forward.setRedirect(false); // Dispatcher 방식은 생략 가능(기본값 false 이므로)
@@ -64,7 +64,7 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} else if(command.equals("/MemberUpdateForm.me")) {
+		} else if(command.equals("/MemberUpdate.me")) {
 			forward = new ActionForward();
 			forward.setPath("./member/update.jsp");
 			forward.setRedirect(false); 

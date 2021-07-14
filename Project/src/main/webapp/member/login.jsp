@@ -17,7 +17,7 @@
 		<hr>
 		SNS계정으로 간편 로그인<br>
 		<a href="#">페이스북</a> <a href="#">네이버</a> <a href="#">카카오톡</a><br>
-		<input type="button" value="회원가입" onclick="location.href='MemberJoinForm.me'"><br>
+		<input type="button" value="회원가입" onclick="location.href='MemberJoin.me'"><br>
 	</form>
 	지금 회원가입 하시면 1,000p 바로 지급!<br>
 	비회원 주문 조회
