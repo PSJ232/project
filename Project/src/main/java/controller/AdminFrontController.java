@@ -44,6 +44,10 @@ public class AdminFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(command.equals("/SelectClassDetail.ad")) {
+			forward = new ActionForward();
+			forward.setPath("./admin_layout/class_management/selectClassDetail.jsp");
+			forward.setRedirect(false);
 		}
 		
 		if(forward != null) {
