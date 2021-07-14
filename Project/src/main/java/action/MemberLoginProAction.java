@@ -36,7 +36,7 @@ public class MemberLoginProAction implements Action {
 			out.print("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("./index.jsp"); // 메인화면 주소 미정, 임시주소
+			forward.setPath("/Project"); // 메인화면 주소 미정, 임시주소
 			forward.setRedirect(true);
 			session.setAttribute("m_id", request.getParameter("m_id"));
 			System.out.println("로그인 성공!");

@@ -31,7 +31,7 @@ public class MemberDeleteProAction implements Action {
 			out.println("</script>");
 			
 			forward = new ActionForward();
-			forward.setPath("./index.jsp"); // 메인화면 주소 미정, 임시주소
+			forward.setPath("/Project"); // 메인화면 주소 미정, 임시주소
 			forward.setRedirect(true);
 		} else {
 			// 실패 시 script로 실패했음을 표시
