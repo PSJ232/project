@@ -11,11 +11,9 @@
 	<h3><a href="MemberJoin.me">회원가입</a></h3>
 	<h3><a href="MemberLogin.me">로그인</a></h3>
 	<h3><a href="MemberUpdate.me">회원정보수정</a></h3>
-	<h3><a href="MemberLogout.me">로그아웃</a></h3>
+	<h3><a href="">로그아웃</a></h3>
 <%
 String m_id = (String)session.getAttribute("m_id");
-String m_name = (String)session.getAttribute("m_name");
-
 %>
 
 로그인 아이디 = <%=m_id %>
