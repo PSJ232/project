@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberDeleteProAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberUpdateProAction;
@@ -78,10 +79,19 @@ public class MemberFrontController extends HttpServlet {
 			}
 			
 			
+		} else if(command.equals("/MemberDelete.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/delete.jsp");
+			forward.setRedirect(false);
+			
+		} else if(command.equals("/MemberDeletePro.me")) {
+			action = new MemberDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		
-		
 		
 		
 		// -------------------------------------------------------------------------

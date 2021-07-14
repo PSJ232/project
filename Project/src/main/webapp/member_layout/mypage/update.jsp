@@ -29,9 +29,15 @@
 <input type="button" value="기념일 등록하기">
 <hr>
 </body>
+
 <input type="checkbox" name="m_agree">꾸까가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요. <br>
 <input type="submit" value="수정하기"> <br>
 </form>
 <input type="button" value="회원 탈퇴">
+
+<input type="checkbox" name="marketing" value="marketing">꾸까가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요. <br>
+<input type="button" value="수정하기"> <br>
+<input type="button" value="회원 탈퇴" onclick="href='/MemberDelete.me'">
+
 
 </html>

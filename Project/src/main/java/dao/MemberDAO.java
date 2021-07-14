@@ -1,12 +1,14 @@
 package dao;
 
+import java.io.Closeable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import db.JdbcUtil;
 import vo.MemberBean;
+
+import static db.JdbcUtil.*;
 // 실제 데이터베이스 작업(비즈니스 로직)을 수행하는 MemberDAO 클래스 정의
 public class MemberDAO {
 	
@@ -59,7 +61,7 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
-			JdbcUtil.close(pstmt);
+			close(pstmt);
 		}
 		
 		return insertCount;
@@ -89,11 +91,12 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
-			JdbcUtil.close(pstmt);
+			close(pstmt);
 		}
 		
 		return insertCount;
 	}
+
 
 	public int updateMember(MemberBean memberBean) {
 		System.out.println("MemberDAO - updateMember()");
@@ -116,9 +119,31 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
-			JdbcUtil.close(pstmt);
+			close(pstmt);
 		}
 		return updateCount;
+	}
+	// 회원정보 삭제(비즈니스 로직)를 수행하기 위한 deleteMember() 메서드 정의
+	public int deleteMember(String m_id) {
+		System.out.println("MemberDAO - deleteMember()");
+		
+		PreparedStatement pstmt = null;
+		int deleteCount = 0;
+		
+		String sql = "DELETE FROM member WHERE m_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL문 오류! - " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return deleteCount;
+	
+
 	}
 	
 
