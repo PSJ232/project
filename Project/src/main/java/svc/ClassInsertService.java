@@ -1,6 +1,7 @@
 package svc;
 
 import vo.ClassBean;
+
 import static db.JdbcUtil.*;
 
 import java.sql.Connection;
@@ -23,6 +24,7 @@ public class ClassInsertService {
 		}else {
 			rollback(con);
 		}
+		close(con);
 		return isSuccess;
 	}
 

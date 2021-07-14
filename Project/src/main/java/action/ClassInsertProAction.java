@@ -1,6 +1,7 @@
 package action;
 
 import java.io.PrintWriter;
+import java.sql.Time;
 import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import svc.ClassDetailInsertService;
 import svc.ClassInsertService;
 import vo.ActionForward;
 import vo.ClassBean;
+import vo.ClassDetailBean;
 
 public class ClassInsertProAction implements Action {
 
@@ -21,6 +24,7 @@ public class ClassInsertProAction implements Action {
 		System.out.println("ClassInsertProAction - execute");
 		ActionForward forward = null;
 		ClassInsertService service = new ClassInsertService();
+		ClassDetailInsertService detailService = new ClassDetailInsertService();
 		
 		ServletContext context = request.getServletContext();
 		
@@ -38,6 +42,11 @@ public class ClassInsertProAction implements Action {
 				new DefaultFileRenamePolicy());
 		
 		request.setCharacterEncoding("utf-8");
+		ClassDetailBean classDetailBean = new ClassDetailBean();
+		classDetailBean.setStartTime(multi.getParameter("start_time"));
+		classDetailBean.setEndTime(multi.getParameter("end_time"));
+		classDetailBean.setPlace(multi.getParameter("class_place"));
+		
 		ClassBean classBean = new ClassBean();
 		classBean.setClass_subject(multi.getParameter("class_subject"));
 		classBean.setClass_desc(multi.getParameter("class_desc"));
@@ -66,7 +75,8 @@ public class ClassInsertProAction implements Action {
 		classBean.setClass_sub_img3(filename4);
 		
 		boolean isWriteSuccess = service.registArticle(classBean);
-		if(isWriteSuccess) {
+		boolean isDetailWriteSuccess = detailService.registArticle(classDetailBean);
+		if(isWriteSuccess && isDetailWriteSuccess) {
 			forward = new ActionForward();
 			forward.setPath("ClassList.ad");
 			forward.setRedirect(true);

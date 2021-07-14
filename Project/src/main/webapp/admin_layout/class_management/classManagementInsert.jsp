@@ -20,10 +20,9 @@
 			클래스 설명: <textarea name="class_desc" rows="30" cols="100"></textarea><br>
 			비용: <input type="text" name="class_cost"><br>
 			정원: <input type="text" name="max_member"><br>
-			시간: <input type="text" name="class_time"> <input type="button" value="시간/장소선택" onclick="window.open('SelectClassDetail.ad','_blank', 'width=500,height=500')"><br>
-<!-- 			장소: <input type="radio" name="class_place" value="해운대">해운대  -->
-<!-- 			<input type="radio" name="class_place" value="서면">서면  -->
-<!-- 			<input type="radio" name="class_place" value="남포">남포<br> -->
+			시작시간: <input type="text" name="start_time" id="start_time">
+			종료시간: <input type="text" name="end_time" id="end_time"> <input type="button" value="시간/장소선택" onclick="window.open('SelectClassDetail.ad','_blank', 'width=500,height=500 resizable=no')"><br>
+			장소: <input type="text" name="class_place" id="class_place"><br>
 			메인 이미지: <input type="file" name="class_main_img"><br>
 			서브 이미지1: <input type="file" name="class_sub_img1"><br>
 			서브 이미지2: <input type="file" name="class_sub_img2"><br>

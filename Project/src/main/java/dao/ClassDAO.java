@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import vo.ClassBean;
+import vo.ClassDetailBean;
+
 import static db.JdbcUtil.*;
 
 public class ClassDAO {
@@ -51,6 +53,8 @@ public class ClassDAO {
 			pstmt.setString(8, classBean.getClass_sub_img2());
 			pstmt.setString(9, classBean.getClass_sub_img3());
 			insertCount = pstmt.executeUpdate();
+			
+			
 		} catch (SQLException e) {
 			System.out.println("SQL구문 오류! - " + e.getMessage());
 		} finally {
