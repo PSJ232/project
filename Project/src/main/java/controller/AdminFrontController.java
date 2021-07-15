@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.ClassDetailSelectTimelistAction;
 import action.ClassInsertProAction;
 import vo.ActionForward;
 
@@ -48,6 +49,21 @@ public class AdminFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/class_management/selectClassDetail.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/TimeList.ad")) {
+			forward = new ActionForward();
+			action = new ClassDetailSelectTimelistAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/Timeadd.ad")) {
+			forward = new ActionForward();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null) {

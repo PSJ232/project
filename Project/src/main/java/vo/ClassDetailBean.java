@@ -1,24 +1,24 @@
 package vo;
 
-import java.sql.Time;
+import java.sql.Date;
 
 public class ClassDetailBean {
-	private String startTime;
-	private String endTime;
+	private String time;
+	private Date date;
 	private String place;
 	private int classNum;
 	
-	public String getStartTime() {
-		return startTime;
+	public Date getDate() {
+		return date;
 	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
+	public void setDate(Date date) {
+		this.date = date;
 	}
-	public String getEndTime() {
-		return endTime;
+	public String getTime() {
+		return time;
 	}
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
+	public void setTime(String time) {
+		this.time = time;
 	}
 	public String getPlace() {
 		return place;

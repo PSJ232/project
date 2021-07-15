@@ -20,8 +20,8 @@
 			클래스 설명: <textarea name="class_desc" rows="30" cols="100"></textarea><br>
 			비용: <input type="text" name="class_cost"><br>
 			정원: <input type="text" name="max_member"><br>
-			시작시간: <input type="text" name="start_time" id="start_time">
-			종료시간: <input type="text" name="end_time" id="end_time"> <input type="button" value="시간/장소선택" onclick="window.open('SelectClassDetail.ad','_blank', 'width=500,height=500 resizable=no')"><br>
+			날짜: <input type="text" name="class_date" id="class_date"><br>
+			시간: <input type="text" name="time" id="time"> <input type="button" value="시간/장소선택" onclick="window.open('SelectClassDetail.ad','_blank', 'width=500,height=500 resizable=no')"><br>
 			장소: <input type="text" name="class_place" id="class_place"><br>
 			메인 이미지: <input type="file" name="class_main_img"><br>
 			서브 이미지1: <input type="file" name="class_sub_img1"><br>

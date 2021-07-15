@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
 
 import static db.JdbcUtil.*;
 import vo.ClassDetailBean;
@@ -29,27 +31,49 @@ public class ClassDetailDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int insertCount = 0;
+		return insertCount;
+	}
+	
+	public ArrayList<Time> getTimeList(String place, String date){
+		ArrayList<Time> selectedTimeList = new ArrayList<Time>();
+		ArrayList<Time> timeList = new ArrayList<Time>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
 		try {
-			int num = 1;
-			String sql = "SELECT MAX(f_id) FROM fclass";
+			String sql = "SELECT fd_time FROM fclass_detail WHERE fd_place=? and fd_date=? and fd_is_selected=1";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, place);
+			pstmt.setString(2, date);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				selectedTimeList.add(rs.getTime(1));
+				System.out.println("rs.getTime(1): "+rs.getTime(1));
+			}
+			sql = "SELECT fcdt_time FROM fclass_detail_timelist";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				num = rs.getInt(1);
+			while(rs.next()) {
+				timeList.add(rs.getTime(1));
 			}
-			sql = "INSERT INTO fclass_detail VALUES(?,?,?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, classDetailBean.getStartTime());
-			pstmt.setString(2, classDetailBean.getEndTime());
-			pstmt.setString(3, classDetailBean.getPlace());
-			pstmt.setInt(4, num);
-			insertCount = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("SQL구문오류 - " + e.getMessage());
-		} finally {
+			System.out.println("selectedTimeList: "+selectedTimeList.toString());
+			System.out.println("timeList: "+timeList.toString());
+		}catch(SQLException e) {
+			System.out.println("SQL구문오류! - " + e.getMessage());
+		}finally {
 			close(rs);
 			close(pstmt);
 		}
-		return insertCount;
+		for(int j = 0; j < timeList.size(); j++) {
+			for(int i = 0; i < selectedTimeList.size(); i++) {
+				if(timeList.get(j).equals(selectedTimeList.get(i))) {
+					System.out.println(timeList.get(j));
+					timeList.remove(j);
+				}
+			}
+		}
+		return timeList;
 	}
+	
+	
 }
