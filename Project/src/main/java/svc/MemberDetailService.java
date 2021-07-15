@@ -10,7 +10,7 @@ public class MemberDetailService {
 
 	public MemberBean selectMember(String m_id) {
 		
-		System.out.println("MemberDetailService - selectMember");
+		System.out.println("MemberDetailService - selectMember()");
 		
 		MemberBean memberDetail = null;
 		

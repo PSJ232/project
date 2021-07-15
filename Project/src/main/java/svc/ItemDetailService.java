@@ -7,7 +7,7 @@ import dao.ItemDAO;
 import db.JdbcUtil;
 import vo.ItemBean;
 
-public class ItemDetailService {
+public class ItemDetailService { // 아이템에 대한 디테일이 필요할 경우 사용
 
 	public ItemBean selectItem(String i_id) {
 		System.out.println("ItemDetailService - selectItem()");

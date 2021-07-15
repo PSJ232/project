@@ -27,8 +27,11 @@ public class OrderInsertFormAction implements Action {
 		
 		ItemDetailService itemdetailService = new ItemDetailService();
 		ItemBean itemDetail = itemdetailService.selectItem(i_id);
+		request.setAttribute("itemDetail", itemDetail);
 		
-		
+		forward = new ActionForward();
+		forward.setPath("./order/insert.jsp");
+		forward.setRedirect(false);
 		
 		return forward;
 	}

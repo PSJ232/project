@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-편지지 폼
+편지지
+<h3><a href="OrderForm.od">선택완료</a></h3>
 
 </body>
 </html>

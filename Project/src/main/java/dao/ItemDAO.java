@@ -1,14 +1,12 @@
 package dao;
 
-import static db.JdbcUtil.close;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import db.JdbcUtil;
 import vo.ItemBean;
-import vo.MemberBean;
 
 public class ItemDAO {
 	
@@ -32,7 +30,7 @@ public class ItemDAO {
 		this.con = con;
 	}
 
-	public ItemBean getItem(String i_id) {
+	public ItemBean getItem(String i_id) { //등록된 아이템에 대한 디테일 정보를 가져옴
 		System.out.println("ItemDAO - getItem()");
 		
 		ItemBean itemDetail = null;
@@ -47,11 +45,8 @@ public class ItemDAO {
 			
 			if(rs.next()) {
 				itemDetail = new ItemBean();
-				
-				
-				
-				
-				//itemBean 작업해야됨
+				//itemDetail.setI_id(rs.getString("m_id"));
+				//itemBean 내용작업해야됨 - 관리자팀과 협의
 				
 				
 				
@@ -63,8 +58,8 @@ public class ItemDAO {
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
-			close(rs);
-			close(pstmt);
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
 		}
 		
 		

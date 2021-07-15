@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import db.JdbcUtil;
 import vo.MemberBean;
 
-import static db.JdbcUtil.*;
 // 실제 데이터베이스 작업(비즈니스 로직)을 수행하는 MemberDAO 클래스 정의
 public class MemberDAO {
 	
@@ -60,7 +60,7 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
-			close(pstmt);
+			JdbcUtil.close(pstmt);
 		}
 		
 		return insertCount;
@@ -89,8 +89,8 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
-			close(pstmt);
-			close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
 		}
 		
 		return insertCount;
@@ -128,8 +128,8 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
-			close(rs);
-			close(pstmt);
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
 		}
 		
 		return memberDetail;
@@ -157,7 +157,7 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
-			close(pstmt);
+			JdbcUtil.close(pstmt);
 		}
 		return updateCount;
 	}
@@ -178,7 +178,7 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			System.out.println("SQL문 오류! - " + e.getMessage());
 		} finally {
-			close(pstmt);
+			JdbcUtil.close(pstmt);
 		}
 		
 		return deleteCount;
