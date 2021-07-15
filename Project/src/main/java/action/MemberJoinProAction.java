@@ -35,10 +35,10 @@ public class MemberJoinProAction implements Action {
 		if(!isJoinSuccess) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('회원 가입 실패!');");
-			out.print("history.back();");
-			out.print("</script>");
+			out.println("<script>");
+			out.println("alert('회원 가입 실패!');");
+			out.println("history.back();");
+			out.println("</script>");
 		} else {
 			forward = new ActionForward();
 			forward.setPath("MemberLogin.me"); // 메인화면 주소 미정
