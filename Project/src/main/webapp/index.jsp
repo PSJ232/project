@@ -16,7 +16,7 @@
 String m_id = (String)session.getAttribute("m_id");
 %>
 
-로그인 아이디 = <%=m_id %>
+로그인 아이디(session) = <%=m_id %>
 	
 </body>
 </html>
