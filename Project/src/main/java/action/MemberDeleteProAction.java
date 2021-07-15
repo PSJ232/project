@@ -30,6 +30,9 @@ public class MemberDeleteProAction implements Action {
 			out.println("alert('회원정보가 삭제되었습니다.');");
 			out.println("</script>");
 			
+			HttpSession session = request.getSession();
+			session.invalidate();// 로그아웃처리
+			
 			forward = new ActionForward();
 			forward.setPath("/Project"); // 메인화면 주소 미정, 임시주소
 			forward.setRedirect(true);

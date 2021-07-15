@@ -16,11 +16,12 @@ import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberUpdateProAction;
+import action.OrderInsertFormAction;
 import vo.ActionForward;
 
-//서블릿 주소가 XXX.me 일 경우 MemberFrontController 로 해당 요청이 전달됨
-@WebServlet("*.me")
-public class MemberFrontController extends HttpServlet {
+//서블릿 주소가 XXX.me 일 경우 OrderFrontController 로 해당 요청이 전달됨
+@WebServlet("*.od")
+public class OrderFrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MemberFrontController");
@@ -37,13 +38,13 @@ public class MemberFrontController extends HttpServlet {
 		// 액션 클래스의 공통 타입(슈퍼클래스)인 Action 인터페이스 타입 변수 선언
 		Action action = null;
 
-		if (command.equals("/MemberJoin.me")) {
+		if (command.equals("/OrderLetter.od")) {
 			forward = new ActionForward();
-			forward.setPath("./member/join.jsp");
+			forward.setPath("./order/letter.jsp");
 			forward.setRedirect(false); // Dispatcher 방식은 생략 가능(기본값 false 이므로)
 
-		} else if (command.equals("/MemberJoinPro.me")) {
-			action = new MemberJoinProAction();
+		} else if (command.equals("/OrderForm.od")) {
+			action = new OrderInsertFormAction();
 			try {
 				// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
 				forward = action.execute(request, response);
@@ -51,55 +52,7 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} else if (command.equals("/MemberLogin.me")) {
-			forward = new ActionForward();
-			forward.setPath("./member/login.jsp");
-			forward.setRedirect(false);
-
-		} else if (command.equals("/MemberLoginPro.me")) {
-			action = new MemberLoginProAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		} else if (command.equals("/MemberUpdate.me")) {
-			action = new MemberUpdateFormAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		} else if (command.equals("/MemberUpdatePro.me")) {
-			action = new MemberUpdateProAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		} else if (command.equals("/MemberDelete.me")) {
-			forward = new ActionForward();
-			forward.setPath("./member/delete.jsp");
-			forward.setRedirect(false);
-
-		} else if (command.equals("/MemberDeletePro.me")) {
-			action = new MemberDeleteProAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/MemberLogout.me")) {
-			action = new MemberLogoutAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 
 		// -------------------------------------------------------------------------
 		// 포워딩 방식 결정
@@ -112,7 +65,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else { // 임시 확인을 위한 코드
 			// ActionForward 객체가 null 일 경우 포워딩 작업 수행하지 않음
-			System.out.println("MemberFrontController - ActionForward 객체가 null 입니다!");
+			System.out.println("OrderFrontController - ActionForward 객체가 null 입니다!");
 		}
 
 	}

@@ -16,7 +16,7 @@ public class MemberDAO {
 	private MemberDAO() {}
 	
 	public static MemberDAO getInstance() {
-		// 기존 BoardDAO 인스턴스가 생성된 적이 없을 경우 인스턴스 생성 후 리턴
+		// 기존 MemberDAO 인스턴스가 생성된 적이 없을 경우 인스턴스 생성 후 리턴
 		if(instance == null) {
 			instance = new MemberDAO();
 		}
