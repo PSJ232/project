@@ -19,6 +19,7 @@ String m_id = (String)session.getAttribute("m_id");
 			<li><label>신규 비밀번호</label><input type="password" name="m_pass" value="새 비밀번호를 입력해주세요."></li>
 			<li><label>이름</label><input type="text" name="m_name" required></li>
 			<li><label>휴대폰 본인인증</label><input type="text" name="m_phone" required></li>
+						<!-- 뷰페이지 참고 : 휴대폰번호 수정하면 본인인증 창이 나타남 -->
 			<li><label>생년월일</label><input type="text" name="year" required><input type="text" name="month" required><input type="text" name="day" required></li>
 			<li><label>성별</label><input type="radio" name="m_gender" value="0">남
 									<input type="radio" name="m_gender" value="1">여</li>
