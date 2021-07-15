@@ -113,7 +113,7 @@ public class MemberDAO {
 			if(rs.next()) {
 				memberDetail = new MemberBean();
 				memberDetail.setM_id(rs.getString("m_id"));
-//				memberBean.setM_pass(rs.getString("m_pass")); //중요개인정보
+				memberDetail.setM_pass(rs.getString("m_pass"));
 				memberDetail.setM_name(rs.getString("m_name"));
 				memberDetail.setM_phone(rs.getString("m_phone"));
 				memberDetail.setM_birth(rs.getString("m_birth"));

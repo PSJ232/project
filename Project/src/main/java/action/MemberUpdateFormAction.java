@@ -9,10 +9,11 @@ import svc.MemberDetailService;
 import vo.ActionForward;
 import vo.MemberBean;
 
-public class MemberDetailAction implements Action {
+public class MemberUpdateFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MemberUpdateFormAction");
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();

@@ -20,8 +20,14 @@ public class MemberUpdateProAction implements Action {
 		
 		MemberBean memberBean = new MemberBean();
 		
+		String m_pass = request.getParameter("m_pass"); // 비밀번호 수정란에 입력이 없으면 기존 비밀번호 유지
+		if(m_pass == "") {
+			memberBean.setM_pass(request.getParameter("m_pass_origin"));
+		} else {
+			memberBean.setM_pass(request.getParameter("m_pass"));
+		}
+		
 		memberBean.setM_id(request.getParameter("m_id"));
-		memberBean.setM_pass(request.getParameter("m_pass"));
 		memberBean.setM_name(request.getParameter("m_name"));
 		memberBean.setM_phone(request.getParameter("m_phone"));
 		memberBean.setM_birth(m_birth);

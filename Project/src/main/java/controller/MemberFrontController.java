@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.MemberDeleteProAction;
-import action.MemberDetailAction;
+import action.MemberUpdateFormAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberUpdateProAction;
@@ -69,7 +69,7 @@ public class MemberFrontController extends HttpServlet {
 //			forward.setRedirect(false);
 			
 		} else if (command.equals("/MemberUpdate.me")) {
-			action = new MemberDetailAction();
+			action = new MemberUpdateFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

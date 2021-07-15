@@ -19,7 +19,6 @@ public class MemberDetailService {
 		memberDAO.setConnection(con);
 		
 		memberDetail = memberDAO.getMember(m_id);
-
 		
 		JdbcUtil.close(con);
 		
