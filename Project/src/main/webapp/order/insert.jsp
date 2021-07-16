@@ -1,3 +1,5 @@
+<%@page import="vo.MemberBean"%>
+<%@page import="vo.ItemBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,12 +8,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%
+ItemBean itemDetail = (ItemBean) request.getAttribute("itemDetail");
+MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
+
+%>
 <body>
 	<h1>주문/결제</h1>
 	
 	<h3>주문내역 확인</h3>
+	
+	<%=itemDetail.getI_id() %><br>
+	<%=itemDetail.getI_name() %><br>
+	<%=itemDetail.getI_price() %><br>
+	<%=itemDetail.getI_size() %><br>
+	<%=itemDetail.getI_desc() %><br>
+	<%=itemDetail.getI_detailpage() %><br>
+	<%=itemDetail.getI_discount() %><br>
+	<%=itemDetail.getI_dpstatus() %><br>
+	<%=itemDetail.getI_inven() %><br>
+	<%=itemDetail.getI_itemstatus() %><br>
+	
+	
+	
+	
+	
 	<hr>
 	<h3>주문자 정보</h3>
+	이름 : <%=memberDetail.getM_name() %><br>
+	전화번호 : <%=memberDetail.getM_phone() %><br>
+	
+	
+	
 	<hr>
 	<h3>발신인 정보</h3>
 	<hr>

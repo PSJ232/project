@@ -20,31 +20,21 @@
 	<nav>
 		<jsp:include page="../partial/nav.jsp"></jsp:include>
 	</nav>
-	<div>
-	<h2 id="cash">현금 1000000원</h2><h2 id="card">카드 1000000원</h2>
+	<h1>DashBoard</h1>
+	<h1 id="total_income">총 매출액 2000000원</h1> <h1 id="cash">현금 1000000원</h1> <h1 id="card">카드 1000000원</h1>
+	
+	<canvas id="myLineChart" style=" background-color:#ddd; width: 800px; height:400px;"></canvas>
 	</div>
-	<canvas id="myLineChart" style="display:inline-block; width: 800px; height:400px;"></canvas>
-	<canvas id="myChart" style="display:inline-block;"></canvas>
+	
+	<div id="sold_out">
+		<h2>품절 목록</h2>
+		
 	</div>
+	
 	<footer>
 		<jsp:include page="../partial/footer.jsp"></jsp:include>
 	</footer>
 	<script type="text/javascript">
-		var context = document.getElementById('myChart').getContext('2d');
-		var myChart = new Chart(context, {
-			type: 'pie',
-			data: {
-				labels: ['남', '여'],
-				datasets: [{
-					backgroundColor: ["blue","red"],
-					hoverBackgroundColor: ["skyblue","pink"],
-					data: [5,5] 
-				}]
-			}, 
-				options: {
-					responsive: false
-				}
-		});
 		
 		var context_line = document.getElementById('myLineChart').getContext('2d');
 		var myLineChart = new Chart(context_line, {
