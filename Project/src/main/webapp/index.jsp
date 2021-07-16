@@ -11,8 +11,10 @@
 	<h3><a href="MemberJoin.me">회원가입</a></h3>
 	<h3><a href="MemberLogin.me">로그인</a></h3>
 	<h3><a href="MemberUpdate.me">회원정보수정</a></h3>
+	<h3><a href="./mypage/mypage.jsp">마이페이지</a></h3>
 	<h3><a href="MemberLogout.me">로그아웃</a></h3>
 	<h3><a href="OrderLetter.od">주문하기</a></h3>
+	<h3><a href="OrderLetter.od"></a></h3>
 <%
 String m_id = (String)session.getAttribute("m_id");
 %>

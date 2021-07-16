@@ -55,8 +55,36 @@
   	
   <!-- 본문 내용 -->
  
+  	<section>
+	 	<div>
+		   	<h2>상품 리뷰</h2>
+		   		<div>
+		   		<h6>작성 가능한 후기</h6>
+		   			<table border="1">
+		   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
+		   				<tr><td>2021-07-16</td><td>산호초 에디션</td><td><a href="ReviewInsertAction">리뷰 작성 가능</a></td></tr>
+		   				<tr><td>2021-03-15</td><td>로지 핑크 에디션</td><td>상품 배송 중</a></td></tr>
+<!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
+		   			</table>
+		   		</div>
+		   			<table border="1">
+		   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
+		   				<tr><td>2021-03-15</td><td>로지 핑크 에디션</td><td><a href="리뷰 수정">리뷰 수정</a></td></tr>
+		   				<tr><td>2020-12-09</td><td>홈 가든 에디션</td><td>삭제된 리뷰</td></tr>
+<!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
+		   			</table>
+		   		<div>
+		   		<h6>내 리뷰</h6>
+		   		</div>
+	 	</div>
+ 	</section>
+ 	
 <!-- 푸터 들어가는곳 -->
 
 <!-- 푸터 들어가는곳 -->
 </body>
 </html>
+ 
+ 
+ 
+
