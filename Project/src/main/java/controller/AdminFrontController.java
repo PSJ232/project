@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.ClassDetailSelectTimelistAction;
+import action.ClassInsertProAction;
+import action.ClassListAction;
 import action.ItemDetailAction;
 import action.ItemInsertAction;
 import action.ItemListAction;
+import action.TimeAddAction;
 import vo.ActionForward;
 
 @WebServlet("*.ad")
@@ -72,6 +76,51 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/OrderList.ad")) {
+			forward = new ActionForward();
+//			action = new OrderListAction();
+			
+		}else if(command.equals("/ClassInsertForm.ad")) {
+			forward = new ActionForward();
+			forward.setPath("./admin_layout/class_management/classManagementInsert.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/ClassInsertPro.ad")) {
+			forward = new ActionForward();
+			action = new ClassInsertProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/SelectClassDetail.ad")) {
+			forward = new ActionForward();
+			forward.setPath("./admin_layout/class_management/selectClassDetail.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/TimeList.ad")) {
+			forward = new ActionForward();
+			action = new ClassDetailSelectTimelistAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ClassDetailadd.ad")) {
+			forward = new ActionForward();
+			action = new TimeAddAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ClassList.ad")) {
+			forward = new ActionForward();
+			action = new ClassListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
@@ -89,6 +138,10 @@ public class AdminFrontController extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
+	}
+	
+	protected void doPOST(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
