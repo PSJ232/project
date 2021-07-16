@@ -123,6 +123,7 @@ public class MemberDAO {
 				memberDetail.setM_address(rs.getString("m_address"));
 				memberDetail.setM_rdate(rs.getDate("m_rdate"));
 				memberDetail.setM_drop(rs.getDate("m_drop"));
+				memberDetail.setM_point(rs.getInt("m_poin"));
 			}
 			
 		} catch (SQLException e) {

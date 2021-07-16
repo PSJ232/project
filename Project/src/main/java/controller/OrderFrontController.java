@@ -45,13 +45,11 @@ public class OrderFrontController extends HttpServlet {
 
 		} else if (command.equals("/OrderForm.od")) {
 			action = new OrderInsertFormAction();
-			try {
-				// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		} 
 
 		// -------------------------------------------------------------------------
