@@ -48,13 +48,21 @@ public class ItemDAO {
 			
 			if(rs.next()) {
 				itemDetail = new ItemBean();
-				//itemDetail.setI_id(rs.getString("m_id"));
-				//itemBean 내용작업해야됨 - 관리자팀과 협의
-				
-				
-				
-				
-				
+				itemDetail.setI_id(rs.getInt("i_id"));
+				itemDetail.setI_name(rs.getString("i_name"));
+				itemDetail.setI_desc(rs.getString("i_desc"));
+				itemDetail.setI_price(rs.getInt("i_price"));
+				itemDetail.setI_inven(rs.getInt("i_inven"));
+				itemDetail.setI_img(rs.getString("i_img"));
+				itemDetail.setI_subimg2(rs.getString("i_subimg2"));
+				itemDetail.setI_subimg3(rs.getString("i_subimg3"));
+				itemDetail.setI_subimg4(rs.getString("i_subimg4"));
+				itemDetail.setI_rdate(rs.getTimestamp("i_rdate"));
+				itemDetail.setI_discount(rs.getFloat("i_discount"));
+				itemDetail.setI_size(rs.getString("i_size"));
+				itemDetail.setI_dpstatus(rs.getString("i_dpstatus"));
+				itemDetail.setI_itemstatus(rs.getString("i_itemstatus"));
+				itemDetail.setI_detailpage(rs.getString("i_detailpage"));
 				
 			}
 			
@@ -64,7 +72,6 @@ public class ItemDAO {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
-		
 		
 		return itemDetail;
 	}
