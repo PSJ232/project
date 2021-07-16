@@ -19,7 +19,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="Timeadd.ad" method="post">
+	<input type="hidden" name="place" value=<%=request.getParameter("place") %>>
 	<select name="timeList" multiple="multiple">
 	<%
 		for(int i = 0; i < timeList.size(); i++){
@@ -27,7 +27,7 @@
 		}
 	%>
 	</select>
-	<input type="submit" value="저장">
-</form>
+	<input type="submit" value="저장"> 
+
 </body>
 </html>

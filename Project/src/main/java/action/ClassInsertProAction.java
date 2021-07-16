@@ -23,12 +23,11 @@ public class ClassInsertProAction implements Action {
 		System.out.println("ClassInsertProAction - execute");
 		ActionForward forward = null;
 		ClassInsertService service = new ClassInsertService();
-		ClassDetailInsertService detailService = new ClassDetailInsertService();
 		
 		ServletContext context = request.getServletContext();
 		
 		String realFolder = "";
-		String saveFolder = "/admin_layout/class_management/img_upload";
+		String saveFolder = "/img_upload";
 		int maxSize = 10 * 1024 * 1024;
 		
 		realFolder = context.getRealPath(saveFolder);
@@ -52,21 +51,22 @@ public class ClassInsertProAction implements Action {
 		// 업로드한 파일들의 이름을 얻어옴
 		
 		String file = (String)files.nextElement();
-		
 		String filename = multi.getFilesystemName(file);
-		classBean.setClass_main_img(filename);
+		
 		String file2 = (String)files.nextElement();
-		
 		String filename2 = multi.getFilesystemName(file2);
-		classBean.setClass_sub_img1(filename2);
-		String file3 = (String)files.nextElement();
 		
+		String file3 = (String)files.nextElement();
 		String filename3 = multi.getFilesystemName(file3);
-		classBean.setClass_sub_img2(filename3);
+		
 		String file4 = (String)files.nextElement();
-		  
 		String filename4 = multi.getFilesystemName(file4);
-		classBean.setClass_sub_img3(filename4);
+		  
+		classBean.setClass_sub_img3(filename);
+		classBean.setClass_sub_img2(filename2);
+		classBean.setClass_sub_img1(filename3);
+		classBean.setClass_main_img(filename4);
+
 		
 		boolean isWriteSuccess = service.registArticle(classBean);
 		if(isWriteSuccess) {

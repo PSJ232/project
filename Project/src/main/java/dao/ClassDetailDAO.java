@@ -27,10 +27,38 @@ public class ClassDetailDAO {
 		this.con = con;
 	}
 
-	public int insertClassDetail(ClassDetailBean classDetailBean) {
+	public int insertClassDetail(ClassDetailBean classDetailBean, String[] timeList) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int insertCount = 0;
+		try {
+//			String sql = "SELECT MAX(f_id) FROM fclass";
+//			int num = 1;
+//			pstmt = con.prepareStatement(sql);
+//			rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//				num = rs.getInt(1);
+//				num++;
+//			}
+			for(String str: timeList) {
+				String sql = "INSERT INTO fclass_detail VALUES(?,?,?,null,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, str);
+				pstmt.setString(2, classDetailBean.getDate());
+				pstmt.setString(3, classDetailBean.getPlace());
+				pstmt.setInt(4, 1);
+				
+				insertCount = pstmt.executeUpdate();
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
 		return insertCount;
 	}
 	
@@ -48,7 +76,6 @@ public class ClassDetailDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				selectedTimeList.add(rs.getTime(1));
-				System.out.println("rs.getTime(1): "+rs.getTime(1));
 			}
 			sql = "SELECT fcdt_time FROM fclass_detail_timelist";
 			pstmt = con.prepareStatement(sql);
@@ -56,8 +83,6 @@ public class ClassDetailDAO {
 			while(rs.next()) {
 				timeList.add(rs.getTime(1));
 			}
-			System.out.println("selectedTimeList: "+selectedTimeList.toString());
-			System.out.println("timeList: "+timeList.toString());
 		}catch(SQLException e) {
 			System.out.println("SQL구문오류! - " + e.getMessage());
 		}finally {
@@ -67,7 +92,6 @@ public class ClassDetailDAO {
 		for(int j = 0; j < timeList.size(); j++) {
 			for(int i = 0; i < selectedTimeList.size(); i++) {
 				if(timeList.get(j).equals(selectedTimeList.get(i))) {
-					System.out.println(timeList.get(j));
 					timeList.remove(j);
 				}
 			}

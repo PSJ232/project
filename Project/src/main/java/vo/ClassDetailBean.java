@@ -1,23 +1,30 @@
 package vo;
 
-import java.sql.Date;
 
 public class ClassDetailBean {
-	private String time;
-	private Date date;
+	private int time;
+	private String date;
 	private String place;
 	private int classNum;
+	private int isSelected;
 	
-	public Date getDate() {
+	public int getIsSelected() {
+		return isSelected;
+	}
+	public void setIsSelected(int isSelected) {
+		this.isSelected = isSelected;
+	}
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getTime() {
+	
+	public int getTime() {
 		return time;
 	}
-	public void setTime(String time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
 	public String getPlace() {

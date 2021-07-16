@@ -12,21 +12,16 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-// 	function send(){
-// 		window.opener.document.getElementById("class_date").value = document.getElementById("date").value;
-// 		var ele = document.getElementsByName('place');
-// 		for(var i=0; i < ele.length; i++) { 
-// 			if(ele[i].checked === true) { 
-// 				window.opener.document.getElementById("class_place").value = ele[i].value;
-// 				} 
-// 			}
-// 		window.close();
-// 	}
+	function send(){
+		window.opener.document.getElementById("class_date").value = document.getElementById("date").value;
+		window.opener.document.getElementById("class_place").value = document.getElementById("date").value;
+		window.close();
+	}
 	$(document).ready(function(){
 		$('#seomyeon').click(function(){
 			$.ajax('TimeList.ad', {
 				data: {
-					place:$('#seomyeon').val(),
+					"place":$('#seomyeon').val(),
 					date:$('#date').val()
 				},
 				success:function(rdata){
@@ -38,7 +33,7 @@
 		$('#nampo').click(function(){
 			$.ajax('TimeList.ad', {
 				data: {
-					place:$('#nampo').val(),
+					"place":$('#nampo').val(),
 					date:$('#date').val()
 				},
 				success:function(rdata){
@@ -50,7 +45,7 @@
 		$('#haewoondae').click(function(){
 			$.ajax('TimeList.ad', {
 				data: {
-					place:$('#haewoondae').val(),
+					"place":$('#haewoondae').val(),
 					date:$('#date').val()
 				},
 				success:function(rdata){
@@ -66,13 +61,15 @@
 </script>
 </head>
 <body>
+<form action="ClassDetailadd.ad" method="get">
 날짜선택: <input type="date" name="date" id="date">
 <h1>장소선택</h1>	<!-- onclick하면 ajax로 띄워주기 -->
-<input type="button" id="seomyeon" value="서면" >
-<input type="button" id="haewoondae" value="해운대" >
-<input type="button" id="nampo" value="남포" >
+<input type="button" name="place" id="seomyeon" value="서면" >
+<input type="button" name="place" id="haewoondae" value="해운대" >
+<input type="button" name="place" id="nampo" value="남포" >
 <h3>시간선택</h3>
 <p></p>
-
+</form>
+<input type="button" value="닫기" onclick="window.close()">
 </body>
 </html>

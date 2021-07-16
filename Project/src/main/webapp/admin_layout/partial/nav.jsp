@@ -21,7 +21,7 @@
 	<li><a href="#">상품관리</a></li>
 	<li><a href="#">매출관리</a></li>
 	<li><a href="../order_management/orderMangementMain.jsp">주문관리</a></li>
-	<li><a href="../class_management/classManagementMain.jsp">클래스관리</a></li>
+	<li><a href="ClassList.ad">클래스관리</a></li>
 	<li><a href="#">문의관리</a></li>
 </ul>
 </body>

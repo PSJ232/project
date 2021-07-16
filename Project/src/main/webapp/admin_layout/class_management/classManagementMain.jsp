@@ -39,7 +39,7 @@
 			<option>남포</option>
 		</select>
 		<ul id="class_status">
-			<li><a href="#">시작 전 클래스</a></li>
+			<li><a href="#">시작 전 클래스</a></li>43
 			<li><a href="#">진행 중 클래스</a></li>
 			<li><a href="#">완료된 클래스</a></li>
 		</ul>

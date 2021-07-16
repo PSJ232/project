@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.ClassDetailSelectTimelistAction;
 import action.ClassInsertProAction;
+import action.ClassListAction;
+import action.TimeAddAction;
 import vo.ActionForward;
 
 /**
@@ -57,8 +59,17 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/Timeadd.ad")) {
+		}else if(command.equals("/ClassDetailadd.ad")) {
 			forward = new ActionForward();
+			action = new TimeAddAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ClassList.ad")) {
+			forward = new ActionForward();
+			action = new ClassListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
