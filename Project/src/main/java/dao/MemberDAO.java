@@ -40,8 +40,8 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "INSERT INTO member(m_id,m_pass,m_name,m_phone,m_birth,m_gender,g_id,m_agree,m_rdate)"
-					+ " VALUES(?,?,?,?,?,?,?,?,now())";
+			String sql = "INSERT INTO member(m_id,m_pass,m_name,m_phone,m_birth,m_gender,g_id,m_agree,m_rdate,m_point)"
+					+ " VALUES(?,?,?,?,?,?,?,?,now(),?)";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, memberBean.getM_id());// 아이디=이메일
@@ -52,7 +52,8 @@ public class MemberDAO {
 			pstmt.setInt(6, memberBean.getM_gender());
 			pstmt.setInt(7, 0);//회원등급 기본값 0
 			pstmt.setString(8, memberBean.getM_agree());//동의:on, 비동의:null
-			// 최근배송지, 회원탈퇴는 null값
+			pstmt.setInt(9, 1000); // 가입시 지급포인트 1000,
+			// 최근배송지 및 회원탈퇴는 초기값 null
 			// 가입날짜는 자동입력
 			
 			insertCount = pstmt.executeUpdate();
