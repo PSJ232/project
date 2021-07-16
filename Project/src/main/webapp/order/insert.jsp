@@ -58,32 +58,23 @@
 ItemBean itemDetail = (ItemBean) request.getAttribute("itemDetail");
 MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
 String m_name = memberDetail.getM_name();
-
+int price = (int)(itemDetail.getI_price() * itemDetail.getI_discount()); // 관리자팀에게 반올림 기준과 수식 통일 요청
 
 %>
 <body>
 	<h1>주문/결제</h1>
 	<h3>주문내역 확인</h3>
 	
-	<%=itemDetail.getI_id() %><br>
 	<%=itemDetail.getI_name() %><br>
-	<%=itemDetail.getI_price() %><br>
-	<%=itemDetail.getI_size() %><br>
-	<%=itemDetail.getI_desc() %><br>
-	<%=itemDetail.getI_detailpage() %><br>
-	<%=itemDetail.getI_discount() %><br>
-	<%=itemDetail.getI_dpstatus() %><br>
-	<%=itemDetail.getI_inven() %><br>
-	<%=itemDetail.getI_itemstatus() %><br>
-	
-	
-	
+	수령일:<br>
+	편지지:<%=request.getParameter("l_id") %><br>
+	수량:<%=request.getParameter("od_qty") %><br>
 	
 	
 	<h3>주문자 정보</h3>
 	이름 : <%=m_name %><br>
 	전화번호 : <%=memberDetail.getM_phone() %><br>
-	<form action="" method="post">
+	<form action="OrderInsertPro.od" method="post">
 		<h3>발신인 정보</h3>
 		이름 <input type="text" name="o_sender" value="<%=m_name%>"><br> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
 		<h3>배송지 정보</h3>
@@ -104,10 +95,16 @@ String m_name = memberDetail.getM_name();
 			
 		<h3>쿠폰/포인트</h3>
 		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용"><br>
-		포인트 <input type="text" name="o_point" value=<%=memberDetail.getM_point() %>><input type="button" value="적용"><br>
+		포인트 <input type="text" name="o_point" value="0"><input type="button" value="적용"><br>
+		현재 포인트:<%=memberDetail.getM_point() %>
 		<h3>최종 결제 금액</h3>
 		<h3>결제 수단</h3>
 		
+		<input type="hidden" name="od_message" value="<%=request.getParameter("od_message")%>"> <!-- 편지지4번 직접메세지 -->
+		<input type="hidden" name="l_id" value="<%=request.getParameter("l_id") %>"> <!-- 편지지 선택 번호 -->
+		<input type="hidden" name="od_qty" value="<%=request.getParameter("od_qty") %>"> <!-- 상품 주문 수량 -->
+		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
+		<input type="hidden" name="o_amount" value="<%=price%>"> <!-- 할인율 반영된 가격 -->
 		<input type="submit" value="결제하기">
 	<br>
 	<br>

@@ -17,6 +17,7 @@ import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberUpdateProAction;
 import action.OrderInsertFormAction;
+import action.OrderInsertProAction;
 import vo.ActionForward;
 
 //서블릿 주소가 XXX.me 일 경우 OrderFrontController 로 해당 요청이 전달됨
@@ -45,6 +46,13 @@ public class OrderFrontController extends HttpServlet {
 
 		} else if (command.equals("/OrderForm.od")) {
 			action = new OrderInsertFormAction();
+			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if (command.equals("/OrderInsertPro.od")) {
+			action = new OrderInsertProAction();
 			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
 				forward = action.execute(request, response);
 			} catch (Exception e) {
