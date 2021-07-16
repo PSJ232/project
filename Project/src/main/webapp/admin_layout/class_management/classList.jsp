@@ -39,7 +39,7 @@
 	%>
 	</table>
 	<input type="button" value="클래스 등록" onclick="location.href='ClassInsertForm.ad'">
-	<input type="button" value="클래스 삭제" onclick="location.href='ClassDeletePro.ad?class_num=<%=%>'">
+	<input type="button" value="클래스 삭제" onclick="location.href='ClassDeletePro.ad'">
 	<footer>
 		<jsp:include page="../partial/footer.jsp"></jsp:include>
 	</footer>
