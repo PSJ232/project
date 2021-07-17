@@ -14,7 +14,7 @@ public class MemberLoginProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("MemberLoginProAction");
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
 		
@@ -38,7 +38,6 @@ public class MemberLoginProAction implements Action {
 			forward.setPath("/Project"); // 메인화면 주소 미정, 임시주소
 			forward.setRedirect(true);
 			session.setAttribute("m_id", request.getParameter("m_id"));
-			System.out.println("로그인 성공!");
 		}
 		
 		// 포워딩 정보가 저장된 ActionForward 객체 리턴

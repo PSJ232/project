@@ -78,6 +78,7 @@ public class ItemDAO {
 	
 	//상품목록 가져오기
 	public ArrayList<ItemBean> selectItemList() {
+		System.out.println("ItemDAO - selectItemList()");
 		
 		ArrayList<ItemBean> itemList = null;
 		ItemBean ib = null;
@@ -127,9 +128,9 @@ public class ItemDAO {
 
 	//상품등록 db작업 처리
 	public int insertItem(ItemBean ib) {
+		System.out.println("itemDAO - insertItem");
 		//db작업 처리된 행 수
 		int insertCount = 0;
-		System.out.println("itemDAO - insertItem");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {

@@ -11,7 +11,7 @@ import static db.JdbcUtil.*;
 public class ItemListService {
 	
 	public ArrayList<ItemBean> getItemList() {
-		
+		System.out.println("ItemListService - getItemList()");
 		//DB작업 후 반환할 변수 선언
 		ArrayList<ItemBean> itemList = null;
 		//Connection 객체 가져오기

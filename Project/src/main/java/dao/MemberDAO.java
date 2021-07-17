@@ -33,7 +33,6 @@ public class MemberDAO {
 	
 	// 회원정보입력 작업(비즈니스 로직)을 수행하기 위한 insertMember() 메서드 정의
 	public int insertMember(MemberBean memberBean) {
-		
 		System.out.println("MemberDAO - insertMember()");
 		
 		int insertCount = 0;
