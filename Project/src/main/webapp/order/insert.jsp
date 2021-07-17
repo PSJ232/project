@@ -64,7 +64,7 @@ int price = (int)(itemDetail.getI_price() * itemDetail.getI_discount()); // 관�
 <body>
 	<h1>주문/결제</h1>
 	<h3>주문내역 확인</h3>
-	
+	<img src="">
 	<%=itemDetail.getI_name() %><br>
 	수령일:<br>
 	편지지:<%=request.getParameter("l_id") %><br>
@@ -74,7 +74,7 @@ int price = (int)(itemDetail.getI_price() * itemDetail.getI_discount()); // 관�
 	<h3>주문자 정보</h3>
 	이름 : <%=m_name %><br>
 	전화번호 : <%=memberDetail.getM_phone() %><br>
-	<form action="OrderInsertPro.od" method="post">
+	<form action="OrderInsertPro.od" name="order" method="post">
 		<h3>발신인 정보</h3>
 		이름 <input type="text" name="o_sender" value="<%=m_name%>"><br> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
 		<h3>배송지 정보</h3>
@@ -105,7 +105,7 @@ int price = (int)(itemDetail.getI_price() * itemDetail.getI_discount()); // 관�
 		<input type="hidden" name="od_qty" value="<%=request.getParameter("od_qty") %>"> <!-- 상품 주문 수량 -->
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
 		<input type="hidden" name="o_amount" value="<%=price%>"> <!-- 할인율 반영된 가격 -->
-		<input type="submit" value="결제하기">
+		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500')"> <!-- 결제 api에 따라서 변경해야됨  -->
 	<br>
 	<br>
 	

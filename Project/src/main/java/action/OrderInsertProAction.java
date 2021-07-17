@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import svc.IdMakerService;
 import svc.OrderInsertProService;
 import vo.ActionForward;
 import vo.OrderBean;
@@ -16,9 +17,12 @@ public class OrderInsertProAction implements Action {
 		System.out.println("OrderInsertProAction");
 		ActionForward forward = null;
 		
+		IdMakerService idMakerService = new IdMakerService(); // 번호생성 알고리즘 서비스 
+		int newId = idMakerService.newId("orders", "o_id");
+		
 		String o_address = request.getParameter("address1") + " " + request.getParameter("address2") + " " + request.getParameter("address3");
 		OrderBean orderBean = new OrderBean();
-		orderBean.setO_id(1234);// 주문번호 알고리즘 필요함
+		orderBean.setO_id(newId);// 주문번호 알고리즘
 		orderBean.setM_id(request.getParameter("m_id"));
 		orderBean.setO_sender(request.getParameter("o_sender"));
 		orderBean.setO_address(o_address);

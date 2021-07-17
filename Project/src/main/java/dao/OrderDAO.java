@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.JdbcUtil;
@@ -57,6 +58,31 @@ public class OrderDAO {
 		}
 		
 		return insertCount;
+	}
+	
+	// 각 테이블의 주문번호를 불러오는 메서드 정의
+	public int makeId(String table, String colName) {
+		System.out.println("OrderDAO - makeId()");
+		int maxNum = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT MAX("+colName+") FROM "+table;
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				maxNum = rs.getInt("MAX("+colName+")");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return maxNum; // 최대번호만 추출하여 리턴하고 IdMakerService에서 id 조합 작업실시
 	}
 	
 	
