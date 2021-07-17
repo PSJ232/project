@@ -60,7 +60,7 @@ public class OrderDAO {
 		return insertCount;
 	}
 	
-	// 각 테이블의 주문번호를 불러오는 메서드 정의
+	// 각 테이블의 고유ID번호 MAX() 불러오는 메서드 정의
 	public int makeId(String table, String colName) {
 		System.out.println("OrderDAO - makeId()");
 		int maxNum = 0;

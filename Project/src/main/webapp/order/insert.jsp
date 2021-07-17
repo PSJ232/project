@@ -104,6 +104,7 @@ int price = (int)(itemDetail.getI_price() * itemDetail.getI_discount()); // 관�
 		<input type="hidden" name="l_id" value="<%=request.getParameter("l_id") %>"> <!-- 편지지 선택 번호 -->
 		<input type="hidden" name="od_qty" value="<%=request.getParameter("od_qty") %>"> <!-- 상품 주문 수량 -->
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
+		<input type="hidden" name="i_id" value="<%=itemDetail.getI_id()%>"> <!-- 제품ID -->
 		<input type="hidden" name="o_amount" value="<%=price%>"> <!-- 할인율 반영된 가격 -->
 		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500')"> <!-- 결제 api에 따라서 변경해야됨  -->
 	<br>

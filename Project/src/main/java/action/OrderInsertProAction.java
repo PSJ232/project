@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import svc.IdMakerService;
 import svc.OrderInsertProService;
 import vo.ActionForward;
+import vo.ItemBean;
 import vo.OrderBean;
 
 public class OrderInsertProAction implements Action {
@@ -19,7 +20,7 @@ public class OrderInsertProAction implements Action {
 		
 		IdMakerService idMakerService = new IdMakerService(); // 번호생성 알고리즘 서비스 
 		int newId = idMakerService.newId("orders", "o_id");
-		
+				
 		String o_address = request.getParameter("address1") + " " + request.getParameter("address2") + " " + request.getParameter("address3");
 		OrderBean orderBean = new OrderBean();
 		orderBean.setO_id(newId);// 주문번호 알고리즘
@@ -51,8 +52,8 @@ public class OrderInsertProAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("/Project");
-			forward.setRedirect(true);
+			forward.setPath("OrderDetailPro.od?o_id=" + newId);
+			forward.setRedirect(false);
 		}
 		
 		return forward;

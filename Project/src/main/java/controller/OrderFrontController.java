@@ -16,6 +16,7 @@ import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberUpdateProAction;
+import action.OrderDetailProAction;
 import action.OrderInsertFormAction;
 import action.OrderInsertProAction;
 import vo.ActionForward;
@@ -53,6 +54,13 @@ public class OrderFrontController extends HttpServlet {
 			}
 		}  else if (command.equals("/OrderInsertPro.od")) {
 			action = new OrderInsertProAction();
+			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if (command.equals("/OrderDetailPro.od")) {
+			action = new OrderDetailProAction();
 			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
 				forward = action.execute(request, response);
 			} catch (Exception e) {
