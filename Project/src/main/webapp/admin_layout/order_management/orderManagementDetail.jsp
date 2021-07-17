@@ -24,15 +24,20 @@
 		
 	}
 </style>
+<link rel="stylesheet" href="admin_layout/css/admin.css">
+<link rel="stylesheet" href="admin_layout/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<jsp:include page="../partial/header.jsp"></jsp:include>
-	</header>
-	<nav>
-		<jsp:include page="../partial/nav.jsp"></jsp:include>
-	</nav>
-	<div class="container">
+   	<!-- header -->
+   	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+   	<!-- header -->
+   	
+    <!-- nav -->
+	<jsp:include page="../inc/navigation.jsp" ></jsp:include>
+	<!-- nav -->
+	
+	<div class="container"> <!-- css layout요소 추가 -->
 		<h1>Order Detail</h1>
 		<div id="delivery_info">
 			<h3>배송지 정보</h3>
@@ -66,7 +71,7 @@
 		</div>
 	</div>
 	<footer>
-		<jsp:include page="../partial/footer.jsp"></jsp:include>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	</footer>
 </body>
 </html>

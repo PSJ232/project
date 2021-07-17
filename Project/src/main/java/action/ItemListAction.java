@@ -15,6 +15,7 @@ public class ItemListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("ItemListAction - execute()");
 		//페이징 처리 필요없을 것같아 보류중
 		
 		ActionForward forward = null;

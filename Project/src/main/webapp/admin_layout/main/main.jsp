@@ -6,19 +6,17 @@
 <meta charset="UTF-8">
 <title>메인</title>
 <script type="text/javascript" src="../script/Chart.js"></script>
-<style>
-	#cash,#card {
-		display: inline-block;
-	}
-</style>
+<link rel="stylesheet" href="admin_layout/css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 	<header>
-		<jsp:include page="../partial/header.jsp"></jsp:include>
+		<jsp:include page="../inc/adminHeader.jsp"></jsp:include>
 	</header>
 	<div>
 	<nav>
-		<jsp:include page="../partial/nav.jsp"></jsp:include>
+		<jsp:include page="../inc/navigation.jsp"></jsp:include>
 	</nav>
 	<h1>DashBoard</h1>
 	<h1 id="total_income">총 매출액 2000000원</h1> <h1 id="cash">현금 1000000원</h1> <h1 id="card">카드 1000000원</h1>
@@ -32,7 +30,7 @@
 	</div>
 	
 	<footer>
-		<jsp:include page="../partial/footer.jsp"></jsp:include>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	</footer>
 	<script type="text/javascript">
 		

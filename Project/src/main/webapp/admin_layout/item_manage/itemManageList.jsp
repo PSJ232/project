@@ -9,23 +9,37 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>상품관리 메인</title>
+    <link rel="stylesheet" href="admin_layout/css/admin.css">
     <link rel="stylesheet" href="admin_layout/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- header -->
   	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
-    <div>
-      <div class="category_content">
-        <div class="category_header category_img">
-          <div class="category_table">
-            <h3 class="category_title">꾸까 꽃다발</h3>
-            <p class="category_detail">계절을 가득 담은 꽃다발로</p>
-            <p class="category_detail"> 당신의 일상을 특별한 날로 만들어보세요</p>
-          </div>
-        </div>
-      </div>
+    <!-- header -->
+    
+    <!-- nav -->
+    <jsp:include page="../inc/navigation.jsp" ></jsp:include>
+	<!-- nav -->
+	
+<!--     <div> -->
+<!--       <div> -->
+<!--         <div class="category_header category_img"> -->
+<!--           <div class="category_table"> -->
+<!--             <h3 class="category_title">꾸까 꽃다발</h3> -->
+<!--             <p class="category_detail">계절을 가득 담은 꽃다발로</p> -->
+<!--             <p class="category_detail"> 당신의 일상을 특별한 날로 만들어보세요</p> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
 
       <div id="container">
+      	<div class="product_title_box">
+      		<span class="product_title">상품관리 페이지</span>
+      		<input type="button" onclick="location.href='ItemRegister.ad'" class="btn_m btn_yellow" value="상품등록">	
+      	</div>
         <div class="product_array_box">
           <select class="product_array" name="product_array">
               <option value="product_order_rank" class="product_order_list">추천순</option>
@@ -77,20 +91,9 @@
         </div>
 
       </div>
-    </div>
-    <footer>
-      <!-- <div>Icons made by <a href="" title="Icongeek26">Icongeek26</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-      <div>Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-      <div>Icons made by <a href="https://www.flaticon.com/authors/icongeek26" title="Icongeek26">Icongeek26</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
-
-      <div id="container">
-        <div class="">
-
-        </div>
-      </div>
-
-
-    </footer>
+    <!-- footer -->
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+	<!-- footer -->
   <script type="text/javascript" src="script.js"></script>
   </body>
 </html>

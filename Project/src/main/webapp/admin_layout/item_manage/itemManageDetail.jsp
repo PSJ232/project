@@ -2,12 +2,21 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="admin_layout/css/admin.css">
+    <link rel="stylesheet" href="admin_layout/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
     <body>
+        <!-- header -->
+      	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+      	<!-- header -->
+      	
+   	    <!-- nav -->
+		<jsp:include page="../inc/navigation.jsp" ></jsp:include>
+		<!-- nav -->
         <div id="wrap">
             <main id="main_layout">
                 <form action="">
@@ -58,51 +67,51 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
                                 </li>
                                 <li>
                                     <label>제품상태</label> <!--신상품, 재입고-->
-                                    <select class="product_manage_productstatus">
-                                        <option value="null">선택</option>
-                                        <option value="prepare">준비중</option>
-                                        <option value="on sale">판매중</option>
-                                        <option value="sold out">매진</option>
-                                    </select>
-                                </li>
-                            </ul> 
-                        </div>
-                    </section>
-                
-                    <section class="product_manage_box">
-                        <div>
-                            <ul class="product_manage_layout">
-                                <li>
-                                    <label>메인이미지</label>
-                                    <input type="file" class="product_manage_mainimg">
-                                </li>
-                                <li>
-                                    <label>서브이미지1</label>
-                                    <input type="file" class="product_manage_subimg1">
-                                </li>
-                                <li>
-                                    <label>서브이미지2</label>
-                                    <input type="file" class="product_manage_subimg2">
-                                </li>
-                                <li>
-                                    <label>서브이미지3</label>
-                                    <input type="file" class="product_manage_subimg3">
-                                </li>
-                                <li>
-                                    <label>상세설명</label>
-                                    <input type="file" class="product_manage_detailpage">
-                                </li>
-                            </ul>
-                        </div>
-                    </section>
-                    <div class="product_manage_btnbox">
-                        <input type="button" value="등록" onclick="location.href='#'" class="btn_m btn_yellow">
-                        <input type="button" value="수정" onclick="location.href='#'" class="btn_m btn_gray">
-                        <input type="button" value="삭제" onclick="location.href='#'" class="btn_m btn_gray">
+                                <select class="product_manage_productstatus">
+                                    <option value="null">선택</option>
+                                    <option value="prepare">준비중</option>
+                                    <option value="on sale">판매중</option>
+                                    <option value="sold out">매진</option>
+                                </select>
+                            </li>
+                        </ul> 
                     </div>
-                </form>
-            </main>
+                </section>
+            
+                <section class="product_manage_box">
+                    <div>
+                        <ul class="product_manage_layout">
+                            <li>
+                                <label>메인이미지</label>
+                                <input type="file" class="product_manage_mainimg">
+                            </li>
+                            <li>
+                                <label>서브이미지1</label>
+                                <input type="file" class="product_manage_subimg1">
+                            </li>
+                            <li>
+                                <label>서브이미지2</label>
+                                <input type="file" class="product_manage_subimg2">
+                            </li>
+                            <li>
+                                <label>서브이미지3</label>
+                                <input type="file" class="product_manage_subimg3">
+                            </li>
+                            <li>
+                                <label>상세설명</label>
+                                <input type="file" class="product_manage_detailpage">
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <div class="product_manage_btnbox">
+                    <input type="button" value="등록" onclick="location.href='#'" class="btn_m btn_yellow">
+                    <input type="button" value="수정" onclick="location.href='#'" class="btn_m btn_gray">
+                    <input type="button" value="삭제" onclick="location.href='#'" class="btn_m btn_gray">
+                </div>
+            </form>
+        </main>
 
-        </div>
-    </body>
+    </div>
+</body>
 </html>

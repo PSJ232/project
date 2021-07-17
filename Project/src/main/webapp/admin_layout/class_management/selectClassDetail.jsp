@@ -10,6 +10,9 @@
 		text-align: center;
 	}
 </style>
+<link rel="stylesheet" href="admin_layout/css/admin.css">
+<link rel="stylesheet" href="admin_layout/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	function send(){
@@ -60,16 +63,18 @@
 // 	});// ready
 </script>
 </head>
-<body>
-<form action="ClassDetailadd.ad" method="get">
-날짜선택: <input type="date" name="date" id="date">
-<h1>장소선택</h1>	<!-- onclick하면 ajax로 띄워주기 -->
-<input type="button" name="place" id="seomyeon" value="서면" >
-<input type="button" name="place" id="haewoondae" value="해운대" >
-<input type="button" name="place" id="nampo" value="남포" >
-<h3>시간선택</h3>
-<p></p>
-</form>
-<input type="button" value="닫기" onclick="window.close()">
+<body>	
+	<div id="container"> <!-- css layout요소 추가 -->
+		<form action="ClassDetailadd.ad" method="get">
+		날짜선택: <input type="date" name="date" id="date">
+		<h1>장소선택</h1>	<!-- onclick하면 ajax로 띄워주기 -->
+		<input type="button" name="place" id="seomyeon" value="서면" >
+		<input type="button" name="place" id="haewoondae" value="해운대" >
+		<input type="button" name="place" id="nampo" value="남포" >
+		<h3>시간선택</h3>
+		<p></p>
+		</form>
+		<input type="button" value="닫기" onclick="window.close()">
+	</div>
 </body>
 </html>
