@@ -23,15 +23,17 @@ public class IdMakerService {
 		int maxNum = orderDAO.makeId(table, colName);
 		//20210101XX 패턴인지 판별 
 		if (maxNum / 2000000000 > 0) {//맞으면
-			JdbcUtil.commit(con);
 			if(maxNum / 100 == now) { //최근 기록날짜가 오늘 날짜와 같은지 판별
 				newId = maxNum + 1; // 같다면 추출한 최대숫자에 + 1
+				JdbcUtil.commit(con);
 			} else { 
 				newId = (now * 100) + 1; // 다르다면 첫번째 번호이므로 001 부여
+				JdbcUtil.commit(con);
 			}
-		} else if (maxNum > 0) { //20210101XX 패턴이 아니면
+		} else if (maxNum >= 0) { //20210101XX 패턴이 아니면
 			
 			newId = maxNum + 1;
+			JdbcUtil.commit(con);
 			
 		} else { // null값이면 롤백
 			

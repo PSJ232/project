@@ -16,6 +16,16 @@ public class OrderDetailProService {
 		OrderDAO orderDAO = OrderDAO.getInstance();
 		orderDAO.setConnection(con);
 		
+		int insertCount = orderDAO.insertOrderDetail(orderDetailBean);
+		
+		if (insertCount > 0) {
+			JdbcUtil.commit(con);
+			isOrderdetailSuccess = true;
+		} else {
+			JdbcUtil.rollback(con);
+		}
+
+		JdbcUtil.close(con);
 		
 		
 		
