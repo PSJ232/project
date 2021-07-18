@@ -28,7 +28,7 @@
 		<jsp:include page="../partial/header.jsp"></jsp:include>
 	</header>
 	<nav>
-		<jsp:include page="../partial/nav.jsp"></jsp:include>
+		<jsp:include page="../partial/navi.jsp"></jsp:include>
 	</nav>
 	<h1>ClassDetail</h1>
 	<div class="class_detail_container">

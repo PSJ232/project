@@ -18,55 +18,35 @@
 		window.close();
 	}
 	$(document).ready(function(){
-		$('#seomyeon').click(function(){
-			$.ajax('TimeList.ad', {
-				data: {
-					"place":$('#seomyeon').val(),
-					date:$('#date').val()
-				},
-				success:function(rdata){
-					$('p').append(rdata);
-				}	// success
-			});	//ajax
-			$(this).unbind();
-		});	//click
-		$('#nampo').click(function(){
-			$.ajax('TimeList.ad', {
-				data: {
-					"place":$('#nampo').val(),
-					date:$('#date').val()
-				},
-				success:function(rdata){
-					$('p').append(rdata);
-				}	// success
-			});	//ajax
-			$(this).unbind();
-		});	//click
-		$('#haewoondae').click(function(){
-			$.ajax('TimeList.ad', {
-				data: {
-					"place":$('#haewoondae').val(),
-					date:$('#date').val()
-				},
-				success:function(rdata){
-					$('p').append(rdata);
-				}	// success
-			});	//ajax
-			$(this).unbind();
+		$('#place').on('change',function(){
+// 			$("#셀렉트ID option").index($("#셀렉트ID option:selected"));
+			
+			if($('#place option:selected').index() != 0){
+				$.ajax('TimeList.ad', {
+					data: {
+						"place":$('#place option:selected').val(),
+						date:$('#date').val()
+					},
+					success:function(rdata){
+						$('p').empty();
+						$('p').append(rdata);
+					},	// success
+				});	//ajax
+			}
 		});	//click
 	})	// document.ready
-// 	$(document).ready(function(){
-// 		alert('click');
-// 	});// ready
 </script>
 </head>
 <body>
 <form action="ClassDetailadd.ad" method="get">
 날짜선택: <input type="date" name="date" id="date">
 <h1>장소선택</h1>	<!-- onclick하면 ajax로 띄워주기 -->
-<input type="button" name="place" id="seomyeon" value="서면" >
-<input type="button" name="place" id="haewoondae" value="해운대" >
-<input type="button" name="place" id="nampo" value="남포" >
+<select id="place">
+	<option>장소를 선택하세요</option>
+	<option>서면</option>
+	<option>남포</option>
+	<option>해운대</option>
+</select>
 <h3>시간선택</h3>
 <p></p>
 </form>

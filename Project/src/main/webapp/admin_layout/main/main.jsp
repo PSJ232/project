@@ -18,7 +18,7 @@
 	</header>
 	<div>
 	<nav>
-		<jsp:include page="../partial/nav.jsp"></jsp:include>
+		<jsp:include page="../partial/navi.jsp"></jsp:include>
 	</nav>
 	<h1>DashBoard</h1>
 	<h1 id="total_income">총 매출액 2000000원</h1> <h1 id="cash">현금 1000000원</h1> <h1 id="card">카드 1000000원</h1>

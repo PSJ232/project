@@ -13,7 +13,21 @@ public class ClassBean {
 	private String class_sub_img1;
 	private String class_sub_img2;
 	private String class_sub_img3;
+	private int class_current_member;
+	private int class_readcount;
 	
+	public int getClass_current_member() {
+		return class_current_member;
+	}
+	public void setClass_current_member(int class_current_member) {
+		this.class_current_member = class_current_member;
+	}
+	public int getClass_readcount() {
+		return class_readcount;
+	}
+	public void setClass_readcount(int class_readcount) {
+		this.class_readcount = class_readcount;
+	}
 	public int getClass_id() {
 		return class_id;
 	}

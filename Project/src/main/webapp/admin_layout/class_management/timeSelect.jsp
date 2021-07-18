@@ -9,7 +9,7 @@
 <html>
 <head>
 <style>
-	select {
+	#timeList {
 		width: 200px;
 		height: 250px;
 		font-size: 15px;
@@ -20,7 +20,7 @@
 </head>
 <body>
 	<input type="hidden" name="place" value=<%=request.getParameter("place") %>>
-	<select name="timeList" multiple="multiple">
+	<select id="timeList" name="timeList" multiple="multiple">
 	<%
 		for(int i = 0; i < timeList.size(); i++){
 			%><option><%=timeList.get(i)%></option><%

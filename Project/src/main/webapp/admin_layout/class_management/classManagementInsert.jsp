@@ -11,7 +11,7 @@
 		<jsp:include page="../partial/header.jsp"></jsp:include>
 	</header>
 	<nav>
-		<jsp:include page="../partial/nav.jsp"></jsp:include>
+		<jsp:include page="../partial/navi.jsp"></jsp:include>
 	</nav>
 	<h1>클래스 등록</h1>
 	<form action="ClassInsertPro.ad" method="post" enctype="multipart/form-data" name="insert_form">

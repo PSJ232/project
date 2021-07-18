@@ -15,7 +15,7 @@ public class ClassListService {
 		ClassDAO classDAO = ClassDAO.getInstance();
 		classDAO.setConnection(con);
 		ArrayList<ClassBean> classList = classDAO.getClassList();
-		
+		close(con);
 		return classList;
 	}
 
