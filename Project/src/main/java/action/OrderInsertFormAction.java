@@ -19,7 +19,7 @@ public class OrderInsertFormAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
-		String i_id = request.getParameter("i_id");
+		int i_id = Integer.parseInt(request.getParameter("i_id"));
 		
 		MemberDetailService memberDetailService = new MemberDetailService();
 		MemberBean memberDetail  = memberDetailService.selectMember(m_id);

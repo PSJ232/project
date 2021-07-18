@@ -7,7 +7,7 @@ import java.sql.Connection;
 import static db.JdbcUtil.*;
 
 public class ItemDetailService {
-	public ItemBean selectItem(String i_id) {
+	public ItemBean selectItem(int i_id) {
 	System.out.println("ItemDetailService - selectItem()");
 	
 	ItemBean itemDetail = null;
