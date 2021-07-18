@@ -22,15 +22,6 @@
 <title>Insert title here</title>
 </head> 
 <body>
-	<input type="hidden" name="place" value=<%=request.getParameter("place") %>>
-	<select id="timeList" name="timeList" multiple="multiple">
-	<%
-		for(int i = 0; i < timeList.size(); i++){
-			%><option><%=timeList.get(i)%></option><%
-		}
-	%>
-	</select>
-	<input type="submit" value="저장"> 
 
 	<div id="container"> <!-- css layout요소 추가 -->
 		<input type="hidden" name="place" value=<%=request.getParameter("place") %>>

@@ -10,19 +10,18 @@
 		text-align: center;
 	}
 </style>
+<link rel="stylesheet" href="admin_layout/css/admin.css">
+<link rel="stylesheet" href="admin_layout/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-	function send(){
-		window.opener.document.getElementById("class_date").value = document.getElementById("date").value;
-		window.opener.document.getElementById("class_place").value = document.getElementById("date").value;
-		window.close();
-	} 
 	$(document).ready(function(){
 		$('#place').on('change',function(){
 // 			$("#셀렉트ID option").index($("#셀렉트ID option:selected"));
 			
 			if($('#place option:selected').index() != 0){
 				$.ajax('TimeList.ad', {
+					type: "GET",
 					data: {
 						"place":$('#place option:selected').val(),
 						date:$('#date').val()
@@ -50,6 +49,4 @@
 <h3>시간선택</h3>
 <p></p>
 </form>
-<input type="button" value="닫기" onclick="window.close()">
-</body>
 </html>

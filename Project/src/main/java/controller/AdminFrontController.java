@@ -16,7 +16,7 @@ import action.ClassListAction;
 import action.ItemDetailAction;
 import action.ItemInsertAction;
 import action.ItemListAction;
-import action.TimeAddAction;
+import action.ClassTimeAddAction;
 import vo.ActionForward;
 
 @WebServlet("*.ad")
@@ -107,7 +107,7 @@ public class AdminFrontController extends HttpServlet {
 			}
 		}else if(command.equals("/ClassDetailadd.ad")) {
 			forward = new ActionForward();
-			action = new TimeAddAction();
+			action = new ClassTimeAddAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
