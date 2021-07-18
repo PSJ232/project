@@ -33,7 +33,7 @@ public class ItemDAO {
 		this.con = con;
 	}
 
-	public ItemBean getItem(String i_id) { //등록된 아이템에 대한 디테일 정보를 가져옴
+	public ItemBean getItem(int i_id) { //등록된 아이템에 대한 디테일 정보를 가져옴
 		System.out.println("ItemDAO - getItem()");
 		
 		ItemBean itemDetail = null;
@@ -43,7 +43,7 @@ public class ItemDAO {
 		try {
 			String sql = "SELECT * FROM item WHERE i_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, i_id);// 아이디=이메일
+			pstmt.setInt(1, i_id);// 아이디=이메일
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
