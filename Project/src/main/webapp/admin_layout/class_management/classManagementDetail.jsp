@@ -22,7 +22,7 @@
 		width: 300px;
 	}
 </style>
-</head>
+</head> 
 <body>
 	<header>
 		<jsp:include page="../partial/header.jsp"></jsp:include>

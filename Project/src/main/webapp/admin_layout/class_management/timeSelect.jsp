@@ -17,7 +17,7 @@
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+</head> 
 <body>
 	<input type="hidden" name="place" value=<%=request.getParameter("place") %>>
 	<select id="timeList" name="timeList" multiple="multiple">

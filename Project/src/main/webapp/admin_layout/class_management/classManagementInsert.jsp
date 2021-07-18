@@ -24,7 +24,7 @@
 			메인 이미지: <input type="file" name="class_main_img" required><br>
 			서브 이미지1: <input type="file" name="class_sub_img1"><br>
 			서브 이미지2: <input type="file" name="class_sub_img2"><br>
-			서브 이미지3: <input type="file" name="class_sub_img3"><br>
+			서브 이미지3: <input type="file" name="class_sub_img3"><br> 
 			<input type="submit" value="등록">
 		</div>
 <!-- 		<div class="buttons"> -->

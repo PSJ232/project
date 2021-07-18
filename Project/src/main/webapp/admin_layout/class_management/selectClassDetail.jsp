@@ -16,7 +16,7 @@
 		window.opener.document.getElementById("class_date").value = document.getElementById("date").value;
 		window.opener.document.getElementById("class_place").value = document.getElementById("date").value;
 		window.close();
-	}
+	} 
 	$(document).ready(function(){
 		$('#place').on('change',function(){
 // 			$("#셀렉트ID option").index($("#셀렉트ID option:selected"));
