@@ -13,7 +13,7 @@ public class MemberDeleteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("MemberDeleteProAction");
 		ActionForward forward = null;
 		
 		// 회원 삭제
@@ -21,15 +21,9 @@ public class MemberDeleteProAction implements Action {
 		String m_id = request.getParameter("m_id");
 		MemberDeleteProService memberDeleteProService = new MemberDeleteProService();
 		boolean isDeleteCount = memberDeleteProService.dropMember(m_id, m_pass);
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
+		
 		// 성공 시 로그인 화면으로 복귀
 		if(isDeleteCount) {
-			// 화면 이동 전 회원삭제가 성공했음을 알림
-			out.println("<script>");
-			out.println("alert('회원정보가 삭제되었습니다.');");
-			out.println("</script>");
-			
 			HttpSession session = request.getSession();
 			session.invalidate();// 로그아웃처리
 			
@@ -38,6 +32,8 @@ public class MemberDeleteProAction implements Action {
 			forward.setRedirect(true);
 		} else {
 			// 실패 시 script로 실패했음을 표시
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('회원정보 삭제 실패했습니다.');");
 			out.println("history.back();");

@@ -9,7 +9,7 @@ import vo.OrderDetailBean;
 public class OrderDetailProService {
 	
 	public boolean registOrderDetail(OrderDetailBean orderDetailBean) {
-		System.out.println("OrderDetailProService");
+		System.out.println("OrderDetailProService - registOrderDetail()");
 		
 		boolean isOrderdetailSuccess = false;
 		Connection con = JdbcUtil.getConnection();

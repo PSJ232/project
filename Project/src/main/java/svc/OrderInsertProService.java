@@ -29,9 +29,6 @@ public class OrderInsertProService {
 
 		JdbcUtil.close(con);
 		
-		
-		
-		
 		return isOrderSuccess;
 	}
 

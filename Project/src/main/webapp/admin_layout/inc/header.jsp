@@ -29,37 +29,37 @@
     </script>
 </head>
 <body>
-      <header id="container">
-        <div>
-          <!--광고-->
-          </div>
-            <div class="nav_service_area">
-              <a class="nav_service_item">로그인</a>
-              <i class="nav_service_bar"></i>
-              <a class="nav_service_item">회원가입<span class="color_blue fontweight_600">(1000포인트 지급!)</span></a>
-              <i class="nav_service_bar"></i>
-              <a class="nav_service_item fontweight_600">기업제휴</a>
-            </div>
-          <div>
-
-          <nav class="main_menu">
-            <div class="nav_bar_logo">
-              <a href="#"><img src="../img/logo.png" alt="" class="logo_small"></a>
-            </div>
-            <ul class="nav_bar_list">
-              <li class="item"><a href="#">꽃 정기구독</a></li>
-              <li class="item"><a href="#">꽃다발</a></li>
-              <li class="item"><a href="#">당일배송</a></li>
-              <li class="item"><a href="#">플라워클래스</a></li>
-              <li class="item"><a href="#">소품샵</a></li>
-              <li class="item"><a href="#">이벤트</a></li>
-            </ul>
-            <div class="nav_bar_icon">
-              <a href="#"><img src="../img/profile.png" alt="go to mypage" class="nav_icon"></a>
-              <a href="#"><img src="../img/bag.png" alt="shopping cart" class="nav_icon"></a>
-            </div>
-          </nav>
-        </div>
-      </header>
+	<header id="container">
+	  <div>
+	    <!--광고-->
+	    </div>
+	      <div class="nav_service_area">
+	        <a class="nav_service_item">로그인</a>
+	        <i class="nav_service_bar"></i>
+	        <a class="nav_service_item">회원가입<span class="color_blue fontweight_600">(1000포인트 지급!)</span></a>
+	        <i class="nav_service_bar"></i>
+	        <a class="nav_service_item fontweight_600">기업제휴</a>
+	      </div>
+	    <div>
+	
+	    <nav class="main_menu">
+	      <div class="nav_bar_logo">
+	        <a href="#"><img src="../img/logo.png" alt="" class="logo_small"></a>
+	      </div>
+	      <ul class="nav_bar_list">
+	        <li class="item"><a href="#">꽃 정기구독</a></li>
+	        <li class="item"><a href="#">꽃다발</a></li>
+	        <li class="item"><a href="#">당일배송</a></li>
+	        <li class="item"><a href="#">플라워클래스</a></li>
+	        <li class="item"><a href="#">소품샵</a></li>
+	        <li class="item"><a href="#">이벤트</a></li>
+	      </ul>
+	      <div class="nav_bar_icon">
+	        <a href="#"><img src="../img/profile.png" alt="go to mypage" class="nav_icon"></a>
+	        <a href="#"><img src="../img/bag.png" alt="shopping cart" class="nav_icon"></a>
+	      </div>
+	    </nav>
+	  </div>
+	</header>
 </body>
 </html>

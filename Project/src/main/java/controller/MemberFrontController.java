@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.MemberDeleteProAction;
+import action.MemberFindIdAction;
 import action.MemberUpdateFormAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
@@ -22,7 +23,8 @@ import vo.ActionForward;
 @WebServlet("*.me")
 public class MemberFrontController extends HttpServlet {
 
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("MemberFrontController");
 
 		// POST 방식 요청에 대한 한글 처리
@@ -50,7 +52,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		} else if (command.equals("/MemberLogin.me")) {
 			forward = new ActionForward();
 			forward.setPath("./member/login.jsp");
@@ -63,7 +65,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		} else if (command.equals("/MemberUpdate.me")) {
 			action = new MemberUpdateFormAction();
 			try {
@@ -71,7 +73,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		} else if (command.equals("/MemberUpdatePro.me")) {
 			action = new MemberUpdateProAction();
 			try {
@@ -99,6 +101,18 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/MemberFindId.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/findId.jsp");
+			forward.setRedirect(false);
+			
+		} else if (command.equals("/MemberFindIdResult.me")) {
+			action = new MemberFindIdAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// -------------------------------------------------------------------------
@@ -117,11 +131,13 @@ public class MemberFrontController extends HttpServlet {
 
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 

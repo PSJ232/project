@@ -10,7 +10,13 @@
     	<link rel="stylesheet" href="admin_layout/css/admin.css">
     </head>
     <body>
+    	<!-- header -->
       	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+      	<!-- header -->
+      	
+   	    <!-- nav -->
+		<jsp:include page="../inc/navigation.jsp" ></jsp:include>
+		<!-- nav -->
         <div id="wrap">
             <main id="container">
                 <form action="itemInsert.ad" method="post" enctype="multipart/form-data" >

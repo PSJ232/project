@@ -91,7 +91,7 @@ public class OrderDAO {
 	}
 
 	public int insertOrderDetail(OrderDetailBean orderDetailBean) {
-		System.out.println("OrderDAO - insertOrder()");
+		System.out.println("OrderDAO - insertOrderDetail()");
 
 		int insertCount = 0;
 		PreparedStatement pstmt = null;

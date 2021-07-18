@@ -30,9 +30,9 @@ public class IdMakerService {
 				newId = (now * 100) + 1; // 다르다면 첫번째 번호이므로 001 부여
 				JdbcUtil.commit(con);
 			}
-		} else if (maxNum >= 0) { //20210101XX 패턴이 아니면
+		} else if (maxNum >= 0) { //20210101XX 패턴이 아니면 단순숫자증가패턴
 			
-			newId = maxNum + 1;
+			newId = maxNum + 1; //추출한 최대숫자에 + 1 
 			JdbcUtil.commit(con);
 			
 		} else { // null값이면 롤백
@@ -42,7 +42,9 @@ public class IdMakerService {
 		}
 		
 		JdbcUtil.close(con);
+		
 		System.out.println("생성된 id번호 : " + newId);
+		
 		return newId;
 	}
 
