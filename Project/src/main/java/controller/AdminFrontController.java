@@ -34,7 +34,7 @@ public class AdminFrontController extends HttpServlet {
 		String command = request.getServletPath();
 		
 		//제품 목록
-		if(command.equals("/itemList.ad")) {
+		if(command.equals("/ItemList.ad")) {
 			
 			//서비스 호출
 			//세션받아서 메인페이지부터 관리자 아이디 일치여부 판별가능했으면!
@@ -48,7 +48,7 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		//제품상세페이지
-		} else if(command.equals("/itemDetail.ad")) {
+		} else if(command.equals("/ItemDetail.ad")) {
 			
 			action = new ItemDetailAction();
 			
@@ -60,7 +60,7 @@ public class AdminFrontController extends HttpServlet {
 			}
 			
 		//제품등록페이지 이동
-		} else if(command.equals("/itemRegister.ad")){
+		} else if(command.equals("/ItemRegister.ad")){
 			
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/item_manage/itemManageRegister.jsp");
