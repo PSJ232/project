@@ -211,5 +211,30 @@ public class MemberDAO {
 		}
 		return myId;
 	}
+	
+	//사용포인트 및 적립포인트를 pointSumService에서 계산하여 현재보유포인트 결과를 저장하는 메서드
+	public int updatePoint(String m_id, int updatePoint) {
+		System.out.println("MemberDAO - updatePoint()");
+
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "UPDATE member SET m_point=? WHERE m_id=?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, updatePoint);
+			pstmt.setString(2, m_id);
+
+			updateCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+
+		return updateCount;
+	}
 
 }
