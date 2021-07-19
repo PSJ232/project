@@ -7,7 +7,25 @@ public class CartBean {
 	private int i_id;
 	private String m_id;
 	private int c_qty;
+	private int c_letter;
+	private Date c_delivery_date;
 	private Date c_rdate;
+	
+	
+	
+	
+	public int getC_letter() {
+		return c_letter;
+	}
+	public void setC_letter(int c_letter) {
+		this.c_letter = c_letter;
+	}
+	public Date getC_delivery_date() {
+		return c_delivery_date;
+	}
+	public void setC_delivery_date(Date c_delivery_date) {
+		this.c_delivery_date = c_delivery_date;
+	}
 	
 	public int getC_id() {
 		return c_id;

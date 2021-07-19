@@ -10,19 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.CartInsertFormAction;
+import action.CartViewAction;
 import action.CartInsertProAction;
-import action.CartUpdateFormAction;
 import action.CartUpdateProAction;
 import vo.ActionForward;
 
-
 @WebServlet("*.cr")
 public class CartFrontController extends HttpServlet {
-	
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("CartFrontController");
-		
+
 		// POST 방식 요청에 대한 한글 처리
 		request.setCharacterEncoding("UTF-8");
 
@@ -34,52 +33,35 @@ public class CartFrontController extends HttpServlet {
 		ActionForward forward = null;
 		// 액션 클래스의 공통 타입(슈퍼클래스)인 Action 인터페이스 타입 변수 선언
 		Action action = null;
-		
-		if(command.equals("/Cart.cr")) {
-			forward = new ActionForward();
-			forward.setPath("./order/cart.jsp");
-			forward.setRedirect(false);
-		} else if(command.equals("/CartInsert.cr")) {
-			
-			action = new CartInsertFormAction();
-			
+
+		if (command.equals("/Cart.cr")) {
+			action = new CartViewAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/CartInsertPro.cr")) {
-			
+
+		} else if (command.equals("/CartInsertPro.cr")) {
+
 			action = new CartInsertProAction();
-			
+
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/CartUpdate.cr")) {
-			
-			action = new CartUpdateFormAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/CartUpdatePro.cr")) {
-			
+		} else if (command.equals("/CartUpdatePro.cr")) {
+
 			action = new CartUpdateProAction();
-			
+
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
-		
+
 		// -------------------------------------------------------------------------
 		// 포워딩 방식 결정
 		if (forward != null) {
@@ -94,15 +76,15 @@ public class CartFrontController extends HttpServlet {
 			System.out.println("MemberFrontController - ActionForward 객체가 null 입니다!");
 		}
 
-	
 	}
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
