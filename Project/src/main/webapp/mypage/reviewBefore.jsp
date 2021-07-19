@@ -37,7 +37,7 @@
   		<li><a href="">주문내역/배송조회</a></li>
   		<li><a href="">나의 정기구독</a></li>
   		<li><a href="">클래스 수강내역</a></li>
-		<li><a href="review.jsp">상품 리뷰</a></li>
+		<li><a href="ReviewFormAction.rv">상품 리뷰</a></li>
   	</ul>
  	 </div>
  	 
@@ -62,7 +62,7 @@
 		   		<h6>작성 가능한 후기</h6>
 		   			<table border="1">
 		   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
-		   				<tr><td>2021-07-16</td><td>산호초 에디션</td><td><a href="ReviewInsertAction">리뷰 작성 가능</a></td></tr>
+		   				<tr><td>2021-07-16</td><td>산호초 에디션</td><td><a href="ReviewInsert.rv">리뷰 작성 가능</a></td></tr>
 		   				<tr><td>2021-03-15</td><td>로지 핑크 에디션</td><td>상품 배송 중</a></td></tr>
 <!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
 		   			</table>
