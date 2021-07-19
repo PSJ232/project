@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import db.JdbcUtil;
 import vo.CartBean;
-import vo.ItemBean;
 
 public class CartDAO {
 	private static CartDAO instance;
@@ -75,7 +74,7 @@ public class CartDAO {
 			rs = pstmt.executeQuery();
 			cartList = new ArrayList<CartBean>();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				cartdetail = new CartBean();
 				cartdetail.setC_id(rs.getInt("c_id"));
 				cartdetail.setC_qty(rs.getInt("c_qty"));
@@ -84,7 +83,7 @@ public class CartDAO {
 				cartdetail.setM_id(rs.getString("m_id"));
 				cartdetail.setC_letter(rs.getInt("c_letter"));
 				cartdetail.setC_delivery_date(rs.getDate("c_delivery_date"));
-				
+
 				cartList.add(cartdetail);
 			}
 
