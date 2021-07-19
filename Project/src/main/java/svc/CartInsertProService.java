@@ -6,19 +6,17 @@ import dao.CartDAO;
 import db.JdbcUtil;
 import vo.CartBean;
 
-
 public class CartInsertProService {
-
 	public boolean putCart(CartBean cartBean) {
-		
+		System.out.println("CartInsertProService - putCart()");
 		boolean isInsertSuccess = false;
-		
+
 		Connection con = JdbcUtil.getConnection();
 		CartDAO cartDAO = CartDAO.getInstance();
 		cartDAO.setConnection(con);
-		
+
 		int insertCount = cartDAO.insertCart(cartBean);
-		
+
 		if (insertCount > 0) {
 			JdbcUtil.commit(con);
 			isInsertSuccess = true;
@@ -26,10 +24,8 @@ public class CartInsertProService {
 			JdbcUtil.rollback(con);
 		}
 
-		
 		JdbcUtil.close(con);
-		
-		
+
 		return isInsertSuccess;
 	}
 

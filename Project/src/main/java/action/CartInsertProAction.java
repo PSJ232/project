@@ -15,16 +15,15 @@ public class CartInsertProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("CartInsertProAction");
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
 		int i_id = Integer.parseInt(request.getParameter("i_id"));
 		
-		
 		IdMakerService idMakerService = new IdMakerService();
-		int newId = idMakerService.newId("cart", "c_id");
+		int newId = idMakerService.newId("cart", "c_id"); // 번호생성(MAX+1)
 		
 		CartBean cartBean = new CartBean();
 		cartBean.setC_id(newId);
@@ -46,10 +45,9 @@ public class CartInsertProAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("./order/cart.jsp"); 
-			forward.setRedirect(true);
+			forward.setPath("Cart.cr"); 
+			forward.setRedirect(false);
 		}
- 
 		
 		return forward;
 	}

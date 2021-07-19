@@ -16,6 +16,7 @@ import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberUpdateProAction;
+import action.OrderCartAction;
 import action.OrderDetailProAction;
 import action.OrderInsertFormAction;
 import action.OrderInsertProAction;
@@ -40,11 +41,20 @@ public class OrderFrontController extends HttpServlet {
 		// 액션 클래스의 공통 타입(슈퍼클래스)인 Action 인터페이스 타입 변수 선언
 		Action action = null;
 
-		if (command.equals("/OrderLetter.od")) {
+		if (command.equals("/OrderNow.od")) {
 			forward = new ActionForward();
 			forward.setPath("./order/letter.jsp");
 			forward.setRedirect(false); // Dispatcher 방식은 생략 가능(기본값 false 이므로)
-
+			
+			
+			
+		} else if (command.equals("/OrderCart.od")) {
+			action = new OrderCartAction();
+			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/OrderForm.od")) {
 			action = new OrderInsertFormAction();
 			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요

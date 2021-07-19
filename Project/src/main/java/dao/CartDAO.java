@@ -33,19 +33,17 @@ public class CartDAO {
 	}
 
 	public int insertCart(CartBean cartBean) {
-
+		System.out.println("CartDAO - insertCart()");
 		int insertCount = 0;
-
 		PreparedStatement pstmt = null;
-
 		try {
-			String sql = "INSERT INTO cart(c_id,i_id,m_id,c_qty,c_letter,c_rdate,c_delivery_date) VALUES(?,?,?,?,?,now(),?)";
+			String sql = "INSERT INTO cart VALUES(?,?,?,?,now(),?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, cartBean.getC_id());
 			pstmt.setInt(2, cartBean.getI_id());
 			pstmt.setString(3, cartBean.getM_id());
-			pstmt.setInt(4, 1); // 수량 기본값 1
-			pstmt.setInt(5, 1); // 추가상품(편지지) 기본값 1
+			pstmt.setInt(4, cartBean.getC_qty());
+			pstmt.setInt(5, cartBean.getC_letter());
 			pstmt.setString(6, cartBean.getC_delivery_date());
 
 			insertCount = pstmt.executeUpdate();
@@ -58,6 +56,7 @@ public class CartDAO {
 		return insertCount;
 	}
 
+	// 카드에 담긴 상품리스트를 가져오는 메서드
 	public ArrayList<CartBean> getCart(String m_id) {
 		System.out.println("CartDAO - getCart()");
 
