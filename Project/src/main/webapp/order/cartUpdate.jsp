@@ -16,7 +16,7 @@ int c_qty = cartDetail.getC_qty();
 %>
 <body>
 <h2>장바구니</h2>
-<form action="CartInsertPro.cr" method="post">
+<form action="CartUpdatePro.cr" method="post">
 	<table border="1">
 		<tr>
 			<td><input type="checkbox"></td>
