@@ -19,7 +19,7 @@ public class OrderDetailProAction implements Action {
 		ActionForward forward = null;
 		
 		IdMakerService idMakerService = new IdMakerService();
-		int od_id = idMakerService.newId("orders_detail", "od_id");
+		int od_id = idMakerService.newId("orders_detail", "od_id"); // od_id 생성
 		
 		OrderDetailBean orderDetailBean = new OrderDetailBean();
 
