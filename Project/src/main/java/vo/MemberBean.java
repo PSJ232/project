@@ -14,6 +14,7 @@ public class MemberBean {
 	private String m_address;
 	private Date m_rdate;
 	private Date m_drop;
+	private int m_point;
 
 	public String getM_id() {
 		return m_id;
@@ -101,6 +102,14 @@ public class MemberBean {
 
 	public void setM_drop(Date m_drop) {
 		this.m_drop = m_drop;
+	}
+
+	public int getM_point() {
+		return m_point;
+	}
+
+	public void setM_point(int m_point) {
+		this.m_point = m_point;
 	}
 
 }

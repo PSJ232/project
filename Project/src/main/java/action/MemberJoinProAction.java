@@ -13,7 +13,7 @@ public class MemberJoinProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("MemberJoinProAction");
 		ActionForward forward = null;
 		
 		String m_birth = request.getParameter("year") + "-" + request.getParameter("month") + "-" + request.getParameter("day");

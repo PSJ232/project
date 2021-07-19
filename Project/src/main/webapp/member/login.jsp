@@ -13,7 +13,7 @@
 		<input type="password" name="m_pass" placeholder="비밀번호"><br>
 		<input type="checkbox">로그인 상태 유지<br> <!-- 기능구현방법 공부필요!! -->
 		<input type="submit" value="로그인"><br>
-		<a href="#">아이디찾기</a> <a href="#">비밀번호 찾기</a><br>
+		<a href="MemberFindId.me">아이디찾기</a> <a href="#">비밀번호 찾기</a><br>
 		<hr>
 		SNS계정으로 간편 로그인<br>
 		<a href="#">페이스북</a> <a href="#">네이버</a> <a href="#">카카오톡</a><br>

@@ -43,7 +43,7 @@ public class ClassDAO {
 				num++;
 			}
 			
-			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,now(),?,?,?)";
+			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,now(),?,?,?,0,0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, classBean.getClass_subject());
@@ -78,7 +78,7 @@ public class ClassDAO {
 		ResultSet rs = null;
 		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
 		try {
-			String sql = "SELECT * FROM fclass";
+			String sql = "SELECT * FROM fclass ORDER BY f_id DESC";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -103,6 +103,5 @@ public class ClassDAO {
 		}
 		return classList;
 	}
-	
 	
 }

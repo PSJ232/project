@@ -27,5 +27,5 @@ public class ClassInsertService {
 		close(con);
 		return isSuccess;
 	}
-
+	
 }

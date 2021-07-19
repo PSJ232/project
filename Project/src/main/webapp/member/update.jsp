@@ -13,7 +13,7 @@
 <%
 MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
 
-String date[] = memberDetail.getM_birth().split("-"); // "-"을 기준으로 분리해서 배열에 저장
+String date[] = memberDetail.getM_birth().split("-"); // 날짜 "-"을 기준으로 분리해서 배열에 저장
 String year = date[0];
 String month = date[1];
 String day = date[2];

@@ -21,7 +21,7 @@
 <input type="radio" name="m_gender" value="0">남성<br>
 <hr>
 이용약관 동의<br>
-<input type="checkbox" required>모두 동의합니다.<br>
+<input type="checkbox">모두 동의합니다.<br>
 <input type="checkbox" required>이용약관 동의 (필수)<br>
 <input type="checkbox" required>개인정보 수집, 이용동의 (필수)<br>
 <input type="checkbox" required>개인정보 이용 동의 (필수)<br>

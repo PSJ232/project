@@ -32,14 +32,6 @@ public class ClassDetailDAO {
 		ResultSet rs = null;
 		int insertCount = 0;
 		try {
-//			String sql = "SELECT MAX(f_id) FROM fclass";
-//			int num = 1;
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			if(rs.next()) {
-//				num = rs.getInt(1);
-//				num++;
-//			}
 			for(String str: timeList) {
 				String sql = "INSERT INTO fclass_detail VALUES(?,?,?,null,?)";
 				pstmt = con.prepareStatement(sql);
@@ -60,6 +52,32 @@ public class ClassDetailDAO {
 		}
 		
 		return insertCount;
+	}
+	
+	public ArrayList<ClassDetailBean> getDetailList(){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ClassDetailBean> detailList = new ArrayList<ClassDetailBean>();
+		try {
+			String sql = "SELECT * FROM fclass_detail ORDER BY f_id DESC";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ClassDetailBean classDetailBean = new ClassDetailBean();
+				classDetailBean.setClassNum(rs.getInt("f_id"));
+				classDetailBean.setTime(rs.getInt("fd_time"));
+				classDetailBean.setPlace(rs.getString("fd_place"));
+				classDetailBean.setDate(rs.getString("fd_date"));
+				detailList.add(classDetailBean);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		return detailList;
 	}
 	
 	public ArrayList<Time> getTimeList(String place, String date){
@@ -99,5 +117,6 @@ public class ClassDetailDAO {
 		return timeList;
 	}
 	
+
 	
 }

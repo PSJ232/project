@@ -9,7 +9,7 @@ public class OrderBean {
 	private String o_address;
 	private String o_receiver;
 	private String o_phone;
-	private Date o_delivery_date;
+	private String o_delivery_date;
 	private int o_amount;
 	private int o_point;
 	private int o_payment;
@@ -53,10 +53,10 @@ public class OrderBean {
 	public void setO_phone(String o_phone) {
 		this.o_phone = o_phone;
 	}
-	public Date getO_delivery_date() {
+	public String getO_delivery_date() {
 		return o_delivery_date;
 	}
-	public void setO_delivery_date(Date o_delivery_date) {
+	public void setO_delivery_date(String o_delivery_date) {
 		this.o_delivery_date = o_delivery_date;
 	}
 	public int getO_amount() {

@@ -13,7 +13,7 @@ public class MemberUpdateProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("MemberUpdateProAction");
 		ActionForward forward = null;
 		
 		String m_birth = request.getParameter("year") + "-" + request.getParameter("month") + "-" + request.getParameter("day");
@@ -37,9 +37,10 @@ public class MemberUpdateProAction implements Action {
 		MemberUpdateProService memberUpdateProService = new MemberUpdateProService();
 		boolean isUpdateSuccess = memberUpdateProService.modifyMember(memberBean);
 		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		if(!isUpdateSuccess) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
+			
 			out.println("<script>");
 			out.println("alert('회원 수정 실패!');");
 			out.println("history.back();");

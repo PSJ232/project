@@ -9,7 +9,7 @@ import vo.MemberBean;
 public class MemberLoginProService {
 	
 	public boolean checkMember(MemberBean memberBean) {
-		System.out.println("MemberLoginProService - checkMember");
+		System.out.println("MemberLoginProService - checkMember()");
 		
 		// 1. 로그인 요청 처리 결과를 저장할 boolean 타입 변수 선언
 		boolean isLoginSuccess = false;

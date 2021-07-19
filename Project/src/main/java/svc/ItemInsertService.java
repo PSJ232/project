@@ -13,7 +13,7 @@ public class ItemInsertService {
 	//response db작업 성공여부
 	
 	public boolean insertItem(ItemBean ib) {
-		System.out.println("itemInsertService");
+		System.out.println("itemInsertService - insertItem()");
 		//반환값 저장할 변수 선언 및 초기화
 		boolean isInsertSuccess = false;
 		

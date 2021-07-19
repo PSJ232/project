@@ -8,7 +8,7 @@ import svc.ClassDetailInsertService;
 import vo.ActionForward;
 import vo.ClassDetailBean;
 
-public class TimeAddAction implements Action {
+public class ClassTimeAddAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -18,7 +18,7 @@ public class TimeAddAction implements Action {
 		String[] timeList = {};
 		classDetailBean.setDate(request.getParameter("date"));
 		classDetailBean.setPlace(request.getParameter("place"));
-		System.out.println(request.getParameter("place"));
+		System.out.println(request.getParameter("class_id"));
 		timeList = request.getParameterValues("timeList");
 		boolean isInsertSuccess = service.registArticle(classDetailBean, timeList);
 		if(isInsertSuccess) {

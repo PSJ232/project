@@ -10,10 +10,16 @@
     	<link rel="stylesheet" href="admin_layout/css/admin.css">
     </head>
     <body>
+    	<!-- header -->
       	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+      	<!-- header -->
+      	
+   	    <!-- nav -->
+		<jsp:include page="../inc/navigation.jsp" ></jsp:include>
+		<!-- nav -->
         <div id="wrap">
             <main id="container">
-                <form action="itemInsert.ad" method="post" enctype="multipart/form-data" >
+                <form action="ItemInsert.ad" method="post" enctype="multipart/form-data">
                     <section class="product_manage_box">
                         <div>
                             <ul class="product_manage_layout">
@@ -100,8 +106,6 @@
                     </section>
                     <div class="product_manage_btnbox">
                         <input type="submit" value="등록" class="btn_m btn_yellow">
-                        <input type="button" value="수정" onclick="location.href='#'" class="btn_m btn_gray">
-                        <input type="button" value="삭제" onclick="location.href='#'" class="btn_m btn_gray">
                     </div>
                 </form>
             </main>
