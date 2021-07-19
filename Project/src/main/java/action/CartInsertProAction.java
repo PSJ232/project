@@ -22,8 +22,6 @@ public class CartInsertProAction implements Action {
 		String m_id = (String)session.getAttribute("m_id");
 		int i_id = Integer.parseInt(request.getParameter("i_id"));
 		
-//		수량일
-//		편지추가
 		
 		IdMakerService idMakerService = new IdMakerService();
 		int newId = idMakerService.newId("cart", "c_id");
@@ -33,6 +31,7 @@ public class CartInsertProAction implements Action {
 		cartBean.setM_id(m_id);
 		cartBean.setI_id(i_id);
 		cartBean.setC_qty(Integer.parseInt(request.getParameter("c_qty")));
+		cartBean.setC_letter(Integer.parseInt(request.getParameter("c_letter")));
 		
 		CartInsertProService cartInsertProService = new CartInsertProService();
 		boolean isInsertSuccess = cartInsertProService.putCart(cartBean);

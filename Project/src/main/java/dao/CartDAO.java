@@ -37,13 +37,15 @@ private static CartDAO instance;
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "INSERT INTO cart(c_id,i_id,m_id,c_qty,c_rdate) VALUES(?,?,?,?,now())";
+			String sql = "INSERT INTO cart(c_id,i_id,m_id,c_qty,c_letter,c_rdate,c_delivery_date) VALUES(?,?,?,?,?,now(),now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, cartBean.getC_id());
 			pstmt.setInt(2, cartBean.getI_id());
 			pstmt.setString(3, cartBean.getM_id());
 			pstmt.setInt(4, 1); // 수량 기본값 1
-			pstmt.setDate(5, cartBean.getC_rdate());
+			pstmt.setInt(5, 1); // 추가상품(편지지) 기본값 1
+			pstmt.setDate(6, cartBean.getC_rdate());
+			pstmt.setDate(7, cartBean.getC_delivery_date());
 			
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -77,6 +79,9 @@ private static CartDAO instance;
 				cartDetail.setC_rdate(rs.getDate("c_rdate"));
 				cartDetail.setI_id(rs.getInt("i_id"));
 				cartDetail.setM_id(rs.getString("m_id"));
+				cartDetail.setC_delivery_date(rs.getDate("c_delivery_date"));
+				cartDetail.setC_letter(rs.getInt("c_letter"));
+				
 			}
 			
 		} catch (SQLException e) {
