@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import db.JdbcUtil;
 import vo.CartBean;
-import vo.ItemBean;
 
 public class CartDAO {
 	private static CartDAO instance;
@@ -40,15 +39,14 @@ public class CartDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO cart(c_id,i_id,m_id,c_qty,c_letter,c_rdate,c_delivery_date) VALUES(?,?,?,?,?,now(),now())";
+			String sql = "INSERT INTO cart(c_id,i_id,m_id,c_qty,c_letter,c_rdate,c_delivery_date) VALUES(?,?,?,?,?,now(),?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, cartBean.getC_id());
 			pstmt.setInt(2, cartBean.getI_id());
 			pstmt.setString(3, cartBean.getM_id());
 			pstmt.setInt(4, 1); // 수량 기본값 1
 			pstmt.setInt(5, 1); // 추가상품(편지지) 기본값 1
-			pstmt.setDate(6, cartBean.getC_rdate());
-			pstmt.setDate(7, cartBean.getC_delivery_date());
+			pstmt.setString(6, cartBean.getC_delivery_date());
 
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -75,7 +73,7 @@ public class CartDAO {
 			rs = pstmt.executeQuery();
 			cartList = new ArrayList<CartBean>();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				cartdetail = new CartBean();
 				cartdetail.setC_id(rs.getInt("c_id"));
 				cartdetail.setC_qty(rs.getInt("c_qty"));
@@ -83,8 +81,8 @@ public class CartDAO {
 				cartdetail.setI_id(rs.getInt("i_id"));
 				cartdetail.setM_id(rs.getString("m_id"));
 				cartdetail.setC_letter(rs.getInt("c_letter"));
-				cartdetail.setC_delivery_date(rs.getDate("c_delivery_date"));
-				
+				cartdetail.setC_delivery_date(rs.getString("c_delivery_date"));
+
 				cartList.add(cartdetail);
 			}
 
