@@ -3,26 +3,28 @@ package svc;
 import static db.JdbcUtil.getConnection;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import dao.CartDAO;
 import db.JdbcUtil;
 import vo.CartBean;
 
-public class CartDetailService {
+public class CartListService {
 	
-	public CartBean selectCart(String m_id) {
+	public ArrayList<CartBean> selectCart(String m_id) {
 		System.out.println("CartDetailService - selectCart()");
 		
-		CartBean cartDetail = null;
+		ArrayList<CartBean> cartList = null;
+		
 		Connection con = getConnection();
 		CartDAO cartDAO = CartDAO.getInstance();
 		cartDAO.setConnection(con);
 		
-		cartDetail = cartDAO.getCart(m_id);
+		cartList = cartDAO.getCart(m_id);
 		
 		JdbcUtil.close(con);
 		
-		return cartDetail;
+		return cartList;
 		
 	}
 

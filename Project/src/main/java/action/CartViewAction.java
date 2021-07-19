@@ -1,29 +1,31 @@
 package action;
 
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import svc.CartDetailService;
+import svc.CartListService;
 import vo.ActionForward;
 import vo.CartBean;
 
 
-public class CartInsertFormAction implements Action {
+public class CartViewAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("CartViewAction");
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
 		
-		CartDetailService cartDetailService = new CartDetailService();
-		CartBean cartDetail = cartDetailService.selectCart(m_id);
+		CartListService cartListService = new CartListService();
+		ArrayList<CartBean> cartList = cartListService.selectCart(m_id);
 		
-		request.setAttribute("cartDetail", cartDetail);
+		request.setAttribute("cartList", cartList);
 		
 		
 		forward = new ActionForward();
