@@ -34,8 +34,8 @@ public class CartInsertProAction implements Action {
 		cartBean.setI_id(i_id);
 		cartBean.setC_qty(Integer.parseInt(request.getParameter("c_qty")));
 		
-		CartInsertProService cartInsertFormService = new CartInsertProService();
-		boolean isInsertSuccess = cartInsertFormService.putCart(cartBean);
+		CartInsertProService cartInsertProService = new CartInsertProService();
+		boolean isInsertSuccess = cartInsertProService.putCart(cartBean);
 		
 		if(!isInsertSuccess) {
 			response.setContentType("text/html; charset=UTF-8");

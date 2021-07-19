@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.CartInsertFormAction;
 import action.CartInsertProAction;
+import action.CartUpdateFormAction;
+import action.CartUpdateProAction;
 import vo.ActionForward;
 
 
@@ -55,8 +57,24 @@ public class CartFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/CartUpdateForm.cr")) {
+		} else if(command.equals("/CartUpdate.cr")) {
 			
+			action = new CartUpdateFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/CartUpdatePro.cr")) {
+			
+			action = new CartUpdateProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
