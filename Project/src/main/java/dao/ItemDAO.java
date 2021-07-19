@@ -121,11 +121,6 @@ public class ItemDAO {
 		return itemList;
 	}
 
-	public void selectItem() {
-		
-		
-	}
-
 	//상품등록 db작업 처리
 	public int insertItem(ItemBean ib) {
 		System.out.println("itemDAO - insertItem");
@@ -163,6 +158,58 @@ public class ItemDAO {
 		return insertCount;
 	}
 
+	public int updateItem(ItemBean ib) {
+		System.out.println("ItemDAO - updateItem()");
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "UPDATE item SET i_name=?, "
+					+ "i_desc=?, i_price=?, i_inven=?, i_img=?, i_subimg2=?,"
+					+ "i_subimg3=?, i_subimg4=?, i_discount=?, "
+					+ "i_size=?, i_dpstatus=?, i_itemstatus=?, i_detailpage=?,"
+					+ "i_realfolder=? WHERE i_id=?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ib.getI_name());
+			pstmt.setString(2, ib.getI_desc());
+			pstmt.setInt(3, ib.getI_price());
+			pstmt.setInt(4, ib.getI_inven());
+			pstmt.setString(5, ib.getI_img());
+			pstmt.setString(6, ib.getI_subimg2());
+			pstmt.setString(7, ib.getI_subimg3());
+			pstmt.setString(8, ib.getI_subimg4());
+			pstmt.setFloat(9, ib.getI_discount());
+			pstmt.setString(10, ib.getI_size());
+			pstmt.setString(11, ib.getI_dpstatus());
+			pstmt.setString(12, ib.getI_itemstatus());
+			pstmt.setString(13, ib.getI_detailpage());
+			pstmt.setInt(14, ib.getI_id());
+			
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return updateCount;
+	}
+
+	public int deleteItem(int i_id) {
+		System.out.println("ItemDAO - deleteItem()");
+		
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE FROM item WHERE i_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, i_id);
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return deleteCount;
+	}
 	
 	
 	

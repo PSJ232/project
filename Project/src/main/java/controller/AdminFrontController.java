@@ -16,7 +16,9 @@ import action.ClassListAction;
 import action.ItemDetailAction;
 import action.ItemInsertAction;
 import action.ItemListAction;
+import action.ItemUpdateAction;
 import action.ClassTimeAddAction;
+import action.ItemDeleteAction;
 import vo.ActionForward;
 
 @WebServlet("*.ad")
@@ -36,10 +38,6 @@ public class AdminFrontController extends HttpServlet {
 		//제품 목록
 		if(command.equals("/ItemList.ad")) {
 			
-			//서비스 호출
-			//세션받아서 메인페이지부터 관리자 아이디 일치여부 판별가능했으면!
-			//모든 페이지를 그렇게 처리해야하나?
-			
 			action = new ItemListAction();
 			
 			try {
@@ -55,7 +53,6 @@ public class AdminFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -66,10 +63,43 @@ public class AdminFrontController extends HttpServlet {
 			forward.setPath("./admin_layout/item_manage/itemManageRegister.jsp");
 			forward.setRedirect(false);
 		
-			//새 제품 등록작업
-		} else if(command.equals("/itemInsert.ad")) {
+		//새 제품 등록작업
+		} else if(command.equals("/ItemInsert.ad")) {
 			
 			action = new ItemInsertAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		//제품수정 처리
+		} else if(command.equals("/ItemUpdate.ad")) {
+			
+			action = new ItemUpdateAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		//제품수정 페이지
+		} else if(command.equals("/ItemUpdatePage.ad")) {
+			
+			action = new ItemDetailAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		//제품 삭제
+		} else if(command.equals("/ItemDelete.ad")) {
+			
+			action = new ItemDeleteAction();
 			
 			try {
 				forward = action.execute(request, response);

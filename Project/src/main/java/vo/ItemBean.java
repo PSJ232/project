@@ -18,7 +18,6 @@ public class ItemBean {
 	private String i_dpstatus;
 	private String i_itemstatus;
 	private String i_detailpage;
-	private String i_realfolder;
 	
 	public int getI_id() {
 		return i_id;
@@ -110,11 +109,6 @@ public class ItemBean {
 	public void setI_detailpage(String i_detailpage) {
 		this.i_detailpage = i_detailpage;
 	}
-	public String getI_realfolder() {
-		return i_realfolder;
-	}
-	public void setI_realfolder(String i_realfolder) {
-		this.i_realfolder = i_realfolder;
-	}
+
 	
 }

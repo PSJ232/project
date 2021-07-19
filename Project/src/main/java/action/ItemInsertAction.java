@@ -10,6 +10,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import svc.ItemInsertService;
+import svc.ItemUpdateService;
 import vo.ActionForward;
 import vo.ItemBean;
 
@@ -40,7 +41,7 @@ public class ItemInsertAction implements Action{
 				new DefaultFileRenamePolicy());
 		
 		ItemBean ib = new ItemBean();
-		
+
 		//i_rdate값은 service페이지에서 생성함
 		ib.setI_id(Integer.parseInt(multi.getParameter("i_id")));
 		ib.setI_name(multi.getParameter("i_name"));
@@ -51,25 +52,24 @@ public class ItemInsertAction implements Action{
 		ib.setI_subimg2(multi.getFilesystemName("i_subimg2"));
 		ib.setI_subimg3(multi.getFilesystemName("i_subimg3"));
 		ib.setI_subimg4(multi.getFilesystemName("i_subimg4"));
+		ib.setI_subimg4(multi.getFilesystemName("i_rdate"));
 		ib.setI_discount(Float.parseFloat(multi.getParameter("i_discount")));
 		ib.setI_size(multi.getParameter("i_size"));
 		ib.setI_dpstatus(multi.getParameter("i_dpstatus"));
 		ib.setI_itemstatus(multi.getParameter("i_itemstatus"));
 		ib.setI_detailpage(multi.getFilesystemName("i_detailpage"));
 		
+
 		ItemInsertService itemInsertService = new ItemInsertService();
 		boolean isInsertSuccess = itemInsertService.insertItem(ib);
-		System.out.println(isInsertSuccess);
-		
 		
 		if(isInsertSuccess) {
 			//db작업성공시
 			forward = new ActionForward();
 			//상품 관리 메인페이지로 이동
-			forward.setPath("itemList.ad"); 
+			forward.setPath("ItemList.ad"); 
 			forward.setRedirect(true);
 		} else {
-			//DB작업 실패시
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print("<script>");

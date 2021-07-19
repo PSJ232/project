@@ -383,12 +383,9 @@ dd {
 
 /*admin product detail page*/
 .product_manage_box{
-	xt-align: center;
+	text-align: center;
 }
 
-.product_manage_layout {
-	t-size: 0;
-}
 
 .product_manage_layout li{
 	display: inline-block;
@@ -414,7 +411,7 @@ dd {
 
 .product_manage_btnbox{
 	text-align: right;
-	padding: 10px 20px;
+	padding: 10px 86px;
 }
 
 .btn_m{

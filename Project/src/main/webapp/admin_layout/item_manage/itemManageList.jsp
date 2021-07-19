@@ -55,9 +55,9 @@
             <li id="product_list">
               <div class="product_layout">
                 <div class="product_box">
-                  <a href="product_detail.html"><img src="./admin_layout/upload/<%=ib.getI_img()%>" alt="flowerimage" class="product_img"></a>
+                  <a href="ItemDetail.ad?i_id=<%=ib.getI_id()%>"><img src="./admin_layout/upload/<%=ib.getI_img()%>" alt="flowerimage" class="product_img"></a>
                   <div class="product_info">
-                    <a href="product_detail.html" class="product_info_textbox product_info_name">
+                    <a href="ItemDetail.ad?i_id=<%=ib.getI_id()%>" class="product_info_textbox product_info_name">
                     	<%=ib.getI_name() %>
                     </a>
                     <span class="product_info_textbox product_info_box">
