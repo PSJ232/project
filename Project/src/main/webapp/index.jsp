@@ -22,6 +22,7 @@
 	<h3><a href="MemberLogout.me">로그아웃</a></h3>
 	<h3><a href="OrderLetter.od?i_id=1&od_qty=1">주문하기</a></h3>
 	<h3><a href="./mypage/mypage.jsp">마이페이지</a></h3>
+	<h3><a href="Cart.cr">장바구니</a></h3>
 <%
 String m_id = (String)session.getAttribute("m_id");
 %>
