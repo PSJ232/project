@@ -23,11 +23,11 @@
 	<h3><a href="OrderNow.od?i_id=1&od_qty=1">바로주문</a></h3>
 	<h3><a href="./mypage/mypage.jsp">마이페이지</a></h3>
 	<h3><a href="Cart.cr">장바구니</a></h3>
-<%
-String m_id = (String)session.getAttribute("m_id");
-%>
-
-로그인 아이디(session) = <%=m_id %>
+	<%
+	String m_id = (String)session.getAttribute("m_id");
+	%>
+	
+	로그인 아이디(session) = <%=m_id %>
 	
 	<!-- footer -->
 	<jsp:include page="inc/footer.jsp"></jsp:include>

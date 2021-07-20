@@ -17,17 +17,47 @@ public class OrderInsertFormAction implements Action {
 		System.out.println("OrderInsertFormAction");
 		ActionForward forward = null;
 		
+		
+		int iNum = Integer.parseInt(request.getParameter("iNum"));
+		int i_id = 0;
+		
+		
+		/////////////////////////////////////////여기 작
+		request.getParameter("l_id" + iNum);
+		request.getParameter("c_id" + iNum);
+		request.getParameter("c_qty" + iNum);
+		
+		for(int i = 0; i < iNum; i++) {
+			i_id = Integer.parseInt(request.getParameter("i_id" + iNum));
+			
+			
+			
+			
+			ItemDetailService itemdetailService = new ItemDetailService();
+			ItemBean itemDetail = itemdetailService.selectItem(i_id);
+			request.setAttribute("itemDetail", itemDetail);
+			
+		}
+		
+		
+		
+		
+		
+		
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
-		int i_id = Integer.parseInt(request.getParameter("i_id"));
+		
+		
+		
+		
+		
+		
 		
 		MemberDetailService memberDetailService = new MemberDetailService();
 		MemberBean memberDetail  = memberDetailService.selectMember(m_id);
 		request.setAttribute("memberDetail", memberDetail);
 		
-		ItemDetailService itemdetailService = new ItemDetailService();
-		ItemBean itemDetail = itemdetailService.selectItem(i_id);
-		request.setAttribute("itemDetail", itemDetail);
+		
 		
 		forward = new ActionForward();
 		forward.setPath("./order/insert.jsp");

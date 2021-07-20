@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import svc.CartListService;
+import svc.ItemDetailService;
 import vo.ActionForward;
 import vo.CartBean;
+import vo.ItemBean;
 
 public class OrderCartAction implements Action {
 
@@ -25,6 +27,15 @@ public class OrderCartAction implements Action {
 		
 		request.setAttribute("cartList", cartList);
 		
+		ArrayList<ItemBean> itemList = new ArrayList<ItemBean>();
+		ItemDetailService itemDetailService = new ItemDetailService();
+		ItemBean ib = null;
+		for(CartBean cb : cartList) {
+			ib = itemDetailService.selectItem(cb.getI_id());
+			itemList.add(ib);
+		}
+		
+		request.setAttribute("itemList", itemList);
 		
 		forward = new ActionForward();
 		forward.setPath("./order/letter.jsp"); 

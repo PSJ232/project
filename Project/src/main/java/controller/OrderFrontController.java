@@ -46,8 +46,6 @@ public class OrderFrontController extends HttpServlet {
 			forward.setPath("./order/letter.jsp");
 			forward.setRedirect(false); // Dispatcher 방식은 생략 가능(기본값 false 이므로)
 			
-			
-			
 		} else if (command.equals("/OrderCart.od")) {
 			action = new OrderCartAction();
 			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
