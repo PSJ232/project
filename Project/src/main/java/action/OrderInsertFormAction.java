@@ -22,7 +22,7 @@ public class OrderInsertFormAction implements Action {
 		int i_id = 0;
 		
 		
-		/////////////////////////////////////////여기 작
+		/////////////////////////////////////////여기 작업중
 		request.getParameter("l_id" + iNum);
 		request.getParameter("c_id" + iNum);
 		request.getParameter("c_qty" + iNum);

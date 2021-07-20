@@ -12,6 +12,7 @@
 </head>
 <%
 ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList");
+ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList");
 %>
 <body>
 	<h2>장바구니</h2>
@@ -24,46 +25,41 @@ ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartL
 				<td>합계금액</td>
 			</tr>
 			<%
-			ItemDetailService itemDetailService = new ItemDetailService();
-			ItemBean ib = null;
 			int totalAmount = 0; // 총합계금액 변수
-			for(CartBean cb : cartList) { // ArrayList에 든 CartBean 하나씩 꺼내기
-				ib = itemDetailService.selectItem(cb.getI_id()); // 꺼낸 CartBean의 i_id로 itemDetail 호출
+			for (int i = 0; i < cartList.size(); i++) {// ArrayList에 든 CartBean 하나씩 꺼내기
+				String i_img = cartList.get(i).getC_delivery_date();
+				String i_name = itemList.get(i).getI_img();
+				String delivery_date = itemList.get(i).getI_name();
+
+				int c_letter = cartList.get(i).getC_letter();
+				int i_price = itemList.get(i).getI_price();
+				int c_qty = cartList.get(i).getC_qty();
+
 				int letterPrice = 0; // 편지지 추가에 따른 추가요금
 				String letter = ""; // 편지지가 선택되면 추가상품에 보이고, 선택되지 않으면 안보임
-				if(cb.getC_letter() == 1){ // 편지지가 1이면 2500원 추가, 0이면 선택안함
+				if (c_letter == 1) { // 편지지가 1이면 2500원 추가, 0이면 선택안함
 					letterPrice = 2500;
 					letter = "편지 2,500원";
-					
+
 				}
-				
-				int sumAmount = ib.getI_price() * cb.getC_qty() + letterPrice;
-				
+
+				int sumAmount = i_price * c_qty + letterPrice;
+
 				totalAmount += sumAmount;
-				
 			%>
 			<tr>
-				<td>
-					<input type="checkbox">상품이미지<%=ib.getI_img()%><br>
-					<%=ib.getI_name()%><input type="button" value="x" onclick=""><br>
-					수령일:<%=cb.getC_delivery_date() %><br>
-					<%=ib.getI_price() %>원<br>
-					-<%=cb.getC_qty() %>+<br>
-				</td>
+				<td><input type="checkbox">상품이미지<%=i_img%><br> <%=i_name%><input
+					type="button" value="x" onclick=""><br> 수령일:<%=delivery_date%><br>
+					<%=i_price%>원<br> -<%=c_qty%>+<br></td>
 				<td><%=letter%><input type="button" value="x" onclick=""></td>
-				<td>
-					<%=sumAmount%>원<br>
-					무료배송
-				</td>
+				<td><%=sumAmount%>원<br> 무료배송</td>
 			</tr>
-			<%	
+			<%
 			}
 			%>
 		</table>
-	
-	
-	
-		
+
+
 		구매 전 확인해주세요.<br>
 		- 구매 금액 합산이 30,000원 이상일 경우, 배송비는 무료입니다.(단,[정기구독],[무료배송] 상품은 구매금액 합산에 포함되지 않습니다.)<br>
 		- [정기구독] 상품의 첫 번째 발송일에 일반 택배 상품을 함께 구매하실 경우,중복 배송비는 부분 환불 처리해 드립니다.<br>
