@@ -13,6 +13,7 @@
 <%
 ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList");
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList");
+int letterCount = 0; // 편지지페이지에서 작성해야될 편지지 숫자를 알려주는 값
 %>
 <body>
 	<h2>장바구니</h2>
@@ -27,9 +28,9 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 			<%
 			int totalAmount = 0; // 총합계금액 변수
 			for (int i = 0; i < cartList.size(); i++) {// ArrayList에 든 CartBean 하나씩 꺼내기
-				String i_img = cartList.get(i).getC_delivery_date();
-				String i_name = itemList.get(i).getI_img();
-				String delivery_date = itemList.get(i).getI_name();
+				String i_img = itemList.get(i).getI_img();
+				String i_name = itemList.get(i).getI_name();
+				String delivery_date = cartList.get(i).getC_delivery_date();
 
 				int c_letter = cartList.get(i).getC_letter();
 				int i_price = itemList.get(i).getI_price();
@@ -40,7 +41,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				if (c_letter == 1) { // 편지지가 1이면 2500원 추가, 0이면 선택안함
 					letterPrice = 2500;
 					letter = "편지 2,500원";
-
+					letterCount += 1;
 				}
 
 				int sumAmount = i_price * c_qty + letterPrice;
@@ -66,7 +67,8 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 		<hr>
 	
 		총 주문금액 <%=totalAmount %> 원 + 배송비 0원 = 총 결제 금액 <%=totalAmount %>원<br>
-	
+		
+		<input type="hidden" name="letterCount" value="<%=letterCount %>">
 		<input type="submit" value="구매하기">
 	</form>
 	

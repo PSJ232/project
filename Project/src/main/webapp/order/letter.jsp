@@ -20,15 +20,15 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 <body>
 	주문/결제<br>
 
-	편지 작성<br><br><br><br>
+	편지 작성(<%=request.getParameter("letterCount") %>)<br><br><br><br>
 
 	<form action="OrderForm.od" method="post">
 		<%
 		int i; // for문 돌때 각각의 주문구분번호 부여
 		for(i = 0; i < cartList.size(); i++) {
-			String i_img = cartList.get(i).getC_delivery_date();
-			String i_name = itemList.get(i).getI_img();
-			String delivery_date = itemList.get(i).getI_name();
+			String i_img = itemList.get(i).getI_img();
+			String i_name = itemList.get(i).getI_name();
+			String delivery_date = cartList.get(i).getC_delivery_date();
 			int c_letter = cartList.get(i).getC_letter();
 			int c_id = cartList.get(i).getC_id();
 			int i_id = itemList.get(i).getI_id();
@@ -36,7 +36,6 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 			
 			if(c_letter == 1){
 		%>		
-
 				상품이미지<%=i_img %><br>
 				<%=i_name %><br>
 				수령일: <%=delivery_date %><br>
