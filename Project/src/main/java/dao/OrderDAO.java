@@ -97,7 +97,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO orders_detail VALUES(?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO orders_detail VALUES(?,?,?,?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -108,6 +108,7 @@ public class OrderDAO {
 			pstmt.setInt(5, orderDetailBean.getOd_qty());
 			pstmt.setString(6, orderDetailBean.getOd_message());
 			pstmt.setInt(7, 0); // 리뷰 기본값 0:(미작성)
+			pstmt.setString(8, orderDetailBean.getM_id());
 
 			insertCount = pstmt.executeUpdate();
 

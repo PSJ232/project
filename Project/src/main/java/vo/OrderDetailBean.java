@@ -9,6 +9,15 @@ public class OrderDetailBean {
 	private int od_qty;
 	private String od_message;
 	private int od_review;
+	private String m_id;
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
 
 	public int getOd_id() {
 		return od_id;
