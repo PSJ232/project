@@ -11,11 +11,8 @@
 <title>Insert title here</title>
 </head>
 <%
-ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList");
-ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList");
-// 신종현 할일. 단일 상품일때 해결책 생각하기 (다중상품은 해결됨)
-
-
+ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
+ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
 %>
 <body>
 	주문/결제<br>
@@ -25,16 +22,16 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 	<form action="OrderForm.od" method="post">
 		<%
 		int i; // for문 돌때 각각의 주문구분번호 부여
-		for(i = 0; i < cartList.size(); i++) {
-			String i_img = itemList.get(i).getI_img();
-			String i_name = itemList.get(i).getI_name();
-			String delivery_date = cartList.get(i).getC_delivery_date();
-			int c_letter = cartList.get(i).getC_letter();
-			int c_id = cartList.get(i).getC_id();
-			int i_id = itemList.get(i).getI_id();
-			int c_qty = cartList.get(i).getC_qty();
+		for(i = 0; i < cartList.size(); i++) { // 장바구니와 아이템의 ArrayList에서 필요 정보 반복 추출
+			String i_img = itemList.get(i).getI_img(); //상품 이미지
+			String i_name = itemList.get(i).getI_name(); //상품 이름
+			String delivery_date = cartList.get(i).getC_delivery_date(); //상품 배송 요청일
+			int c_letter = cartList.get(i).getC_letter(); //편지지 선택 여부
+			int i_id = itemList.get(i).getI_id(); //상품 번호
+			int c_qty = cartList.get(i).getC_qty(); //상품 수량
+			int c_id = cartList.get(i).getC_id(); //장바구니 번호
 			
-			if(c_letter == 1){
+			if(c_letter == 1){ //편지지 선택 여부
 		%>		
 				상품이미지<%=i_img %><br>
 				<%=i_name %><br>

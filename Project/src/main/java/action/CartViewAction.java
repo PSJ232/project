@@ -11,7 +11,7 @@ import svc.ItemDetailService;
 import vo.ActionForward;
 import vo.CartBean;
 import vo.ItemBean;
-
+//장바구니에 담긴 상품 리스트 보여주는 Action
 public class CartViewAction implements Action {
 
 	@Override
@@ -29,10 +29,10 @@ public class CartViewAction implements Action {
 
 		ArrayList<ItemBean> itemList = new ArrayList<ItemBean>();
 		ItemDetailService itemDetailService = new ItemDetailService();
-		ItemBean ib = null;
+		ItemBean itemBean = null;
 		for (CartBean cb : cartList) {
-			ib = itemDetailService.selectItem(cb.getI_id());
-			itemList.add(ib);
+			itemBean = itemDetailService.selectItem(cb.getI_id());
+			itemList.add(itemBean);
 		}
 
 		request.setAttribute("itemList", itemList);
