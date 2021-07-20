@@ -22,9 +22,11 @@ public class ReviewInsertFormAction implements Action {
 		String m_id = (String)session.getAttribute("m_id");
 		
 		ReviewStatusService reviewStatusService = new ReviewStatusService();
-		ArrayList<OrderBean> arrayList = reviewStatusService.reviewStatus(m_id);
+		ArrayList<OrderBean> nonArrayList = reviewStatusService.reviewNonStatus(m_id);
+		ArrayList<OrderBean> arrayList = reviewStatusService.revieStatus(m_id);
 //		ArrayList<OrderBean> rb2 = new ReviewStatusService("m_id");
 		
+		request.setAttribute("nonArrayList", nonArrayList);
 		request.setAttribute("arraList", arrayList);
 		
 		forward = new ActionForward();

@@ -1,3 +1,5 @@
+<%@page import="vo.OrderBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -54,6 +56,12 @@
 	</section>
   	
   <!-- 본문 내용 -->
+  <%
+  ArrayList<OrderBean> nonArrayList = (ArrayList<OrderBean>)request.getAttribute("nonArrayList");
+  ArrayList<OrderBean> arrayList = (ArrayList<OrderBean>)request.getAttribute("arrayList");
+  
+  
+  %>
  
   	<section>
 	 	<div>

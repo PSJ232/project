@@ -35,7 +35,7 @@ public class ReviewFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				System.out.println("Review 컨트롤러의 reviewInsertFormAction쪽 문제" + e.getMessage());
+				System.out.println(e.getMessage());
 			}
 		}
 		
