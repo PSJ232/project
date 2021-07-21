@@ -1,3 +1,4 @@
+<%@page import="vo.ItemBean"%>
 <%@page import="vo.OrderBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -57,9 +58,10 @@
   	
   <!-- 본문 내용 -->
   <%
-  ArrayList<OrderBean> nonArrayList = (ArrayList<OrderBean>)request.getAttribute("nonArrayList");
-  ArrayList<OrderBean> arrayList = (ArrayList<OrderBean>)request.getAttribute("arrayList");
-  
+  ArrayList<OrderBean> nonOrderArrayList = (ArrayList<OrderBean>)request.getAttribute("nonOrderArrayList");
+  ArrayList<OrderBean> orderArrayList = (ArrayList<OrderBean>)request.getAttribute("orderArrayList");
+  ArrayList<ItemBean> nonItemArrayList = (ArrayList<ItemBean>)request.getAttribute("nonItemArrayList");
+  ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>)request.getAttribute("itemArrayList");
   
   %>
  
@@ -68,21 +70,35 @@
 		   	<h2>상품 리뷰</h2>
 		   		<div>
 		   		<h6>작성 가능한 후기</h6>
-		   			<table border="1">
-		   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
-		   				<tr><td>2021-07-16</td><td>산호초 에디션</td><td><a href="ReviewInsert.rv">리뷰 작성 가능</a></td></tr>
-		   				<tr><td>2021-03-15</td><td>로지 핑크 에디션</td><td>상품 배송 중</a></td></tr>
+	   			<table border="1">
+	   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
+	   				<tr><td>2021-07-16</td><td>산호초 에디션</td><td><a href="ReviewInsert.rv">리뷰 작성 가능</a></td></tr>
+	   				
+	   			<%
+		   		  for(int i=0; i<nonOrderArrayList.size(); i++) {
+		   			  nonOrderArrayList.get(i).getO_rdate();
+		   			  nonOrderArrayList.get(i).getO_rdate();
+//		   		 	  SELECT o_id, o_rdate, o_delivery_date, o_receiver, o_amount
+// 			   		  SELECT i_id, i_name, i_img
+		   			  nonItemArrayList.get(i).getI_name();
+	   			%>
+	   				<tr><td><%=nonOrderArrayList.get(i).getO_rdate() %></td>
+	   					<td><%=nonItemArrayList.get(i).getI_name() %></td>
+	   					<td><a href="ReviewInsert.rv">리뷰 작성 가능</a></td></tr>
+<!-- 		   				// 여기서 링크타고 갈때 번호를 줘야될듯 -->
 <!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
-		   			</table>
+				<%}%>
+	   			</table>
 		   		</div>
-		   			<table border="1">
+		   			
+		   		<div>
+		   		<h6>내 리뷰</h6>
+		   		<table border="1">
 		   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
 		   				<tr><td>2021-03-15</td><td>로지 핑크 에디션</td><td><a href="리뷰 수정">리뷰 수정</a></td></tr>
 		   				<tr><td>2020-12-09</td><td>홈 가든 에디션</td><td>삭제된 리뷰</td></tr>
 <!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
-		   			</table>
-		   		<div>
-		   		<h6>내 리뷰</h6>
+		   		</table>
 		   		</div>
 	 	</div>
  	</section>

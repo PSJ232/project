@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import svc.ReviewStatusService;
 import vo.ActionForward;
+import vo.ItemBean;
 import vo.OrderBean;
 
 public class ReviewInsertFormAction implements Action {
@@ -22,13 +23,17 @@ public class ReviewInsertFormAction implements Action {
 		String m_id = (String)session.getAttribute("m_id");
 		
 		ReviewStatusService reviewStatusService = new ReviewStatusService();
-		ArrayList<OrderBean> nonArrayList = reviewStatusService.reviewNonStatus(m_id);
-		ArrayList<OrderBean> arrayList = reviewStatusService.revieStatus(m_id);
-//		ArrayList<OrderBean> rb2 = new ReviewStatusService("m_id");
+		ArrayList<OrderBean> nonOrderArrayList = reviewStatusService.reviewNonStatusOrderList(m_id);
+		ArrayList<OrderBean> orderArrayList = reviewStatusService.reviewStatusOrderList(m_id);
+		ArrayList<ItemBean> nonItemArrayList = reviewStatusService.reviewNonStatusItemList(m_id);
+		ArrayList<ItemBean> itemArrayList = reviewStatusService.reviewStatusItemList(m_id);
 		
-		request.setAttribute("nonArrayList", nonArrayList);
-		request.setAttribute("arraList", arrayList);
+		request.setAttribute("nonOrderArrayList", nonOrderArrayList);
+		request.setAttribute("orderArrayList", orderArrayList);
+		request.setAttribute("nonItemArrayList", nonItemArrayList);
+		request.setAttribute("itemArrayList", itemArrayList);
 		
+//		command : /ReviewFormAction.rv
 		forward = new ActionForward();
 		forward.setPath("./mypage/reviewBefore.jsp");
 		forward.setRedirect(false);

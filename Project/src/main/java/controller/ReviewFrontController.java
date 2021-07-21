@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,18 +31,36 @@ public class ReviewFrontController extends HttpServlet {
 		// 액션 클래스의 공통 타입(슈퍼클래스)인 Action 인터페이스 타입 변수 선언
 		Action action = null;
 		
-		if(command.equals("/ReviewInsert.rv")) {
+		if(command.equals("/ReviewFormAction.rv")) {
 			action = new ReviewInsertFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				e.printStackTrace();
 			}
+		} 
+//		else if(command.equals("/ReviewInsert.rv")) {
+//			action = new ReviewInsertAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+		
+		// --------------------------------------------------------------
+		// 포워딩 방식 결정
+		if(forward != null) {
+			System.out.println("ReviewFrontController");
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
+		} else {
+			System.out.println("ReviewFrontController - ActionForward 객체가 null 입니다!");
 		}
-		
-		
-		
-		
 		
 	}
 
