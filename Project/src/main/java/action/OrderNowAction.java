@@ -33,23 +33,23 @@ public class OrderNowAction implements Action {
 		ArrayList<CartBean> cartList = new ArrayList<CartBean>();
 		cartList.add(cartBean);
 
+		request.setAttribute("cartList", cartList); // 장바구니 목록 리스트에 저장
+
 		ArrayList<ItemBean> itemList = new ArrayList<ItemBean>();
 		ItemDetailService itemDetailService = new ItemDetailService();
 		ItemBean itemBean = itemDetailService.selectItem(i_id);
 		itemList.add(itemBean);
 
+		request.setAttribute("itemList", itemList); // 아이템목록 리스트에 저장
+
 		if (c_letter == 1) { // 추가상품으로 편지가 선택되었으면 letter.jsp로 이동
 
-			request.setAttribute("cartList", cartList);
-			request.setAttribute("itemList", itemList);
 			forward = new ActionForward();
 			forward.setPath("./order/letter.jsp?letterCount=1"); // 작성 편지수(1) 가지고 감 (단일상품이므로 1 고정값)
 			forward.setRedirect(false);
 
 		} else { // 추가상품 편지가 없으면 OrderForm.od로 이동
 
-			request.setAttribute("cartList", cartList);
-			request.setAttribute("itemList", itemList);
 			forward = new ActionForward();
 			forward.setPath("OrderForm.od");
 			forward.setRedirect(false);

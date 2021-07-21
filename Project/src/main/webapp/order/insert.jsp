@@ -1,3 +1,5 @@
+<%@page import="vo.CartBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
 <%@page import="vo.ItemBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -55,21 +57,36 @@
 <title>Insert title here</title>
 </head>
 <%
-ItemBean itemDetail = (ItemBean) request.getAttribute("itemDetail");
 MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
 String m_name = memberDetail.getM_name();
-int price = (int)(itemDetail.getI_price() * itemDetail.getI_discount()); // 관리자팀에게 반올림 기준과 수식 통일 요청
+memberDetail.getG_id();
+int price = 0;
+int totalPrice = 0;
+
+ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
+ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
+
+String addLetter = "";// 편지가 추가되면 해당 html 추가
 
 %>
 <body>
 	<h1>주문/결제</h1>
 	<h3>주문내역 확인</h3>
-	<img src="">
-	<%=itemDetail.getI_name() %><br>
-	수령일:<br>
-	편지지:<%=request.getParameter("l_id") %><br>
-	수량:<%=request.getParameter("od_qty") %><br>
+	<%for(int i = 0; i < cartList.size(); i++) {
+		if(cartList.get(i).getC_letter() == 1){
+			addLetter = "추가상품:편지<br>"; // 편지가 추가되면 해당 html 추가
+		}
+			price = (int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() * cartList.get(i).getC_qty()); // 상품 할인 계산된 상품 금액
+			totalPrice += price; // 누적 상품 금액
+	%>
 	
+		사진자리<img src="<%=itemList.get(i).getI_img()%>">
+		<%=itemList.get(i).getI_name() %><br>
+		<%=price %><br>
+		수령일:<%=cartList.get(i).getC_delivery_date() %><br>
+		<%=addLetter %>
+		수량:<%=cartList.get(i).getC_qty()%><br>
+	<%} %>
 	
 	<h3>주문자 정보</h3>
 	이름 : <%=m_name %><br>
@@ -98,14 +115,21 @@ int price = (int)(itemDetail.getI_price() * itemDetail.getI_discount()); // 관�
 		포인트 <input type="text" name="o_point" value="0"><input type="button" value="적용"><br>
 		현재 포인트:<%=memberDetail.getM_point() %>
 		<h3>최종 결제 금액</h3>
+		총 상품 금액 <%=totalPrice %> 원<br>
+		배송비 0 원<br>
+		포인트 할인 -0 원<br>
+		등급 할인 -0 원<br>
+		
+		<h4>총 결제 금액</h4>
+		<%=totalPrice %>
 		<h3>결제 수단</h3>
 		
 		<input type="hidden" name="od_message" value="<%=request.getParameter("od_message")%>"> <!-- 편지지4번 직접메세지 -->
 		<input type="hidden" name="l_id" value="<%=request.getParameter("l_id") %>"> <!-- 편지지 선택 번호 -->
 		<input type="hidden" name="od_qty" value="<%=request.getParameter("od_qty") %>"> <!-- 상품 주문 수량 -->
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
-		<input type="hidden" name="i_id" value="<%=itemDetail.getI_id()%>"> <!-- 제품ID -->
-		<input type="hidden" name="o_amount" value="<%=price%>"> <!-- 할인율 반영된 가격 -->
+		<input type="hidden" name="i_id" value=""> <!-- 제품ID -->
+		<input type="hidden" name="o_amount" value="<%=price %>"> <!-- 할인율 반영된 가격 -->
 		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500')"> <!-- 결제 api에 따라서 변경해야됨  -->
 	<br>
 	<br>
