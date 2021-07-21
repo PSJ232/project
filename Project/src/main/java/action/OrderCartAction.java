@@ -44,8 +44,6 @@ public class OrderCartAction implements Action {
 			forward.setPath("./order/letter.jsp");
 			forward.setRedirect(false);
 
-			return forward;
-
 		} else { // 추가상품 편지가 없으면 OrderForm.od로 이동
 
 			request.setAttribute("cartList", cartList);
@@ -54,11 +52,9 @@ public class OrderCartAction implements Action {
 			forward = new ActionForward();
 			forward.setPath("OrderForm.od");
 			forward.setRedirect(false);
-
-			return forward;
-
 		}
 
+		return forward;
 	}
 
 }

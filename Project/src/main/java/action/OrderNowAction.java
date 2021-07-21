@@ -43,10 +43,8 @@ public class OrderNowAction implements Action {
 			request.setAttribute("cartList", cartList);
 			request.setAttribute("itemList", itemList);
 			forward = new ActionForward();
-			forward.setPath("./order/letter.jsp?letterCount=1"); // 작성해야 될 편지지 수량(1) 가지고 감
+			forward.setPath("./order/letter.jsp?letterCount=1"); // 작성 편지수(1) 가지고 감 (단일상품이므로 1 고정값)
 			forward.setRedirect(false);
-
-			return forward;
 
 		} else { // 추가상품 편지가 없으면 OrderForm.od로 이동
 
@@ -56,9 +54,9 @@ public class OrderNowAction implements Action {
 			forward.setPath("OrderForm.od");
 			forward.setRedirect(false);
 
-			return forward;
-
 		}
+		
+		return forward;
 	}
 
 }
