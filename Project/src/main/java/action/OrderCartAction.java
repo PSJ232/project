@@ -36,18 +36,16 @@ public class OrderCartAction implements Action {
 			itemList.add(itemBean);
 		}
 
+		request.setAttribute("cartList", cartList);
+		request.setAttribute("itemList", itemList);
+
 		if (letterCheck > 0) { // 추가 상품으로 편지가 선택되었으면 letter.jsp로 이동
-			request.setAttribute("cartList", cartList);
-			request.setAttribute("itemList", itemList);
 
 			forward = new ActionForward();
 			forward.setPath("./order/letter.jsp");
 			forward.setRedirect(false);
 
 		} else { // 추가상품 편지가 없으면 OrderForm.od로 이동
-
-			request.setAttribute("cartList", cartList);
-			request.setAttribute("itemList", itemList);
 
 			forward = new ActionForward();
 			forward.setPath("OrderForm.od");

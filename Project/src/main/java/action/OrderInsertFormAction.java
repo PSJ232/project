@@ -12,6 +12,7 @@ import vo.ActionForward;
 import vo.CartBean;
 import vo.ItemBean;
 import vo.MemberBean;
+import vo.OrderDetailBean;
 
 public class OrderInsertFormAction implements Action {
 
@@ -23,6 +24,7 @@ public class OrderInsertFormAction implements Action {
 		/////////////////일단 편지지가 없을때 먼저 ...코드 작업 중
 		ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니(&단일상품)에서 가져온 상품목록
 		ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니(&단일상품)에 담긴 아이템디테일 목록(담긴순서동일)
+		ArrayList<OrderDetailBean> orderFormInfo = (ArrayList<OrderDetailBean>) request.getAttribute("orderFormInfo"); //letter.jsp에서 입력된 정보가 담긴 목록(담긴순서동일)
 		
 //		request.setAttribute("cartList", cartList); // 값을 계속 가져가기 위해 다시 저장 
 //		request.setAttribute("itemList", itemList); // 값을 계속 가져가기 위해 다시 저장 
