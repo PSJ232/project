@@ -41,7 +41,7 @@ public class MemberJoinProAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("MemberLogin.me"); // 메인화면 주소 미정
+			forward.setPath("./"); // 메인화면 주소 미정
 			forward.setRedirect(true);
 		}
 		

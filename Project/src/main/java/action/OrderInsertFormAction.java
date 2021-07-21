@@ -22,7 +22,8 @@ public class OrderInsertFormAction implements Action {
 		int i_id = 0;
 		
 		
-		/////////////////////////////////////////여기 작
+		/////////////////////////////////////////여기 작업중
+		//letter.jsp에서 arraylist(장바구니,아이템)setAttri를 하면 여기서 확인이 가능할까?
 		request.getParameter("l_id" + iNum);
 		request.getParameter("c_id" + iNum);
 		request.getParameter("c_qty" + iNum);
