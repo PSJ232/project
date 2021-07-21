@@ -24,6 +24,8 @@ public class OrderCartAction implements Action {
 
 		CartListService cartListService = new CartListService(); // 장바구니 목록 가져오기
 		ArrayList<CartBean> cartList = cartListService.selectCart(m_id);
+		
+		request.setAttribute("cartList", cartList); // 장바구니 목록 리스트에 저장
 
 		// 장바구니 안에 해당하는 아이템 목록 가져올 준비
 		ItemDetailService itemDetailService = new ItemDetailService();
@@ -36,8 +38,7 @@ public class OrderCartAction implements Action {
 			itemList.add(itemBean);
 		}
 
-		request.setAttribute("cartList", cartList);
-		request.setAttribute("itemList", itemList);
+		request.setAttribute("itemList", itemList); // 아이템목록 리스트에 저장
 
 		if (letterCheck > 0) { // 추가 상품으로 편지가 선택되었으면 letter.jsp로 이동
 
