@@ -10,14 +10,7 @@ public class OrderDetailBean {
 	private String od_message;
 	private int od_review;
 	private String m_id;
-
-	public String getM_id() {
-		return m_id;
-	}
-
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
-	}
+	private int c_id;
 
 	public int getOd_id() {
 		return od_id;
@@ -73,6 +66,22 @@ public class OrderDetailBean {
 
 	public void setOd_review(int od_review) {
 		this.od_review = od_review;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+	public int getC_id() {
+		return c_id;
+	}
+
+	public void setC_id(int c_id) {
+		this.c_id = c_id;
 	}
 
 }

@@ -19,7 +19,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 
 	편지 작성(<%=request.getParameter("letterCount") %>)<br><br><br><br>
 
-	<form action="OrderForm.od" method="post">
+	<form action="OrderLetter.od" method="post">
 		<%
 		int i; // for문 돌때 각각의 주문구분번호 부여
 		for(i = 0; i < cartList.size(); i++) { // 장바구니와 아이템의 ArrayList에서 필요 정보 반복 추출
@@ -41,7 +41,8 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				<input type="radio" name="l_id<%=i %>" value=1>감사 
 				<input type="radio" name="l_id<%=i %>" value=2>응원 
 				<input type="radio" name="l_id<%=i %>" value=3>사랑 
-				<input type="radio" name="l_id<%=i %>" value=4 checked>직접쓰기<input type="text" name="od_message<%=i %>" placeholder="내용을 입력해주세요 :)">
+				<input type="radio" name="l_id<%=i %>" value=4 checked>직접쓰기
+				<input type="text" name="od_message<%=i %>" placeholder="내용을 입력해주세요 :)">
 				
 				<input type="hidden" name="c_id<%=i %>" value="<%=c_id%>">
 				<input type="hidden" name="i_id<%=i %>" value="<%=i_id%>">

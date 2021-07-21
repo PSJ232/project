@@ -6,7 +6,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
@@ -123,6 +122,7 @@ String addLetter = "";// 편지가 추가되면 해당 html 추가
 		<h4>총 결제 금액</h4>
 		<%=totalPrice %>
 		<h3>결제 수단</h3>
+		
 		
 		<input type="hidden" name="od_message" value="<%=request.getParameter("od_message")%>"> <!-- 편지지4번 직접메세지 -->
 		<input type="hidden" name="l_id" value="<%=request.getParameter("l_id") %>"> <!-- 편지지 선택 번호 -->
