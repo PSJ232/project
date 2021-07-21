@@ -13,6 +13,7 @@ import action.Action;
 import action.CartDeleteProAction;
 import action.CartViewAction;
 import action.CartInsertProAction;
+import action.CartUpdateProAction;
 import vo.ActionForward;
 
 @WebServlet("*.cr")
@@ -44,6 +45,13 @@ public class CartFrontController extends HttpServlet {
 
 		} else if (command.equals("/CartInsertPro.cr")) {
 			action = new CartInsertProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/CartUpdatePro.cr")) {
+			action = new CartUpdateProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

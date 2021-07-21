@@ -96,4 +96,31 @@ public class CartDAO {
 
 	}
 
+	public int modifyCart(CartBean cartBean) {
+
+		int updateCount = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "UPDATE cart set c_id=?,c_qty=?,c_rdate=?,i_id=?,c_letter=?,c_delivery_date=? where m_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cartBean.getC_id());
+			pstmt.setInt(2, cartBean.getC_qty());
+			pstmt.setDate(3, cartBean.getC_rdate());
+			pstmt.setInt(4, cartBean.getI_id());
+			pstmt.setInt(5, cartBean.getC_letter());
+			pstmt.setString(6, cartBean.getC_delivery_date());
+			pstmt.setString(7, cartBean.getM_id());
+			
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		return updateCount;
+	}
+
 }
