@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.ReviewInsertAction;
 import action.ReviewInsertFormAction;
 import vo.ActionForward;
 
@@ -38,15 +39,14 @@ public class ReviewFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-//		else if(command.equals("/ReviewInsert.rv")) {
-//			action = new ReviewInsertAction();
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		} else if(command.equals("/ReviewInsert.rv")) {
+			action = new ReviewInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		// --------------------------------------------------------------
 		// 포워딩 방식 결정

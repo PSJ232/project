@@ -21,7 +21,7 @@ public class ReviewStatusService {
 		rdao.setConnection(con);
 		
 		nonOrderArrayList = rdao.getReviewNonStatusOrderList(m_id);
-				
+		
 		close(con);
 		
 		return nonOrderArrayList;

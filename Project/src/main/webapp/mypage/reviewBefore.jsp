@@ -62,7 +62,7 @@
   ArrayList<OrderBean> orderArrayList = (ArrayList<OrderBean>)request.getAttribute("orderArrayList");
   ArrayList<ItemBean> nonItemArrayList = (ArrayList<ItemBean>)request.getAttribute("nonItemArrayList");
   ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>)request.getAttribute("itemArrayList");
-  
+  System.out.println("jsp의 list : " +nonOrderArrayList);
   %>
  
   	<section>
@@ -72,8 +72,6 @@
 		   		<h6>작성 가능한 후기</h6>
 	   			<table border="1">
 	   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
-	   				<tr><td>2021-07-16</td><td>산호초 에디션</td><td><a href="ReviewInsert.rv">리뷰 작성 가능</a></td></tr>
-	   				
 	   			<%
 		   		  for(int i=0; i<nonOrderArrayList.size(); i++) {
 		   			  nonOrderArrayList.get(i).getO_rdate();
@@ -84,7 +82,7 @@
 	   			%>
 	   				<tr><td><%=nonOrderArrayList.get(i).getO_rdate() %></td>
 	   					<td><%=nonItemArrayList.get(i).getI_name() %></td>
-	   					<td><a href="ReviewInsert.rv">리뷰 작성 가능</a></td></tr>
+	   					<td><a href="ReviewInsert.rv">리뷰 작성</a></td></tr>
 <!-- 		   				// 여기서 링크타고 갈때 번호를 줘야될듯 -->
 <!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
 				<%}%>
@@ -95,8 +93,13 @@
 		   		<h6>내 리뷰</h6>
 		   		<table border="1">
 		   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
-		   				<tr><td>2021-03-15</td><td>로지 핑크 에디션</td><td><a href="리뷰 수정">리뷰 수정</a></td></tr>
-		   				<tr><td>2020-12-09</td><td>홈 가든 에디션</td><td>삭제된 리뷰</td></tr>
+	   			<%
+		   		  for(int i=0; i<orderArrayList.size(); i++) {
+	   			%>
+	   				<tr><td><%=orderArrayList.get(i).getO_rdate() %></td>
+	   					<td><%=itemArrayList.get(i).getI_name() %></td>
+	   					<td><a href="ReviewInsert.rv">리뷰 수정</a> | <a href="ReviewInsert.rv">리뷰 삭제</a></td></tr>
+				<%}%>		   				
 <!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
 		   		</table>
 		   		</div>

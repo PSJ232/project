@@ -27,7 +27,7 @@ public class ReviewInsertFormAction implements Action {
 		ArrayList<OrderBean> orderArrayList = reviewStatusService.reviewStatusOrderList(m_id);
 		ArrayList<ItemBean> nonItemArrayList = reviewStatusService.reviewNonStatusItemList(m_id);
 		ArrayList<ItemBean> itemArrayList = reviewStatusService.reviewStatusItemList(m_id);
-		
+
 		request.setAttribute("nonOrderArrayList", nonOrderArrayList);
 		request.setAttribute("orderArrayList", orderArrayList);
 		request.setAttribute("nonItemArrayList", nonItemArrayList);

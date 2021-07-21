@@ -113,12 +113,10 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT i_id, i_name, i_img "
-				+ "FROM item "
-				+ "WHERE i_id IN ("
-				+ "SELECT i_id "
-				+ "FROM orders_detail "
-				+ "WHERE od_review = 0 AND m_id = ?);";
+		String sql = "SELECT i.i_id, i.i_name, i.i_img "
+			+	"FROM orders_detail od JOIN item i "
+			+	"ON od.i_id = i.i_id "
+			+	"WHERE od.od_review = 0 AND m_id = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -130,7 +128,7 @@ public class ReviewDAO {
 				ib.setI_name(rs.getString("i_name"));
 				ib.setI_img(rs.getString("i_img"));
 				nonItemArrayList.add(ib);
-			} 
+			}
 		} catch (Exception e) {
 			System.out.println("ReviewDAO - getReviewNonStatusItemBean() SQL문 오류 - " + e.getMessage());
 		}
@@ -144,12 +142,10 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT i_id, i_name, i_img "
-				+ "FROM item "
-				+ "WHERE i_id IN ("
-				+ "SELECT i_id "
-				+ "FROM orders_detail "
-				+ "WHERE od_review = 1 AND m_id = ?);";
+		String sql = "SELECT i.i_id, i.i_name, i.i_img "
+				+	"FROM orders_detail od JOIN item i "
+				+	"ON od.i_id = i.i_id "
+				+	"WHERE od.od_review = 0 AND m_id = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
