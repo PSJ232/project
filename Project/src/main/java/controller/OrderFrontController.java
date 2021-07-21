@@ -20,13 +20,16 @@ import action.OrderCartAction;
 import action.OrderDetailProAction;
 import action.OrderInsertFormAction;
 import action.OrderInsertProAction;
+import action.OrderLetterAction;
+import action.OrderNowAction;
 import vo.ActionForward;
 
 //서블릿 주소가 XXX.me 일 경우 OrderFrontController 로 해당 요청이 전달됨
 @WebServlet("*.od")
 public class OrderFrontController extends HttpServlet {
 
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("MemberFrontController");
 
 		// POST 방식 요청에 대한 한글 처리
@@ -42,12 +45,12 @@ public class OrderFrontController extends HttpServlet {
 		Action action = null;
 
 		if (command.equals("/OrderNow.od")) {
-			forward = new ActionForward();
-			forward.setPath("./order/letter.jsp");
-			forward.setRedirect(false); // Dispatcher 방식은 생략 가능(기본값 false 이므로)
-			
-			
-			
+			action = new OrderNowAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/OrderCart.od")) {
 			action = new OrderCartAction();
 			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
@@ -62,21 +65,28 @@ public class OrderFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}  else if (command.equals("/OrderInsertPro.od")) {
+		} else if (command.equals("/OrderInsertPro.od")) {
 			action = new OrderInsertProAction();
 			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}  else if (command.equals("/OrderDetailPro.od")) {
+		} else if (command.equals("/OrderDetailPro.od")) {
 			action = new OrderDetailProAction();
 			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
+		} else if (command.equals("/OrderLetter.od")) {
+			action = new OrderLetterAction();
+			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 		// -------------------------------------------------------------------------
 		// 포워딩 방식 결정
@@ -94,11 +104,13 @@ public class OrderFrontController extends HttpServlet {
 
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 

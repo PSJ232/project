@@ -9,7 +9,6 @@ import svc.IdMakerService;
 import svc.MemberPointSumService;
 import svc.OrderInsertProService;
 import vo.ActionForward;
-import vo.ItemBean;
 import vo.OrderBean;
 
 public class OrderInsertProAction implements Action {

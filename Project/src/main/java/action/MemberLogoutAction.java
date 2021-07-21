@@ -12,18 +12,14 @@ public class MemberLogoutAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberLogoutAction");
 		ActionForward forward = null;
-		
+
 		HttpSession session = request.getSession();
-		
 		session.invalidate();
-		
-		
+
 		forward = new ActionForward();
-		forward.setPath("/Project"); // 메인화면 미정
+		forward.setPath("./"); // 메인화면 미정
 		forward.setRedirect(true);
-		
-		
-		
+
 		return forward;
 	}
 

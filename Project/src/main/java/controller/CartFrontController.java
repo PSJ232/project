@@ -65,10 +65,6 @@ public class CartFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
-		
 
 		// -------------------------------------------------------------------------
 		// 포워딩 방식 결정

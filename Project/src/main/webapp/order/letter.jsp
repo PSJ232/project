@@ -11,43 +11,42 @@
 <title>Insert title here</title>
 </head>
 <%
-ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList");
-// 신종현 할일. 단일 상품일때 해결책 생각하기 (다중상품은 해결됨)
-
-
-
-
+ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
+ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
 %>
 <body>
 	주문/결제<br>
 
-	편지 작성<br><br><br><br>
+	편지 작성(<%=request.getParameter("letterCount") %>)<br><br><br><br>
 
-	<form action="OrderForm.od" method="post">
+	<form action="OrderLetter.od" method="post">
 		<%
-		ItemDetailService itemDetailService = new ItemDetailService();
-		ItemBean ib = null;
-		int i = 0; // for문 돌때 각각의 주문구분번호 부여
-		for(CartBean cb : cartList) { // ArrayList에 든 CartBean 하나씩 꺼내기
-			i++; // 1~N수
-			ib = itemDetailService.selectItem(cb.getI_id()); // 꺼낸 CartBean의 i_id로 itemDetail 호출
-			if(cb.getC_letter() == 1){
+		int i; // for문 돌때 각각의 주문구분번호 부여
+		for(i = 0; i < cartList.size(); i++) { // 장바구니와 아이템의 ArrayList에서 필요 정보 반복 추출
+			String i_img = itemList.get(i).getI_img(); //상품 이미지
+			String i_name = itemList.get(i).getI_name(); //상품 이름
+			String delivery_date = cartList.get(i).getC_delivery_date(); //상품 배송 요청일
+			int c_letter = cartList.get(i).getC_letter(); //편지지 선택 여부
+			int i_id = itemList.get(i).getI_id(); //상품 번호
+			int c_qty = cartList.get(i).getC_qty(); //상품 수량
+			int c_id = cartList.get(i).getC_id(); //장바구니 번호
+			
+			if(c_letter == 1){ //편지지 선택 여부
 		%>		
-
-				상품이미지<%=ib.getI_img() %><br>
-				<%=ib.getI_name() %><br>
-				수령일: <%=cb.getC_delivery_date() %><br>
+				상품이미지<%=i_img %><br>
+				<%=i_name %><br>
+				수령일: <%=delivery_date %><br>
 				추가상품:편지<br>
 	
 				<input type="radio" name="l_id<%=i %>" value=1>감사 
 				<input type="radio" name="l_id<%=i %>" value=2>응원 
 				<input type="radio" name="l_id<%=i %>" value=3>사랑 
-				<input type="radio" name="l_id<%=i %>" value=4 checked>직접쓰기<input type="text" name="od_message<%=i %>" placeholder="내용을 입력해주세요 :)">
+				<input type="radio" name="l_id<%=i %>" value=4 checked>직접쓰기
+				<input type="text" name="od_message<%=i %>" placeholder="내용을 입력해주세요 :)">
 				
-				<input type="hidden" name="c_id<%=i %>" value="<%=cb.getC_id()%>">
-				<input type="hidden" name="i_id<%=i %>" value="<%=ib.getI_id()%>">
-				<input type="hidden" name="c_qty<%=i %>" value="<%=cb.getC_qty()%>">
-				<input type="hidden" name="iNum" value="<%=i %>"> <!-- 주문페이지에서 getParameter를 몇번 반복할지 참조가 되는 값 -->
+				<input type="hidden" name="c_id<%=i %>" value="<%=c_id%>">
+				<input type="hidden" name="i_id<%=i %>" value="<%=i_id%>">
+				<input type="hidden" name="c_qty<%=i %>" value="<%=c_qty%>">
 				
 				<br><br><br>
 		
@@ -62,6 +61,7 @@ ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartL
 		<br>
 		
 		
+		<input type="hidden" name="iNum" value="<%=i %>"> <!-- 주문페이지에서 getParameter를 몇번 반복할지 참조가 되는 값 -->
 		<input type="submit" value="작성완료">
 	</form>
 
