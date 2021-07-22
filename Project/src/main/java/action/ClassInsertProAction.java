@@ -15,6 +15,7 @@ import svc.ClassDetailInsertService;
 import svc.ClassInsertService;
 import vo.ActionForward;
 import vo.ClassBean;
+import vo.ClassDetailBean;
 
 public class ClassInsertProAction implements Action {
 
@@ -45,6 +46,7 @@ public class ClassInsertProAction implements Action {
 		classBean.setClass_desc(multi.getParameter("class_desc"));
 		classBean.setClass_price(Integer.parseInt(multi.getParameter("class_cost")));
 		classBean.setClass_max_member(Integer.parseInt(multi.getParameter("max_member")));
+		classBean.setClass_place(multi.getParameter("place"));
 		
 		Enumeration files = multi.getFileNames();
 		
@@ -66,13 +68,19 @@ public class ClassInsertProAction implements Action {
 		classBean.setClass_sub_img2(filename2);
 		classBean.setClass_sub_img1(filename3);
 		classBean.setClass_main_img(filename4);
-
+		
+		ClassDetailBean detailBean = new ClassDetailBean();
+		detailBean.setDate(multi.getParameter("date"));
+		detailBean.setPlace(multi.getParameter("place"));
+		
+		request.setAttribute("detailBean", detailBean);
+		request.setAttribute("timeList", request.getParameterValues("timeList"));
 		
 		boolean isWriteSuccess = service.registArticle(classBean);
 		if(isWriteSuccess) {
 			forward = new ActionForward();
-			forward.setPath("ClassList.ad");
-			forward.setRedirect(true);
+			forward.setPath("ClassDetailadd.ad");
+			forward.setRedirect(false);
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

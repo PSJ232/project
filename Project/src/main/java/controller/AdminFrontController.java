@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.ClassDetailSelectTimelistAction;
+import action.ClassInsertFormAction;
 import action.ClassInsertProAction;
 import action.ClassListAction;
 import action.ItemDetailAction;
@@ -112,8 +113,13 @@ public class AdminFrontController extends HttpServlet {
 			
 		}else if(command.equals("/ClassInsertForm.ad")) {
 			forward = new ActionForward();
-			forward.setPath("./admin_layout/class_management/classManagementInsert.jsp");
-			forward.setRedirect(false);
+			action = new ClassInsertFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}else if(command.equals("/ClassInsertPro.ad")) {
 			forward = new ActionForward();
 			action = new ClassInsertProAction();

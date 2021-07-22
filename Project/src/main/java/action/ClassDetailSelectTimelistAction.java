@@ -15,9 +15,10 @@ public class ClassDetailSelectTimelistAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		ClassDetailSelectTimelistService service = new ClassDetailSelectTimelistService();
+		request.setCharacterEncoding("utf-8");
 		ArrayList<Time> timeList = service.getTimeList(request.getParameter("place"), request.getParameter("date"));
-		
 		request.setAttribute("timeList", timeList);
+		System.out.println(timeList);
 		forward.setPath("admin_layout/class_management/timeSelect.jsp");
 		
 		return forward;

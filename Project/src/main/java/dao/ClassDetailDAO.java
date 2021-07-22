@@ -28,24 +28,34 @@ public class ClassDetailDAO {
 	}
 
 	public int insertClassDetail(ClassDetailBean classDetailBean, String[] timeList) {
+		System.out.println("insertClassDetail");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int insertCount = 0;
 		try {
+			int num = 0;
+			String sql = "SELECT MAX(f_id) FROM fclass";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				num = rs.getInt(1);
+			}
 			for(String str: timeList) {
-				String sql = "INSERT INTO fclass_detail VALUES(?,?,?,null,?)";
+				System.out.println(num);
+				System.out.println(classDetailBean.getPlace());
+				System.out.println(classDetailBean.getDate());
+				sql = "INSERT INTO fclass_detail VALUES(?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, str);
-				pstmt.setString(2, classDetailBean.getDate());
+				pstmt.setString(1, classDetailBean.getDate());
+				pstmt.setInt(2, num);
 				pstmt.setString(3, classDetailBean.getPlace());
-				pstmt.setInt(4, 1);
+				pstmt.setString(4, str);
+				pstmt.setInt(5, 1);
 				
-				insertCount = pstmt.executeUpdate();
-				
+				insertCount += pstmt.executeUpdate();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("SQL구문오류! - insertClassDetail" + e.getMessage());
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -81,13 +91,14 @@ public class ClassDetailDAO {
 	}
 	
 	public ArrayList<Time> getTimeList(String place, String date){
+		System.out.println("ClassDetailDAO - getTimeList");
 		ArrayList<Time> selectedTimeList = new ArrayList<Time>();
 		ArrayList<Time> timeList = new ArrayList<Time>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT fd_time FROM fclass_detail WHERE fd_place=? and fd_date=? and fd_is_selected=1";
+			String sql = "SELECT fd_time FROM fclass_detail WHERE f_place=? and fd_date=? and fd_isselected=1";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, place);
 			pstmt.setString(2, date);
@@ -95,6 +106,8 @@ public class ClassDetailDAO {
 			while(rs.next()) {
 				selectedTimeList.add(rs.getTime(1));
 			}
+			close(pstmt);
+			close(rs);
 			sql = "SELECT fcdt_time FROM fclass_detail_timelist";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();

@@ -43,25 +43,20 @@ public class ClassDAO {
 				num++;
 			}
 			
-			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,now(),?,?,?,0,0)";
+			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,0,?,?,?,?,now(),0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setString(2, classBean.getClass_subject());
-			pstmt.setString(3, classBean.getClass_desc());
-			pstmt.setInt(4, classBean.getClass_price());
-			pstmt.setInt(5, classBean.getClass_max_member());
-			pstmt.setString(6, classBean.getClass_main_img());
-			pstmt.setString(7, classBean.getClass_sub_img1());
-			pstmt.setString(8, classBean.getClass_sub_img2());
-			pstmt.setString(9, classBean.getClass_sub_img3());
+			pstmt.setString(2, classBean.getClass_place());
+			pstmt.setString(3, classBean.getClass_subject());
+			pstmt.setString(4, classBean.getClass_desc());
+			pstmt.setInt(5, classBean.getClass_price());
+			pstmt.setInt(6, classBean.getClass_max_member());
+			pstmt.setString(7, classBean.getClass_main_img());
+			pstmt.setString(8, classBean.getClass_sub_img1());
+			pstmt.setString(9, classBean.getClass_sub_img2());
+			pstmt.setString(10, classBean.getClass_sub_img3());
 			insertCount = pstmt.executeUpdate();
 			
-			// fclass_detail에 f_id값을 지정
-			sql = "UPDATE fclass_detail SET f_id=? WHERE f_id IS NULL";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			insertCount += pstmt.executeUpdate();
-			System.out.println("num: "+num);
 			
 		} catch (SQLException e) {
 			System.out.println("SQL구문 오류! - " + e.getMessage());
@@ -102,6 +97,19 @@ public class ClassDAO {
 			close(pstmt);
 		}
 		return classList;
+	}
+
+	public void deleteNull() {
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "DELETE FROM fclass_detail WHERE f_id IS NULL";
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL구문 오류! - " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
 	}
 	
 }
