@@ -22,7 +22,6 @@ public class ClassTimeAddAction implements Action {
 		classDetailBean.setDate(classDetailBean.getDate());
 		classDetailBean.setPlace(classDetailBean.getPlace());
 		timeList = (String[])request.getAttribute("timeList");
-		System.out.println(request.getParameter("place"));
 		boolean isInsertSuccess = service.registArticle(classDetailBean, timeList);
 		if(isInsertSuccess) {
 			forward = new ActionForward();
