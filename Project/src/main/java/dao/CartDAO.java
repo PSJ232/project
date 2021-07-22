@@ -123,4 +123,51 @@ public class CartDAO {
 		return updateCount;
 	}
 
+	public int deleteItem(String m_id, int i_id) {
+		
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE i_id FROM cart where m_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		
+		
+		return deleteCount;
+	}
+
+	public int deleteLetter(String m_id, int i_id, int c_letter) {
+		
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "UPDATE cart SET c_letter=c_letter-1 where m_id=? and i_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, c_letter);
+			pstmt.setString(2, m_id);
+			pstmt.setInt(3, i_id);
+			
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		
+		return deleteCount;
+	}
+
+	
+
 }
