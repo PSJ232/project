@@ -37,8 +37,8 @@ public class OrderCartAction implements Action {
 		request.setAttribute("checkList", checkList); // 장바구니 선택목록 리스트에 저장
 
 		// 장바구니 안에 해당하는 아이템 목록 가져올 준비
-		ItemDetailService itemDetailService = new ItemDetailService();
 		ArrayList<ItemBean> itemList = new ArrayList<ItemBean>();
+		ItemDetailService itemDetailService = new ItemDetailService();
 		ItemBean itemBean = null;
 		int letterCount = 0;
 		for (CartBean cb : checkList) { // 장바구니 선택목록에 해당하는 아이템 목록 추려내기

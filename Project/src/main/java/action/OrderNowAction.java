@@ -18,7 +18,7 @@ public class OrderNowAction implements Action {
 		System.out.println("OrderNowAction");
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
-		String m_id = (String) session.getAttribute("m_id");
+		String m_id = (String) session.getAttribute("m_id"); // 회원아이디
 
 		// 단일 상품이지만 코드의 범용성을 높이기 위해 다중상품과 똑같이 ArrayList에 넣는 작업 실시
 		int i_id = Integer.parseInt(request.getParameter("i_id")); // 상품아아디
@@ -26,16 +26,17 @@ public class OrderNowAction implements Action {
 		int c_letter = Integer.parseInt(request.getParameter("c_letter")); // 편지 추가 여부
 		String c_delivery_date = request.getParameter("c_delivery_date"); // 배송 요청일
 
-		CartBean cartBean = new CartBean(); // 넘겨받은 값을 저장할 CartBean
+		CartBean cartDetail = new CartBean(); // 넘겨받은 값을 저장할 CartBean
 		
-		cartBean.setI_id(i_id);
-		cartBean.setM_id(m_id);
-		cartBean.setC_qty(c_qty);
-		cartBean.setC_letter(c_letter);
-		cartBean.setC_delivery_date(c_delivery_date);
+		cartDetail.setC_id(99999999); // 바로 구매는 장바구니 번호가 없으므로 null오류를 없애기 위해 임의의 숫자입력
+		cartDetail.setI_id(i_id);
+		cartDetail.setM_id(m_id);
+		cartDetail.setC_qty(c_qty);
+		cartDetail.setC_letter(c_letter);
+		cartDetail.setC_delivery_date(c_delivery_date);
 
 		ArrayList<CartBean> checkList = new ArrayList<CartBean>();
-		checkList.add(cartBean);
+		checkList.add(cartDetail);
 
 		request.setAttribute("checkList", checkList); // 장바구니 선택목록 리스트에 저장
 

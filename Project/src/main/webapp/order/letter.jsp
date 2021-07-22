@@ -32,6 +32,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 			int c_id = checkList.get(i).getC_id(); //장바구니 번호
 			
 			
+			
 			if(c_letter == 1){ //편지 선택함
 		%>		
 				상품이미지<%=i_img %><br>

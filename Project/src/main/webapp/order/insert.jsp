@@ -59,7 +59,6 @@
 <%
 MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
 String m_name = memberDetail.getM_name();
-memberDetail.getG_id();
 int price = 0;
 int totalPrice = 0;
 
@@ -77,14 +76,17 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	<h1>주문/결제</h1>
 	<h3>주문내역 확인</h3>
 	<%
+	int letterPrice;
 	for(int i = 0; i < checkList.size(); i++) {
 		if (checkList.get(i).getC_letter() == 1) { // 편지가 추가되면 해당 html 추가
 			addLetter = "추가상품:편지<br>";
+			letterPrice = 2500;
 		} else {
 			addLetter = "";
+			letterPrice = 0;
 		}
 
-		price = (int) (itemList.get(i).getI_price() * itemList.get(i).getI_discount() * checkList.get(i).getC_qty()); // 단일상품금액 = 원가 * 할인 * 수량
+		price = (int) ((itemList.get(i).getI_price() * itemList.get(i).getI_discount() * checkList.get(i).getC_qty())) + letterPrice; // 단일상품금액 = (원가 * 할인 * 수량) + 편지요금
 		totalPrice += price; // 모든 상품의 누적 총 금액(쿠폰 및 포인트 제외)
 	%>
 		사진자리<img src="<%=itemList.get(i).getI_img()%>">
