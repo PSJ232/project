@@ -21,7 +21,7 @@
 	<h3><a href="MemberUpdate.me">회원정보수정</a></h3>
 	<h3><a href="MemberLogout.me">로그아웃</a></h3>
 	<h3><a href="OrderNow.od?i_id=1&c_qty=2&c_letter=1&c_delivery_date=2021-07-31">바로주문</a></h3>
-	(바로주문 Test용 파라미터 = 제품번호:1, 수량:2, 편지없음, 배송요청일:2021-07-31)
+	(바로주문 Test용 파라미터 = 제품번호:1, 수량:2, 편지있음, 배송요청일:2021-07-31)
 	<h3><a href="./mypage/mypage.jsp">마이페이지</a></h3>
 	<h3><a href="Cart.cr">장바구니</a></h3>
 	<%
