@@ -36,7 +36,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO orders VALUES(?,?,?,?,?,?,?,?,?,?,now(),?,?)";
+			String sql = "INSERT INTO orders VALUES(?,?,?,?,?,?,?,?,?,now())";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -46,13 +46,11 @@ public class OrderDAO {
 			pstmt.setString(4, orderBean.getO_address());
 			pstmt.setString(5, orderBean.getO_receiver());
 			pstmt.setString(6, orderBean.getO_phone());
-			pstmt.setString(7, orderBean.getO_delivery_date());
-			pstmt.setInt(8, orderBean.getO_amount());
-			pstmt.setInt(9, orderBean.getO_point());
-			pstmt.setInt(10, orderBean.getO_payment());
+			pstmt.setInt(7, orderBean.getO_amount());
+			pstmt.setInt(8, orderBean.getO_point());
+			pstmt.setInt(9, orderBean.getO_payment());
 			// rdate는 sql구문에 바로 now()
-			pstmt.setString(11, "주문접수"); // 배송상태 기본값 주문접수
-			pstmt.setInt(12, 0); // 구매확정 기본값 0
+
 
 			insertCount = pstmt.executeUpdate();
 
@@ -97,7 +95,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO orders_detail VALUES(?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO orders_detail VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -110,6 +108,9 @@ public class OrderDAO {
 			pstmt.setInt(7, 0); // 리뷰 기본값 0:(미작성)
 			pstmt.setString(8, orderDetailBean.getM_id());
 			pstmt.setInt(9, orderDetailBean.getC_id());
+			pstmt.setString(10, orderDetailBean.getOd_delivery_date());
+			pstmt.setString(11, "주문접수"); // 배송상태 기본값 주문접수
+			pstmt.setInt(12, 0); // 구매확정 기본값 0
 
 			insertCount = pstmt.executeUpdate();
 

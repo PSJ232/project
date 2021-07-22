@@ -32,15 +32,10 @@ public class OrderInsertProAction implements Action {
 		orderBean.setO_address(o_address);
 		orderBean.setO_receiver(request.getParameter("o_receiver"));
 		orderBean.setO_phone(request.getParameter("o_phone"));
-		//orderBean.setO_delivery_date(request.getParameter("o_delivery_date"));
-		orderBean.setO_delivery_date("2021-12-31");//테스트용 임시 데이터
 		orderBean.setO_amount(Integer.parseInt(request.getParameter("o_amount")));
 		orderBean.setO_point(newPoint);
 		//orderBean.setO_payment(Integer.parseInt(request.getParameter("o_payment")));
 		orderBean.setO_payment(1); //테스트용 임시 데이터
-		
-		//o_invoice 기본값 "주문접수" sql구문에서 설정
-		//o_confirm 기본값 0 sql구문에서 설정
 		//o_rdate 는 sql구문 now()로 설정
 		
 	
