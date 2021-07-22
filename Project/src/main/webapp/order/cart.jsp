@@ -33,6 +33,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				int i_price = itemList.get(i).getI_price(); //상품 가격
 				int c_qty = cartList.get(i).getC_qty(); // 상품 수량
 				int c_letter = cartList.get(i).getC_letter(); //편지지 선택 여부
+				int c_id = cartList.get(i).getC_id(); // 장바구니 상품 번호 
 
 				int letterPrice = 0; // 편지지 추가에 따른 추가요금
 				String letter = ""; // 편지지가 선택되면 추가상품에 보이고, 선택되지 않으면 안보임(널스트링)
@@ -46,11 +47,21 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				totalAmount += sumAmount; // 각 상품에 대한 합계금액을 누적한 총 합계금액
 			%>
 			<tr>
-				<td><input type="checkbox" name="c_id<%=i %>" value="<%=cartList.get(i).getC_id() %>" checked>상품이미지<%=i_img%><br> <%=i_name%><input
-					type="button" value="x" onclick=""><br> 수령일:<%=delivery_date%><br>
-					<%=i_price%>원<br> -<%=c_qty%>+<br></td>
-				<td><%=letter%><input type="button" value="x" onclick=""></td>
-				<td><%=sumAmount%>원<br> 무료배송</td>
+				<td><input type="checkbox" name="c_id<%=i %>" value="<%=c_id %>" checked>상품이미지<%=i_img%><br>
+					<%=i_name%><input type="button" value="x" onclick="location.href='CartDeletePro.cr?c_id=<%=c_id%>'"><br>
+					수령일:<%=delivery_date%><br>
+					<%=i_price%>원<br>
+					<input type="button" value="-" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=-1'"> 
+					<%=c_qty%> 
+					<input type="button" value="+" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=1'">
+				</td>
+				<td>
+					<%=letter%>
+					<%if (c_letter == 1){%><input type="button" value="x" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&letter=0'"><%}%>
+				</td>
+				<td>
+					<%=sumAmount%>원<br> 무료배송
+				</td>
 			</tr>
 			<%
 			}

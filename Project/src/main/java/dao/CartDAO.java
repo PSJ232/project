@@ -96,7 +96,7 @@ public class CartDAO {
 
 	}
 
-	// 카드에 담긴 상품의 디테일을 가져오는 메서드 (오버로딩)
+	// 카드에 담긴 상품 하나의 디테일을 가져오는 메서드 (오버로딩)
 	public CartBean getCart(int c_id) {
 		System.out.println("CartDAO - getCart()");
 
@@ -131,22 +131,37 @@ public class CartDAO {
 		return cartDetail;
 	}
 
-	public int modifyCart(CartBean cartBean) {
+	public int updateCart(int c_id, int c_qty) {
 
 		int updateCount = 0;
-
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "UPDATE cart set c_id=?,c_qty=?,c_rdate=?,i_id=?,c_letter=?,c_delivery_date=? where m_id=?";
+			String sql = "UPDATE cart SET c_qty=? where c_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, cartBean.getC_id());
-			pstmt.setInt(2, cartBean.getC_qty());
-			pstmt.setDate(3, cartBean.getC_rdate());
-			pstmt.setInt(4, cartBean.getI_id());
-			pstmt.setInt(5, cartBean.getC_letter());
-			pstmt.setString(6, cartBean.getC_delivery_date());
-			pstmt.setString(7, cartBean.getM_id());
+			pstmt.setInt(1, c_qty);
+			pstmt.setInt(2, c_id);
+
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+
+		return updateCount;
+	}
+	
+	public int deleteLetter(int c_id, int c_letter) {
+
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "UPDATE cart SET c_letter=? where c_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, c_letter);
+			pstmt.setInt(2, c_id);
 
 			updateCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -158,51 +173,24 @@ public class CartDAO {
 		return updateCount;
 	}
 
-	public int deleteItem(String m_id, int i_id) {
-		
+	public int deleteItem(int c_id) {
+
 		int deleteCount = 0;
 		PreparedStatement pstmt = null;
-		
+
 		try {
-			String sql = "DELETE i_id FROM cart where m_id=?";
+			String sql = "DELETE FROM cart where c_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, m_id);
-			
+			pstmt.setInt(1, c_id);
+
 			deleteCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
-		
-		
-		
+
 		return deleteCount;
 	}
-
-	public int deleteLetter(String m_id, int i_id, int c_letter) {
-		
-		int deleteCount = 0;
-		PreparedStatement pstmt = null;
-		
-		try {
-			String sql = "UPDATE cart SET c_letter=c_letter-1 where m_id=? and i_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, c_letter);
-			pstmt.setString(2, m_id);
-			pstmt.setInt(3, i_id);
-			
-			deleteCount = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
-		} finally {
-			JdbcUtil.close(pstmt);
-		}
-		
-		
-		return deleteCount;
-	}
-
-	
 
 }
