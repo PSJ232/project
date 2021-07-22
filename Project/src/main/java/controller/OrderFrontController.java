@@ -10,16 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.MemberDeleteProAction;
-import action.MemberUpdateFormAction;
-import action.MemberJoinProAction;
-import action.MemberLoginProAction;
-import action.MemberLogoutAction;
-import action.MemberUpdateProAction;
 import action.OrderCartAction;
 import action.OrderDetailProAction;
 import action.OrderInsertFormAction;
 import action.OrderInsertProAction;
+import action.OrderLetterAction;
 import action.OrderNowAction;
 import vo.ActionForward;
 
@@ -73,6 +68,13 @@ public class OrderFrontController extends HttpServlet {
 			}
 		} else if (command.equals("/OrderDetailPro.od")) {
 			action = new OrderDetailProAction();
+			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/OrderLetter.od")) {
+			action = new OrderLetterAction();
 			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
 				forward = action.execute(request, response);
 			} catch (Exception e) {

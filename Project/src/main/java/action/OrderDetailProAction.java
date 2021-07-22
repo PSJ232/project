@@ -1,6 +1,7 @@
 package action;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,26 +16,23 @@ public class OrderDetailProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("OrderDetailProAction");
-		
-		ActionForward forward = null;
-		
-		IdMakerService idMakerService = new IdMakerService();
-		int od_id = idMakerService.newId("orders_detail", "od_id"); // od_id 생성
-		
-		OrderDetailBean orderDetailBean = new OrderDetailBean();
 
-		orderDetailBean.setOd_id(od_id);
-		orderDetailBean.setO_id(Integer.parseInt(request.getParameter("o_id")));
-		orderDetailBean.setI_id(Integer.parseInt(request.getParameter("i_id")));
-		orderDetailBean.setL_id(Integer.parseInt(request.getParameter("l_id")));
-		orderDetailBean.setOd_qty(Integer.parseInt(request.getParameter("od_qty")));
-		orderDetailBean.setOd_message(request.getParameter("od_message"));
-		
-		
+		ActionForward forward = null;
+
+		ArrayList<OrderDetailBean> orderDetailList = (ArrayList<OrderDetailBean>) request.getAttribute("orderDetailList");
+
 		OrderDetailProService orderDetailProService = new OrderDetailProService();
-		boolean isOrderdetailSuccess = orderDetailProService.registOrderDetail(orderDetailBean);
-		
-		if(!isOrderdetailSuccess) {
+		IdMakerService idMakerService = new IdMakerService();
+		int od_id = 0;
+		boolean isOrderdetailSuccess = false;
+		for (OrderDetailBean odb : orderDetailList) {
+			od_id = idMakerService.newId("orders_detail", "od_id"); // od_id 생성
+			odb.setOd_id(od_id);
+			odb.setO_id(Integer.parseInt(request.getParameter("o_id")));
+			isOrderdetailSuccess = orderDetailProService.registOrderDetail(odb);
+		}
+
+		if (!isOrderdetailSuccess) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -43,10 +41,10 @@ public class OrderDetailProAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("/Project"); //임시 이동 페이지, 나중에 mypage로 이동해야됨
+			forward.setPath("/Project"); // 임시 이동 페이지, 나중에 mypage로 이동해야됨
 			forward.setRedirect(true);
 		}
-		
+
 		return forward;
 	}
 

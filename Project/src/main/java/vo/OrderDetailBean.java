@@ -10,14 +10,10 @@ public class OrderDetailBean {
 	private String od_message;
 	private int od_review;
 	private String m_id;
-
-	public String getM_id() {
-		return m_id;
-	}
-
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
-	}
+	private int c_id;
+	private String od_delivery_date;
+	private String od_invoice;
+	private int od_confirm;
 
 	public int getOd_id() {
 		return od_id;
@@ -73,6 +69,46 @@ public class OrderDetailBean {
 
 	public void setOd_review(int od_review) {
 		this.od_review = od_review;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+	public int getC_id() {
+		return c_id;
+	}
+
+	public void setC_id(int c_id) {
+		this.c_id = c_id;
+	}
+
+	public String getOd_delivery_date() {
+		return od_delivery_date;
+	}
+
+	public void setOd_delivery_date(String od_delivery_date) {
+		this.od_delivery_date = od_delivery_date;
+	}
+
+	public String getOd_invoice() {
+		return od_invoice;
+	}
+
+	public void setOd_invoice(String od_invoice) {
+		this.od_invoice = od_invoice;
+	}
+
+	public int getOd_confirm() {
+		return od_confirm;
+	}
+
+	public void setOd_confirm(int od_confirm) {
+		this.od_confirm = od_confirm;
 	}
 
 }
