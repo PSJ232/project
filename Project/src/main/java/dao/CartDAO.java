@@ -96,12 +96,47 @@ public class CartDAO {
 
 	}
 
+	// 카드에 담긴 상품의 디테일을 가져오는 메서드 (오버로딩)
+	public CartBean getCart(int c_id) {
+		System.out.println("CartDAO - getCart()");
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CartBean cartDetail = new CartBean();
+
+		try {
+			String sql = "SELECT * FROM cart WHERE c_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, c_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				cartDetail.setC_id(rs.getInt("c_id"));
+				cartDetail.setC_qty(rs.getInt("c_qty"));
+				cartDetail.setC_rdate(rs.getDate("c_rdate"));
+				cartDetail.setI_id(rs.getInt("i_id"));
+				cartDetail.setM_id(rs.getString("m_id"));
+				cartDetail.setC_letter(rs.getInt("c_letter"));
+				cartDetail.setC_delivery_date(rs.getString("c_delivery_date"));
+
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+
+		return cartDetail;
+	}
+
 	public int modifyCart(CartBean cartBean) {
 
 		int updateCount = 0;
-		
+
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			String sql = "UPDATE cart set c_id=?,c_qty=?,c_rdate=?,i_id=?,c_letter=?,c_delivery_date=? where m_id=?";
 			pstmt = con.prepareStatement(sql);
@@ -112,14 +147,14 @@ public class CartDAO {
 			pstmt.setInt(5, cartBean.getC_letter());
 			pstmt.setString(6, cartBean.getC_delivery_date());
 			pstmt.setString(7, cartBean.getM_id());
-			
+
 			updateCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
-		
+
 		return updateCount;
 	}
 

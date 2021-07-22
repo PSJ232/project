@@ -1,3 +1,4 @@
+<%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.CartBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
@@ -62,30 +63,40 @@ memberDetail.getG_id();
 int price = 0;
 int totalPrice = 0;
 
-ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
-ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
+//장바구니 선택상품목록 또는 바로구매 상품 리스트
+ArrayList<CartBean> checkList = (ArrayList<CartBean>) request.getAttribute("checkList");
+//장바구니 선택상품목록 또는 바로구매 상품의 상품정보 리스트(순서동일)
+ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList");
+//letter.jsp에서 입력된 편지관련 정보 리스트
+ArrayList<OrderDetailBean> orderFormInfo = (ArrayList<OrderDetailBean>) request.getAttribute("orderFormInfo");
 
-String addLetter = "";// 편지가 추가되면 해당 html 추가
+String addLetter;// 편지가 추가되면 해당 html 추가
 
 %>
 <body>
 	<h1>주문/결제</h1>
 	<h3>주문내역 확인</h3>
-	<%for(int i = 0; i < cartList.size(); i++) {
-		if(cartList.get(i).getC_letter() == 1){
-			addLetter = "추가상품:편지<br>"; // 편지가 추가되면 해당 html 추가
+	<%
+	for(int i = 0; i < checkList.size(); i++) {
+		if (checkList.get(i).getC_letter() == 1) { // 편지가 추가되면 해당 html 추가
+			addLetter = "추가상품:편지<br>";
+		} else {
+			addLetter = "";
 		}
-			price = (int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() * cartList.get(i).getC_qty()); // 상품 할인 계산된 상품 금액
-			totalPrice += price; // 누적 상품 금액
+
+		price = (int) (itemList.get(i).getI_price() * itemList.get(i).getI_discount() * checkList.get(i).getC_qty()); // 단일상품금액 = 원가 * 할인 * 수량
+		totalPrice += price; // 모든 상품의 누적 총 금액(쿠폰 및 포인트 제외)
 	%>
-	
 		사진자리<img src="<%=itemList.get(i).getI_img()%>">
 		<%=itemList.get(i).getI_name() %><br>
 		<%=price %><br>
-		수령일:<%=cartList.get(i).getC_delivery_date() %><br>
+		수령일:<%=checkList.get(i).getC_delivery_date() %><br>
 		<%=addLetter %>
-		수량:<%=cartList.get(i).getC_qty()%><br>
-	<%} %>
+		수량:<%=checkList.get(i).getC_qty()%><br>
+		<br>
+	<%
+	}
+	%>
 	
 	<h3>주문자 정보</h3>
 	이름 : <%=m_name %><br>
@@ -95,19 +106,19 @@ String addLetter = "";// 편지가 추가되면 해당 html 추가
 		이름 <input type="text" name="o_sender" value="<%=m_name%>"><br> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
 		<h3>배송지 정보</h3>
 		받는분 이름 <input type="text" name="o_receiver" placeholder="이름을 입력해주세요."><br>
-		(받는분이 입력이라는 기능있음(구현여부미정))<br>
 		받는분 연락처 <input type="text" name="o_phone"><br>
-	
 	
 		
 		우편번호 <input type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색">
 		<input type="button" onclick="sample6_execDaumPostcode()" value="찾기"><br>
 		주소 <input type="text" id="sample6_address" name="address2"  placeholder="주소"><br>
-		<input type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소">
-	
-			<p>토요일 수령 선택 시 주의사항<br>
-			토요일 수령을 선택하실 경우, 회사 주소는 배송이 어려워요.<br>
-			자택이나 수령인이 직접 받으실 수 있는 주소지로 입력 부탁드릴게요.</p>
+		<input type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소"><br>
+		
+		<br>
+		토요일 수령 선택 시 주의사항<br>
+		토요일 수령을 선택하실 경우, 회사 주소는 배송이 어려워요.<br>
+		자택이나 수령인이 직접 받으실 수 있는 주소지로 입력 부탁드릴게요.<br>
+		<br>
 			
 		<h3>쿠폰/포인트</h3>
 		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용"><br>
@@ -116,20 +127,37 @@ String addLetter = "";// 편지가 추가되면 해당 html 추가
 		<h3>최종 결제 금액</h3>
 		총 상품 금액 <%=totalPrice %> 원<br>
 		배송비 0 원<br>
-		포인트 할인 -0 원<br>
-		등급 할인 -0 원<br>
+		포인트 할인 -0 원 (포인트 적용 누르면 표시되도록)<br>
+		등급 할인 -0 원(아직미구현)<br>
 		
 		<h4>총 결제 금액</h4>
-		<%=totalPrice %>
+		<%=totalPrice %> (포인트 적용 누르면 계산되도록)
 		<h3>결제 수단</h3>
 		
+		<%
+		for (int j = 0 ; j < itemList.size() ; j++){
+			for (int i = 0 ; i < orderFormInfo.size() ; i++) {
+		%>
+			
+				<input type="hidden" name="l_id<%=i %>" value="<%=orderFormInfo.get(i).getL_id()%>">
+				<input type="hidden" name="c_id<%=i %>" value="<%=orderFormInfo.get(i).getC_id()%>">
+				<input type="hidden" name="i_id<%=i %>" value="<%=orderFormInfo.get(i).getI_id()%>">
+				<input type="hidden" name="od_qty<%=i %>" value="<%=orderFormInfo.get(i).getOd_qty()%>">
+				<input type="hidden" name="od_message<%=i %>" value="<%=orderFormInfo.get(i).getOd_message()%>">
 		
-		<input type="hidden" name="od_message" value="<%=request.getParameter("od_message")%>"> <!-- 편지지4번 직접메세지 -->
-		<input type="hidden" name="l_id" value="<%=request.getParameter("l_id") %>"> <!-- 편지지 선택 번호 -->
-		<input type="hidden" name="od_qty" value="<%=request.getParameter("od_qty") %>"> <!-- 상품 주문 수량 -->
+		
+		
+		
+		<%
+			}
+		}
+		%>
+
+
+
+		
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
-		<input type="hidden" name="i_id" value=""> <!-- 제품ID -->
-		<input type="hidden" name="o_amount" value="<%=price %>"> <!-- 할인율 반영된 가격 -->
+		<input type="hidden" name="o_amount" value="<%=price %>">
 		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500')"> <!-- 결제 api에 따라서 변경해야됨  -->
 	<br>
 	<br>

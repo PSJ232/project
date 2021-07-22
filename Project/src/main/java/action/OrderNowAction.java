@@ -30,10 +30,10 @@ public class OrderNowAction implements Action {
 		cartBean.setC_letter(c_letter);
 		cartBean.setC_delivery_date(c_delivery_date);
 
-		ArrayList<CartBean> cartList = new ArrayList<CartBean>();
-		cartList.add(cartBean);
+		ArrayList<CartBean> checkList = new ArrayList<CartBean>();
+		checkList.add(cartBean);
 
-		request.setAttribute("cartList", cartList); // 장바구니 목록 리스트에 저장
+		request.setAttribute("checkList", checkList); // 장바구니 선택목록 리스트에 저장
 
 		ArrayList<ItemBean> itemList = new ArrayList<ItemBean>();
 		ItemDetailService itemDetailService = new ItemDetailService();
