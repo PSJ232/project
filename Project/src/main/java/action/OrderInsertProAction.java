@@ -45,7 +45,7 @@ public class OrderInsertProAction implements Action {
 		
 		
 		IdMakerService idMakerService = new IdMakerService(); // 번호생성 알고리즘 Service 
-		int newId = idMakerService.newId("orders", "o_id");
+		int newId = idMakerService.newId("orders", "o_id", 1);
 		String m_id = request.getParameter("m_id");
 		int newPoint = - (Integer.parseInt(request.getParameter("o_point"))); // 사용포인트이므로 입력된값에 마이너스 처리
 		
