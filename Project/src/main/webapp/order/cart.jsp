@@ -63,7 +63,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 		- [정기구독] 상품의 첫 번째 발송일에 일반 택배 상품을 함께 구매하실 경우,중복 배송비는 부분 환불 처리해 드립니다.<br>
 		<hr>
 	
-		총 주문금액 <%=totalAmount %> 원 + 배송비 0원 = 총 결제 금액 <%=totalAmount %>원<br>
+		총 주문금액 <%=totalAmount %> 원 + 배송비 0원 = 총 결제 금액 <%=totalAmount %>원 (체크하면 금액계산되는 기능 구현 필요)<br> 
 		
 		<input type="hidden" name="iNum" value="<%=i %>">
 		<input type="submit" value="구매하기">

@@ -30,6 +30,7 @@ public class OrderLetterAction implements Action {
 			ob.setOd_qty(Integer.parseInt(request.getParameter("c_qty" + i)));
 			ob.setL_id(Integer.parseInt(request.getParameter("l_id" + i)));
 			ob.setOd_message(request.getParameter("od_message" + i));
+			ob.setOd_delivery_date(request.getParameter("od_delivery_date" + i));
 
 			orderFormInfo.add(ob); // Bean에 넣어서 ArraList에 저장
 		}

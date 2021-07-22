@@ -48,6 +48,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				<input type="hidden" name="c_id<%=i %>" value="<%=c_id%>">
 				<input type="hidden" name="i_id<%=i %>" value="<%=i_id%>">
 				<input type="hidden" name="c_qty<%=i %>" value="<%=c_qty%>">
+				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=delivery_date%>">
 				
 				<br><br><br>
 		<%} else { //편지 선택안함 %> 
@@ -56,6 +57,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				<input type="hidden" name="c_id<%=i %>" value="<%=c_id%>">
 				<input type="hidden" name="i_id<%=i %>" value="<%=i_id%>">
 				<input type="hidden" name="c_qty<%=i %>" value="<%=c_qty%>">
+				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=delivery_date%>">
 				
 				
 		<%

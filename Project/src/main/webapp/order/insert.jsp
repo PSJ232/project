@@ -135,27 +135,31 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<h3>결제 수단</h3>
 		
 		<%
-		for (int j = 0 ; j < itemList.size() ; j++){
-			for (int i = 0 ; i < orderFormInfo.size() ; i++) {
+		int i;
+		for (i = 0 ; i < checkList.size() ; i++){
+			if (checkList.get(i).getC_id() == orderFormInfo.get(i).getC_id()) {
 		%>
-			
-				<input type="hidden" name="l_id<%=i %>" value="<%=orderFormInfo.get(i).getL_id()%>">
-				<input type="hidden" name="c_id<%=i %>" value="<%=orderFormInfo.get(i).getC_id()%>">
-				<input type="hidden" name="i_id<%=i %>" value="<%=orderFormInfo.get(i).getI_id()%>">
-				<input type="hidden" name="od_qty<%=i %>" value="<%=orderFormInfo.get(i).getOd_qty()%>">
-				<input type="hidden" name="od_message<%=i %>" value="<%=orderFormInfo.get(i).getOd_message()%>">
-		
-		
-		
-		
+			<input type="hidden" name="l_id<%=i %>" value="<%=orderFormInfo.get(i).getL_id()%>">
+			<input type="hidden" name="c_id<%=i %>" value="<%=orderFormInfo.get(i).getC_id()%>">
+			<input type="hidden" name="i_id<%=i %>" value="<%=orderFormInfo.get(i).getI_id()%>">
+			<input type="hidden" name="od_qty<%=i %>" value="<%=orderFormInfo.get(i).getOd_qty()%>">
+			<input type="hidden" name="od_message<%=i %>" value="<%=orderFormInfo.get(i).getOd_message()%>">
+			<input type="hidden" name="od_delivery_date<%=i %>" value="<%=orderFormInfo.get(i).getOd_delivery_date()%>">
+			<%
+			} else {
+			%>
+			<input type="hidden" name="l_id<%=i %>" value="0">
+			<input type="hidden" name="c_id<%=i %>" value="<%=checkList.get(i).getC_id()%>">
+			<input type="hidden" name="i_id<%=i %>" value="<%=checkList.get(i).getI_id()%>">
+			<input type="hidden" name="od_qty<%=i %>" value="<%=checkList.get(i).getC_qty()%>">
+			<input type="hidden" name="od_message<%=i %>" value="">
+			<input type="hidden" name="od_delivery_date<%=i %>" value="<%=checkList.get(i).getC_delivery_date()%>">
 		<%
 			}
 		}
 		%>
 
-
-
-		
+		<input type="hidden" name="iNum" value="<%=i %>">
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
 		<input type="hidden" name="o_amount" value="<%=price %>">
 		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500')"> <!-- 결제 api에 따라서 변경해야됨  -->
