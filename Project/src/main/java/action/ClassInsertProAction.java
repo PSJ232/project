@@ -68,7 +68,7 @@ public class ClassInsertProAction implements Action {
 		classBean.setClass_sub_img2(filename2);
 		classBean.setClass_sub_img1(filename3);
 		classBean.setClass_main_img(filename4);
-		
+		 
 		ClassDetailBean detailBean = new ClassDetailBean();
 		detailBean.setDate(multi.getParameter("date"));
 		detailBean.setPlace(multi.getParameter("place"));

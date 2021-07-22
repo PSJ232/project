@@ -26,7 +26,7 @@ public class ClassDetailDAO {
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
-
+  
 	public int insertClassDetail(ClassDetailBean classDetailBean, String[] timeList) {
 		System.out.println("insertClassDetail");
 		PreparedStatement pstmt = null;

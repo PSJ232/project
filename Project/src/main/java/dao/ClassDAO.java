@@ -56,7 +56,7 @@ public class ClassDAO {
 			pstmt.setString(9, classBean.getClass_sub_img2());
 			pstmt.setString(10, classBean.getClass_sub_img3());
 			insertCount = pstmt.executeUpdate();
-			
+			 
 			
 		} catch (SQLException e) {
 			System.out.println("SQL구문 오류! - " + e.getMessage());
