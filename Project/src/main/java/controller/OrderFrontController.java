@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.OrderAddressAction;
 import action.OrderCartAction;
 import action.OrderDetailProAction;
 import action.OrderInsertFormAction;
@@ -47,35 +48,42 @@ public class OrderFrontController extends HttpServlet {
 			}
 		} else if (command.equals("/OrderCart.od")) {
 			action = new OrderCartAction();
-			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/OrderForm.od")) {
 			action = new OrderInsertFormAction();
-			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/OrderInsertPro.od")) {
 			action = new OrderInsertProAction();
-			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/OrderDetailPro.od")) {
 			action = new OrderDetailProAction();
-			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/OrderLetter.od")) {
 			action = new OrderLetterAction();
-			try {// execute() 메서드에서 throws Exception 이 처리되므로 예외 처리 필요
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/OrderAddress.od")) {
+			action = new OrderAddressAction();
+			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
