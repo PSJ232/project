@@ -72,7 +72,6 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1,1,'admin',1,'2021-07-23 10:50:38',1,'2021-07-31'),(2,2,'admin',1,'2021-07-23 10:50:52',0,'2021-07-30'),(4,4,'admin',1,'2021-07-23 10:51:13',1,'2021-07-29'),(5,3,'admin',3,'2021-07-23 10:51:51',0,'2021-07-29'),(6,3,'admin',3,'2021-07-23 10:53:12',1,'2021-07-29');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +253,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('admin','1234','관리자','01000000000','2000-01-01',1,0,NULL,NULL,'2021-07-23',NULL,999000);
+INSERT INTO `member` VALUES ('admin','1234','관리자','01000000000','2000-01-01',1,0,NULL,NULL,'2021-07-23',NULL,958000);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +287,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (2021072301,'admin','관리자','06035 서울 강남구 가로수길 5 집','신종현','01090908080',107200,-1000,1,'2021-07-23 11:07:20');
+INSERT INTO `orders` VALUES (2021072301,'admin','관리자','06035 서울 강남구 가로수길 5 우리집','신종현','01090908080',228400,-12000,1,'2021-07-23 12:26:09');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +328,7 @@ CREATE TABLE `orders_detail` (
 
 LOCK TABLES `orders_detail` WRITE;
 /*!40000 ALTER TABLE `orders_detail` DISABLE KEYS */;
-INSERT INTO `orders_detail` VALUES (1,2021072301,1,4,1,'사랑합니다',0,'admin',1,'2021-07-31','주문접수',0),(2,2021072301,2,0,1,'null',0,'admin',2,'2021-07-30','주문접수',0),(3,2021072301,4,4,1,'감사합니다',0,'admin',4,'2021-07-29','주문접수',0),(4,2021072301,3,0,3,'null',0,'admin',5,'2021-07-29','주문접수',0),(5,2021072301,3,4,3,'힘내세요',0,'admin',6,'2021-07-29','주문접수',0);
+INSERT INTO `orders_detail` VALUES (1,2021072301,1,0,1,'null',0,'admin',1,'2021-07-23','주문접수',0),(2,2021072301,2,1,2,'',0,'admin',2,'2021-07-24','주문접수',0),(3,2021072301,3,2,1,'',0,'admin',3,'2021-07-25','주문접수',0),(4,2021072301,4,4,1,'힘내세요',0,'admin',4,'2021-07-26','주문접수',0);
 /*!40000 ALTER TABLE `orders_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,4 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-23 11:09:27
+-- Dump completed on 2021-07-23 12:28:47

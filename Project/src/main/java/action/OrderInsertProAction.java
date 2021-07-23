@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import svc.CartDeleteProSerivce;
 import svc.IdMakerService;
 import svc.MemberPointSumService;
 import svc.OrderInsertProService;
@@ -79,6 +80,19 @@ public class OrderInsertProAction implements Action {
 			forward = new ActionForward();
 			forward.setPath("OrderDetailPro.od?o_id=" + newId); 
 			forward.setRedirect(false);
+			
+			
+			// 주문완료된 상품을 장바구니에서 삭제
+			CartDeleteProSerivce cartDeleteProService = new CartDeleteProSerivce();
+			boolean isDeleteSuccess = false; 
+			for(OrderDetailBean odb : orderDetailList) {
+				int c_id = odb.getC_id();
+				isDeleteSuccess = cartDeleteProService.dropItem(c_id);
+				if(!isDeleteSuccess) {
+					System.out.println("확인요망 : 장바구니 " + c_id + "가 삭제되지 않았습니다.");
+				}
+			}
+			
 			
 			// 포인트계산서비스(MemberPOintSumService) 호출하여 DB에 계산결과 반영
 			MemberPointSumService memberPointSumService = new MemberPointSumService();

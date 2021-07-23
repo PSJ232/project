@@ -51,6 +51,15 @@
             }
         }).open();
     }
+    
+    function pointAccept(m_point, totalPrice){ // 포인트 적용버튼 누르면 실행
+    	document.getElementById('pointResult').innerHTML = document.order.o_point.value; // 사용 포인트를 표시
+    	document.getElementById('nowPoint').innerHTML = m_point - document.order.o_point.value; // 보유포인트 - 사용포인트 의 결과를 표시
+    	document.getElementById('totalPrice').innerHTML = totalPrice - document.order.o_point.value; // 상품 총금액 - 포인트의 결과를 표시
+    	document.order.paymentAmount.value = totalPrice - document.order.o_point.value; // 결제api에 전달할 결제금액을 저장
+    }
+    
+    
 </script>
 <head>
 <meta charset="UTF-8">
@@ -59,8 +68,9 @@
 <%
 MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
 String m_name = memberDetail.getM_name();
-int price = 0;
-int totalPrice = 0;
+int price = 0; // 단일상품금액
+int totalPrice = 0; // 모든상품금액
+int paymentAmount = 0; // 결제api에 넘길 금액 (모든상품금액 - 포인트 - 등급할인)
 
 //장바구니 선택상품목록 또는 바로구매 상품 리스트
 ArrayList<CartBean> checkList = (ArrayList<CartBean>) request.getAttribute("checkList");
@@ -107,7 +117,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<h3>발신인 정보</h3>
 		이름 <input type="text" name="o_sender" value="<%=m_name%>"><br> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
 		<h3>배송지 정보</h3>
-		받는분 이름 <input type="text" name="o_receiver" placeholder="이름을 입력해주세요."><br>100
+		받는분 이름 <input type="text" name="o_receiver" placeholder="이름을 입력해주세요."><br>
 		받는분 연락처 <input type="text" name="o_phone"><br>
 	
 		
@@ -124,16 +134,16 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			
 		<h3>쿠폰/포인트</h3>
 		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용"><br>
-		포인트 <input type="text" name="o_point" value="0"><input type="button" value="적용"><br>
-		현재 포인트:<%=memberDetail.getM_point() %>
+		포인트 <input type="text" name="o_point" value="0"><input type="button" value="적용" onclick="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>)"><br>
+		현재 포인트:<span id=nowPoint><%=memberDetail.getM_point()%></span>
 		<h3>최종 결제 금액</h3>
 		총 상품 금액 <%=totalPrice %> 원<br>
 		배송비 0 원<br>
-		포인트 할인 -0 원 (포인트 적용 누르면 표시되도록)<br>
+		포인트 할인 -<span id="pointResult">0</span> 원<br>
 		등급 할인 -0 원(아직미구현)<br>
 		
 		<h4>총 결제 금액</h4>
-		<%=totalPrice %> (포인트 적용 누르면 계산되도록)
+		<span id="totalPrice"><%=totalPrice %></span> 원
 		<h3>결제 수단</h3>
 		
 		<%
@@ -160,10 +170,11 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			}
 		}
 		%>
-
+		
 		<input type="hidden" name="iNum" value="<%=i %>">
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
-		<input type="hidden" name="o_amount" value="<%=price %>">
+		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
+		<input type="hidden" name="paymentAmount" value="<%=totalPrice %>"> <!-- 포인트 적용버튼을 누르면 계산된 금액으로 value가 변경됨 -->
 		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500')"> <!-- 결제 api에 따라서 변경해야됨  -->
 	<br>
 	<br>
