@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.ReviewInsertAction;
+import action.ReviewInsertProAction;
 import action.ReviewInsertFormAction;
+import action.ReviewInsertProAction;
 import vo.ActionForward;
 
 @WebServlet("*.rv")
@@ -40,7 +41,7 @@ public class ReviewFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/ReviewInsert.rv")) {
-			action = new ReviewInsertAction();
+			action = new ReviewInsertProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

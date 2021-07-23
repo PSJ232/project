@@ -41,7 +41,7 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT o_id, o_rdate, o_delivery_date, o_receiver, o_amount "
+		String sql = "SELECT o_id, o_rdate, o_receiver, o_amount "
 				+ "FROM orders "
 				+ "WHERE o_id IN ("
 				+ "SELECT o_id "
@@ -56,7 +56,6 @@ public class ReviewDAO {
 				OrderBean ob = new OrderBean();
 				ob.setO_id(rs.getInt("o_id"));
 				ob.setO_rdate(rs.getDate("o_rdate"));
-				ob.setO_delivery_date(rs.getString("o_delivery_date"));
 				ob.setO_receiver(rs.getString("o_receiver"));
 				ob.setO_amount(rs.getInt("o_amount"));
 				nonOrderArrayList.add(ob);
@@ -77,7 +76,7 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT o_id, o_rdate, o_delivery_date, o_receiver, o_amount "
+		String sql = "SELECT o_id, o_rdate, o_receiver, o_amount "
 				+ "FROM orders "
 				+ "WHERE o_id IN ("
 				+ "SELECT o_id "
@@ -92,7 +91,6 @@ public class ReviewDAO {
 				OrderBean ob = new OrderBean();
 				ob.setO_id(rs.getInt("o_id"));
 				ob.setO_rdate(rs.getDate("o_rdate"));
-				ob.setO_delivery_date(rs.getString("o_delivery_date"));
 				ob.setO_receiver(rs.getString("o_receiver"));
 				ob.setO_amount(rs.getInt("o_amount"));
 				orderArrayList.add(ob);

@@ -30,7 +30,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				String i_img = itemList.get(i).getI_img(); //상품 이미지
 				String i_name = itemList.get(i).getI_name(); //상품 이름
 				String delivery_date = cartList.get(i).getC_delivery_date(); //상품 배송 요청일
-				int i_price = itemList.get(i).getI_price(); //상품 가격
+				int i_price = (int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100; //상품(할인) 가격, 강제형변환으로 10원단위 절삭함
 				int c_qty = cartList.get(i).getC_qty(); // 상품 수량
 				int c_letter = cartList.get(i).getC_letter(); //편지지 선택 여부
 				int c_id = cartList.get(i).getC_id(); // 장바구니 상품 번호 
@@ -86,7 +86,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 	<hr>
 	<form action="CartInsertPro.cr" method="post">
 		- 장바구니 담기 테스트 용 input -<br>
-		아이템ID<input type="number" name="i_id" value=""><br>
+		아이템ID<input type="number" name="i_id" value=""> (백업DB기준 1-4번샘플상품있음)<br>
 		수량<input type="number" name="c_qty" value=""><br>
 		편지추가<input type="radio" name="c_letter" value="1" checked>추가할게요(2,500원)<input type="radio" name="c_letter" value="0">추가하지 않을게요<br>
 		배달요청일<input type="date" name="c_delivery_date"><br>
