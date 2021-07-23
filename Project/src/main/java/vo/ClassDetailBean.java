@@ -3,11 +3,18 @@ package vo;
 
 public class ClassDetailBean {
 	private int time;
+	private int class_id;
 	private String date;
 	private String place;
-	private int classNum;
 	private int isSelected;
 	
+	
+	public int getClass_id() {
+		return class_id;
+	}
+	public void setClass_id(int class_id) {
+		this.class_id = class_id;
+	}
 	public int getIsSelected() {
 		return isSelected;
 	}
@@ -32,11 +39,5 @@ public class ClassDetailBean {
 	}
 	public void setPlace(String place) {
 		this.place = place;
-	}
-	public int getClassNum() {
-		return classNum;
-	}
-	public void setClassNum(int classNum) {
-		this.classNum = classNum;
 	}
 }

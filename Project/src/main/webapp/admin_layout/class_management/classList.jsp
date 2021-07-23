@@ -71,7 +71,7 @@
 			<td>
 			<%
 		for(ClassDetailBean cdb: classDetailList){
-			if(cb.getClass_id() == cdb.getClassNum()){
+			if(cb.getClass_id() == cdb.getClass_id()){
 				date = cdb.getDate();
 				%>
 					<%=cdb.getTime() %>:00:00<br>

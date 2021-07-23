@@ -33,7 +33,7 @@ public class ClassDetailDAO {
 		ResultSet rs = null;
 		int insertCount = 0;
 		try {
-			int num = 0;
+			int num = 1;
 			String sql = "SELECT MAX(f_id) FROM fclass";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -41,9 +41,6 @@ public class ClassDetailDAO {
 				num = rs.getInt(1);
 			}
 			for(String str: timeList) {
-				System.out.println(num);
-				System.out.println(classDetailBean.getPlace());
-				System.out.println(classDetailBean.getDate());
 				sql = "INSERT INTO fclass_detail VALUES(?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, classDetailBean.getDate());
@@ -74,7 +71,7 @@ public class ClassDetailDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ClassDetailBean classDetailBean = new ClassDetailBean();
-				classDetailBean.setClassNum(rs.getInt("f_id"));
+				classDetailBean.setClass_id(rs.getInt("f_id"));
 				classDetailBean.setTime(rs.getInt("fd_time"));
 				classDetailBean.setPlace(rs.getString("fd_place"));
 				classDetailBean.setDate(rs.getString("fd_date"));
