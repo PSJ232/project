@@ -28,13 +28,4 @@ public class ClassInsertService {
 		return isSuccess;
 	}
 	
-	public void deleteNull() {
-		Connection con = getConnection();
-		
-		ClassDAO classDAO = ClassDAO.getInstance();
-		classDAO.setConnection(con);
-		
-		commit(con);
-		close(con);
-	}
 }

@@ -95,7 +95,7 @@ public class ClassDetailDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT fd_time FROM fclass_detail WHERE f_place=? and fd_date=? and fd_isselected=1";
+			String sql = "SELECT fd_time FROM fclass_detail WHERE fd_place=? and fd_date=? and fd_isselected=1";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, place);
 			pstmt.setString(2, date);

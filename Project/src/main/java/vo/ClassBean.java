@@ -11,12 +11,20 @@ public class ClassBean {
 	private int class_max_member;
 	private int class_current_member;
 	private Timestamp class_create_date;
+	private String class_date;
+	
 	private String class_main_img;
 	private String class_sub_img1;
 	private String class_sub_img2;
 	private String class_sub_img3;
 	private int class_readcount;
 	
+	public String getClass_date() {
+		return class_date;
+	}
+	public void setClass_date(String class_date) {
+		this.class_date = class_date;
+	}
 	public int getClass_id() {
 		return class_id;
 	}

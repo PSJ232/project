@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.ClassDetailViewAction;
 import action.ClassDetailSelectTimelistAction;
-import action.ClassInsertFormAction;
 import action.ClassInsertProAction;
 import action.ClassListAction;
 import action.ItemDetailAction;
@@ -47,7 +47,7 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		//제품상세페이지
-		} else if(command.equals("/ItemDetail.ad")) {
+		} else if(command.equals("/ItemDetailView.ad")) {
 			
 			action = new ItemDetailAction();
 			
@@ -110,29 +110,21 @@ public class AdminFrontController extends HttpServlet {
 		}else if(command.equals("/OrderList.ad")) {
 			forward = new ActionForward();
 //			action = new OrderListAction();
-			
+		// 클래스 등록 폼
 		}else if(command.equals("/ClassInsertForm.ad")) {
 			forward = new ActionForward();
-			action = new ClassInsertFormAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
+			forward.setPath("./admin_layout/class_management/classInsertForm.jsp");
+			forward.setRedirect(false);
+		// 클래스 등록Pro	
 		}else if(command.equals("/ClassInsertPro.ad")) {
 			forward = new ActionForward();
 			action = new ClassInsertProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(command.equals("/SelectClassDetail.ad")) {
-			forward = new ActionForward();
-			forward.setPath("./admin_layout/class_management/selectClassDetail.jsp");
-			forward.setRedirect(false);
+		// 클래스 시간 리스트
 		}else if(command.equals("/TimeList.ad")) {
 			forward = new ActionForward();
 			action = new ClassDetailSelectTimelistAction();
@@ -141,6 +133,7 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		// 시간정보 등록
 		}else if(command.equals("/ClassDetailadd.ad")) {
 			forward = new ActionForward();
 			action = new ClassTimeAddAction();
@@ -149,6 +142,7 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		// 클래스 리스트
 		}else if(command.equals("/ClassList.ad")) {
 			forward = new ActionForward();
 			action = new ClassListAction();
@@ -157,7 +151,26 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		// 클래스 수정폼
+		}else if(command.equals("/ClassModifyForm.ad")) {
+			forward = new ActionForward();
+			action = new ClassDetailViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		// 클래스 상세페이지
+		}else if(command.equals("/ClassDetailView.ad")) {
+			forward = new ActionForward();
+			action = new ClassDetailViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 		
 		
 		if(forward!=null) {

@@ -29,8 +29,8 @@ public class ClassTimeAddAction implements Action {
 		boolean isInsertSuccess = service.registArticle(classDetailBean, timeList);
 		if(isInsertSuccess) {
 			forward = new ActionForward();
-			forward.setPath("./admin_layout/class_management/selectClassDetail.jsp");
-			forward.setRedirect(false);
+			forward.setPath("ClassList.ad");
+			forward.setRedirect(true);
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

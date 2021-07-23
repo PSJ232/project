@@ -65,7 +65,7 @@
 			<tr>
 			<td rowspan="4" width="20"><input type="radio" name="<%=cb.getClass_id()%>" value="<%=cb.getClass_id()%>"></td>
 			<td rowspan="4" width="100"><img src="<%="img_upload/"+cb.getClass_main_img() %>"/></td>
-			<td width="500"><%=cb.getClass_subject() %></td>
+			<td width="500"><a href="ClassDetailView.ad?class_num=<%=cb.getClass_id()%>"><%=cb.getClass_subject() %></a></td>
 			</tr>
 			<tr>
 			<td>

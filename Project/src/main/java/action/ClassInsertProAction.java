@@ -47,6 +47,7 @@ public class ClassInsertProAction implements Action {
 		classBean.setClass_price(Integer.parseInt(multi.getParameter("class_cost")));
 		classBean.setClass_max_member(Integer.parseInt(multi.getParameter("max_member")));
 		classBean.setClass_place(multi.getParameter("place"));
+		classBean.setClass_date(multi.getParameter("date"));
 		
 		Enumeration files = multi.getFileNames();
 		
