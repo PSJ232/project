@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+String r_id = (String)session.getAttribute("id");
 
+%>
 <!-- 헤더 들어가는곳 -->
 
 <!-- 헤더 들어가는곳 -->
@@ -53,7 +56,22 @@
   	</div>
 	</section>
   	
-  <!-- 본문 내용 -->
+ <!-- 본문 내용 -->
+ <div>
+ <form action="" method="post" name="fr" enctype="multipart/form-data">
+<!--  <form action="writePro.jsp" method="post" id="write" name="fr" enctype="multipart/form-data"> -->
+<!-- r_id, od_id, r_writer, r_title, r_content, r_rate, r_rate, r_rdate, r_img, r_point -->
+작성자 : <input type="hidden" name="r_id" value="r_id">
+제목 : <input type="text" name="r_title">
+내용 : <input type="text" name="r_content">
+평점 : <input type="text" name="r_rate">
+이미지 : <input type="text" name="r_img">
+ </form>
+
+
+ 
+ 
+ </div>
  
 <!-- 푸터 들어가는곳 -->
 
