@@ -122,7 +122,6 @@ public class MemberDAO {
 				memberDetail.setM_gender(rs.getInt("m_gender"));
 				memberDetail.setG_id(rs.getInt("g_id"));
 				memberDetail.setM_agree(rs.getString("m_agree"));
-				memberDetail.setM_address(rs.getString("m_address"));
 				memberDetail.setM_rdate(rs.getDate("m_rdate"));
 				memberDetail.setM_drop(rs.getDate("m_drop"));
 				memberDetail.setM_point(rs.getInt("m_point"));

@@ -9,6 +9,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 재고보다 많이 담을 수 없다
+		if(i_inven > c_qty) {
+	    	document.getElementById('cartNotice'+c_id).innerHTML = "";
+	    	location.href="CartUpdatePro.cr?c_id="+c_id+"&add=1";
+		} else {
+			document.getElementById('cartNotice'+c_id).innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + i_inven + "개 입니다.";
+		}
+	}
+
+
+</script>
 </head>
 <%
 ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
@@ -34,6 +46,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				int c_qty = cartList.get(i).getC_qty(); // 상품 수량
 				int c_letter = cartList.get(i).getC_letter(); //편지지 선택 여부
 				int c_id = cartList.get(i).getC_id(); // 장바구니 상품 번호 
+				int i_inven = itemList.get(i).getI_inven();
 
 				int letterPrice = 0; // 편지지 추가에 따른 추가요금
 				String letter = ""; // 편지지가 선택되면 추가상품에 보이고, 선택되지 않으면 안보임(널스트링)
@@ -52,8 +65,10 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 					수령일:<%=delivery_date%><br>
 					<%=i_price%>원<br>
 					<input type="button" value="-" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=-1'"> 
+					
 					<%=c_qty%> 
-					<input type="button" value="+" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=1'">
+					<input type="button" value="+" onclick="qtyUpdate(<%=c_id%>, <%=i_inven%>, <%=c_qty%>)"> <br>
+					<span id="cartNotice<%=c_id%>"></span>
 				</td>
 				<td>
 					<%=letter%>

@@ -53,10 +53,16 @@
     }
     
     function pointAccept(m_point, totalPrice){ // 포인트 적용버튼 누르면 실행
-    	document.getElementById('pointResult').innerHTML = document.order.o_point.value; // 사용 포인트를 표시
-    	document.getElementById('nowPoint').innerHTML = m_point - document.order.o_point.value; // 보유포인트 - 사용포인트 의 결과를 표시
-    	document.getElementById('totalPrice').innerHTML = totalPrice - document.order.o_point.value; // 상품 총금액 - 포인트의 결과를 표시
-    	document.order.paymentAmount.value = totalPrice - document.order.o_point.value; // 결제api에 전달할 결제금액을 저장
+    	if(m_point >= document.order.o_point.value && totalPrice >= document.order.o_point.value){
+	    	document.getElementById('pointResult').innerHTML = document.order.o_point.value; // 사용 포인트를 표시
+	    	document.getElementById('nowPoint').innerHTML = m_point - document.order.o_point.value; // (보유포인트 - 사용포인트)연산 결과를 표시
+	    	document.getElementById('totalPrice').innerHTML = totalPrice - document.order.o_point.value; // (상품 총금액 - 포인트)연산 결과를 표시
+	    	document.order.paymentAmount.value = totalPrice - document.order.o_point.value; // 결제api에 전달할 결제금액을 저장 -> 테스트 실제로 덮어써지는지 테스트 아직 못해봄
+	    	document.getElementById('pointNotice').innerHTML = "";
+    		
+    	} else {
+    		document.getElementById('pointNotice').innerHTML = "- 보유포인트 또는 상품금액을 초과할 수 없습니다.<br>";
+    	}
     }
     
     
@@ -136,6 +142,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<h3>쿠폰/포인트</h3>
 		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용">(미구현)<br>
 		포인트 <input type="text" name="o_point" value="0"><input type="button" value="적용" onclick="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>)"><br>
+		<span id=pointNotice></span>
 		현재 포인트:<span id=nowPoint><%=memberDetail.getM_point()%></span>
 		<h3>최종 결제 금액</h3>
 		총 상품 금액 <%=totalPrice %> 원<br>

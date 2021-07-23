@@ -5,12 +5,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function checkId(id) {
+		
+		var regex = new RegExp(/\S{2,}(@)\S{2,}(.)\S{2,}/); // 2자이상@2자이상.2자이상 조합이어야 이메일 형식으로 인정
+		var element = document.getElementById('checkIdResult');
+		if (document.joinForm.m_id.value == ""){
+			element.innerHTML = '- 이메일 (아이디)를 입력해 주세요.<br>';
+			return;
+		}
+		
+		if (regex.exec(id)) {
+			element.innerHTML = '- 사용 가능한 이메일입니다.(DB쪽체크는 아직 미구현)<br>';
+			checkIdResult = true;
+		} else {
+			element.innerHTML = '- 이메일 형식으로 입력해주세요.<br>';
+			checkIdResult = false;
+		}
+		
+	}
+
+</script>
 </head>
 <body>
 <h1>회원가입</h1>
 <hr>
-<form action="MemberJoinPro.me" method="post">
-이메일(아이디) <input type="text" name="m_id" placeholder="예)kukka@kukk.kr" required><input type="button" value="중복확인"><br>
+<form action="MemberJoinPro.me" name="joinForm" method="post">
+이메일(아이디) <input type="text" name="m_id" placeholder="예)kukka@kukk.kr" required><input type="button" value="중복확인" onclick="checkId(m_id.value)"><br>
+<span id="checkIdResult"></span>
 비밀번호 <input type="password" name="m_pass" placeholder="비밀번호를 입력해주세요." required><br>
 비밀번호확인 <input type="password" placeholder="비밀번호를 한 번 더 입력해주세요." required><br>
 이름 <input type="text" name="m_name" placeholder="이름을 입력해주세요." required><br>

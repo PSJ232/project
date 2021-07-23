@@ -45,7 +45,7 @@ public class CartUpdateProAction implements Action {
 
 			if (c_qty == 1 && add != -1) { // 수량이 1 일때 -1계산이 안되도록
 				c_qty = c_qty + add;
-			} else if (c_qty > 1 && c_qty < i_inven) { // 1~재고까지 수정가능
+			} else if (c_qty > 1 && c_qty <= i_inven) { // 1~재고까지 수정가능
 				c_qty = c_qty + add;
 			}
 

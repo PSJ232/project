@@ -21,7 +21,7 @@ public class OrderAddressAction implements Action {
 		String m_id = (String)session.getAttribute("m_id"); // 회원 정보 추출
 		
 		OrderListService orderListService = new OrderListService();
-		ArrayList<OrderBean> orderList = orderListService.getOrderList(m_id);
+		ArrayList<OrderBean> orderList = orderListService.getOrderList(m_id); // 주소 추출을 위해 회원정보로 주문내역 리스트 저장
 		request.setAttribute("orderList", orderList);
 		
 		
