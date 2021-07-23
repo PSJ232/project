@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import db.JdbcUtil;
 import vo.OrderBean;
@@ -121,6 +122,48 @@ public class OrderDAO {
 		}
 
 		return insertCount;
+
+	}
+
+	public ArrayList<OrderBean> selectOrderList(String m_id) {
+		System.out.println("OrderDAO - selectOrderList()");
+
+		ArrayList<OrderBean> orderList = null;
+		OrderBean orderBean = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT * FROM orders WHERE m_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			orderList = new ArrayList<OrderBean>();
+
+			while (rs.next()) {
+				orderBean = new OrderBean();
+				orderBean.setO_id(rs.getInt("o_id"));
+				orderBean.setM_id(m_id);
+				orderBean.setO_sender(rs.getString("o_sender"));
+				orderBean.setO_address(rs.getString("o_address"));
+				orderBean.setO_receiver(rs.getString("o_receiver"));
+				orderBean.setO_phone(rs.getString("o_phone"));
+				orderBean.setO_amount(rs.getInt("o_amount"));
+				orderBean.setO_point(rs.getInt("o_point"));
+				orderBean.setO_payment(rs.getInt("o_payment"));
+				orderBean.setO_rdate(rs.getDate("o_rdate"));
+
+				orderList.add(orderBean);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+
+		return orderList;
 
 	}
 

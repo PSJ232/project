@@ -51,7 +51,7 @@ public class OrderInsertProAction implements Action {
 		int newPoint = - (Integer.parseInt(request.getParameter("o_point"))); // 사용포인트이므로 입력된값에 마이너스 처리
 		
 		//나누어진 주소 한줄로 조합
-		String o_address = request.getParameter("address1") + " " + request.getParameter("address2") + " " + request.getParameter("address3");
+		String o_address = request.getParameter("address1") + "&" + request.getParameter("address2") + "&" + request.getParameter("address3"); // 나중에 다시 꺼내쓸때 split가능하도록 "|" 기준점 넣어줌
 		OrderBean orderBean = new OrderBean();
 		orderBean.setO_id(newId);
 		orderBean.setM_id(m_id);

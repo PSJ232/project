@@ -117,6 +117,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<h3>발신인 정보</h3>
 		이름 <input type="text" name="o_sender" value="<%=m_name%>"><br> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
 		<h3>배송지 정보</h3>
+		<input type="button" value="최근배송지" onClick="window.open('OrderAddress.od', 'address', 'width=450, height=500')"><br>
 		받는분 이름 <input type="text" name="o_receiver" placeholder="이름을 입력해주세요."><br>
 		받는분 연락처 <input type="text" name="o_phone"><br>
 	
@@ -133,12 +134,13 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<br>
 			
 		<h3>쿠폰/포인트</h3>
-		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용"><br>
+		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용">(미구현)<br>
 		포인트 <input type="text" name="o_point" value="0"><input type="button" value="적용" onclick="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>)"><br>
 		현재 포인트:<span id=nowPoint><%=memberDetail.getM_point()%></span>
 		<h3>최종 결제 금액</h3>
 		총 상품 금액 <%=totalPrice %> 원<br>
 		배송비 0 원<br>
+		쿠폰 할인 -0 원 (미구현)<br>
 		포인트 할인 -<span id="pointResult">0</span> 원<br>
 		등급 할인 -0 원(아직미구현)<br>
 		
