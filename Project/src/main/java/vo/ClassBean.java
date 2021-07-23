@@ -3,6 +3,7 @@ package vo;
 import java.sql.Timestamp;
 
 public class ClassBean {
+	private int class_id;
 	private String class_place;
 	private String class_subject;
 	private String class_desc;
@@ -16,13 +17,13 @@ public class ClassBean {
 	private String class_sub_img3;
 	private int class_readcount;
 	
-	private int class_id;
 	public int getClass_id() {
 		return class_id;
 	}
 	public void setClass_id(int class_id) {
 		this.class_id = class_id;
 	}
+	
 	public String getClass_place() {
 		return class_place;
 	}

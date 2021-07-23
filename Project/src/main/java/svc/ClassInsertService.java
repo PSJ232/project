@@ -34,7 +34,6 @@ public class ClassInsertService {
 		ClassDAO classDAO = ClassDAO.getInstance();
 		classDAO.setConnection(con);
 		
-		classDAO.deleteNull();
 		commit(con);
 		close(con);
 	}

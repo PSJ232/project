@@ -7,6 +7,7 @@ import java.util.Enumeration;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -24,7 +25,6 @@ public class ClassInsertProAction implements Action {
 		System.out.println("ClassInsertProAction - execute");
 		ActionForward forward = null;
 		ClassInsertService service = new ClassInsertService();
-		
 		ServletContext context = request.getServletContext();
 		
 		String realFolder = "";
@@ -73,11 +73,11 @@ public class ClassInsertProAction implements Action {
 		detailBean.setDate(multi.getParameter("date"));
 		detailBean.setPlace(multi.getParameter("place"));
 		
-		request.setAttribute("detailBean", detailBean);
-		request.setAttribute("timeList", request.getParameterValues("timeList"));
 		
 		boolean isWriteSuccess = service.registArticle(classBean);
 		if(isWriteSuccess) {
+			request.setAttribute("detailBean", detailBean);
+			request.setAttribute("timeList", multi.getParameterValues("timeList"));
 			forward = new ActionForward();
 			forward.setPath("ClassDetailadd.ad");
 			forward.setRedirect(false);

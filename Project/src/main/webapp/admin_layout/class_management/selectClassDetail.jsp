@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
 $(function(){
+	
   $.datepicker.setDefaults($.datepicker.regional['ko']);
   // 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
     // 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
@@ -47,30 +48,12 @@ $(function(){
               date:$('#date').val()
            },
            success:function(rdata){
-              $('p').empty();
-              $('p').append(rdata);
+              $('#timeList').empty();
+              $('#timeList').append(rdata);
            }   // success
         });   //ajax
+        
   });   //change
-//   var saveList = [];
-//   $('#submitBtn').on("click", function(){
-// 	 var val = $('#timeList option:selected').val();
-// 	 if(val != ""){
-// 		 var elem = $('<li></li>').text(val);
-// 		 $(elem).append("<input type='button' id='remove_btn' value='X'>");
-// 		 $('#selectedTimeList').append(elem);
-// 		$('#remove_btn').on("click", function(){
-// 	// 		console.log("click");
-// 	// 		var p = $(this).parent();
-// 	// 		p.remove();
-// 			$(this).parent().remove();
-// 		});
-// 	 }
-// 	 $('#selectedTimeList li').each(function(index, item){
-// 		 if(saveList.indexOf($(item).text()) == -1 ) saveList.push($(item).text());
-// 	 });
-// 	 localStorage.setItem("timeList",saveList);
-//   });
 });
 </script>
 </head>
@@ -88,7 +71,7 @@ $(function(){
 				<input type="radio" name="place" value="남포">남포 
 				<input type="radio" name="place" value="해운대">해운대 
 				<h3>시간선택</h3>
-				<p></p>
+				<select name="timeList" id="timeList" multiple="multiple"></select><br>
 				클래스 설명: <textarea name="class_desc" rows="30" cols="100"></textarea><br>
 				비용: <input type="text" name="class_cost" required><br>
 				정원: <input type="text" name="max_member" required><br>

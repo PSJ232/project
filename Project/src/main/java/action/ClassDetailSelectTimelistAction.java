@@ -18,7 +18,6 @@ public class ClassDetailSelectTimelistAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		ArrayList<Time> timeList = service.getTimeList(request.getParameter("place"), request.getParameter("date"));
 		request.setAttribute("timeList", timeList);
-		System.out.println(timeList);
 		forward.setPath("admin_layout/class_management/timeSelect.jsp");
 		
 		return forward;
