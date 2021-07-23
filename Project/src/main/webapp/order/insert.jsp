@@ -86,7 +86,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			letterPrice = 0;
 		}
 
-		price = (int) ((itemList.get(i).getI_price() * itemList.get(i).getI_discount() * checkList.get(i).getC_qty())) + letterPrice; // 단일상품금액 = (원가 * 할인 * 수량) + 편지요금
+		price = ((int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100 * checkList.get(i).getC_qty()) + letterPrice; // 단일상품금액 = (원가 * 할인) * 수량 + 편지요금
 		totalPrice += price; // 모든 상품의 누적 총 금액(쿠폰 및 포인트 제외)
 	%>
 		사진자리<img src="<%=itemList.get(i).getI_img()%>">
@@ -107,7 +107,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<h3>발신인 정보</h3>
 		이름 <input type="text" name="o_sender" value="<%=m_name%>"><br> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
 		<h3>배송지 정보</h3>
-		받는분 이름 <input type="text" name="o_receiver" placeholder="이름을 입력해주세요."><br>
+		받는분 이름 <input type="text" name="o_receiver" placeholder="이름을 입력해주세요."><br>100
 		받는분 연락처 <input type="text" name="o_phone"><br>
 	
 		

@@ -72,7 +72,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (3,1,'admin@admin.com',1,'2021-07-19 19:49:27',0,'2021-12-31'),(4,3,'admin@admin.com',2,'2021-07-19 22:37:54',1,'2021-07-31'),(6,3,'admin@admin.com',3,'2021-07-19 22:41:39',0,'2021-07-31'),(7,3,'bullgaris@gmail.com',1,'2021-07-21 13:58:14',1,'2021-07-23'),(9,2,'admin@admin.com',4,'2021-07-22 10:40:34',1,'2021-07-28'),(10,2,'admin@admin.com',1,'2021-07-22 15:09:00',1,'2021-07-25'),(14,1,'admin',1,'2021-07-22 22:55:16',1,'2021-07-30'),(15,1,'admin',1,'2021-07-22 22:55:20',1,'2021-07-29'),(16,2,'admin',1,'2021-07-22 22:55:26',1,'2021-07-24');
+INSERT INTO `cart` VALUES (1,1,'admin',1,'2021-07-23 10:50:38',1,'2021-07-31'),(2,2,'admin',1,'2021-07-23 10:50:52',0,'2021-07-30'),(4,4,'admin',1,'2021-07-23 10:51:13',1,'2021-07-29'),(5,3,'admin',3,'2021-07-23 10:51:51',0,'2021-07-29'),(6,3,'admin',3,'2021-07-23 10:53:12',1,'2021-07-29');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,7 @@ DROP TABLE IF EXISTS `grade`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `grade` (
   `g_id` int(11) NOT NULL COMMENT '0~3등급',
-  `g_discount` int(11) NOT NULL COMMENT '할인률',
+  `g_discount` float NOT NULL DEFAULT '1',
   PRIMARY KEY (`g_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='등급';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -156,7 +156,7 @@ CREATE TABLE `grade` (
 
 LOCK TABLES `grade` WRITE;
 /*!40000 ALTER TABLE `grade` DISABLE KEYS */;
-INSERT INTO `grade` VALUES (0,0),(1,2),(2,3),(3,5);
+INSERT INTO `grade` VALUES (0,1),(1,0.98),(2,0.97),(3,0.95);
 /*!40000 ALTER TABLE `grade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +193,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'해바라기세트','냉무',99900,100,'','','','','2021-07-16 13:37:51',1,'large','판매중','재입고','냉무'),(2,'민들레세트','냉무',99900,100,'','','','','2021-07-16 16:45:36',1,'small','판매중','재입고','냉무'),(3,'빅맥세트','냉무',59900,20,'','','','','2021-07-16 16:46:28',1,'large','판매중','재입고','냉무');
+INSERT INTO `item` VALUES (1,'산호초 에디션','바다의 꽃 산호초의 빛깔을 담은',59900,50,NULL,NULL,NULL,NULL,'2021-07-23 10:46:11',0.9,'large','판매중','판매중','없음'),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,50,NULL,NULL,NULL,NULL,'2021-07-23 10:47:34',0.9,'small','판매중','판매중','없음'),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',69800,30,NULL,NULL,NULL,NULL,'2021-07-23 10:48:46',0.5,'small','판매중','판매중','없음'),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,60,NULL,NULL,NULL,NULL,'2021-07-23 10:50:14',1,'medium','판매중','판매중','없음');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +254,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('admin','1234','관리자','01044445555','2000-01-01',1,0,'on',NULL,'2021-07-22',NULL,800),('admin@admin.com','1234','관리자','01012340000','2000-01-01',1,0,'on',NULL,'2021-07-16',NULL,991400),('bullgaris@gmail.com','1234','신종현','01099998888','2000-01-02',1,0,NULL,NULL,'2021-07-21',NULL,1000);
+INSERT INTO `member` VALUES ('admin','1234','관리자','01000000000','2000-01-01',1,0,NULL,NULL,'2021-07-23',NULL,999000);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +288,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (2021072201,'admin@admin.com','관리자','06267 서울 강남구 강남대로 238 우리집','신종현','01012349999',202300,0,1,'2021-07-22 18:00:54'),(2021072202,'admin@admin.com','관리자','41498 대구 북구 3공단로 3 우리집','홍길동','01012345678',102400,-100,1,'2021-07-22 18:06:23'),(2021072203,'admin','관리자','06035 서울 강남구 가로수길 5 집','신신신','01012345555',202300,-100,1,'2021-07-22 20:34:53'),(2021072204,'admin','관리자','06307 서울 강남구 개포로 202 집','종종종','01099998888',182200,-100,1,'2021-07-22 20:37:18'),(2021072205,'admin@admin.com','관리자','06267 서울 강남구 강남대로 238 회사','이순신','01033332222',102400,-5000,1,'2021-07-22 23:00:08');
+INSERT INTO `orders` VALUES (2021072301,'admin','관리자','06035 서울 강남구 가로수길 5 집','신종현','01090908080',107200,-1000,1,'2021-07-23 11:07:20');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +329,7 @@ CREATE TABLE `orders_detail` (
 
 LOCK TABLES `orders_detail` WRITE;
 /*!40000 ALTER TABLE `orders_detail` DISABLE KEYS */;
-INSERT INTO `orders_detail` VALUES (1,2021072201,1,4,2,'안녕하세요',0,'admin@admin.com',99999999,'2021-07-31','주문접수',0),(2,2021072202,1,1,1,'',0,'admin@admin.com',1,'2021-12-31','주문접수',0),(3,2021072202,1,0,1,'null',0,'admin@admin.com',3,'2021-12-31','주문접수',0),(4,2021072202,3,2,2,'',0,'admin@admin.com',4,'2021-07-31','주문접수',0),(5,2021072202,3,0,3,'null',0,'admin@admin.com',6,'2021-07-31','주문접수',0),(6,2021072202,1,0,1,'null',0,'admin@admin.com',8,'2021-07-31','주문접수',0),(7,2021072202,2,3,4,'',0,'admin@admin.com',9,'2021-07-28','주문접수',0),(8,2021072202,2,4,1,'편지내용요요용',0,'admin@admin.com',10,'2021-07-25','주문접수',0),(9,2021072203,1,4,2,'테스트2',0,'admin',99999999,'2021-07-31','주문접수',0),(10,2021072204,1,4,1,'사랑',0,'admin',11,'2021-07-25','주문접수',0),(11,2021072204,2,0,2,'null',0,'admin',12,'2021-07-29','주문접수',0),(12,2021072204,3,4,3,'우정',0,'admin',13,'2021-07-31','주문접수',0),(13,2021072205,1,0,1,'null',0,'admin@admin.com',3,'2021-12-31','주문접수',0),(14,2021072205,3,1,2,'',0,'admin@admin.com',4,'2021-07-31','주문접수',0),(15,2021072205,3,0,3,'null',0,'admin@admin.com',6,'2021-07-31','주문접수',0),(16,2021072205,2,2,4,'',0,'admin@admin.com',9,'2021-07-28','주문접수',0),(17,2021072205,2,3,1,'',0,'admin@admin.com',10,'2021-07-25','주문접수',0);
+INSERT INTO `orders_detail` VALUES (1,2021072301,1,4,1,'사랑합니다',0,'admin',1,'2021-07-31','주문접수',0),(2,2021072301,2,0,1,'null',0,'admin',2,'2021-07-30','주문접수',0),(3,2021072301,4,4,1,'감사합니다',0,'admin',4,'2021-07-29','주문접수',0),(4,2021072301,3,0,3,'null',0,'admin',5,'2021-07-29','주문접수',0),(5,2021072301,3,4,3,'힘내세요',0,'admin',6,'2021-07-29','주문접수',0);
 /*!40000 ALTER TABLE `orders_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-22 23:03:11
+-- Dump completed on 2021-07-23 11:09:27
