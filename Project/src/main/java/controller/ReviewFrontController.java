@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.ReviewInsertProAction;
 import action.ReviewInsertFormAction;
-import action.ReviewInsertProAction;
 import vo.ActionForward;
 
 @WebServlet("*.rv")
@@ -33,7 +32,7 @@ public class ReviewFrontController extends HttpServlet {
 		// 액션 클래스의 공통 타입(슈퍼클래스)인 Action 인터페이스 타입 변수 선언
 		Action action = null;
 		
-		if(command.equals("/ReviewFormAction.rv")) {
+		if(command.equals("/ReviewInsertForm.rv")) {
 			action = new ReviewInsertFormAction();
 			try {
 				forward = action.execute(request, response);
@@ -41,6 +40,10 @@ public class ReviewFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/ReviewInsert.rv")) {
+			forward = new ActionForward();
+			forward.setPath("./mypage/review.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/ReviewInsertPro.rv")) {
 			action = new ReviewInsertProAction();
 			try {
 				forward = action.execute(request, response);
@@ -49,6 +52,8 @@ public class ReviewFrontController extends HttpServlet {
 			}
 		}
 		
+		
+
 		// --------------------------------------------------------------
 		// 포워딩 방식 결정
 		if(forward != null) {

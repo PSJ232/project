@@ -37,7 +37,7 @@
   		<li><a href="">주문내역/배송조회</a></li>
   		<li><a href="">나의 정기구독</a></li>
   		<li><a href="">클래스 수강내역</a></li>
-		<li><a href="../ReviewFormAction.rv">상품 리뷰</a></li>
+		<li><a href="../ReviewInsertForm.rv">상품 리뷰</a></li>
   	</ul>
  	 </div>
  	 

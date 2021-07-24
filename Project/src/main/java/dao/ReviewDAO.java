@@ -3,10 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.ItemBean;
 import vo.OrderBean;
+import vo.ReviewBean;
+
 import static db.JdbcUtil.*;
 
 public class ReviewDAO {
@@ -41,12 +44,10 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT o_id, o_rdate, o_receiver, o_amount "
-				+ "FROM orders "
-				+ "WHERE o_id IN ("
-				+ "SELECT o_id "
-				+ "FROM orders_detail "
-				+ "WHERE od_review = 0 AND m_id = ?);";
+		String sql = "SELECT o.o_id, o.o_rdate, o.o_receiver, o.o_amount "
+				+ "FROM orders_detail od JOIN orders o "
+				+ "ON od.o_id = o.o_id "
+				+ "WHERE od.od_review = 0 AND od.m_id = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -58,6 +59,7 @@ public class ReviewDAO {
 				ob.setO_rdate(rs.getDate("o_rdate"));
 				ob.setO_receiver(rs.getString("o_receiver"));
 				ob.setO_amount(rs.getInt("o_amount"));
+				
 				nonOrderArrayList.add(ob);
 			} 
 		} catch (Exception e) {
@@ -76,12 +78,10 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT o_id, o_rdate, o_receiver, o_amount "
-				+ "FROM orders "
-				+ "WHERE o_id IN ("
-				+ "SELECT o_id "
-				+ "FROM orders_detail "
-				+ "WHERE od_review = 1 AND m_id = ?);";
+		String sql = "SELECT o.o_id, o.o_rdate, o.o_receiver, o.o_amount "
+				+ "FROM orders_detail od JOIN orders o "
+				+ "ON od.o_id = o.o_id "
+				+ "WHERE od.od_review = 1 AND od.m_id = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -129,6 +129,9 @@ public class ReviewDAO {
 			}
 		} catch (Exception e) {
 			System.out.println("ReviewDAO - getReviewNonStatusItemBean() SQL문 오류 - " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
 		}
 		return nonItemArrayList;
 	}
@@ -136,14 +139,14 @@ public class ReviewDAO {
 	public ArrayList<ItemBean> getReviewStatusItemList(String m_id) {
 		System.out.println("ReviewDAO - getReviewStatusItemBean()");
 		
-		ArrayList<ItemBean> itemArrayList = new ArrayList<ItemBean>();
+		ArrayList<ItemBean> itemArrayList = new ArrayList();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		String sql = "SELECT i.i_id, i.i_name, i.i_img "
 				+	"FROM orders_detail od JOIN item i "
 				+	"ON od.i_id = i.i_id "
-				+	"WHERE od.od_review = 0 AND m_id = ?";
+				+	"WHERE od.od_review = 1 AND m_id = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -158,11 +161,82 @@ public class ReviewDAO {
 			} 
 		} catch (Exception e) {
 			System.out.println("ReviewDAO - getReviewStatusItemBean() SQL문 오류 - " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
 		}
 		return itemArrayList;
 	}
 
+	public ArrayList<Integer> getOrderDetail(String m_id) {
+		System.out.println("ReviewDAO - getOrderDetail()");
+		ArrayList<Integer> odList = new ArrayList<Integer>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT od_id FROM orders_detail WHERE od_review = 0 AND m_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				odList.add(rs.getInt("od_id"));
+			} 
+		} catch (Exception e) {
+			System.out.println("ReviewDAO - getOrderDetail() SQL문 오류 - " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return odList;
+		
+	}
 
+	public int insertReview(ReviewBean rb) {
+		System.out.println("ReviewDAO - insertReview()");
+//r_id, od_id, r_writer, r_title, r_content, r_rate, r_rdate, r_img, r_point
+		
+		int insertCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int r_id = 0;
+		int od_id = rb.getOd_id();
+		try {
+			String sql = "SELECT MAX(r_id) FROM review";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				r_id = rs.getInt(1) + 1;
+			System.out.println("r_id : " + r_id);
+			
+			sql = "INSERT INTO review VALUES(?, ?, ?, ?, ?, ?, now(), ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_id);
+			pstmt.setInt(2, od_id);
+			pstmt.setString(3, rb.getR_writer());
+			pstmt.setString(4, rb.getR_title());
+			pstmt.setString(5, rb.getR_content());
+			pstmt.setInt(6, rb.getR_rate());
+			pstmt.setString(7, rb.getR_img());
+			pstmt.setInt(8, rb.getR_point());
+			insertCount = pstmt.executeUpdate();
+			
+			sql = "UPDATE orders_detail SET od_review=1 WHERE od_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, od_id);
+			pstmt.executeUpdate();
+					
+			// update 테이블 set 수정할열=값,수정할열=값 where 조건열=값;
+		} catch (SQLException e) {
+			System.out.println("ReviewDAO - insertReview() SQL문 오류 : " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return insertCount;
+	}
 
 
 

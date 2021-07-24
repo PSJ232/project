@@ -27,11 +27,14 @@ public class ReviewInsertFormAction implements Action {
 		ArrayList<OrderBean> orderArrayList = reviewStatusService.reviewStatusOrderList(m_id);
 		ArrayList<ItemBean> nonItemArrayList = reviewStatusService.reviewNonStatusItemList(m_id);
 		ArrayList<ItemBean> itemArrayList = reviewStatusService.reviewStatusItemList(m_id);
+		ArrayList<Integer> odList = reviewStatusService.odList(m_id);
 
 		request.setAttribute("nonOrderArrayList", nonOrderArrayList);
 		request.setAttribute("orderArrayList", orderArrayList);
 		request.setAttribute("nonItemArrayList", nonItemArrayList);
 		request.setAttribute("itemArrayList", itemArrayList);
+		request.setAttribute("odList", odList);
+		
 		
 //		command : /ReviewFormAction.rv
 		forward = new ActionForward();

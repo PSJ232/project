@@ -73,5 +73,21 @@ public class ReviewStatusService {
 		return itemArrayList;
 	}
 	
+	public ArrayList<Integer> odList(String m_id) {
+		System.out.println("ReviewStatusService - odList()");
+		ArrayList<Integer> odList = null;
+		
+		Connection con = getConnection();
+		ReviewDAO rdao = ReviewDAO.getInstance();
+		rdao.setConnection(con);
+		
+		odList = rdao.getOrderDetail(m_id);
+		
+		close(con);
+		
+		return odList;
+	
+	}
+	
 
 }

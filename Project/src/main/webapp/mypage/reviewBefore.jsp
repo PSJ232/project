@@ -62,6 +62,7 @@
   ArrayList<OrderBean> orderArrayList = (ArrayList<OrderBean>)request.getAttribute("orderArrayList");
   ArrayList<ItemBean> nonItemArrayList = (ArrayList<ItemBean>)request.getAttribute("nonItemArrayList");
   ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>)request.getAttribute("itemArrayList");
+  ArrayList<Integer> odList = (ArrayList<Integer>)request.getAttribute("odList");
   %>
  
   	<section>
@@ -81,7 +82,7 @@
 	   			%>
 	   				<tr><td><%=nonOrderArrayList.get(i).getO_rdate() %></td>
 	   					<td><%=nonItemArrayList.get(i).getI_name() %></td>
-	   					<td><a href="../mypage/review?">리뷰 작성</a></td></tr>
+	   					<td><a href="ReviewInsert.rv?od_id=<%=odList.get(i) %>">리뷰 작성</a></td></tr>
 <!-- 		   				// 여기서 링크타고 갈때 번호를 줘야될듯 -->
 <!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
 				<%}%>

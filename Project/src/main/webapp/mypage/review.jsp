@@ -8,8 +8,8 @@
 </head>
 <body>
 <%
-String r_id = (String)session.getAttribute("id");
-
+String m_id = (String)session.getAttribute("m_id");
+int od_id = Integer.parseInt(request.getParameter("od_id"));
 %>
 <!-- 헤더 들어가는곳 -->
 
@@ -58,14 +58,14 @@ String r_id = (String)session.getAttribute("id");
   	
  <!-- 본문 내용 -->
  <div>
- <form action="" method="post" name="fr" enctype="multipart/form-data">
-<!--  <form action="writePro.jsp" method="post" id="write" name="fr" enctype="multipart/form-data"> -->
-<!-- r_id, od_id, r_writer, r_title, r_content, r_rate, r_rate, r_rdate, r_img, r_point -->
-작성자 : <input type="hidden" name="r_id" value="r_id">
-제목 : <input type="text" name="r_title">
-내용 : <input type="text" name="r_content">
-평점 : <input type="text" name="r_rate">
-이미지 : <input type="text" name="r_img">
+ <form action="ReviewInsertPro.rv" method="post" name="fr" enctype="multipart/form-data">
+<input type="hidden" name="od_id" value="<%=od_id %>">
+작성자 : <input type="text" name="r_writer" value="<%=m_id %>" readonly>
+제목 : <input type="text" name="r_title"> <br>
+내용 : <textarea rows="10" clos="20" name="r_content"></textarea> <br>
+평점 : <input type="text" name="r_rate"> <br>
+이미지:<input type="file" name="r_img"><br>
+<input type="submit" value="작성하기">
  </form>
 
 
