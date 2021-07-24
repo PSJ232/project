@@ -35,7 +35,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 			
 			if(c_letter == 1){ //편지 선택함
 		%>		
-				상품이미지<%=i_img %><br>
+				<img src="<%=i_img %>"><br>
 				<%=i_name %><br>
 				수령일: <%=delivery_date %><br>
 				추가상품:편지<br>

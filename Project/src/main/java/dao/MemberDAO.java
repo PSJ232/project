@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import db.JdbcUtil;
+import vo.AnniversaryBean;
 import vo.MemberBean;
 
 // 실제 데이터베이스 작업(비즈니스 로직)을 수행하는 MemberDAO 클래스 정의
@@ -210,8 +212,8 @@ public class MemberDAO {
 		}
 		return myId;
 	}
-	
-	//사용포인트 및 적립포인트를 pointSumService에서 계산하여 현재보유포인트 결과를 저장하는 메서드
+
+	// 사용포인트 및 적립포인트를 pointSumService에서 계산하여 현재보유포인트 결과를 저장하는 메서드
 	public int updatePoint(String m_id, int updatePoint) {
 		System.out.println("MemberDAO - updatePoint()");
 
@@ -234,6 +236,142 @@ public class MemberDAO {
 		}
 
 		return updateCount;
+	}
+
+	public int insertAnn(AnniversaryBean anniversaryBean) {
+		System.out.println("MemberDAO - insertAnn()");
+
+		int insertCount = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "INSERT INTO anniversary VALUES(?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, anniversaryBean.getA_id());
+			pstmt.setString(2, anniversaryBean.getM_id());
+			pstmt.setString(3, anniversaryBean.getA_date());
+			pstmt.setString(4, anniversaryBean.getA_name());
+			pstmt.setInt(5, anniversaryBean.getA_repeat());
+
+			insertCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+
+		return insertCount;
+
+	}
+
+	public ArrayList<AnniversaryBean> selectAnnList(String m_id) {
+		System.out.println("MemberDAO - selectAnnList()");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		AnniversaryBean ab = null;
+		ArrayList<AnniversaryBean> annList = new ArrayList<AnniversaryBean>();
+
+		try {
+			String sql = "SELECT * FROM anniversary WHERE m_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ab = new AnniversaryBean();
+				ab.setA_id(rs.getInt("a_id"));
+				ab.setM_id(rs.getString("m_id"));
+				ab.setA_date(rs.getString("a_date"));
+				ab.setA_name(rs.getString("a_name"));
+				ab.setA_repeat(rs.getInt("a_repeat"));
+				annList.add(ab);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return annList;
+
+	}
+
+	public int deleteAnn(int a_id) {
+		System.out.println("MemberDAO - deleteAnn()");
+
+		PreparedStatement pstmt = null;
+		int deleteCount = 0;
+
+		String sql = "DELETE FROM anniversary WHERE a_id=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, a_id);
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL문 오류! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		return deleteCount;
+	}
+
+	public int updateAnn(AnniversaryBean anniversaryBean) {
+		System.out.println("MemberDAO - updateAnn()");
+
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "UPDATE anniversary SET a_date=?,a_name=?,a_repeat=? WHERE a_id=?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, anniversaryBean.getA_date());
+			pstmt.setString(2, anniversaryBean.getA_name());
+			pstmt.setInt(3, anniversaryBean.getA_repeat());
+			pstmt.setInt(4, anniversaryBean.getA_id());
+
+			updateCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+
+		return updateCount;
+	}
+
+	public AnniversaryBean selectAnn(int a_id) {
+		System.out.println("MemberDAO - selectAnn()");
+		AnniversaryBean annDetail = new AnniversaryBean();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT * FROM anniversary WHERE a_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, a_id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				annDetail.setA_id(rs.getInt("a_id"));
+				annDetail.setM_id(rs.getString("m_id"));
+				annDetail.setA_date(rs.getString("a_date"));
+				annDetail.setA_name(rs.getString("a_name"));
+				annDetail.setA_repeat(rs.getInt("a_repeat"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return annDetail;
 	}
 
 }

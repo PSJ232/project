@@ -25,6 +25,7 @@ ArrayList<OrderBean> orderList = (ArrayList<OrderBean>) request.getAttribute("or
 </head>
 <body>
 	<h2>배송지 선택</h2>
+	<hr>
 	<form name="addressList" onsubmit="addressSelect(selectAddress.value)">
 		<table border="1">
 			<%

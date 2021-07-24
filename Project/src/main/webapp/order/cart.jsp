@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="svc.ItemDetailService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.CartBean"%>
@@ -10,7 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 재고보다 많이 담을 수 없다
+	function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 재고수량보다 많이 담을 경우 더 이상 담을 수 없다고 정보 표시함
 		if(i_inven > c_qty) {
 	    	document.getElementById('cartNotice'+c_id).innerHTML = "";
 	    	location.href="CartUpdatePro.cr?c_id="+c_id+"&add=1";
@@ -18,8 +19,8 @@
 			document.getElementById('cartNotice'+c_id).innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + i_inven + "개 입니다.";
 		}
 	}
-
-
+	
+	
 </script>
 </head>
 <%
@@ -36,34 +37,36 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				<td>합계금액</td>
 			</tr>
 			<%
-			int totalAmount = 0; // 총 합계 금액 저장할 변수
-			int i;
-			for (i = 0; i < cartList.size(); i++) {// 장바구니와 아이템의 ArrayList에서 필요 정보 반복 추출
-				String i_img = itemList.get(i).getI_img(); //상품 이미지
-				String i_name = itemList.get(i).getI_name(); //상품 이름
-				String delivery_date = cartList.get(i).getC_delivery_date(); //상품 배송 요청일
-				int i_price = (int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100; //상품(할인) 가격, 강제형변환으로 10원단위 절삭함
-				int c_qty = cartList.get(i).getC_qty(); // 상품 수량
-				int c_letter = cartList.get(i).getC_letter(); //편지지 선택 여부
-				int c_id = cartList.get(i).getC_id(); // 장바구니 상품 번호 
-				int i_inven = itemList.get(i).getI_inven();
-
-				int letterPrice = 0; // 편지지 추가에 따른 추가요금
-				String letter = ""; // 편지지가 선택되면 추가상품에 보이고, 선택되지 않으면 안보임(널스트링)
-				if (c_letter == 1) { // 편지지가 1이면 2500원 추가, 0이면 선택안함
-					letterPrice = 2500;
-					letter = "편지 2,500원";
-				}
-
-				int sumAmount = i_price * c_qty + letterPrice; //각 상품에 대한 합계금액
-
-				totalAmount += sumAmount; // 각 상품에 대한 합계금액을 누적한 총 합계금액
+			if (cartList.size() != 0) { // 장바구니 목록이 비어있는지 확인하여 화면을 선택 표시
+				int totalAmount = 0; // 총 합계 금액 저장할 변수
+				int i;
+				for (i = 0; i < cartList.size(); i++) {// 장바구니와 아이템의 ArrayList에서 필요 정보 반복 추출
+					String i_img = itemList.get(i).getI_img(); //상품 이미지
+					String i_name = itemList.get(i).getI_name(); //상품 이름
+					String delivery_date = cartList.get(i).getC_delivery_date(); //상품 배송 요청일
+					int i_price = (int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100; //상품(할인) 가격, 강제형변환으로 10원단위 절삭함
+					int c_qty = cartList.get(i).getC_qty(); // 상품 수량
+					int c_letter = cartList.get(i).getC_letter(); //편지지 선택 여부
+					int c_id = cartList.get(i).getC_id(); // 장바구니 상품 번호 
+					int i_inven = itemList.get(i).getI_inven();
+	
+					int letterPrice = 0; // 편지지 추가에 따른 추가요금
+					String letter = ""; // 편지지가 선택되면 추가상품에 보이고, 선택되지 않으면 안보임(널스트링)
+					if (c_letter == 1) { // 편지지가 1이면 2500원 추가, 0이면 선택안함
+						letterPrice = 2500;
+						letter = "편지 2,500원";
+					}
+	
+					int sumAmount = i_price * c_qty + letterPrice; //각 상품에 대한 합계금액
+	
+					totalAmount += sumAmount; // 각 상품에 대한 합계금액을 누적한 총 합계금액
+			
 			%>
 			<tr>
-				<td><input type="checkbox" name="c_id<%=i %>" value="<%=c_id %>" checked>상품이미지<%=i_img%><br>
+				<td><input type="checkbox" name="c_id<%=i %>" value="<%=c_id %>" checked><img src="<%=i_img%>"><br>
 					<%=i_name%><input type="button" value="x" onclick="location.href='CartDeletePro.cr?c_id=<%=c_id%>'"><br>
 					수령일:<%=delivery_date%><br>
-					<%=i_price%>원<br>
+					<%=NumberFormat.getInstance().format(i_price) %>원<br>
 					<input type="button" value="-" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=-1'"> 
 					
 					<%=c_qty%> 
@@ -75,7 +78,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 					<%if (c_letter == 1){%><input type="button" value="x" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&letter=0'"><%}%>
 				</td>
 				<td>
-					<%=sumAmount%>원<br> 무료배송
+					<%=NumberFormat.getInstance().format(sumAmount)%>원<br> 무료배송
 				</td>
 			</tr>
 			<%
@@ -95,7 +98,19 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 		<input type="submit" value="구매하기">
 	</form>
 	
+	<%
+	} else {
+	%>
+	</table></form> <!-- if문안에서 태그가 짤려서 추가 -->
+	장바구니가 비어있습니다.<br>
+	그 계절 가장 이쁜 꽃으로 행복을 채워보세요.<br>
 	
+	<input type="button" value="쇼핑하러 가기" onclick="location='./'">
+	
+	
+	<%
+	}
+	%>
 	
 	<br><br><br>
 	<hr>

@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberAnnDeleteProAction;
+import action.MemberAnnInsertProAction;
+import action.MemberAnnUpdateFormAction;
+import action.MemberAnnUpdateProAction;
 import action.MemberDeleteProAction;
 import action.MemberFindIdAction;
 import action.MemberUpdateFormAction;
@@ -108,6 +112,39 @@ public class MemberFrontController extends HttpServlet {
 			
 		} else if (command.equals("/MemberFindIdResult.me")) {
 			action = new MemberFindIdAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MemberAnnForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/anniversary.jsp");
+			forward.setRedirect(false);
+			
+		} else if (command.equals("/MemberAnnInsertPro.me")) {
+			action = new MemberAnnInsertProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MemberAnnDeletePro.me")) {
+			action = new MemberAnnDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MemberAnnUpdateForm.me")) {
+			action = new MemberAnnUpdateFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MemberAnnUpdatePro.me")) {
+			action = new MemberAnnUpdateProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

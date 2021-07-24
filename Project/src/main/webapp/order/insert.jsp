@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.CartBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -54,9 +55,9 @@
     
     function pointAccept(m_point, totalPrice){ // 포인트 적용버튼 누르면 실행
     	if(m_point >= document.order.o_point.value && totalPrice >= document.order.o_point.value){
-	    	document.getElementById('pointResult').innerHTML = document.order.o_point.value; // 사용 포인트를 표시
-	    	document.getElementById('nowPoint').innerHTML = m_point - document.order.o_point.value; // (보유포인트 - 사용포인트)연산 결과를 표시
-	    	document.getElementById('totalPrice').innerHTML = totalPrice - document.order.o_point.value; // (상품 총금액 - 포인트)연산 결과를 표시
+	    	document.getElementById('pointResult').innerHTML = document.order.o_point.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 사용 포인트를 표시
+	    	document.getElementById('nowPoint').innerHTML = (m_point - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (보유포인트 - 사용포인트)연산 결과를 표시
+	    	document.getElementById('totalPrice').innerHTML = (totalPrice - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (상품 총금액 - 포인트)연산 결과를 표시
 	    	document.order.paymentAmount.value = totalPrice - document.order.o_point.value; // 결제api에 전달할 결제금액을 저장 -> 테스트 실제로 덮어써지는지 테스트 아직 못해봄
 	    	document.getElementById('pointNotice').innerHTML = "";
     		
@@ -105,9 +106,9 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		price = ((int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100 * checkList.get(i).getC_qty()) + letterPrice; // 단일상품금액 = (원가 * 할인) * 수량 + 편지요금
 		totalPrice += price; // 모든 상품의 누적 총 금액(쿠폰 및 포인트 제외)
 	%>
-		사진자리<img src="<%=itemList.get(i).getI_img()%>">
+		<img src="<%=itemList.get(i).getI_img()%>">
 		<%=itemList.get(i).getI_name() %><br>
-		<%=price %><br>
+		<%=NumberFormat.getInstance().format(price) %><br>
 		수령일:<%=checkList.get(i).getC_delivery_date() %><br>
 		<%=addLetter %>
 		수량:<%=checkList.get(i).getC_qty()%><br>
@@ -143,16 +144,16 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용">(미구현)<br>
 		포인트 <input type="text" name="o_point" value="0"><input type="button" value="적용" onclick="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>)"><br>
 		<span id=pointNotice></span>
-		현재 포인트:<span id=nowPoint><%=memberDetail.getM_point()%></span>
+		현재 포인트:<span id=nowPoint><%=NumberFormat.getInstance().format(memberDetail.getM_point()) %></span>
 		<h3>최종 결제 금액</h3>
-		총 상품 금액 <%=totalPrice %> 원<br>
+		총 상품 금액 <%=NumberFormat.getInstance().format(totalPrice) %> 원<br>
 		배송비 0 원<br>
 		쿠폰 할인 -0 원 (미구현)<br>
 		포인트 할인 -<span id="pointResult">0</span> 원<br>
 		등급 할인 -0 원(아직미구현)<br>
 		
 		<h4>총 결제 금액</h4>
-		<span id="totalPrice"><%=totalPrice %></span> 원
+		<span id="totalPrice"><%=NumberFormat.getInstance().format(totalPrice) %></span> 원
 		<h3>결제 수단</h3>
 		
 		<%
