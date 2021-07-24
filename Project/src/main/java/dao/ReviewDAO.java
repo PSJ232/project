@@ -263,6 +263,39 @@ public class ReviewDAO {
 		return insertCount;
 	}
 
+	public ReviewBean getReview(int od_id) {
+		System.out.println("ReviewDAO - getReview()");
+		ReviewBean rb = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM review WHERE od_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, od_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				rb = new ReviewBean();
+				// r_id, od_id, r_writer, r_title, r_content, r_rate, r_date, r_img, r_point
+				rb.setR_id(rs.getInt("r_id"));
+				rb.setOd_id(rs.getInt("od_id"));
+				rb.setR_writer(rs.getString("r_writer"));
+				rb.setR_title(rs.getString("r_title"));
+				rb.setR_rate(rs.getInt("r_rate"));
+				rb.setR_content(rs.getString("r_content"));
+				rb.setR_rdate(rs.getDate("r_rdate"));
+				rb.setR_point(rs.getInt("r_point"));
+			} 
+		} catch (SQLException e) {
+			System.out.println("ReviewDAO - getReview() SQL문 오류 : " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return rb;
+	}
+
 
 
 

@@ -9,7 +9,7 @@ public class ReviewBean {
 	private String r_title;
 	private String r_content;
 	private int r_rate;
-	private Date r_date;
+	private Date r_rdate;
 	private String r_img;
 	private int r_point;
 	public int getR_id() {
@@ -48,12 +48,6 @@ public class ReviewBean {
 	public void setR_rate(int r_rate) {
 		this.r_rate = r_rate;
 	}
-	public Date getR_date() {
-		return r_date;
-	}
-	public void setR_date(Date r_date) {
-		this.r_date = r_date;
-	}
 	public String getR_img() {
 		return r_img;
 	}
@@ -65,6 +59,12 @@ public class ReviewBean {
 	}
 	public void setR_point(int r_point) {
 		this.r_point = r_point;
+	}
+	public Date getR_rdate() {
+		return r_rdate;
+	}
+	public void setR_rdate(Date r_rdate) {
+		this.r_rdate = r_rdate;
 	}
 	
 	
