@@ -40,6 +40,7 @@ CREATE TABLE `anniversary` (
 
 LOCK TABLES `anniversary` WRITE;
 /*!40000 ALTER TABLE `anniversary` DISABLE KEYS */;
+INSERT INTO `anniversary` VALUES (1,'admin','2021-07-25','언제',1),(17,'admin','2010-10-10','백일반복',100),(36,'admin','2011-11-11','반복없음',0),(40,'admin','2021-12-31','마지막날',100),(41,'admin','2009-08-01','팔월',1);
 /*!40000 ALTER TABLE `anniversary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,6 +73,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (1,1,'admin',3,'2021-07-24 16:04:29',1,'2021-07-31'),(2,1,'admin',1,'2021-07-24 16:07:48',1,'2021-07-29'),(3,1,'admin',1,'2021-07-24 16:08:10',1,'2021-07-29'),(4,1,'admin',1,'2021-07-24 16:13:31',1,'2021-07-29'),(5,1,'admin',1,'2021-07-24 16:41:38',0,'2021-07-29');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,7 +238,6 @@ CREATE TABLE `member` (
   `m_gender` int(11) NOT NULL,
   `g_id` int(11) NOT NULL COMMENT 'default 0',
   `m_agree` varchar(2) DEFAULT NULL,
-  `m_address` varchar(45) DEFAULT NULL COMMENT '회원최근배송지',
   `m_rdate` date NOT NULL,
   `m_drop` date DEFAULT NULL COMMENT '회원탈퇴',
   `m_point` int(11) NOT NULL,
@@ -253,7 +254,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('admin','1234','관리자','01000000000','2000-01-01',1,0,NULL,NULL,'2021-07-23',NULL,958000);
+INSERT INTO `member` VALUES ('admin','1234','관리자','01000000000','2000-01-01',1,0,NULL,'2021-07-23',NULL,998999);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,7 +288,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (2021072301,'admin','관리자','06035 서울 강남구 가로수길 5 우리집','신종현','01090908080',228400,-12000,1,'2021-07-23 12:26:09');
+INSERT INTO `orders` VALUES (2021072301,'admin','관리자','06035&서울 강남구 가로수길 5&회사','신종현','01099990000',110300,0,1,'2021-07-23 21:19:34'),(2021072302,'admin','관리자','46769&부산 강서구 가덕해안로 3&집','홍길동','01088885555',151200,-1000,1,'2021-07-23 21:53:12');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +329,7 @@ CREATE TABLE `orders_detail` (
 
 LOCK TABLES `orders_detail` WRITE;
 /*!40000 ALTER TABLE `orders_detail` DISABLE KEYS */;
-INSERT INTO `orders_detail` VALUES (1,2021072301,1,0,1,'null',0,'admin',1,'2021-07-23','주문접수',0),(2,2021072301,2,1,2,'',0,'admin',2,'2021-07-24','주문접수',0),(3,2021072301,3,2,1,'',0,'admin',3,'2021-07-25','주문접수',0),(4,2021072301,4,4,1,'힘내세요',0,'admin',4,'2021-07-26','주문접수',0);
+INSERT INTO `orders_detail` VALUES (1,2021072301,1,4,2,'감사합니다',0,'admin',99999999,'2021-07-31','주문접수',0),(2,2021072302,3,4,1,'사랑합니다',0,'admin',3,'2021-07-25','주문접수',0),(3,2021072302,4,4,1,'힘내세요',0,'admin',5,'2021-07-28','주문접수',0),(4,2021072302,1,4,1,'감사합니다',0,'admin',6,'2021-07-28','주문접수',0);
 /*!40000 ALTER TABLE `orders_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-23 12:28:47
+-- Dump completed on 2021-07-25  3:59:22
