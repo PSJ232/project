@@ -2,7 +2,6 @@ package action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import svc.ReviewDetailService;
 import vo.ActionForward;
@@ -18,15 +17,13 @@ public class ReviewUpdateFormAction implements Action {
 		int od_id = Integer.parseInt(request.getParameter("od_id"));
 		
 		ReviewDetailService reviewDetailService = new ReviewDetailService();
-		
 		ReviewBean rb = reviewDetailService.selectReview(od_id);
 		
 		request.setAttribute("rb", rb);
 		
 		forward = new ActionForward();
-		forward.setRedirect(false);
 		forward.setPath("./mypage/reviewUpdate.jsp");
-		
+		forward.setRedirect(false);
 		
 		return forward;
 	}

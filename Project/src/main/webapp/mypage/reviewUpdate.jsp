@@ -10,8 +10,9 @@
 <body>
 <%
 String m_id = (String)session.getAttribute("m_id");
-ReviewBean rb = (ReviewBean)session.getAttribute("rb");
+ReviewBean rb = (ReviewBean)request.getAttribute("rb");
 %>
+
 <!-- 헤더 들어가는곳 -->
 
 <!-- 헤더 들어가는곳 -->
@@ -63,9 +64,9 @@ ReviewBean rb = (ReviewBean)session.getAttribute("rb");
 <input type="hidden" name="od_id" value="<%=rb.getOd_id() %>">
 작성자 : <input type="text" name="r_writer" value="<%=m_id %>" readonly>
 제목 : <input type="text" name="r_title" value=<%=rb.getR_title() %>> <br>
-내용 : <textarea rows="10" clos="20" name="r_content" value=<%=rb.getR_content() %>></textarea> <br>
+내용 : <textarea rows="10" clos="20" name="r_content" ><%=rb.getR_content() %></textarea> <br>
 평점 : <input type="text" name="r_rate" value=<%=rb.getR_rate() %>> <br>
-이미지:<input type="file" name="r_img" <%=rb.getR_img() %>><br>
+이미지:<input type="file" name="r_img" value=<%=rb.getR_img() %>><br>
 <input type="submit" value="작성하기">
  </form>
 
