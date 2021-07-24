@@ -168,14 +168,39 @@ public class ReviewDAO {
 		return itemArrayList;
 	}
 
-	public ArrayList<Integer> getOrderDetail(String m_id) {
-		System.out.println("ReviewDAO - getOrderDetail()");
-		ArrayList<Integer> odList = new ArrayList<Integer>();
+	public ArrayList<Integer> getReviewNonOrderDetail(String m_id) {
+		System.out.println("ReviewDAO - getReviewNonOrderDetail()");
+		ArrayList<Integer> nonOdList = new ArrayList<Integer>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		String sql = "SELECT od_id FROM orders_detail WHERE od_review = 0 AND m_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				nonOdList.add(rs.getInt("od_id"));
+			} 
+		} catch (Exception e) {
+			System.out.println("ReviewDAO - getOrderDetail() SQL문 오류 - " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return nonOdList;
+		
+	}
+
+	public ArrayList<Integer> getReviewOrderDetail(String m_id) {
+		System.out.println("ReviewDAO - getReviewOrderDetail()");
+		ArrayList<Integer> odList = new ArrayList<Integer>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT od_id FROM orders_detail WHERE od_review = 1 AND m_id = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);

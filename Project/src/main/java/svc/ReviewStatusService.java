@@ -73,7 +73,7 @@ public class ReviewStatusService {
 		return itemArrayList;
 	}
 	
-	public ArrayList<Integer> odList(String m_id) {
+	public ArrayList<Integer> reviewNonStatusOdList(String m_id) {
 		System.out.println("ReviewStatusService - odList()");
 		ArrayList<Integer> odList = null;
 		
@@ -81,13 +81,30 @@ public class ReviewStatusService {
 		ReviewDAO rdao = ReviewDAO.getInstance();
 		rdao.setConnection(con);
 		
-		odList = rdao.getOrderDetail(m_id);
+		odList = rdao.getReviewNonOrderDetail(m_id);
 		
 		close(con);
 		
 		return odList;
 	
 	}
+
+	public ArrayList<Integer> reviewStatusOdList(String m_id) {
+		System.out.println("ReviewStatusService - odList()");
+		ArrayList<Integer> odList = null;
+		
+		Connection con = getConnection();
+		ReviewDAO rdao = ReviewDAO.getInstance();
+		rdao.setConnection(con);
+		
+		odList = rdao.getReviewOrderDetail(m_id);
+		
+		close(con);
+		
+		return odList;
+		
+	}
+
 	
 
 }
