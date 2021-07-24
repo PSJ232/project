@@ -2,12 +2,19 @@ package vo;
 
 
 public class ClassDetailBean {
+	private int class_detail_id;
 	private int time;
 	private int class_id;
 	private String date;
 	private String place;
 	private int isSelected;
 	
+	public int getClass_detail_id() {
+		return class_detail_id;
+	}
+	public void setClass_detail_id(int class_detail_id) {
+		this.class_detail_id = class_detail_id;
+	}
 	
 	public int getClass_id() {
 		return class_id;

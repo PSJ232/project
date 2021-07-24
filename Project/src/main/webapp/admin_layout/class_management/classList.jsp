@@ -69,10 +69,10 @@
 			</tr>
 			<tr>
 			<td>
+			<h3><%=cb.getClass_place() %></h3>
 			<%
 		for(ClassDetailBean cdb: classDetailList){
 			if(cb.getClass_id() == cdb.getClass_id()){
-				date = cdb.getDate();
 				%>
 					<%=cdb.getTime() %>:00:00<br>
 				<%
@@ -82,13 +82,12 @@
 			</td>
 			</tr>
 			<tr><td>정원: <%=cb.getClass_max_member() %></td><td>현재인원: <%=cb.getClass_current_member() %></td></tr>
-			<tr><td>등록날짜: <%=cb.getClass_create_date() %> </td><td> 클래스날짜: <%=date %></td></tr>
+			<tr><td>등록날짜: <%=cb.getClass_create_date() %> </td><td> 클래스날짜: <%=cb.getClass_date() %></td></tr>
 			</table>
 			<%
 		}
 	%>
 	<input type="button" value="클래스 등록" onclick="location.href='ClassInsertForm.ad'">
-	<input type="button" value="클래스 삭제" onclick="location.href='ClassDeletePro.ad'">
 	</div>
 	<footer>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>

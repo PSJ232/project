@@ -20,15 +20,15 @@ public class ClassDetailViewAction implements Action {
 		String command = request.getServletPath();
 		ClassDetailViewService service = new ClassDetailViewService();
 		ClassBean classBean = service.getDetailContent(class_num);
-		ArrayList<Time> timeList = service.getTimeList(class_num, classBean.getClass_place());
-		ClassDetailSelectTimelistService timeService = new ClassDetailSelectTimelistService();
 		request.setAttribute("classBean", classBean);
-		request.setAttribute("timeList", timeList);
+		ClassDetailSelectTimelistService time_service = new ClassDetailSelectTimelistService();
+		
 		
 		if(command.equals("/ClassModifyForm.ad")) {
-			ArrayList<Time> selectableTimeList = timeService.getTimeList(classBean.getClass_place(), classBean.getClass_date());
+			// 가지고있던 timeList 값 반환
+			ArrayList<Time> selectableTimeList = time_service.getTimeList(request.getParameter("place"), request.getParameter("date"));
 			request.setAttribute("selectableTimeList", selectableTimeList);
-			forward.setPath("./admin_layout/class_management/classModify.jsp");
+			forward.setPath("./admin_layout/class_management/classModifyForm.jsp");
 			forward.setRedirect(false);
 			
 		}else if(command.equals("/ClassDetailView.ad")) {

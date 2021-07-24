@@ -30,7 +30,7 @@ public class ClassDAO {
 		this.con = con;
 	}
 	
-	public int insertClass(ClassBean classBean) {
+	public int insertClass(ClassBean classBean, String[] timeList) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int insertCount = 0;
@@ -57,13 +57,23 @@ public class ClassDAO {
 			pstmt.setString(9, classBean.getClass_sub_img2());
 			pstmt.setString(10, classBean.getClass_sub_img3());
 			pstmt.setString(11, classBean.getClass_date());
-			insertCount = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 			 
-			
+			for(String time: timeList) {
+				sql = "INSERT INTO fclass_detail VALUES(null,?,?,?,?,1)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.setString(2, classBean.getClass_date());
+				pstmt.setString(3, classBean.getClass_place());
+				pstmt.setString(4, time);
+				
+				insertCount += pstmt.executeUpdate();
+			}
 		} catch (SQLException e) {
 			System.out.println("SQL구문 오류!(insertClass) - " + e.getMessage());
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		
 		return insertCount;
@@ -86,6 +96,8 @@ public class ClassDAO {
 				classBean.setClass_max_member(rs.getInt("f_maxmem"));
 				classBean.setClass_main_img(rs.getString("f_main_img"));
 				classBean.setClass_create_date(rs.getTimestamp("f_rdate"));
+				classBean.setClass_date(rs.getString("f_cdate"));
+				classBean.setClass_place(rs.getString("f_place"));
 				classBean.setClass_sub_img1(rs.getString("f_sub_img1"));
 				classBean.setClass_sub_img2(rs.getString("f_sub_img2"));
 				classBean.setClass_sub_img3(rs.getString("f_sub_img3"));
@@ -136,27 +148,76 @@ public class ClassDAO {
 		return classBean;
 	}
 
-	public ArrayList<Time> getTimeList(int class_num, String class_place) {
-		ArrayList<Time> timeList = new ArrayList<Time>();
+//	public int deleteTimeList(int class_num, String class_place) {
+//		int deleteCount = 0;
+//		PreparedStatement pstmt = null;
+//		try {
+//			String sql = "delete FROM fclass_detail WHERE f_id=? and fd_place=?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, class_num);
+//			pstmt.setString(2, class_place);
+//			deleteCount = pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			System.out.println("SQL 구문오류!(ClassDAO - deleteTimeList) " + e.getMessage());
+//		} finally {
+//			close(pstmt);
+//		}
+//		return deleteCount;
+//	}
+
+	public int modifyClass(ClassBean classBean, String[] timeList) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		int modifyCount = 0;
 		try {
-			String sql = "SELECT fd_time FROM fclass_detail WHERE f_id=? and fd_place=?";
+			String sql = "UPDATE fclass SET f_subject=?,f_desc=?,f_maxmem=?,f_main_img=?,f_sub_img1=?,f_sub_img2=?,f_sub_img3=? WHERE f_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, class_num);
-			pstmt.setString(2, class_place);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				timeList.add(rs.getTime(1));
+			pstmt.setString(1, classBean.getClass_subject());
+			pstmt.setString(2, classBean.getClass_desc());
+			pstmt.setInt(3, classBean.getClass_max_member());
+			pstmt.setString(4, classBean.getClass_main_img());
+			pstmt.setString(5, classBean.getClass_sub_img1());
+			pstmt.setString(6, classBean.getClass_sub_img2());
+			pstmt.setString(7, classBean.getClass_sub_img3());
+			pstmt.setInt(8, classBean.getClass_id());
+			modifyCount = pstmt.executeUpdate();
+			close(pstmt);
+			if(timeList != null) {
+				for(String time: timeList) {
+					
+					sql = "INSERT INTO fclass_detail VALUES(null,?,?,?,?,1)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, classBean.getClass_id());
+					pstmt.setString(2, classBean.getClass_date());
+					pstmt.setString(3, classBean.getClass_place());
+					pstmt.setString(4, time);
+					pstmt.executeUpdate();
+				}
 			}
 		} catch (SQLException e) {
-			System.out.println("SQL 구문오류!(ClassDAO - getTimeList) " + e.getMessage());
-		} finally {
-			close(rs);
+			e.printStackTrace();
+		}
+		
+		return modifyCount;
+	}
+
+	public int deleteClass(int class_num) {
+		PreparedStatement pstmt = null;
+		int deleteCount = 0;
+		try {
+			String sql = "DELETE FROM fclass WHERE f_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, class_num);
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL구문 오류!(ClassDAO deleteClass) - " + e.getMessage());
+		}finally {
 			close(pstmt);
 		}
-		return timeList;
+		
+		return deleteCount;
 	}
+
 
 	
 }

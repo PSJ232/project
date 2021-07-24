@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 | 클래스 등록</title>
 <style>
 	body {
 		text-align: center;

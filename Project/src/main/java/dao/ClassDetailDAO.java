@@ -40,14 +40,16 @@ public class ClassDetailDAO {
 			if(rs.next()) {
 				num = rs.getInt(1);
 			}
+			close(pstmt);
+			close(rs);
+			
 			for(String str: timeList) {
-				sql = "INSERT INTO fclass_detail VALUES(?,?,?,?,?)";
+				sql = "INSERT INTO fclass_detail VALUES(null,?,?,?,?,1)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, classDetailBean.getDate());
 				pstmt.setInt(2, num);
 				pstmt.setString(3, classDetailBean.getPlace());
 				pstmt.setString(4, str);
-				pstmt.setInt(5, 1);
 				
 				insertCount += pstmt.executeUpdate();
 			}
@@ -71,6 +73,7 @@ public class ClassDetailDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ClassDetailBean classDetailBean = new ClassDetailBean();
+				classDetailBean.setClass_detail_id(rs.getInt("fd_id"));
 				classDetailBean.setClass_id(rs.getInt("f_id"));
 				classDetailBean.setTime(rs.getInt("fd_time"));
 				classDetailBean.setPlace(rs.getString("fd_place"));
@@ -126,7 +129,7 @@ public class ClassDetailDAO {
 		}
 		return timeList;
 	}
-	
+
 
 	
 }

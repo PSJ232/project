@@ -32,7 +32,7 @@ public class ClassInsertProAction implements Action {
 		int maxSize = 10 * 1024 * 1024;
 		
 		realFolder = context.getRealPath(saveFolder);
-		
+		System.out.println(realFolder);
 		MultipartRequest multi = new MultipartRequest(
 				request, 
 				realFolder , 
@@ -44,49 +44,27 @@ public class ClassInsertProAction implements Action {
 		ClassBean classBean = new ClassBean();
 		classBean.setClass_subject(multi.getParameter("class_subject"));
 		classBean.setClass_desc(multi.getParameter("class_desc"));
-		classBean.setClass_price(Integer.parseInt(multi.getParameter("class_cost")));
 		classBean.setClass_max_member(Integer.parseInt(multi.getParameter("max_member")));
-		classBean.setClass_place(multi.getParameter("place"));
 		classBean.setClass_date(multi.getParameter("date"));
+		classBean.setClass_place(multi.getParameter("place"));
+		classBean.setClass_price(Integer.parseInt(multi.getParameter("class_cost")));
+		classBean.setClass_main_img(multi.getFilesystemName("class_main_img"));
+		classBean.setClass_sub_img1(multi.getFilesystemName("class_sub_img1"));
+		classBean.setClass_sub_img2(multi.getFilesystemName("class_sub_img2"));
+		classBean.setClass_sub_img3(multi.getFilesystemName("class_sub_img3"));
 		
-		Enumeration files = multi.getFileNames();
+		// detail에 저장할 값들
 		
-		// 업로드한 파일들의 이름을 얻어옴
-		
-		String file = (String)files.nextElement();
-		String filename = multi.getFilesystemName(file);
-		
-		String file2 = (String)files.nextElement();
-		String filename2 = multi.getFilesystemName(file2);
-		
-		String file3 = (String)files.nextElement();
-		String filename3 = multi.getFilesystemName(file3);
-		
-		String file4 = (String)files.nextElement();
-		String filename4 = multi.getFilesystemName(file4);
-		  
-		classBean.setClass_sub_img3(filename);
-		classBean.setClass_sub_img2(filename2);
-		classBean.setClass_sub_img1(filename3);
-		classBean.setClass_main_img(filename4);
-		 
-		ClassDetailBean detailBean = new ClassDetailBean();
-		detailBean.setDate(multi.getParameter("date"));
-		detailBean.setPlace(multi.getParameter("place"));
-		
-		
-		boolean isWriteSuccess = service.registArticle(classBean);
+		boolean isWriteSuccess = service.registArticle(classBean, multi.getParameterValues("timeList"));
 		if(isWriteSuccess) {
-			request.setAttribute("detailBean", detailBean);
-			request.setAttribute("timeList", multi.getParameterValues("timeList"));
 			forward = new ActionForward();
-			forward.setPath("ClassDetailadd.ad");
-			forward.setRedirect(false);
+			forward.setPath("ClassList.ad");
+			forward.setRedirect(true);
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('실패')");
+			out.println("alert('등록실패')");
 			out.println("history.back()");
 			out.println("</script>");
 		}

@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.ClassDeleteAction;
 import action.ClassDetailViewAction;
 import action.ClassDetailSelectTimelistAction;
 import action.ClassInsertProAction;
 import action.ClassListAction;
+import action.ClassModifyProAction;
 import action.ItemDetailAction;
 import action.ItemInsertAction;
 import action.ItemListAction;
@@ -160,10 +162,26 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		// 클래스 상세페이지
+		// 클래스 수정
+		}else if(command.equals("/ClassModifyPro.ad")) {
+			forward = new ActionForward();
+			action = new ClassModifyProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/ClassDetailView.ad")) {
 			forward = new ActionForward();
 			action = new ClassDetailViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ClassDelete.ad")) {
+			forward = new ActionForward();
+			action = new ClassDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

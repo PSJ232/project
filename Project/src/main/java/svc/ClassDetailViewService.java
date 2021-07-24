@@ -17,13 +17,6 @@ public class ClassDetailViewService {
 		close(con);
 		return classBean;
 	}
+	
 
-	public ArrayList<Time> getTimeList(int class_num, String class_place) {
-		Connection con = getConnection();
-		ClassDAO classDAO = ClassDAO.getInstance();
-		classDAO.setConnection(con);
-		ArrayList<Time> timeList = classDAO.getTimeList(class_num, class_place);
-		close(con);
-		return timeList;
-	}
 }

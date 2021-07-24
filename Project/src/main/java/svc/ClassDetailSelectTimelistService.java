@@ -18,4 +18,5 @@ public class ClassDetailSelectTimelistService {
 		
 		return timeList;
 	}
+
 }
