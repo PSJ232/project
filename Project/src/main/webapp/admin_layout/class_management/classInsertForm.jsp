@@ -58,9 +58,14 @@ $(function(){
 </script>
 </head>
 <body>
-
+	<header>
+		<jsp:include page="../inc/adminHeader.jsp"></jsp:include>
+	</header>
+	<nav>
+		<jsp:include page="../inc/navigation.jsp"></jsp:include>
+	</nav>
    <!-- onclick하면 ajax로 띄워주기 -->
-<div id="container"> <!-- css layout요소 추가 -->
+	<div id="container"> <!-- css layout요소 추가 -->
 		<h1>클래스 등록</h1>
 		<form action="ClassInsertPro.ad" method="post" enctype="multipart/form-data" name="insert_form">
 			<div class="class_insert_container">
@@ -83,6 +88,8 @@ $(function(){
 			</div>
 		</form>
 	</div>
-
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
 
 </html>

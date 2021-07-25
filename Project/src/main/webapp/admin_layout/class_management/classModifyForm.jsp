@@ -28,7 +28,12 @@
 %>
 </head>
 <body>
-
+	<header>
+		<jsp:include page="../inc/adminHeader.jsp"></jsp:include>
+	</header>
+	<nav>
+		<jsp:include page="../inc/navigation.jsp"></jsp:include>
+	</nav>
    <!-- onclick하면 ajax로 띄워주기 -->
 <div id="container"> <!-- css layout요소 추가 -->
 		<h1>클래스 수정</h1>
@@ -46,7 +51,6 @@
 					}
 				%>
 				</select><br>
-<%-- 				<input type="hidden" name="class_num" id="class_num" value="<%=classBean.getClass_id() %>"> --%>
 				클래스 설명: <textarea name="class_desc" rows="30" cols="100"><%=classBean.getClass_desc() %></textarea><br>
 				비용: <input type="text" name="class_cost" value="<%=classBean.getClass_price()%>" readonly><br>
 				정원: <input type="text" name="max_member" value="<%=classBean.getClass_max_member()%>"><br>
@@ -62,6 +66,8 @@
 			</div>
 		</form>
 	</div>
-
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
 
 </html>

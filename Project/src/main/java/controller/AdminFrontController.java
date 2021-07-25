@@ -1,6 +1,10 @@
 package controller;
 
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.getConnection;
+
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.AdminMemberDetailAction;
 import action.ClassDeleteAction;
 import action.ClassDetailViewAction;
 import action.ClassDetailSelectTimelistAction;
@@ -20,6 +25,7 @@ import action.ItemDetailAction;
 import action.ItemInsertAction;
 import action.ItemListAction;
 import action.ItemUpdateAction;
+import svc.AdminMemberSearchService;
 import action.ClassTimeAddAction;
 import action.ItemDeleteAction;
 import vo.ActionForward;
@@ -29,6 +35,7 @@ public class AdminFrontController extends HttpServlet {
 	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		
 		//Action객체를 upcasting하여 저장하기 위한 변수 선언
 		Action action = null;
@@ -187,6 +194,24 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberSearch.ad")) {
+			String m_name = request.getParameter("m_name");
+			AdminMemberSearchService service = new AdminMemberSearchService();
+			String filter = request.getParameter("filter");
+			PrintWriter out= response.getWriter();
+			out.write(service.getJSON(m_name, filter));
+		}else if(command.equals("/MemberList.ad")) {
+			forward = new ActionForward();
+			forward.setPath("./admin_layout/member_management/memberList.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MemberDetail.ad")) {
+			forward = new ActionForward();
+			action = new AdminMemberDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
@@ -202,6 +227,8 @@ public class AdminFrontController extends HttpServlet {
 
 		}
 	}
+	
+	
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

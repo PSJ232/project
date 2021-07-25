@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import db.JdbcUtil;
 import vo.AnniversaryBean;
 import vo.MemberBean;
+import vo.OrderBean;
 
 // 실제 데이터베이스 작업(비즈니스 로직)을 수행하는 MemberDAO 클래스 정의
 public class MemberDAO {
@@ -372,6 +373,105 @@ public class MemberDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return annDetail;
+	}
+	
+	public ArrayList<MemberBean> search(String memberName, String filter){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<MemberBean> resultList = new ArrayList<MemberBean>();
+		String sql = "";
+		try {
+			switch (filter) {
+			case "1": sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_name"; break;
+			case "2": sql = "SELECT * FROM member WHERE m_id LIKE ? ORDER BY m_drop desc, m_id"; break;
+			case "3": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,m_phone"; break;
+			default: sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_id";
+			}
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + memberName + "%");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MemberBean mb = new MemberBean();
+				mb.setM_id(rs.getString("m_id"));
+				mb.setM_name(rs.getString("m_name"));
+				mb.setM_phone(rs.getString("m_phone"));
+				mb.setM_birth(rs.getString("m_birth"));
+				mb.setM_gender(rs.getInt("m_gender"));
+//				mb.setG_id(rs.getInt(rs.getInt("g_id")));
+//				System.out.println("g_id: " + rs.getInt("g_id"));
+				mb.setM_agree(rs.getString("m_agree"));
+				mb.setM_rdate(rs.getDate("m_rdate"));
+				mb.setM_drop(rs.getDate("m_drop"));
+				mb.setM_point(rs.getInt("m_point"));
+				resultList.add(mb);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류!(MemberDAO - search(String memberName) - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return resultList;
+	}
+
+	public MemberBean getMemberDetail(String m_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberBean memberBean = null;
+		try {
+			String sql = "SELECT * FROM member WHERE m_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberBean = new MemberBean();
+				memberBean.setM_id(m_id);
+				memberBean.setM_name(rs.getString("m_name"));
+				memberBean.setM_phone(rs.getString("m_phone"));
+				memberBean.setM_birth(rs.getString("m_birth"));
+				memberBean.setM_gender(rs.getInt("m_gender"));
+				memberBean.setG_id(rs.getInt("g_id"));
+				memberBean.setM_agree(rs.getString("m_agree"));
+				memberBean.setM_rdate(rs.getDate("m_rdate"));
+				memberBean.setM_drop(rs.getDate("m_drop"));
+				memberBean.setM_point(rs.getInt("m_point"));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL구문오류! (MemberDAO getMemberDetail) - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return memberBean;
+	}
+
+	public ArrayList<OrderBean> getMemberOrders(String m_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<OrderBean> orderList = new ArrayList<OrderBean>();
+		try {
+			String sql = "SELECT * FROM orders WHERE m_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				OrderBean orderBean = new OrderBean();
+				orderBean.setO_id(rs.getInt("o_id"));
+				orderBean.setM_id(m_id);
+				orderBean.setO_amount(rs.getInt("o_amount"));
+				orderBean.setO_payment(rs.getInt("o_payment"));
+				orderBean.setO_rdate(rs.getDate("o_rdate"));
+				orderList.add(orderBean);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL구문오류! (MemberDAO getMemberOrders) - " + e.getMessage());
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return orderList;
 	}
 
 }
