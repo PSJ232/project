@@ -53,19 +53,41 @@
         }).open();
     }
     
-    function pointAccept(m_point, totalPrice){ // 포인트 적용버튼 누르면 실행
-    	if(m_point >= document.order.o_point.value && totalPrice >= document.order.o_point.value){
+    function pointAccept(m_point, totalPrice, gradeDiscount){ // 포인트 입력하면 실행
+    	var finalPrice = totalPrice - gradeDiscount; // 포인트 계산을 위한 최종금액 확인
+    	if(m_point >= document.order.o_point.value && finalPrice >= document.order.o_point.value){
 	    	document.getElementById('pointResult').innerHTML = document.order.o_point.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 사용 포인트를 표시
 	    	document.getElementById('nowPoint').innerHTML = (m_point - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (보유포인트 - 사용포인트)연산 결과를 표시
-	    	document.getElementById('totalPrice').innerHTML = (totalPrice - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (상품 총금액 - 포인트)연산 결과를 표시
-	    	document.order.paymentAmount.value = totalPrice - document.order.o_point.value; // 결제api에 전달할 결제금액을 저장 -> 테스트 실제로 덮어써지는지 테스트 아직 못해봄
-	    	document.getElementById('pointNotice').innerHTML = "";
-    		
+	    	document.getElementById('totalPrice').innerHTML = (finalPrice - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (상품 총금액 - 포인트)연산 결과를 표시
+	    	document.order.paymentAmount.value = finalPrice - document.order.o_point.value; // 결제api에 전달할 결제금액을 저장 -> 테스트 실제로 덮어써지는지 테스트 아직 못해봄
+    		document.getElementById('pointNotice').innerHTML = "";
     	} else {
+    		document.order.o_point.value = "";
+    		pointAccept(m_point, totalPrice, gradeDiscount);
     		document.getElementById('pointNotice').innerHTML = "- 보유포인트 또는 상품금액을 초과할 수 없습니다.<br>";
     	}
     }
     
+    function pointFullAccept(m_point, totalPrice, gradeDiscount){ // 전액사용버튼 누르면 실행
+    	var finalPrice = totalPrice - gradeDiscount; // 포인트 계산을 위한 최종금액 확인
+    	if(m_point >= finalPrice) {
+    		document.order.o_point.value = finalPrice;
+    	} else {
+    		document.order.o_point.value = m_point;
+    	}
+    	document.getElementById('pointNotice').innerHTML = "";
+    	document.getElementById('pointResult').innerHTML = document.order.o_point.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 사용 포인트를 표시
+    	document.getElementById('nowPoint').innerHTML = (m_point - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (보유포인트 - 사용포인트)연산 결과를 표시
+    	document.getElementById('totalPrice').innerHTML = (finalPrice - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (상품 총금액 - 포인트)연산 결과를 표시
+    	document.order.paymentAmount.value = finalPrice - document.order.o_point.value; // 결제api에 전달할 결제금액을 저장 -> 테스트 실제로 덮어써지는지 테스트 아직 못해봄
+	
+    }
+    
+    function defaultPoint(){ // 포인트 input 공백일 경우 오류 방지
+    	if(document.order.o_point.value == ""){
+    		document.order.o_point.value = 0;
+    	}
+    }
     
 </script>
 <head>
@@ -75,6 +97,8 @@
 <%
 MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
 String m_name = memberDetail.getM_name();
+float g_discount = (float) request.getAttribute("g_discount"); // 등급에 따른 할인 정보 
+int gradeDiscount = 0; // 등급에 따른 할인금액
 int price = 0; // 단일상품금액
 int totalPrice = 0; // 모든상품금액
 int paymentAmount = 0; // 결제api에 넘길 금액 (모든상품금액 - 포인트 - 등급할인)
@@ -88,6 +112,7 @@ ArrayList<OrderDetailBean> orderFormInfo = null;
 if(request.getAttribute("orderFormInfo") != null) { // 편지지가 선택되지 않으면 null 오류 발생하므로 관련코드 if문 처리
 	orderFormInfo = (ArrayList<OrderDetailBean>) request.getAttribute("orderFormInfo");
 }
+
 String addLetter;// 편지가 추가되면 해당 html 추가
 
 %>
@@ -117,6 +142,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<br>
 	<%
 	}
+	gradeDiscount = ((int)(totalPrice *(1 - g_discount) / 100) * 100); // totalPrice에 등급할인 계산하여 할인금액 저장
 	%>
 	
 	<h3>주문자 정보</h3>
@@ -144,18 +170,19 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			
 		<h3>쿠폰/포인트</h3>
 		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용">(미구현)<br>
-		포인트 <input type="text" name="o_point" value="0"><input type="button" value="적용" onclick="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>)"><br>
+		포인트 <input type="text" name="o_point" placeholder="0" onkeyup="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>,<%=gradeDiscount%>)"><br>
 		<span id=pointNotice></span>
 		현재 포인트:<span id=nowPoint><%=NumberFormat.getInstance().format(memberDetail.getM_point()) %></span>
+		<input type="button" value="전액사용" onclick="pointFullAccept(<%=memberDetail.getM_point()%>, <%=totalPrice %>, <%=gradeDiscount%>)"><br>
 		<h3>최종 결제 금액</h3>
 		총 상품 금액 <%=NumberFormat.getInstance().format(totalPrice) %> 원<br>
 		배송비 0 원<br>
 		쿠폰 할인 -0 원 (미구현)<br>
 		포인트 할인 -<span id="pointResult">0</span> 원<br>
-		등급 할인 -0 원(아직미구현)<br>
+		등급 할인 -<%=NumberFormat.getInstance().format(gradeDiscount) %> 원<br>
 		
 		<h4>총 결제 금액</h4>
-		<span id="totalPrice"><%=NumberFormat.getInstance().format(totalPrice) %></span> 원
+		<span id="totalPrice"><%=NumberFormat.getInstance().format(totalPrice-gradeDiscount) %></span> 원
 		<h3>결제 수단</h3>
 		
 		<%
@@ -193,12 +220,11 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			}
 		}
 		%>
-		
 		<input type="hidden" name="iNum" value="<%=i %>">
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
 		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
 		<input type="hidden" name="paymentAmount" value="<%=totalPrice %>"> <!-- 포인트 적용버튼을 누르면 계산된 금액으로 value가 변경됨 -->
-		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500')"> <!-- 결제 api에 따라서 변경해야됨  -->
+		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500'), defaultPoint()" > <!-- 결제 api에 따라서 변경해야됨  -->
 	<br>
 	<br>
 	

@@ -16,15 +16,12 @@ public class MemberLoginProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberLoginProAction");
 		ActionForward forward = null;
-		HttpSession session = request.getSession();
 		
-		MemberBean memberBean = new MemberBean();
-		
-		memberBean.setM_id(request.getParameter("m_id"));
-		memberBean.setM_pass(request.getParameter("m_pass"));
+		String m_id = request.getParameter("m_id");
+		String m_pass = request.getParameter("m_pass");
 		
 		MemberService memberService = new MemberService();
-		boolean isLoginSuccess = memberService.checkMember(memberBean);
+		boolean isLoginSuccess = memberService.checkMember(m_id, m_pass);
 		
 		if(!isLoginSuccess) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -34,13 +31,14 @@ public class MemberLoginProAction implements Action {
 			out.print("history.back();");
 			out.print("</script>");
 		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("m_id", m_id);
+			
 			forward = new ActionForward();
 			forward.setPath("./"); // 메인화면 주소 미정, 임시주소
 			forward.setRedirect(true);
-			session.setAttribute("m_id", request.getParameter("m_id"));
 		}
 		
-		// 포워딩 정보가 저장된 ActionForward 객체 리턴
 		return forward;
 	}
 

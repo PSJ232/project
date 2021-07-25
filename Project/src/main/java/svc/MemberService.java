@@ -35,18 +35,16 @@ public class MemberService {
 		return isJoinSuccess;
 	}
 
-	public boolean checkMember(MemberBean memberBean) {
+	public boolean checkMember(String m_id, String m_pass) {
 		System.out.println("MemberService - checkMember()");
 
 		boolean isLoginSuccess = false;
 
 		Connection con = JdbcUtil.getConnection();
-
 		MemberDAO memberDAO = MemberDAO.getInstance();
-
 		memberDAO.setConnection(con);
 
-		int insertCount = memberDAO.userCheck(memberBean);
+		int insertCount = memberDAO.userCheck(m_id, m_pass);
 
 		if (insertCount > 0) {
 			JdbcUtil.commit(con);
@@ -128,7 +126,6 @@ public class MemberService {
 	}
 
 	public String selectId(String m_phone) {
-
 		System.out.println("MemberService - selectId()");
 
 		String myId = null;
@@ -142,6 +139,20 @@ public class MemberService {
 		JdbcUtil.close(con);
 
 		return myId;
+	}
+
+	public float getGradeDetail(int g_id) {
+		System.out.println("MemberService - getGradeDetail()");
+
+		Connection con = JdbcUtil.getConnection();
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		memberDAO.setConnection(con);
+
+		float g_discount = memberDAO.selectGradeDetail(g_id);
+
+		JdbcUtil.close(con);
+
+		return g_discount;
 	}
 
 }
