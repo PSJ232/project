@@ -12,41 +12,43 @@ import db.JdbcUtil;
 import vo.ItemBean;
 
 public class ItemDAO {
-	
+
 	private static ItemDAO instance;
-	
-	private ItemDAO() {}
-	
+
+	private ItemDAO() {
+	}
+
 	public static ItemDAO getInstance() {
 		// 기존 BoardDAO 인스턴스가 생성된 적이 없을 경우 인스턴스 생성 후 리턴
-		if(instance == null) {
+		if (instance == null) {
 			instance = new ItemDAO();
 		}
-		
+
 		return instance;
 	}
+
 	// ----------------------------------------------------------------------------------
 	// 외부의 Service 클래스로부터 Connection 객체를 전달받아 Connection 타입 변수에 저장
 	Connection con;// 멤버변수 Connection 타입 선언
-	
+
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
 
-	public ItemBean getItem(int i_id) { //등록된 아이템에 대한 디테일 정보를 가져옴
+	public ItemBean getItem(int i_id) { // 등록된 아이템에 대한 디테일 정보를 가져옴
 		System.out.println("ItemDAO - getItem()");
-		
+
 		ItemBean itemDetail = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			String sql = "SELECT * FROM item WHERE i_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, i_id);// 아이디=이메일
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				itemDetail = new ItemBean();
 				itemDetail.setI_id(rs.getInt("i_id"));
 				itemDetail.setI_name(rs.getString("i_name"));
@@ -63,36 +65,36 @@ public class ItemDAO {
 				itemDetail.setI_dpstatus(rs.getString("i_dpstatus"));
 				itemDetail.setI_itemstatus(rs.getString("i_itemstatus"));
 				itemDetail.setI_detailpage(rs.getString("i_detailpage"));
-				
+
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
-		
+
 		return itemDetail;
 	}
-	
-	//상품목록 가져오기
+
+	// 상품목록 가져오기
 	public ArrayList<ItemBean> selectItemList() {
 		System.out.println("ItemDAO - selectItemList()");
-		
+
 		ArrayList<ItemBean> itemList = null;
 		ItemBean ib = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		//최근 등록한 상품부터 내림차순으로 SELECT
+
+		// 최근 등록한 상품부터 내림차순으로 SELECT
 		try {
 			String sql = "SELECT * FROM item ORDER BY i_rdate DESC";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			itemList = new ArrayList<ItemBean>();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				ib = new ItemBean();
 				ib.setI_id(rs.getInt("i_id"));
 				ib.setI_name(rs.getString("i_name"));
@@ -108,7 +110,7 @@ public class ItemDAO {
 				ib.setI_size(rs.getString("i_size"));
 				ib.setI_dpstatus(rs.getString("i_dpstatus"));
 				ib.setI_itemstatus(rs.getString("i_itemstatus"));
-				
+
 				itemList.add(ib);
 			}
 		} catch (SQLException e) {
@@ -117,20 +119,20 @@ public class ItemDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return itemList;
 	}
 
-	//상품등록 db작업 처리
+	// 상품등록 db작업 처리
 	public int insertItem(ItemBean ib) {
 		System.out.println("itemDAO - insertItem");
-		//db작업 처리된 행 수
+		// db작업 처리된 행 수
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			String sql = "INSERT INTO item VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, ib.getI_id());
 			pstmt.setString(2, ib.getI_name());
@@ -147,14 +149,14 @@ public class ItemDAO {
 			pstmt.setString(13, ib.getI_dpstatus());
 			pstmt.setString(14, ib.getI_itemstatus());
 			pstmt.setString(15, ib.getI_detailpage());
-			
+
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류발생 - " + e.getMessage());
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return insertCount;
 	}
 
@@ -162,14 +164,12 @@ public class ItemDAO {
 		System.out.println("ItemDAO - updateItem()");
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
-		
+
 		try {
-			String sql = "UPDATE item SET i_name=?, "
-					+ "i_desc=?, i_price=?, i_inven=?, i_img=?, i_subimg2=?,"
+			String sql = "UPDATE item SET i_name=?, " + "i_desc=?, i_price=?, i_inven=?, i_img=?, i_subimg2=?,"
 					+ "i_subimg3=?, i_subimg4=?, i_discount=?, "
-					+ "i_size=?, i_dpstatus=?, i_itemstatus=?, i_detailpage=?,"
-					+ "i_realfolder=? WHERE i_id=?";
-			
+					+ "i_size=?, i_dpstatus=?, i_itemstatus=?, i_detailpage=?," + "i_realfolder=? WHERE i_id=?";
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ib.getI_name());
 			pstmt.setString(2, ib.getI_desc());
@@ -185,7 +185,7 @@ public class ItemDAO {
 			pstmt.setString(12, ib.getI_itemstatus());
 			pstmt.setString(13, ib.getI_detailpage());
 			pstmt.setInt(14, ib.getI_id());
-			
+
 			updateCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,10 +195,10 @@ public class ItemDAO {
 
 	public int deleteItem(int i_id) {
 		System.out.println("ItemDAO - deleteItem()");
-		
+
 		int deleteCount = 0;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			String sql = "DELETE FROM item WHERE i_id=?";
 			pstmt = con.prepareStatement(sql);
@@ -207,14 +207,27 @@ public class ItemDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return deleteCount;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public int updateInven(int i_id, int od_qty) {
+		System.out.println("ItemDAO - updateInven()");
+
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "UPDATE item SET i_inven=i_inven-? WHERE i_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, od_qty);
+			pstmt.setInt(2, i_id);
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return updateCount;
+	}
+
 }

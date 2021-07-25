@@ -107,7 +107,7 @@ public class MemberService {
 		return isUpdateSuccess;
 
 	}
-
+	
 	public MemberBean selectMember(String m_id) {
 
 		System.out.println("MemberService - selectMember()");
@@ -124,7 +124,8 @@ public class MemberService {
 
 		return memberDetail;
 	}
-
+	
+	// 아이디 찾기
 	public String selectId(String m_phone) {
 		System.out.println("MemberService - selectId()");
 
@@ -140,7 +141,8 @@ public class MemberService {
 
 		return myId;
 	}
-
+	
+	// 회원등급에 따른 할인율을 가져옴
 	public float getGradeDetail(int g_id) {
 		System.out.println("MemberService - getGradeDetail()");
 
