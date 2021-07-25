@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.CartDeleteProSerivce;
+import svc.CartService;
 import vo.ActionForward;
 
 public class CartDeleteProAction implements Action {
@@ -17,8 +17,8 @@ public class CartDeleteProAction implements Action {
 
 		int c_id = Integer.parseInt(request.getParameter("c_id"));
 
-		CartDeleteProSerivce cartDeleteProSerivce = new CartDeleteProSerivce();
-		boolean isItemDeleteSuccess = cartDeleteProSerivce.dropItem(c_id);
+		CartService cartService = new CartService();
+		boolean isItemDeleteSuccess = cartService.dropItem(c_id);
 
 		if (!isItemDeleteSuccess) {
 			response.setContentType("text/html; charset=UTF-8");

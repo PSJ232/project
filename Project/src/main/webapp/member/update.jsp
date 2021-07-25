@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="java.sql.Date"%>
 <%@page import="vo.AnniversaryBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,21 +22,6 @@
 	String year = date[0];
 	String month = date[1];
 	String day = date[2];
-	
-	String check_m = "";
-	String check_f = "";
-	String check_agree = "";
-	int m_gender = memberDetail.getM_gender();// 선택된 성별에 따라 체크표시
-	if (m_gender == 1) {
-		check_f = "checked";
-	} else {
-		check_m = "checked";
-	}
-	
-	String m_agree = memberDetail.getM_agree();// 광고수신 동의 상태 표시
-	if (m_agree != null) {
-		check_agree = "checked";
-	}
 %>
 <body>
 	<h1>개인정보 수정</h1>
@@ -48,8 +34,8 @@
 			<li><label>휴대폰 본인인증</label><input type="text" name="m_phone" value="<%=memberDetail.getM_phone() %>" required></li>
 						<!-- 뷰페이지 참고 : 휴대폰번호 수정하면 본인인증 창이 나타남 -->
 			<li><label>생년월일</label><input type="text" name="year" value="<%=year %>" required><input type="text" name="month" value="<%=month %>" required><input type="text" name="day" value="<%=day %>" required></li>
-			<li><label>성별</label><input type="radio" name="m_gender" value="0" <%=check_m%>>남
-									<input type="radio" name="m_gender" value="1" <%=check_f%>>여</li>
+			<li><label>성별</label><input type="radio" name="m_gender" value="0" <%if(memberDetail.getM_gender()==0){%>checked<%}%>>남
+									<input type="radio" name="m_gender" value="1" <%if(memberDetail.getM_gender()==1){%>checked<%}%>>여</li>
 		</ul>
 		<hr>
 		<h3>기념일 관리</h3>
@@ -58,41 +44,44 @@
 			<%
 			for (AnniversaryBean ab : annList) { // 반복문으로 기념일 정보를 하나씩 꺼내어 판별
 
-				long newAnnDay = 0L; // 반복패턴에 따라 새 기념일을 저장할 변수선언
 				String repeat = "없음"; // 반복패턴 판별하여 저장할 변수, 기본값 : 없음
 				switch (ab.getA_repeat()) {
-					case 1:	repeat = "매년"; break;
-					case 100: repeat = "100일마다";
+				case 1:
+					repeat = "매년";
+					break;
+				case 100:
+					repeat = "100일마다";
 				}
 
-				Date now = new Date(System.currentTimeMillis()); // 현재 날짜정보 저장
-				Date annDay = Date.valueOf(ab.getA_date()); // 기념일 정보 저정
-				
-				long dDay;
-				if (ab.getA_repeat() == 1) { // 매년 반복이면 그 다음해를 새 기념일로 해서 계산
-					if (now.getTime() > annDay.getTime()) { // 기념일이 지났는지 판별
-						int yearPlus = now.getYear() - annDay.getYear(); // 해가 다르면 차이만큼 더해서 똑같은 연도로 맞춰서 계산한다
-						if (now.getMonth() > annDay.getMonth()) { // 해가 같으나 월이 지났으면 한해를 더해서 계산한다
+				Calendar now = Calendar.getInstance();
+				Calendar annDay = Calendar.getInstance();
+				annDay.setTime(Date.valueOf(ab.getA_date()));
+
+				long dDay = (long) Math.floor(((now.getTimeInMillis() - annDay.getTimeInMillis()) / 24.0 / 60 / 60 / 1000)); // 디데이 기본값 정보 저장
+
+				if (ab.getA_repeat() == 1) { // 매년 반복(1)이면 그 다음해를 새 기념일로 해서 계산
+					if (now.getTimeInMillis() > annDay.getTimeInMillis()) { // 기념일이 지났는지 판별
+						int yearPlus = now.get(Calendar.YEAR) - annDay.get(Calendar.YEAR); // 해가 다르면 차이만큼 더해서 똑같은 연도로 맞춰서 계산한다
+						if (now.get(Calendar.MONTH) > annDay.get(Calendar.MONTH)) { // 월이 지났으면 한해를 더해서 계산한다
 							yearPlus += 1;
-						} else if (now.getMonth() == annDay.getMonth() && now.getDate() >= annDay.getDate()) { // 월이 같지만 일이 같거나 크면 한해를 더해서 계산한다
+						} else if (now.get(Calendar.MONTH) == annDay.get(Calendar.MONTH) && now.get(Calendar.DATE) >= annDay.get(Calendar.DATE)) {
+							// 월이 같지만 일이 같거나 크면 한해를 더해서 계산한다
 							yearPlus += 1;
 						}
-						annDay.setYear(annDay.getYear() + yearPlus); // 계산된 연도로 setYear해서 엎어써준다
-						dDay = Math.round(((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000));
-					} else { // 기념일이 지나지 않았으면 기본값 그대로
-						dDay = Math.round(((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000));
-					}
-
-				} else if (ab.getA_repeat() == 100) { // 100일마다 반복이면
-					if (now.getTime() < annDay.getTime()) {
-						dDay = Math.round((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000);
+						annDay.set(Calendar.YEAR, (annDay.get(Calendar.YEAR) + yearPlus)); // 계산 후 annDay의 연도부분을 setYear해서 엎어써준다
+						dDay = (long) Math.floor(((now.getTimeInMillis() - annDay.getTimeInMillis()) / 24.0 / 60 / 60 / 1000));
 					} else {
-						dDay = ((Math.round((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000)) % 100) - 100;
-					}	
-				} else { // 반복없음이면 기본값 그대로
-					dDay = Math.round(((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000));
+						// 기념일이 지나지 않았으면 기본값 그대로 사용
+					}
+				} else if (ab.getA_repeat() == 100) { // 100일마다(100) 반복이면
+					if (now.getTimeInMillis() < annDay.getTimeInMillis()) {
+						// 기념일이 지나지 않았으면 기본값 그대로 사용
+					} else { //기념일이 지났다면, 다음 repeat값을 dDay로 설정
+						dDay = (((long) Math.floor((now.getTimeInMillis() - annDay.getTimeInMillis()) / 24.0 / 60 / 60 / 1000)) % 100) - 100;
+					}
+				} else {
+					// 반복없음(0)이면 기본값 그대로 사용
 				}
-
 			%>
 			<tr>
 				<td>D<%=dDay%></td>
@@ -110,7 +99,7 @@
 		<hr>
 		
 		<input type="hidden" name="m_pass_origin" value="<%=memberDetail.getM_pass() %>">
-		<input type="checkbox" name="m_agree" <%=check_agree %> >꾸까가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요. <br>
+		<input type="checkbox" name="m_agree" <%if(memberDetail.getM_agree()!=null){%>checked<%}%> >꾸까가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요. <br>
 		<input type="submit" value="수정하기"> <br>
 	</form>
 	<input type="button" value="회원 탈퇴" onclick="location.href='MemberDelete.me'">

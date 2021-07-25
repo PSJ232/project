@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import svc.CartInsertProService;
+import svc.CartService;
 import svc.IdMakerService;
 import vo.ActionForward;
 import vo.CartBean;
@@ -33,8 +33,8 @@ public class CartInsertProAction implements Action {
 		cartBean.setC_letter(Integer.parseInt(request.getParameter("c_letter")));
 		cartBean.setC_delivery_date(request.getParameter("c_delivery_date"));
 		
-		CartInsertProService cartInsertProService = new CartInsertProService();
-		boolean isInsertSuccess = cartInsertProService.putCart(cartBean);
+		CartService cartService = new CartService();
+		boolean isInsertSuccess = cartService.putCart(cartBean);
 		
 		if(!isInsertSuccess) {
 			response.setContentType("text/html; charset=UTF-8");

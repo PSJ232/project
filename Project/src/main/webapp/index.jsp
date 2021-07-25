@@ -18,11 +18,12 @@ String m_id = (String)session.getAttribute("m_id");
   	<jsp:include page="inc/adminHeader.jsp" ></jsp:include>
   <!-- header -->
 	(m_id) = <%=m_id %>
-	<%if(m_id == null){%>
+	<%if(m_id==null){%>
 	<h3><a href="MemberJoin.me">회원가입</a></h3>
 	<h3><a href="MemberLogin.me">로그인</a></h3>
 	<h3><a href="Cart.cr">장바구니(비회원쿠키저장미구현)</a></h3>
-	<%}else{%>
+	<%}else{
+		if(m_id.equals("admin")){%><h3><a href="./admin_layout/main/main.jsp">관리자페이지</a></h3><%}%>
 	<h3><a href="MemberLogout.me">로그아웃</a></h3>
 	<h3><a href="MemberUpdate.me">회원정보수정</a></h3>
 	<h3><a href="./mypage/mypage.jsp">마이페이지</a></h3>

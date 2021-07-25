@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.MemberJoinProService;
+import svc.MemberService;
 import vo.ActionForward;
 import vo.MemberBean;
 
@@ -28,9 +28,9 @@ public class MemberJoinProAction implements Action {
 		memberBean.setM_gender(Integer.parseInt(request.getParameter("m_gender")));
 		memberBean.setM_agree(request.getParameter("m_agree"));
 		
-		MemberJoinProService memberJoinProService = new MemberJoinProService();
+		MemberService memberService = new MemberService();
 		
-		boolean isJoinSuccess = memberJoinProService.registMember(memberBean);
+		boolean isJoinSuccess = memberService.registMember(memberBean);
 		
 		if(!isJoinSuccess) {
 			response.setContentType("text/html; charset=UTF-8");

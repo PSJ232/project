@@ -40,7 +40,7 @@
   		<li><a href="">주문내역/배송조회</a></li>
   		<li><a href="">나의 정기구독</a></li>
   		<li><a href="">클래스 수강내역</a></li>
-		<li><a href="../ReviewInsertForm.rv">상품 리뷰</a></li>
+		<li><a href="./ReviewInsertForm.rv">상품 리뷰</a></li>
   	</ul>
  	 </div>
  	 
@@ -64,6 +64,10 @@
   ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>)request.getAttribute("itemArrayList");
   ArrayList<Integer> nonOdList = (ArrayList<Integer>)request.getAttribute("nonOdList");
   ArrayList<Integer> odList = (ArrayList<Integer>)request.getAttribute("odList");
+  ArrayList<Integer> deleteOdList = (ArrayList<Integer>)request.getAttribute("deleteOdList");
+  String m_id = (String)session.getAttribute("m_id");
+  System.out.println("m_id : " + m_id);
+  
   %>
  
   	<section>
@@ -84,8 +88,6 @@
 	   				<tr><td><%=nonOrderArrayList.get(i).getO_rdate() %></td>
 	   					<td><%=nonItemArrayList.get(i).getI_name() %></td>
 	   					<td><a href="ReviewInsert.rv?od_id=<%=nonOdList.get(i) %>">리뷰 작성</a></td></tr>
-<!-- 		   				// 여기서 링크타고 갈때 번호를 줘야될듯 -->
-<!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
 				<%}%>
 	   			</table>
 		   		</div>
@@ -94,14 +96,19 @@
 		   		<h6>내 리뷰</h6>
 		   		<table border="1">
 		   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
-	   			<%
-		   		  for(int i=0; i<orderArrayList.size(); i++) {
-	   			%>
+	   			<%for(int i=0; i<orderArrayList.size(); i++) {%>
 	   				<tr><td><%=orderArrayList.get(i).getO_rdate() %></td>
 	   					<td><%=itemArrayList.get(i).getI_name() %></td>
-	   					<td><a href="ReviewUpdate.rv?od_id=<%=odList.get(i) %>">리뷰 수정</a> | <a href="ReviewDelete.rv?od_id=<%=odList.get(i) %>">리뷰 삭제</a></td></tr>
+
+<!-- 				삭제된 리뷰와, 수정 및 삭제가 가능한 리뷰를 구분	   			 -->
+		   			<%	if(deleteOdList.contains(odList.get(i))) {%>
+		   					<td><a href="ReviewUpdate.rv?od_id=<%=odList.get(i) %>">리뷰 수정(od_id : <%=odList.get(i)%>)</a> | <a href="ReviewDelete.rv?od_id=<%=odList.get(i) %>">리뷰 삭제</a></td>
+		   			<%	} else {%>
+		   					<td>삭제된 리뷰 (od_id : <%=odList.get(i) %>)</td>
+		   			<% 	}%>	
+
+	   				</tr>
 				<%}%>		   				
-<!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
 		   		</table>
 		   		</div>
 	 	</div>

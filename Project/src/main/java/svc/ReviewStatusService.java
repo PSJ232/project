@@ -74,7 +74,7 @@ public class ReviewStatusService {
 	}
 	
 	public ArrayList<Integer> reviewNonStatusOdList(String m_id) {
-		System.out.println("ReviewStatusService - odList()");
+		System.out.println("ReviewStatusService - reviewNonStatusOdList()");
 		ArrayList<Integer> odList = null;
 		
 		Connection con = getConnection();
@@ -90,7 +90,7 @@ public class ReviewStatusService {
 	}
 
 	public ArrayList<Integer> reviewStatusOdList(String m_id) {
-		System.out.println("ReviewStatusService - odList()");
+		System.out.println("ReviewStatusService - reviewNonStatusOdList()");
 		ArrayList<Integer> odList = null;
 		
 		Connection con = getConnection();
@@ -103,6 +103,21 @@ public class ReviewStatusService {
 		
 		return odList;
 		
+	}
+
+	public ArrayList<Integer> reviewDeleteOdList(String m_id) {
+		System.out.println("ReviewStatusService - reviewDeleteOdList()");
+		ArrayList<Integer> deleteOdList = null;
+	
+		Connection con = getConnection();
+		ReviewDAO rdao = ReviewDAO.getInstance();
+		rdao.setConnection(con);
+		
+		deleteOdList = rdao.getDeleteOdList(m_id);
+		
+		close(con);
+		
+		return deleteOdList;
 	}
 
 	

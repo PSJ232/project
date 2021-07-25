@@ -37,7 +37,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO orders VALUES(?,?,?,?,?,?,?,?,?,now())";
+			String sql = "INSERT INTO orders VALUES(?,?,?,?,?,?,?,?,?,now(),?)";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -50,6 +50,7 @@ public class OrderDAO {
 			pstmt.setInt(7, orderBean.getO_amount());
 			pstmt.setInt(8, orderBean.getO_point());
 			pstmt.setInt(9, orderBean.getO_payment());
+			pstmt.setInt(10, orderBean.getO_gdiscount());
 			// rdate는 sql구문에 바로 now()
 
 
@@ -152,6 +153,7 @@ public class OrderDAO {
 				orderBean.setO_point(rs.getInt("o_point"));
 				orderBean.setO_payment(rs.getInt("o_payment"));
 				orderBean.setO_rdate(rs.getDate("o_rdate"));
+				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
 
 				orderList.add(orderBean);
 			}

@@ -13,6 +13,7 @@ public class OrderBean {
 	private int o_point;
 	private int o_payment;
 	private Date o_rdate;
+	private int o_gdiscount;
 
 	public int getO_id() {
 		return o_id;
@@ -92,6 +93,14 @@ public class OrderBean {
 
 	public void setO_rdate(Date o_rdate) {
 		this.o_rdate = o_rdate;
+	}
+
+	public int getO_gdiscount() {
+		return o_gdiscount;
+	}
+
+	public void setO_gdiscount(int o_gdiscount) {
+		this.o_gdiscount = o_gdiscount;
 	}
 
 }
