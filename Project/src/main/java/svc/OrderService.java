@@ -49,7 +49,7 @@ public class OrderService {
 	}
 
 	public boolean registOrderDetail(OrderDetailBean orderDetailBean) {
-		System.out.println("OrderDetailProService - registOrderDetail()");
+		System.out.println("OrderService - registOrderDetail()");
 
 		boolean isOrderdetailSuccess = false;
 		Connection con = JdbcUtil.getConnection();

@@ -5,8 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.CartListService;
-import svc.CartUpdateProService;
+import svc.CartService;
 import svc.ItemDetailService;
 import vo.ActionForward;
 import vo.CartBean;
@@ -21,20 +20,19 @@ public class CartUpdateProAction implements Action {
 
 		int c_id = Integer.parseInt(request.getParameter("c_id")); // 장바구니 상품번호
 
-		CartUpdateProService cartUpdateProService = new CartUpdateProService();
+		CartService cartService = new CartService();
 		boolean isUpdateSuccess = false;
 
 		if (request.getParameter("letter") != null) { // 편지 삭제에 대한 요청인지 확인하고 맞으면 편지 업데이트
 			int c_letter = Integer.parseInt(request.getParameter("letter"));
 
-			isUpdateSuccess = cartUpdateProService.modifyLetter(c_id, c_letter);
+			isUpdateSuccess = cartService.modifyLetter(c_id, c_letter);
 
 		} else { // 아니면 수량 변경에 대한 요청이므로 수량 업데이트
 
 			int add = Integer.parseInt(request.getParameter("add")); // +1 또는 -1 수정
 
-			CartListService cartListService = new CartListService();
-			CartBean cartBean = cartListService.selectCart(c_id);
+			CartBean cartBean = cartService.selectCart(c_id);
 
 			int c_qty = cartBean.getC_qty();
 			int i_id = cartBean.getI_id();
@@ -49,7 +47,7 @@ public class CartUpdateProAction implements Action {
 				c_qty = c_qty + add;
 			}
 
-			isUpdateSuccess = cartUpdateProService.modifyCart(c_id, c_qty);
+			isUpdateSuccess = cartService.modifyCart(c_id, c_qty);
 
 		}
 

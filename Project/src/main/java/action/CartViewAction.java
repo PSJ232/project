@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import svc.CartListService;
+import svc.CartService;
 import svc.ItemDetailService;
 import vo.ActionForward;
 import vo.CartBean;
@@ -22,8 +22,8 @@ public class CartViewAction implements Action {
 		HttpSession session = request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
 
-		CartListService cartListService = new CartListService();
-		ArrayList<CartBean> cartList = cartListService.selectCart(m_id);
+		CartService cartService = new CartService();
+		ArrayList<CartBean> cartList = cartService.selectCart(m_id);
 
 		request.setAttribute("cartList", cartList); // 장바구니 리스트 저장
 

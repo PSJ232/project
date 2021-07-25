@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import svc.CartListService;
+import svc.CartService;
 import svc.ItemDetailService;
 import vo.ActionForward;
 import vo.CartBean;
@@ -50,12 +50,12 @@ public class OrderLetterAction implements Action {
 
 		if(iNum > 1) { // 선택된 상품의 수가 1을 초과할 경우 장바구니에서 조회
 		
-			CartListService cartListService = new CartListService(); // 장바구니 선택 목록 가져오기
+			CartService cartService = new CartService(); // 장바구니 선택 목록 가져오기
 			for (int i = 0; i < iNum; i++) {
 				if (request.getParameter("c_id" + i) != null) {
 					int c_id = Integer.parseInt(request.getParameter("c_id" + i));
 					cartDetail = new CartBean();
-					cartDetail = cartListService.selectCart(c_id);
+					cartDetail = cartService.selectCart(c_id);
 					checkList.add(cartDetail);
 				}
 			}

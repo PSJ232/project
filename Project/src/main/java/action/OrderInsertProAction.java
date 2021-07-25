@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.CartDeleteProSerivce;
+import svc.CartService;
 import svc.IdMakerService;
 import svc.MemberPointSumService;
 import svc.OrderService;
@@ -83,11 +83,11 @@ public class OrderInsertProAction implements Action {
 			
 			
 			// 주문완료된 상품을 장바구니에서 삭제
-			CartDeleteProSerivce cartDeleteProService = new CartDeleteProSerivce();
+			CartService cartService = new CartService();
 			boolean isDeleteSuccess = false; 
 			for(OrderDetailBean odb : orderDetailList) {
 				int c_id = odb.getC_id();
-				isDeleteSuccess = cartDeleteProService.dropItem(c_id);
+				isDeleteSuccess = cartService.dropItem(c_id);
 				if(!isDeleteSuccess) {
 					System.out.println("확인요망 : 장바구니 " + c_id + "가 삭제되지 않았습니다.");
 				}

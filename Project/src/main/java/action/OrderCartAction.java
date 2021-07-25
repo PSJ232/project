@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.CartListService;
+import svc.CartService;
 import svc.ItemDetailService;
 import vo.ActionForward;
 import vo.CartBean;
@@ -20,7 +20,7 @@ public class OrderCartAction implements Action {
 		
 		int iNum = Integer.parseInt(request.getParameter("iNum"));
 
-		CartListService cartListService = new CartListService(); // 장바구니 선택 목록 가져오기
+		CartService cartService = new CartService(); // 장바구니 선택 목록 가져오기
 		ArrayList<CartBean> checkList = new ArrayList<CartBean>();
 		CartBean cartDetail = null;
 		for(int i = 0 ; i < iNum ; i++) {
@@ -28,7 +28,7 @@ public class OrderCartAction implements Action {
 				int c_id = Integer.parseInt(request.getParameter("c_id" + i));
 				
 				cartDetail = new CartBean();
-				cartDetail = cartListService.selectCart(c_id);
+				cartDetail = cartService.selectCart(c_id);
 				
 				checkList.add(cartDetail);
 			}
