@@ -233,7 +233,6 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next())
 				r_id = rs.getInt(1) + 1;
-			System.out.println("r_id : " + r_id);
 			
 			sql = "INSERT INTO review VALUES(?, ?, ?, ?, ?, ?, now(), ?, ?)";
 			pstmt = con.prepareStatement(sql);
@@ -285,7 +284,9 @@ public class ReviewDAO {
 				rb.setR_rate(rs.getInt("r_rate"));
 				rb.setR_content(rs.getString("r_content"));
 				rb.setR_rdate(rs.getDate("r_rdate"));
+				rb.setR_img(rs.getString("r_img"));
 				rb.setR_point(rs.getInt("r_point"));
+				
 			} 
 		} catch (SQLException e) {
 			System.out.println("ReviewDAO - getReview() SQL문 오류 : " + e.getMessage());
@@ -294,6 +295,29 @@ public class ReviewDAO {
 			close(rs);
 		}
 		return rb;
+	}
+
+	public int updateReview(ReviewBean rb) {
+		System.out.println("ReiewDAO - updateReview()");
+		int modifyCount = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "UPDATE review SET r_title=?, r_content=?, r_rate=?, r_img=? WHERE r_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rb.getR_title());
+			pstmt.setString(2, rb.getR_content());
+			pstmt.setInt(3, rb.getR_rate());
+			pstmt.setString(4, rb.getR_img());
+			pstmt.setInt(5, rb.getR_id());
+			modifyCount = pstmt.executeUpdate();
+			System.out.println(modifyCount);
+		} catch (SQLException e) {
+			System.out.println("ReviewDAO - updateReview() SQL구문 오류 : " + e.getMessage());
+		}
+		close(pstmt);
+		
+		return modifyCount;
 	}
 
 
