@@ -40,7 +40,7 @@ CREATE TABLE `anniversary` (
 
 LOCK TABLES `anniversary` WRITE;
 /*!40000 ALTER TABLE `anniversary` DISABLE KEYS */;
-INSERT INTO `anniversary` VALUES (1,'admin','2021-07-25','언제',1),(17,'admin','2010-10-10','백일반복',100),(36,'admin','2011-11-11','반복없음',0),(40,'admin','2021-12-31','마지막날',100),(41,'admin','2009-08-01','팔월',1);
+INSERT INTO `anniversary` VALUES (36,'admin','1994-01-01','와이프생일',1),(41,'admin','2020-01-02','결혼기념일',1),(43,'admin','1965-01-03','장모생신',1),(44,'admin','2010-01-03','100일기념',100),(45,'admin','2011-01-01','입사축하',0);
 /*!40000 ALTER TABLE `anniversary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,7 +73,6 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1,1,'admin',3,'2021-07-24 16:04:29',1,'2021-07-31'),(2,1,'admin',1,'2021-07-24 16:07:48',1,'2021-07-29'),(3,1,'admin',1,'2021-07-24 16:08:10',1,'2021-07-29'),(4,1,'admin',1,'2021-07-24 16:13:31',1,'2021-07-29'),(5,1,'admin',1,'2021-07-24 16:41:38',0,'2021-07-29');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +193,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'산호초 에디션','바다의 꽃 산호초의 빛깔을 담은',59900,50,NULL,NULL,NULL,NULL,'2021-07-23 10:46:11',0.9,'large','판매중','판매중','없음'),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,50,NULL,NULL,NULL,NULL,'2021-07-23 10:47:34',0.9,'small','판매중','판매중','없음'),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',69800,30,NULL,NULL,NULL,NULL,'2021-07-23 10:48:46',0.5,'small','판매중','판매중','없음'),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,60,NULL,NULL,NULL,NULL,'2021-07-23 10:50:14',1,'medium','판매중','판매중','없음');
+INSERT INTO `item` VALUES (1,'산호초 에디션','바다의 꽃 산호초의 빛깔을 담은',59900,27,NULL,NULL,NULL,NULL,'2021-07-23 10:46:11',0.9,'large','판매중','판매중','없음'),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,40,NULL,NULL,NULL,NULL,'2021-07-23 10:47:34',0.9,'small','판매중','판매중','없음'),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',69800,18,NULL,NULL,NULL,NULL,'2021-07-23 10:48:46',0.5,'small','판매중','판매중','없음'),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,50,NULL,NULL,NULL,NULL,'2021-07-23 10:50:14',1,'medium','판매중','판매중','없음');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +253,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('admin','1234','관리자','01000000000','2000-01-01',1,0,NULL,'2021-07-23',NULL,998999);
+INSERT INTO `member` VALUES ('admin','1234','관리자','01010101010','1999-12-31',1,3,'on','2021-07-23',NULL,936466);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,6 +275,7 @@ CREATE TABLE `orders` (
   `o_point` int(11) NOT NULL COMMENT '사용포인트',
   `o_payment` int(11) NOT NULL COMMENT '0:카드, 1:계좌이체 등등',
   `o_rdate` datetime NOT NULL COMMENT 'date동기화',
+  `o_gdiscount` int(11) NOT NULL,
   PRIMARY KEY (`o_id`),
   KEY `FK_member_TO_orders` (`m_id`),
   CONSTRAINT `FK_member_TO_orders` FOREIGN KEY (`m_id`) REFERENCES `member` (`m_id`)
@@ -288,7 +288,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (2021072301,'admin','관리자','06035&서울 강남구 가로수길 5&회사','신종현','01099990000',110300,0,1,'2021-07-23 21:19:34'),(2021072302,'admin','관리자','46769&부산 강서구 가덕해안로 3&집','홍길동','01088885555',151200,-1000,1,'2021-07-23 21:53:12');
+INSERT INTO `orders` VALUES (2021072601,'admin','관리자','06035&서울 강남구 가로수길 5&애플스토어','신종현','01022224444',462900,-1234,1,'2021-07-26 00:43:31',-23100),(2021072602,'admin','관리자','46729&부산 강서구 가달1로 7&회사건물2층','홍길동','01033336666',110300,-12300,1,'2021-07-26 00:50:26',-5500);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +329,7 @@ CREATE TABLE `orders_detail` (
 
 LOCK TABLES `orders_detail` WRITE;
 /*!40000 ALTER TABLE `orders_detail` DISABLE KEYS */;
-INSERT INTO `orders_detail` VALUES (1,2021072301,1,4,2,'감사합니다',0,'admin',99999999,'2021-07-31','주문접수',0),(2,2021072302,3,4,1,'사랑합니다',0,'admin',3,'2021-07-25','주문접수',0),(3,2021072302,4,4,1,'힘내세요',0,'admin',5,'2021-07-28','주문접수',0),(4,2021072302,1,4,1,'감사합니다',0,'admin',6,'2021-07-28','주문접수',0);
+INSERT INTO `orders_detail` VALUES (1,2021072601,1,4,1,'그동안 감사했습니다.',0,'admin',1,'2021-08-01','주문접수',0),(2,2021072601,2,4,2,'그동안 사랑했습니다.',0,'admin',2,'2021-08-02','주문접수',0),(3,2021072601,3,4,3,'그동안 힘내셨습니다.',0,'admin',3,'2021-08-03','주문접수',0),(4,2021072601,4,0,4,'null',0,'admin',4,'2021-08-04','주문접수',0),(5,2021072602,1,1,2,'',0,'admin',99999999,'2021-07-31','주문접수',0);
 /*!40000 ALTER TABLE `orders_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-25  3:59:22
+-- Dump completed on 2021-07-26  0:52:33

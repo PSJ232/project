@@ -223,6 +223,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="iNum" value="<%=i %>">
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
 		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
+		<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
 		<input type="hidden" name="paymentAmount" value="<%=totalPrice %>"> <!-- 포인트 적용버튼을 누르면 계산된 금액으로 value가 변경됨 -->
 		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500'), defaultPoint()" > <!-- 결제 api에 따라서 변경해야됨  -->
 	<br>

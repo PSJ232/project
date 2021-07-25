@@ -49,7 +49,7 @@ public class OrderInsertProAction implements Action {
 		IdMakerService idMakerService = new IdMakerService(); // 번호생성 알고리즘 Service 
 		int newId = idMakerService.newId("orders", "o_id", 1);
 		String m_id = request.getParameter("m_id");
-		int newPoint = - (Integer.parseInt(request.getParameter("o_point"))); // 사용포인트이므로 입력된값에 마이너스 처리
+		int newPoint = - (Integer.parseInt(request.getParameter("o_point"))); // 사용포인트이므로 입력된값에 음수(-) 처리
 		
 		// 나누어진 주소 한줄로 조합
 		String o_address = request.getParameter("address1") + "&" + request.getParameter("address2") + "&" + request.getParameter("address3"); // 나중에 다시 꺼내쓸때 split가능하도록 "|" 기준점 넣어줌
@@ -64,6 +64,7 @@ public class OrderInsertProAction implements Action {
 		orderBean.setO_point(newPoint);
 		// orderBean.setO_payment(Integer.parseInt(request.getParameter("o_payment")));
 		orderBean.setO_payment(1); //테스트용 결제수단 임시 번호
+		orderBean.setO_gdiscount(-(Integer.parseInt(request.getParameter("o_gdiscount")))); // 할인금액 음수(-)처리
 		// o_rdate 는 sql구문 now()로 설정
 		
 		OrderService orderSerive = new OrderService();
