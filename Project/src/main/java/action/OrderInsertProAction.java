@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import svc.CartService;
 import svc.IdMakerService;
-import svc.MemberPointSumService;
+import svc.MemberService;
 import svc.OrderService;
 import vo.ActionForward;
 import vo.OrderBean;
@@ -95,8 +95,8 @@ public class OrderInsertProAction implements Action {
 			
 			
 			// 포인트계산서비스(MemberPOintSumService) 호출하여 DB에 계산결과 반영
-			MemberPointSumService memberPointSumService = new MemberPointSumService();
-			boolean isSumPointSuccess = memberPointSumService.sumPoint(m_id, newPoint);
+			MemberService memberService = new MemberService();
+			boolean isSumPointSuccess = memberService.sumPoint(m_id, newPoint);
 		
 			if(!isSumPointSuccess) {
 				System.out.println("확인요망 : 포인트 계산 결과가 반영되지 않았습니다.");
