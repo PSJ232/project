@@ -124,6 +124,7 @@ public class MemberFrontController extends HttpServlet {
 			
 		} else if (command.equals("/MemberAnnInsertPro.me")) {
 			action = new MemberAnnInsertProAction();
+			System.out.println("MemberFrontController - 닫는 팝업창이라 ActionForward 객체가 null이라도 상관없음");
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -145,6 +146,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if (command.equals("/MemberAnnUpdatePro.me")) {
 			action = new MemberAnnUpdateProAction();
+			System.out.println("MemberFrontController - 닫는 팝업창이라 ActionForward 객체가 null이라도 상관없음");
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

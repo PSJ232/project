@@ -84,8 +84,10 @@ ArrayList<CartBean> checkList = (ArrayList<CartBean>) request.getAttribute("chec
 //장바구니 선택상품목록 또는 바로구매 상품의 상품정보 리스트(순서동일)
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList");
 //letter.jsp에서 입력된 편지관련 정보 리스트
-ArrayList<OrderDetailBean> orderFormInfo = (ArrayList<OrderDetailBean>) request.getAttribute("orderFormInfo");
-
+ArrayList<OrderDetailBean> orderFormInfo = null;
+if(request.getAttribute("orderFormInfo") != null) { // 편지지가 선택되지 않으면 null 오류 발생하므로 관련코드 if문 처리
+	orderFormInfo = (ArrayList<OrderDetailBean>) request.getAttribute("orderFormInfo");
+}
 String addLetter;// 편지가 추가되면 해당 html 추가
 
 %>
@@ -159,24 +161,35 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<%
 		int i;
 		for (i = 0 ; i < checkList.size() ; i++){
-			if (checkList.get(i).getC_id() == orderFormInfo.get(i).getC_id()) {
-		%>
-			<input type="hidden" name="l_id<%=i %>" value="<%=orderFormInfo.get(i).getL_id()%>">
-			<input type="hidden" name="c_id<%=i %>" value="<%=orderFormInfo.get(i).getC_id()%>">
-			<input type="hidden" name="i_id<%=i %>" value="<%=orderFormInfo.get(i).getI_id()%>">
-			<input type="hidden" name="od_qty<%=i %>" value="<%=orderFormInfo.get(i).getOd_qty()%>">
-			<input type="hidden" name="od_message<%=i %>" value="<%=orderFormInfo.get(i).getOd_message()%>">
-			<input type="hidden" name="od_delivery_date<%=i %>" value="<%=orderFormInfo.get(i).getOd_delivery_date()%>">
-			<%
+			if(orderFormInfo != null) {
+				if (checkList.get(i).getC_id() == orderFormInfo.get(i).getC_id()) {
+				%>
+				<input type="hidden" name="l_id<%=i %>" value="<%=orderFormInfo.get(i).getL_id()%>">
+				<input type="hidden" name="c_id<%=i %>" value="<%=orderFormInfo.get(i).getC_id()%>">
+				<input type="hidden" name="i_id<%=i %>" value="<%=orderFormInfo.get(i).getI_id()%>">
+				<input type="hidden" name="od_qty<%=i %>" value="<%=orderFormInfo.get(i).getOd_qty()%>">
+				<input type="hidden" name="od_message<%=i %>" value="<%=orderFormInfo.get(i).getOd_message()%>">
+				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=orderFormInfo.get(i).getOd_delivery_date()%>">
+				<%
+				} else {
+				%>
+				<input type="hidden" name="l_id<%=i %>" value="0">
+				<input type="hidden" name="c_id<%=i %>" value="<%=checkList.get(i).getC_id()%>">
+				<input type="hidden" name="i_id<%=i %>" value="<%=checkList.get(i).getI_id()%>">
+				<input type="hidden" name="od_qty<%=i %>" value="<%=checkList.get(i).getC_qty()%>">
+				<input type="hidden" name="od_message<%=i %>" value="">
+				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=checkList.get(i).getC_delivery_date()%>">
+				<%
+				}
 			} else {
-			%>
-			<input type="hidden" name="l_id<%=i %>" value="0">
-			<input type="hidden" name="c_id<%=i %>" value="<%=checkList.get(i).getC_id()%>">
-			<input type="hidden" name="i_id<%=i %>" value="<%=checkList.get(i).getI_id()%>">
-			<input type="hidden" name="od_qty<%=i %>" value="<%=checkList.get(i).getC_qty()%>">
-			<input type="hidden" name="od_message<%=i %>" value="">
-			<input type="hidden" name="od_delivery_date<%=i %>" value="<%=checkList.get(i).getC_delivery_date()%>">
-		<%
+				%>
+				<input type="hidden" name="l_id<%=i %>" value="0">
+				<input type="hidden" name="c_id<%=i %>" value="<%=checkList.get(i).getC_id()%>">
+				<input type="hidden" name="i_id<%=i %>" value="<%=checkList.get(i).getI_id()%>">
+				<input type="hidden" name="od_qty<%=i %>" value="<%=checkList.get(i).getC_qty()%>">
+				<input type="hidden" name="od_message<%=i %>" value="">
+				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=checkList.get(i).getC_delivery_date()%>">
+				<%
 			}
 		}
 		%>

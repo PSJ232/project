@@ -68,7 +68,6 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 					수령일:<%=delivery_date%><br>
 					<%=NumberFormat.getInstance().format(i_price) %>원<br>
 					<input type="button" value="-" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=-1'"> 
-					
 					<%=c_qty%> 
 					<input type="button" value="+" onclick="qtyUpdate(<%=c_id%>, <%=i_inven%>, <%=c_qty%>)"> <br>
 					<span id="cartNotice<%=c_id%>"></span>

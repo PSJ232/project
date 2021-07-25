@@ -47,6 +47,7 @@ public class MemberAnnInsertProAction implements Action {
 			out.println("</script>");
 		} else {
 			out.println("<script>");
+			out.println("opener.location.reload();");
 			out.println("window.close();");
 			out.println("</script>");
 //			forward = new ActionForward();

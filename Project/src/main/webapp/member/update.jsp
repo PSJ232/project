@@ -17,7 +17,6 @@
 	MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
 	ArrayList<AnniversaryBean> annList = (ArrayList<AnniversaryBean>) request.getAttribute("annList");
 	
-	
 	String date[] = memberDetail.getM_birth().split("-"); // 날짜 "-"을 기준으로 분리해서 배열에 저장
 	String year = date[0];
 	String month = date[1];
