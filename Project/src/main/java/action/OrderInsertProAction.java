@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import svc.CartDeleteProSerivce;
 import svc.IdMakerService;
 import svc.MemberPointSumService;
-import svc.OrderInsertProService;
+import svc.OrderService;
 import vo.ActionForward;
 import vo.OrderBean;
 import vo.OrderDetailBean;
@@ -65,8 +65,8 @@ public class OrderInsertProAction implements Action {
 		orderBean.setO_payment(1); //테스트용 결제수단 임시 번호
 		//o_rdate 는 sql구문 now()로 설정
 		
-		OrderInsertProService orderInsertProSerive = new OrderInsertProService();
-		boolean isOrderSuccess = orderInsertProSerive.registOrder(orderBean);
+		OrderService orderSerive = new OrderService();
+		boolean isOrderSuccess = orderSerive.registOrder(orderBean);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();

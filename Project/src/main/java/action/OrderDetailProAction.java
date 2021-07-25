@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import svc.IdMakerService;
-import svc.OrderDetailProService;
+import svc.OrderService;
 import vo.ActionForward;
 import vo.OrderDetailBean;
 
@@ -21,7 +21,7 @@ public class OrderDetailProAction implements Action {
 
 		ArrayList<OrderDetailBean> orderDetailList = (ArrayList<OrderDetailBean>) request.getAttribute("orderDetailList");
 
-		OrderDetailProService orderDetailProService = new OrderDetailProService();
+		OrderService orderService = new OrderService();
 		IdMakerService idMakerService = new IdMakerService();
 		int od_id = 0;
 		boolean isOrderdetailSuccess = false;
@@ -29,7 +29,7 @@ public class OrderDetailProAction implements Action {
 			od_id = idMakerService.newId("orders_detail", "od_id"); // od_id 생성
 			odb.setOd_id(od_id);
 			odb.setO_id(Integer.parseInt(request.getParameter("o_id")));
-			isOrderdetailSuccess = orderDetailProService.registOrderDetail(odb);
+			isOrderdetailSuccess = orderService.registOrderDetail(odb);
 		}
 
 		if (!isOrderdetailSuccess) {
