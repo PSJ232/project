@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import svc.MemberDeleteProService;
+import svc.MemberService;
 import vo.ActionForward;
 
 public class MemberDeleteProAction implements Action {
@@ -19,8 +19,8 @@ public class MemberDeleteProAction implements Action {
 		// 회원 삭제
 		String m_pass = request.getParameter("m_pass");
 		String m_id = request.getParameter("m_id");
-		MemberDeleteProService memberDeleteProService = new MemberDeleteProService();
-		boolean isDeleteSuccess = memberDeleteProService.dropMember(m_id, m_pass);
+		MemberService memberService = new MemberService();
+		boolean isDeleteSuccess = memberService.dropMember(m_id, m_pass);
 		
 		// 성공 시 로그인 화면으로 복귀
 		if(isDeleteSuccess) {

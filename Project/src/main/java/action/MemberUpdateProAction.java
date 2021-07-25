@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.MemberUpdateProService;
+import svc.MemberService;
 import vo.ActionForward;
 import vo.MemberBean;
 
@@ -34,8 +34,8 @@ public class MemberUpdateProAction implements Action {
 		memberBean.setM_gender(Integer.parseInt(request.getParameter("m_gender")));
 		memberBean.setM_agree(request.getParameter("m_agree"));
 		
-		MemberUpdateProService memberUpdateProService = new MemberUpdateProService();
-		boolean isUpdateSuccess = memberUpdateProService.modifyMember(memberBean);
+		MemberService memberService = new MemberService();
+		boolean isUpdateSuccess = memberService.modifyMember(memberBean);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();

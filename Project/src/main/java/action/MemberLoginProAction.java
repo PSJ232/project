@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import svc.MemberLoginProService;
+import svc.MemberService;
 import vo.ActionForward;
 import vo.MemberBean;
 
@@ -23,8 +23,8 @@ public class MemberLoginProAction implements Action {
 		memberBean.setM_id(request.getParameter("m_id"));
 		memberBean.setM_pass(request.getParameter("m_pass"));
 		
-		MemberLoginProService memberLoginProService = new MemberLoginProService();
-		boolean isLoginSuccess = memberLoginProService.checkMember(memberBean);
+		MemberService memberService = new MemberService();
+		boolean isLoginSuccess = memberService.checkMember(memberBean);
 		
 		if(!isLoginSuccess) {
 			response.setContentType("text/html; charset=UTF-8");

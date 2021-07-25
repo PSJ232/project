@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import svc.MemberAnniversaryService;
-import svc.MemberDetailService;
+import svc.MemberService;
 import vo.ActionForward;
 import vo.AnniversaryBean;
 import vo.MemberBean;
@@ -23,8 +23,8 @@ public class MemberUpdateFormAction implements Action {
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
 		
-		MemberDetailService memberDetailService = new MemberDetailService();
-		MemberBean memberDetail  = memberDetailService.selectMember(m_id);
+		MemberService memberService = new MemberService();
+		MemberBean memberDetail  = memberService.selectMember(m_id);
 		request.setAttribute("memberDetail", memberDetail);
 		
 		MemberAnniversaryService memberAnniversaryService = new MemberAnniversaryService();

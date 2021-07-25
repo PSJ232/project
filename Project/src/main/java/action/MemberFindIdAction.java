@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.MemberDetailService;
+import svc.MemberService;
 import vo.ActionForward;
 
 public class MemberFindIdAction implements Action {
@@ -16,8 +16,8 @@ public class MemberFindIdAction implements Action {
 		ActionForward forward = null;
 		
 		String m_phone = request.getParameter("phone1") + request.getParameter("phone2") + request.getParameter("phone3");
-		MemberDetailService memberDetailService = new MemberDetailService();
-		String myId = memberDetailService.selectId(m_phone);
+		MemberService memberService = new MemberService();
+		String myId = memberService.selectId(m_phone);
 		
 		
 		if(myId == null) {
