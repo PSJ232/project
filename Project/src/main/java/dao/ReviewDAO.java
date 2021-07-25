@@ -139,7 +139,7 @@ public class ReviewDAO {
 	public ArrayList<ItemBean> getReviewStatusItemList(String m_id) {
 		System.out.println("ReviewDAO - getReviewStatusItemBean()");
 		
-		ArrayList<ItemBean> itemArrayList = new ArrayList();
+		ArrayList<ItemBean> itemArrayList = new ArrayList<ItemBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -311,13 +311,30 @@ public class ReviewDAO {
 			pstmt.setString(4, rb.getR_img());
 			pstmt.setInt(5, rb.getR_id());
 			modifyCount = pstmt.executeUpdate();
-			System.out.println(modifyCount);
 		} catch (SQLException e) {
 			System.out.println("ReviewDAO - updateReview() SQL구문 오류 : " + e.getMessage());
+		} finally {
+			close(pstmt);
 		}
-		close(pstmt);
-		
 		return modifyCount;
+	}
+
+	public int deleteReview(int od_id) {
+		System.out.println("ReviewDAO - deleteReview()");
+		int dropCount = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM review WHERE od_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, od_id);
+			dropCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("ReviewDAO - deleteReview() SQL문 오류 : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		return dropCount;
 	}
 
 

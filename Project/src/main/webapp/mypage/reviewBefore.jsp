@@ -99,7 +99,7 @@
 	   			%>
 	   				<tr><td><%=orderArrayList.get(i).getO_rdate() %></td>
 	   					<td><%=itemArrayList.get(i).getI_name() %></td>
-	   					<td><a href="ReviewUpdate.rv?od_id=<%=odList.get(i) %>">리뷰 수정</a> | <a href="ReviewInsert.rv">리뷰 삭제</a></td></tr>
+	   					<td><a href="ReviewUpdate.rv?od_id=<%=odList.get(i) %>">리뷰 수정</a> | <a href="ReviewDelete.rv?od_id=<%=odList.get(i) %>">리뷰 삭제</a></td></tr>
 				<%}%>		   				
 <!-- 		   				ㄴ얘는 색이 변경됐으면 좋겠습니다. -->
 		   		</table>

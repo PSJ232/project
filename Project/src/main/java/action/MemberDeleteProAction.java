@@ -20,10 +20,10 @@ public class MemberDeleteProAction implements Action {
 		String m_pass = request.getParameter("m_pass");
 		String m_id = request.getParameter("m_id");
 		MemberDeleteProService memberDeleteProService = new MemberDeleteProService();
-		boolean isDeleteCount = memberDeleteProService.dropMember(m_id, m_pass);
+		boolean isDeleteSuccess = memberDeleteProService.dropMember(m_id, m_pass);
 		
 		// 성공 시 로그인 화면으로 복귀
-		if(isDeleteCount) {
+		if(isDeleteSuccess) {
 			HttpSession session = request.getSession();
 			session.invalidate();// 로그아웃처리
 			
