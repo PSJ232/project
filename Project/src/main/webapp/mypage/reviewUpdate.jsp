@@ -42,7 +42,7 @@ ReviewBean rb = (ReviewBean)request.getAttribute("rb");
   		<li><a href="">주문내역/배송조회</a></li>
   		<li><a href="">나의 정기구독</a></li>
   		<li><a href="">클래스 수강내역</a></li>
-		<li><a href="../ReviewFormAction.rv">상품 리뷰</a></li>
+		<li><a href="../ReviewInsertForm.rv">상품 리뷰</a></li>
   	</ul>
  	 </div>
  	 
@@ -62,11 +62,14 @@ ReviewBean rb = (ReviewBean)request.getAttribute("rb");
  <div>
  <form action="ReviewUpdatePro.rv" method="post" name="fr" enctype="multipart/form-data">
 <input type="hidden" name="od_id" value="<%=rb.getOd_id() %>">
+<input type="hidden" name="r_id" value="<%=rb.getR_id() %>">
+r_id : <%=rb.getR_id() %> <br>
 작성자 : <input type="text" name="r_writer" value="<%=m_id %>" readonly>
 제목 : <input type="text" name="r_title" value=<%=rb.getR_title() %>> <br>
-내용 : <textarea rows="10" clos="20" name="r_content" ><%=rb.getR_content() %></textarea> <br>
+내용 : <textarea rows="10" cols="20" name="r_content" ><%=rb.getR_content() %></textarea> <br>
 평점 : <input type="text" name="r_rate" value=<%=rb.getR_rate() %>> <br>
-이미지:<input type="file" name="r_img" value=<%=rb.getR_img() %>><br>
+이미지:<input type="file" name="r_img"><%=rb.getR_img() %><br>
+     <input type="hidden" name="oldr_img" value="<%=rb.getR_img() %>">
 <input type="submit" value="작성하기">
  </form>
 

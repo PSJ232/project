@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.ReviewInsertProAction;
 import action.ReviewUpdateFormAction;
+import action.ReviewUpdateProAction;
 import action.ReviewInsertFormAction;
 import vo.ActionForward;
 
@@ -53,6 +54,13 @@ public class ReviewFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/ReviewUpdate.rv")) {
 			action = new ReviewUpdateFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReviewUpdatePro.rv")) {
+			action = new ReviewUpdateProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
