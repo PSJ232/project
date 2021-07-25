@@ -29,6 +29,7 @@ public class ReviewInsertFormAction implements Action {
 		ArrayList<ItemBean> itemArrayList = reviewStatusService.reviewStatusItemList(m_id);
 		ArrayList<Integer> nonOdList = reviewStatusService.reviewNonStatusOdList(m_id);
 		ArrayList<Integer> odList = reviewStatusService.reviewStatusOdList(m_id);
+		ArrayList<Integer> deleteOdList = reviewStatusService.reviewDeleteOdList(m_id);
 
 		request.setAttribute("nonOrderArrayList", nonOrderArrayList);
 		request.setAttribute("orderArrayList", orderArrayList);
@@ -36,6 +37,7 @@ public class ReviewInsertFormAction implements Action {
 		request.setAttribute("itemArrayList", itemArrayList);
 		request.setAttribute("nonOdList", nonOdList);
 		request.setAttribute("odList", odList);
+		request.setAttribute("deleteOdList", deleteOdList);
 		
 		
 //		command : /ReviewFormAction.rv

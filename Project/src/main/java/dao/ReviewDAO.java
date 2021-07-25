@@ -274,7 +274,7 @@ public class ReviewDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, od_id);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				rb = new ReviewBean();
 				// r_id, od_id, r_writer, r_title, r_content, r_rate, r_date, r_img, r_point
 				rb.setR_id(rs.getInt("r_id"));
@@ -335,6 +335,27 @@ public class ReviewDAO {
 			close(pstmt);
 		}
 		return dropCount;
+	}
+
+	public ArrayList<Integer> getDeleteOdList(String m_id) {
+		System.out.println("ReviewDAO - getDeleteOdList()");
+		ArrayList<Integer> deleteOdList = new ArrayList<Integer>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT r.od_id " + "FROM orders_detail od JOIN review r " + "ON od.od_id = r.od_id "
+					+ "WHERE od.od_review=1 AND od.m_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				deleteOdList.add(rs.getInt("od_id"));
+			} 
+		} catch (Exception e) {
+			System.out.println("ReviewDAO - getDeleteOdList() SQL 구문 오류 : " + e.getMessage());
+		}
+		return deleteOdList;
 	}
 
 
