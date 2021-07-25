@@ -26,99 +26,83 @@ import vo.ActionForward;
 
 @WebServlet("*.ad")
 public class AdminFrontController extends HttpServlet {
-	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		
-		//Action객체를 upcasting하여 저장하기 위한 변수 선언
-		Action action = null;
+	public void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+
+		// Action객체를 upcasting하여 저장하기 위한 변수 선언
+		Action action = null;
 		ActionForward forward = null;
-		
-		//요청에서 요청 서블릿 명을 추출하여 변수명에 저장
+		// 요청에서 요청 서블릿 명을 추출하여 변수명에 저장
 		String command = request.getServletPath();
-		
-		//제품 목록
-		if(command.equals("/ItemList.ad")) {
-			
+		// 제품 목록
+		if (command.equals("/ItemList.ad")) {
 			action = new ItemListAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		//제품상세페이지
-		} else if(command.equals("/ItemDetailView.ad")) {
-			
+			// 제품상세페이지
+		} else if (command.equals("/ItemDetailView.ad")) {
 			action = new ItemDetailAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		//제품등록페이지 이동
-		} else if(command.equals("/ItemRegister.ad")){
-			
+
+			// 제품등록페이지 이동
+		} else if (command.equals("/ItemRegister.ad")) {
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/item_manage/itemManageRegister.jsp");
 			forward.setRedirect(false);
-		
-		//새 제품 등록작업
-		} else if(command.equals("/ItemInsert.ad")) {
-			
+			// 새 제품 등록작업
+		} else if (command.equals("/ItemInsert.ad")) {
 			action = new ItemInsertAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		//제품수정 처리
-		} else if(command.equals("/ItemUpdate.ad")) {
-			
+
+			// 제품수정 처리
+		} else if (command.equals("/ItemUpdate.ad")) {
 			action = new ItemUpdateAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		//제품수정 페이지
-		} else if(command.equals("/ItemUpdatePage.ad")) {
-			
+
+			// 제품수정 페이지
+		} else if (command.equals("/ItemUpdatePage.ad")) {
 			action = new ItemDetailAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
-		//제품 삭제
-		} else if(command.equals("/ItemDelete.ad")) {
-			
+
+			// 제품 삭제
+		} else if (command.equals("/ItemDelete.ad")) {
 			action = new ItemDeleteAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/OrderList.ad")) {
+		} else if (command.equals("/OrderList.ad")) {
 			forward = new ActionForward();
 //			action = new OrderListAction();
-		// 클래스 등록 폼
-		}else if(command.equals("/ClassInsertForm.ad")) {
+			// 클래스 등록 폼
+		} else if (command.equals("/ClassInsertForm.ad")) {
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/class_management/classInsertForm.jsp");
 			forward.setRedirect(false);
-		// 클래스 등록Pro	
-		}else if(command.equals("/ClassInsertPro.ad")) {
+			// 클래스 등록Pro
+		} else if (command.equals("/ClassInsertPro.ad")) {
 			forward = new ActionForward();
 			action = new ClassInsertProAction();
 			try {
@@ -126,8 +110,8 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		// 클래스 시간 리스트
-		}else if(command.equals("/TimeList.ad")) {
+			// 클래스 시간 리스트
+		} else if (command.equals("/TimeList.ad")) {
 			forward = new ActionForward();
 			action = new ClassDetailSelectTimelistAction();
 			try {
@@ -135,8 +119,8 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		// 시간정보 등록
-		}else if(command.equals("/ClassDetailadd.ad")) {
+			// 시간정보 등록
+		} else if (command.equals("/ClassDetailadd.ad")) {
 			forward = new ActionForward();
 			action = new ClassTimeAddAction();
 			try {
@@ -144,8 +128,8 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		// 클래스 리스트
-		}else if(command.equals("/ClassList.ad")) {
+			// 클래스 리스트
+		} else if (command.equals("/ClassList.ad")) {
 			forward = new ActionForward();
 			action = new ClassListAction();
 			try {
@@ -153,8 +137,8 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		// 클래스 수정폼
-		}else if(command.equals("/ClassModifyForm.ad")) {
+			// 클래스 수정폼
+		} else if (command.equals("/ClassModifyForm.ad")) {
 			forward = new ActionForward();
 			action = new ClassDetailViewAction();
 			try {
@@ -162,8 +146,8 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		// 클래스 수정
-		}else if(command.equals("/ClassModifyPro.ad")) {
+			// 클래스 수정
+		} else if (command.equals("/ClassModifyPro.ad")) {
 			forward = new ActionForward();
 			action = new ClassModifyProAction();
 			try {
@@ -171,7 +155,7 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/ClassDetailView.ad")) {
+		} else if (command.equals("/ClassDetailView.ad")) {
 			forward = new ActionForward();
 			action = new ClassDetailViewAction();
 			try {
@@ -179,7 +163,7 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/ClassDelete.ad")) {
+		} else if (command.equals("/ClassDelete.ad")) {
 			forward = new ActionForward();
 			action = new ClassDeleteAction();
 			try {
@@ -188,11 +172,9 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
-		if(forward!=null) {
-			if(forward.isRedirect()) {
+
+		if (forward != null) {
+			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
@@ -204,15 +186,15 @@ public class AdminFrontController extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
-       
-	
 
 }
