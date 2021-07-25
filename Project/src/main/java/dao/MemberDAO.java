@@ -72,7 +72,7 @@ public class MemberDAO {
 	}
 
 	// 로그인 작업(비즈니스 로직)을 수행하기 위한 userCheck() 메서드 정의
-	public int userCheck(MemberBean memberBean) {
+	public int userCheck(String m_id, String m_pass) {
 		System.out.println("MemberDAO - userCheck()");
 
 		int insertCount = 0;
@@ -82,8 +82,8 @@ public class MemberDAO {
 			String sql = "SELECT * FROM member WHERE m_id=? and m_pass=?";
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, memberBean.getM_id());// 아이디=이메일
-			pstmt.setString(2, memberBean.getM_pass());
+			pstmt.setString(1, m_id);// 아이디=이메일
+			pstmt.setString(2, m_pass);
 
 			rs = pstmt.executeQuery();
 
@@ -472,6 +472,30 @@ public class MemberDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return orderList;
+	}
+
+	public float selectGradeDetail(int g_id) {
+		System.out.println("MemberDAO - selectGradeDetail()");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		float g_discount = 0.0f;
+		try {
+			String sql = "SELECT g_discount FROM grade WHERE g_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, g_id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				g_discount = rs.getFloat("g_discount");
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return g_discount;
 	}
 
 }
