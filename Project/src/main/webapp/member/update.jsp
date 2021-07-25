@@ -62,36 +62,38 @@
 				long newAnnDay = 0L; // 반복패턴에 따라 새 기념일을 저장할 변수선언
 				String repeat = "없음"; // 반복패턴 판별하여 저장할 변수, 기본값 : 없음
 				switch (ab.getA_repeat()) {
-				case 1:
-					repeat = "매년";
-					break;
-				case 100:
-					repeat = "100일마다";
+					case 1:	repeat = "매년"; break;
+					case 100: repeat = "100일마다";
 				}
 
 				Date now = new Date(System.currentTimeMillis()); // 현재 날짜정보 저장
 				Date annDay = Date.valueOf(ab.getA_date()); // 기념일 정보 저정
-
-				if (now.getTime() > annDay.getTime()) { // 기념일이 지났는지 판별
-
-					if (ab.getA_repeat() == 1) { // 매년 반복이면 그 다음해를 새 기념일로 해서 계산
+				
+				long dDay;
+				if (ab.getA_repeat() == 1) { // 매년 반복이면 그 다음해를 새 기념일로 해서 계산
+					if (now.getTime() > annDay.getTime()) { // 기념일이 지났는지 판별
 						int yearPlus = now.getYear() - annDay.getYear(); // 해가 다르면 차이만큼 더해서 똑같은 연도로 맞춰서 계산한다
-						if (now.getMonth() > annDay.getMonth()) {yearPlus += 1;} // 해가 같으나 월이 지났으면 한해를 더해서 계산한다
-							else if (now.getMonth() == annDay.getMonth() && now.getDate() >= annDay.getDate()) {yearPlus += 1;} // 월이 같지만 일이 같거나 크면 한해를 더해서 계산한다
+						if (now.getMonth() > annDay.getMonth()) { // 해가 같으나 월이 지났으면 한해를 더해서 계산한다
+							yearPlus += 1;
+						} else if (now.getMonth() == annDay.getMonth() && now.getDate() >= annDay.getDate()) { // 월이 같지만 일이 같거나 크면 한해를 더해서 계산한다
+							yearPlus += 1;
+						}
 						annDay.setYear(annDay.getYear() + yearPlus); // 계산된 연도로 setYear해서 엎어써준다
-						newAnnDay = annDay.getTime();
-					} else if (ab.getA_repeat() == 100) { // 100일마다 반복이면
-						long loop = Math.round(((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000 / 100)); // 100일을 몇번지났는지 계산하여 +1 한 숫자를 곱해준다
-						newAnnDay = annDay.getTime() + ((100 * 24 * 60 * 60 * 1000L) * (loop + 1));
-					} else { // 없음이면 그대로
-						newAnnDay = annDay.getTime();
+						dDay = Math.round(((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000));
+					} else { // 기념일이 지나지 않았으면 기본값 그대로
+						dDay = Math.round(((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000));
 					}
 
-				} else { // 기념일이 지나지 않았으면 그대로
-					newAnnDay = annDay.getTime();
+				} else if (ab.getA_repeat() == 100) { // 100일마다 반복이면
+					if (now.getTime() < annDay.getTime()) {
+						dDay = Math.round((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000);
+					} else {
+						dDay = ((Math.round((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000)) % 100) - 100;
+					}	
+				} else { // 반복없음이면 기본값 그대로
+					dDay = Math.round(((now.getTime() - annDay.getTime()) / 24.0 / 60 / 60 / 1000));
 				}
 
-				long dDay = Math.round(((now.getTime() - newAnnDay) / 24.0 / 60 / 60 / 1000));
 			%>
 			<tr>
 				<td>D<%=dDay%></td>
