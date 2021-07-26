@@ -14,6 +14,15 @@ public class OrderDetailBean {
 	private String od_delivery_date;
 	private String od_invoice;
 	private int od_confirm;
+	private String i_name;
+
+	public String getI_name() {
+		return i_name;
+	}
+
+	public void setI_name(String i_name) {
+		this.i_name = i_name;
+	}
 
 	public int getOd_id() {
 		return od_id;

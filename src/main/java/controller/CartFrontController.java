@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.CartDeleteProAction;
 import action.CartViewAction;
+import action.VisitorCartAction;
 import action.CartInsertProAction;
 import action.CartUpdateProAction;
 import vo.ActionForward;
@@ -64,6 +65,14 @@ public class CartFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		// 비회원 장바구니(바로구매기능)
+		} else if (command.equals("/VisitorCart.cr")) {
+			action = new VisitorCartAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// -------------------------------------------------------------------------
@@ -77,7 +86,7 @@ public class CartFrontController extends HttpServlet {
 			}
 		} else { // 임시 확인을 위한 코드
 			// ActionForward 객체가 null 일 경우 포워딩 작업 수행하지 않음
-			System.out.println("MemberFrontController - ActionForward 객체가 null 입니다!");
+			System.out.println("CartFrontController - ActionForward 객체가 null 입니다!");
 		}
 
 	}

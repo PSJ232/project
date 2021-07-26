@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import svc.AdminMemberDetailService;
+import svc.AdminOrderSearchService;
 import vo.ActionForward;
 import vo.MemberBean;
 import vo.OrderBean;
+import vo.OrderListBean;
 
 public class AdminMemberDetailAction implements Action {
 
@@ -18,8 +20,8 @@ public class AdminMemberDetailAction implements Action {
 		AdminMemberDetailService service = new AdminMemberDetailService();
 		String m_id = request.getParameter("m_id");
 		MemberBean memberBean = service.getMemberDetail(m_id);
-		ArrayList<OrderBean> orderList = service.getMemberOrders(m_id);
-		System.out.println(orderList.toString());
+		AdminOrderSearchService o_service = new AdminOrderSearchService();
+		ArrayList<OrderListBean> orderList = o_service.getMemberOrders(m_id);
 		
 		request.setAttribute("memberBean", memberBean);
 		request.setAttribute("orderList", orderList);

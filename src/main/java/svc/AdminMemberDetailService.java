@@ -20,12 +20,12 @@ public class AdminMemberDetailService {
 		return memberBean;
 	}
 	
-	public ArrayList<OrderBean> getMemberOrders(String m_id) {
-		Connection con = getConnection();
-		MemberDAO memberDAO = MemberDAO.getInstance();
-		memberDAO.setConnection(con);
-		ArrayList<OrderBean> orderList = memberDAO.getMemberOrders(m_id);
-		close(con);
-		return orderList;
-	}
+//	public ArrayList<OrderBean> getMemberOrders(String m_id) {
+//		Connection con = getConnection();
+//		MemberDAO memberDAO = MemberDAO.getInstance();
+//		memberDAO.setConnection(con);
+//		ArrayList<OrderBean> orderList = memberDAO.getMemberOrders(m_id);
+//		close(con);
+//		return orderList;
+//	}
 }

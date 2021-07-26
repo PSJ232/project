@@ -446,33 +446,33 @@ public class MemberDAO {
 		}
 		return memberBean;
 	}
-
-	public ArrayList<OrderBean> getMemberOrders(String m_id) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<OrderBean> orderList = new ArrayList<OrderBean>();
-		try {
-			String sql = "SELECT * FROM orders WHERE m_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, m_id);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				OrderBean orderBean = new OrderBean();
-				orderBean.setO_id(rs.getInt("o_id"));
-				orderBean.setM_id(m_id);
-				orderBean.setO_amount(rs.getInt("o_amount"));
-				orderBean.setO_payment(rs.getInt("o_payment"));
-				orderBean.setO_rdate(rs.getDate("o_rdate"));
-				orderList.add(orderBean);
-			}
-		} catch (SQLException e) {
-			System.out.println("SQL구문오류! (MemberDAO getMemberOrders) - " + e.getMessage());
-		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-		return orderList;
-	}
+//
+//	public ArrayList<OrderBean> getMemberOrders(String m_id) {
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		ArrayList<OrderBean> orderList = new ArrayList<OrderBean>();
+//		try {
+//			String sql = "SELECT * FROM orders WHERE m_id=?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, m_id);
+//			rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				OrderBean orderBean = new OrderBean();
+//				orderBean.setO_id(rs.getInt("o_id"));
+//				orderBean.setM_id(m_id);
+//				orderBean.setO_amount(rs.getInt("o_amount"));
+//				orderBean.setO_payment(rs.getInt("o_payment"));
+//				orderBean.setO_rdate(rs.getDate("o_rdate"));
+//				orderList.add(orderBean);
+//			}
+//		} catch (SQLException e) {
+//			System.out.println("SQL구문오류! (MemberDAO getMemberOrders) - " + e.getMessage());
+//		}finally {
+//			JdbcUtil.close(rs);
+//			JdbcUtil.close(pstmt);
+//		}
+//		return orderList;
+//	}
 
 	public float selectGradeDetail(int g_id) {
 		System.out.println("MemberDAO - selectGradeDetail()");
