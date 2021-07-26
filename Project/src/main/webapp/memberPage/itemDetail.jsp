@@ -11,6 +11,7 @@
 <%
 ItemBean itemDetail = (ItemBean)request.getAttribute("itemDetail");
 ArrayList<ReviewBean> rbList = (ArrayList<ReviewBean>)request.getAttribute("rbList");
+// review null 값 처리해야됨
 %>
 <link rel="stylesheet" href="css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,9 +31,13 @@ ArrayList<ReviewBean> rbList = (ArrayList<ReviewBean>)request.getAttribute("rbLi
 	<table border="1">
 	<tr><td>별점</td><td>제목</td><td>작성자</td><td>주문일자</td></tr>
 	
-	<%for(int i=0; i<rbList.size(); i++) {%>
-		<tr><td><%=rbList.get(i).getR_rate() %></td><td><%=rbList.get(i).getR_title() %></td><td><%=rbList.get(i).getR_writer() %></td><td><%=rbList.get(i).getR_rdate() %></td></tr>
-	<%}%>
+	<%
+		System.out.println(rbList.size());
+		for(int i=0; i<rbList.size(); i++) {%>
+			<tr><td><%=rbList.get(i).getR_rate() %></td><td><%=rbList.get(i).getR_title() %></td><td><%=rbList.get(i).getR_writer() %></td><td><%=rbList.get(i).getR_rdate() %></td></tr>
+		<%
+		} 
+	%>
 	
 	</table>
 	
