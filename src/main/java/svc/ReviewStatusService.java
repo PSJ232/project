@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import dao.ReviewDAO;
 import vo.ItemBean;
 import vo.OrderBean;
+import vo.OrderDetailBean;
+
 import static db.JdbcUtil.*;
 
 
 public class ReviewStatusService {
 
 	public ArrayList<OrderBean> reviewNonStatusOrderList(String m_id) {
-		
 		System.out.println("ReviewStatusService - reviewNonStatusOrderList()");
 		ArrayList<OrderBean> nonOrderArrayList = null;
 		
@@ -28,7 +29,6 @@ public class ReviewStatusService {
 	}
 	
 	public ArrayList<OrderBean> reviewStatusOrderList(String m_id) {
-		
 		System.out.println("ReviewStatusService - reviewStatusOrderList()");
 		ArrayList<OrderBean> orderArrayList = null;
 		
@@ -72,38 +72,6 @@ public class ReviewStatusService {
 		
 		return itemArrayList;
 	}
-	
-	public ArrayList<Integer> reviewNonStatusOdList(String m_id) {
-		System.out.println("ReviewStatusService - reviewNonStatusOdList()");
-		ArrayList<Integer> odList = null;
-		
-		Connection con = getConnection();
-		ReviewDAO rdao = ReviewDAO.getInstance();
-		rdao.setConnection(con);
-		
-		odList = rdao.getReviewNonOrderDetail(m_id);
-		
-		close(con);
-		
-		return odList;
-	
-	}
-
-	public ArrayList<Integer> reviewStatusOdList(String m_id) {
-		System.out.println("ReviewStatusService - reviewNonStatusOdList()");
-		ArrayList<Integer> odList = null;
-		
-		Connection con = getConnection();
-		ReviewDAO rdao = ReviewDAO.getInstance();
-		rdao.setConnection(con);
-		
-		odList = rdao.getReviewOrderDetail(m_id);
-		
-		close(con);
-		
-		return odList;
-		
-	}
 
 	public ArrayList<Integer> reviewDeleteOdList(String m_id) {
 		System.out.println("ReviewStatusService - reviewDeleteOdList()");
@@ -120,6 +88,34 @@ public class ReviewStatusService {
 		return deleteOdList;
 	}
 
-	
+	public ArrayList<OrderDetailBean> reviewNonStatusOrderDetailList(String m_id) {
+		System.out.println("ReviewStatusService - reviewNonStatusOrderDetailList()");
+		ArrayList<OrderDetailBean> nonOrderDetailArrayList = null;
+		
+		Connection con = getConnection();
+		ReviewDAO rdao = ReviewDAO.getInstance();
+		rdao.setConnection(con);
+		
+		nonOrderDetailArrayList = rdao.getReviewNonStatusOrderDetailList(m_id);
+		
+		close(con);
+		
+		return nonOrderDetailArrayList;
+	}
+
+	public ArrayList<OrderDetailBean> reviewStatusOrderDetailList(String m_id) {
+		System.out.println("ReviewStatusService - reviewStatusOrderDetailList()");
+		ArrayList<OrderDetailBean> orderDetailArrayList = null;
+		
+		Connection con = getConnection();
+		ReviewDAO rdao = ReviewDAO.getInstance();
+		rdao.setConnection(con);
+		
+		orderDetailArrayList = rdao.getReviewStatusOrderDetailList(m_id);
+		
+		close(con);
+		
+		return orderDetailArrayList;
+	}
 
 }

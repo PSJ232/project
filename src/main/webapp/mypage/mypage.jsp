@@ -1,3 +1,4 @@
+<%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +9,10 @@
 </head>
 <body>
 
+<% MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail"); 
+	String m_id = (String)session.getAttribute("m_id");
+%>
+
 <!-- 헤더 들어가는곳 -->
 
 <!-- 헤더 들어가는곳 -->
@@ -17,13 +22,13 @@
   
   <section id=""> 
 
-  <article id="">000님,<br>
+  <article id=""><%=m_id %>님,<br>
   오늘도 꽃같은 날이예요</article>
 	
   <article id="">
-  <a href=""> 등급정보</a>ㅣ
- 	<a href=""> 포인트</a>ㅣ
- 	<a href=""> 나의정보</a>
+  등급 정보 : <a href=""><%=memberMypageDetail.getG_id() %> </a>ㅣ 
+  포인트 : <a href=""><%=memberMypageDetail.getM_point() %></a>ㅣ
+  나의 구독 : <a href="">2</a>
   </article>
   
   </section>
@@ -34,7 +39,7 @@
 	<div>
   	<h2>마이꾸까</h2>
   	<ul type="none">
-  		<li><a href="">주문내역/배송조회</a></li>
+  		<li><a href="../OrderMypageDetail.od">주문내역/배송조회</a></li>
   		<li><a href="">나의 정기구독</a></li>
   		<li><a href="">클래스 수강내역</a></li>
 		<li><a href="../ReviewInsertForm.rv">상품 리뷰</a></li>

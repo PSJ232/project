@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import vo.ItemBean;
 import vo.OrderBean;
+import vo.OrderDetailBean;
 import vo.ReviewBean;
 
 import static db.JdbcUtil.*;
@@ -38,13 +39,13 @@ public class ReviewDAO {
 	
 //	arrayList = rdao.getReviewStatus(m_id);
 	public ArrayList<OrderBean> getReviewNonStatusOrderList(String m_id) {
-		System.out.println("ReviewDAO - getReviewNonStatusOrderBean()");
+		System.out.println("ReviewDAO - getReviewNonStatusOrderList()");
 		
 		ArrayList<OrderBean> nonOrderArrayList = new ArrayList<OrderBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT o.o_id, o.o_rdate, o.o_receiver, o.o_amount "
+		String sql = "SELECT o.* "
 				+ "FROM orders_detail od JOIN orders o "
 				+ "ON od.o_id = o.o_id "
 				+ "WHERE od.od_review = 0 AND od.m_id = ?";
@@ -59,7 +60,12 @@ public class ReviewDAO {
 				ob.setO_rdate(rs.getDate("o_rdate"));
 				ob.setO_receiver(rs.getString("o_receiver"));
 				ob.setO_amount(rs.getInt("o_amount"));
-				
+				ob.setO_address(rs.getString("o_address"));
+				ob.setO_gdiscount(rs.getInt("o_gdiscount"));
+				ob.setO_payment(rs.getInt("o_payment"));
+				ob.setO_phone(rs.getString("o_phone"));
+				ob.setO_point(rs.getInt("o_point"));
+				ob.setO_sender(rs.getString("o_sender"));
 				nonOrderArrayList.add(ob);
 			} 
 		} catch (Exception e) {
@@ -72,13 +78,13 @@ public class ReviewDAO {
 	}
 	
 	public ArrayList<OrderBean> getReviewStatusOrderList(String m_id) {
-		System.out.println("ReviewDAO - getReviewStatus()");
+		System.out.println("ReviewDAO - getReviewStatusOrderList()");
 		
 		ArrayList<OrderBean> orderArrayList = new ArrayList<OrderBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT o.o_id, o.o_rdate, o.o_receiver, o.o_amount "
+		String sql = "SELECT * "
 				+ "FROM orders_detail od JOIN orders o "
 				+ "ON od.o_id = o.o_id "
 				+ "WHERE od.od_review = 1 AND od.m_id = ?";
@@ -93,6 +99,12 @@ public class ReviewDAO {
 				ob.setO_rdate(rs.getDate("o_rdate"));
 				ob.setO_receiver(rs.getString("o_receiver"));
 				ob.setO_amount(rs.getInt("o_amount"));
+				ob.setO_address(rs.getString("o_address"));
+				ob.setO_gdiscount(rs.getInt("o_gdiscount"));
+				ob.setO_payment(rs.getInt("o_payment"));
+				ob.setO_phone(rs.getString("o_phone"));
+				ob.setO_point(rs.getInt("o_point"));
+				ob.setO_sender(rs.getString("o_sender"));
 				orderArrayList.add(ob);
 			} 
 		} catch (Exception e) {
@@ -105,13 +117,13 @@ public class ReviewDAO {
 	}
 
 	public ArrayList<ItemBean> getReviewNonStatusItemList(String m_id) {
-		System.out.println("ReviewDAO - getReviewNonStatusItemBean()");
+		System.out.println("ReviewDAO - getReviewNonStatusItemList()");
 		
 		ArrayList<ItemBean> nonItemArrayList = new ArrayList<ItemBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT i.i_id, i.i_name, i.i_img "
+		String sql = "SELECT i.* "
 			+	"FROM orders_detail od JOIN item i "
 			+	"ON od.i_id = i.i_id "
 			+	"WHERE od.od_review = 0 AND m_id = ?";
@@ -124,7 +136,19 @@ public class ReviewDAO {
 				ItemBean ib = new ItemBean();
 				ib.setI_id(rs.getInt("i_id"));
 				ib.setI_name(rs.getString("i_name"));
+				ib.setI_desc(rs.getString("i_desc"));
+				ib.setI_price(rs.getInt("i_price"));
+				ib.setI_inven(rs.getInt("i_inven"));
 				ib.setI_img(rs.getString("i_img"));
+				ib.setI_subimg2(rs.getString("i_subimg2"));
+				ib.setI_subimg3(rs.getString("i_subimg3"));
+				ib.setI_subimg4(rs.getString("i_subimg4"));
+				ib.setI_rdate(rs.getTimestamp("i_rdate"));
+				ib.setI_discount(rs.getFloat("i_discount"));
+				ib.setI_size(rs.getString("i_size"));
+				ib.setI_dpstatus(rs.getString("i_dpstatus"));
+				ib.setI_itemstatus(rs.getString("i_itemstatus"));
+				ib.setI_detailpage(rs.getString("i_detailpage"));
 				nonItemArrayList.add(ib);
 			}
 		} catch (Exception e) {
@@ -137,13 +161,13 @@ public class ReviewDAO {
 	}
 	
 	public ArrayList<ItemBean> getReviewStatusItemList(String m_id) {
-		System.out.println("ReviewDAO - getReviewStatusItemBean()");
+		System.out.println("ReviewDAO - getReviewStatusItemList()");
 		
 		ArrayList<ItemBean> itemArrayList = new ArrayList<ItemBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT i.i_id, i.i_name, i.i_img "
+		String sql = "SELECT i.* "
 				+	"FROM orders_detail od JOIN item i "
 				+	"ON od.i_id = i.i_id "
 				+	"WHERE od.od_review = 1 AND m_id = ?";
@@ -156,11 +180,23 @@ public class ReviewDAO {
 				ItemBean ib = new ItemBean();
 				ib.setI_id(rs.getInt("i_id"));
 				ib.setI_name(rs.getString("i_name"));
+				ib.setI_desc(rs.getString("i_desc"));
+				ib.setI_price(rs.getInt("i_price"));
+				ib.setI_inven(rs.getInt("i_inven"));
 				ib.setI_img(rs.getString("i_img"));
+				ib.setI_subimg2(rs.getString("i_subimg2"));
+				ib.setI_subimg3(rs.getString("i_subimg3"));
+				ib.setI_subimg4(rs.getString("i_subimg4"));
+				ib.setI_rdate(rs.getTimestamp("i_rdate"));
+				ib.setI_discount(rs.getFloat("i_discount"));
+				ib.setI_size(rs.getString("i_size"));
+				ib.setI_dpstatus(rs.getString("i_dpstatus"));
+				ib.setI_itemstatus(rs.getString("i_itemstatus"));
+				ib.setI_detailpage(rs.getString("i_detailpage"));
 				itemArrayList.add(ib);
 			} 
 		} catch (Exception e) {
-			System.out.println("ReviewDAO - getReviewStatusItemBean() SQL문 오류 - " + e.getMessage());
+			System.out.println("ReviewDAO - getReviewStatusItemList() SQL문 오류 - " + e.getMessage());
 		} finally {
 			close(pstmt);
 			close(rs);
@@ -168,59 +204,86 @@ public class ReviewDAO {
 		return itemArrayList;
 	}
 
-	public ArrayList<Integer> getReviewNonOrderDetail(String m_id) {
-		System.out.println("ReviewDAO - getReviewNonOrderDetail()");
-		ArrayList<Integer> nonOdList = new ArrayList<Integer>();
-		
+	public ArrayList<OrderDetailBean> getReviewNonStatusOrderDetailList(String m_id) {
+		System.out.println("ReviewDAO - getReviewNonStatusOrderDetailList");
+		ArrayList<OrderDetailBean> nonOrderDetailArrayList = new ArrayList<OrderDetailBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT od_id FROM orders_detail WHERE od_review = 0 AND m_id = ?";
+		String sql = "SELECT * "
+				+ "FROM orders_detail "
+				+ "WHERE od_review = 0 AND m_id = ?";
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				nonOdList.add(rs.getInt("od_id"));
+				OrderDetailBean odb = new OrderDetailBean();
+				odb.setC_id(rs.getInt("c_id"));
+				odb.setI_id(rs.getInt("i_id"));
+				odb.setL_id(rs.getInt("l_id"));
+				odb.setM_id(rs.getString("m_id"));
+				odb.setO_id(rs.getInt("o_id"));
+				odb.setOd_confirm(rs.getInt("od_confirm"));
+				odb.setOd_delivery_date(rs.getString("od_delivery_date"));
+				odb.setOd_id(rs.getInt("od_id"));
+				odb.setOd_invoice(rs.getString("od_invoice"));
+				odb.setOd_message(rs.getString("od_message"));
+				odb.setOd_qty(rs.getInt("od_qty"));
+				odb.setOd_review(rs.getInt("od_review"));
+				nonOrderDetailArrayList.add(odb);
 			} 
 		} catch (Exception e) {
-			System.out.println("ReviewDAO - getOrderDetail() SQL문 오류 - " + e.getMessage());
+			System.out.println("ReviewDAO - getReviewNonStatusOrderBean() SQL문 오류 - " + e.getMessage());
 		} finally {
 			close(pstmt);
 			close(rs);
 		}
-		return nonOdList;
-		
+		return nonOrderDetailArrayList;
 	}
 
-	public ArrayList<Integer> getReviewOrderDetail(String m_id) {
-		System.out.println("ReviewDAO - getReviewOrderDetail()");
-		ArrayList<Integer> odList = new ArrayList<Integer>();
-		
+	public ArrayList<OrderDetailBean> getReviewStatusOrderDetailList(String m_id) {
+		System.out.println("ReviewDAO - getReviewNonStatusOrderDetailList");
+		ArrayList<OrderDetailBean> orderDetailArrayList = new ArrayList<OrderDetailBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT od_id FROM orders_detail WHERE od_review = 1 AND m_id = ?";
+		String sql = "SELECT * "
+				+ "FROM orders_detail "
+				+ "WHERE od_review = 1 AND m_id = ?";
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				odList.add(rs.getInt("od_id"));
+				OrderDetailBean odb = new OrderDetailBean();
+				odb.setC_id(rs.getInt("c_id"));
+				odb.setI_id(rs.getInt("i_id"));
+				odb.setL_id(rs.getInt("l_id"));
+				odb.setM_id(rs.getString("m_id"));
+				odb.setO_id(rs.getInt("o_id"));
+				odb.setOd_confirm(rs.getInt("od_confirm"));
+				odb.setOd_delivery_date(rs.getString("od_delivery_date"));
+				odb.setOd_id(rs.getInt("od_id"));
+				odb.setOd_invoice(rs.getString("od_invoice"));
+				odb.setOd_message(rs.getString("od_message"));
+				odb.setOd_qty(rs.getInt("od_qty"));
+				odb.setOd_review(rs.getInt("od_review"));
+				orderDetailArrayList.add(odb);
 			} 
 		} catch (Exception e) {
-			System.out.println("ReviewDAO - getOrderDetail() SQL문 오류 - " + e.getMessage());
+			System.out.println("ReviewDAO - getReviewNonStatusOrderBean() SQL문 오류 - " + e.getMessage());
 		} finally {
 			close(pstmt);
 			close(rs);
 		}
-		return odList;
-		
+		return orderDetailArrayList;
 	}
-
+	
 	public int insertReview(ReviewBean rb) {
 		System.out.println("ReviewDAO - insertReview()");
-//r_id, od_id, r_writer, r_title, r_content, r_rate, r_rdate, r_img, r_point
 		
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
@@ -276,7 +339,6 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				rb = new ReviewBean();
-				// r_id, od_id, r_writer, r_title, r_content, r_rate, r_date, r_img, r_point
 				rb.setR_id(rs.getInt("r_id"));
 				rb.setOd_id(rs.getInt("od_id"));
 				rb.setR_writer(rs.getString("r_writer"));
@@ -397,17 +459,5 @@ public class ReviewDAO {
 		}
 		return rbList;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

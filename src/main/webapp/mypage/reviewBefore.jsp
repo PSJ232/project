@@ -1,3 +1,4 @@
+<%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.ItemBean"%>
 <%@page import="vo.OrderBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -62,11 +63,11 @@
   ArrayList<OrderBean> orderArrayList = (ArrayList<OrderBean>)request.getAttribute("orderArrayList");
   ArrayList<ItemBean> nonItemArrayList = (ArrayList<ItemBean>)request.getAttribute("nonItemArrayList");
   ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>)request.getAttribute("itemArrayList");
-  ArrayList<Integer> nonOdList = (ArrayList<Integer>)request.getAttribute("nonOdList");
-  ArrayList<Integer> odList = (ArrayList<Integer>)request.getAttribute("odList");
+  ArrayList<OrderDetailBean> nonOrderDetailArrayList = (ArrayList<OrderDetailBean>)request.getAttribute("nonOrderDetailArrayList");
+  ArrayList<OrderDetailBean> orderDetailArrayList = (ArrayList<OrderDetailBean>)request.getAttribute("orderDetailArrayList");
   ArrayList<Integer> deleteOdList = (ArrayList<Integer>)request.getAttribute("deleteOdList");
+  
   String m_id = (String)session.getAttribute("m_id");
-  System.out.println("m_id : " + m_id);
   
   %>
  
@@ -77,17 +78,17 @@
 		   		<h6>작성 가능한 후기</h6>
 	   			<table border="1">
 	   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
-	   			<%
-		   		  for(int i=0; i<nonOrderArrayList.size(); i++) {
-		   			  nonOrderArrayList.get(i).getO_rdate();
-		   			  nonOrderArrayList.get(i).getO_rdate();
-//		   		 	  SELECT o_id, o_rdate, o_delivery_date, o_receiver, o_amount
-// 			   		  SELECT i_id, i_name, i_img
-		   			  nonItemArrayList.get(i).getI_name();
+				<%for(int i=0; i<nonOrderArrayList.size(); i++) {
+	   				int sumAmount = nonOrderArrayList.get(i).getO_amount() + nonOrderArrayList.get(i).getO_point() + nonOrderArrayList.get(i).getO_gdiscount();
 	   			%>
 	   				<tr><td><%=nonOrderArrayList.get(i).getO_rdate() %></td>
-	   					<td><%=nonItemArrayList.get(i).getI_name() %></td>
-	   					<td><a href="ReviewInsert.rv?od_id=<%=nonOdList.get(i) %>">리뷰 작성</a></td></tr>
+	   					<td><%=nonItemArrayList.get(i).getI_name() %><br>
+	   						수령인 : <%=nonItemArrayList.get(i).getI_name() %><br>
+	   						가격 : <%=sumAmount %><br>
+	   						수량 : <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
+	   					</td>
+	   					<td><a href="ReviewInsert.rv?od_id=<%=nonOrderDetailArrayList.get(i).getOd_id() %>">리뷰 작성</a></td>
+	   				</tr>
 				<%}%>
 	   			</table>
 		   		</div>
@@ -96,15 +97,21 @@
 		   		<h6>내 리뷰</h6>
 		   		<table border="1">
 		   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
-	   			<%for(int i=0; i<orderArrayList.size(); i++) {%>
+	   			<%for(int i=0; i<orderArrayList.size(); i++) {
+	   				int sumAmount = orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point() + orderArrayList.get(i).getO_gdiscount();
+	   			%>
 	   				<tr><td><%=orderArrayList.get(i).getO_rdate() %></td>
-	   					<td><%=itemArrayList.get(i).getI_name() %></td>
+	   					<td><%=itemArrayList.get(i).getI_name() %><br>
+	   						수령인 : <%=itemArrayList.get(i).getI_name() %><br>
+	   						가격 : <%=sumAmount %><br>
+	   						수량 : <%=orderDetailArrayList.get(i).getOd_qty() %>
+	   					</td>
 
 <!-- 				삭제된 리뷰와, 수정 및 삭제가 가능한 리뷰를 구분	   			 -->
-		   			<%	if(deleteOdList.contains(odList.get(i))) {%>
-		   					<td><a href="ReviewUpdate.rv?od_id=<%=odList.get(i) %>">리뷰 수정(od_id : <%=odList.get(i)%>)</a> | <a href="ReviewDelete.rv?od_id=<%=odList.get(i) %>">리뷰 삭제</a></td>
+		   			<%	if(deleteOdList.contains(orderDetailArrayList.get(i).getOd_id())) {%>
+		   					<td><a href="ReviewUpdate.rv?od_id=<%=orderDetailArrayList.get(i).getOd_id() %>">리뷰 수정(od_id : <%=orderDetailArrayList.get(i).getOd_id()%>)</a> | <a href="ReviewDelete.rv?od_id=<%=orderDetailArrayList.get(i).getOd_id() %>">리뷰 삭제</a></td>
 		   			<%	} else {%>
-		   					<td>삭제된 리뷰 (od_id : <%=odList.get(i) %>)</td>
+		   					<td>삭제된 리뷰 (od_id : <%=orderDetailArrayList.get(i).getOd_id() %>)</td>
 		   			<% 	}%>	
 
 	   				</tr>

@@ -20,6 +20,7 @@ import action.MemberUpdateFormAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
+import action.MemberMypageDetailAction;
 import action.MemberUpdateProAction;
 import vo.ActionForward;
 
@@ -152,6 +153,14 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/MemberMypageDetail.me")) {
+			action = new MemberMypageDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 		// -------------------------------------------------------------------------
