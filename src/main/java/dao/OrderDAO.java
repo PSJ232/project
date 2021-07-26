@@ -246,4 +246,33 @@ public class OrderDAO {
 		}
 		return orderList;
 	}
+	
+	public ArrayList<OrderDetailBean> getOrderDetail(String o_id){
+		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT * FROM orders_detail WHERE o_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, o_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				OrderDetailBean odb = new OrderDetailBean();
+				odb.setOd_id(rs.getInt("od_id"));
+				odb.setO_id(rs.getInt("o_id"));
+				odb.setI_id(rs.getInt("i_id"));
+				odb.setL_id(rs.getInt("l_id"));
+				odb.setOd_qty(rs.getInt("od_qty"));
+				odb.setOd_message(rs.getString("od_message"));
+				odb.setM_id(rs.getString("m_id"));
+				odb.setOd_delivery_date(rs.getString("od_delivery_date"));
+				odb.setOd_invoice(rs.getString("od_invoice"));
+				odb.setOd_confirm(rs.getInt("od_confirm"));
+				orderDetailList.add(odb);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류!(OrderDAO - getOrderDetail(String o_id) - " + e.getMessage());
+		}
+		return orderDetailList;
+	}
 }

@@ -1,5 +1,6 @@
 package svc;
 
+import java.awt.dnd.DropTargetContext;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -7,6 +8,7 @@ import dao.OrderDAO;
 import db.JdbcUtil;
 import vo.OrderBean;
 import vo.OrderDetailBean;
+import vo.OrderListBean;
 
 public class OrderService {
 
@@ -69,5 +71,17 @@ public class OrderService {
 
 		return isOrderdetailSuccess;
 	}
+
+	public ArrayList<OrderDetailBean> getOrderDetail(String o_id) {
+		System.out.println("OrderService - getOrderDetail()");
+		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
+		Connection con = JdbcUtil.getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		orderDetailList = orderDAO.getOrderDetail(o_id);
+		JdbcUtil.close(con);
+		return orderDetailList;
+	}
+
 
 }

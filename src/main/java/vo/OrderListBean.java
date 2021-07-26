@@ -7,6 +7,7 @@ public class OrderListBean {
 	private int o_amount;
 	private String o_rdate;
 	private String od_invoice;
+	
 	public String getO_id() {
 		return o_id;
 	}

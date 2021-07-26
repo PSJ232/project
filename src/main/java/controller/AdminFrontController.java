@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.AdminMemberDetailAction;
+import action.AdminOrderDetailAction;
 import action.ClassDeleteAction;
 import action.ClassDetailViewAction;
 import action.ClassDetailSelectTimelistAction;
@@ -202,6 +203,19 @@ public class AdminFrontController extends HttpServlet {
 			String filter = request.getParameter("filter");
 			PrintWriter out= response.getWriter();
 			out.write(service.getJSON(search_val, filter));
+		}else if(command.equals("/OrderDetail.ad")) {
+			forward = new ActionForward();
+			action = new AdminOrderDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {
