@@ -26,6 +26,7 @@ import action.ItemInsertAction;
 import action.ItemListAction;
 import action.ItemUpdateAction;
 import svc.AdminMemberSearchService;
+import svc.AdminOrderSearchService;
 import action.ClassTimeAddAction;
 import action.ItemDeleteAction;
 import vo.ActionForward;
@@ -100,10 +101,6 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/OrderList.ad")) {
-			forward = new ActionForward();
-//			action = new OrderListAction();
-			// 클래스 등록 폼
 		} else if (command.equals("/ClassInsertForm.ad")) {
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/class_management/classInsertForm.jsp");
@@ -196,6 +193,15 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/OrderList.ad")) {
+			forward = new ActionForward();
+			forward.setPath("./admin_layout/order_management/orderList.jsp");
+		}else if(command.equals("/OrderSearch.ad")) {
+			String search_val = request.getParameter("search_val");
+			AdminOrderSearchService service = new AdminOrderSearchService();
+			String filter = request.getParameter("filter");
+			PrintWriter out= response.getWriter();
+			out.write(service.getJSON(search_val, filter));
 		}
 
 		if (forward != null) {

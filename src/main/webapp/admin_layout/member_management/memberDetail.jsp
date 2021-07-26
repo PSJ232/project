@@ -1,4 +1,4 @@
-<%@page import="vo.OrderBean"%>
+<%@page import="vo.OrderListBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +6,7 @@
 <%
 
 	MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
-	ArrayList<OrderBean> orderList = (ArrayList<OrderBean>)request.getAttribute("orderList");
+	ArrayList<OrderListBean> orderList = (ArrayList<OrderListBean>)request.getAttribute("orderList");
 %>
 <!DOCTYPE html>
 <html>
@@ -29,15 +29,24 @@
 
 <h1>회원 주문 기록</h1>
 <table id="orderList" border="1">
-	<tr><th>주문번호</th><th>주문날짜</th><th>결제수단</th><th>결제금액</th></tr>
+	<tr>
+		<th>주문번호</th>
+		<th>주문자ID</th>
+		<th>주문상품</th>
+		<th>주문금액</th>
+		<th>주문일시</th>
+		<th>배송상태</th>
+	</tr>
 	<%
-		for(OrderBean order: orderList){
+		for(OrderListBean order: orderList){
 			%>
 			<tr>
-			<td><%=order.getO_id() %></td>
-			<td><%=order.getO_rdate() %></td>
-			<td><%=order.getO_payment() %></td>
+			<td><a href='OrderDetail.ad?o_id=<%=order.getO_id() %>'><%=order.getO_id() %></a></td>
+			<td><%=order.getM_id() %></td>
+			<td><%=order.getI_name() %></td>
 			<td><%=order.getO_amount() %></td>
+			<td><%=order.getO_rdate() %></td>
+			<td><%=order.getOd_invoice() %></td>
 			</tr>
 			<%
 		}

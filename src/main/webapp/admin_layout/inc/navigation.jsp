@@ -27,11 +27,11 @@
 	  but hey, it's pure CSS magic.
 	  -->
 		<ul id="menu">
-			<li><a href="#">회원관리</a></li>
+			<li><a href="MemberList">회원관리</a></li>
 			<li><a href="#">리뷰관리</a></li>
 			<li><a href="ItemList.ad">상품관리</a></li>
 			<li><a href="#">매출관리</a></li>
-			<li><a href="../order_management/orderMangementMain.jsp">주문관리</a></li>
+			<li><a href="OrderList">주문관리</a></li>
 			<li><a href="ClassList.ad">클래스관리</a></li>
 			<li><a href="#">문의관리</a></li>
 		</ul>

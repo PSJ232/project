@@ -148,23 +148,6 @@ public class ClassDAO {
 		return classBean;
 	}
 
-//	public int deleteTimeList(int class_num, String class_place) {
-//		int deleteCount = 0;
-//		PreparedStatement pstmt = null;
-//		try {
-//			String sql = "delete FROM fclass_detail WHERE f_id=? and fd_place=?";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, class_num);
-//			pstmt.setString(2, class_place);
-//			deleteCount = pstmt.executeUpdate();
-//		} catch (SQLException e) {
-//			System.out.println("SQL 구문오류!(ClassDAO - deleteTimeList) " + e.getMessage());
-//		} finally {
-//			close(pstmt);
-//		}
-//		return deleteCount;
-//	}
-
 	public int modifyClass(ClassBean classBean, String[] timeList) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

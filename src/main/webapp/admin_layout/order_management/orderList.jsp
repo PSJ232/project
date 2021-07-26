@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 | 회원관리</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -22,10 +22,9 @@
 <script type="text/javascript">
 	var request = new XMLHttpRequest();
 	function searchFunction(){
-		var m_name = document.getElementById("m_name").value;
+		var search_val = document.getElementById("search_val").value;
 		var filter = document.getElementById("filter").value;
-		console.log(filter);
-		request.open("Post", "http://localhost:8080/MemberSearch.ad?m_name=" + encodeURIComponent(m_name) + "&filter=" + encodeURIComponent(filter) , true);
+		request.open("Post", "http://localhost:8080/OrderSearch.ad?search_val=" + encodeURIComponent(search_val) + "&filter=" + encodeURIComponent(filter), true);
 		request.onreadystatechange = searchProcess;
 		request.send(null);
 	}
@@ -41,7 +40,7 @@
 				for(var j = 0; j < result[i].length; j++){
 					var cell = row.insertCell(j);
 					if(j == 0){
-						cell.innerHTML = "<a href='MemberDetail.ad?m_id=" + result[i][j].value + "'>" + result[i][j].value + "</a>";
+						cell.innerHTML = "<a href='OrderDetail.ad?o_id=" + result[i][j].value + "'>" + result[i][j].value + "</a>";
 					}else {
 						cell.innerHTML = result[i][j].value;
 					}
@@ -63,20 +62,21 @@
 <!-- 	</nav> -->
 	<div class="container">
 		<select name="filter" id="filter">
-			<option value="0">filter</option>
-			<option value="1">name</option>
-			<option value="2">id</option>
-			<option value="3">phone</option>
+			<option value="m_id">filter</option>
+			<option value="1">id</option>
+			<option value="2">date</option>
+			<option value="3">status</option>
 		</select>
-		<input type="text" name="search" id="m_name" onkeyup="searchFunction()">
+		<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
 		<table class="table" border="1">
 			<thead>
 				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>휴대폰번호</th>
-					<th>성별</th>
-					<th>가입일자</th>
+					<th>주문번호</th>
+					<th>주문자</th>
+					<th>주문상품</th>
+					<th>주문금액</th>
+					<th>주문일시</th>
+					<th>배송상태</th>
 				</tr>
 			</thead>
 			<tbody id="ajaxTable">
