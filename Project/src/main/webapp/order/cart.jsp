@@ -10,6 +10,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
+ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
+%>
 <script type="text/javascript">
 function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 재고수량보다 많이 담을 경우 더 이상 담을 수 없다고 정보 표시함
 	if(i_inven > c_qty) {
@@ -21,23 +25,6 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 }
 </script>
 </head>
-<%
-ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
-ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
-String cookie_check = request.getHeader("Cookie");
-// if(cookie_check != null){
-// 	if(cartList == null){
-// 		Cookie[] cookies = request.getCookies();
-// 		for(Cookie cookie : cookies) {
-// 			if(cookie.getName().equals("cartList")) {
-// 				cartList = (ArrayList<CartBean>) cookie.getValue();
-// 			}
-// 		}
-// 	}
-// }
-
-
-%>
 <body>
 	<h2>장바구니</h2>
 	<form action="OrderCart.od" method="post">
@@ -126,17 +113,6 @@ String cookie_check = request.getHeader("Cookie");
 	<hr>
 	<form action="CartInsertPro.cr" method="post">
 		- 장바구니 담기 테스트 용 input -<br>
-		아이템ID<input type="number" name="i_id" value=""> (백업DB기준 1-4번샘플상품있음)<br>
-		수량<input type="number" name="c_qty" value=""><br>
-		편지추가<input type="radio" name="c_letter" value="1" checked>추가할게요(2,500원)<input type="radio" name="c_letter" value="0">추가하지 않을게요<br>
-		배달요청일<input type="date" name="c_delivery_date"><br>
-		<input type="submit" value="장바구니담기">
-	</form>
-	
-	<br><br><br>
-	<hr>
-	<form action="CartInsertPro.cr" method="post">
-		- 장바구니 담기(비회원) 테스트 용 input -<br>
 		아이템ID<input type="number" name="i_id" value=""> (백업DB기준 1-4번샘플상품있음)<br>
 		수량<input type="number" name="c_qty" value=""><br>
 		편지추가<input type="radio" name="c_letter" value="1" checked>추가할게요(2,500원)<input type="radio" name="c_letter" value="0">추가하지 않을게요<br>
