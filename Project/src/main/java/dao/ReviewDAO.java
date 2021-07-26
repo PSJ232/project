@@ -358,6 +358,46 @@ public class ReviewDAO {
 		return deleteOdList;
 	}
 
+	public ArrayList<ReviewBean> getReviewList(int i_id) {
+		System.out.println("ReviewDAO - getReviewList()");
+		ArrayList<ReviewBean> rbList = new ArrayList<ReviewBean>();
+		ReviewBean rb = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT r.* "
+				+ "FROM orders_detail od JOIN review r "
+				+ "ON od.od_id = r.od_id "
+				+ "WHERE od.od_review = 1 AND od.i_id= ? "
+				+ "LIMIT 8 ";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, i_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				rb = new ReviewBean();
+				rb.setR_id(rs.getInt("r_id"));
+				rb.setOd_id(rs.getInt("od_id"));
+				rb.setR_writer(rs.getString("r_writer"));
+				rb.setR_title(rs.getString("r_title"));
+				rb.setR_rate(rs.getInt("r_rate"));
+				rb.setR_content(rs.getString("r_content"));
+				rb.setR_rdate(rs.getDate("r_rdate"));
+				rb.setR_img(rs.getString("r_img"));
+				rb.setR_point(rs.getInt("r_point"));
+				rbList.add(rb);
+			} 
+		} catch (SQLException e) {
+			System.out.println("ReviewDAO - getReviewList() SQL문 오류 : " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return rbList;
+	}
+
 
 
 
