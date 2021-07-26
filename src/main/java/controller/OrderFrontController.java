@@ -25,7 +25,7 @@ public class OrderFrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("MemberFrontController");
+		System.out.println("OrderFrontController");
 
 		// POST 방식 요청에 대한 한글 처리
 		request.setCharacterEncoding("UTF-8");
