@@ -62,7 +62,7 @@ public class IdMakerService {
 			} else { 
 				newId = (now * 100) + 1; // 다르다면 첫번째 번호이므로 001 부여
 			}
-		} else if(option == 0) {
+		} else if(option == 0) { // 옵션이 0이면 추출한 최대숫자에 + 1만진행
 			newId = maxNum + 1;
 		}
 		
