@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/* 로그인 */
+*{
+margin: 0px auto;
+text-align: center;
+
+}
+h1{
+margin: 30px;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin: 10px;
+}
+
+.loginbutton{
+background: #FFE146;
+border: none;
+border-radius: 10px;
+width: 300px;
+height: 50px;
+margin: 50px;
+font-weight: 700;
+font-size: large;
+}
+
+.joinbutton{
+background: #79FFCE;
+border: none;
+border-radius: 10px;
+width: 300px;
+height: 50px;
+margin: 20px;
+font-weight: 700;
+font-size: large;
+}
+
+#p1{
+color: #6FFFC4;
+font-weight: 700;
+}
+
+#inp{
+border: 1px solid #969696;
+border-radius: 10px;
+width: 300px;
+height: 50px;
+margin: 10px;
+text-align: left;
+font-size: medium;
+}
+#fin{
+width: 300px;
+height: 50px;
+margin: 10px;
+padding: 10px;
+text-decoration: none;
+color: #969696;
+font-weight: 700;
+border: none;
+}
+
+#sns, #now{
+margin-top: 20px;
+margin-bottom: 10px;
+font-weight: 700;
+font-size: small;
+}
+
+#checklogin{
+
+font-weight: 300;
+text-align:left;
+}
+#nonmember{
+font-weight: 700;
+font-size: medium;
+margin-bottom: 10px;
+}
+/* 아이디찾기 */
+
+#joinnumber{
+font-weight: 500;
+font-size: medium;
+margin: 10px;
+padding: 10px;
+}
+
+#phone{
+width: 90px;
+height: 40px;
+border: 1px solid #969696;
+border-radius: 10px;
+margin-top: 30px;
+margin-bottom: 30px;
+}
+
+#call{
+font-weight: 300;
+font-size: small;
+}
