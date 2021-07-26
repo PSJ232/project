@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.JdbcUtil;
+import vo.ItemBean;
 import vo.OrderBean;
 import vo.OrderDetailBean;
 import vo.OrderListBean;
@@ -278,6 +279,250 @@ public class OrderDAO {
 			System.out.println("SQL 구문 오류!(OrderDAO - getOrderDetail(String o_id) - " + e.getMessage());
 		}
 		return orderDetailList;
+	}
+	
+	public ArrayList<OrderBean> getOrderNonStatusOrderList(String m_id) {
+		System.out.println("OrderDAO - getOrderNonStatusOrderList()");
+		
+		ArrayList<OrderBean> nonOrderArrayList = new ArrayList<OrderBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT o.* "
+				+ "FROM orders_detail od JOIN orders o "
+				+ "ON od.o_id = o.o_id "
+				+ "WHERE od.od_confirm = 0 OR od.od_confirm = 1 AND od.m_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				OrderBean ob = new OrderBean();
+				ob.setO_id(rs.getInt("o_id"));
+				ob.setO_rdate(rs.getDate("o_rdate"));
+				ob.setO_receiver(rs.getString("o_receiver"));
+				ob.setO_amount(rs.getInt("o_amount"));
+				ob.setO_address(rs.getString("o_address"));
+				ob.setO_gdiscount(rs.getInt("o_gdiscount"));
+				ob.setO_payment(rs.getInt("o_payment"));
+				ob.setO_phone(rs.getString("o_phone"));
+				ob.setO_point(rs.getInt("o_point"));
+				ob.setO_sender(rs.getString("o_sender"));
+				nonOrderArrayList.add(ob);
+			} 
+		} catch (Exception e) {
+			System.out.println("OrderDAO - getOrderNonStatusOrderList() SQL문 오류 - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		return nonOrderArrayList;
+	}
+
+	public ArrayList<OrderBean> getOrderStatusOrderList(String m_id) {
+		System.out.println("OrderDAO - getOrderStatusOrderList()");
+		
+		ArrayList<OrderBean> orderArrayList = new ArrayList<OrderBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT o.* "
+				+ "FROM orders_detail od JOIN orders o "
+				+ "ON od.o_id = o.o_id "
+				+ "WHERE od.od_confirm = 2 AND od.m_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				OrderBean ob = new OrderBean();
+				ob.setO_id(rs.getInt("o_id"));
+				ob.setO_rdate(rs.getDate("o_rdate"));
+				ob.setO_receiver(rs.getString("o_receiver"));
+				ob.setO_amount(rs.getInt("o_amount"));
+				ob.setO_address(rs.getString("o_address"));
+				ob.setO_gdiscount(rs.getInt("o_gdiscount"));
+				ob.setO_payment(rs.getInt("o_payment"));
+				ob.setO_phone(rs.getString("o_phone"));
+				ob.setO_point(rs.getInt("o_point"));
+				ob.setO_sender(rs.getString("o_sender"));
+				orderArrayList.add(ob);
+			} 
+		} catch (Exception e) {
+			System.out.println("OrderDAO - getOrderStatusOrderList() SQL문 오류 - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		return orderArrayList;
+	}
+
+	public ArrayList<ItemBean> getOrderNonStatusItemList(String m_id) {
+		System.out.println("OrderDAO - getOrderNonStatusItemList()");
+		
+		ArrayList<ItemBean> nonItemArrayList = new ArrayList<ItemBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT i.* "
+				+ "FROM orders_detail od JOIN item i "
+				+ "ON od.i_id = i.i_id "
+				+ "WHERE od.od_confirm = 0 OR od.od_confirm = 1 AND od.m_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ItemBean ib = new ItemBean();
+				ib.setI_id(rs.getInt("i_id"));
+				ib.setI_name(rs.getString("i_name"));
+				ib.setI_desc(rs.getString("i_desc"));
+				ib.setI_price(rs.getInt("i_price"));
+				ib.setI_inven(rs.getInt("i_inven"));
+				ib.setI_img(rs.getString("i_img"));
+				ib.setI_subimg2(rs.getString("i_subimg2"));
+				ib.setI_subimg3(rs.getString("i_subimg3"));
+				ib.setI_subimg4(rs.getString("i_subimg4"));
+				ib.setI_rdate(rs.getTimestamp("i_rdate"));
+				ib.setI_discount(rs.getFloat("i_discount"));
+				ib.setI_size(rs.getString("i_size"));
+				ib.setI_dpstatus(rs.getString("i_dpstatus"));
+				ib.setI_itemstatus(rs.getString("i_itemstatus"));
+				ib.setI_detailpage(rs.getString("i_detailpage"));
+				nonItemArrayList.add(ib);
+			}
+		} catch (Exception e) {
+			System.out.println("OrderDAO - getOrderNonStatusItemList() SQL문 오류 - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		return nonItemArrayList;
+	}
+
+	public ArrayList<ItemBean> getOrderStatusItemList(String m_id) {
+		System.out.println("OrderDAO - getOrderStatusItemList()");
+		
+		ArrayList<ItemBean> itemArrayList = new ArrayList<ItemBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT i.* "
+				+ "FROM orders_detail od JOIN item i "
+				+ "ON od.i_id = i.i_id "
+				+ "WHERE od.od_confirm = 2 AND od.m_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ItemBean ib = new ItemBean();
+				ib.setI_id(rs.getInt("i_id"));
+				ib.setI_name(rs.getString("i_name"));
+				ib.setI_desc(rs.getString("i_desc"));
+				ib.setI_price(rs.getInt("i_price"));
+				ib.setI_inven(rs.getInt("i_inven"));
+				ib.setI_img(rs.getString("i_img"));
+				ib.setI_subimg2(rs.getString("i_subimg2"));
+				ib.setI_subimg3(rs.getString("i_subimg3"));
+				ib.setI_subimg4(rs.getString("i_subimg4"));
+				ib.setI_rdate(rs.getTimestamp("i_rdate"));
+				ib.setI_discount(rs.getFloat("i_discount"));
+				ib.setI_size(rs.getString("i_size"));
+				ib.setI_dpstatus(rs.getString("i_dpstatus"));
+				ib.setI_itemstatus(rs.getString("i_itemstatus"));
+				ib.setI_detailpage(rs.getString("i_detailpage"));
+				itemArrayList.add(ib);
+			}
+		} catch (Exception e) {
+			System.out.println("OrderDAO - getOrderNonStatusItemList() SQL문 오류 - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		return itemArrayList;
+	}
+
+	public ArrayList<OrderDetailBean> getOrderNonStatusOrderDetailList(String m_id) {
+		System.out.println("OrderDAO - getOrderNonStatusOrderDetailList");
+		ArrayList<OrderDetailBean> nonOrderDetailArrayList = new ArrayList<OrderDetailBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * "
+				+ "FROM orders_detail "
+				+ "WHERE od_confirm = 0 OR od_confirm = 1 AND m_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				OrderDetailBean odb = new OrderDetailBean();
+				odb.setC_id(rs.getInt("c_id"));
+				odb.setI_id(rs.getInt("i_id"));
+				odb.setL_id(rs.getInt("l_id"));
+				odb.setM_id(rs.getString("m_id"));
+				odb.setO_id(rs.getInt("o_id"));
+				odb.setOd_confirm(rs.getInt("od_confirm"));
+				odb.setOd_delivery_date(rs.getString("od_delivery_date"));
+				odb.setOd_id(rs.getInt("od_id"));
+				odb.setOd_invoice(rs.getString("od_invoice"));
+				odb.setOd_message(rs.getString("od_message"));
+				odb.setOd_qty(rs.getInt("od_qty"));
+				odb.setOd_review(rs.getInt("od_review"));
+				nonOrderDetailArrayList.add(odb);
+			} 
+		} catch (Exception e) {
+			System.out.println("OrderDAO - getOrderNonStatusOrderDetailList SQL문 오류 - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		return nonOrderDetailArrayList;
+	}
+
+	public ArrayList<OrderDetailBean> getOrderStatusOrderDetailList(String m_id) {
+		System.out.println("OrderDAO - getOrderStatusOrderDetailList");
+		ArrayList<OrderDetailBean> orderDetailArrayList = new ArrayList<OrderDetailBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * "
+				+ "FROM orders_detail "
+				+ "WHERE od_confirm = 2 AND m_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				OrderDetailBean odb = new OrderDetailBean();
+				odb.setC_id(rs.getInt("c_id"));
+				odb.setI_id(rs.getInt("i_id"));
+				odb.setL_id(rs.getInt("l_id"));
+				odb.setM_id(rs.getString("m_id"));
+				odb.setO_id(rs.getInt("o_id"));
+				odb.setOd_confirm(rs.getInt("od_confirm"));
+				odb.setOd_delivery_date(rs.getString("od_delivery_date"));
+				odb.setOd_id(rs.getInt("od_id"));
+				odb.setOd_invoice(rs.getString("od_invoice"));
+				odb.setOd_message(rs.getString("od_message"));
+				odb.setOd_qty(rs.getInt("od_qty"));
+				odb.setOd_review(rs.getInt("od_review"));
+				orderDetailArrayList.add(odb);
+			} 
+		} catch (Exception e) {
+			System.out.println("OrderDAO - getOrderStatusOrderDetailList SQL문 오류 - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		return orderDetailArrayList;
 	}
 
 }
