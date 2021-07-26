@@ -11,7 +11,7 @@
 	<form action="MemberLoginPro.me" method="post">
 		<input type="text" name="m_id" placeholder="아이디(이메일)"><br>
 		<input type="password" name="m_pass" placeholder="비밀번호"><br>
-		<input type="checkbox" name="autoLogin">로그인 상태 유지<br> <!-- 기능구현방법 공부필요!! -->
+		<input type="checkbox" name="autoLogin">로그인 상태 유지<br>
 		<input type="submit" value="로그인"><br>
 		<a href="MemberFindId.me">아이디찾기</a> <a href="#">비밀번호 찾기</a><br>
 		<hr>

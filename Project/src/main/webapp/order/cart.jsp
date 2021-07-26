@@ -11,16 +11,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 재고수량보다 많이 담을 경우 더 이상 담을 수 없다고 정보 표시함
-		if(i_inven > c_qty) {
-	    	document.getElementById('cartNotice'+c_id).innerHTML = "";
-	    	location.href="CartUpdatePro.cr?c_id="+c_id+"&add=1";
-		} else {
-			document.getElementById('cartNotice'+c_id).innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + i_inven + "개 입니다.";
-		}
+function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 재고수량보다 많이 담을 경우 더 이상 담을 수 없다고 정보 표시함
+	if(i_inven > c_qty) {
+    	document.getElementById('cartNotice'+c_id).innerHTML = "";
+    	location.href="CartUpdatePro.cr?c_id="+c_id+"&add=1";
+	} else {
+		document.getElementById('cartNotice'+c_id).innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + i_inven + "개 입니다.";
 	}
-	
-	
+}
 </script>
 </head>
 <%
