@@ -22,10 +22,9 @@ public class ReviewUpdateProAction implements Action {
 		
 		String realFolder = "";
 		String saveFolder = "/reviewUpload";
-		int fileSize = 0xa0000;
+		int fileSize = 1024 * 1024 * 10;
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath(saveFolder);
-		String writerIpAdd = request.getRemoteAddr();
 		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 		
 		

@@ -23,10 +23,9 @@ public class ReviewInsertProAction implements Action {
 		int od_id = 0;
 		String realFolder = "";
 		String saveFolder = "/reviewUpload";
-		int fileSize = 0xa0000;
+		int fileSize = 1024 * 1024 * 10;
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath(saveFolder);
-		String writerIpAdd = request.getRemoteAddr();
 		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 		
 		// r_point 판별 (이미지 삽입시 300p, 미삽입시 200p)
