@@ -1,10 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="vo.OrderDetailBean"%>
+<%@page import="vo.OrderBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	OrderBean orderBean = (OrderBean)request.getAttribute("orderBean");
+	ArrayList<OrderDetailBean> orderDetailList = (ArrayList<OrderDetailBean>)request.getAttribute("orderDetailList");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>ÁÖ¹®°ü¸®»ó¼¼</title>
+<meta charset="UTF-8">
+<title>ì£¼ë¬¸ê´€ë¦¬ìƒì„¸</title>
 <style>
 	.container #delivery_info label, #payment_info label {
 		width: 150px; 
@@ -13,10 +22,10 @@
 	
 	.container #product_list,#payment_info {
 		display: inline-block;
-		width: 400px;
+		width: 500px;
 	}
 	#product_list table {
-		width: 450px;
+		width: 550px;
 	}
 	
 	.sub_container {
@@ -38,35 +47,42 @@
 	<jsp:include page="../inc/navigation.jsp" ></jsp:include>
 	<!-- nav -->
 	
-	<div class="container"> <!-- css layout¿ä¼Ò Ãß°¡ -->
+	<div class="container"> <!-- css layoutìš”ì†Œ ì¶”ê°€ -->
 		<h1>Order Detail</h1>
 		<div id="delivery_info">
-			<h3>¹è¼ÛÁö Á¤º¸</h3>
-			<label>ÁÖ¹®ÀÚ</label><input type="text" value="È«±æµ¿">
-			<label>ÁÖ¹®ÀÚ ÀüÈ­¹øÈ£</label><input type="text" value="010-0000-0000"><br>
-			<label>¹Ş´ÂÀÚ</label><input type="text" value="±è±æµ¿">
-			<label>¹Ş´ÂÀÚ ÀüÈ­¹øÈ£</label><input type="text" value="010-0000-0000"><br>
-			<label>ÁÖ¼Ò</label><input type="text" value="ºÎ»ê±¤¿ª½Ã µ¿·¡±¸"> <label>»ó¼¼ÁÖ¼Ò</label><input type="text" value="oo¾ÆÆÄÆ® ooµ¿ ooÈ£"><br>
-			<label>¿äÃ» ¹è¼ÛÀÏ</label><input type="text" value="2021-07-11"><br>
-			<label>¹è¼Û½Ã ¿äÃ»»çÇ×</label><input type="text" value="¹®¾Õ¿¡µÎ°í°¡ÁÖ¼¼¿ä">
+			<h3>ë°°ì†¡ì§€ ì •ë³´</h3>
+			<label>ì£¼ë¬¸ì</label><input type="text" value="<%=orderBean.getO_sender()%>">
+			<label>ë°›ëŠ”ì</label><input type="text" value="<%=orderBean.getO_receiver()%>">
+			<label>ë°›ëŠ”ì ì „í™”ë²ˆí˜¸</label><input type="text" value="<%=orderBean.getO_phone()%>"><br>
+			<label>ì£¼ì†Œ</label><input type="text" value="<%=orderBean.getO_address()%>"><br>
+			<label>ë°°ì†¡ì‹œ ìš”ì²­ì‚¬í•­</label><input type="text" value="<%=orderBean.getO_request()%>">
 		</div>
 		<div class="sub_container">
 		<div id="payment_info">
-			<h3>°áÁ¦ Á¤º¸</h3>
-			<label>ÃÑ »óÇ°±İ¾×</label><input type="text" value="50000"><br>
-			<label>ÇÒÀÎ±İ¾×</label><input type="text" value="5000"><br>
-			<label>Àû¸³±İ»ç¿ë</label><input type="text" value="3000"><br>
-			<label>°áÁ¦¼ö´Ü</label><input type="text" value="Ä«µå"><br>
-			<label>ÃÖÁ¾°áÁ¦±İ¾×</label><input type="text" value="42000">
+			<h3>ê²°ì œ ì •ë³´</h3>
+			<label>ì´ ìƒí’ˆê¸ˆì•¡</label><input type="text" value="50000"><br>
+			<label>í• ì¸ê¸ˆì•¡</label><input type="text" value="5000"><br>
+			<label>ì ë¦½ê¸ˆì‚¬ìš©</label><input type="text" value="3000"><br>
+			<label>ê²°ì œìˆ˜ë‹¨</label><input type="text" value="ì¹´ë“œ"><br>
+			<label>ìµœì¢…ê²°ì œê¸ˆì•¡</label><input type="text" value="42000">
 		</div>
 		<div id="product_list">
-			<h3>»óÇ° ¸®½ºÆ®</h3>
+			<h3>ìƒí’ˆ ë¦¬ìŠ¤íŠ¸</h3>
 			<table border="1">
-				<tr><th>no</th><th>product</th></tr>
-				<tr><td>1</td><td>»óÇ°1</td></tr>	
-				<tr><td>1</td><td>»óÇ°1</td></tr>	
-				<tr><td>1</td><td>»óÇ°1</td></tr>	
-				<tr><td>1</td><td>»óÇ°1</td></tr>	
+				<tr><th>ìˆœë²ˆ</th><th>ìƒí’ˆ</th><th>ìˆ˜ëŸ‰</th><th>ë°°ì†¡ìš”ì²­ì¼</th><th>í¸ì§€ì§€</th><th>ë¬¸êµ¬</th><th>êµ¬ë§¤í™•ì •</th></tr>
+				<%
+					for(int i = 0; i < orderDetailList.size(); i++){
+						%><tr><td><%=i+1 %></td>
+						<td><%=orderDetailList.get(i).getI_name() %></td>
+						<td><%=orderDetailList.get(i).getOd_qty() %></td>
+						<td><%=orderDetailList.get(i).getOd_delivery_date() %></td>
+						<td><%=orderDetailList.get(i).getL_id() %></td>
+						<td><%=orderDetailList.get(i).getOd_message() %></td>
+						<td><%=orderDetailList.get(i).getOd_confirm() %></td>
+						</tr><%
+					}
+				%>
+				
 			</table>
 		</div>
 		</div>

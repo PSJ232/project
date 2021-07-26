@@ -35,7 +35,7 @@ public class AdminOrderSearchService {
 			Connection con = getConnection();
 			OrderDAO orderDAO = OrderDAO.getInstance();
 			orderDAO.setConnection(con);
-			ArrayList<OrderListBean> orderList = orderDAO.getOrderList(m_id);
+			ArrayList<OrderListBean> orderList = orderDAO.search(m_id,"1");
 			close(con);
 			return orderList;
 		}

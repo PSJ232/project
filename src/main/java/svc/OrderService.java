@@ -83,5 +83,13 @@ public class OrderService {
 		return orderDetailList;
 	}
 
-
+	public OrderBean getOrder(String o_id) {
+		System.out.println("OrderService - getOrder()");
+		Connection con = JdbcUtil.getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		OrderBean orderBean = orderDAO.getOrder(o_id);
+		JdbcUtil.close(con);
+		return orderBean;
+	}
 }

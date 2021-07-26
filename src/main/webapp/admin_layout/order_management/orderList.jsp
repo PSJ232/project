@@ -63,9 +63,9 @@
 	<div class="container">
 		<select name="filter" id="filter">
 			<option value="m_id">filter</option>
-			<option value="1">id</option>
-			<option value="2">date</option>
-			<option value="3">status</option>
+			<option value="m_id">id</option>
+			<option value="o_id">date</option>
+			<option value="od_invoice">status</option>
 		</select>
 		<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
 		<table class="table" border="1">
