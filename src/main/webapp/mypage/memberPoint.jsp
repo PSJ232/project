@@ -27,8 +27,8 @@
   오늘도 꽃같은 날이예요</article>
 	
   <article id="">
-  등급 정보 : <a href=""><%=memberMypageDetail.getG_id() %> </a>ㅣ 
-  포인트 : <a href=""><%=memberMypageDetail.getM_point() %></a>ㅣ
+  등급 정보 : <a href="MemberMypageGradeDetail.me"><%=memberMypageDetail.getG_id() %> </a>ㅣ 
+  포인트 : <a href="MemberMypagePointDetail.me"><%=memberMypageDetail.getM_point() %></a>ㅣ
   나의 구독 : <a href="">2</a>
   </article>
   
