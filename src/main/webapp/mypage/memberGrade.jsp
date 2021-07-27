@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,6 +13,15 @@
 <% 
 	MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail"); 
 	String m_id = (String)session.getAttribute("m_id");
+	
+	String realGrade = "";
+	switch(memberMypageDetail.getG_id()) {
+		case 3: realGrade = "BLACK"; break;
+		case 2: realGrade = "RED"; break;
+		case 1: realGrade = "GREEN"; break;
+		case 0: realGrade = "WHITE"; break;
+	}
+	
 %>
 
 <!-- 헤더 들어가는곳 -->
@@ -27,7 +37,7 @@
   오늘도 꽃같은 날이예요</article>
 	
   <article id="">
-  등급 정보 : <a href=""><%=memberMypageDetail.getG_id() %> </a>ㅣ 
+  등급 정보 : <a href=""><%=realGrade %> </a>ㅣ 
   포인트 : <a href=""><%=memberMypageDetail.getM_point() %></a>ㅣ
   나의 구독 : <a href="">2</a>
   </article>
@@ -60,6 +70,7 @@
 	</section>
   	
   <!-- 본문 내용 -->
+ <%=m_id %>님의 <%=LocalDate.now().getMonthValue() %>월 회원 등급은 <%=realGrade %>입니다.
  
 <!-- 푸터 들어가는곳 -->
 
