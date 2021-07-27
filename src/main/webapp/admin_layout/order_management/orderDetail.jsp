@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문관리상세</title>
+<title>관리자 | 주문상세</title>
 <style>
 	.container #delivery_info label, #payment_info label {
 		width: 150px; 
