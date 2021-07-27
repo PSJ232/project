@@ -39,7 +39,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO orders VALUES(?,?,?,?,?,?,?,?,?,now(),?)";
+			String sql = "INSERT INTO orders VALUES(?,?,?,?,?,?,?,?,?,now(),?,?)";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -53,8 +53,8 @@ public class OrderDAO {
 			pstmt.setInt(8, orderBean.getO_point());
 			pstmt.setInt(9, orderBean.getO_payment());
 			pstmt.setInt(10, orderBean.getO_gdiscount());
+			pstmt.setString(11, orderBean.getO_visitor());
 			// rdate는 sql구문에 바로 now()
-
 
 			insertCount = pstmt.executeUpdate();
 
@@ -156,6 +156,7 @@ public class OrderDAO {
 				orderBean.setO_payment(rs.getInt("o_payment"));
 				orderBean.setO_rdate(rs.getDate("o_rdate"));
 				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
+				orderBean.setO_visitor(rs.getString("o_visitor"));
 
 				orderList.add(orderBean);
 			}
@@ -229,17 +230,18 @@ public class OrderDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, o_id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				orderBean = new OrderBean();
 				orderBean.setO_id(rs.getInt("o_id"));
 				orderBean.setO_sender(rs.getString("o_sender"));
 				orderBean.setO_address(rs.getString("o_address"));
 				orderBean.setO_receiver(rs.getString("o_receiver"));
 				orderBean.setO_phone(rs.getString("o_phone"));
-				orderBean.setO_amount(rs.getInt("o_amount"));		
+				orderBean.setO_amount(rs.getInt("o_amount"));
 				orderBean.setO_payment(rs.getInt("o_payment"));
 				orderBean.setO_rdate(rs.getDate("o_rdate"));
 				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
+				orderBean.setO_visitor(rs.getString("o_visitor"));
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류!(OrderDAO - getOrder(String o_id) - " + e.getMessage());
@@ -249,8 +251,8 @@ public class OrderDAO {
 		}
 		return orderBean;
 	}
-	
-	public ArrayList<OrderDetailBean> getOrderDetail(String o_id){
+
+	public ArrayList<OrderDetailBean> getOrderDetail(String o_id) {
 		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -260,7 +262,7 @@ public class OrderDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, o_id);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				OrderDetailBean odb = new OrderDetailBean();
 				odb.setOd_id(rs.getInt("od_id"));
 				odb.setO_id(rs.getInt("o_id"));
@@ -280,19 +282,17 @@ public class OrderDAO {
 		}
 		return orderDetailList;
 	}
-	
+
 	public ArrayList<OrderBean> getOrderNonStatusOrderList(String m_id) {
 		System.out.println("OrderDAO - getOrderNonStatusOrderList()");
-		
+
 		ArrayList<OrderBean> nonOrderArrayList = new ArrayList<OrderBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "SELECT o.* "
-				+ "FROM orders_detail od JOIN orders o "
-				+ "ON od.o_id = o.o_id "
-				+ "WHERE od.od_confirm = 0 OR od.od_confirm = 1 AND od.m_id = ?";
-		
+
+		String sql = "SELECT o.* " + "FROM orders_detail od JOIN orders o " + "ON od.o_id = o.o_id "
+				+ "WHERE od.m_id = ? AND od.od_confirm = 0 OR od.od_confirm = 1;";
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
@@ -310,7 +310,7 @@ public class OrderDAO {
 				ob.setO_point(rs.getInt("o_point"));
 				ob.setO_sender(rs.getString("o_sender"));
 				nonOrderArrayList.add(ob);
-			} 
+			}
 		} catch (Exception e) {
 			System.out.println("OrderDAO - getOrderNonStatusOrderList() SQL문 오류 - " + e.getMessage());
 		} finally {
@@ -322,16 +322,14 @@ public class OrderDAO {
 
 	public ArrayList<OrderBean> getOrderStatusOrderList(String m_id) {
 		System.out.println("OrderDAO - getOrderStatusOrderList()");
-		
+
 		ArrayList<OrderBean> orderArrayList = new ArrayList<OrderBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "SELECT o.* "
-				+ "FROM orders_detail od JOIN orders o "
-				+ "ON od.o_id = o.o_id "
+
+		String sql = "SELECT o.* " + "FROM orders_detail od JOIN orders o " + "ON od.o_id = o.o_id "
 				+ "WHERE od.od_confirm = 2 AND od.m_id = ?";
-		
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
@@ -349,7 +347,7 @@ public class OrderDAO {
 				ob.setO_point(rs.getInt("o_point"));
 				ob.setO_sender(rs.getString("o_sender"));
 				orderArrayList.add(ob);
-			} 
+			}
 		} catch (Exception e) {
 			System.out.println("OrderDAO - getOrderStatusOrderList() SQL문 오류 - " + e.getMessage());
 		} finally {
@@ -361,16 +359,14 @@ public class OrderDAO {
 
 	public ArrayList<ItemBean> getOrderNonStatusItemList(String m_id) {
 		System.out.println("OrderDAO - getOrderNonStatusItemList()");
-		
+
 		ArrayList<ItemBean> nonItemArrayList = new ArrayList<ItemBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "SELECT i.* "
-				+ "FROM orders_detail od JOIN item i "
-				+ "ON od.i_id = i.i_id "
-				+ "WHERE od.od_confirm = 0 OR od.od_confirm = 1 AND od.m_id = ?";
-		
+
+		String sql = "SELECT i.* " + "FROM orders_detail od JOIN item i " + "ON od.i_id = i.i_id "
+				+ "WHERE od.m_id = ? AND od.od_confirm = 0 OR od.od_confirm = 1;";
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
@@ -405,16 +401,14 @@ public class OrderDAO {
 
 	public ArrayList<ItemBean> getOrderStatusItemList(String m_id) {
 		System.out.println("OrderDAO - getOrderStatusItemList()");
-		
+
 		ArrayList<ItemBean> itemArrayList = new ArrayList<ItemBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "SELECT i.* "
-				+ "FROM orders_detail od JOIN item i "
-				+ "ON od.i_id = i.i_id "
+
+		String sql = "SELECT i.* " + "FROM orders_detail od JOIN item i " + "ON od.i_id = i.i_id "
 				+ "WHERE od.od_confirm = 2 AND od.m_id = ?";
-		
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
@@ -452,11 +446,9 @@ public class OrderDAO {
 		ArrayList<OrderDetailBean> nonOrderDetailArrayList = new ArrayList<OrderDetailBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "SELECT * "
-				+ "FROM orders_detail "
-				+ "WHERE od_confirm = 0 OR od_confirm = 1 AND m_id = ?";
-		
+
+		String sql = "SELECT * " + "FROM orders_detail " + "WHERE m_id = ? AND od_confirm = 0 OR od_confirm = 1";
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
@@ -476,7 +468,7 @@ public class OrderDAO {
 				odb.setOd_qty(rs.getInt("od_qty"));
 				odb.setOd_review(rs.getInt("od_review"));
 				nonOrderDetailArrayList.add(odb);
-			} 
+			}
 		} catch (Exception e) {
 			System.out.println("OrderDAO - getOrderNonStatusOrderDetailList SQL문 오류 - " + e.getMessage());
 		} finally {
@@ -491,11 +483,9 @@ public class OrderDAO {
 		ArrayList<OrderDetailBean> orderDetailArrayList = new ArrayList<OrderDetailBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "SELECT * "
-				+ "FROM orders_detail "
-				+ "WHERE od_confirm = 2 AND m_id = ?";
-		
+
+		String sql = "SELECT * " + "FROM orders_detail " + "WHERE od_confirm = 2 AND m_id = ?";
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
@@ -515,7 +505,7 @@ public class OrderDAO {
 				odb.setOd_qty(rs.getInt("od_qty"));
 				odb.setOd_review(rs.getInt("od_review"));
 				orderDetailArrayList.add(odb);
-			} 
+			}
 		} catch (Exception e) {
 			System.out.println("OrderDAO - getOrderStatusOrderDetailList SQL문 오류 - " + e.getMessage());
 		} finally {
@@ -523,6 +513,26 @@ public class OrderDAO {
 			JdbcUtil.close(rs);
 		}
 		return orderDetailArrayList;
+	}
+
+	public int updateOrderConfirm(int o_id, int num) {
+		System.out.println("OrderDAO - updateOrderConfirm");
+		PreparedStatement pstmt = null;
+
+		String sql = "UPDATE orders_detail SET od_confirm=? WHERE o_id=?";
+		int updateCount = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, o_id);
+			updateCount = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		return updateCount;
 	}
 
 }

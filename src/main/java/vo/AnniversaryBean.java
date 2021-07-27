@@ -2,11 +2,11 @@ package vo;
 
 public class AnniversaryBean {
 
-	private int a_id;
-	private String m_id;
-	private String a_date;
-	private String a_name;
-	private int a_repeat;
+	private int a_id; // 고유번호
+	private String m_id; // 회원아이디 (참조키)
+	private String a_date; // 기념일 날짜
+	private String a_name; // 기념일 이름
+	private int a_repeat; // 반복주기 0:없음, 1:매년, 100:100일마다
 
 	public int getA_id() {
 		return a_id;

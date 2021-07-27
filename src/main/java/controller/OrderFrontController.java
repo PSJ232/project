@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.OrderAddressAction;
+import action.OrderCancelAction;
 import action.OrderCartAction;
 import action.OrderDetailProAction;
 import action.OrderInsertFormAction;
 import action.OrderInsertProAction;
 import action.OrderLetterAction;
+import action.OrderMypageDetailAction;
 import action.OrderMypageListAction;
 import action.OrderNowAction;
+import action.VisitorCartAction;
 import vo.ActionForward;
 
 //서블릿 주소가 XXX.me 일 경우 OrderFrontController 로 해당 요청이 전달됨
@@ -89,8 +92,29 @@ public class OrderFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/OrderMypageDetail.od")) {
+		} else if(command.equals("/OrderMypageDetailList.od")) {
 			action = new OrderMypageListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/VisitorOrderCart.od")) {
+			action = new VisitorCartAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/OrderMypageDetail.od")) {
+			action = new OrderMypageDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/OrderCancel.od")) {
+			action = new OrderCancelAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

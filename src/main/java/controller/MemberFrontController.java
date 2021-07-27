@@ -21,6 +21,7 @@ import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMypageDetailAction;
+import action.MemberMypagePointDetailAction;
 import action.MemberUpdateProAction;
 import vo.ActionForward;
 
@@ -160,7 +161,27 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+		} else if(command.equals("/MemberMypageGradeDetail.me")) {
+			action = new MemberMypageDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemberMypagePointDetail.me")) {
+			action = new MemberMypagePointDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemberMypageFAQList.me")) {
+			action = new MemberMypageDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// -------------------------------------------------------------------------
