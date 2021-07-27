@@ -3,18 +3,17 @@ package vo;
 import java.sql.Date;
 
 public class MemberBean {
-	private String m_id;
-	private String m_pass;
-	private String m_name;
-	private String m_phone;
-	private String m_birth;
-	private int m_gender;
-	private int g_id;
-	private String m_agree;
-	private String m_address;
-	private Date m_rdate;
-	private Date m_drop;
-	private int m_point;
+	private String m_id; // 회원아이디(이메일)
+	private String m_pass; // 비밀번호
+	private String m_name; // 이름
+	private String m_phone; // 전화번호
+	private String m_birth; // 생년월일
+	private int m_gender; // 성별
+	private int g_id; // 등급 0~4
+	private String m_agree; // 선택정보 동의여부 0:비동의, 1:동의
+	private Date m_rdate; // 가입날짜 (DB시간 동기화)
+	private Date m_drop; // 탈퇴날짜
+	private int m_point; // 보유포인트
 
 	public String getM_id() {
 		return m_id;
@@ -78,14 +77,6 @@ public class MemberBean {
 
 	public void setM_agree(String m_agree) {
 		this.m_agree = m_agree;
-	}
-
-	public String getM_address() {
-		return m_address;
-	}
-
-	public void setM_address(String m_address) {
-		this.m_address = m_address;
 	}
 
 	public Date getM_rdate() {

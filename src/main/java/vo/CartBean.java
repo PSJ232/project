@@ -3,13 +3,13 @@ package vo;
 import java.sql.Date;
 
 public class CartBean {
-	private int c_id;
-	private int i_id;
-	private String m_id;
-	private int c_qty;
-	private int c_letter;
-	private String c_delivery_date;
-	private Date c_rdate;
+	private int c_id; // 고유번호
+	private int i_id; // 상품번호(참조키)
+	private String m_id; // 회원아이디(참조키)
+	private int c_qty; // 수량
+	private Date c_rdate; // 장바구니담긴날(DB 시간 동기화)
+	private int c_letter; // 편지선택 0:안함, 1:선택함
+	private String c_delivery_date; // 배송요청일
 
 	public int getC_letter() {
 		return c_letter;
