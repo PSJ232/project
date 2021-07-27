@@ -1,3 +1,5 @@
+<%@page import="vo.ReviewBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,8 +12,9 @@
 <body>
 
 <% 
-	MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail"); 
 	String m_id = (String)session.getAttribute("m_id");
+	MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail"); 
+	ArrayList<ReviewBean> pbList = (ArrayList<ReviewBean>)request.getAttribute("pbList");
 %>
 
 <!-- 헤더 들어가는곳 -->
@@ -60,6 +63,9 @@
 	</section>
   	
   <!-- 본문 내용 -->
+
+<%=pbList.get(1).getR_point() %>
+
  
 <!-- 푸터 들어가는곳 -->
 

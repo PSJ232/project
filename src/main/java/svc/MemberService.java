@@ -6,10 +6,12 @@ import static db.JdbcUtil.getConnection;
 import static db.JdbcUtil.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import dao.MemberDAO;
 import db.JdbcUtil;
 import vo.MemberBean;
+import vo.ReviewBean;
 
 public class MemberService {
 
@@ -155,6 +157,21 @@ public class MemberService {
 		JdbcUtil.close(con);
 
 		return g_discount;
+	}
+
+	// 회원의 포인트 내역 가져옴
+	public ArrayList<ReviewBean> selectMemberPointList(String m_id) {
+		System.out.println("MemberService - getGradeDetail()");
+		
+		Connection con = JdbcUtil.getConnection();
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		memberDAO.setConnection(con);
+		
+		ArrayList<ReviewBean> pbList = memberDAO.getMemberPointList(m_id); 
+		
+		JdbcUtil.close(con);
+		
+		return pbList;
 	}
 
 }
