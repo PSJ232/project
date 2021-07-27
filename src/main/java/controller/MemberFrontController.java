@@ -167,6 +167,13 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/MemberMypagePointDetail.me")) {
+//			action = new MemberMypageDetailAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 		}
 
 		// -------------------------------------------------------------------------
