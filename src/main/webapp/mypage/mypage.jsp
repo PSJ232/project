@@ -51,7 +51,7 @@
   	 <h2>개인정보 관리</h2>
   	<ul type="none">
   		<li><a href="MemberUpdate.me">개인정보 수정</a></li>
-  		<li><a href="">회원등급</a></li>
+  		<li><a href="MemberMypageGradeDetail.me">회원등급</a></li>
   		<li><a href="">포인트</a></li>
 		<li><a href="">1:1 문의내역</a></li>
 		<li><a href="">자주묻는질문</a></li>
