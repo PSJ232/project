@@ -10,7 +10,7 @@ import db.JdbcUtil;
 import vo.ItemBean;
 import vo.OrderBean;
 import vo.OrderDetailBean;
-import vo.OrderListBean;
+import vo.DetailBean;
 
 public class OrderDAO {
 
@@ -170,29 +170,29 @@ public class OrderDAO {
 		return orderList;
 
 	}
-	public ArrayList<OrderListBean> search(String search_val, String filter) {
+	public ArrayList<DetailBean> search(String search_val, String filter) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<OrderListBean> resultList = new ArrayList<OrderListBean>();
+		ArrayList<DetailBean> resultList = new ArrayList<DetailBean>();
 		String sql = "";
 		try {
 			switch (filter) {
-			case "1": sql = "SELECT o.o_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+			case "1": sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
 					+ "FROM orders o, orders_detail od, item i "
 					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? "
 					+ "GROUP BY o_id";
 					break;
-			case "2": sql = "SELECT o.o_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+			case "2": sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
 					+ "FROM orders o, orders_detail od, item i "
 					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? "
 					+ "GROUP BY o_id";
 					break;
-			case "3": sql = "SELECT o.o_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+			case "3": sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
 					+ "FROM orders o, orders_detail od, item i "
 					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? "
 					+ "GROUP BY o_id";
 					break;
-			default: sql = "SELECT o.o_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+			default: sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
 					+ "FROM orders o, orders_detail od, item i "
 					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? "
 					+ "GROUP BY o_id";
@@ -201,8 +201,9 @@ public class OrderDAO {
 			pstmt.setString(1, "%" + search_val + "%");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				OrderListBean olb = new OrderListBean();
+				DetailBean olb = new DetailBean();
 				olb.setO_id(rs.getString("o_id"));
+				olb.setOd_id(rs.getString("od_id"));
 				olb.setI_name(rs.getString(2));
 				olb.setM_id(rs.getString("m_id"));
 				olb.setO_amount(rs.getInt("o_amount"));
@@ -239,7 +240,6 @@ public class OrderDAO {
 				orderBean.setO_payment(rs.getInt("o_payment"));
 				orderBean.setO_rdate(rs.getDate("o_rdate"));
 				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
-				orderBean.setO_request(rs.getString("o_request"));
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류!(OrderDAO - getOrder(String o_id) - " + e.getMessage());

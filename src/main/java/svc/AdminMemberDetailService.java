@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.MemberDAO;
+import dao.ReviewDAO;
 
 public class AdminMemberDetailService {
 	public MemberBean getMemberDetail(String m_id) {
@@ -28,4 +29,18 @@ public class AdminMemberDetailService {
 //		close(con);
 //		return orderList;
 //	}
+	
+	public String getJSON(int r_id) {
+		Connection con = getConnection();
+		StringBuffer result = new StringBuffer("");
+		result.append("{\"result\":[");
+		ReviewDAO reviewDAO = ReviewDAO.getInstance();
+		reviewDAO.setConnection(con);
+		String content = reviewDAO.getContent(r_id);
+		result.append("{\"value\": \"" + content + "\"},");
+		result.append("]}");
+		close(con);
+		
+		return result.toString();
+	}
 }

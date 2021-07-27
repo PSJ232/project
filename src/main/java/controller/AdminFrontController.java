@@ -212,6 +212,9 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/getReviewContent.ad")) {
+			AdminSearchAction searchAction = new AdminSearchAction();
+			searchAction.execute(request, response);
 		}
 
 		if (forward != null) {

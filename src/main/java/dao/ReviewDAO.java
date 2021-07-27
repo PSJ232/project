@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import vo.DetailBean;
 import vo.ItemBean;
+import vo.MemberBean;
 import vo.OrderBean;
 import vo.OrderDetailBean;
 import vo.ReviewBean;
@@ -459,5 +461,51 @@ public class ReviewDAO {
 		}
 		return rbList;
 	}
+	
+	public ArrayList<DetailBean> getMemberReviewList(String m_id){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<DetailBean> reviewList = new ArrayList<DetailBean>();
+		try {
+			String sql = "SELECT r.r_title, r.r_rate, r.r_id, od.od_id, r.r_content, r.r_rdate "
+					+ "FROM member m, orders_detail od, review r "
+					+ "WHERE od.m_id=m.m_id AND od.od_id=r.od_id AND r.r_writer=?"
+					+ "ORDER BY r.r_rdate DESC";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				DetailBean detailBean = new DetailBean();
+				detailBean.setR_title(rs.getString("r_title"));
+				detailBean.setR_content(rs.getString("r_content"));
+				detailBean.setR_rate(rs.getInt("r_rate"));
+				detailBean.setR_id(rs.getInt("r_id"));
+				detailBean.setOd_id(rs.getString("od_id"));
+				detailBean.setR_rdate(rs.getString("r_rdate"));
+				reviewList.add(detailBean);
+			}
+		} catch (SQLException e) {
+			System.out.println("ReviewDAO - getMemberReviewList() SQL문 오류 : " + e.getMessage());
+		}
+		
+		return reviewList;
+	}
 
+	public String getContent(int r_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String content = "";
+		try {
+			String sql = "SELECT r_content FROM review WHERE r_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				content = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("ReviewDAO - getContent() SQL문 오류 : " + e.getMessage());
+		}
+		return content;
+	}
 }

@@ -32,7 +32,6 @@
 		var table = document.getElementById("ajaxTable");
 		table.innerHTML = "";
 		if(request.readyState == 4 && request.status == 200){
-			console.log('('+request.responseText+')');
 			var object = eval('('+request.responseText+')'); 
 			var result = object.result;
 			for(var i = 0; i < result.length; i++){

@@ -8,7 +8,7 @@ import dao.OrderDAO;
 import db.JdbcUtil;
 import vo.OrderBean;
 import vo.OrderDetailBean;
-import vo.OrderListBean;
+import vo.DetailBean;
 
 public class OrderService {
 

@@ -14,15 +14,6 @@ public class OrderBean {
 	private int o_payment;
 	private Date o_rdate;
 	private int o_gdiscount;
-	private String o_request;
-
-	public String getO_request() {
-		return o_request;
-	}
-
-	public void setO_request(String od_request) {
-		this.o_request = od_request;
-	}
 
 	public int getO_id() {
 		return o_id;

@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.OrderDAO;
-import vo.OrderListBean;
+import vo.DetailBean;
 
 public class AdminOrderSearchService {
 		public String getJSON(String search_val, String filter) {
@@ -16,7 +16,7 @@ public class AdminOrderSearchService {
 			result.append("{\"result\":[");
 			OrderDAO orderDAO = OrderDAO.getInstance();
 			orderDAO.setConnection(con);
-			ArrayList<OrderListBean> resultList = orderDAO.search(search_val, filter);
+			ArrayList<DetailBean> resultList = orderDAO.search(search_val, filter);
 			for(int i = 0; i < resultList.size(); i++) {
 				result.append("[{\"value\": \"" + resultList.get(i).getO_id() + "\"},");
 				result.append("{\"value\": \"" + resultList.get(i).getM_id() + "\"},");
@@ -31,11 +31,11 @@ public class AdminOrderSearchService {
 			return result.toString();
 		}
 
-		public ArrayList<OrderListBean> getMemberOrders(String m_id) {
+		public ArrayList<DetailBean> getMemberOrders(String m_id) {
 			Connection con = getConnection();
 			OrderDAO orderDAO = OrderDAO.getInstance();
 			orderDAO.setConnection(con);
-			ArrayList<OrderListBean> orderList = orderDAO.search(m_id,"1");
+			ArrayList<DetailBean> orderList = orderDAO.search(m_id,"1");
 			close(con);
 			return orderList;
 		}

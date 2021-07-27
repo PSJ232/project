@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import svc.AdminMemberDetailService;
 import svc.AdminMemberSearchService;
 import svc.AdminOrderSearchService;
 
@@ -30,6 +31,17 @@ public class AdminSearchAction {
 			try {
 				out = response.getWriter();
 				out.write(service.getJSON(search_val, filter));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/getReviewContent.ad")) {
+			int r_id = Integer.parseInt(request.getParameter("r_id"));
+			AdminMemberDetailService service = new AdminMemberDetailService();
+			System.out.println(service.getJSON(r_id));
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.write(service.getJSON(r_id));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
