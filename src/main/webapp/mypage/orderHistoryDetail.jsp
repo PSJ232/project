@@ -13,7 +13,8 @@
 
 <% 
 	String m_id = (String)session.getAttribute("m_id");
-	MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail"); 
+	MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail");
+	int o_id = Integer.parseInt(request.getParameter("o_id"));
 %>
 
 <!-- 헤더 들어가는곳 -->
@@ -64,6 +65,7 @@
   <!-- 본문 내용 -->
 
 <h1> OrderHistoryDetail </h1>
+<%=o_id %>
  
 <!-- 푸터 들어가는곳 -->
 
