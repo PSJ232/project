@@ -33,6 +33,10 @@ public class MemberMypageDetailAction implements Action {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./mypage/memberGrade.jsp");
+		} else if(command.equals("/MemberMypageFAQList.me")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./mypage/FAQList.jsp");
 		}
 		
 		return forward;

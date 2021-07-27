@@ -47,13 +47,13 @@
 						<dl>
 							<dt>등급정보</dt>
 							<dd id="grade">
-								<%=realGrade %> <a href="MemberMypageGradeDetail.me" id="grade"> </a>
+								<%=realGrade %> <a href="" id="grade"> </a>
 							</dd>
 						</dl>
 						<dl>
 							<dt>포인트</dt>
 							<dd id="grade">
-								<%=memberMypageDetail.getM_point() %> <a href="MemberMypagePointDetail.me" id="point"> </a>
+								<%=memberMypageDetail.getM_point() %> <a href="" id="point"> </a>
 							</dd>
 						</dl>
 						<dl>
@@ -71,7 +71,7 @@
 			<div id="topcenter">
 
 				<h4 id="subject">
-					<span id="osubject">주문 / 배송 조회</span> <span id="nsubject">(최근
+					<span id="osubject">자주 묻는 질문</span> <span id="nsubject">(최근
 						1개월)</span>
 				</h4>
 
@@ -130,7 +130,7 @@
 						<li class="list"><a href="MemberUpdate.me">개인정보 수정</a></li>
 						<li class="list"><a href="MemberMypageGradeDetail.me">회원등급</a></li>
 						<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
-						<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
+						<li class="list"><a href="">1:1 문의내역</a></li>
 						<li class="list"><a href="MemberMypageFAQList.me">자주묻는질문</a></li>
 					</ul>
 				</div>
