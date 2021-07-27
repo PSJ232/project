@@ -515,13 +515,18 @@ public class MemberDAO {
 			
 			while (rs.next()) {
 				ReviewBean pb = new ReviewBean();
-				pb.setR_point(rs.getInt("point"));
-				pb.setR_rdate(rs.getDate("date"));
+				pb.setR_point(rs.getInt(1));
+				pb.setR_rdate(rs.getDate(2));
 				pbList.add(pb);
 			} 
+			
 		} catch (Exception e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
 		}
+		
 		return pbList;
 	}
 

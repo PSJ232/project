@@ -28,7 +28,7 @@ public class MemberMypagePointDetailAction implements Action {
 		request.setAttribute("memberMypageDetail", memberMypageDetail);
 		
 		// 포인트 내역 정보
-		ArrayList<ReviewBean> pbList = memberService.selectMemberPointList("m_id");
+		ArrayList<ReviewBean> pbList = memberService.selectMemberPointList(m_id);
 		request.setAttribute("pbList", pbList);
 		
 		forward = new ActionForward();
