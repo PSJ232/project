@@ -524,7 +524,7 @@ public class OrderDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setInt(1, o_id);
+			pstmt.setInt(2, o_id);
 			updateCount = pstmt.executeUpdate();
 
 		} catch (Exception e) {
