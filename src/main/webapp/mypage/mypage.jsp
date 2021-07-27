@@ -9,7 +9,8 @@
 </head>
 <body>
 
-<% MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail"); 
+<% 
+	MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail"); 
 	String m_id = (String)session.getAttribute("m_id");
 %>
 
