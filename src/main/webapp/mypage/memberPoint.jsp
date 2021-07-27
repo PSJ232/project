@@ -15,6 +15,8 @@
 	String m_id = (String)session.getAttribute("m_id");
 	MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail"); 
 	ArrayList<ReviewBean> pbList = (ArrayList<ReviewBean>)request.getAttribute("pbList");
+	String division = "";
+	String record = "";
 %>
 
 <!-- 헤더 들어가는곳 -->
@@ -64,11 +66,44 @@
   	
   <!-- 본문 내용 -->
 
-<%=pbList.get(1).getR_point() %>
+<table border="1">
+	<tr><td>날짜</td><td>적립</td><td>내역</td><td>적립 금액</td></tr>
+
+	<%
+	for(int i = 0; i<pbList.size(); i++) { 
+	
+		if(pbList.get(i).getR_point() == 200) {
+			division = "적립";
+		} else if(pbList.get(i).getR_point() == 300) {
+			division = "적립";
+		} else {
+			division = "사용";
+		}
+		
+		if(pbList.get(i).getR_point() == 200) {
+			record = "리뷰 작성(사진 미포함)";
+		} else if(pbList.get(i).getR_point() == 300) {
+			record = "리뷰 작성(사진 포함)";
+		} else {
+			record = "포인트 사용";
+		}
+	
+	%>
+	<tr><td><%=pbList.get(i).getR_rdate() %></td>
+		<td><%=division %></td>
+		<td><%=record %></td>
+		<td><%=pbList.get(i).getR_point() %></td></tr>
+	<%	
+	}
+	%>
+	<tr><td><%=memberMypageDetail.getM_rdate() %></td><td>적립</td><td>회원 가입 감사 적립금</td><td>1000</td></tr>
+
+</table>
 
  
 <!-- 푸터 들어가는곳 -->
 
 <!-- 푸터 들어가는곳 -->
 </body>
-</html>
+</html>	
+	
