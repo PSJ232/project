@@ -193,7 +193,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'산호초 에디션','바다의 꽃 산호초의 빛깔을 담은',59900,27,NULL,NULL,NULL,NULL,'2021-07-23 10:46:11',0.9,'large','판매중','판매중','없음'),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,40,NULL,NULL,NULL,NULL,'2021-07-23 10:47:34',0.9,'small','판매중','판매중','없음'),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',69800,18,NULL,NULL,NULL,NULL,'2021-07-23 10:48:46',0.5,'small','판매중','판매중','없음'),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,50,NULL,NULL,NULL,NULL,'2021-07-23 10:50:14',1,'medium','판매중','판매중','없음');
+INSERT INTO `item` VALUES (1,'산호초 에디션','바다의 꽃 산호초의 빛깔을 담은',59900,12,NULL,NULL,NULL,NULL,'2021-07-23 10:46:11',0.9,'large','판매중','판매중','없음'),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,26,NULL,NULL,NULL,NULL,'2021-07-23 10:47:34',0.9,'small','판매중','판매중','없음'),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',69800,15,NULL,NULL,NULL,NULL,'2021-07-23 10:48:46',0.5,'small','판매중','판매중','없음'),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,46,NULL,NULL,NULL,NULL,'2021-07-23 10:50:14',1,'medium','판매중','판매중','없음');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +253,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('admin','1234','관리자','01010101010','1999-12-31',1,3,'on','2021-07-23',NULL,936466);
+INSERT INTO `member` VALUES ('admin','1234','관리자','01010101010','1999-12-31',1,3,'on','2021-07-23',NULL,935000),('visitor','1234','비회원구매','입력해주세요','2020-01-01',1,0,NULL,'2021-07-27',NULL,0);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,6 +276,7 @@ CREATE TABLE `orders` (
   `o_payment` int(11) NOT NULL COMMENT '0:카드, 1:계좌이체 등등',
   `o_rdate` datetime NOT NULL COMMENT 'date동기화',
   `o_gdiscount` int(11) NOT NULL,
+  `o_visitor` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`o_id`),
   KEY `FK_member_TO_orders` (`m_id`),
   CONSTRAINT `FK_member_TO_orders` FOREIGN KEY (`m_id`) REFERENCES `member` (`m_id`)
@@ -288,7 +289,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (2021072601,'admin','관리자','06035&서울 강남구 가로수길 5&애플스토어','신종현','01022224444',462900,-1234,1,'2021-07-26 00:43:31',-23100),(2021072602,'admin','관리자','46729&부산 강서구 가달1로 7&회사건물2층','홍길동','01033336666',110300,-12300,1,'2021-07-26 00:50:26',-5500);
+INSERT INTO `orders` VALUES (2021072701,'visitor','신종현','06035&서울 강남구 가로수길 5&회사','오예진','01044448888',88300,0,1,'2021-07-27 13:54:32',0,'01012345555'),(2021072702,'admin','관리자','47326&부산 부산진구 가야공원로 1&회사','이비인','01022221111',110300,-454,1,'2021-07-27 14:00:39',-5500,NULL),(2021072703,'admin','관리자','46769&부산 강서구 가덕해안로 3&회사','박세정','01066665555',462900,-1000,1,'2021-07-27 14:03:30',-23100,NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +330,7 @@ CREATE TABLE `orders_detail` (
 
 LOCK TABLES `orders_detail` WRITE;
 /*!40000 ALTER TABLE `orders_detail` DISABLE KEYS */;
-INSERT INTO `orders_detail` VALUES (1,2021072601,1,4,1,'그동안 감사했습니다.',0,'admin',1,'2021-08-01','주문접수',0),(2,2021072601,2,4,2,'그동안 사랑했습니다.',0,'admin',2,'2021-08-02','주문접수',0),(3,2021072601,3,4,3,'그동안 힘내셨습니다.',0,'admin',3,'2021-08-03','주문접수',0),(4,2021072601,4,0,4,'null',0,'admin',4,'2021-08-04','주문접수',0),(5,2021072602,1,1,2,'',0,'admin',99999999,'2021-07-31','주문접수',0);
+INSERT INTO `orders_detail` VALUES (1,2021072701,2,4,2,'비회원이 당신에게 꽃을 선물합니다',0,'visitor',99999988,'2021-07-31','주문접수',0),(2,2021072702,1,4,2,'회원이 바로주문으로 당신에게 꽃을 선물합니다',0,'admin',99999999,'2021-07-31','주문접수',0),(3,2021072703,1,1,1,'',0,'admin',1,'2021-07-27','주문접수',0),(4,2021072703,2,2,2,'',0,'admin',2,'2021-07-29','주문접수',0),(5,2021072703,3,0,3,'',0,'admin',3,'2021-07-28','주문접수',0),(6,2021072703,4,4,4,'회원이 장바구니를 통해 당신에게 꽃을 선물합니다',0,'admin',4,'2021-07-31','주문접수',0);
 /*!40000 ALTER TABLE `orders_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -342,14 +343,18 @@ DROP TABLE IF EXISTS `qna`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `qna` (
   `q_id` int(11) NOT NULL COMMENT '문의번호',
-  `o_id` int(11) NOT NULL COMMENT '주문번호',
+  `o_id` int(11) DEFAULT NULL,
   `q_subject` varchar(45) NOT NULL COMMENT '문의제목',
   `q_content` varchar(2000) NOT NULL COMMENT '문의내용',
   `q_img` varchar(45) DEFAULT NULL COMMENT '사진첨부',
   `q_rdate` datetime NOT NULL COMMENT 'date동기화',
+  `q_img2` varchar(45) DEFAULT NULL,
+  `q_img3` varchar(45) DEFAULT NULL,
+  `m_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`q_id`),
   KEY `FK_orders_TO_qna` (`o_id`),
-  CONSTRAINT `FK_orders_TO_qna` FOREIGN KEY (`o_id`) REFERENCES `orders` (`o_id`)
+  KEY `FK_member_TO_qna` (`m_id`),
+  CONSTRAINT `FK_member_TO_qna` FOREIGN KEY (`m_id`) REFERENCES `member` (`m_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='고객문의';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -380,8 +385,7 @@ CREATE TABLE `review` (
   `r_img` varchar(45) DEFAULT NULL COMMENT '사진첨부',
   `r_point` int(11) NOT NULL COMMENT '적립포인트',
   PRIMARY KEY (`r_id`),
-  KEY `FK_orders_detail_TO_review` (`od_id`),
-  CONSTRAINT `FK_orders_detail_TO_review` FOREIGN KEY (`od_id`) REFERENCES `orders_detail` (`od_id`)
+  KEY `FK_orders_detail_TO_review` (`od_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='리뷰';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -403,4 +407,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-26  0:52:33
+-- Dump completed on 2021-07-27 19:14:41
