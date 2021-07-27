@@ -14,7 +14,6 @@
 <% 
 	String m_id = (String)session.getAttribute("m_id");
 	MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail"); 
-	ArrayList<ReviewBean> pbList = (ArrayList<ReviewBean>)request.getAttribute("pbList");
 %>
 
 <!-- 헤더 들어가는곳 -->
@@ -64,8 +63,7 @@
   	
   <!-- 본문 내용 -->
 
-<%=pbList.get(1).getR_point() %>
-
+<h1> OrderHistoryDetail </h1>
  
 <!-- 푸터 들어가는곳 -->
 

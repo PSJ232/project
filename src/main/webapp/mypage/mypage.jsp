@@ -117,7 +117,7 @@
 				<div class="leftmenu">
 					<h2>마이꾸까</h2>
 					<ul class="menulist">
-						<li class="list"><a href="OrderMypageDetail.od">주문내역/배송조회</a></li>
+						<li class="list"><a href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
 						<li class="list"><a href="">나의 정기구독</a></li>
 						<li class="list"><a href="">클래스 수강내역</a></li>
 						<li class="list"><a href="ReviewInsertForm.rv">상품 리뷰</a></li>

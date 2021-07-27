@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.OrderAddressAction;
-import action.OrderCancelAction;
 import action.OrderCartAction;
 import action.OrderDetailProAction;
 import action.OrderInsertFormAction;
 import action.OrderInsertProAction;
 import action.OrderLetterAction;
+import action.OrderMypageDetailAction;
 import action.OrderMypageListAction;
 import action.OrderNowAction;
 import action.VisitorCartAction;
@@ -91,7 +91,7 @@ public class OrderFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/OrderMypageDetail.od")) {
+		} else if(command.equals("/OrderMypageDetailList.od")) {
 			action = new OrderMypageListAction();
 			try {
 				forward = action.execute(request, response);
@@ -105,15 +105,14 @@ public class OrderFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/OrderCancel.od")) {
-			action = new OrderCancelAction();
+		} else if(command.equals("/OrderMypageDetail.od")) {
+			action = new OrderMypageDetailAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
 
 		// -------------------------------------------------------------------------
 		// 포워딩 방식 결정

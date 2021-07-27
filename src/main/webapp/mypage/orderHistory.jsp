@@ -84,7 +84,7 @@ MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDe
    				int sumAmount = nonOrderArrayList.get(i).getO_amount() + nonOrderArrayList.get(i).getO_point() + nonOrderArrayList.get(i).getO_gdiscount();
    			%>
    				<tr><td><%=nonOrderArrayList.get(i).getO_rdate() %></td>
-   					<td><%=nonItemArrayList.get(i).getI_name() %><br>
+   					<td><a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
    						수령인 : <%=nonItemArrayList.get(i).getI_name() %><br>
    						가격 : <%=sumAmount %><br>
    						수량 : <%=nonOrderDetailArrayList.get(i).getOd_qty() %></td>
@@ -113,7 +113,7 @@ MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDe
 			int sumAmount = orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point() + orderArrayList.get(i).getO_gdiscount();
 		%>
 			<tr><td><%=orderArrayList.get(i).getO_rdate() %></td>
-				<td><%=itemArrayList.get(i).getI_name() %><br>
+				<td><a href ="OrderMypageDetail?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
 					수령인 : <%=itemArrayList.get(i).getI_name() %><br>
 					가격 : <%=sumAmount %><br>
 					수량 : <%=orderDetailArrayList.get(i).getOd_qty() %>
