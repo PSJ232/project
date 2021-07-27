@@ -39,7 +39,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO orders VALUES(?,?,?,?,?,?,?,?,?,now(),?)";
+			String sql = "INSERT INTO orders VALUES(?,?,?,?,?,?,?,?,?,now(),?,?)";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -53,6 +53,7 @@ public class OrderDAO {
 			pstmt.setInt(8, orderBean.getO_point());
 			pstmt.setInt(9, orderBean.getO_payment());
 			pstmt.setInt(10, orderBean.getO_gdiscount());
+			pstmt.setString(11, orderBean.getO_visitor());
 			// rdate는 sql구문에 바로 now()
 
 
@@ -156,6 +157,7 @@ public class OrderDAO {
 				orderBean.setO_payment(rs.getInt("o_payment"));
 				orderBean.setO_rdate(rs.getDate("o_rdate"));
 				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
+				orderBean.setO_visitor(rs.getString("o_visitor"));
 
 				orderList.add(orderBean);
 			}
@@ -239,7 +241,7 @@ public class OrderDAO {
 				orderBean.setO_payment(rs.getInt("o_payment"));
 				orderBean.setO_rdate(rs.getDate("o_rdate"));
 				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
-				orderBean.setO_request(rs.getString("o_request"));
+				orderBean.setO_visitor(rs.getString("o_visitor"));
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류!(OrderDAO - getOrder(String o_id) - " + e.getMessage());

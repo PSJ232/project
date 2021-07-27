@@ -59,6 +59,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				<input type="hidden" name="i_id<%=i %>" value="<%=i_id%>">
 				<input type="hidden" name="c_qty<%=i %>" value="<%=c_qty%>">
 				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=delivery_date%>">
+				<input type="hidden" name="od_message<%=i %>" value="">
 				
 				
 		<%

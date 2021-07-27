@@ -40,18 +40,18 @@
 	<div>
   	<h2>마이꾸까</h2>
   	<ul type="none">
-  		<li><a href="../OrderMypageDetail.od">주문내역/배송조회</a></li>
+  		<li><a href="OrderMypageDetail.od">주문내역/배송조회</a></li>
   		<li><a href="">나의 정기구독</a></li>
   		<li><a href="">클래스 수강내역</a></li>
-		<li><a href="../ReviewInsertForm.rv">상품 리뷰</a></li>
+		<li><a href="ReviewInsertForm.rv">상품 리뷰</a></li>
   	</ul>
  	 </div>
  	 
  	 <div>
   	 <h2>개인정보 관리</h2>
   	<ul type="none">
-  		<li><a href="">개인정보 수정</a></li>
-  		<li><a href="">회원등급</a></li>
+  		<li><a href="MemberUpdate.me">개인정보 수정</a></li>
+  		<li><a href="MemberMypageGradeDetail.me">회원등급</a></li>
   		<li><a href="">포인트</a></li>
 		<li><a href="../QnaInsert.qna">1:1 문의내역</a></li>
 		<li><a href="">자주묻는질문</a></li>
