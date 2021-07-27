@@ -15,6 +15,9 @@ public class MemberMypageDetailAction implements Action {
 		System.out.println("MemberMypageDetailAction");
 		ActionForward forward = null;
 		
+		String command = request.getServletPath();
+		System.out.println("command : " + command);
+		
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
 		
@@ -22,9 +25,15 @@ public class MemberMypageDetailAction implements Action {
 		MemberBean memberMypageDetail = memberService.selectMember(m_id);
 		request.setAttribute("memberMypageDetail", memberMypageDetail);
 		
-		forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("./mypage/mypage.jsp");
+		if(command.equals("/MemberMypageDetail.me")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./mypage/mypage.jsp");
+		} else if(command.equals("/MemberMypageGradeDetail.me")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./mypage/memberGrade.jsp");
+		}
 		
 		return forward;
 	}
