@@ -13,7 +13,7 @@ public class OrderDetailBean {
 	private int c_id; // 장바구니번호 - 주문 후 장바구니 삭제를 위함
 	private String od_delivery_date; // 배송요청일
 	private String od_invoice; // 송장정보
-	private int od_confirm; // 구매확정
+	private int od_confirm; // 구매확정상태 0:미확정, 1:구매확정, 2:취소, 3:반품
 	private String i_name; // 팀장님 편의상 만든 항목 (상품이름)
 
 	public String getI_name() {
