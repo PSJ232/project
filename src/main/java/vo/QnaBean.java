@@ -8,8 +8,31 @@ public class QnaBean {
 	private String q_subject;
 	private String q_content;
 	private String q_img;
+	private String q_img2;
+	private String q_img3;
 	private Date q_rdate;
+	private String m_id;
 	
+	
+	
+	public String getQ_img2() {
+		return q_img2;
+	}
+	public void setQ_img2(String q_img2) {
+		this.q_img2 = q_img2;
+	}
+	public String getQ_img3() {
+		return q_img3;
+	}
+	public void setQ_img3(String q_img3) {
+		this.q_img3 = q_img3;
+	}
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
 	public int getQ_id() {
 		return q_id;
 	}

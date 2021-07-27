@@ -5,10 +5,12 @@ import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import svc.IdMakerService;
 import svc.QnaService;
 import vo.ActionForward;
 import vo.QnaBean;
@@ -19,6 +21,19 @@ public class QnaInsertProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = null;
+		
+		HttpSession session = request.getSession();
+		String m_id = (String)session.getAttribute("m_id");
+		
+		IdMakerService idMakerService = new IdMakerService();
+		int q_id = idMakerService.newId("qna", "q_id", 0);
+		int o_id;
+		
+		if(request.getParameter("o_id")==null) {
+			o_id = 0;
+		} else {
+			o_id = Integer.parseInt(request.getParameter("o_id"));
+		}
 		
 		
 		String realFolder = "";
@@ -36,11 +51,14 @@ public class QnaInsertProAction implements Action {
 				new DefaultFileRenamePolicy());
 		
 		QnaBean qnaBean = new QnaBean();
-		qnaBean.setQ_id(Integer.parseInt(multi.getParameter("q_id")));
-		qnaBean.setO_id(Integer.parseInt(multi.getParameter("o_id")));
+		qnaBean.setM_id(m_id);
+		qnaBean.setQ_id(q_id);
+		qnaBean.setO_id(o_id);
 		qnaBean.setQ_subject(multi.getParameter("q_subject"));
 		qnaBean.setQ_content(multi.getParameter("q_content"));
 		qnaBean.setQ_img(multi.getFilesystemName("q_img"));
+		qnaBean.setQ_img2(multi.getFilesystemName("q_img2"));
+		qnaBean.setQ_img3(multi.getFilesystemName("q_img3"));
 		
 		QnaService qnaService = new QnaService();
 		boolean isInsertSuccess = qnaService.askQna(qnaBean);

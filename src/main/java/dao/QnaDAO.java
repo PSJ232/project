@@ -37,13 +37,17 @@ public class QnaDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "INSERT INTO qna VALUES(?,?,?,?,?,now())";
+			String sql = "INSERT INTO qna VALUES(?,?,?,?,?,now(),?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, qnaBean.getQ_id());
 			pstmt.setInt(2, qnaBean.getO_id());
 			pstmt.setString(3, qnaBean.getQ_subject());
 			pstmt.setString(4, qnaBean.getQ_content());
 			pstmt.setString(5, qnaBean.getQ_img());
+			pstmt.setString(6, qnaBean.getQ_img2());
+			pstmt.setString(7, qnaBean.getQ_img3());
+			pstmt.setString(8, qnaBean.getM_id());
+			
 			
 			
 			insertCount = pstmt.executeUpdate();
