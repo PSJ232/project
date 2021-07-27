@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.OrderAddressAction;
+import action.OrderCancelAction;
 import action.OrderCartAction;
 import action.OrderDetailProAction;
 import action.OrderInsertFormAction;
@@ -99,6 +100,13 @@ public class OrderFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/VisitorOrderCart.od")) {
 			action = new VisitorCartAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/OrderCancel.od")) {
+			action = new OrderCancelAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
