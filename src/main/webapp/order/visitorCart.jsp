@@ -16,8 +16,8 @@ CartBean cartDetail = (CartBean) request.getAttribute("cartDetail");
 %>
 </head>
 <body>
-	<h2>장바구니</h2>
-	<form action="OrderCart.od" method="post">
+	<h2>장바구니(비회원 미리보기)</h2>
+	<form action="VisitorOrderCart.od" method="post">
 		<table border="1">
 			<tr>
 				<td>상품정보</td>
@@ -41,6 +41,7 @@ CartBean cartDetail = (CartBean) request.getAttribute("cartDetail");
 				}
 
 				String sumAmount = NumberFormat.getInstance().format((i_price * c_qty) + letterPrice); //각 상품에 대한 합계금액
+				String visiorAmount = NumberFormat.getInstance().format((itemDetail.getI_price() * c_qty) + letterPrice); //각 상품에 대한 합계금액
 			%>
 			<tr>
 				<td>
@@ -59,23 +60,18 @@ CartBean cartDetail = (CartBean) request.getAttribute("cartDetail");
 
 		구매 전 확인해주세요.<br>
 		 - 구매 금액 합산이 30,000원 이상일 경우, 배송비는 무료입니다.(단,[정기구독],[무료배송] 상품은 구매금액 합산에 포함되지 않습니다.)<br>
-		 - [정기구독] 상품의
-		첫 번째 발송일에 일반 택배 상품을 함께 구매하실 경우,중복 배송비는 부분 환불 처리해 드립니다.<br>
 		<hr>
 
-		총 주문금액
-		<%=sumAmount%>
-		원 + 배송비 0원 = 총 결제 금액
-		<%=sumAmount%>원<br>
+		총 주문금액	<%=visiorAmount%>원 + 배송비 0원 = 총 결제 금액 <%=visiorAmount%>원 <%if(itemDetail.getI_discount() != 1){%>[회원가 <%=sumAmount%>원]<%}%><br>
 		
 		<input type="hidden" name="c_delivery_date" value="<%=c_delivery_date%>">
 		<input type="hidden" name="i_id" value="<%=request.getParameter("i_id")%>">
 		<input type="hidden" name="c_qty" value="<%=c_qty%>">
 		<input type="hidden" name="c_letter" value="<%=c_letter%>">
 		
-		<input type="button" value="장바구니저장(회원전용)">
-		<input type="button" value="회원가입">
-		<input type="submit" value="할인 없이 구매하기">
+		<input type="submit" value="할인없이 구매하기"><br>
+		<input type="button" value="회원가입" onclick=""><br>
+		지금 회원가입 하시면 1,000p 바로 지급!
 	</form>
 
 	<%

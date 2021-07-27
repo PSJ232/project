@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.CartDeleteProAction;
 import action.CartViewAction;
-import action.VisitorCartAction;
+import action.VisitorCartViewAction;
 import action.CartInsertProAction;
 import action.CartUpdateProAction;
 import vo.ActionForward;
@@ -67,7 +67,7 @@ public class CartFrontController extends HttpServlet {
 			}
 		// 비회원 장바구니(바로구매기능)
 		} else if (command.equals("/VisitorCart.cr")) {
-			action = new VisitorCartAction();
+			action = new VisitorCartViewAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
