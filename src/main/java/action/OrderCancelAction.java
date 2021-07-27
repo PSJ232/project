@@ -29,7 +29,7 @@ public class OrderCancelAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("OrderMypageDetail.od");
+			forward.setPath("OrderMypageDetailList.od");
 			forward.setRedirect(true);
 		}
 		

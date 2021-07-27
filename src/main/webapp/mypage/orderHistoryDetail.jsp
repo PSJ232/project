@@ -65,7 +65,8 @@
   <!-- 본문 내용 -->
 
 <h1> OrderHistoryDetail </h1>
-<%=o_id %>
+<input type="button" value="주문 취소하기" onclick="location.href='OrderCancel.od?o_id=<%=o_id %>'">
+
  
 <!-- 푸터 들어가는곳 -->
 

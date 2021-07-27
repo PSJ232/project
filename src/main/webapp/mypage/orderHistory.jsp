@@ -113,7 +113,7 @@ MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDe
 			int sumAmount = orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point() + orderArrayList.get(i).getO_gdiscount();
 		%>
 			<tr><td><%=orderArrayList.get(i).getO_rdate() %></td>
-				<td><a href ="OrderMypageDetail?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
+				<td><a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
 					수령인 : <%=itemArrayList.get(i).getI_name() %><br>
 					가격 : <%=sumAmount %><br>
 					수량 : <%=orderDetailArrayList.get(i).getOd_qty() %>
