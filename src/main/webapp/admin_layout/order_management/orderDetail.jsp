@@ -13,8 +13,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문관리상세</title>
+<title>관리자 | 주문상세</title>
 <style>
+	.container {
+		margin-top: 200px;
+	}
 	.container #delivery_info label, #payment_info label {
 		width: 150px; 
 		display: inline-block;
@@ -23,14 +26,20 @@
 	.container #product_list,#payment_info {
 		display: inline-block;
 		width: 500px;
+		
 	}
 	#product_list table {
 		width: 550px;
 	}
-	
+	.sub_container, #delivery_info{
+		margin-left: 100px;
+		margin-top: 50px;
+	}
 	.sub_container {
 		display: flex;
-		
+	}
+	h1 {
+		margin-bottom: 50px;
 	}
 </style>
 <link rel="stylesheet" href="admin_layout/css/admin.css">
@@ -47,15 +56,13 @@
 	<jsp:include page="../inc/navigation.jsp" ></jsp:include>
 	<!-- nav -->
 	
-	<div class="container"> <!-- css layout요소 추가 -->
-		<h1>Order Detail</h1>
 		<div id="delivery_info">
+		<h1>Order Detail</h1>
 			<h3>배송지 정보</h3>
 			<label>주문자</label><input type="text" value="<%=orderBean.getO_sender()%>">
 			<label>받는자</label><input type="text" value="<%=orderBean.getO_receiver()%>">
 			<label>받는자 전화번호</label><input type="text" value="<%=orderBean.getO_phone()%>"><br>
 			<label>주소</label><input type="text" value="<%=orderBean.getO_address()%>"><br>
-			<label>배송시 요청사항</label><input type="text" value="<%=orderBean.getO_request()%>">
 		</div>
 		<div class="sub_container">
 		<div id="payment_info">
@@ -67,7 +74,7 @@
 			<label>최종결제금액</label><input type="text" value="42000">
 		</div>
 		<div id="product_list">
-			<h3>상품 리스트</h3>
+			<h3>주문상품 리스트</h3>
 			<table border="1">
 				<tr><th>순번</th><th>상품</th><th>수량</th><th>배송요청일</th><th>편지지</th><th>문구</th><th>구매확정</th></tr>
 				<%

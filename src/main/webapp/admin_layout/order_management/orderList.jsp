@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 | 회원관리</title>
+<title>관리자 | 주문관리</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <link rel="stylesheet" href="admin_layout/css/admin.css"> -->
+<!-- <link rel="stylesheet" href="admin_layout/css/style.css"> -->
 <link rel="stylesheet" href="admin_layout/css/admin.css">
 <link rel="stylesheet" href="admin_layout/css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -24,7 +26,7 @@
 	function searchFunction(){
 		var search_val = document.getElementById("search_val").value;
 		var filter = document.getElementById("filter").value;
-		request.open("Post", "http://localhost:8080/OrderSearch.ad?search_val=" + encodeURIComponent(search_val) + "&filter=" + encodeURIComponent(filter), true);
+		request.open("Post", "http://localhost:8080/project/OrderSearch.ad?search_val=" + encodeURIComponent(search_val) + "&filter=" + encodeURIComponent(filter), true);
 		request.onreadystatechange = searchProcess;
 		request.send(null);
 	}

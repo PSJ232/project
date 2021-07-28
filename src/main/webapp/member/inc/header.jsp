@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link href="member/css/style.css" rel="stylesheet" >
+<link href="../css/style.css" rel="stylesheet" > 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
@@ -44,7 +45,7 @@
 	
 	    <nav class="main_menu">
 	      <div class="nav_bar_logo">
-	        <a href="#"><img src="../img/logo.png" alt="" class="logo_small"></a>
+	        <a href="#"><img src="member/img/logo.png" alt="" class="logo_small"></a>
 	      </div>
 	      <ul class="nav_bar_list">
 	        <li class="item"><a href="#">꽃 정기구독</a></li>
@@ -55,8 +56,8 @@
 	        <li class="item"><a href="#">이벤트</a></li>
 	      </ul>
 	      <div class="nav_bar_icon">
-	        <a href="#"><img src="../img/profile.png" alt="go to mypage" class="nav_icon"></a>
-	        <a href="#"><img src="../img/bag.png" alt="shopping cart" class="nav_icon"></a>
+	        <a href="#"><img src="member/img/profile.png" alt="go to mypage" class="nav_icon"></a>
+	        <a href="#"><img src="member/img/bag.png" alt="shopping cart" class="nav_icon"></a>
 	      </div>
 	    </nav>
 	  </div>

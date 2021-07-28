@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import svc.CartService;
 import svc.ItemDetailService;
@@ -20,8 +19,9 @@ public class OrderLetterAction implements Action {
 		System.out.println("OrderLetterAction");
 		ActionForward forward = null;
 		
-		HttpSession session = request.getSession();
-		String m_id = (String) session.getAttribute("m_id");
+//		HttpSession session = request.getSession();
+//		String m_id = (String) session.getAttribute("m_id");
+		String m_id = request.getParameter("m_id");
 
 		int iNum = Integer.parseInt(request.getParameter("iNum")); // 선택된 상품의 수
 		
@@ -59,7 +59,17 @@ public class OrderLetterAction implements Action {
 					checkList.add(cartDetail);
 				}
 			}
-		} else {
+		} else if(request.getParameter("c_id0") != null){ // 장바구니 단일상품 주문
+			cartDetail = new CartBean();
+			cartDetail.setC_id(Integer.parseInt(request.getParameter("c_id0")));// 바로 구매는 장바구니 번호가 없으므로 null오류를 없애기 위해 임의의 숫자입력
+			cartDetail.setI_id(Integer.parseInt(request.getParameter("i_id0")));
+			cartDetail.setM_id(m_id);
+			cartDetail.setC_qty(Integer.parseInt(request.getParameter("c_qty0")));
+			cartDetail.setC_letter(c_letter);
+			cartDetail.setC_delivery_date(request.getParameter("od_delivery_date0"));
+			checkList.add(cartDetail);
+			
+		} else { // 단일상품 바로주문의 경우
 			cartDetail = new CartBean();
 			cartDetail.setC_id(99999999);// 바로 구매는 장바구니 번호가 없으므로 null오류를 없애기 위해 임의의 숫자입력
 			cartDetail.setI_id(Integer.parseInt(request.getParameter("i_id0")));

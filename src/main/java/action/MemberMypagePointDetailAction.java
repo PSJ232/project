@@ -1,5 +1,7 @@
 package action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,37 +9,31 @@ import javax.servlet.http.HttpSession;
 import svc.MemberService;
 import vo.ActionForward;
 import vo.MemberBean;
+import vo.ReviewBean;
 
-public class MemberMypageDetailAction implements Action {
+public class MemberMypagePointDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberMypageDetailAction");
+		System.out.println("MemberMypagePointDetailAction");
 		ActionForward forward = null;
-		
-		String command = request.getServletPath();
-		System.out.println("command : " + command);
 		
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
 		
 		MemberService memberService = new MemberService();
+		
+		// 멤버 정보
 		MemberBean memberMypageDetail = memberService.selectMember(m_id);
 		request.setAttribute("memberMypageDetail", memberMypageDetail);
 		
-		if(command.equals("/MemberMypageDetail.me")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("./mypage/mypage.jsp");
-		} else if(command.equals("/MemberMypageGradeDetail.me")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("./mypage/memberGrade.jsp");
-		} else if(command.equals("/MemberMypageFAQList.me")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("./mypage/FAQList.jsp");
-		}
+		// 포인트 내역 정보
+		ArrayList<ReviewBean> pbList = memberService.selectMemberPointList(m_id);
+		request.setAttribute("pbList", pbList);
+		
+		forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("./mypage/memberPoint.jsp");
 		
 		return forward;
 	}

@@ -41,7 +41,7 @@ public class OrderDetailProAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("/Project"); // 임시 이동 페이지, 나중에 mypage로 이동해야됨
+			forward.setPath("./"); // 임시 이동 페이지, 나중에 mypage로 이동해야됨
 			forward.setRedirect(true);
 		}
 

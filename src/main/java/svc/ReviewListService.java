@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.ReviewDAO;
+import vo.DetailBean;
 import vo.ReviewBean;
 import static db.JdbcUtil.*;
 
@@ -22,6 +23,16 @@ public class ReviewListService {
 		close(con);
 		
 		return rbList;
+	}
+	
+	public ArrayList<DetailBean> getMemberReviewList(String m_id){
+		Connection con = getConnection();
+		ReviewDAO reviewDAO = ReviewDAO.getInstance();
+		reviewDAO.setConnection(con);
+		
+		ArrayList<DetailBean> reviewList = reviewDAO.getMemberReviewList(m_id);
+		close(con);
+		return reviewList;
 	}
 
 }

@@ -10,6 +10,7 @@ import db.JdbcUtil;
 import vo.AnniversaryBean;
 import vo.MemberBean;
 import vo.OrderBean;
+import vo.ReviewBean;
 
 // 실제 데이터베이스 작업(비즈니스 로직)을 수행하는 MemberDAO 클래스 정의
 public class MemberDAO {
@@ -496,6 +497,37 @@ public class MemberDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return g_discount;
+	}
+
+	public ArrayList<ReviewBean> getMemberPointList(String m_id) {
+		System.out.println("MemberDAO - getMemberPointList()");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ReviewBean> pbList = new ArrayList<ReviewBean>();
+		
+		try {
+			String sql = "SELECT r_point AS point, r_rdate AS date FROM review WHERE r_writer = ? " + "UNION "
+					+ "SELECT o_point, o_rdate FROM orders WHERE m_id = ? " + "ORDER BY date DESC";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			pstmt.setString(2, m_id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				ReviewBean pb = new ReviewBean();
+				pb.setR_point(rs.getInt(1));
+				pb.setR_rdate(rs.getDate(2));
+				pbList.add(pb);
+			} 
+			
+		} catch (Exception e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return pbList;
 	}
 
 }

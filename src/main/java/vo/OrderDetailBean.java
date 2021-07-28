@@ -2,19 +2,19 @@ package vo;
 
 public class OrderDetailBean {
 
-	private int od_id;
-	private int o_id;
-	private int i_id;
-	private int l_id;
-	private int od_qty;
-	private String od_message;
-	private int od_review;
-	private String m_id;
-	private int c_id;
-	private String od_delivery_date;
-	private String od_invoice;
-	private int od_confirm;
-	private String i_name;
+	private int od_id; // 고유번호
+	private int o_id; // 주문번호(참조키)
+	private int i_id; // 상품번호
+	private int l_id; // 편지지번호
+	private int od_qty; // 주문수량
+	private String od_message; // 편지 4번(직접입력) 선택시, 메세지가 기록되는 공간
+	private int od_review; // 리뷰작성상태 0:미작성, 1:완료
+	private String m_id; // 회원아이디
+	private int c_id; // 장바구니번호 - 주문 후 장바구니 삭제를 위함
+	private String od_delivery_date; // 배송요청일
+	private String od_invoice; // 송장정보
+	private int od_confirm; // 구매확정상태 0:미확정, 1:구매확정, 2:취소, 3:반품
+	private String i_name; // 팀장님 편의상 만든 항목 (상품이름)
 
 	public String getI_name() {
 		return i_name;

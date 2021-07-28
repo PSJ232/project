@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.AdminMemberDetailAction;
 import action.AdminOrderDetailAction;
+import action.AdminSearchAction;
 import action.ClassDeleteAction;
 import action.ClassDetailViewAction;
 import action.ClassDetailSelectTimelistAction;
@@ -177,11 +178,8 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/MemberSearch.ad")) {
-			String m_name = request.getParameter("m_name");
-			AdminMemberSearchService service = new AdminMemberSearchService();
-			String filter = request.getParameter("filter");
-			PrintWriter out= response.getWriter();
-			out.write(service.getJSON(m_name, filter));
+			AdminSearchAction searchAction = new AdminSearchAction();
+			searchAction.execute(request, response);
 		}else if(command.equals("/MemberList.ad")) {
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/member_management/memberList.jsp");
@@ -198,11 +196,9 @@ public class AdminFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/order_management/orderList.jsp");
 		}else if(command.equals("/OrderSearch.ad")) {
-			String search_val = request.getParameter("search_val");
-			AdminOrderSearchService service = new AdminOrderSearchService();
-			String filter = request.getParameter("filter");
-			PrintWriter out= response.getWriter();
-			out.write(service.getJSON(search_val, filter));
+			AdminSearchAction searchAction = new AdminSearchAction();
+			searchAction.execute(request, response);
+			
 		}else if(command.equals("/OrderDetail.ad")) {
 			forward = new ActionForward();
 			action = new AdminOrderDetailAction();
@@ -216,6 +212,9 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/getReviewContent.ad")) {
+			AdminSearchAction searchAction = new AdminSearchAction();
+			searchAction.execute(request, response);
 		}
 
 		if (forward != null) {
