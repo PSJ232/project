@@ -42,7 +42,7 @@ function requestPay(){
 	         msg += '에러내용 : ' + rsp.error_msg;
 	    }
 	    alert(msg);
-		console.log("dkjflewkjlerkjlewrj");    
+		console.log("dkjflewkjlerkjlesdfsfsdfdsfsdfsdfwrj");    
 	});
 }
 </script>
