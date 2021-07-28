@@ -86,14 +86,7 @@ MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDe
    				int colspan = 0;%>
    				
    				<tr>
-   				
-   				<%if(o_id != nonOrderArrayList.get(i).getO_id()) {%>
    					<td><%=nonOrderArrayList.get(i).getO_id() %></td>
-   				<%} else {%>
-   					<td></td>
-   				<%}	%>
-   				
-   				
    					<td><a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
    						수령인 : <%=nonItemArrayList.get(i).getI_name() %><br>
    						가격 : <%=sumAmount %><br>
