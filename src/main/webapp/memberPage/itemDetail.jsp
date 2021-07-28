@@ -10,22 +10,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function isLetter(price, num) {
-		if(num==0){
+	function isLetter(price) {
+		var c_letter = document.order.c_letter.value;
+		var qty = document.order.c_qty.value;
+		if(c_letter==0){
 			document.getElementById('letter').innerHTML = "";
-			document.getElementById('totalPrice').innerHTML = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('amount').innerHTML = (qty*price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('totalPrice').innerHTML = (qty*price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		} else {
 			document.getElementById('letter').innerHTML = "추가상품 : 편지지추가 2,500원<br>";
-			document.getElementById('totalPrice').innerHTML =  (price+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('amount').innerHTML = (qty*price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('totalPrice').innerHTML = ((qty*price)+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 	}
 	
-	function ctlQty(sum){ // 장바구니 수량 조절
+	function ctlQty(sum, price, inven){ // 장바구니 수량 조절
 		var qty = document.order.c_qty.value;
 		if(qty==1 && sum<0){
 			return;
-		}	
-		document.order.c_qty.value = Number(qty)+sum;
+		}
+		if(inven == qty && sum < 0) {
+			document.getElementById('invenNotice').innerHTML = "";
+			document.order.c_qty.value = Number(qty)+sum;
+			isLetter(price);
+		} else if(inven > qty) {
+			document.getElementById('invenNotice').innerHTML = "";
+			document.order.c_qty.value = Number(qty)+sum;
+			isLetter(price);
+		} else {
+			document.getElementById('invenNotice').innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + inven + "개 입니다.<br>";
+		}
 	}
 </script>
 <%
@@ -37,6 +51,7 @@ float i_discount = itemDetail.getI_discount();
 int i_price = itemDetail.getI_price();
 String i_name = itemDetail.getI_name();
 int price = (int)(i_price*i_discount/100)*100;
+int inven = itemDetail.getI_inven();
 
 %>
 <link rel="stylesheet" href="css/style.css">
@@ -61,13 +76,14 @@ int price = (int)(i_price*i_discount/100)*100;
 	<form method="post" name="order">
 		<input type="hidden" name="i_id" value=<%=i_id %>>
 		수령일*<input type="date" name="c_delivery_date" required><br>
-		<input type="button" value="-" onclick="ctlQty(-1)">
+		<input type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
 		수량<input type="number" name="c_qty" value="1" required readonly>
-		<input type="button" value="+" onclick="ctlQty(1)"><br>
-		편지 추가<input type="radio" name="c_letter" value="1" onclick="isLetter(<%=price %>, 1)" checked>추가할게요(2,500원)
-				<input type="radio" name="c_letter" value="0" onclick="isLetter(<%=price %>, 0)">추가하지 않을게요<br>
+		<input type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)"><br>
+		<span id="invenNotice"></span>
+		편지 추가<input type="radio" name="c_letter" value="1" onclick="isLetter(<%=price %>)" checked>추가할게요(2,500원)
+				<input type="radio" name="c_letter" value="0" onclick="isLetter(<%=price %>)">추가하지 않을게요<br>
 		<br>
-		상품가격 <%=NumberFormat.getInstance().format(price) %><br>
+		상품가격 <span id="amount"><%=NumberFormat.getInstance().format(price) %></span><br>
 		<span id="letter">추가상품 : 편지지추가 2,500원<br></span>
 		(무료배송)<br>
 		총주문금액 <span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %></span><br>
