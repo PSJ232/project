@@ -42,6 +42,13 @@ if (cookie_check != null) {
 		}
 	}
 }
+
+String moveMypage = "";
+if(m_id == null) {
+	moveMypage = "MemberLogin.me";
+} else {
+	moveMypage = "MemberMypageDetail.me";
+}
 %>
 </head>
 <body>
@@ -80,9 +87,10 @@ if (cookie_check != null) {
 					<li class="item"><a href="#">이벤트</a></li>
 				</ul>
 				<div class="nav_bar_icon">
-					<a href="MemberMypageDetail.me"><img
+					<a href=<%=moveMypage %>><img
 						src="admin_layout/img/profile.png" alt="go to mypage"
-						class="nav_icon"></a> <a href="Cart.cr"><img
+						class="nav_icon"></a> 
+					<a href="Cart.cr"><img
 						src="admin_layout/img/bag.png" alt="shopping cart"
 						class="nav_icon"></a>
 				</div>
