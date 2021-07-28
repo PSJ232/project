@@ -8,20 +8,35 @@
 </head>
 <%
 String m_id = (String)session.getAttribute("m_id");
+int o_id;
+if(request.getParameter("o_id")==null) {
+	o_id = 0;
+} else {
+	o_id = Integer.parseInt(request.getParameter("o_id"));
+	
+%>
+<%
+}
 %>
 <body>
 <h1>1:1문의 작성</h1> 꾸까 고객센터 1661-1031
 <hr>
-<form action="QnaInsertPro.qna" method="post" enctype="multipart/form-data">
+<form action="QnaInsertPro.qna" method="post" name="fr" enctype="multipart/form-data">
 <input type="hidden" name="m_id" value="<%=m_id%>">
-주문 상품 선택 <input type="text"> <input type="button" value="주문 조회" onclick="window.open('./mypage/searchOrder.jsp','주문 상품 선택','width=450,height=250')"><br>
+주문 상품 선택 <input type="text" name="oid" value="<%=o_id %>"> <input type="button" value="주문 조회" onclick="window.open('./mypage/searchOrder.jsp','주문 상품 선택','width=450,height=250')"><br>
 제목 <input type="text" name="q_subject" placeholder="제목을 입력해주세요."><br>
 내용<br> 
 <textarea cols="70" rows="15" name="q_content" placeholder="내용을 작성해주세요:)"></textarea><br>
 - 게시판 성격에 맞지 않는 글의 경우, 게시가 중단될 수 있습니다.<br>
-사진 첨부 <input type="file" name="q_img" value="사진 첨부"> <input type="button" value="사진 첨부"><br>
-사진 첨부 <input type="file" name="q_img2" value="사진 첨부"> <input type="button" value="사진 첨부"><br>
-사진 첨부 <input type="file" name="q_img3" value="사진 첨부"> <input type="button" value="사진 첨부"><br>
+사진 첨부 <input type="text" id="fileName" name="q_img" value="사진 첨부">
+<input type="file" id="upFile" name="upFile" value="사진 첨부" onchange="javascript:document.getElementById('fileName').value = this.value"><br> 
+
+<input type="text" id="fileName2" name="q_img2" value="사진 첨부">
+<input type="file" id="upFile2" name="upFile" value="사진 첨부" onchange="javascript:document.getElementById('fileName2').value = this.value"><br>
+ 
+<input type="text" id="fileName3" name="q_img3" value="사진 첨부">
+<input type="file" id="upFile3" name="upFile" value="사진 첨부" onchange="javascript:document.getElementById('fileName3').value = this.value"><br> 
+
 - ( 5mb, 3장 첨부가능 )<br>
 <input type="submit" value="등록하기">
 </form>
