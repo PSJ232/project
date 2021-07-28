@@ -108,17 +108,5 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 	<%
 	}
 	%>
-	
-	<br><br><br>
-	<hr>
-	<form action="CartInsertPro.cr" method="post">
-		- 장바구니 담기 테스트 용 input -<br>
-		아이템ID<input type="number" name="i_id" value=""> (백업DB기준 1-4번샘플상품있음)<br>
-		수량<input type="number" name="c_qty" value=""><br>
-		편지추가<input type="radio" name="c_letter" value="1" checked>추가할게요(2,500원)<input type="radio" name="c_letter" value="0">추가하지 않을게요<br>
-		배달요청일<input type="date" name="c_delivery_date"><br>
-		<input type="submit" value="장바구니담기">
-	</form>
-	<br><br><br><br><br>
 </body>
 </html>

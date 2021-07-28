@@ -34,8 +34,13 @@ int i_id = Integer.parseInt(request.getParameter("i_id"));
 		수량<input type="number" name="c_qty" required><br>
 		편지추가<input type="radio" name="c_letter" value="1" checked>추가할게요(2,500원)<input type="radio" name="c_letter" value="0">추가하지 않을게요<br>
 		배달요청일<input type="date" name="c_delivery_date" required><br>
+		<%if(session.getAttribute("m_id") == null){%>
+			<input type="submit" value="장바구니(비회원)" onclick="javascript:form.action='VisitorCart.cr'"> 
+			<input type="submit" value="바로구매(비회원)" onclick="javascript:form.action='OrderNow.od'">
+		<%}else{%>
 		<input type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'"> 
 		<input type="submit" value="바로구매" onclick="javascript:form.action='OrderNow.od'"> 
+		<%}%>
 	</form>
 		
 	

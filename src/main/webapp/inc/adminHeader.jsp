@@ -56,7 +56,7 @@ if (cookie_check != null) {
 			<a class="nav_service_item"	href="MemberJoin.me">회원가입<span class="color_blue fontweight_600">(1000포인트 지급!)</span></a>
 			<i class="nav_service_bar"></i>
 			<a class="nav_service_item fontweight_600">기업제휴</a>
-			<%} else { if (m_id.equals("admin")) {%>
+			<%} else { if (m_id.equals("admin@admin.com")) {%>
 				<a href="./admin_layout/main/main.jsp">관리자페이지</a>
 				<i class="nav_service_bar"></i><%}%>
 			<a class="nav_service_item"	href="MemberLogout.me">로그아웃</a>

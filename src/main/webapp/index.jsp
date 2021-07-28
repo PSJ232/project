@@ -29,15 +29,22 @@ if(cookie_check != null){
   <!-- header -->
   	<jsp:include page="inc/adminHeader.jsp" ></jsp:include>
   <!-- header -->
-	(m_id) = <%=m_id %>
-	<%if(m_id==null){%>
-	<h3><a href="VisitorCart.cr?i_id=2&c_qty=2&c_letter=1&c_delivery_date=2021-07-31">장바구니(비회원)</a></h3>
-	(장바구니(비회원) Test용 파라미터 = 제품번호:1, 수량:2, 편지있음, 배송요청일:2021-07-31)
-	<%}else{
-		if(m_id.equals("admin")){%><h3><a href="./admin_layout/main/main.jsp">관리자페이지</a></h3><%}%>
-
-	<%}%>
-	<h3><a href="./ItemDetail.it?i_id=3">상품3번내용(test)</a></h3>
+	<br>
+	<hr>
+	<br>
+	<br>
+	<h1><a href="./ItemDetail.it?i_id=1">상품1번내용(test)</a></h1>
+	<br>
+	<h1><a href="./ItemDetail.it?i_id=2">상품2번내용(test)</a></h1>
+	<br>
+	<h1><a href="./ItemDetail.it?i_id=3">상품3번내용(test)</a></h1>
+	<br>
+	<h1><a href="./ItemDetail.it?i_id=4">상품4번내용(test)</a></h1>
+	<br>
+	<br>
+	<br>
+	<hr>
+	<br>
 	
 	
 	
