@@ -56,12 +56,12 @@
 <!-- 							</select> -->
 <!-- 						</div> -->
 					</div>
-					<input type="hidden" name="f_id" id="a" value="<%=cb.getClass_id()%>">
-					<input type="hidden" id="place" value="<%=place%>">
-					<input type="hidden" id="subject" value="<%=subject%>">
-					<input type="text" id="b" value="<%=subject%>">
+<%-- 					<input type="hidden" name="f_id" id="a" value="<%=cb.getClass_id()%>"> --%>
+<%-- 					<input type="hidden" name="fd_id" id="" value="<%=%>"> --%>
+<%-- 					<input type="text" id="b" value="<%=subject%>"> --%>
+					<input type="text" name="r_num" id="r_num">
 					<!-- 원래 fd_id말고 fd_date, fd_place, fd_time 세개 값을 가지고 fd_id 조회 -->
-					<input type="hidden" name="fd_id" value="">
+<!-- 					<input type="hidden" name="fd_id" value=""> -->
 					<input type="submit" value="신청하기">
 				</form>
 
