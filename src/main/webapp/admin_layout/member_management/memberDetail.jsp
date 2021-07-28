@@ -13,13 +13,24 @@ MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
 <head>
 <meta charset="UTF-8">
 <title>관리자 | 멤버상세</title>
+<style>
+	.review {
+		float: right;
+	}
+</style>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(document).ready(function(){
+		
+	});
+</script>
 <script type="text/javascript">
 	var request = new XMLHttpRequest();
 	function getContent(r_id, value){
 		if(!document.getElementById('content_'+r_id)){
+			
 			var value_idx = $(value).index();
 			request.open("Post", "http://localhost:8080/project/getReviewContent.ad?r_id=" + encodeURIComponent(r_id) , true);
 			request.onreadystatechange = function(){
@@ -32,6 +43,7 @@ MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
 				}
 			};
 			request.send(null);
+			
 		}else{
 			document.getElementById('content_'+r_id).parentNode.remove();
 		}
@@ -80,27 +92,34 @@ if(memberBean.getM_drop() != null){
 		}
 	%>
 </table>
-
-<h1>회원 리뷰 목록</h1>
-<table id="reviewList" border="1">
-	<tr>
-		<th>순번</th>
-		<th>작성일시</th>
-		<th>제목</th>
-		<th>평점</th>
-	</tr>
-	<%
-		for(int i = 0; i < reviewList.size(); i++){
-			%>
-			<tr onclick="getContent(<%=reviewList.get(i).getR_id()%>,this)">
-				<td><%=i+1 %></td>
-				<td><%=reviewList.get(i).getR_rdate() %></td>
-				<td><%=reviewList.get(i).getR_title() %></td>
-				<td><%=reviewList.get(i).getR_rate() %></td>
-			</tr>
-			<%
-		}
-	%>
-</table>
+<div class="review">
+	<h1>회원 리뷰 목록</h1>
+	<table id="reviewList" border="1">
+		<tr>
+			<th>순번</th>
+			<th>작성일시</th>
+			<th>제목</th>
+			<th>평점</th>
+		</tr>
+		<%
+			for(int i = 0; i < reviewList.size(); i++){
+				%>
+				<tr id="showContent" onclick="getContent(<%=reviewList.get(i).getR_id()%>,this)">
+					<td><%=i+1 %></td>
+					<td><%=reviewList.get(i).getR_rdate() %></td>
+					<td><%=reviewList.get(i).getR_title() %></td>
+					<td>
+					<%
+					for(int j=0; j < reviewList.get(i).getR_rate(); j++){
+						%>★<%
+					}
+					%>
+					</td>
+				</tr>
+				<%
+			}
+		%>
+	</table>
+</div>
 </body>
 </html>
