@@ -33,9 +33,9 @@ public class ReservInsertAction implements Action {
 		
 		//클래스 정보 가져오기
 		int f_id = 3; //Integer.parseInt(request.getParameter("f_id"));
-		String fd_date = request.getParameter("fd_date");
-		String fd_place = request.getParameter("fd_place");
-		String fd_time = request.getParameter("fd_time");
+//		String fd_date = request.getParameter("fd_date");
+//		String fd_place = request.getParameter("fd_place");
+//		String fd_time = request.getParameter("fd_time");
 		//fd_date, fd_place, fd_time 세개 값을 가지고 fd_id 조회
 		int fd_id = 4; //getClassDetailIdService(fd_date, fd_place, fd_time);
 		
