@@ -28,14 +28,11 @@ if(request.getParameter("o_id")==null) {
 내용<br> 
 <textarea cols="70" rows="15" name="q_content" placeholder="내용을 작성해주세요:)"></textarea><br>
 - 게시판 성격에 맞지 않는 글의 경우, 게시가 중단될 수 있습니다.<br>
-사진 첨부 <input type="text" id="fileName" name="q_img" value="사진 첨부">
-<input type="file" id="upFile" name="upFile" value="사진 첨부" onchange="javascript:document.getElementById('fileName').value = this.value"><br> 
-
-<input type="text" id="fileName2" name="q_img2" value="사진 첨부">
-<input type="file" id="upFile2" name="upFile" value="사진 첨부" onchange="javascript:document.getElementById('fileName2').value = this.value"><br>
- 
-<input type="text" id="fileName3" name="q_img3" value="사진 첨부">
-<input type="file" id="upFile3" name="upFile" value="사진 첨부" onchange="javascript:document.getElementById('fileName3').value = this.value"><br> 
+사진 첨부 <input type="file" name="q_img" value="사진 첨부"> <input type="button" value="사진 첨부"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="file" name="q_img2" value="사진 첨부"> <input type="button" value="사진 첨부"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="file" name="q_img3" value="사진 첨부"> <input type="button" value="사진 첨부"><br>
 
 - ( 5mb, 3장 첨부가능 )<br>
 <input type="submit" value="등록하기">
