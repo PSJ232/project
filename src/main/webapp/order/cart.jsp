@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <%
 ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
@@ -24,8 +25,14 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 	}
 }
 </script>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- header -->
+  	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+  <!-- header -->
 	<h2>장바구니</h2>
 	<form action="OrderCart.od" method="post">
 		<table border="1">
@@ -108,5 +115,8 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 	<%
 	}
 	%>
+	<!-- footer -->
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+	<!-- footer -->
 </body>
 </html>

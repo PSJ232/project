@@ -19,7 +19,14 @@
 			document.getElementById('totalPrice').innerHTML =  (price+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 	}
-
+	
+	function ctlQty(sum){ // 장바구니 수량 조절
+		var qty = document.order.c_qty.value;
+		if(qty==1 && sum<0){
+			return;
+		}	
+		document.order.c_qty.value = Number(qty)+sum;
+	}
 </script>
 <%
 ItemBean itemDetail = (ItemBean)request.getAttribute("itemDetail");
@@ -54,7 +61,9 @@ int price = (int)(i_price*i_discount/100)*100;
 	<form method="post" name="order">
 		<input type="hidden" name="i_id" value=<%=i_id %>>
 		수령일*<input type="date" name="c_delivery_date" required><br>
-		수량<input type="number" name="c_qty" value="1" required><br>
+		<input type="button" value="-" onclick="ctlQty(-1)">
+		수량<input type="number" name="c_qty" value="1" required readonly>
+		<input type="button" value="+" onclick="ctlQty(1)"><br>
 		편지 추가<input type="radio" name="c_letter" value="1" onclick="isLetter(<%=price %>, 1)" checked>추가할게요(2,500원)
 				<input type="radio" name="c_letter" value="0" onclick="isLetter(<%=price %>, 0)">추가하지 않을게요<br>
 		<br>
@@ -88,7 +97,7 @@ int price = (int)(i_price*i_discount/100)*100;
 	</table>
 	
 	<h3>배송안내</h3>
-	<textarea rows="50" cols="150">
+	<textarea rows="30" cols="150">
 1. 배송 정보
 1-1. 배송비 정책
 [공통] 구매 금액 합산 30,000원 이상일 경우 배송비는 무료입니다. 
