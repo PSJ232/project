@@ -82,8 +82,18 @@ MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDe
  	
 			<%for(int i=0; i<nonOrderArrayList.size(); i++) {
    				int sumAmount = nonOrderArrayList.get(i).getO_amount() + nonOrderArrayList.get(i).getO_point() + nonOrderArrayList.get(i).getO_gdiscount();
-   			%>
-   				<tr><td><%=nonOrderArrayList.get(i).getO_rdate() %></td>
+   				int o_id = 0;
+   				int colspan = 0;%>
+   				
+   				<tr>
+   				
+   				<%if(o_id != nonOrderArrayList.get(i).getO_id()) {%>
+   					<td><%=nonOrderArrayList.get(i).getO_id() %></td>
+   				<%} else {%>
+   					<td></td>
+   				<%}	%>
+   				
+   				
    					<td><a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
    						수령인 : <%=nonItemArrayList.get(i).getI_name() %><br>
    						가격 : <%=sumAmount %><br>

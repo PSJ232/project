@@ -96,7 +96,10 @@
 	<%	
 	}
 	%>
-	<tr><td><%=memberMypageDetail.getM_rdate() %></td><td>적립</td><td>회원 가입 감사 적립금</td><td>1000</td></tr>
+	<tr><td><%=memberMypageDetail.getM_rdate() %></td>
+		<td>적립</td>
+		<td>회원 가입 감사 적립금</td>
+		<td>1000</td></tr>
 
 </table>
 
