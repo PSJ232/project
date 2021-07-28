@@ -129,6 +129,36 @@ public class ClassDetailDAO {
 		}
 		return timeList;
 	}
+	
+	//Detail 하나만 가져오기
+		public ClassDetailBean getDetail(int fd_id){
+			System.out.println("ClassDetailDAO - getDetail(int fd_id)");
+			ClassDetailBean ClassDetail = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT * FROM fclass_detail where fd_id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, fd_id);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					ClassDetail = new ClassDetailBean();
+					ClassDetail.setClass_detail_id(rs.getInt("fd_id"));
+					ClassDetail.setClass_id(rs.getInt("f_id"));
+					ClassDetail.setTime(rs.getInt("fd_time"));
+					ClassDetail.setPlace(rs.getString("fd_place"));
+					ClassDetail.setDate(rs.getString("fd_date"));
+				}
+			} catch (SQLException e) {
+				System.out.println("SQL 구문 예외 getDetail() - " + e.getMessage());
+			} finally {
+				close(rs);
+				close(pstmt);
+				
+			}
+			return ClassDetail;
+		}
 
 
 	

@@ -200,6 +200,54 @@ public class ClassDAO {
 		
 		return deleteCount;
 	}
+	
+	public ArrayList<String> availableClassList(String f_subject) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<String> availableClassList = new ArrayList<String>();
+		
+		try {
+			String sql = "SELECT f_place FROM fclass WHERE f_subject=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, f_subject);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				availableClassList.add(rs.getString("f_class"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return availableClassList;
+	}
+
+	public int getClassId(String f_place, String f_subject) {
+		int f_id = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT f_id FROM fclass WHERE f_place = ? and f_subject = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, f_place);
+			pstmt.setString(2, f_subject);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				f_id = rs.getInt("f_id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return f_id;
+	}
 
 
 	
