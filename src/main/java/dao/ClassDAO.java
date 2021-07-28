@@ -213,7 +213,7 @@ public class ClassDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				availableClassList.add(rs.getString("f_class"));
+				availableClassList.add(rs.getString("f_place"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -230,7 +230,7 @@ public class ClassDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT f_id FROM fclass WHERE f_place = ? and f_subject = ?";
+			String sql = "SELECT f_id FROM fclass WHERE f_place=? and f_subject=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, f_place);
 			pstmt.setString(2, f_subject);

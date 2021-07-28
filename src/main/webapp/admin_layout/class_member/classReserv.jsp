@@ -59,6 +59,8 @@
 <%-- 					<input type="hidden" name="f_id" id="a" value="<%=cb.getClass_id()%>"> --%>
 <%-- 					<input type="hidden" name="fd_id" id="" value="<%=%>"> --%>
 <%-- 					<input type="text" id="b" value="<%=subject%>"> --%>
+					<input type="text" name="place" id="place" value="<%=cb.getClass_place()%>">
+					<input type="text" name="subject" id="subject" value="<%=cb.getClass_subject()%>">
 					<input type="text" name="r_num" id="r_num">
 					<!-- 원래 fd_id말고 fd_date, fd_place, fd_time 세개 값을 가지고 fd_id 조회 -->
 <!-- 					<input type="hidden" name="fd_id" value=""> -->

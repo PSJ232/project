@@ -32,7 +32,7 @@ public class ClassReservAction implements Action {
 		//2. f_id값으로 ClassBean 객체 담아서 setAttribute
 		ClassDetailViewService classDetailViewService = new ClassDetailViewService();
 		ClassBean cb = classDetailViewService.getDetailContent(f_id);
-		
+		System.out.println("cb.getClass_desc(): " + cb.getClass_desc());
 		request.setAttribute("classDetail", cb);
 		forward = new ActionForward();
 		forward.setPath("./admin_layout/class_member/classReserv.jsp");
