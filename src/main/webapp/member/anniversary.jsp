@@ -5,34 +5,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>기념일 등록하기</title>
+<link rel="stylesheet" href="member/css/join.css" type="text/css" />
+<link rel="stylesheet" href="member/css/style.css" type="text/css" />
 </head>
 <body>
 	<%if (request.getAttribute("annDetail") == null) {%>
-	<h1>기념일 등록하기</h1>
+	<div class="anniversaryForm">
+	<div class="title"><h1>기념일 등록하기</h1></div>
+	
 	<hr>
-	<form action="MemberAnnInsertPro.me" method="post">
-		기념일* <input type="text" name="a_date" placeholder="날짜를 선택해주세요.">(클릭하면 달력뜨도록 가능?)<br>
-		기념일 이름* <input type="text" name="a_name" placeholder="기념일 명을 입력해주세요."><br>	
-		반복 주기*
+	<form action="MemberAnnInsertPro.me" class="formAnniversary" method="post">
+		<div class="row"><label class="leftLabel">기념일<span class="textStar">*</span></label> <input type="text" class="textBox" name="a_date" placeholder="날짜를 선택해주세요."><!-- (클릭하면 달력뜨도록 가능?) --></div>
+		<div class="row"><label class="leftLabel">기념일 이름<span class="textStar">*</span></label><input type="text" class="textBox"name="a_name" placeholder="기념일 명을 입력해주세요."></div>
+		<div class="row"><label class="leftLabel">반복 주기<span class="textStar">*</span></label>
 		<select name="a_repeat" size="1" >
 			<option value="0" selected>없음</option>
 			<option value="1">매년</option>
 			<option value="100">100일마다</option>
-		</select>
+		</select></div>
 		<br>
 		<input type="submit" value="등록하기">
 	</form>
 	<%} else {
 	AnniversaryBean annDetail = (AnniversaryBean) request.getAttribute("annDetail");
 	%>
-	<h1>기념일 수정하기</h1>
+	<div class="title"><h1>기념일 수정하기</h1></div>
 	<hr>
-	<form action="MemberAnnUpdatePro.me" method="post">
-		기념일* <input type="text" name="a_date" value="<%=annDetail.getA_date()%>">(클릭하면 달력뜨도록 가능?)<br>
-		기념일 이름* <input type="text" name="a_name" value="<%=annDetail.getA_name()%>"><br>	
-		반복 주기*
-		<select name="a_repeat" >
+	<form action="MemberAnnUpdatePro.me" id="formUpdate" method="post">
+		기념일<span class="textStar">*</span> <input type="text" name="a_date" value="<%=annDetail.getA_date()%>">(클릭하면 달력뜨도록 가능?)<br>
+		기념일 이름<span class="textStar">*</span> <input type="text" name="a_name" value="<%=annDetail.getA_name()%>"><br>	
+		반복 주기<span class="textStar">*</span>
+		<select name="a_repeat" class="annSelect" >
 			<option value="0" <%if(annDetail.getA_repeat()==0){%>selected<%}%>>없음</option>
 			<option value="1" <%if(annDetail.getA_repeat()==1){%>selected<%}%>>매년</option>
 			<option value="100" <%if(annDetail.getA_repeat()==100){%>selected<%}%>>100일마다</option>
@@ -45,5 +49,6 @@
 	<%
 	}
 	%>
+	</div>	
 </body>
 </html>

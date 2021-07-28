@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 		body {
-			width: 100%;
 			text-align: center;
 		}
 		
@@ -11,6 +10,14 @@
 			margin-bottom: 50px;
 		}
 		
+		.topForm {
+			margin-top: 25px;
+			display: inline-block;
+			width: 80%;
+			text-align: center;
+		}		
+
+		
 		.joinForm {
 			display: inline-block;
 			box-sizing: content-box;	
@@ -18,14 +25,7 @@
 			line-height: 25px;
 		  	text-align: center;
 		}
-		
-		.topForm {
-			margin-top: 25px;
-			display: inline-block;
-			width: 80%;
-			text-align: center;
-		}
-		
+
 		.bottomForm {
 			border: 1px solid #e7e7e7;
 			width: 80%;
@@ -45,6 +45,7 @@
 		.row {
 			margin: 30px;
 			font-size: 1.8em;
+			vertical-align: middle;
 		}
 		
 		.checkMessage { 
@@ -65,6 +66,15 @@
 		}		
 
 		.textBox {
+			height: 44px;
+			width: 300px;
+			border: 1px solid #eaeaea;
+			border-radius: 5px;	
+			font-size: 14px;
+			display: inline-block;
+		}
+		
+		.textBox2 {
 			height: 44px;
 			width: 300px;
 			border: 1px solid #eaeaea;
@@ -96,7 +106,7 @@
 			border-radius: 5px;	
 		}
 		
-		.joinForm input::placeholder {
+		input::placeholder {
 			 padding: 10px;
 		}
 		
@@ -108,17 +118,16 @@
 			width: 70px;
 		}
 		
-		.longTextbox {
+		.longTextBox {
 			height: 44px;
 			border: 1px solid #eaeaea;
 			border-radius: 5px;	
 			font-size: 14px;
-			margin-left: 10px;
 			display: inline-block;
 			width: 20%;
 		}
 		
-		.shortTextbox{
+		.shortTextBox{
 			height: 44px;
 			border: 1px solid #eaeaea;
 			border-radius: 5px;	
@@ -137,18 +146,23 @@
 			margin-bottom: 20px;	
 		}	
 		
-		.textHighlight{
+		.textRed{
 			color: #FF0000;
 		}
 		
-		.joinForm input[type="submit"] {
+		input[type="submit"] {
 			display: inline-block;
 			border-radius: 5px;
-			width: 40%;
+			width: 38%;
 			height: 44px;
 			color: #878787;
 			font-weight: bold;
+			font-size: 14px;
 			margin-bottom: 70px;
 			border: none;
 		}
-		
+
+		input[type="submit"]:hover {
+			color: #FFFFFF;
+			background-color: #000000;
+		}

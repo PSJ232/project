@@ -79,11 +79,11 @@
 										 				    <input type="button" id="idCheckBtn" class="btn" onclick="checkId(m_id.value)" value="중복확인"><br>
 										 					<span id="checkIdResult" class="checkMessage">&nbsp;</span><br></div><!-- 아이디 유효성 검사 -->
 							 <div class="row"><label class="leftLabel">비밀번호</label>
-							 								<input type="password" name="m_pass" class="textBox" placeholder="비밀번호를 입력해주세요." required><br></div>
+							 								<input type="password" name="m_pass" class="textBox2" placeholder="비밀번호를 입력해주세요." required><br></div>
 							 <div class="row"><label class="leftLabel">비밀번호확인</label>
-							 								<input type="password" class="textBox" placeholder="비밀번호를 한 번 더 입력해주세요." required><br></div>
+							 								<input type="password" class="textBox2" placeholder="비밀번호를 한 번 더 입력해주세요." required><br></div>
 							<div class="row"><label class="leftLabel">이름</label>
-															<input type="text" name="m_name" class="textBox" placeholder="이름을 입력해주세요." required><br></div>
+															<input type="text" name="m_name" class="textBox2" placeholder="이름을 입력해주세요." required><br></div>
 							 <div class="row"><label class="leftLabel">휴대폰 본인인증</label>
 							 								<input type="tel" name="m_phone" class="textBox" placeholder="' - '없이 숫자만 입력해주세요." required>
 							 																				<input type="button" id="phoneCheckBtn" class="btn" onclick="checkPhone(m_phone.value)" value="인증번호 받기"><br>
@@ -105,9 +105,9 @@
 					<div class="bottomForm">
 							<div class="bottomContent"><input type="checkbox" name="termChkAll" id="termCAll">모두 동의합니다.<br>
 									<hr width=90% size="1px" color="#eaeaea">
-									<input type="checkbox" name="termChk1" id="termC1" required>이용약관 동의 <span class="textHighlight">(필수)</span><br>
-									<input type="checkbox" name="termChk2"  id="termC2" required>개인정보 수집, 이용동의 <span class="textHighlight">(필수)</span><br>
-									<input type="checkbox" name="termChk3"  id="termC3" required>개인정보 이용 동의 <span class="textHighlight">(필수)</span><br>
+									<input type="checkbox" name="termChk1" id="termC1" required>이용약관 동의 <span class="textRed">(필수)</span><br>
+									<input type="checkbox" name="termChk2"  id="termC2" required>개인정보 수집, 이용동의 <span class="textRed">(필수)</span><br>
+									<input type="checkbox" name="termChk3"  id="termC3" required>개인정보 이용 동의 <span class="textRed">(필수)</span><br>
 									<input type="checkbox" name="termChk4"  id="termC4" >이벤트, 혜택정보 수신 동의 (선택)<br><!-- 원래 name이 m_agree였음 -->
 							</div>
 					</div><br>
