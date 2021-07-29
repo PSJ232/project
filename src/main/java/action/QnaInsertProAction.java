@@ -65,8 +65,8 @@ public class QnaInsertProAction implements Action {
 		
 		if(isInsertSuccess) {
 			forward = new ActionForward();
-			forward.setPath("QnaInsert.qna"); 
-			forward.setRedirect(true);
+			forward.setPath("QnaList.qna"); 
+			forward.setRedirect(false);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
