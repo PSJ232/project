@@ -67,7 +67,7 @@ public class OrderService {
 		return isOrderdetailSuccess;
 	}
 
-	public ArrayList<OrderDetailBean> getOrderDetail(String o_id) {
+	public ArrayList<OrderDetailBean> getOrderDetail(int o_id) {
 		System.out.println("OrderService - getOrderDetail()");
 
 		Connection con = JdbcUtil.getConnection();
@@ -82,7 +82,7 @@ public class OrderService {
 		return orderDetailList;
 	}
 
-	public OrderBean getOrder(String o_id) {
+	public OrderBean getOrder(int o_id) {
 		System.out.println("OrderService - getOrder()");
 
 		Connection con = JdbcUtil.getConnection();
@@ -115,5 +115,20 @@ public class OrderService {
 		JdbcUtil.close(con);
 
 		return isUpdateSuccess;
+	}
+
+	public ArrayList<OrderDetailBean> getOrderDetailList(String m_id) {
+		System.out.println("OrderService - getOrderDetailList()");
+
+		Connection con = JdbcUtil.getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+
+		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
+		orderDetailList = orderDAO.getOrderDetailList(m_id);
+
+		JdbcUtil.close(con);
+
+		return orderDetailList;
 	}
 }
