@@ -171,7 +171,7 @@ public class OrderDAO {
 		return orderList;
 
 	}
-	
+
 	public ArrayList<DetailBean> search(String search_val, String filter) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -179,30 +179,30 @@ public class OrderDAO {
 		String sql = "";
 		try {
 			switch (filter) {
-			case "1": sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
-					+ "FROM orders o, orders_detail od, item i "
-					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? "
-					+ "GROUP BY o_id";
-					break;
-			case "2": sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
-					+ "FROM orders o, orders_detail od, item i "
-					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? "
-					+ "GROUP BY o_id";
-					break;
-			case "3": sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
-					+ "FROM orders o, orders_detail od, item i "
-					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? "
-					+ "GROUP BY o_id";
-					break;
-			default: sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
-					+ "FROM orders o, orders_detail od, item i "
-					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? "
-					+ "GROUP BY o_id";
+			case "1":
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+						+ "FROM orders o, orders_detail od, item i "
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
+				break;
+			case "2":
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+						+ "FROM orders o, orders_detail od, item i "
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? " + "GROUP BY o_id";
+				break;
+			case "3":
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+						+ "FROM orders o, orders_detail od, item i "
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
+				break;
+			default:
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+						+ "FROM orders o, orders_detail od, item i "
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
 			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + search_val + "%");
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				DetailBean olb = new DetailBean();
 				olb.setO_id(rs.getString("o_id"));
 				olb.setOd_id(rs.getString("od_id"));
@@ -570,8 +570,49 @@ public class OrderDAO {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
-		
+
 		return orderDetailList;
+	}
+
+	public ArrayList<ItemBean> getItemList(String o_id) {
+		System.out.println("OrderDAO - getItemList()");
+
+		ArrayList<ItemBean> itemArrayList = new ArrayList<ItemBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT * FROM item WHERE i_id IN (SELECT i_id FROM orders_detail WHERE o_id= ?)";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, o_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ItemBean ib = new ItemBean();
+				ib.setI_id(rs.getInt("i_id"));
+				ib.setI_name(rs.getString("i_name"));
+				ib.setI_desc(rs.getString("i_desc"));
+				ib.setI_price(rs.getInt("i_price"));
+				ib.setI_inven(rs.getInt("i_inven"));
+				ib.setI_img(rs.getString("i_img"));
+				ib.setI_subimg2(rs.getString("i_subimg2"));
+				ib.setI_subimg3(rs.getString("i_subimg3"));
+				ib.setI_subimg4(rs.getString("i_subimg4"));
+				ib.setI_rdate(rs.getTimestamp("i_rdate"));
+				ib.setI_discount(rs.getFloat("i_discount"));
+				ib.setI_size(rs.getString("i_size"));
+				ib.setI_dpstatus(rs.getString("i_dpstatus"));
+				ib.setI_itemstatus(rs.getString("i_itemstatus"));
+				ib.setI_detailpage(rs.getString("i_detailpage"));
+				itemArrayList.add(ib);
+			}
+		} catch (Exception e) {
+			System.out.println("OrderDAO - getItemList() SQL문 오류 - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		return itemArrayList;
 	}
 
 }
