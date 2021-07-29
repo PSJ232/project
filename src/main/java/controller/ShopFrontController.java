@@ -50,7 +50,14 @@ public class ShopFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/Content.shop")) {
+		} else if (command.equals("/FlowersContent.shop")) {
+			action = new ShopDetailViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/QuickContent.shop")) {
 			action = new ShopDetailViewAction();
 			try {
 				forward = action.execute(request, response);

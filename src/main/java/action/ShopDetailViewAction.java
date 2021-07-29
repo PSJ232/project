@@ -17,7 +17,7 @@ public class ShopDetailViewAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ShopDetailViewAction");
 		ActionForward forward = null;
-
+		
 		int i_id = Integer.parseInt(request.getParameter("i_id"));
 
 		ItemDetailService itemDetailService = new ItemDetailService();
@@ -28,6 +28,8 @@ public class ShopDetailViewAction implements Action {
 
 		request.setAttribute("itemDetail", itemDetail);
 		request.setAttribute("rbList", rbList);
+		
+		request.setAttribute("path", request.getServletPath());
 
 		forward = new ActionForward();
 		forward.setPath("./shop/itemDetail.jsp");

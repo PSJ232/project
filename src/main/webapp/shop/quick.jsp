@@ -54,9 +54,9 @@ if(request.getParameter("sort")!=null) {
 		<table>
 		<%if (item.getI_itemstatus().equals("퀵판매")){%>
 			<tbody>
-				<tr><td><a href="Content.shop?i_id=<%=i_id%>"><img src="../admin_layout/upload/<%=item.getI_img()%>" width="200" ></a></td></tr>
+				<tr><td><a href="QuickContent.shop?i_id=<%=i_id%>"><img src="../admin_layout/upload/<%=item.getI_img()%>" width="200" ></a></td></tr>
 				<tr><td><%=item.getI_desc() %></td></tr>
-				<tr><td><a href="Content.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a></td></tr>
+				<tr><td><a href="QuickContent.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a></td></tr>
 				<tr><td><%if(i_discount!=1){%><%=percent %> <%=NumberFormat.getInstance().format(item.getI_price())%>-> <%}%><%=NumberFormat.getInstance().format(price) %></td></tr>
 				<tr><td><%=item.getI_size()%> size 무료배송</td></tr>
 			</tbody>
