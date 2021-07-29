@@ -137,23 +137,6 @@
 			</section>
 		</div>
 
-		<div id="omain">
-			<div>
-				<h3>나의 주문내역</h3>
-				<dl>
-					<dt>Flower Subscriptions</dt>
-					<dd>2주에 한번, 소중한 나를 위한 행복으로 채워보세요!</dd>
-					<dd>꾸까 꽃 정기구독</dd>
-					<dd>
-						<input id="obtn" type="button" value="보러가기">
-					</dd>
-				</dl>
-			</div>
-		</div>
-
-
-
-
 
 	<!-- 본문 내용 -->
 
