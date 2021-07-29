@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.ShopDetailViewAction;
+import action.ShopViewAction;
 import vo.ActionForward;
 
 /**
@@ -35,9 +37,21 @@ public class ShopFrontController extends HttpServlet {
 		Action action = null;
 
 		if (command.equals("/flowers.shop")) {
-			forward = new ActionForward();
-			forward.setPath("./mypage/qnaInsert.jsp");
-			forward.setRedirect(false);
+			action = new ShopViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/content.shop")) {
+			action = new ShopDetailViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+
 		}
 
 		// 포워딩 방식 결정
