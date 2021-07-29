@@ -131,7 +131,7 @@
 						<li class="list"><a href="MemberMypageGradeDetail.me">회원등급</a></li>
 						<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
 						<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
-						<li class="list"><a href="QnaList.qna.qna">QNA리스트</a></li>
+						<li class="list"><a href="QnaList.qna">QNA리스트</a></li>
 						<li class="list"><a href="MemberMypageFAQList.me">자주묻는질문</a></li>
 					</ul>
 				</div>
