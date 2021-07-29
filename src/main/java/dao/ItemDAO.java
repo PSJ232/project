@@ -139,7 +139,7 @@ public class ItemDAO {
 				sql = "SELECT * FROM item ORDER BY i_rdate DESC";
 				break;
 			case 2:
-				sql = "SELECT *, item.i_name, sum(orders_detail.od_qty) selling "
+				sql = "SELECT *, sum(orders_detail.od_qty) selling "
 						+ "FROM item "
 						+ "JOIN orders_detail "
 						+ "ON item.i_id = orders_detail.i_id "
@@ -147,7 +147,14 @@ public class ItemDAO {
 						+ "ORDER BY selling DESC";
 				break;
 			case 1:
-				sql = "SELECT * FROM item";
+				sql = "SELECT *, AVG(r_rate) rate "
+						+ "FROM item "
+						+ "JOIN orders_detail "
+						+ "ON item.i_id = orders_detail.i_id "
+						+ "JOIN review "
+						+ "ON orders_detail.od_id = review.od_id "
+						+ "GROUP BY i_name "
+						+ "ORDER BY rate DESC";
 			}
 
 			pstmt = con.prepareStatement(sql);
