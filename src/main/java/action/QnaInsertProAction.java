@@ -76,6 +76,7 @@ public class QnaInsertProAction implements Action {
 			out.print("</script>");
 		}
 		
+		
 		return forward;
 	}
 
