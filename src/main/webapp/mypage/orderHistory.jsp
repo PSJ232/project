@@ -14,6 +14,10 @@
 <body>
 
 <%  
+// 멤버 정보
+String m_id = (String)session.getAttribute("m_id");
+MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail");
+
 ArrayList<OrderBean> nonOrderArrayList = (ArrayList<OrderBean>)request.getAttribute("nonOrderArrayList");
 ArrayList<OrderBean> orderArrayList = (ArrayList<OrderBean>)request.getAttribute("orderArrayList");
 ArrayList<ItemBean> nonItemArrayList = (ArrayList<ItemBean>)request.getAttribute("nonItemArrayList");
@@ -21,8 +25,29 @@ ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>)request.getAttribute("i
 ArrayList<OrderDetailBean> nonOrderDetailArrayList = (ArrayList<OrderDetailBean>)request.getAttribute("nonOrderDetailArrayList");
 ArrayList<OrderDetailBean> orderDetailArrayList = (ArrayList<OrderDetailBean>)request.getAttribute("orderDetailArrayList");
 
-String m_id = (String)session.getAttribute("m_id");
-MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail");
+// 출력되는 행의 컬럼번호 받아오기(해당 행에만 <td rowspan="">부여)
+// 주문내역의 o_id에 따른 번호 리스트
+String o_id = "";
+ArrayList<Integer> nonCol = new ArrayList<Integer>();
+for(int i =0; i<nonOrderArrayList.size(); i++) {
+	if(!o_id.equals((nonOrderArrayList.get(i).getO_id()+""))) {
+		nonCol.add(i);} 
+	else {}
+	if(i==nonOrderArrayList.size()-1) {nonCol.add(i+1);	}
+	o_id = nonOrderArrayList.get(i).getO_id() + "";
+}
+// 취소내역의 o_id에 따른 컬럼 번호 리스트
+o_id = "";
+ArrayList<Integer> col = new ArrayList<Integer>();
+for(int i =0; i<orderArrayList.size(); i++) {
+	if(!o_id.equals((orderArrayList.get(i).getO_id()+""))) {
+		col.add(i);}
+	else {}
+	if(i==orderArrayList.size()-1) {col.add(i+1);}
+	o_id = orderArrayList.get(i).getO_id() + "";
+}
+
+System.out.println("col : " + col.toString() );
 %>
 
 <!-- 헤더 들어가는곳 -->
@@ -81,28 +106,33 @@ MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDe
  		<table border="1">
  			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
  	
-			<%for(int i=0; i<nonOrderArrayList.size(); i++) {
-   				int sumAmount = nonOrderArrayList.get(i).getO_amount() + nonOrderArrayList.get(i).getO_point() + nonOrderArrayList.get(i).getO_gdiscount();
-   				int o_id = 0;
-   				int colspan = 0;%>
+			<%
+			int count = 0;
+			for(int i=0; i<nonOrderArrayList.size(); i++) {
+   				%>
    				
    				<tr>
-   					<td><%=nonOrderArrayList.get(i).getO_id() %></td>
-   					<td><a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
-   						수령인 : <%=nonItemArrayList.get(i).getI_name() %><br>
-   						가격 : <%=sumAmount %><br>
-   						수량 : <%=nonOrderDetailArrayList.get(i).getOd_qty() %></td>
-   					<td>
-   					<%
-   					if(nonOrderDetailArrayList.get(i).getOd_confirm()==1) {
-   						%>배송 완료<%
-   					} else if(!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
-   						%>배송중<%
-   					} else if(nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
-   						%>주문 접수<%
-   					}
+   					<%if(nonCol.contains(i)) {
+   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_id() %></td><%
+   					} else {}
    					%>
-   					</td>
+   					<td>
+   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
+						수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %><br>
+						받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
+						가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount()) %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
+					</td>
+   					<%if(nonCol.contains(i)) {
+   					if(nonOrderDetailArrayList.get(i).getOd_confirm()==1) {
+   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">배송 완료</td><%
+   					} else if(!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
+   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">배송 중</td><%
+   					} else if(nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
+   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">주문접수</td><%
+   					}
+   					count++;
+   					} else {}
+   					%>
    				</tr>
 		<%}%>
  		</table>
@@ -110,21 +140,32 @@ MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDe
  		
  		<div>
  		<h6>취소/환불내역</h6>
- 		<table border="1">
+ 		 		<table border="1">
  			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
- 			
-		<%for(int i=0; i<orderArrayList.size(); i++) {
-			int sumAmount = orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point() + orderArrayList.get(i).getO_gdiscount();
-		%>
-			<tr><td><%=orderArrayList.get(i).getO_rdate() %></td>
-				<td><a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
-					수령인 : <%=itemArrayList.get(i).getI_name() %><br>
-					가격 : <%=sumAmount %><br>
-					수량 : <%=orderDetailArrayList.get(i).getOd_qty() %>
-				</td>
-				<td>주문취소</td>
-			</tr>
-		<%}%>	
+ 	
+			<%
+			int ccount = 0;
+			for(int i=0; i<orderArrayList.size(); i++) {
+   				%>
+   				
+   				<tr>
+   					<%if(col.contains(i)) {
+   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_id() %></td><%
+   					} else {}
+   					%>
+   					<td>
+   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
+						수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %><br>
+						받는 분 : <%=orderArrayList.get(i).getO_receiver() %><br>
+						가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount()) %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
+					</td>
+					<%if(col.contains(i)) {
+   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td><%
+   							ccount++;
+   					} else {}
+					%>
+   				</tr>
+		<%}%>
  		</table>
  		</div>
 

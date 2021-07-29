@@ -171,7 +171,7 @@ public class OrderDAO {
 		return orderList;
 
 	}
-	
+
 	public ArrayList<DetailBean> search(String search_val, String filter) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -179,30 +179,30 @@ public class OrderDAO {
 		String sql = "";
 		try {
 			switch (filter) {
-			case "1": sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
-					+ "FROM orders o, orders_detail od, item i "
-					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? "
-					+ "GROUP BY o_id";
-					break;
-			case "2": sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
-					+ "FROM orders o, orders_detail od, item i "
-					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? "
-					+ "GROUP BY o_id";
-					break;
-			case "3": sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
-					+ "FROM orders o, orders_detail od, item i "
-					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? "
-					+ "GROUP BY o_id";
-					break;
-			default: sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
-					+ "FROM orders o, orders_detail od, item i "
-					+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? "
-					+ "GROUP BY o_id";
+			case "1":
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+						+ "FROM orders o, orders_detail od, item i "
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
+				break;
+			case "2":
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+						+ "FROM orders o, orders_detail od, item i "
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? " + "GROUP BY o_id";
+				break;
+			case "3":
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+						+ "FROM orders o, orders_detail od, item i "
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
+				break;
+			default:
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+						+ "FROM orders o, orders_detail od, item i "
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
 			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + search_val + "%");
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				DetailBean olb = new DetailBean();
 				olb.setO_id(rs.getString("o_id"));
 				olb.setOd_id(rs.getString("od_id"));
@@ -222,14 +222,14 @@ public class OrderDAO {
 		return resultList;
 	}
 
-	public OrderBean getOrder(int o_id) {
+	public OrderBean getOrder(String o_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		OrderBean orderBean = null;
 		try {
 			String sql = "SELECT * FROM orders WHERE o_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, o_id);
+			pstmt.setString(1, o_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				orderBean = new OrderBean();
@@ -253,7 +253,7 @@ public class OrderDAO {
 		return orderBean;
 	}
 
-	public ArrayList<OrderDetailBean> getOrderDetail(int o_id) {
+	public ArrayList<OrderDetailBean> getOrderDetail(String o_id) {
 		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -261,7 +261,7 @@ public class OrderDAO {
 			String sql = "SELECT od.od_id,od.o_id,i.i_id,od.l_id,od.od_qty,od.od_message,od.m_id,od.od_delivery_date,od.od_invoice,od.od_confirm,i.i_name"
 					+ " FROM orders_detail od, item i WHERE i.i_id=od.i_id and o_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, o_id);
+			pstmt.setString(1, o_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				OrderDetailBean odb = new OrderDetailBean();
@@ -570,10 +570,9 @@ public class OrderDAO {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
-		
+
 		return orderDetailList;
 	}
-
 
 	public ArrayList<ItemBean> getItemList(String o_id) {
 		System.out.println("OrderDAO - getItemList()");

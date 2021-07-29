@@ -16,7 +16,7 @@ public class AdminOrderDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		OrderService service = new OrderService();
-		int o_id = Integer.parseInt(request.getParameter("o_id"));
+		String o_id = request.getParameter("o_id");
 		OrderBean orderBean = service.getOrder(o_id);
 		ArrayList<OrderDetailBean> orderDetailList = service.getOrderDetail(o_id);
 		request.setAttribute("orderBean", orderBean);

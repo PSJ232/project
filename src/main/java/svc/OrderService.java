@@ -67,7 +67,7 @@ public class OrderService {
 		return isOrderdetailSuccess;
 	}
 
-	public ArrayList<OrderDetailBean> getOrderDetail(int o_id) {
+	public ArrayList<OrderDetailBean> getOrderDetail(String o_id) {
 		System.out.println("OrderService - getOrderDetail()");
 
 		Connection con = JdbcUtil.getConnection();
@@ -82,7 +82,7 @@ public class OrderService {
 		return orderDetailList;
 	}
 
-	public OrderBean getOrder(int o_id) {
+	public OrderBean getOrder(String o_id) {
 		System.out.println("OrderService - getOrder()");
 
 		Connection con = JdbcUtil.getConnection();
