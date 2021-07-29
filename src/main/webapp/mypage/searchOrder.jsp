@@ -11,7 +11,8 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function setOrder() {
-		opener.window.document.fr.oid.value = searchOrder.oid.value;
+		document.getElementById('oid').value = opener.document.getElementById('oid').value;
+			
 	}
 </script>
 </head>
@@ -23,21 +24,19 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 %>
 
 <%
-if(request.getParameter("o_id")==null) {
+if(orderList==null) {
 	%>
 고객님의 주문 내역이 존재하지 않습니다.
 	<%
 } else {
-	int o_id = Integer.parseInt(request.getParameter("o_id"));
 	%>
-	주문 상품을 선택해주세요.
 	<form name="searchOrder">
-	<input type="hidden" name="oid" value="<%=o_id%>">
 	<table border="1">
 		<tr>
+		<td>번호</td>
 		<td>주문일자</td>  <!--Date o_rdate  -->
-		<td>상품 내역</td> <!--String i_name  -->
-		<td><input type="hidden"></td> 
+		<td>상품 내역</td> <!--String i_name(상품 이름)  -->
+		<td></td> 
 		</tr>
 	<%
 	for(int i=0; i<orderList.size();i++) {
@@ -45,6 +44,7 @@ if(request.getParameter("o_id")==null) {
 		String i_name = itemList.get(i).getI_name();
 	%>
 		<tr>
+		<td id="oid" value="<%=orderList.get(i).getO_id() %>"></td>
 		<td><%=o_rdate %></td>
 		<td><%=i_name %></td>
 		<td><input type="button" value="선택" onclick="setOrder()"></td>
@@ -55,6 +55,7 @@ if(request.getParameter("o_id")==null) {
 	}
 
 }
-%>
+	%>	
+
 </body>
 </html>

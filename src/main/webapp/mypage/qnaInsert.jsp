@@ -1,3 +1,4 @@
+<%@page import="vo.OrderBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,22 +9,15 @@
 </head>
 <%
 String m_id = (String)session.getAttribute("m_id");
-int o_id;
-if(request.getParameter("o_id")==null) {
-	o_id = 0;
-} else {
-	o_id = Integer.parseInt(request.getParameter("o_id"));
-	
 %>
-<%
-}
-%>
+
+
 <body>
 <h1>1:1문의 작성</h1> 꾸까 고객센터 1661-1031
 <hr>
 <form action="QnaInsertPro.qna" method="post" name="fr" enctype="multipart/form-data">
 <input type="hidden" name="m_id" value="<%=m_id%>">
-주문 상품 선택 <input type="text" name="oid" value="<%=o_id %>"> <input type="button" value="주문 조회" onclick="window.open('./mypage/searchOrder.jsp','주문 상품 선택','width=450,height=250')"><br>
+주문 상품 선택 <input type="text" name="oid" id="oid" value="<%//=oid %>" readonly> <input type="button" value="주문 조회" onclick="window.open('./mypage/searchOrder.jsp','주문 상품 선택','width=450,height=250')"><br>
 제목 <input type="text" name="q_subject" placeholder="제목을 입력해주세요."><br>
 내용<br> 
 <textarea cols="70" rows="15" name="q_content" placeholder="내용을 작성해주세요:)"></textarea><br>
