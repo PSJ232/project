@@ -28,7 +28,7 @@
 %>
 	<!-- 헤더 들어가는곳 -->
 	<header>
-		<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+		<jsp:include page="../inc/header.jsp" ></jsp:include>
 	</header>
 	<!-- 헤더 들어가는곳 -->
 

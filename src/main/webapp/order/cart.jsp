@@ -31,7 +31,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 </head>
 <body>
   <!-- header -->
-  	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+  	<jsp:include page="../inc/header.jsp" ></jsp:include>
   <!-- header -->
 	<h2>장바구니</h2>
 	<form action="OrderCart.od" method="post">

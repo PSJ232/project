@@ -30,7 +30,7 @@ if(request.getParameter("sort")!=null) {
 </head>
 <body>
 	<!-- header -->
-  	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+  	<jsp:include page="../inc/header.jsp" ></jsp:include>
   	<!-- header -->
 
 꾸까 꽃다발<br>

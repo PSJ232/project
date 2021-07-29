@@ -67,7 +67,7 @@ switch(path){
 </head>
 <body>
   <!-- header -->
-  	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+  	<jsp:include page="../inc/header.jsp" ></jsp:include>
   <!-- header -->
   
 	<!-- review -->
