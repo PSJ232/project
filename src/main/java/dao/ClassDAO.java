@@ -282,6 +282,27 @@ public class ClassDAO {
 		return f_id;
 	}
 
+	public int getMaxmem(int f_id) {
+		int f_maxmem = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT f_maxmem FROM fclass WHERE f_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, f_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				f_maxmem = rs.getInt("f_maxmem");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return f_maxmem;
+	}
 	
 
 

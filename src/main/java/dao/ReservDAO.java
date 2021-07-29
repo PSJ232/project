@@ -116,6 +116,29 @@ public class ReservDAO {
 		return deleteCount;
 	}
 
+	public int getCurrentNum(int fd_id) {
+		int currentNum = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT SUM(r_num) FROM reservation WHERE fd_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, fd_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				currentNum = rs.getInt("SUM(r_num)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return currentNum;
+	}
 
 	
 	

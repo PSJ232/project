@@ -25,7 +25,9 @@ import action.ItemDetailAction;
 import action.ItemInsertAction;
 import action.ItemListAction;
 import action.ItemUpdateAction;
+import action.ReservClassNumAction;
 import action.ReservClassPlaceAction;
+import action.ReservClassTimeAction;
 import action.ReservInsertAction;
 import action.ReservInsertProAction;
 import action.ReservMiddleCancleAction;
@@ -276,7 +278,24 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/ReservClassTime.ad")) {
+			forward = new ActionForward();
+			action = new ReservClassTimeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReservClassMem.ad")) {
+			forward = new ActionForward();
+			action = new ReservClassNumAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

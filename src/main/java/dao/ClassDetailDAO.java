@@ -160,6 +160,56 @@ public class ClassDetailDAO {
 			return ClassDetail;
 		}
 
+		//수강 가능 시간 조회
+		public ArrayList<Integer> getTimeList(int f_id) {
+			ArrayList<Integer> timeList = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT fd_time FROM fclass_detail WHERE f_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, f_id);
+				rs = pstmt.executeQuery();
+				timeList = new ArrayList<Integer>();
+				while(rs.next()) {
+					timeList.add(rs.getInt("fd_time"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return timeList;
+		}
+
+		public int getClassDetailId(ClassDetailBean cdb, String fd_time) {
+			int fd_id = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT fd_id FROM fclass_detail WHERE fd_date = ? and fd_time = ? and fd_place =?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, cdb.getDate());
+				pstmt.setString(2, fd_time);
+				pstmt.setString(3, cdb.getPlace());
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					fd_id = rs.getInt("fd_id");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return fd_id;
+		}
 
 	
 }

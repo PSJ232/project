@@ -16,29 +16,19 @@ public class ClassReservAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-		
-//		String f_subject = request.getParameter("f_subject");
-		String f_subject = "flower";  
-//		String f_place = request.getParameter("f_place");
-		String f_place = "서면";
-		//회원쪽 class 페이지 만드시면 
-		//f_subject, f_place값중에 맨 첫번쨰 값 넘겨주시고 위의 변수초기화식으로 바꿔주세요~
-		
-		ClassReservService classReservService = new ClassReservService();
+		//플라워 클래스 리스트에서 받아온 f_id
+		//int f_id = Integer.parseInt(request.getParameter("f_id"));
+		int f_id = 1;
 
-		//1. 전달 받은 f_place 값으로 f_id조회후 
-		int f_id = classReservService.getClassId(f_place, f_subject);
-		
-		//2. f_id값으로 ClassBean 객체 담아서 setAttribute
 		ClassDetailViewService classDetailViewService = new ClassDetailViewService();
 		ClassBean cb = classDetailViewService.getDetailContent(f_id);
-		System.out.println("cb.getClass_desc(): " + cb.getClass_desc());
-		request.setAttribute("classDetail", cb);
+		
+		//ClassReserv.jsp로 넘겨주는 값
+		request.setAttribute("cb", cb);
+		
+		//리턴값 설정
 		forward = new ActionForward();
 		forward.setPath("./admin_layout/class_member/classReserv.jsp");
-
-		
-		
 		
 		return forward;
 	}

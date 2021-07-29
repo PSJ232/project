@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.ClassDAO;
+import dao.ClassDetailDAO;
 import vo.ClassBean;
 
 import static db.JdbcUtil.close;
@@ -41,6 +42,21 @@ public class ClassReservService {
 		close(con);
 		
 		return f_id;
+	}
+
+	public ArrayList<Integer> getTimeList(int f_id) {
+		System.out.println("ClassReservService - getTimeList(int f_id)");
+		ArrayList<Integer> timeList = null;
+		//Conneciton 객체 전달
+		Connection con = getConnection();
+		ClassDetailDAO classDetailDAO = ClassDetailDAO.getInstance();
+		classDetailDAO.setConnection(con);
+		
+		timeList = classDetailDAO.getTimeList(f_id);
+		
+		close(con);
+		
+		return timeList;
 	}
 
 
