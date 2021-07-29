@@ -31,14 +31,26 @@ public class ReviewInsertProService {
 		return isInsertSuccess;
 	}
 
-	public void changeStatus(int od_id) {
-		System.out.println("ReviewInsertProService - changeStatus()");
+	public boolean modifyMemberPoint(String m_id, int r_point) {
+		System.out.println("ReviewInsertProService - modifyMemberPoint()");
+		boolean isUpdateSuccess = false;
 		
 		Connection con = getConnection();
 		ReviewDAO rdao = ReviewDAO.getInstance();
 		rdao.setConnection(con);
 		
+		int updateCount = rdao.updateMemberPoint(m_id, r_point);
 		
+		if(updateCount > 0) {
+			commit(con);
+			isUpdateSuccess = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return isUpdateSuccess;
 	}
 	
 	

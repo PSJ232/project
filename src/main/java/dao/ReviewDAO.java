@@ -286,7 +286,6 @@ public class ReviewDAO {
 	
 	public int insertReview(ReviewBean rb) {
 		System.out.println("ReviewDAO - insertReview()");
-		
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -325,6 +324,26 @@ public class ReviewDAO {
 		}
 		
 		return insertCount;
+	}
+	
+	
+	public int updateMemberPoint(String m_id, int r_point) {
+		System.out.println("ReviewDAO - updateMemberPoint()");
+		int modifyCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "UPDATE member SET m_point = m_point + ? WHERE m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_point);
+			pstmt.setString(2, m_id);
+			modifyCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("ReviewDAO - updateMemberPoint() SQL구문 오류 : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		return modifyCount;
 	}
 
 	public ReviewBean getReview(int od_id) {
@@ -508,4 +527,5 @@ public class ReviewDAO {
 		}
 		return content;
 	}
+
 }

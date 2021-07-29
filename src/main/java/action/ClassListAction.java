@@ -17,15 +17,21 @@ public class ClassListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
+		String activeTab = request.getParameter("activeTab");
 		ClassListService service = new ClassListService();
-		classList = service.getClassList();
+		if(activeTab.equals("tab1")) {
+			
+			classList = service.getStartClassList();
+		}else {
+			classList = service.getEndClassList();
+		}
 		ClassDetailListService detail_service = new ClassDetailListService();
 		ArrayList<ClassDetailBean> classDetailList = detail_service.getDetailList();
 		if(classList != null) {
 			request.setAttribute("classDetailList", classDetailList);
 			request.setAttribute("classList", classList);
 			forward = new ActionForward();
-			forward.setPath("./admin_layout/class_management/classList.jsp");
+			forward.setPath("./admin_layout/class_management/getClassList.jsp");
 			forward.setRedirect(false);
 		}
 		return forward;

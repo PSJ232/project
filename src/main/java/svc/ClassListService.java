@@ -9,12 +9,22 @@ import static db.JdbcUtil.*;
 
 public class ClassListService {
 
-	public ArrayList<ClassBean> getClassList() {
+	public ArrayList<ClassBean> getStartClassList() {
 		Connection con = getConnection();
 		
 		ClassDAO classDAO = ClassDAO.getInstance();
 		classDAO.setConnection(con);
-		ArrayList<ClassBean> classList = classDAO.getClassList();
+		ArrayList<ClassBean> classList = classDAO.getStartClassList();
+		close(con);
+		return classList;
+	}
+
+	public ArrayList<ClassBean> getEndClassList() {
+		Connection con = getConnection();
+		
+		ClassDAO classDAO = ClassDAO.getInstance();
+		classDAO.setConnection(con);
+		ArrayList<ClassBean> classList = classDAO.getEndClassList();
 		close(con);
 		return classList;
 	}

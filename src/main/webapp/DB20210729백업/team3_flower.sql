@@ -73,6 +73,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (1,2,'admin@admin.com',1,'2021-07-29 02:01:02',1,'2021-08-07'),(2,4,'admin@admin.com',1,'2021-07-29 02:01:14',1,'2021-08-02');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,17 +85,23 @@ DROP TABLE IF EXISTS `fclass`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fclass` (
-  `f_id` int(11) NOT NULL COMMENT '클래스번호',
-  `f_subject` varchar(45) NOT NULL COMMENT '클래스제목',
-  `f_desc` varchar(200) NOT NULL COMMENT '클래스내용',
-  `f_price` int(11) NOT NULL COMMENT '클래스가격',
-  `f_maxmem` int(11) NOT NULL COMMENT '클래스정원',
-  `f_time` datetime NOT NULL COMMENT '클래스시간',
-  `f_place` varchar(45) NOT NULL COMMENT '클래스장소',
-  `f_img` varchar(45) DEFAULT NULL COMMENT '사진첨부',
-  `f_rdate` datetime NOT NULL COMMENT 'date동기화',
-  PRIMARY KEY (`f_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='클래스';
+  `f_id` int(11) NOT NULL,
+  `f_subject` varchar(80) NOT NULL,
+  `f_place` varchar(20) NOT NULL,
+  `f_desc` varchar(1000) NOT NULL,
+  `f_price` int(11) NOT NULL,
+  `f_maxmem` int(11) NOT NULL,
+  `f_curmem` int(11) NOT NULL,
+  `f_main_img` varchar(80) NOT NULL,
+  `f_sub_img1` varchar(80) NOT NULL,
+  `f_sub_img2` varchar(80) NOT NULL,
+  `f_sub_img3` varchar(80) NOT NULL,
+  `f_rdate` date NOT NULL,
+  `f_cdate` date NOT NULL,
+  `f_readcount` int(11) NOT NULL,
+  PRIMARY KEY (`f_id`),
+  UNIQUE KEY `f_subject` (`f_subject`,`f_place`,`f_rdate`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,33 +114,33 @@ LOCK TABLES `fclass` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `fclass_reservation`
+-- Table structure for table `fclass_detail`
 --
 
-DROP TABLE IF EXISTS `fclass_reservation`;
+DROP TABLE IF EXISTS `fclass_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `fclass_reservation` (
-  `fr_id` int(11) NOT NULL COMMENT '예약번호',
-  `f_id` int(11) NOT NULL COMMENT '클래스번호',
-  `m_id` varchar(45) NOT NULL COMMENT '회원아이디',
-  `fr_time` datetime NOT NULL COMMENT '클래스날짜',
-  `fr_rdate` datetime NOT NULL COMMENT 'date동기화',
-  PRIMARY KEY (`fr_id`),
-  KEY `FK_member_TO_fclass_reservation` (`m_id`),
-  KEY `FK_fclass_TO_fclass_reservation` (`f_id`),
-  CONSTRAINT `FK_fclass_TO_fclass_reservation` FOREIGN KEY (`f_id`) REFERENCES `fclass` (`f_id`),
-  CONSTRAINT `FK_member_TO_fclass_reservation` FOREIGN KEY (`m_id`) REFERENCES `member` (`m_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='클래스예약';
+CREATE TABLE `fclass_detail` (
+  `fd_id` int(11) NOT NULL AUTO_INCREMENT,
+  `f_id` int(11) NOT NULL,
+  `fd_date` varchar(20) NOT NULL,
+  `fd_place` varchar(20) NOT NULL,
+  `fd_time` time NOT NULL,
+  `fd_isselected` int(11) NOT NULL,
+  PRIMARY KEY (`fd_id`),
+  UNIQUE KEY `fd_date` (`fd_date`,`fd_place`,`fd_time`),
+  KEY `f_id` (`f_id`),
+  CONSTRAINT `fclass_detail_ibfk_1` FOREIGN KEY (`f_id`) REFERENCES `fclass` (`f_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `fclass_reservation`
+-- Dumping data for table `fclass_detail`
 --
 
-LOCK TABLES `fclass_reservation` WRITE;
-/*!40000 ALTER TABLE `fclass_reservation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fclass_reservation` ENABLE KEYS */;
+LOCK TABLES `fclass_detail` WRITE;
+/*!40000 ALTER TABLE `fclass_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fclass_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -183,6 +190,7 @@ CREATE TABLE `item` (
   `i_dpstatus` varchar(15) NOT NULL,
   `i_itemstatus` varchar(15) NOT NULL,
   `i_detailpage` varchar(1000) NOT NULL,
+  `i_quick` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`i_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='상품';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -193,7 +201,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'산호초 에디션','바다의 꽃 산호초의 빛깔을 담은',59900,8,NULL,NULL,NULL,NULL,'2021-07-23 10:46:11',0.9,'large','판매중','판매중','없음'),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,23,NULL,NULL,NULL,NULL,'2021-07-23 10:47:34',0.9,'small','판매중','판매중','없음'),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',69800,13,NULL,NULL,NULL,NULL,'2021-07-23 10:48:46',0.5,'small','판매중','판매중','없음'),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,46,NULL,NULL,NULL,NULL,'2021-07-23 10:50:14',1,'medium','판매중','판매중','없음');
+INSERT INTO `item` VALUES (1,'산호초 에디션','바다의 꽃 산호초의 빛깔을 담은',59900,7,NULL,NULL,NULL,NULL,'2021-07-23 10:46:11',0.9,'large','판매중','판매중','없음',0),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,22,NULL,NULL,NULL,NULL,'2021-07-23 10:47:34',0.9,'small','판매중','판매중','없음',0),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',69800,12,NULL,NULL,NULL,NULL,'2021-07-23 10:48:46',0.5,'small','판매중','판매중','없음',0),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,44,NULL,NULL,NULL,NULL,'2021-07-23 10:50:14',1,'medium','판매중','판매중','없음',0);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +261,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('admin@admin.com','1234','관리자','01012345678','2000-10-10',1,0,'on','2021-07-27',NULL,989000),('visitor','1234','비회원구매','99999999999','2020-01-01',1,0,NULL,'2021-07-27',NULL,0);
+INSERT INTO `member` VALUES ('admin@admin.com','1234','관리자','01012345678','2000-10-10',1,0,'on','2021-07-27',NULL,988400),('visitor','1234','비회원구매','99999999999','2020-01-01',1,0,NULL,'2021-07-27',NULL,0);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,7 +297,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (2021072701,'visitor','신종현','06035&서울 강남구 가로수길 5&회사','오예진','01044448888',88300,0,1,'2021-07-27 13:54:32',0,'01012345555'),(2021072702,'admin@admin.com','관리자','06035&서울 강남구 가로수길 5&집','신종현','01011112222',56400,-1000,1,'2021-07-27 21:07:26',0,NULL),(2021072703,'admin@admin.com','관리자','06307&서울 강남구 개포로 202&집','홍길동','01033334444',164800,-999,1,'2021-07-27 21:12:11',0,NULL),(2021072704,'visitor','신종현','06307&서울 강남구 개포로 202&집','이비안','01088887777',88300,0,1,'2021-07-27 21:14:07',0,'01012345555'),(2021072705,'admin@admin.com','관리자','46729&부산 강서구 가달1로 17&회사','박세정','01023234343',110300,-10000,1,'2021-07-27 21:15:18',0,NULL);
+INSERT INTO `orders` VALUES (2021072701,'visitor','신종현','06035&서울 강남구 가로수길 5&회사','오예진','01044448888',88300,0,1,'2021-07-27 13:54:32',0,'01012345555'),(2021072702,'admin@admin.com','관리자','06035&서울 강남구 가로수길 5&집','신종현','01011112222',56400,-1000,1,'2021-07-27 21:07:26',0,NULL),(2021072703,'admin@admin.com','관리자','06307&서울 강남구 개포로 202&집','홍길동','01033334444',164800,-999,1,'2021-07-27 21:12:11',0,NULL),(2021072704,'visitor','신종현','06307&서울 강남구 개포로 202&집','이비안','01088887777',88300,0,1,'2021-07-27 21:14:07',0,'01012345555'),(2021072705,'admin@admin.com','관리자','46729&부산 강서구 가달1로 17&회사','박세정','01023234343',110300,-10000,1,'2021-07-27 21:15:18',0,NULL),(2021072901,'admin@admin.com','관리자','47326&부산 부산진구 가야공원로 1&집집','오예진','01033339999',146200,-700,1,'2021-07-29 01:56:45',0,NULL),(2021072902,'admin@admin.com','관리자','38125&경북 경주시 감포읍 가래실길 6&고향','이비안','01043436666',41100,-1000,1,'2021-07-29 02:02:04',0,NULL),(2021072903,'admin@admin.com','관리자','49414&부산 사하구 괴정로 2&직장','안혜경','01099992222',54900,-1200,1,'2021-07-29 02:03:02',0,NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,7 +338,7 @@ CREATE TABLE `orders_detail` (
 
 LOCK TABLES `orders_detail` WRITE;
 /*!40000 ALTER TABLE `orders_detail` DISABLE KEYS */;
-INSERT INTO `orders_detail` VALUES (1,2021072701,2,4,2,'비회원이 당신에게 꽃을 선물합니다',0,'visitor',99999988,'2021-07-31','주문접수',0),(2,2021072702,1,4,1,'회원 장바구니 단일상품 주문',0,'admin@admin.com',1,'2021-07-01','주문접수',0),(3,2021072703,1,0,1,'',0,'admin@admin.com',1,'2021-07-21','주문접수',0),(4,2021072703,2,0,1,'',0,'admin@admin.com',2,'2021-07-28','주문접수',0),(5,2021072703,3,4,2,'회원 장바구니 다중상품 주문',0,'admin@admin.com',3,'2021-07-31','주문접수',0),(6,2021072704,2,4,2,'비회원 단일상품 주문(장바구니)',0,'visitor',99999988,'2021-07-31','주문접수',0),(7,2021072705,1,4,2,'회원 바로주문',0,'admin@admin.com',99999999,'2021-07-31','주문접수',0);
+INSERT INTO `orders_detail` VALUES (1,2021072701,2,4,2,'비회원이 당신에게 꽃을 선물합니다',0,'visitor',99999988,'2021-07-31','주문접수',0),(2,2021072702,1,4,1,'회원 장바구니 단일상품 주문',1,'admin@admin.com',1,'2021-07-01','주문접수',2),(3,2021072703,1,0,1,'',0,'admin@admin.com',1,'2021-07-21','주문접수',0),(4,2021072703,2,0,1,'',1,'admin@admin.com',2,'2021-07-28','주문접수',0),(5,2021072703,3,4,2,'회원 장바구니 다중상품 주문',1,'admin@admin.com',3,'2021-07-31','주문접수',0),(6,2021072704,2,4,2,'비회원 단일상품 주문(장바구니)',0,'visitor',99999988,'2021-07-31','주문접수',0),(7,2021072705,1,4,2,'회원 바로주문',0,'admin@admin.com',99999999,'2021-07-31','주문접수',0),(8,2021072901,1,0,1,'',1,'admin@admin.com',1,'2021-07-30','주문접수',0),(9,2021072901,3,0,1,'',1,'admin@admin.com',2,'2021-07-31','주문접수',0),(10,2021072901,4,4,1,'안녕하세요!',1,'admin@admin.com',3,'2021-08-06','주문접수',0),(11,2021072902,2,3,1,'',1,'admin@admin.com',99999999,'2021-08-04','주문접수',0),(12,2021072903,4,0,1,'',1,'admin@admin.com',99999999,'2021-08-05','주문접수',0);
 /*!40000 ALTER TABLE `orders_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,6 +376,37 @@ LOCK TABLES `qna` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `reservation`
+--
+
+DROP TABLE IF EXISTS `reservation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reservation` (
+  `r_id` int(11) NOT NULL,
+  `m_id` varchar(45) NOT NULL,
+  `f_id` int(11) NOT NULL,
+  `fd_id` int(11) NOT NULL,
+  `r_num` int(11) NOT NULL,
+  `r_payment` varchar(40) NOT NULL,
+  PRIMARY KEY (`r_id`),
+  KEY `reservation_f_id_fk` (`f_id`),
+  KEY `reservation_fd_id_fk` (`fd_id`),
+  CONSTRAINT `reservation_f_id_fk` FOREIGN KEY (`f_id`) REFERENCES `fclass` (`f_id`),
+  CONSTRAINT `reservation_fd_id_fk` FOREIGN KEY (`fd_id`) REFERENCES `fclass_detail` (`fd_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reservation`
+--
+
+LOCK TABLES `reservation` WRITE;
+/*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `review`
 --
 
@@ -395,6 +434,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (1,7,'admin@admin.com','좋다구요','좋다구요',4,'2021-07-28 23:13:53',NULL,200),(2,10,'admin@admin.com','와이프가 너무좋아하네요','정말 강추드려요',5,'2021-07-29 01:58:59',NULL,200),(3,2,'admin@admin.com','산호초 같은 꽃','너무좋아',4,'2021-07-29 01:59:18',NULL,200),(4,5,'admin@admin.com','좋아요','좋아요',4,'2021-07-29 01:59:30',NULL,200),(5,8,'admin@admin.com','산호초가 왔어요','꽃은 어디에?',1,'2021-07-29 01:59:47',NULL,200),(6,4,'admin@admin.com','좋아요!!!','좋습니다',5,'2021-07-29 02:00:11',NULL,200),(7,9,'admin@admin.com','추천드려요','너무 싱싱해요',5,'2021-07-29 02:00:32',NULL,200),(8,12,'admin@admin.com','저번보다 덜 싱싱해요','실망이예요',3,'2021-07-29 02:03:32',NULL,200),(9,11,'admin@admin.com','향기롭다','너무좋다',3,'2021-07-29 02:03:48',NULL,200);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -407,4 +447,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-27 23:59:12
+-- Dump completed on 2021-07-29  2:15:03

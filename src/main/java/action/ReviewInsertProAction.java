@@ -50,8 +50,10 @@ public class ReviewInsertProAction implements Action {
 		
 		ReviewInsertProService reviewInsertProService = new ReviewInsertProService();
 		boolean isInsertSuccess = reviewInsertProService.registerReview(rb);
+		boolean isUpdateSuccess = reviewInsertProService.modifyMemberPoint(multi.getParameter("r_writer"), r_point );
 		
-		if(isInsertSuccess) {
+		
+		if(isInsertSuccess && isUpdateSuccess) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("ReviewInsertForm.rv");

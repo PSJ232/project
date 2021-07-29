@@ -1,10 +1,7 @@
 package controller;
 
-import static db.JdbcUtil.close;
-import static db.JdbcUtil.getConnection;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,12 +20,16 @@ import action.ClassDetailSelectTimelistAction;
 import action.ClassInsertProAction;
 import action.ClassListAction;
 import action.ClassModifyProAction;
+import action.ClassReservAction;
 import action.ItemDetailAction;
 import action.ItemInsertAction;
 import action.ItemListAction;
 import action.ItemUpdateAction;
-import svc.AdminMemberSearchService;
-import svc.AdminOrderSearchService;
+import action.ReservClassPlaceAction;
+import action.ReservInsertAction;
+import action.ReservInsertProAction;
+import action.ReservMiddleCancleAction;
+import action.ReservPayAction;
 import action.ClassTimeAddAction;
 import action.ItemDeleteAction;
 import vo.ActionForward;
@@ -137,13 +138,17 @@ public class AdminFrontController extends HttpServlet {
 			// 클래스 리스트
 		} else if (command.equals("/ClassList.ad")) {
 			forward = new ActionForward();
+			forward.setPath("./admin_layout/class_management/classList.jsp");
+			forward.setRedirect(false);
+			// 클래스 수정폼
+		}else if (command.equals("/GetClassList.ad")) {
+			forward = new ActionForward();
 			action = new ClassListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// 클래스 수정폼
 		} else if (command.equals("/ClassModifyForm.ad")) {
 			forward = new ActionForward();
 			action = new ClassDetailViewAction();
@@ -215,6 +220,62 @@ public class AdminFrontController extends HttpServlet {
 		}else if(command.equals("/getReviewContent.ad")) {
 			AdminSearchAction searchAction = new AdminSearchAction();
 			searchAction.execute(request, response);
+			
+			//클래스 예약페이지 이동(추후 멤버 페이지로 옮길 예정)
+		} else if(command.equals("/ClassReserv.ad")) {
+			forward = new ActionForward();
+			action = new ClassReservAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	//		forward.setPath("./admin_layout/class_member/classReserv.jsp");
+	//		forward.setRedirect(false);
+		//예약및 결제 페이지 
+		} else if(command.equals("/ReservInsert.ad")){
+			forward = new ActionForward();
+			action = new ReservInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReservInsertPro.ad")) {
+			forward = new ActionForward();
+			action = new ReservInsertProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReservPay.ad")) {
+			forward = new ActionForward();
+			action = new ReservPayAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if(command.equals("/ReservMiddleCancle.ad")) {
+			forward = new ActionForward();
+			action = new ReservMiddleCancleAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/ReservClassPlace.ad")) {
+			forward = new ActionForward();
+			action = new ReservClassPlaceAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

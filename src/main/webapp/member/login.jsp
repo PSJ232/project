@@ -17,10 +17,9 @@
 	
 	<h1 id="login">로그인</h1>
 	<form action="MemberLoginPro.me" method="post">
-		<input type="text" name="m_id" id="inp" placeholder="아이디(이메일)"><br>
+		<input type="email" name="m_id" id="inp" placeholder="아이디(이메일)"><br>
 		<input type="password" name="m_pass" id="inp" placeholder="비밀번호"><br>
 		<input type="checkbox" id="checklogin" name="autoLogin">로그인 상태 유지<br>
-		<!-- 기능구현방법 공부필요!! -->
 		<input type="submit" value="로그인" class="loginbutton"><br>
 		<a id="fin" href="MemberFindId.me">아이디 찾기</a> 
 		<a id="fin" href="findPass.jsp">비밀번호 찾기</a><br>
