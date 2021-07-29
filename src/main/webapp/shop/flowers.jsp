@@ -15,14 +15,14 @@
 			case "2" : location.replace("Flowers.shop?sort=2"); break;
 			case "3" : location.replace("Flowers.shop?sort=3"); break;
 		}
-	
 	}
-
-
 </script>
 <%
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList");
-int sort = Integer.parseInt(request.getParameter("sort"));
+int sort = 1;
+if(request.getParameter("sort")!=null) {
+	sort = Integer.parseInt(request.getParameter("sort"));
+}
 %>
 <link rel="stylesheet" href="css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

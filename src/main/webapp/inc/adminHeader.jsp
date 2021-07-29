@@ -80,8 +80,8 @@ if(m_id == null) {
 				</div>
 				<ul class="nav_bar_list">
 					<li class="item"><a href="#">꽃 정기구독</a></li>
-					<li class="item"><a href="Flowers.shop?sort=1">꽃다발</a></li>
-					<li class="item"><a href="#">당일배송</a></li>
+					<li class="item"><a href="Flowers.shop">꽃다발</a></li>
+					<li class="item"><a href="Quick.shop">당일배송</a></li>
 					<li class="item"><a href="#">플라워클래스</a></li>
 					<li class="item"><a href="#">소품샵</a></li>
 					<li class="item"><a href="#">이벤트</a></li>

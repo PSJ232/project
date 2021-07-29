@@ -123,9 +123,9 @@ public class ItemDAO {
 		return itemList;
 	}
 
-	// 오버로딩 - 정렬 매개변수
+	// 오버로딩 - 정렬 매개변수 (꽃다발 카테고리)
 	public ArrayList<ItemBean> selectItemList(int sort) {
-		System.out.println("ItemDAO - selectItemList()");
+		System.out.println("ItemDAO - selectItemList(int sort)");
 
 		ArrayList<ItemBean> itemList = null;
 		ItemBean ib = null;
