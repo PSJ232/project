@@ -36,22 +36,20 @@ public class ShopFrontController extends HttpServlet {
 		// 액션 클래스의 공통 타입(슈퍼클래스)인 Action 인터페이스 타입 변수 선언
 		Action action = null;
 
-		if (command.equals("/flowers.shop")) {
+		if (command.equals("/Flowers.shop")) {
 			action = new ShopViewAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/content.shop")) {
+		} else if (command.equals("/Content.shop")) {
 			action = new ShopDetailViewAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else {
-
 		}
 
 		// 포워딩 방식 결정
