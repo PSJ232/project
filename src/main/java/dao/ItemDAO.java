@@ -123,6 +123,66 @@ public class ItemDAO {
 		return itemList;
 	}
 
+	// 오버로딩 - 정렬 매개변수
+	public ArrayList<ItemBean> selectItemList(int sort) {
+		System.out.println("ItemDAO - selectItemList()");
+
+		ArrayList<ItemBean> itemList = null;
+		ItemBean ib = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		// 1 추천순, 2 인기순, 3 신상품순
+		try {
+			String sql = "";
+			switch (sort) {
+			case 3:
+				sql = "SELECT * FROM item ORDER BY i_rdate DESC";
+				break;
+			case 2:
+				sql = "SELECT *, item.i_name, sum(orders_detail.od_qty) selling "
+						+ "FROM item "
+						+ "JOIN orders_detail "
+						+ "ON item.i_id = orders_detail.i_id "
+						+ "GROUP BY i_name "
+						+ "ORDER BY selling DESC";
+				break;
+			case 1:
+				sql = "SELECT * FROM item";
+			}
+
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			itemList = new ArrayList<ItemBean>();
+
+			while (rs.next()) {
+				ib = new ItemBean();
+				ib.setI_id(rs.getInt("i_id"));
+				ib.setI_name(rs.getString("i_name"));
+				ib.setI_desc(rs.getString("i_desc"));
+				ib.setI_price(rs.getInt("i_price"));
+				ib.setI_inven(rs.getInt("i_inven"));
+				ib.setI_img(rs.getString("i_img"));
+				ib.setI_subimg2(rs.getString("i_subimg2"));
+				ib.setI_subimg3(rs.getString("i_subimg3"));
+				ib.setI_subimg4(rs.getString("i_subimg4"));
+				ib.setI_rdate(rs.getTimestamp("i_rdate"));
+				ib.setI_discount(rs.getFloat("i_discount"));
+				ib.setI_size(rs.getString("i_size"));
+				ib.setI_dpstatus(rs.getString("i_dpstatus"));
+				ib.setI_itemstatus(rs.getString("i_itemstatus"));
+
+				itemList.add(ib);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return itemList;
+	}
+
 	// 상품등록 db작업 처리
 	public int insertItem(ItemBean ib) {
 		System.out.println("itemDAO - insertItem");

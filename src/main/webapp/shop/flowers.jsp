@@ -11,9 +11,9 @@
 <script type="text/javascript">
 	function sortSelect(sortNum) {
 		switch(sortNum) {
-			case "1" : location.replace("Flower.shop?sort=1"); break;
-			case "2" : location.replace("Flower.shop?sort=2"); break;
-			case "3" : location.replace("Flower.shop?sort=3"); break;
+			case "1" : location.replace("Flowers.shop?sort=1"); break;
+			case "2" : location.replace("Flowers.shop?sort=2"); break;
+			case "3" : location.replace("Flowers.shop?sort=3"); break;
 		}
 	
 	}
@@ -22,7 +22,7 @@
 </script>
 <%
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList");
-
+int sort = Integer.parseInt(request.getParameter("sort"));
 %>
 <link rel="stylesheet" href="css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -38,9 +38,9 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 당신의 일상을 특별한 날로 만들어보세요.<br>
  
 	<select name="item_sort" size="1" onchange="sortSelect(this.value)">
-		<option value="1" selected>추천순</option>
-		<option value="2">인기순</option>
-		<option value="3">신상품순</option>
+		<option value="1" <%if(sort==1){%>selected<%} %>>추천순</option>
+		<option value="2" <%if(sort==2){%>selected<%} %>>인기순</option>
+		<option value="3" <%if(sort==3){%>selected<%} %>>신상품순</option>
 	</select>
 	<%
 	for (ItemBean item : itemList) {

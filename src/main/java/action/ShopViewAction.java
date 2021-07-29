@@ -15,9 +15,11 @@ public class ShopViewAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ShopViewAction");
 		ActionForward forward = null;
+		
+		int sort = Integer.parseInt(request.getParameter("sort"));
 
 		ItemListService itemListService = new ItemListService();
-		ArrayList<ItemBean> itemList = itemListService.getItemList();
+		ArrayList<ItemBean> itemList = itemListService.getItemList(sort);
 
 		request.setAttribute("itemList", itemList);
 
