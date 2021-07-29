@@ -26,12 +26,6 @@ public class ItemListService {
 		//DB작업 후 반환값을 변수에 저장
 		itemList = itemDAO.selectItemList();
 		
-		if(itemList!=null) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
 		close(con);
 
 		return itemList;
