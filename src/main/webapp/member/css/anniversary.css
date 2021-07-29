@@ -27,20 +27,5 @@
 			outline: none;
 			display: inline-block;
 		}
-		
-		#annInsert {
-			border: none;
-			width: 80%;
-			text-align: center;		
-		}
-		
-		.d_day_cell {
-			color: #79FFCE;
-			font-size: 16pt;
-		}
-		
-		.textStar {
-			font-size: 14px;
-			color: #ffca18;
-		}
+
 		

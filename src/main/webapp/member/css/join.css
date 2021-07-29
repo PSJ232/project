@@ -15,7 +15,7 @@
 			display: inline-block;
 			width: 80%;
 			text-align: center;
-		}		
+		}	
 
 		
 		.joinForm {
@@ -95,6 +95,7 @@
 			cursor: pointer;
 		}
 		
+		
 		.btn:hover {
 			color: #FFFFFF;
 			background-color: #000000;
@@ -148,6 +149,12 @@
 		
 		.textRed{
 			color: #FF0000;
+		}
+		
+						
+		.textStar {
+			font-size: 14px;
+			color: #ffca18;
 		}
 		
 		input[type="submit"] {

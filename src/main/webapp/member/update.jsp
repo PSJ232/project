@@ -14,7 +14,7 @@
 <meta charset="UTF-8">
 <title>개인정보 수정</title>
 <link rel="stylesheet" href="member/css/join.css" type="text/css" />
-<!-- <link rel="stylesheet" href="member/css/style.css" type="text/css" /> -->
+<link rel="stylesheet" href="member/css/style.css" type="text/css" />
 <link rel="stylesheet" href="member/css/update.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -48,9 +48,9 @@
 					   							<input type="radio" name="m_gender" value="1" <%if(memberDetail.getM_gender()==1){%>checked<%}%>>여</div>
 		  </div><br><br>
 				
-			<span class="textSubject">기념일 관리</span> <span class="textNormal">  기념일을 등록하시면</span> <span class="textGreen">5일전에</span> <span class="textNormal">kukka가 문자로 알려드릴게요!</span><br>
+			<span class="textSubject">기념일 관리</span> <span class="textNormal">  기념일을 등록하시면</span> <span class="textGreen">5일전에</span> <span class="textNormal">kukka가 메일로 알려드릴게요!</span><br>
 			<div class="anniversary">
-						<span class="textBlack">기념일을 등록해주세요.</span><span class="textGreen">(최초 등록 시 500P 증정)</span><br>
+						<span class="textBlack">기념일을 등록해주세요.</span><br>
 						<span class="textNormal">kukka 회원들은 평균 7.5개의 기념일을 등록하여 꽃을 즐기고있어요!</span>
 					<table id="annInsert">
 						<%
@@ -97,11 +97,11 @@
 						%>
 						<tr>
 							<td class="d_day_cell">D<%=dDay%></td>
-							<td><%=ab.getA_date()%></td>
-							<td><%=ab.getA_name()%></td>
-							<td><%=repeat%></td>
-							<td><a href="MemberAnnUpdateForm.me?a_id=<%=ab.getA_id()%>" onclick="window.open(this.href, 'anniversary', 'width=450, height=500'); return false;">수정</a></td>
-							<td><a href="MemberAnnDeletePro.me?a_id=<%=ab.getA_id()%>">삭제</a></td>
+							<td class="date_cell"><%=ab.getA_date()%></td>
+							<td class="ann_name_cell"><%=ab.getA_name()%></td>
+							<td class="repeat_cell"><%=repeat%></td>
+							<td class="update_cell"><a href="MemberAnnUpdateForm.me?a_id=<%=ab.getA_id()%>" onclick="window.open(this.href, 'anniversary', 'width=450, height=500'); return false;">수정</a></td>
+							<td class="delete_cell"><a href="MemberAnnDeletePro.me?a_id=<%=ab.getA_id()%>">삭제</a></td>
 						</tr>
 						<%
 						}
