@@ -79,12 +79,45 @@ public class ClassDAO {
 		return insertCount;
 	}
 
-	public ArrayList<ClassBean> getClassList() {
+	public ArrayList<ClassBean> getStartClassList() {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
 		try {
-			String sql = "SELECT * FROM fclass ORDER BY f_id DESC";
+			String sql = "SELECT * FROM fclass WHERE date(f_cdate) > date(now()) ORDER BY f_subject, f_cdate DESC";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ClassBean classBean = new ClassBean();
+				classBean.setClass_id(rs.getInt("f_id"));
+				classBean.setClass_subject(rs.getString("f_subject"));
+				classBean.setClass_desc(rs.getString("f_desc"));
+				classBean.setClass_price(rs.getInt("f_price"));
+				classBean.setClass_max_member(rs.getInt("f_maxmem"));
+				classBean.setClass_main_img(rs.getString("f_main_img"));
+				classBean.setClass_create_date(rs.getTimestamp("f_rdate"));
+				classBean.setClass_date(rs.getString("f_cdate"));
+				classBean.setClass_place(rs.getString("f_place"));
+				classBean.setClass_sub_img1(rs.getString("f_sub_img1"));
+				classBean.setClass_sub_img2(rs.getString("f_sub_img2"));
+				classBean.setClass_sub_img3(rs.getString("f_sub_img3"));
+				classList.add(classBean);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문오류! - " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return classList;
+	}
+	
+	public ArrayList<ClassBean> getEndClassList() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
+		try {
+			String sql = "SELECT * FROM fclass WHERE date(f_cdate) < date(now()) ORDER BY f_subject, f_cdate DESC";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -248,6 +281,8 @@ public class ClassDAO {
 		
 		return f_id;
 	}
+
+	
 
 
 	

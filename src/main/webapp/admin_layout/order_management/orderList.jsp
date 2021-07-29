@@ -8,16 +8,21 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- <link rel="stylesheet" href="admin_layout/css/admin.css"> -->
-<!-- <link rel="stylesheet" href="admin_layout/css/style.css"> -->
 <link rel="stylesheet" href="admin_layout/css/admin.css">
 <link rel="stylesheet" href="admin_layout/css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 	table {
 		margin: 0 auto;
-		margin-top: 150px;
+		margin-top: 100px;
 		width: 700px;
+	}
+	
+	.search {
+		display: flex;
+		margin-top: 100px;
+		justify-content: flex-end;
+		margin-right: 300px;
 	}
 	
 </style>
@@ -63,6 +68,7 @@
 		<jsp:include page="../inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 	<div class="container">
+		<div class="search">
 		<select name="filter" id="filter">
 			<option value="m_id">filter</option>
 			<option value="m_id">id</option>
@@ -70,6 +76,7 @@
 			<option value="od_invoice">status</option>
 		</select>
 		<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
+		</div>
 		<table class="table" border="1">
 			<thead>
 				<tr>

@@ -138,13 +138,17 @@ public class AdminFrontController extends HttpServlet {
 			// 클래스 리스트
 		} else if (command.equals("/ClassList.ad")) {
 			forward = new ActionForward();
+			forward.setPath("./admin_layout/class_management/classList.jsp");
+			forward.setRedirect(false);
+			// 클래스 수정폼
+		}else if (command.equals("/GetClassList.ad")) {
+			forward = new ActionForward();
 			action = new ClassListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// 클래스 수정폼
 		} else if (command.equals("/ClassModifyForm.ad")) {
 			forward = new ActionForward();
 			action = new ClassDetailViewAction();
