@@ -32,9 +32,6 @@ public class ItemListAction implements Action {
 		forward.setPath("admin_layout/item_manage/itemManageList.jsp");
 		forward.setRedirect(false);
 		
-		ItemInsertService itemInsertService = new ItemInsertService();
-//		isInsertSuccess = itemInsertService.insertItem();
-		
 		return forward;
 	}
 

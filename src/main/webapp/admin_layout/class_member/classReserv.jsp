@@ -16,8 +16,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="admin_layout/css/admin.css">
-<link rel="stylesheet" href="admin_layout/css/style.css">
+<link rel="stylesheet" href="./css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
 	$(document).ready(function(){
@@ -35,7 +34,14 @@
 </script>
 </head>
 <body>
-	<div><!-- 전체 -->
+   	<!-- header -->
+   	<jsp:include page="/inc/adminHeader.jsp" ></jsp:include>
+   	<!-- header -->
+   	
+    <!-- nav -->
+	<jsp:include page="/inc/navigation.jsp" ></jsp:include>
+	<!-- nav -->
+	<div id="container"><!-- 전체 -->
 		<div><!-- 예약 정보 입력 레이아웃-->
 			<img alt="" src=""><!-- 클래스 이미지 받아오기 -->
 			<div><!-- 예약정보 입력 칸 -->

@@ -15,8 +15,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="admin_layout/css/admin.css">
-<link rel="stylesheet" href="admin_layout/css/style.css">
+<link rel="stylesheet" href="./css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
 $.datepicker.setDefaults($.datepicker.regional['ko']);
@@ -60,13 +59,15 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<header>
-		<jsp:include page="../inc/adminHeader.jsp"></jsp:include>
-	</header>
-	<nav>
-		<jsp:include page="../inc/navigation.jsp"></jsp:include>
-	</nav>
-   <!-- onclick하면 ajax로 띄워주기 -->
+    <!-- header -->
+  	<jsp:include page="/inc/adminHeader.jsp" ></jsp:include>
+  	<!-- header -->
+  	
+    <!-- nav -->
+	<jsp:include page="/inc/navigation.jsp" ></jsp:include>
+	<!-- nav -->
+	
+    <!-- onclick하면 ajax로 띄워주기 -->
 	<div id="container"> <!-- css layout요소 추가 -->
 		<h1>클래스 등록</h1>
 		<form action="ClassInsertPro.ad" method="post" enctype="multipart/form-data" name="insert_form">
@@ -91,7 +92,7 @@ $(document).ready(function(){
 		</form>
 	</div>
 	<footer>
-		<jsp:include page="../inc/footer.jsp"></jsp:include>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</footer>
 
 </html>

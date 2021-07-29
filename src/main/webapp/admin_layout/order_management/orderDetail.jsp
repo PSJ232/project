@@ -42,18 +42,17 @@
 		margin-bottom: 50px;
 	}
 </style>
-<link rel="stylesheet" href="admin_layout/css/admin.css">
-<link rel="stylesheet" href="admin_layout/css/style.css">
+<link rel="stylesheet" href="./css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
    	<!-- header -->
-   	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+   	<jsp:include page="/inc/adminHeader.jsp" ></jsp:include>
    	<!-- header -->
    	
     <!-- nav -->
-	<jsp:include page="../inc/navigation.jsp" ></jsp:include>
+	<jsp:include page="/inc/navigation.jsp" ></jsp:include>
 	<!-- nav -->
 	
 		<div id="delivery_info">
@@ -95,7 +94,7 @@
 		</div>
 	</div>
 	<footer>
-		<jsp:include page="../inc/footer.jsp"></jsp:include>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</footer>
 </body>
 </html>

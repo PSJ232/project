@@ -10,18 +10,17 @@
   <head>
     <meta charset="utf-8">
     <title>상품관리 메인</title>
-    <link rel="stylesheet" href="admin_layout/css/admin.css">
-    <link rel="stylesheet" href="admin_layout/css/style.css">
+    <link rel="stylesheet" href="./css/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
   </head>
   <body>
     <!-- header -->
-  	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+  	<jsp:include page="/inc/adminHeader.jsp" ></jsp:include>
     <!-- header -->
     
     <!-- nav -->
-    <jsp:include page="../inc/navigation.jsp" ></jsp:include>
+    <jsp:include page="/inc/navigation.jsp" ></jsp:include>
 	<!-- nav -->
 	
 <!--     <div> -->
@@ -92,7 +91,7 @@
 
       </div>
     <!-- footer -->
-	<jsp:include page="../inc/footer.jsp"></jsp:include>
+	<jsp:include page="/inc/footer.jsp"></jsp:include>
 	<!-- footer -->
   <script type="text/javascript" src="script.js"></script>
   </body>
