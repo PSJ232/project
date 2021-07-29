@@ -222,14 +222,14 @@ public class OrderDAO {
 		return resultList;
 	}
 
-	public OrderBean getOrder(int o_id) {
+	public OrderBean getOrder(String o_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		OrderBean orderBean = null;
 		try {
 			String sql = "SELECT * FROM orders WHERE o_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, o_id);
+			pstmt.setString(1, o_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				orderBean = new OrderBean();
@@ -253,7 +253,7 @@ public class OrderDAO {
 		return orderBean;
 	}
 
-	public ArrayList<OrderDetailBean> getOrderDetail(int o_id) {
+	public ArrayList<OrderDetailBean> getOrderDetail(String o_id) {
 		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -261,7 +261,7 @@ public class OrderDAO {
 			String sql = "SELECT od.od_id,od.o_id,i.i_id,od.l_id,od.od_qty,od.od_message,od.m_id,od.od_delivery_date,od.od_invoice,od.od_confirm,i.i_name"
 					+ " FROM orders_detail od, item i WHERE i.i_id=od.i_id and o_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, o_id);
+			pstmt.setString(1, o_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				OrderDetailBean odb = new OrderDetailBean();
@@ -572,48 +572,6 @@ public class OrderDAO {
 		}
 		
 		return orderDetailList;
-	}
-
-
-	public ArrayList<ItemBean> getItemList(String o_id) {
-		System.out.println("OrderDAO - getItemList()");
-
-		ArrayList<ItemBean> itemArrayList = new ArrayList<ItemBean>();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String sql = "SELECT * FROM item WHERE i_id IN (SELECT i_id FROM orders_detail WHERE o_id= ?)";
-
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, o_id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				ItemBean ib = new ItemBean();
-				ib.setI_id(rs.getInt("i_id"));
-				ib.setI_name(rs.getString("i_name"));
-				ib.setI_desc(rs.getString("i_desc"));
-				ib.setI_price(rs.getInt("i_price"));
-				ib.setI_inven(rs.getInt("i_inven"));
-				ib.setI_img(rs.getString("i_img"));
-				ib.setI_subimg2(rs.getString("i_subimg2"));
-				ib.setI_subimg3(rs.getString("i_subimg3"));
-				ib.setI_subimg4(rs.getString("i_subimg4"));
-				ib.setI_rdate(rs.getTimestamp("i_rdate"));
-				ib.setI_discount(rs.getFloat("i_discount"));
-				ib.setI_size(rs.getString("i_size"));
-				ib.setI_dpstatus(rs.getString("i_dpstatus"));
-				ib.setI_itemstatus(rs.getString("i_itemstatus"));
-				ib.setI_detailpage(rs.getString("i_detailpage"));
-				itemArrayList.add(ib);
-			}
-		} catch (Exception e) {
-			System.out.println("OrderDAO - getItemList() SQL문 오류 - " + e.getMessage());
-		} finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(rs);
-		}
-		return itemArrayList;
 	}
 
 }
