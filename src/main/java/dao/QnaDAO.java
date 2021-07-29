@@ -65,7 +65,7 @@ public class QnaDAO {
 
 	public ArrayList<QnaBean> selectQnaList(String m_id) {
 		
-		ArrayList<QnaBean> qnaList = null;
+		ArrayList<QnaBean> qnaList = new ArrayList<QnaBean>();;
 		QnaBean qnaBean = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -77,7 +77,7 @@ public class QnaDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				qnaList = new ArrayList<QnaBean>();
+				qnaBean = new QnaBean();
 				qnaBean.setQ_id(rs.getInt("q_id"));
 				qnaBean.setM_id(rs.getString("m_id"));
 				qnaBean.setO_id(rs.getInt("o_id"));
