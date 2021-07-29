@@ -33,13 +33,13 @@ if(cookie_check != null){
 	<hr>
 	<br>
 	<br>
-	<h1><a href="./ItemDetail.it?i_id=1">상품1번내용(test)</a></h1>
+	<h1><a href="./content.shop?i_id=1">상품1번내용(test)</a></h1>
 	<br>
-	<h1><a href="./ItemDetail.it?i_id=2">상품2번내용(test)</a></h1>
+	<h1><a href="./content.shop?i_id=2">상품2번내용(test)</a></h1>
 	<br>
-	<h1><a href="./ItemDetail.it?i_id=3">상품3번내용(test)</a></h1>
+	<h1><a href="./content.shop?i_id=3">상품3번내용(test)</a></h1>
 	<br>
-	<h1><a href="./ItemDetail.it?i_id=4">상품4번내용(test)</a></h1>
+	<h1><a href="./content.shop?i_id=4">상품4번내용(test)</a></h1>
 	<br>
 	<br>
 	<br>
