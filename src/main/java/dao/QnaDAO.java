@@ -77,7 +77,7 @@ public class QnaDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				qnaBean = new QnaBean();
+				qnaBean = new QnaBean(); 
 				qnaBean.setQ_id(rs.getInt("q_id"));
 				qnaBean.setM_id(rs.getString("m_id"));
 				qnaBean.setO_id(rs.getInt("o_id"));

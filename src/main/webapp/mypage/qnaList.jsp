@@ -14,8 +14,9 @@
 <%
 ArrayList<QnaBean> qnaList = (ArrayList<QnaBean>) request.getAttribute("qnaList");
 String m_id = (String)session.getAttribute("m_id");
+
+// int q_id = Integer.parseInt(request.getParameter("q_id"));
 %>
-<input type="hidden" name="m_id" value="<%=m_id %>">
 <table border="1">
 	<tr>
 	<td>QNA 번호</td>
@@ -35,10 +36,10 @@ String m_id = (String)session.getAttribute("m_id");
 	<td><%=q_subject %></td>
 	<td><%=q_content %></td>
 	</tr>
-		<%
+	<%
 	}
 	%>
-	</table>
+</table>
 	
 
 </body>
