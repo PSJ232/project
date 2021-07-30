@@ -1,25 +1,103 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+	HashMap<String, Integer> memberData = (HashMap<String, Integer>)request.getAttribute("memberData");
+%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 | 회원정보</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 <link rel="stylesheet" href="admin_layout/css/admin.css">
 <link rel="stylesheet" href="admin_layout/css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 	table {
 		margin: 0 auto;
-		margin-top: 150px;
-		width: 700px;
+		margin-top: 50px;
+		width: 100em;
+		text-align: center;
 	}
 	
+	.container {
+		margin-bottom: 100px;
+	}
+	
+	.search_container {
+		display: flex;
+		margin-top: 70px;
+		justify-content: flex-end;
+		margin-right: 300px;
+	}
+	
+	.chart-div {
+		
+		display: flex;
+		margin: 0 auto;
+	}
+	
+	#pieChartCanvas {
+		margin-top: 100px;
+		margin-left: 600px;
+	}
+	
+	#pie {
+		margin-top: 100px;
+		margin-left: 50px;
+	}
 </style>
 <script type="text/javascript">
+	var doughnutChartData = {
+		    labels: ["10대이하", "20대", "30대", "40대", "50대이상"],
+		    datasets: [{
+		        data: [<%=memberData.get("10대이하")%>, <%=memberData.get("20대")%>, <%=memberData.get("30대")%>, <%=memberData.get("40대")%>, <%=memberData.get("50대이상")%>],
+		        backgroundColor: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099']
+		    }] 
+		};
+	var doughnutChartDraw = function () {
+		var ctx = document.getElementById("pie").getContext('2d');
+		window.pieChart = new Chart(ctx, {
+		    type: 'doughnut',
+		    data: doughnutChartData,
+		    options: {
+		        pieceLabel: {
+		        	render: 'percentage',
+		        	precision: 2
+		          },
+		        responsive: false
+	            }
+		    });
+	};
+	// 성별비율
+	var pieChartData = {
+		    labels: ['남', '여'],
+		    datasets: [{
+		        data: [<%=memberData.get("남")%>, <%=memberData.get("여")%>],
+		        backgroundColor: ['blue', 'red']
+		    }] 
+		};
+		
+	var pieChartDraw = function () {
+		var ctx = document.getElementById('pieChartCanvas').getContext('2d');
+		    
+		window.pieChart = new Chart(ctx, {
+		    type: 'doughnut',
+		    data: pieChartData,
+		    options: {
+		        responsive: false,
+		        pieceLabel: { 
+		        render:'label'
+		           }
+		        }
+		    });
+		};
+	
 	var request = new XMLHttpRequest();
 	function searchFunction(){
 		var search_val = document.getElementById("search_val").value;
@@ -47,8 +125,12 @@
 			}
 		}
 	}
+	
+	
 	window.onload = function(){
+		pieChartDraw();
 		searchFunction();
+		doughnutChartDraw();
 	}
 </script>
 </head>
@@ -59,14 +141,22 @@
 <!-- 	<nav> -->
 		<jsp:include page="../inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
+
 	<div class="container">
-		<select name="filter" id="filter">
-			<option value="0">filter</option>
-			<option value="1">name</option>
-			<option value="2">id</option>
-			<option value="3">phone</option>
-		</select>
-		<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
+		<div class="chart-div">
+        <canvas id="pieChartCanvas" width="300px" height="300px" ></canvas>
+        <canvas id="pie" width="300px" height="300px"></canvas>
+   		</div>
+		<div class="search_container">
+			<select name="filter" id="filter">
+				<option value="0">filter</option>
+				<option value="1">name</option>
+				<option value="2">id</option>
+				<option value="3">phone</option>
+				<option value="4">grade</option>
+			</select>
+			<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
+		</div>
 		<table class="table" border="1">
 			<thead>
 				<tr>
@@ -74,7 +164,9 @@
 					<th>이름</th>
 					<th>휴대폰번호</th>
 					<th>성별</th>
+					<th>등급</th>
 					<th>가입일자</th>
+					<th>탈퇴여부</th>
 				</tr>
 			</thead>
 			<tbody id="ajaxTable">

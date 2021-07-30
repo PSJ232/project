@@ -37,7 +37,6 @@ public class AdminSearchAction {
 		}else if(command.equals("/getReviewContent.ad")) {
 			int r_id = Integer.parseInt(request.getParameter("r_id"));
 			AdminMemberDetailService service = new AdminMemberDetailService();
-			System.out.println(service.getJSON(r_id));
 			PrintWriter out;
 			try {
 				out = response.getWriter();

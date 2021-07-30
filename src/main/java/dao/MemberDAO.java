@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import db.JdbcUtil;
 import vo.AnniversaryBean;
@@ -386,6 +387,7 @@ public class MemberDAO {
 			case "1": sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_name"; break;
 			case "2": sql = "SELECT * FROM member WHERE m_id LIKE ? ORDER BY m_drop desc, m_id"; break;
 			case "3": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,m_phone"; break;
+			case "4": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,g_id"; break;
 			default: sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_id";
 			}
 			
@@ -399,7 +401,7 @@ public class MemberDAO {
 				mb.setM_phone(rs.getString("m_phone"));
 				mb.setM_birth(rs.getString("m_birth"));
 				mb.setM_gender(rs.getInt("m_gender"));
-//				mb.setG_id(rs.getInt(rs.getInt("g_id")));
+				mb.setG_id(rs.getInt("g_id"));
 //				System.out.println("g_id: " + rs.getInt("g_id"));
 				mb.setM_agree(rs.getString("m_agree"));
 				mb.setM_rdate(rs.getDate("m_rdate"));
@@ -447,33 +449,6 @@ public class MemberDAO {
 		}
 		return memberBean;
 	}
-//
-//	public ArrayList<OrderBean> getMemberOrders(String m_id) {
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		ArrayList<OrderBean> orderList = new ArrayList<OrderBean>();
-//		try {
-//			String sql = "SELECT * FROM orders WHERE m_id=?";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, m_id);
-//			rs = pstmt.executeQuery();
-//			while(rs.next()) {
-//				OrderBean orderBean = new OrderBean();
-//				orderBean.setO_id(rs.getInt("o_id"));
-//				orderBean.setM_id(m_id);
-//				orderBean.setO_amount(rs.getInt("o_amount"));
-//				orderBean.setO_payment(rs.getInt("o_payment"));
-//				orderBean.setO_rdate(rs.getDate("o_rdate"));
-//				orderList.add(orderBean);
-//			}
-//		} catch (SQLException e) {
-//			System.out.println("SQL구문오류! (MemberDAO getMemberOrders) - " + e.getMessage());
-//		}finally {
-//			JdbcUtil.close(rs);
-//			JdbcUtil.close(pstmt);
-//		}
-//		return orderList;
-//	}
 
 	public float selectGradeDetail(int g_id) {
 		System.out.println("MemberDAO - selectGradeDetail()");
@@ -528,6 +503,95 @@ public class MemberDAO {
 		}
 		
 		return pbList;
+	}
+
+	public HashMap<String, Integer> getMemberData() {
+		HashMap<String, Integer> memberData = new HashMap<String, Integer>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT COUNT(m_gender) FROM member WHERE m_gender=1 and m_drop IS NULL";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberData.put("남", rs.getInt(1));
+			}
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			sql = "SELECT COUNT(m_gender) FROM member WHERE m_gender=2 and m_drop IS NULL";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberData.put("여", rs.getInt(1));
+			}
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			sql = "SELECT COUNT(m_birth) "
+					+ "FROM member "
+					+ "WHERE date(m_birth)>date(DATE_ADD(NOW(), INTERVAL -19 YEAR)) "
+					+ "AND m_drop IS NULL";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberData.put("10대이하", rs.getInt(1));
+			}
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			sql = "SELECT COUNT(m_birth) "
+					+ "FROM member "
+					+ "WHERE date(m_birth)>date(DATE_ADD(NOW(), INTERVAL -29 YEAR)) "
+					+ "AND date(m_birth)<date(DATE_ADD(NOW(), INTERVAL -19 YEAR)) "
+					+ "AND m_drop IS NULL";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberData.put("20대", rs.getInt(1));
+			}
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			sql = "SELECT COUNT(m_birth) "
+					+ "FROM member "
+					+ "WHERE date(m_birth)>date(DATE_ADD(NOW(), INTERVAL -39 YEAR)) "
+					+ "AND date(m_birth)<date(DATE_ADD(NOW(), INTERVAL -29 YEAR)) "
+					+ "AND m_drop IS NULL";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberData.put("30대", rs.getInt(1));
+			}
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			sql = "SELECT COUNT(m_birth) "
+					+ "FROM member "
+					+ "WHERE date(m_birth)>date(DATE_ADD(NOW(), INTERVAL -49 YEAR)) "
+					+ "AND date(m_birth)<date(DATE_ADD(NOW(), INTERVAL -39 YEAR)) "
+					+ "AND m_drop IS NULL";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberData.put("40대", rs.getInt(1));
+			}
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			sql = "SELECT COUNT(m_birth) "
+					+ "FROM member "
+					+ "WHERE date(m_birth)<date(DATE_ADD(NOW(), INTERVAL -49 YEAR)) "
+					+ "AND m_drop IS NULL";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberData.put("50대이상", rs.getInt(1));
+			}
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생!(MemberDAO  - getMemberData())" + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return memberData;
 	}
 
 }

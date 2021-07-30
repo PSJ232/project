@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.AdminMemberDetailAction;
+import action.AdminMemberListAction;
 import action.AdminOrderDetailAction;
 import action.AdminSearchAction;
+import action.ChartAction;
 import action.ClassDeleteAction;
 import action.ClassDetailViewAction;
 import action.ClassDetailSelectTimelistAction;
@@ -187,8 +189,12 @@ public class AdminFrontController extends HttpServlet {
 			searchAction.execute(request, response);
 		}else if(command.equals("/MemberList.ad")) {
 			forward = new ActionForward();
-			forward.setPath("./admin_layout/member_management/memberList.jsp");
-			forward.setRedirect(false);
+			action = new AdminMemberListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/MemberDetail.ad")) {
 			forward = new ActionForward();
 			action = new AdminMemberDetailAction();
@@ -271,6 +277,14 @@ public class AdminFrontController extends HttpServlet {
 		} else if(command.equals("/ReservClassPlace.ad")) {
 			forward = new ActionForward();
 			action = new ReservClassPlaceAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/Chart.ad")) {
+			forward = new ActionForward();
+			action = new ChartAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

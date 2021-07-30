@@ -26,7 +26,19 @@ public class AdminMemberSearchService {
 			}else {
 				result.append("{\"value\": \"" + "여" + "\"},");
 			}
-			result.append("{\"value\": \"" + resultList.get(i).getM_rdate() + "\"}],");
+			switch(resultList.get(i).getG_id()) {
+			case 0: result.append("{\"value\": \"" + "White" + "\"},"); break;
+			case 1: result.append("{\"value\": \"" + "Green" + "\"},"); break;
+			case 2: result.append("{\"value\": \"" + "Red" + "\"},"); break;
+			case 3: result.append("{\"value\": \"" + "Black" + "\"},"); break;
+			default: result.append("{\"value\": \"" + "White" + "\"},"); break;
+			}
+			result.append("{\"value\": \"" + resultList.get(i).getM_rdate() + "\"},");
+			if(resultList.get(i).getM_drop() != null) {
+				result.append("{\"value\": \"" + "탈퇴" + "\"}],");
+			}else {
+				result.append("{\"value\": \"" + " " + "\"}],");
+			}
 		}
 		result.append("]}");
 		close(con);
