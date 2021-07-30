@@ -1,5 +1,9 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	HashMap<String,Integer> orderCount = (HashMap<String,Integer>)request.getAttribute("orderCount");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,17 +15,44 @@
 <link rel="stylesheet" href="./css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-	table {
-		margin: 0 auto;
-		margin-top: 100px;
-		width: 700px;
+	.container {
+		margin-left: 40em;
+		margin-top: 90px;
+	}
+	.table {
+		margin-top: 80px;
+		margin-bottom: 100px;
+		width: 800px;
+		text-align: center;
+		border-collapse: collapse;
+		background-color: #ccc;
+	}
+	.table th,td {
+		height: 3em;
 	}
 	
 	.search {
 		display: flex;
-		margin-top: 100px;
-		justify-content: flex-end;
-		margin-right: 300px;
+		margin-top: 50px;
+		justify-content: flex-start;
+	}
+	#order_status {
+		margin-top: 30px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 800px;
+		height: 70px;
+		background-color: #eee;
+		padding: 5px;
+	}
+	
+	#order_status h2 {
+		
+		height: 50px;
+		font-size: 3em;
+		padding-top: 12px;
+		align-items: center;
 	}
 	
 </style>
@@ -38,7 +69,6 @@
 		var table = document.getElementById("ajaxTable");
 		table.innerHTML = "";
 		if(request.readyState == 4 && request.status == 200){
-			console.log('('+request.responseText+')');
 			var object = eval('('+request.responseText+')'); 
 			var result = object.result;
 			for(var i = 0; i < result.length; i++){
@@ -67,6 +97,12 @@
 		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 	<div class="container">
+		<h1 id="order_title">주문현황</h1>
+		<div id="order_status">
+		<h2>주문접수 <%=orderCount.get("주문접수") %></h2>
+		<h2>배송중 <%=orderCount.get("배송중") %></h2> 
+		<h2>배송완료 <%=orderCount.get("배송완료") %></h2>
+		</div>
 		<div class="search">
 		<select name="filter" id="filter">
 			<option value="m_id">filter</option>
@@ -76,20 +112,22 @@
 		</select>
 		<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
 		</div>
-		<table class="table" border="1">
-			<thead>
-				<tr>
-					<th>주문번호</th>
-					<th>주문자</th>
-					<th>주문상품</th>
-					<th>주문금액</th>
-					<th>주문일시</th>
-					<th>배송상태</th>
-				</tr>
-			</thead>
-			<tbody id="ajaxTable">
-			</tbody>
-		</table>
+		<div class="table_container">
+			<table class="table" border="1">
+				<thead>
+					<tr>
+						<th>주문번호</th>
+						<th>주문자</th>
+						<th>주문상품</th>
+						<th>주문금액</th>
+						<th>주문일시</th>
+						<th>배송상태</th>
+					</tr>
+				</thead>
+				<tbody id="ajaxTable">
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>

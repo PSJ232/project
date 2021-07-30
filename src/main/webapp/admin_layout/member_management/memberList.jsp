@@ -20,21 +20,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 	table {
-		margin: 0 auto;
+/* 		margin: 0 auto; */
 		margin-top: 50px;
 		width: 100em;
 		text-align: center;
+		
 	}
 	
 	.container {
+		margin-top: 100px;
 		margin-bottom: 100px;
+		margin-left: 400px;
 	}
 	
 	.search_container {
+/* 		display: flex; */
+/* 		margin-top: 70px; */
+/* 		justify-content: flex-end; */
+/* 		margin-right: 300px; */
 		display: flex;
-		margin-top: 70px;
-		justify-content: flex-end;
-		margin-right: 300px;
+		margin-top: 50px;
+		justify-content: flex-start;
 	}
 	
 	.chart-div {
@@ -45,7 +51,8 @@
 	
 	#pieChartCanvas {
 		margin-top: 100px;
-		margin-left: 600px;
+/* 		margin-left: 600px; */
+		margin-left: 300px;
 	}
 	
 	#pie {
@@ -144,6 +151,7 @@
 <!-- 	</nav> -->
 
 	<div class="container">
+		<h1>회원통계</h1>
 		<div class="chart-div">
         <canvas id="pieChartCanvas" width="300px" height="300px" ></canvas>
         <canvas id="pie" width="300px" height="300px"></canvas>

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import db.JdbcUtil;
 import vo.ItemBean;
@@ -206,7 +207,7 @@ public class OrderDAO {
 				DetailBean olb = new DetailBean();
 				olb.setO_id(rs.getString("o_id"));
 				olb.setOd_id(rs.getString("od_id"));
-				olb.setI_name(rs.getString(2));
+				olb.setI_name(rs.getString(3));
 				olb.setM_id(rs.getString("m_id"));
 				olb.setO_amount(rs.getInt("o_amount"));
 				olb.setO_rdate(rs.getString("o_rdate"));
@@ -613,6 +614,43 @@ public class OrderDAO {
 			JdbcUtil.close(rs);
 		}
 		return itemArrayList;
+	}
+	
+	public HashMap<String, Integer> getOrderCount(){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		HashMap<String, Integer> orderCount = new HashMap<String, Integer>();
+		try {
+			String sql = "SELECT COUNT(DISTINCT o_id) FROM orders_detail WHERE od_invoice='주문접수'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				orderCount.put("주문접수", rs.getInt(1));
+			}
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+			sql = "SELECT COUNT(DISTINCT o_id) FROM orders_detail WHERE NOT od_invoice='주문접수' AND NOT od_confirm=1";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				orderCount.put("배송중", rs.getInt(1));
+			}
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+			
+			sql = "SELECT COUNT(DISTINCT o_id) FROM orders_detail WHERE NOT od_invoice='주문접수' AND od_confirm=1";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				orderCount.put("배송완료", rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL구문오류!(orderDAO getOrderCount()) - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		return orderCount;
 	}
 
 }
