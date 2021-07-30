@@ -20,6 +20,7 @@ import action.OrderLetterAction;
 import action.OrderMypageDetailAction;
 import action.OrderMypageListAction;
 import action.OrderNowAction;
+import action.OrderSubAction;
 import action.VisitorCartAction;
 import vo.ActionForward;
 
@@ -115,6 +116,13 @@ public class OrderFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/OrderCancel.od")) {
 			action = new OrderCancelAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/OrderSub.od")) {
+			action = new OrderSubAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

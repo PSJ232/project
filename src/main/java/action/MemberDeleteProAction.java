@@ -28,7 +28,7 @@ public class MemberDeleteProAction implements Action {
 			session.invalidate();// 로그아웃처리
 			
 			forward = new ActionForward();
-			forward.setPath("/Project"); // 메인화면 주소 미정, 임시주소
+			forward.setPath("./"); // 홈화면
 			forward.setRedirect(true);
 		} else {
 			// 실패 시 script로 실패했음을 표시

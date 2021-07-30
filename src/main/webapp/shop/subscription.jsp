@@ -24,7 +24,7 @@
  <h3>정기구독 상품</h3>
 	<table>
 		<tbody>
-			<tr><td><a href="SubContent.shop?i_id=-1"></a></td></tr>
+			<tr><td><a href="SubContent.shop?i_id=-1">사진</a></td></tr>
 			<tr><td>꽃이 일상이 되는 가벼운 시작</td></tr>
 			<tr><td><a href="SubContent.shop?i_id=-1">가벼운 S 꽃구독</a></td></tr>
 			<tr><td>17,900원~</td></tr>
@@ -38,7 +38,7 @@
 			<tr><td>무료배송</td></tr>
 		</tbody>
 		<tbody>
-			<tr><td><a href="SubContent.shop?i_id=-2"></a></td></tr>
+			<tr><td><a href="SubContent.shop?i_id=-2">사진</a></td></tr>
 			<tr><td>내 공간이 꽃이 되는 좋은 시작</td></tr>
 			<tr><td><a href="SubContent.shop?i_id=-2">딱좋은 M 꽃구독</a></td></tr>
 			<tr><td>26,900원~</td></tr>
@@ -52,7 +52,7 @@
 			<tr><td>무료배송</td></tr>
 		</tbody>
 		<tbody>
-			<tr><td><a href="SubContent.shop?i_id=-3"></a></td></tr>
+			<tr><td><a href="SubContent.shop?i_id=-3">사진</a></td></tr>
 			<tr><td>매일이 풍성해지는 일상의 행복</td></tr>
 			<tr><td><a href="SubContent.shop?i_id=-3">풍성한 L 꽃구독</a></td></tr>
 			<tr><td>34,900원~</td></tr>
@@ -66,7 +66,7 @@
 			<tr><td>무료배송</td></tr>
 		</tbody>
 		<tbody>
-			<tr><td><a href="SubContent.shop?i_id=-4"></a></td></tr>
+			<tr><td><a href="SubContent.shop?i_id=-4">사진</a></td></tr>
 			<tr><td>꽃으로 가득차는 일상의 행복</td></tr>
 			<tr><td><a href="SubContent.shop?i_id=-4">가득찬 XL 꽃구독</a></td></tr>
 			<tr><td>49,900원~</td></tr>

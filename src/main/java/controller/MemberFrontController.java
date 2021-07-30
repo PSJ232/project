@@ -14,6 +14,7 @@ import action.MemberAnnDeleteProAction;
 import action.MemberAnnInsertProAction;
 import action.MemberAnnUpdateFormAction;
 import action.MemberAnnUpdateProAction;
+import action.MemberDeleteFormAction;
 import action.MemberDeleteProAction;
 import action.MemberFindIdAction;
 import action.MemberUpdateFormAction;
@@ -90,10 +91,12 @@ public class MemberFrontController extends HttpServlet {
 			}
 
 		} else if (command.equals("/MemberDelete.me")) {
-			forward = new ActionForward();
-			forward.setPath("./member/delete.jsp");
-			forward.setRedirect(false);
-
+			action = new MemberDeleteFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/MemberDeletePro.me")) {
 			action = new MemberDeleteProAction();
 			try {

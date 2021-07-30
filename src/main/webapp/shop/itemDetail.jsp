@@ -41,6 +41,10 @@
 			document.getElementById('invenNotice').innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + inven + "개 입니다.<br>";
 		}
 	}
+	
+	function showCalendar(){
+		document.getElementById('showCalendar').innerHTML = "<br><input type='date' name='c_delivery_date' required>";
+	}
 </script>
 <%
 ItemBean itemDetail = (ItemBean)request.getAttribute("itemDetail");
@@ -86,17 +90,18 @@ switch(path){
 	<form method="post" name="order">
 		<input type="hidden" name="i_id" value=<%=i_id %>>
 		<%if(!path.equals("/SubContent.shop")){ %>
-		수령일*<input type="date" name="c_delivery_date" required><%}else{ %>
+		수령일*<input type="date" name="c_delivery_date" required><%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
 		구독 옵션*
-		<select name="sub_option" size="1">
+		<select name="sub_option" size="1" onchange="showCalendar()">
 			<option selected>구독기간을 선택해주세요.</option>
 			<option value="2">1개월동안 X 2주마다</option>
 			<option value="4">2개월동안 X 2주마다</option>
 			<option value="12">6개월동안 X 2주마다</option>
 			<option value="0">정기결제(2주마다 자동결제)</option>
 		</select>
+		<span id="showCalendar"></span>
 		
-		 <%} %><br> <!-- 정기구독 경유 접속시 표시 -->
+		 <%} %><br>
 		<input type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
 		수량<input type="number" name="c_qty" value="1" required readonly>
 		<input type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)"><br>
@@ -108,16 +113,20 @@ switch(path){
 		<span id="letter">추가상품 : 편지지추가 2,500원<br></span>
 		(무료배송)<br>
 		총주문금액 <span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %></span><br>
-		<%if(session.getAttribute("m_id") == null){%> <!-- 비회원 접속시 표시 -->
-			<input type="submit" value="장바구니(비회원)" onclick="javascript:form.action='VisitorCart.cr'"> 
-			<input type="submit" value="바로구매(비회원)" onclick="javascript:form.action='VisitorOrderCart.od'">
+		<%if(session.getAttribute("m_id") == null){ 
+				if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
+				<input type="submit" value="구독 신청(비회원)" onclick="javascript:form.action=''"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
+			<%}else{%>
+				<input type="submit" value="장바구니(비회원)" onclick="javascript:form.action='VisitorCart.cr'"> 
+				<input type="submit" value="바로구매(비회원)" onclick="javascript:form.action='VisitorOrderCart.od'">
+			<%} %>
 		<%}else{
 			if(path.equals("/SubContent.shop")){%> 
-				<input type="submit" value="구독 신청" onclick="javascript:form.action='OrderNow.od'"> <!-- 정기구독 경유 접속시 표시 -->
+				<input type="submit" value="구독 신청" onclick="javascript:form.action='OrderSub.od'"> <!-- 정기구독 경유 접속시 표시 -->
 			<%}else{%>
 				<input type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'"> 
 				<input type="submit" value="바로구매" onclick="javascript:form.action='OrderNow.od'"> 
-		<%}%>
+			<%}%>
 		<%}%>
 	</form>
 	<br>

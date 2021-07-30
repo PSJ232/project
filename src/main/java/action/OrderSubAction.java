@@ -10,12 +10,12 @@ import svc.ItemDetailService;
 import vo.ActionForward;
 import vo.CartBean;
 import vo.ItemBean;
-//바로구매 시 연결되는 Action
+//정기구독 주문시 연결되는 Action
 public class OrderSubAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("OrderNowAction");
+		System.out.println("OrderSubAction");
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
 		String m_id = (String) session.getAttribute("m_id"); // 회원아이디
