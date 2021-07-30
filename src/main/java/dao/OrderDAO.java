@@ -241,6 +241,7 @@ public class OrderDAO {
 				orderBean.setO_amount(rs.getInt("o_amount"));
 				orderBean.setO_payment(rs.getInt("o_payment"));
 				orderBean.setO_rdate(rs.getDate("o_rdate"));
+				orderBean.setO_rdate2(rs.getTimestamp("o_rdate"));
 				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
 				orderBean.setO_visitor(rs.getString("o_visitor"));
 			}

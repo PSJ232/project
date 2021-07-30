@@ -113,7 +113,7 @@ System.out.println("col : " + col.toString() );
    				
    				<tr>
    					<%if(nonCol.contains(i)) {
-   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_id() %></td><%
+   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td><%
    					} else {}
    					%>
    					<td>
@@ -150,7 +150,7 @@ System.out.println("col : " + col.toString() );
    				
    				<tr>
    					<%if(col.contains(i)) {
-   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_id() %></td><%
+   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_rdate() %></td><%
    					} else {}
    					%>
    					<td>
