@@ -56,7 +56,8 @@ String path = (String) request.getAttribute("path");
 String category = "";
 switch(path){
 	case "/QuickContent.shop" : category = "당일배송"; break;
-	case "/FlowersContent.shop" : category = "꽃다발";
+	case "/FlowersContent.shop" : category = "꽃다발"; break;
+	case "/SubContent.shop" : category = "정기구독"; break;
 }
 
 %>

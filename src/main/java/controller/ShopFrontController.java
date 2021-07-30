@@ -50,6 +50,11 @@ public class ShopFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/Subscription.shop")) {
+			forward = new ActionForward();
+			forward.setPath("./shop/subscription.jsp");
+			forward.setRedirect(false); 
+			
 		} else if (command.equals("/FlowersContent.shop")) {
 			action = new ShopDetailViewAction();
 			try {
@@ -64,8 +69,8 @@ public class ShopFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/Subscription.shop")) {
-			action = new ShopViewAction();
+		} else if (command.equals("/SubContent.shop")) {
+			action = new ShopDetailViewAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -144,7 +144,7 @@ public class ItemDAO {
 			case 2:
 				sql = "SELECT *, sum(orders_detail.od_qty) selling "
 						+ "FROM item "
-						+ "JOIN orders_detail "
+						+ "LEFT JOIN orders_detail "
 						+ "ON item.i_id = orders_detail.i_id "
 						+ "GROUP BY i_name "
 						+ "ORDER BY selling DESC";
@@ -152,9 +152,9 @@ public class ItemDAO {
 			case 1:
 				sql = "SELECT *, AVG(r_rate) rate "
 						+ "FROM item "
-						+ "JOIN orders_detail "
+						+ "LEFT JOIN orders_detail "
 						+ "ON item.i_id = orders_detail.i_id "
-						+ "JOIN review "
+						+ "LEFT JOIN review "
 						+ "ON orders_detail.od_id = review.od_id "
 						+ "GROUP BY i_name "
 						+ "ORDER BY rate DESC";
