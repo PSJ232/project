@@ -46,13 +46,13 @@ if(request.getParameter("sort")!=null) {
 	for (ItemBean item : itemList) {
 		int i_id = item.getI_id();
 		float i_discount = item.getI_discount();
-		String percent = (int)((1 - i_discount) * 100) + "%";
+		String percent = (int)(100 - i_discount * 100) + "%";
 		item.getI_itemstatus();
 		item.getI_price();
 		int price = (int)(item.getI_price() * i_discount)/100*100;
 	%>
 		<table>
-		<%if (item.getI_itemstatus().equals("판매")||item.getI_itemstatus().equals("퀵판매")){%>
+		<%if (item.getI_category() == 1 || item.getI_category() == 2){%> <!-- 1:일반배송, 2:당일배송  -->
 			<tbody>
 				<tr><td><a href="FlowersContent.shop?i_id=<%=i_id%>"><img src="../admin_layout/upload/<%=item.getI_img()%>" width="200" ></a></td></tr>
 				<tr><td><%=item.getI_desc() %></td></tr>

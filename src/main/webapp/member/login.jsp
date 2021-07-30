@@ -35,7 +35,7 @@
 		지금 회원가입 하시면 <span id="p1">1,000p</span> 바로 지급!
 	</p>
 	<br>
-	<p id="nonmember">비회원 주문 조회</p>
+	<p id="nonmember"><a href="VisitorLogin.me">비회원 주문 조회</a></p>
 
 	<footer>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>

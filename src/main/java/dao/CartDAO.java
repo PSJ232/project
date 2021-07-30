@@ -132,12 +132,12 @@ public class CartDAO {
 	}
 
 	public int updateCart(int c_id, int c_qty) {
-
+		System.out.println("CartDAO - updateCart()");
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "UPDATE cart SET c_qty=? where c_id=?";
+			String sql = "UPDATE cart SET c_qty=? WHERE c_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, c_qty);
 			pstmt.setInt(2, c_id);
@@ -153,12 +153,12 @@ public class CartDAO {
 	}
 	
 	public int deleteLetter(int c_id, int c_letter) {
-
+		System.out.println("CartDAO - deleteLetter()");
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "UPDATE cart SET c_letter=? where c_id=?";
+			String sql = "UPDATE cart SET c_letter=? WHERE c_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, c_letter);
 			pstmt.setInt(2, c_id);
@@ -174,12 +174,12 @@ public class CartDAO {
 	}
 
 	public int deleteItem(int c_id) {
-
+		System.out.println("CartDAO - deleteItem()");
 		int deleteCount = 0;
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "DELETE FROM cart where c_id=?";
+			String sql = "DELETE FROM cart WHERE c_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, c_id);
 

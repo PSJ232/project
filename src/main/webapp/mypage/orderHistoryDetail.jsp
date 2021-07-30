@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.ItemBean"%>
 <%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.OrderBean"%>
@@ -41,6 +42,8 @@
 		case 3: paymentMethod = "네이버페이"; break;
 	}
 	
+	// 결제 일자 설정
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
 
 <!-- 헤더 들어가는곳 -->
@@ -105,7 +108,7 @@
 	<%for(int i =0; i<itemList.size(); i++) {%>
 		<tr>
 		
-		<%if(i==0) {%><td rowspan=<%=itemList.size() %>><%=orderBean.getO_id() %></td><%} 
+		<%if(i==0) {%><td rowspan=<%=itemList.size() %>><%=orderBean.getO_rdate() %></td><%} 
 			else {}%>
 			
 			<td>상품 명 : <%=itemList.get(i).getI_name() %><br>
@@ -115,7 +118,9 @@
 			</td>
 		
 		<%if(i==0) {
-		   		if(orderDetailList.get(i).getOd_confirm()==1) {
+				if(orderDetailList.get(i).getOd_confirm()==2) {
+					%><td rowspan=<%=itemList.size() %>>주문 취소</td><%
+				} else if(orderDetailList.get(i).getOd_confirm()==1) {
 					%><td rowspan=<%=itemList.size() %>>배송 완료</td><%
 				} else if(orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
 					%><td rowspan=<%=itemList.size() %>>배송중</td><%
@@ -147,7 +152,7 @@
 		<td>포인트 할인 <%=orderBean.getO_point() %><br>
 			등급 할인 <%=orderBean.getO_gdiscount() %></td>
 		<td>결제 방법 <%=paymentMethod %><br>
-			결제 일자 <%=orderBean.getO_rdate() %></td>
+			결제 일자 <%=simpleDateFormat.format(orderBean.getO_rdate2()) %></td>
 	</tr>
 </table>
 * 현금영수증 발행은 1:1 문의를 이용 부탁드립니다.

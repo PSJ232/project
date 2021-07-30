@@ -18,6 +18,7 @@ public class ItemBean {
 	private String i_dpstatus;
 	private String i_itemstatus;
 	private String i_detailpage;
+	private int i_category; // 0, 1 일반상품, 2 당일배송, 3 정기구독, 4,5,6,7,8,...
 
 	public int getI_id() {
 		return i_id;
@@ -137,6 +138,14 @@ public class ItemBean {
 
 	public void setI_detailpage(String i_detailpage) {
 		this.i_detailpage = i_detailpage;
+	}
+
+	public int getI_category() {
+		return i_category;
+	}
+
+	public void setI_category(int i_category) {
+		this.i_category = i_category;
 	}
 
 }
