@@ -5,9 +5,12 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import svc.ItemDetailService;
 import svc.OrderService;
 import vo.ActionForward;
+import vo.ItemBean;
 import vo.OrderBean;
+import vo.OrderDetailBean;
 
 public class VisitorPageAction implements Action {
 
@@ -21,6 +24,15 @@ public class VisitorPageAction implements Action {
 		
 		OrderService orderService = new OrderService();
 		OrderBean visitorOrder = orderService.checkOrder(o_sender, o_id);
+		request.setAttribute("visitorOrder", visitorOrder);
+		
+		OrderDetailBean orderDetail = orderService.getOrderDetail(o_id);
+		request.setAttribute("orderDetail", orderDetail);
+		
+		ItemDetailService itemDetailService = new ItemDetailService();
+		ItemBean itemDetail = itemDetailService.selectItem(orderDetail.getI_id());
+		request.setAttribute("itemDetail", itemDetail);
+		
 		
 		if(visitorOrder == null) {
 			response.setContentType("text/html; charset=UTF-8");

@@ -1,6 +1,7 @@
 package vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class OrderBean {
 	private int o_id; // 주문번호
@@ -13,6 +14,7 @@ public class OrderBean {
 	private int o_point; // 사용포인트
 	private int o_payment; // 결제수단 0:계좌이체, 1:신용카드, 2:카카오페이, 3:네이버페이 (미정)
 	private Date o_rdate; // 주문등록일(DB시간 동기화)
+	private Timestamp o_rdate2; // 주문등록일이 Date로 선언되면 안되는데...실수했음 고치기엔 너무 늦어서. 꼭 필요한 경우 이 변수 사용.
 	private int o_gdiscount; // 등급할인액
 	private String o_visitor; // 비회원구매시 회원아이디는 "visitor"로 고정되므로, 전화번로가 저장되고 값유무로 회원 비회원 판별
 
@@ -110,6 +112,14 @@ public class OrderBean {
 
 	public void setO_visitor(String o_visitor) {
 		this.o_visitor = o_visitor;
+	}
+
+	public Timestamp getO_rdate2() {
+		return o_rdate2;
+	}
+
+	public void setO_rdate2(Timestamp o_rdate2) {
+		this.o_rdate2 = o_rdate2;
 	}
 
 }

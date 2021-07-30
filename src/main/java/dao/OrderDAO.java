@@ -540,6 +540,7 @@ public class OrderDAO {
 	}
 
 	public ArrayList<OrderDetailBean> getOrderDetailList(String m_id) {
+		System.out.println("OrderDAO - getOrderDetailList()");
 		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -616,6 +617,7 @@ public class OrderDAO {
 	}
 
 	public OrderBean selectVistorOrder(String o_sender, int o_id) {
+		System.out.println("OrderDAO - selectVistorOrder()");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		OrderBean orderBean = null;
@@ -636,6 +638,7 @@ public class OrderDAO {
 				orderBean.setO_amount(rs.getInt("o_amount"));
 				orderBean.setO_payment(rs.getInt("o_payment"));
 				orderBean.setO_rdate(rs.getDate("o_rdate"));
+				orderBean.setO_rdate2(rs.getTimestamp("o_rdate"));
 				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
 				orderBean.setO_visitor(rs.getString("o_visitor"));
 			}
@@ -646,6 +649,41 @@ public class OrderDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return orderBean;
+	}
+
+	public OrderDetailBean getOrderDetailList(int o_id) {
+		System.out.println("OrderDAO - getOrderDetailList()");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		OrderDetailBean odb = null;
+		try {
+			String sql = "SELECT * FROM orders_detail WHERE o_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, o_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				odb = new OrderDetailBean();
+				odb.setOd_id(rs.getInt("od_id"));
+				odb.setO_id(o_id);
+				odb.setI_id(rs.getInt("i_id"));
+				odb.setL_id(rs.getInt("l_id"));
+				odb.setOd_qty(rs.getInt("od_qty"));
+				odb.setOd_message(rs.getString("od_message"));
+				odb.setOd_review(rs.getInt("od_review"));
+				odb.setM_id(rs.getString("m_id"));
+				odb.setC_id(rs.getInt("c_id"));
+				odb.setOd_delivery_date(rs.getString("od_delivery_date"));
+				odb.setOd_invoice(rs.getString("od_invoice"));
+				odb.setOd_confirm(rs.getInt("od_confirm"));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+
+		return odb;
 	}
 
 }

@@ -147,4 +147,19 @@ public class OrderService {
 		return orderBean;
 		
 	}
+	// 단일상품
+	public OrderDetailBean getOrderDetail(int o_id) {
+		System.out.println("OrderService - getOrderDetail()");
+
+		Connection con = JdbcUtil.getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+
+		OrderDetailBean orderDetailList = new OrderDetailBean();
+		orderDetailList = orderDAO.getOrderDetailList(o_id);
+
+		JdbcUtil.close(con);
+
+		return orderDetailList;
+	}
 }
