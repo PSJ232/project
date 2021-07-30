@@ -24,6 +24,17 @@ public class VisitorPageAction implements Action {
 		
 		OrderService orderService = new OrderService();
 		OrderBean visitorOrder = orderService.checkOrder(o_sender, o_id);
+		
+		if(visitorOrder == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('주문내역이 없습니다.');");
+			out.print("history.back();");
+			out.print("</script>");
+			return null;
+		}
+
 		request.setAttribute("visitorOrder", visitorOrder);
 		
 		OrderDetailBean orderDetail = orderService.getOrderDetail(o_id);
@@ -33,19 +44,12 @@ public class VisitorPageAction implements Action {
 		ItemBean itemDetail = itemDetailService.selectItem(orderDetail.getI_id());
 		request.setAttribute("itemDetail", itemDetail);
 		
+		System.out.println("dddddddddddddddddddddd");
 		
-		if(visitorOrder == null) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('주문내역이 없습니다.');");
-			out.print("history.back();");
-			out.print("</script>");
-		} else {
-			forward = new ActionForward();
-			forward.setPath("./member/visitorPage.jsp"); // 메인화면 주소 미정, 임시주소
-			forward.setRedirect(false);
-		}
+		
+		forward = new ActionForward();
+		forward.setPath("./member/visitorPage.jsp");
+		forward.setRedirect(false);
 		
 		return forward;
 	}
