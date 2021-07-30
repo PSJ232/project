@@ -14,6 +14,7 @@ import action.Action;
 import action.AdminMemberDetailAction;
 import action.AdminMemberListAction;
 import action.AdminOrderDetailAction;
+import action.AdminOrderListAction;
 import action.AdminSearchAction;
 import action.ChartAction;
 import action.ClassDeleteAction;
@@ -207,7 +208,13 @@ public class AdminFrontController extends HttpServlet {
 			}
 		}else if (command.equals("/OrderList.ad")) {
 			forward = new ActionForward();
-			forward.setPath("./admin_layout/order_management/orderList.jsp");
+			action = new AdminOrderListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}else if(command.equals("/OrderSearch.ad")) {
 			AdminSearchAction searchAction = new AdminSearchAction();
 			searchAction.execute(request, response);

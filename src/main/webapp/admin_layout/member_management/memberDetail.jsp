@@ -51,10 +51,10 @@
 </head>
 <body>
 <!-- 	<header> -->
-		<jsp:include page="../../../inc/adminHeader.jsp"></jsp:include>
+		<jsp:include page="/inc/adminHeader.jsp"></jsp:include>
 <!-- 	</header> -->
 <!-- 	<nav> -->
-		<jsp:include page="../inc/navigation.jsp"></jsp:include>
+		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 <div id="memberDetail_container">
 	<h1>회원상세정보</h1>
@@ -129,7 +129,7 @@
 	</div>
 </div>
 	<footer>
-		<jsp:include page="../../../inc/footer.jsp"></jsp:include>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</footer>
 </body>
 </html>
