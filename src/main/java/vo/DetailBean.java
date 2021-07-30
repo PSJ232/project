@@ -13,7 +13,14 @@ public class DetailBean {
 	private int r_id;
 	private String r_content;
 	private String r_rdate;
+	private int od_confirm;
 	
+	public int getOd_confirm() {
+		return od_confirm;
+	}
+	public void setOd_confirm(int od_confirm) {
+		this.od_confirm = od_confirm;
+	}
 	public String getR_rdate() {
 		return r_rdate;
 	}

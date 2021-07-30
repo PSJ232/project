@@ -23,7 +23,13 @@ public class AdminOrderSearchService {
 				result.append("{\"value\": \"" + resultList.get(i).getI_name() + "\"},");
 				result.append("{\"value\": \"" + resultList.get(i).getO_amount() + "\"},");
 				result.append("{\"value\": \"" + resultList.get(i).getO_rdate() + "\"},");
-				result.append("{\"value\": \"" + resultList.get(i).getOd_invoice() + "\"}],");
+				if(!resultList.get(i).getOd_invoice().equals("주문접수") && resultList.get(i).getOd_confirm() == 0) {
+					result.append("{\"value\": \"" + "배송중" + "\"}],");
+				}else if(!resultList.get(i).getOd_invoice().equals("주문접수") && resultList.get(i).getOd_confirm() == 1) {
+					result.append("{\"value\": \"" + "배송완료" + "\"}],");
+				}else {
+					result.append("{\"value\": \"" + resultList.get(i).getOd_invoice() + "\"}],");
+				}
 			}
 			result.append("]}");
 			close(con);

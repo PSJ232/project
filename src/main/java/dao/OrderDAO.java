@@ -181,22 +181,22 @@ public class OrderDAO {
 		try {
 			switch (filter) {
 			case "1":
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
 						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
 				break;
 			case "2":
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
 						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? " + "GROUP BY o_id";
 				break;
 			case "3":
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
 						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
 				break;
 			default:
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT('외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
 						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
 			}
@@ -212,6 +212,7 @@ public class OrderDAO {
 				olb.setO_amount(rs.getInt("o_amount"));
 				olb.setO_rdate(rs.getString("o_rdate"));
 				olb.setOd_invoice(rs.getString("od_invoice"));
+				olb.setOd_confirm(rs.getInt("od_confirm"));
 				resultList.add(olb);
 			}
 		} catch (SQLException e) {
