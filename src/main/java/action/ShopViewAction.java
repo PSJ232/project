@@ -14,10 +14,10 @@ public class ShopViewAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ShopViewAction");
-		
+
 		ActionForward forward = null;
 		int sort = 1;
-		if(request.getParameter("sort")!=null) {
+		if (request.getParameter("sort") != null) {
 			sort = Integer.parseInt(request.getParameter("sort"));
 		}
 
@@ -27,18 +27,22 @@ public class ShopViewAction implements Action {
 		request.setAttribute("itemList", itemList);
 
 		String command = request.getServletPath();
-		
-		if(command.equals("/Flowers.shop") ) {
+
+		if (command.equals("/Flowers.shop")) {
 			forward = new ActionForward();
 			forward.setPath("./shop/flowers.jsp");
 			forward.setRedirect(false);
-			
-		} else if(command.equals("/Quick.shop")) {
+
+		} else if (command.equals("/Quick.shop")) {
 			forward = new ActionForward();
 			forward.setPath("./shop/quick.jsp");
 			forward.setRedirect(false);
+			
+		} else if (command.equals("/Subscription.shop")) {
+			forward = new ActionForward();
+			forward.setPath("./shop/subscription.jsp");
+			forward.setRedirect(false);
 		}
-		
 
 		return forward;
 	}
