@@ -46,7 +46,7 @@ if(request.getParameter("sort")!=null) {
 	for (ItemBean item : itemList) {
 		int i_id = item.getI_id();
 		float i_discount = item.getI_discount();
-		String percent = (int)((1 - i_discount) * 100) + "%";
+		String percent = (int)(100 - i_discount * 100) + "%";
 		item.getI_itemstatus();
 		item.getI_price();
 		int price = (int)(item.getI_price() * i_discount)/100*100;

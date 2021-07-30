@@ -52,6 +52,7 @@ int i_price = itemDetail.getI_price();
 String i_name = itemDetail.getI_name();
 int price = (int)(i_price*i_discount/100)*100;
 int inven = itemDetail.getI_inven();
+String percent = (int)(100-i_discount*100) + "%";
 String path = (String) request.getAttribute("path");
 String category = "";
 switch(path){
@@ -75,10 +76,12 @@ switch(path){
 	HOME><%=category %>><%=i_name %><br>
 	<%=itemDetail.getI_desc() %><br>
 	<%=i_name %><br>
-	<%=(int)((1-i_discount)*100) %>% <%=NumberFormat.getInstance().format(i_price) %>원 -> <%=NumberFormat.getInstance().format(price) %>원<br>
+	<%if (i_discount!=1){%> <!-- 할인이 없으면 표시 안함 -->
+	<%=percent %> <%=NumberFormat.getInstance().format(i_price) %>원 -> <%} %><%=NumberFormat.getInstance().format(price) %>원<br>
 	<hr>
-	3만원 이상 구매시, 무료배송!<br>
-	서울/경기/인천 일부지역은 새벽배송으로 신선하게 배송됩니다.
+	<%if(path.equals("/FlowersContent.shop")){ %>3만원 이상 구매시, 무료배송!<br>서울/경기/인천 일부지역은 새벽배송으로 신선하게 배송됩니다.<%} %>
+	<%if(path.equals("/QuickContent.shop")){ %>정기구독 전상품, 무료배송!<br>서울/경기/인천 일부지역은 새벽배송으로 신선하게 배송됩니다.<%} %>
+	<%if(path.equals("/QuickContent.shop")){ %>당일 배송 상품은 서울/경기 일부 지역만 배송 가능합니다.<br>배송비는 지역에 따라 차등 부과됩니다.<%} %>
 	<hr>
 	<form method="post" name="order">
 		<input type="hidden" name="i_id" value=<%=i_id %>>
