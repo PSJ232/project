@@ -725,4 +725,21 @@ public class OrderDAO {
 		return odb;
 	}
 
+	public int InsertTrackingNum(int od_id, String trackingNum) {
+		PreparedStatement pstmt = null;
+		int insertCount = 0;
+		try {
+			String sql = "UPDATE orders_detail SET od_invoice=? WHERE od_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, trackingNum);
+			pstmt.setInt(2, od_id);
+			insertCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생!(OrderDAO InsertTrackingNum) - " + e.getMessage());
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+		return insertCount;
+	}
+
 }

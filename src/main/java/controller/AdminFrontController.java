@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.AdminInsertTrackingNumProAction;
 import action.AdminMemberDetailAction;
 import action.AdminMemberListAction;
 import action.AdminOrderDetailAction;
@@ -304,6 +305,18 @@ public class AdminFrontController extends HttpServlet {
 		} else if(command.equals("/ReservClassMem.ad")) {
 			forward = new ActionForward();
 			action = new ReservClassNumAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/InsertTrackingNum.ad")) {
+			forward = new ActionForward();
+			forward.setPath("./admin_layout/order_management/insertTrackingNum.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/InsertTrackingNumPro.ad")) {
+			forward = new ActionForward();
+			action = new AdminInsertTrackingNumProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

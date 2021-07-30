@@ -172,4 +172,20 @@ public class OrderService {
 
 		return orderDetailList;
 	}
+	
+	public boolean InsertTrackingNum(int od_id, String trackingNum) {
+		Connection con = JdbcUtil.getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		int insertCount = orderDAO.InsertTrackingNum(od_id, trackingNum);
+		boolean isInsertSuccess = false;
+		if(insertCount > 0) {
+			JdbcUtil.commit(con);
+			isInsertSuccess = true;
+		}else {
+			JdbcUtil.rollback(con);
+		}
+		JdbcUtil.close(con);
+		return isInsertSuccess;
+	}
 }
