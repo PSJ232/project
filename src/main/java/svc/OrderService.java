@@ -7,7 +7,6 @@ import dao.OrderDAO;
 import db.JdbcUtil;
 import vo.OrderBean;
 import vo.OrderDetailBean;
-import vo.DetailBean;
 
 public class OrderService {
 
@@ -130,5 +129,22 @@ public class OrderService {
 		JdbcUtil.close(con);
 
 		return orderDetailList;
+	}
+
+	// 비회원 주문여부 체크하고 가져오기
+	public OrderBean checkOrder(String o_sender, int o_id) {
+		System.out.println("OrderService - checkOrder()");
+
+		Connection con = JdbcUtil.getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+
+		OrderBean orderBean = new OrderBean();
+		orderBean = orderDAO.selectVistorOrder(o_sender, o_id);
+
+		JdbcUtil.close(con);
+
+		return orderBean;
+		
 	}
 }

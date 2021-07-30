@@ -23,6 +23,7 @@ import action.MemberLogoutAction;
 import action.MemberMypageDetailAction;
 import action.MemberMypagePointDetailAction;
 import action.MemberUpdateProAction;
+import action.VisitorPageAction;
 import vo.ActionForward;
 
 //서블릿 주소가 XXX.me 일 경우 MemberFrontController 로 해당 요청이 전달됨
@@ -177,6 +178,18 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemberMypageFAQList.me")) {
 			action = new MemberMypageDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/VisitorLogin.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/visitorLogin.jsp");
+			forward.setRedirect(false);
+			
+		} else if(command.equals("/VisitorPage.me")) {
+			action = new VisitorPageAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

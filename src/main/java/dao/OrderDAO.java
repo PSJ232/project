@@ -615,4 +615,37 @@ public class OrderDAO {
 		return itemArrayList;
 	}
 
+	public OrderBean selectVistorOrder(String o_sender, int o_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		OrderBean orderBean = null;
+		try {
+			String sql = "SELECT * FROM orders WHERE o_sender=? AND o_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, o_sender);
+			pstmt.setInt(2, o_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				orderBean = new OrderBean();
+				orderBean.setO_id(o_id);
+				orderBean.setM_id(rs.getString("m_id"));
+				orderBean.setO_sender(o_sender);
+				orderBean.setO_address(rs.getString("o_address"));
+				orderBean.setO_receiver(rs.getString("o_receiver"));
+				orderBean.setO_phone(rs.getString("o_phone"));
+				orderBean.setO_amount(rs.getInt("o_amount"));
+				orderBean.setO_payment(rs.getInt("o_payment"));
+				orderBean.setO_rdate(rs.getDate("o_rdate"));
+				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
+				orderBean.setO_visitor(rs.getString("o_visitor"));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return orderBean;
+	}
+
 }

@@ -5,8 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 </head>
 <body>
+ 	 <!-- header -->
+  	<jsp:include page="../inc/header.jsp" ></jsp:include>
+  	<!-- header -->
+
+
+
+
 	주문내역상세<br>
 	[주문번호]
 	<table>
@@ -39,7 +50,12 @@
 	
 	*현금 영수증 발행은 1:1문의를 이용 부탁드립니다.<br>
 	
-	<input type="button" value="홈으로 돌아가기" onclick="">
+	<input type="button" value="홈으로 돌아가기" onclick="location.href='./'">
 	
+	
+	
+		<!-- footer -->
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+	<!-- footer -->
 </body>
 </html>
