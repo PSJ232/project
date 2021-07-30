@@ -11,17 +11,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<jsp:include page="../inc/adminHeader.jsp"></jsp:include>
-	</header>
+	<!-- header -->
+	<jsp:include page="/inc/adminHeader.jsp" ></jsp:include>
+	<!-- header -->
+	
+	<!-- nav -->
+	<jsp:include page="/inc/navigation.jsp" ></jsp:include>
+	<!-- nav -->
 	<div>
-	<nav>
-<<<<<<< HEAD
-		<jsp:include page="../partial/navi.jsp"></jsp:include>
-=======
-		<jsp:include page="../inc/navigation.jsp"></jsp:include>
->>>>>>> branch 'master' of https://github.com/PSJ232/project.git
-	</nav>
+
 	<h1>DashBoard</h1>
 	<h1 id="total_income">총 매출액 2000000원</h1> <h1 id="cash">현금 1000000원</h1> <h1 id="card">카드 1000000원</h1>
 	
@@ -34,7 +32,7 @@
 	</div>
 	
 	<footer>
-		<jsp:include page="../inc/footer.jsp"></jsp:include>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</footer>
 	<script type="text/javascript">
 		

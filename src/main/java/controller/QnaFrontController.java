@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.QnaInsertProAction;
+import action.QnaListAction;
+import action.QnaOrderListAction;
 import vo.ActionForward;
 
 /**
@@ -42,6 +44,20 @@ public class QnaFrontController extends HttpServlet {
 		} else if (command.equals("/QnaInsertPro.qna")) {
 			action = new QnaInsertProAction();
 
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/QnaList.qna")) {
+			action = new QnaListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/QnaOrderList.qna")) {
+			action = new QnaOrderListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

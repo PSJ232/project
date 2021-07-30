@@ -35,7 +35,7 @@ public class ReservClassPlaceAction implements Action {
 		request.setAttribute("f_place", f_place);
 		
 		forward = new ActionForward();
-		forward.setPath("./admin_layout/class_member/ClassReservPlaceList.jsp");
+		forward.setPath("./admin_layout/class_member/classReservPlaceList.jsp");
 		
 		return forward;
 	}

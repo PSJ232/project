@@ -6,20 +6,19 @@
         <meta charset="UTF-8">
         <title></title>
 <!--         frontController로 이동하면 root부터 경로시작함 -->
-    	<link rel="stylesheet" href="admin_layout/css/style.css">
-    	<link rel="stylesheet" href="admin_layout/css/admin.css">
+    	<link rel="stylesheet" href="./css/admin.css">
     </head>
     <body>
     	<!-- header -->
-      	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+      	<jsp:include page="/inc/adminHeader.jsp" ></jsp:include>
       	<!-- header -->
       	
    	    <!-- nav -->
-		<jsp:include page="../inc/navigation.jsp" ></jsp:include>
+		<jsp:include page="/inc/navigation.jsp" ></jsp:include>
 		<!-- nav -->
         <div id="wrap">
             <main id="container">
-                <form action="ItemInsert.ad" method="post" enctype="multipart/form-data">
+                <form action="ItemInsert.ad" method="post" enctype="multipart/sform-data">
                     <section class="product_manage_box">
                         <div>
                             <ul class="product_manage_layout">

@@ -27,25 +27,24 @@ if(cookie_check != null){
 </head>
 <body>
   <!-- header -->
-  	<jsp:include page="inc/adminHeader.jsp" ></jsp:include>
+  	<jsp:include page="inc/header.jsp" ></jsp:include>
   <!-- header -->
-	<br>
-	<hr>
-	<br>
-	<br>
-	<h1><a href="./ItemDetail.it?i_id=1">상품1번내용(test)</a></h1>
-	<br>
-	<h1><a href="./ItemDetail.it?i_id=2">상품2번내용(test)</a></h1>
-	<br>
-	<h1><a href="./ItemDetail.it?i_id=3">상품3번내용(test)</a></h1>
-	<br>
-	<h1><a href="./ItemDetail.it?i_id=4">상품4번내용(test)</a></h1>
+  
+  
 	<br>
 	<br>
 	<br>
 	<hr>
 	<br>
-	
+	<br>
+	<h1>메인화면을 꾸며주세요
+	<br>
+	<br>
+	<br>
+	<hr>
+	<br>
+	<br>
+	<br>
 	
 	
 	

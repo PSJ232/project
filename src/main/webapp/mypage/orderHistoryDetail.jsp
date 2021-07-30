@@ -1,3 +1,6 @@
+<%@page import="vo.ItemBean"%>
+<%@page import="vo.OrderDetailBean"%>
+<%@page import="vo.OrderBean"%>
 <%@page import="vo.ReviewBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
@@ -14,7 +17,30 @@
 <% 
 	String m_id = (String)session.getAttribute("m_id");
 	MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail");
-	int o_id = Integer.parseInt(request.getParameter("o_id"));
+	OrderBean orderBean = (OrderBean)request.getAttribute("orderBean");
+	ArrayList<OrderDetailBean> orderDetailList = (ArrayList<OrderDetailBean>)request.getAttribute("orderDetailList");
+	ArrayList<ItemBean> itemList = (ArrayList<ItemBean>)request.getAttribute("itemList");
+	
+	// 주소 분리(우편번호, 도로명, 분류)
+	String[] address = orderBean.getO_address().split("&");
+	
+	// 편지지 구매 이력을 기반으로 추가 상품 금액 도출
+	int addPrice = 0;
+	for(int i =0; i<orderDetailList.size(); i++) {
+		if(orderDetailList.get(i).getL_id()!=0) {
+			addPrice += 2500;
+		} else {}
+	}
+	
+	// 결제수단 구분
+	// 0:계좌이체, 1:신용카드, 2:카카오페이, 3:네이버페이 (미정)
+	String paymentMethod = "";
+	switch(orderBean.getO_payment()) {
+		case 1: paymentMethod = "신용카드"; break;
+		case 2: paymentMethod = "카카오페이"; break;
+		case 3: paymentMethod = "네이버페이"; break;
+	}
+	
 %>
 
 <!-- 헤더 들어가는곳 -->
@@ -43,21 +69,22 @@
 	<div>
   	<h2>마이꾸까</h2>
   	<ul type="none">
-  		<li><a href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
-  		<li><a href="">나의 정기구독</a></li>
-  		<li><a href="">클래스 수강내역</a></li>
-		<li><a href="ReviewInsertForm.rv">상품 리뷰</a></li>
+		<li class="list"><a href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
+		<li class="list"><a href="">나의 정기구독</a></li>
+		<li class="list"><a href="">클래스 수강내역</a></li>
+		<li class="list"><a href="ReviewInsertForm.rv">상품 리뷰</a></li>
   	</ul>
  	 </div>
  	 
  	 <div>
   	 <h2>개인정보 관리</h2>
   	<ul type="none">
-  		<li><a href="MemberUpdate.me">개인정보 수정</a></li>
-  		<li><a href="MemberMypageGradeDetail.me">회원등급</a></li>
-  		<li><a href="MemberMypagePointDetail.me">포인트</a></li>
-		<li><a href="QnaInsert.qna">1:1 문의내역</a></li>
-		<li><a href="">자주묻는질문</a></li>
+		<li class="list"><a href="MemberUpdate.me">개인정보 수정</a></li>
+		<li class="list"><a href="MemberMypageGradeDetail.me">회원등급</a></li>
+		<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
+		<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
+		<li class="list"><a href="QnaList.qna">QNA리스트</a></li>
+		<li class="list"><a href="MemberMypageFAQList.me">자주묻는질문</a></li>
   	</ul>
   	</div>
 	</section>
@@ -65,8 +92,65 @@
   <!-- 본문 내용 -->
 
 <h1> OrderHistoryDetail </h1>
-<input type="button" value="주문 취소하기" onclick="location.href='OrderCancel.od?o_id=<%=o_id %>'">
+<input type="button" value="주문 취소하기" onclick="location.href='OrderCancel.od?o_id=<%=orderBean.getO_id() %>'">
 
+<h3>주문내역 상세</h3>
+주문번호 : <%=orderBean.getO_id() %>
+
+<table border="1">
+	<tr><td>주문일자</td>
+		<td>상품정보</td>
+		<td>상태</td></tr>
+	
+	<%for(int i =0; i<itemList.size(); i++) {%>
+		<tr>
+		
+		<%if(i==0) {%><td rowspan=<%=itemList.size() %>><%=orderBean.getO_id() %></td><%} 
+			else {}%>
+			
+			<td>상품 명 : <%=itemList.get(i).getI_name() %><br>
+				수령일 : <%=orderDetailList.get(i).getOd_delivery_date() %><br>
+				받는 분 : <%=orderBean.getO_receiver() %><br>
+				가격 : <%=(int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount()) %> / <%=orderDetailList.get(i).getOd_qty() %>
+			</td>
+		
+		<%if(i==0) {
+		   		if(orderDetailList.get(i).getOd_confirm()==1) {
+					%><td rowspan=<%=itemList.size() %>>배송 완료</td><%
+				} else if(orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
+					%><td rowspan=<%=itemList.size() %>>배송중</td><%
+				} else if(orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
+					%><td rowspan=<%=itemList.size() %>>주문 접수</td><%
+				}
+			} else {}%>
+		
+		</tr>
+	<%}%>
+</table>
+
+<h3>배송정보</h3>
+<%=orderBean.getO_receiver() %>, <%=orderBean.getO_phone() %> (보내는 사람: <%=orderBean.getO_sender() %>)<br>
+[<%=address[0] %>] <%=address[1] %>, <%=address[2] %>
+
+
+<h4>결제 정보</h4>
+<table border="1">
+	<tr><td>주문 금액<br> <%=orderBean.getO_amount() %></td>
+		<td>할인 금액<br> <%=orderBean.getO_point() + orderBean.getO_gdiscount() %></td>
+		<td>최종 결제 금액<br> <%=orderBean.getO_amount() + orderBean.getO_point() + orderBean.getO_gdiscount() %></td>
+	</tr>
+	
+	<tr><td>총 상품 금액 <%=orderBean.getO_amount() %>원<br>
+			상품 금액 <%=orderBean.getO_amount() - addPrice %>원<br>
+			추가 상품 <%=addPrice %>원<br>
+			배송비 0원</td>
+		<td>포인트 할인 <%=orderBean.getO_point() %><br>
+			등급 할인 <%=orderBean.getO_gdiscount() %></td>
+		<td>결제 방법 <%=paymentMethod %><br>
+			결제 일자 <%=orderBean.getO_rdate() %></td>
+	</tr>
+</table>
+* 현금영수증 발행은 1:1 문의를 이용 부탁드립니다.
  
 <!-- 푸터 들어가는곳 -->
 

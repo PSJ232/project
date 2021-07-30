@@ -52,6 +52,12 @@ int i_price = itemDetail.getI_price();
 String i_name = itemDetail.getI_name();
 int price = (int)(i_price*i_discount/100)*100;
 int inven = itemDetail.getI_inven();
+String path = (String) request.getAttribute("path");
+String category = "";
+switch(path){
+	case "/QuickContent.shop" : category = "당일배송"; break;
+	case "/FlowersContent.shop" : category = "꽃다발";
+}
 
 %>
 <link rel="stylesheet" href="css/style.css">
@@ -61,11 +67,11 @@ int inven = itemDetail.getI_inven();
 </head>
 <body>
   <!-- header -->
-  	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+  	<jsp:include page="../inc/header.jsp" ></jsp:include>
   <!-- header -->
   
 	<!-- review -->
-	HOME>꽃다발><%=i_name %><br>
+	HOME><%=category %>><%=i_name %><br>
 	<%=itemDetail.getI_desc() %><br>
 	<%=i_name %><br>
 	<%=(int)((1-i_discount)*100) %>% <%=NumberFormat.getInstance().format(i_price) %>원 -> <%=NumberFormat.getInstance().format(price) %>원<br>

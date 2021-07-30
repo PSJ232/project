@@ -19,37 +19,32 @@ public class QnaInsertProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("QnaInsertProAction");
 		ActionForward forward = null;
-		
+
 		HttpSession session = request.getSession();
-		String m_id = (String)session.getAttribute("m_id");
-		
+		String m_id = (String) session.getAttribute("m_id");
+
 		IdMakerService idMakerService = new IdMakerService();
 		int q_id = idMakerService.newId("qna", "q_id", 0);
 		int o_id;
-		
-		if(request.getParameter("o_id")==null) {
+
+		if (request.getParameter("o_id") == null) {
 			o_id = 0;
 		} else {
 			o_id = Integer.parseInt(request.getParameter("o_id"));
 		}
-		
-		
+
 		String realFolder = "";
 		String uploadFolder = "/mypage/qnaUpload";
-		int fileSize = 1024 * 1024 * 5; //5mb
-		
+		int fileSize = 1024 * 1024 * 5; // 5mb
+
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath(uploadFolder);
 		System.out.println(realFolder);
-		MultipartRequest multi = new MultipartRequest(
-				request, 
-				realFolder, 
-				fileSize, 
-				"UTF-8", 
+		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8",
 				new DefaultFileRenamePolicy());
-		
+
 		QnaBean qnaBean = new QnaBean();
 		qnaBean.setM_id(m_id);
 		qnaBean.setQ_id(q_id);
@@ -59,14 +54,14 @@ public class QnaInsertProAction implements Action {
 		qnaBean.setQ_img(multi.getFilesystemName("q_img"));
 		qnaBean.setQ_img2(multi.getFilesystemName("q_img2"));
 		qnaBean.setQ_img3(multi.getFilesystemName("q_img3"));
-		
+
 		QnaService qnaService = new QnaService();
 		boolean isInsertSuccess = qnaService.askQna(qnaBean);
-		
-		if(isInsertSuccess) {
+
+		if (isInsertSuccess) {
 			forward = new ActionForward();
-			forward.setPath("QnaInsert.qna"); 
-			forward.setRedirect(true);
+			forward.setPath("QnaList.qna");
+			forward.setRedirect(false);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -75,7 +70,7 @@ public class QnaInsertProAction implements Action {
 			out.print("history.back();");
 			out.print("</script>");
 		}
-		
+
 		return forward;
 	}
 

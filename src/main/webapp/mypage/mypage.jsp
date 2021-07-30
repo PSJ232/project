@@ -28,7 +28,7 @@
 %>
 	<!-- 헤더 들어가는곳 -->
 	<header>
-		<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+		<jsp:include page="../inc/header.jsp" ></jsp:include>
 	</header>
 	<!-- 헤더 들어가는곳 -->
 
@@ -130,29 +130,12 @@
 						<li class="list"><a href="MemberUpdate.me">개인정보 수정</a></li>
 						<li class="list"><a href="MemberMypageGradeDetail.me">회원등급</a></li>
 						<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
-						<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
+						<li class="list"><a href="QnaList.qna">1:1 문의내역</a></li>
 						<li class="list"><a href="MemberMypageFAQList.me">자주묻는질문</a></li>
 					</ul>
 				</div>
 			</section>
 		</div>
-
-		<div id="omain">
-			<div>
-				<h3>나의 주문내역</h3>
-				<dl>
-					<dt>Flower Subscriptions</dt>
-					<dd>2주에 한번, 소중한 나를 위한 행복으로 채워보세요!</dd>
-					<dd>꾸까 꽃 정기구독</dd>
-					<dd>
-						<input id="obtn" type="button" value="보러가기">
-					</dd>
-				</dl>
-			</div>
-		</div>
-
-
-
 
 
 	<!-- 본문 내용 -->

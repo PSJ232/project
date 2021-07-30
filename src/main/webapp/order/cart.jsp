@@ -31,7 +31,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 </head>
 <body>
   <!-- header -->
-  	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+  	<jsp:include page="../inc/header.jsp" ></jsp:include>
   <!-- header -->
 	<h2>장바구니</h2>
 	<form action="OrderCart.od" method="post">
@@ -68,7 +68,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 			
 			%>
 			<tr>
-				<td><input type="checkbox" name="c_id<%=i %>" value="<%=c_id %>" checked><img src="<%=i_img%>"><br>
+				<td><input type="checkbox" name="c_id<%=i %>" value="<%=c_id %>" checked><img src="../admin_layout/upload/<%=i_img%>"><br>
 					<%=i_name%><input type="button" value="x" onclick="location.href='CartDeletePro.cr?c_id=<%=c_id%>'"><br>
 					수령일:<%=delivery_date%><br>
 					<%=NumberFormat.getInstance().format(i_price) %>원<br>

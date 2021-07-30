@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.ShopDetailViewAction;
+import action.ShopViewAction;
 import vo.ActionForward;
 
 /**
@@ -34,10 +36,34 @@ public class ShopFrontController extends HttpServlet {
 		// 액션 클래스의 공통 타입(슈퍼클래스)인 Action 인터페이스 타입 변수 선언
 		Action action = null;
 
-		if (command.equals("/flowers.shop")) {
-			forward = new ActionForward();
-			forward.setPath("./mypage/qnaInsert.jsp");
-			forward.setRedirect(false);
+		if (command.equals("/Flowers.shop")) {
+			action = new ShopViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/Quick.shop")) {
+			action = new ShopViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/FlowersContent.shop")) {
+			action = new ShopDetailViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/QuickContent.shop")) {
+			action = new ShopDetailViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 포워딩 방식 결정

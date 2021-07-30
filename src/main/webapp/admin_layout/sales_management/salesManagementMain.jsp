@@ -5,16 +5,15 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <link rel="stylesheet" href="admin_layout/css/style.css">
-    	<link rel="stylesheet" href="admin_layout/css/admin.css">
+        <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
         <!-- header -->
-      	<jsp:include page="../inc/adminHeader.jsp" ></jsp:include>
+      	<jsp:include page="/inc/adminHeader.jsp" ></jsp:include>
       	<!-- header -->
       	
    	    <!-- nav -->
-		<jsp:include page="../inc/navigation.jsp" ></jsp:include>
+		<jsp:include page="/inc/navigation.jsp" ></jsp:include>
 		<!-- nav -->
         <div id="wrap">
 	        <div class="container">

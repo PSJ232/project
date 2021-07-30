@@ -51,7 +51,7 @@
 </head>
 <body>
 <!-- 	<header> -->
-		<jsp:include page="../inc/adminHeader.jsp"></jsp:include>
+		<jsp:include page="../../../inc/adminHeader.jsp"></jsp:include>
 <!-- 	</header> -->
 <!-- 	<nav> -->
 		<jsp:include page="../inc/navigation.jsp"></jsp:include>
@@ -129,7 +129,7 @@
 	</div>
 </div>
 	<footer>
-		<jsp:include page="../inc/footer.jsp"></jsp:include>
+		<jsp:include page="../../../inc/footer.jsp"></jsp:include>
 	</footer>
 </body>
 </html>

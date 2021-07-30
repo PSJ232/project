@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import svc.ClassDetailDetailService;
 import svc.ClassDetailViewService;
+import svc.MemberService;
+import svc.ReservClassNumService;
 import vo.ActionForward;
 import vo.ClassBean;
 import vo.ClassDetailBean;
@@ -29,28 +31,28 @@ public class ReservInsertAction implements Action {
 		int r_num = Integer.parseInt(request.getParameter("r_num"));
 		
 		//회원정보 가져오기
-//		String m_id = (String) request.getAttribute("id");
+		String m_id = "hye304@naver.com"; //request.getParameter("m_id"); 아니면 세션값
+		MemberService memberService = new MemberService();
+		MemberBean mb = memberService.selectMember(m_id);
 		
-		//클래스 정보 가져오기
-		int f_id = 3; //Integer.parseInt(request.getParameter("f_id"));
-//		String fd_date = request.getParameter("fd_date");
-//		String fd_place = request.getParameter("fd_place");
-//		String fd_time = request.getParameter("fd_time");
-		//fd_date, fd_place, fd_time 세개 값을 가지고 fd_id 조회
-		int fd_id = 4; //getClassDetailIdService(fd_date, fd_place, fd_time);
-		
+		//classDetail 정보
+		int f_id = Integer.parseInt(request.getParameter("f_id"));
+		String fc_date = request.getParameter("fc_date");
+		String fd_place = request.getParameter("fd_place");
+		String fd_time = request.getParameter("fd_time");
+		ClassDetailBean cdb = new ClassDetailBean();
+		cdb.setClass_id(f_id);
+		cdb.setDate(fc_date);
+		cdb.setPlace(fd_place);
+		//타임은 따로
+		System.out.println("fc_date: " + fc_date);
 		//클래스 정보 가져오기
 		ClassDetailViewService classDetailViewService = new ClassDetailViewService();
 		ClassBean cb = classDetailViewService.getDetailContent(f_id);
 		
-		//클래스 디테일 가져오기(장소, 날짜, 시간)
-		ClassDetailDetailService classDetailService = new ClassDetailDetailService();
-		ClassDetailBean cdb = classDetailService.getDetail(fd_id);
-		
 		//요일 구하기
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
-		System.out.println(cdb.getDate());
-		Date date = simpleDate.parse(cdb.getDate());
+		Date date = simpleDate.parse(fc_date);
 		System.out.println(date);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -66,64 +68,25 @@ public class ReservInsertAction implements Action {
 		case 7: startDate = "토"; break;
 		}
 		
-		request.setAttribute("startDate", startDate);
-
-//		MemberDetailService memberDetailService = new MemberDetailService();
-//		MemberBean mb = memberDetailService.selectMember(m_id);
-		
-//		if(cb!=null && cdb!=null && mb!= null) {
-//			request.setAttribute("fclass", cb);
-//			request.setAttribute("fclass_detail", cdb);
-////			request.setAttribute("memberDetail", m_id);
-//			
-//			forward = new ActionForward();
-//			forward.setPath("./admin_layout/reserv_manage/reservInsert.jsp");
-//			forward.setRedirect(false);
-//		} else {
-//			
-//			response.setContentType("text/html; charset=UTF-8");
-//			PrintWriter out = response.getWriter();
-//			out.print("<script>");
-//			if(cb == null) {
-//				out.print("alert('결제페이지 로딩에 실패했습니다 - 클래스를 선택하세요');");
-//			} else if(cdb == null) {
-//				out.print("alert('결제페이지 로딩에 실패했습니다 - 시간과 장소를 선택하세요');");
-//			} else if(mb == null) {
-//				out.print("alert('결제페이지 로딩에 실패했습니다 - 로그인하세요');");
-//			}
-//			
-//			out.print("history.back();");
-//			out.print("</script>");
-//		}
-
-		
-		
-		if(cb!=null && cdb!=null) {
+		if(mb!=null&&cb!=null&&cdb!=null) {
 			request.setAttribute("r_num", r_num);
+			request.setAttribute("memberDetail", mb);
 			request.setAttribute("fclass", cb);
 			request.setAttribute("fclass_detail", cdb);
-//			request.setAttribute("memberDetail", m_id);
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("fd_time", fd_time);
 			
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/reserv_manage/reservInsert.jsp");
 			forward.setRedirect(false);
 		} else {
-			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
-			
-			if(cb == null) {
-				out.print("alert('결제페이지 로딩에 실패했습니다 - 클래스를 선택하세요');");
-			} else if(cdb == null) {
-				out.print("alert('결제페이지 로딩에 실패했습니다 - 시간과 장소를 선택하세요');");
-			}
-			
+			out.print("alert('결제페이지 로딩에 실패했습니다');");
 			out.print("history.back();");
 			out.print("</script>");
 		}
-
-
 
 		return forward;
 	}

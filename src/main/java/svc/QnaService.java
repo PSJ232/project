@@ -1,9 +1,15 @@
 package svc;
 
-import java.sql.Connection;
+import static db.JdbcUtil.getConnection;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import dao.CartDAO;
 import dao.QnaDAO;
 import db.JdbcUtil;
+import vo.CartBean;
 import vo.QnaBean;
 
 public class QnaService {
@@ -28,6 +34,20 @@ public class QnaService {
 		JdbcUtil.close(con);
 		
 		return isInsertSuccess;
+	}
+	
+	public ArrayList<QnaBean> getQnaList(String m_id) {
+
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+
+		ArrayList<QnaBean> qnaList = qnaDAO.selectQnaList(m_id);
+
+		JdbcUtil.close(con);
+
+		return qnaList;
+	
 	}
 
 

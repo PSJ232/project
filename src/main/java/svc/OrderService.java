@@ -116,4 +116,19 @@ public class OrderService {
 
 		return isUpdateSuccess;
 	}
+
+	public ArrayList<OrderDetailBean> getOrderDetailList(String m_id) {
+		System.out.println("OrderService - getOrderDetailList()");
+
+		Connection con = JdbcUtil.getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+
+		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
+		orderDetailList = orderDAO.getOrderDetailList(m_id);
+
+		JdbcUtil.close(con);
+
+		return orderDetailList;
+	}
 }
