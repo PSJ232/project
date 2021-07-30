@@ -65,6 +65,7 @@ public class ItemDAO {
 				itemDetail.setI_dpstatus(rs.getString("i_dpstatus"));
 				itemDetail.setI_itemstatus(rs.getString("i_itemstatus"));
 				itemDetail.setI_detailpage(rs.getString("i_detailpage"));
+				itemDetail.setI_category(rs.getInt("i_category"));
 
 			}
 
@@ -110,6 +111,8 @@ public class ItemDAO {
 				ib.setI_size(rs.getString("i_size"));
 				ib.setI_dpstatus(rs.getString("i_dpstatus"));
 				ib.setI_itemstatus(rs.getString("i_itemstatus"));
+				ib.setI_detailpage(rs.getString("i_detailpage"));
+				ib.setI_category(rs.getInt("i_category"));
 
 				itemList.add(ib);
 			}
@@ -177,6 +180,8 @@ public class ItemDAO {
 				ib.setI_size(rs.getString("i_size"));
 				ib.setI_dpstatus(rs.getString("i_dpstatus"));
 				ib.setI_itemstatus(rs.getString("i_itemstatus"));
+				ib.setI_detailpage(rs.getString("i_detailpage"));
+				ib.setI_category(rs.getInt("i_category"));
 
 				itemList.add(ib);
 			}
@@ -198,7 +203,7 @@ public class ItemDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "INSERT INTO item VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO item VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, ib.getI_id());
@@ -216,6 +221,7 @@ public class ItemDAO {
 			pstmt.setString(13, ib.getI_dpstatus());
 			pstmt.setString(14, ib.getI_itemstatus());
 			pstmt.setString(15, ib.getI_detailpage());
+			pstmt.setInt(16, ib.getI_category());
 
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {

@@ -30,15 +30,17 @@
 </script>
 <%
 String m_id = (String) session.getAttribute("m_id");
+
+// 자동로그인을 위한 쿠키확인작업
 String cookie_check = request.getHeader("Cookie");
 if (cookie_check != null) {
 	if (m_id == null) {
 		Cookie[] cookies = request.getCookies();
 		for (Cookie cookie : cookies) {
-	if (cookie.getName().equals("m_id")) {
-		m_id = cookie.getValue();
-		session.setAttribute("m_id", m_id);
-	}
+			if (cookie.getName().equals("m_id")) {
+				m_id = cookie.getValue();
+				session.setAttribute("m_id", m_id);
+			}
 		}
 	}
 }
@@ -88,7 +90,7 @@ if(m_id == null) {
 					<a href="./"><img src="admin_layout/img/logo.png" alt="" class="logo_small"></a>
 				</div>
 				<ul class="nav_bar_list">
-					<li class="item"><a href="#">꽃 정기구독</a></li>
+					<li class="item"><a href="Subscription.shop">꽃 정기구독</a></li>
 					<li class="item"><a href="Flowers.shop">꽃다발</a></li>
 					<li class="item"><a href="Quick.shop">당일배송</a></li>
 					<li class="item"><a href="#">플라워클래스</a></li>

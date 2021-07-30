@@ -64,6 +64,13 @@ public class ShopFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/Subscription.shop")) {
+			action = new ShopViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 포워딩 방식 결정

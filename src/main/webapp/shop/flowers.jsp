@@ -52,7 +52,7 @@ if(request.getParameter("sort")!=null) {
 		int price = (int)(item.getI_price() * i_discount)/100*100;
 	%>
 		<table>
-		<%if (item.getI_itemstatus().equals("판매")||item.getI_itemstatus().equals("퀵판매")){%>
+		<%if (item.getI_itemstatus().equals("판매중")||item.getI_itemstatus().equals("당일배송")){%>
 			<tbody>
 				<tr><td><a href="FlowersContent.shop?i_id=<%=i_id%>"><img src="../admin_layout/upload/<%=item.getI_img()%>" width="200" ></a></td></tr>
 				<tr><td><%=item.getI_desc() %></td></tr>
