@@ -1,3 +1,5 @@
+<%@page import="java.sql.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.CartBean"%>
@@ -93,8 +95,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <%
+Calendar cal = Calendar.getInstance();
+int sub_option = 0;
+if(request.getParameter("sub_option") != null) {
+	sub_option = Integer.parseInt(request.getParameter("sub_option"));
+}
+String sub_name = "";
+switch(sub_option){
+case 2 : sub_name = "1개월동안 X 2주마다"; break;
+case 4 : sub_name = "2개월동안 X 2주마다"; break;
+case 12 : sub_name = "6개월동안 X 2주마다"; break;
+case 99 : sub_name = "정기결제(2주마다 자동결제)"; break;
+}
+
 MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
 String m_name = memberDetail.getM_name();
 float g_discount = (float) request.getAttribute("g_discount"); // 등급에 따른 할인 정보 
@@ -116,6 +130,7 @@ if(request.getAttribute("orderFormInfo") != null) { // 편지지가 선택되지
 String addLetter;// 편지가 추가되면 해당 html 추가
 
 %>
+</head>
 <body>
 	<h1>주문/결제</h1>
 	<h3>주문내역 확인</h3>
@@ -129,6 +144,19 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			addLetter = "";
 			letterPrice = 0;
 		}
+		
+		cal.setTime(Date.valueOf(checkList.get(i).getC_delivery_date())); // 요일
+		int dNum = cal.get(Calendar.DAY_OF_WEEK);
+		String day = "";
+		switch(dNum){
+		case 1 : day = "일요일"; break;
+		case 2 : day = "월요일"; break;
+		case 3 : day = "화요일"; break;
+		case 4 : day = "수요일"; break;
+		case 5 : day = "목요일"; break;
+		case 6 : day = "금요일"; break;
+		case 7 : day = "토요일"; break;
+		}
 
 		price = ((int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100 * checkList.get(i).getC_qty()) + letterPrice; // 단일상품금액 = (원가 * 할인) * 수량 + 편지요금
 		totalPrice += price; // 모든 상품의 누적 총 금액(쿠폰 및 포인트 제외)
@@ -136,7 +164,13 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<img src="<%=itemList.get(i).getI_img()%>">
 		<%=itemList.get(i).getI_name() %><br>
 		<%=NumberFormat.getInstance().format(price) %><br>
-		수령일:<%=checkList.get(i).getC_delivery_date() %><br>
+		
+		<%if(sub_name.equals("")){%>
+		수령일:<%=day %>,<%=checkList.get(i).getC_delivery_date() %><br>
+		<%} else {%> <!-- 정기구독 경유 접속시 표시 -->
+		첫 구독일:<%=day %>,<%=checkList.get(i).getC_delivery_date() %><br>
+		구독내용:<%=sub_name %><br>
+		<%} %>
 		<%=addLetter %>
 		수량:<%=checkList.get(i).getC_qty()%><br>
 		<br>
@@ -222,9 +256,10 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		%>
 		<input type="hidden" name="iNum" value="<%=i %>">
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
+		<input type="hidden" name="sub_option" value="<%=sub_option%>"> <!-- 정기구독 옵션 번호 -->
 		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
 		<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
-		<input type="hidden" name="paymentAmount" value="<%=totalPrice %>"> <!-- 포인트 적용버튼을 누르면 계산된 금액으로 value가 변경됨 -->
+		<input type="hidden" name="paymentAmount" value="<%=totalPrice %>"> <!-- 포인트 적용버튼을 누르면 계산된 금액으로 value가 변경됨 (확인필요)-->
 		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500'), defaultPoint()" > <!-- 결제 api에 따라서 변경해야됨  -->
 	<br>
 	<br>

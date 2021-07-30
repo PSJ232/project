@@ -22,6 +22,11 @@ public class OrderLetterAction implements Action {
 //		HttpSession session = request.getSession();
 //		String m_id = (String) session.getAttribute("m_id");
 		String m_id = request.getParameter("m_id");
+		int sub_option = 0;
+		if(request.getParameter("sub_option") != null) {
+			sub_option = Integer.parseInt(request.getParameter("sub_option"));
+			request.setAttribute("sub_option", sub_option);
+		}
 
 		int iNum = Integer.parseInt(request.getParameter("iNum")); // 선택된 상품의 수
 		

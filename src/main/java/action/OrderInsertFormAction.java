@@ -17,7 +17,7 @@ public class OrderInsertFormAction implements Action {
 
 		HttpSession session = request.getSession();
 		String m_id = (String) session.getAttribute("m_id"); // 회원 정보 추출
-
+		
 		String dualPath = "./order/insert.jsp";
 		if (m_id == null) { // 비회원 구매 경로 변경
 			m_id = "visitor";

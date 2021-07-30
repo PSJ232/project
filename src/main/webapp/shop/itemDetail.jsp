@@ -92,12 +92,12 @@ switch(path){
 		<%if(!path.equals("/SubContent.shop")){ %>
 		수령일*<input type="date" name="c_delivery_date" required><%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
 		구독 옵션*
-		<select name="sub_option" size="1" onchange="showCalendar()">
-			<option selected>구독기간을 선택해주세요.</option>
-			<option value="2">1개월동안 X 2주마다</option>
-			<option value="4">2개월동안 X 2주마다</option>
-			<option value="12">6개월동안 X 2주마다</option>
-			<option value="0">정기결제(2주마다 자동결제)</option>
+		<select name="sub_option"  size="1" onchange="showCalendar()" required>
+			<option hidden="" value="">구독기간을 선택해주세요.</option>
+			<option value=2>1개월동안 X 2주마다</option>
+			<option value=4>2개월동안 X 2주마다</option>
+			<option value=12>6개월동안 X 2주마다</option>
+			<option value=99>정기결제(2주마다 자동결제)</option>
 		</select>
 		<span id="showCalendar"></span>
 		

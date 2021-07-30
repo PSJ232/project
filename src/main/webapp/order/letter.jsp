@@ -1,3 +1,5 @@
+<%@page import="java.sql.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="vo.ItemBean"%>
 <%@page import="svc.ItemDetailService"%>
 <%@page import="vo.CartBean"%>
@@ -13,6 +15,18 @@
 <%
 ArrayList<CartBean> checkList = (ArrayList<CartBean>) request.getAttribute("checkList"); //장바구니에서 가져온 목록
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
+Calendar cal = Calendar.getInstance();
+int sub_option = 0;
+String sub_name = "";
+if(request.getParameter("sub_option") != null){ // 정기구독 경유로 접속한건지 판별
+	sub_option = Integer.parseInt(request.getParameter("sub_option"));
+}
+switch(sub_option){
+	case 2 : sub_name = "1개월동안 X 2주마다"; break;
+	case 4 : sub_name = "2개월동안 X 2주마다"; break;
+	case 12 : sub_name = "6개월동안 X 2주마다"; break;
+	case 99 : sub_name = "정기결제(2주마다 자동결제)"; break;
+}
 %>
 <body>
 	주문/결제<br>
@@ -32,12 +46,30 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 			int c_id = checkList.get(i).getC_id(); //장바구니 번호
 			
 			
+			cal.setTime(Date.valueOf(checkList.get(i).getC_delivery_date())); // 요일
+			int dNum = cal.get(Calendar.DAY_OF_WEEK);
+			String day = "";
+			switch(dNum){
+			case 1 : day = "일요일"; break;
+			case 2 : day = "월요일"; break;
+			case 3 : day = "화요일"; break;
+			case 4 : day = "수요일"; break;
+			case 5 : day = "목요일"; break;
+			case 6 : day = "금요일"; break;
+			case 7 : day = "토요일"; break;
+			}
 			
 			if(c_letter == 1){ //편지 선택함
 		%>		
 				<img src="<%=i_img %>"><br>
 				<%=i_name %><br>
-				수령일: <%=delivery_date %><br>
+				
+				<%if(sub_name.equals("")){%>
+				수령일:<%=day %>,<%=delivery_date %><br>
+				<%} else {%> <!-- 정기구독 경유 접속시 표시 -->
+				첫 구독일:<%=day %>,<%=delivery_date %><br>
+				구독내용:<%=sub_name %><br>
+				<%} %>
 				추가상품:편지<br>
 	
 				<input type="radio" name="l_id<%=i %>" value=1>감사 
@@ -50,6 +82,8 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				<input type="hidden" name="i_id<%=i %>" value="<%=i_id%>">
 				<input type="hidden" name="c_qty<%=i %>" value="<%=c_qty%>">
 				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=delivery_date%>">
+				<input type="hidden" name="sub_option" value="<%=sub_option%>">
+				
 				
 				<br><br><br>
 		<%} else { //편지 선택안함 %> 
@@ -60,6 +94,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				<input type="hidden" name="c_qty<%=i %>" value="<%=c_qty%>">
 				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=delivery_date%>">
 				<input type="hidden" name="od_message<%=i %>" value="">
+				<input type="hidden" name="sub_option" value="<%=sub_option%>">
 				
 				
 		<%
