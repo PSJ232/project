@@ -44,9 +44,6 @@ public class VisitorPageAction implements Action {
 		ItemBean itemDetail = itemDetailService.selectItem(orderDetail.getI_id());
 		request.setAttribute("itemDetail", itemDetail);
 		
-		System.out.println("dddddddddddddddddddddd");
-		
-		
 		forward = new ActionForward();
 		forward.setPath("./member/visitorPage.jsp");
 		forward.setRedirect(false);
