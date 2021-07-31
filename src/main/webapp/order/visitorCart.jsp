@@ -17,7 +17,7 @@ CartBean cartDetail = (CartBean) request.getAttribute("cartDetail");
 </head>
 <body>
 	<h2>장바구니(비회원 미리보기)</h2>
-	<form action="VisitorOrderCart.od" method="post">
+	<form action="VisitorOrderNow.od" method="post">
 		<table border="1">
 			<tr>
 				<td>상품정보</td>
@@ -70,7 +70,7 @@ CartBean cartDetail = (CartBean) request.getAttribute("cartDetail");
 		<input type="hidden" name="c_letter" value="<%=c_letter%>">
 		
 		<input type="submit" value="할인없이 구매하기"><br>
-		<input type="button" value="회원가입" onclick=""><br>
+		<input type="button" value="회원가입" onclick="location.href='MemberJoin.me'"><br>
 		지금 회원가입 하시면 1,000p 바로 지급!
 	</form>
 

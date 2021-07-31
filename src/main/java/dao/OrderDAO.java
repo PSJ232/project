@@ -656,13 +656,14 @@ public class OrderDAO {
 		return orderCount;
 	}
 
+	// 비회원 주문내역 확인 기능
 	public OrderBean selectVistorOrder(String o_sender, int o_id) {
 		System.out.println("OrderDAO - selectVistorOrder()");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		OrderBean orderBean = null;
 		try {
-			String sql = "SELECT * FROM orders WHERE o_sender=? AND o_id=?";
+			String sql = "SELECT * FROM orders WHERE o_sender=? AND o_id=? AND m_id='visitor'";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, o_sender);
 			pstmt.setInt(2, o_id);

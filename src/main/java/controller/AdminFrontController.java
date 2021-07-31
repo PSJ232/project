@@ -62,7 +62,7 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			// 제품상세페이지
-		} else if (command.equals("/ItemDetailView.ad")) {
+		} else if (command.equals("/ItemDetail.ad")) {
 			action = new ItemDetailAction();
 			try {
 				forward = action.execute(request, response);

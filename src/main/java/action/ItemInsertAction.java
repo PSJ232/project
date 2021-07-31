@@ -46,6 +46,7 @@ public class ItemInsertAction implements Action{
 		ib.setI_id(Integer.parseInt(multi.getParameter("i_id")));
 		ib.setI_name(multi.getParameter("i_name"));
 		ib.setI_desc(multi.getParameter("i_desc"));
+		ib.setI_category(Integer.parseInt(multi.getParameter("i_category")));
 		ib.setI_price(Integer.parseInt(multi.getParameter("i_price")));
 		ib.setI_inven(Integer.parseInt(multi.getParameter("i_inven")));
 		ib.setI_img(multi.getFilesystemName("i_img"));

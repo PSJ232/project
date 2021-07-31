@@ -51,10 +51,12 @@ public class ShopFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/Subscription.shop")) {
-			forward = new ActionForward();
-			forward.setPath("./shop/subscription.jsp");
-			forward.setRedirect(false); 
-			
+			action = new ShopViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/FlowersContent.shop")) {
 			action = new ShopDetailViewAction();
 			try {

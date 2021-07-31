@@ -21,7 +21,7 @@
             </span>
             <span class="customer_info2">(평일 10:00 - 13:00, 14:00 - 18:00/ 주말&공휴일 제외)</span>
             <div class="customer_info_btns">
-              <a href="location.href='#'">자주묻는 질문</a>
+              <a href="Faq.me">자주묻는 질문</a>
               <a href="QnaInsert.qna">1:1 문의하기</a>
             </div>
           </div>

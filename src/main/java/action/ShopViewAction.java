@@ -37,6 +37,11 @@ public class ShopViewAction implements Action {
 			forward = new ActionForward();
 			forward.setPath("./shop/quick.jsp");
 			forward.setRedirect(false);
+			
+		} else if (command.equals("/Subscription.shop")) {
+			forward = new ActionForward();
+			forward.setPath("./shop/subscription.jsp");
+			forward.setRedirect(false);
 		}
 		
 		return forward;

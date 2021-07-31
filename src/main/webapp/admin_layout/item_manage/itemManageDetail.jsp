@@ -10,7 +10,6 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="./css/admin.css">
-    <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
     <body>
@@ -50,6 +49,14 @@
                                 <li>
                                     <label>요약설명</label>
                                     <input type="text" class="product_manage_info" value="<%=ib.getI_desc()%>" readonly>
+                                </li>
+                                <li>
+                                    <label>카테고리</label>
+                                    <select name="i_category" class="product_manage_size">
+                                    	<option value="1">일반상품</option>
+                                    	<option value="2">당일배송</option>
+                                    	<option value="3">정기구독</option>
+                                    </select>
                                 </li>
                                 <li>
                                     <label>size(S/M/L)</label>

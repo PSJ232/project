@@ -3,16 +3,14 @@ package action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.ItemDetailService;
 import vo.ActionForward;
 import vo.CartBean;
-import vo.ItemBean;
 
-public class VisitorCartViewAction implements Action {
+public class VisitorJoinViewAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("VisitorCartViewAction");
+		System.out.println("VisitorJoinViewAction");
 		ActionForward forward = null;
 		
 		String m_id = "visitor"; // 비회원
@@ -30,12 +28,8 @@ public class VisitorCartViewAction implements Action {
 		cartDetail.setC_delivery_date(c_delivery_date);
 		request.setAttribute("cartDetail", cartDetail);
 		
-		ItemDetailService itemDetailService = new ItemDetailService();
-		ItemBean itemDetail = itemDetailService.selectItem(i_id);
-		request.setAttribute("itemDetail", itemDetail);
-		
 		forward = new ActionForward();
-		forward.setPath("./order/visitorCart.jsp"); // 메인화면 주소 미정, 임시주소
+		forward.setPath("./member/login.jsp");
 		forward.setRedirect(false);
 		
 		return forward;

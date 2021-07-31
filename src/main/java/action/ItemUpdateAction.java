@@ -46,6 +46,7 @@ public class ItemUpdateAction implements Action {
 			ib.setI_name(multi.getParameter("i_name"));
 			ib.setI_desc(multi.getParameter("i_desc"));
 			ib.setI_price(Integer.parseInt(multi.getParameter("i_price")));
+			ib.setI_category(Integer.parseInt(multi.getParameter("i_category")));
 			ib.setI_inven(Integer.parseInt(multi.getParameter("i_inven")));
 			ib.setI_img(multi.getFilesystemName("i_img"));
 			ib.setI_subimg2(multi.getFilesystemName("i_subimg2"));

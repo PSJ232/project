@@ -24,6 +24,7 @@ import action.MemberLogoutAction;
 import action.MemberMypageDetailAction;
 import action.MemberMypagePointDetailAction;
 import action.MemberUpdateProAction;
+import action.VisitorJoinViewAction;
 import action.VisitorPageAction;
 import vo.ActionForward;
 
@@ -179,13 +180,6 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberMypageFAQList.me")) {
-			action = new MemberMypageDetailAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else if (command.equals("/VisitorLogin.me")) {
 			forward = new ActionForward();
 			forward.setPath("./member/visitorLogin.jsp");
@@ -198,6 +192,17 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/VisitorJoin.me")) {
+			action = new VisitorJoinViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/Faq.me")){
+			forward = new ActionForward();
+			forward.setPath("./mypage/faq.jsp");
+			forward.setRedirect(false);
 		}
 
 		// -------------------------------------------------------------------------

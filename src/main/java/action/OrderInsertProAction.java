@@ -24,7 +24,6 @@ public class OrderInsertProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("OrderInsertProAction");
 		ActionForward forward = null;
-		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(Date.valueOf(request.getParameter("od_delivery_date0"))); // 정기구독 구독시작일 날자세팅
@@ -32,9 +31,12 @@ public class OrderInsertProAction implements Action {
 		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
 		OrderDetailBean orderDetailBean = null;
 		
-		int sub_option = Integer.parseInt(request.getParameter("sub_option"));
-		if(sub_option == 0) {
+		int sub_option = 0;
+		if(request.getParameter("sub_option") != null) {
+			sub_option = Integer.parseInt(request.getParameter("sub_option"));
+		}
 		
+		if(sub_option == 0) {
 			int iNum = Integer.parseInt(request.getParameter("iNum"));
 			
 			for (int i = 0 ; i < iNum ; i++) {
@@ -51,7 +53,7 @@ public class OrderInsertProAction implements Action {
 				orderDetailList.add(orderDetailBean);
 				
 			}
-		} else { // 정기구독 경유 시 표시
+		} else { // 정기구독 경유 시 표시 되는 부분 
 			
 			for (int i = 0 ; i < sub_option ; i++) {
 				orderDetailBean = new OrderDetailBean();
@@ -62,7 +64,7 @@ public class OrderInsertProAction implements Action {
 				orderDetailBean.setOd_qty(Integer.parseInt(request.getParameter("od_qty0")));
 				orderDetailBean.setOd_message(request.getParameter("od_message0"));
 				orderDetailBean.setM_id(request.getParameter("m_id"));
-				orderDetailBean.setC_id(77777777);
+				orderDetailBean.setC_id(Integer.parseInt(request.getParameter("c_id")));
 				orderDetailBean.setOd_delivery_date(sdf.format(cal.getTime()));
 				orderDetailList.add(orderDetailBean);
 				cal.add(Calendar.DAY_OF_MONTH, 7);
