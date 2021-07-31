@@ -95,7 +95,7 @@ public class ClassDAO {
 				classBean.setClass_price(rs.getInt("f_price"));
 				classBean.setClass_max_member(rs.getInt("f_maxmem"));
 				classBean.setClass_main_img(rs.getString("f_main_img"));
-				classBean.setClass_create_date(rs.getTimestamp("f_rdate"));
+				classBean.setClass_create_date(rs.getString("f_rdate"));
 				classBean.setClass_date(rs.getString("f_cdate"));
 				classBean.setClass_place(rs.getString("f_place"));
 				classBean.setClass_sub_img1(rs.getString("f_sub_img1"));
@@ -128,7 +128,7 @@ public class ClassDAO {
 				classBean.setClass_price(rs.getInt("f_price"));
 				classBean.setClass_max_member(rs.getInt("f_maxmem"));
 				classBean.setClass_main_img(rs.getString("f_main_img"));
-				classBean.setClass_create_date(rs.getTimestamp("f_rdate"));
+				classBean.setClass_create_date(rs.getString("f_rdate"));
 				classBean.setClass_date(rs.getString("f_cdate"));
 				classBean.setClass_place(rs.getString("f_place"));
 				classBean.setClass_sub_img1(rs.getString("f_sub_img1"));
@@ -167,7 +167,7 @@ public class ClassDAO {
 				classBean.setClass_sub_img1(rs.getString("f_sub_img1"));
 				classBean.setClass_sub_img2(rs.getString("f_sub_img2"));
 				classBean.setClass_sub_img3(rs.getString("f_sub_img3"));
-				classBean.setClass_create_date(rs.getTimestamp("f_rdate"));
+				classBean.setClass_create_date(rs.getString("f_rdate"));
 				classBean.setClass_date(rs.getString("f_cdate"));
 				classBean.setClass_readcount(rs.getInt("f_readcount"));
 				
