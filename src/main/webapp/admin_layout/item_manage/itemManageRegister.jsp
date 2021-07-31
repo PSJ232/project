@@ -46,9 +46,10 @@
                                     <label>size(S/M/L)</label>
                                     <select class="product_manage_size" name="i_size" required>
                                         <option value="null">선택</option>
-                                        <option value="S">Small</option>
-                                        <option value="M">Medium</option>
-                                        <option value="L">Large</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="XL">XL</option>
                                     </select>
                                 </li>
                                 <li>
@@ -56,18 +57,17 @@
                                     <input type="text" name="i_inven" class="product_manage_inven" required>
                                 </li>
                                 <li>
-                                    <label>진열상태</label>
+                                    <label>진열 여부</label>
                                     <select class="product_manage_dpstatus" name="i_dpstatus" required>
-                                        <option value="">선택</option>
-                                        <option value="prepare">준비중</option>
-                                        <option value="on sale">판매중</option>
-                                        <option value="sold out">매진</option>
+                                        <option value="">선택하세요</option>
+                                        <option value="판매">판매</option>
+                                        <option value="비판매">비판매</option>
                                     </select>
                                 </li>
                                 <li>
-                                    <label>제품상태</label> <!--신상품, 재입고-->
+                                    <label>상품 상태</label> <!--신상품, 재입고-->
                                     <select class="product_manage_productstatus" name="i_itemstatus" required>
-                                        <option value="">선택</option>
+                                        <option value="">선택하세요</option>
                                         <option value="prepare">준비중</option>
                                         <option value="on sale">판매중</option>
                                         <option value="sold out">매진</option>
