@@ -37,7 +37,16 @@ public class MemberMypageDetailAction implements Action {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./mypage/FAQList.jsp");
+		} else if(command.equals("/ReviewInsert.rv")) {
+			forward = new ActionForward();
+			forward.setPath("./mypage/review.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/ReviewDelete.rv")) {
+			forward = new ActionForward();
+			forward.setPath("./mypage/reviewDelete.jsp");
+			forward.setRedirect(false);
 		}
+			
 		
 		return forward;
 	}

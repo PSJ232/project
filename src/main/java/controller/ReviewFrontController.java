@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberMypageDetailAction;
 import action.ReviewDeleteProAction;
 import action.ReviewInsertProAction;
 import action.ReviewUpdateFormAction;
@@ -43,9 +44,12 @@ public class ReviewFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/ReviewInsert.rv")) {
-			forward = new ActionForward();
-			forward.setPath("./mypage/review.jsp");
-			forward.setRedirect(false);
+			action = new MemberMypageDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/ReviewInsertPro.rv")) {
 			action = new ReviewInsertProAction();
 			try {
@@ -68,9 +72,12 @@ public class ReviewFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/ReviewDelete.rv")) {
-			forward = new ActionForward();
-			forward.setPath("./mypage/reviewDelete.jsp");
-			forward.setRedirect(false);
+			action = new MemberMypageDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/ReviewDeletePro.rv")) {
 			action = new ReviewDeleteProAction();
 			try {
