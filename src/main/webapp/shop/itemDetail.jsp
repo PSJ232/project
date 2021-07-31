@@ -13,14 +13,19 @@
 	function isLetter(price) {
 		var c_letter = document.order.c_letter.value;
 		var qty = document.order.c_qty.value;
+		var sub_option = 1;
+		if(document.order.sub_option != null) {
+			sub_option = document.order.sub_option.value;
+		}
+		
 		if(c_letter==0){
 			document.getElementById('letter').innerHTML = "";
-			document.getElementById('amount').innerHTML = (qty*price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			document.getElementById('totalPrice').innerHTML = (qty*price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('totalPrice').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		} else {
 			document.getElementById('letter').innerHTML = "추가상품 : 편지지추가 2,500원<br>";
-			document.getElementById('amount').innerHTML = (qty*price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			document.getElementById('totalPrice').innerHTML = ((qty*price)+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('totalPrice').innerHTML = ((qty*price*sub_option)+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 	}
 	
@@ -92,12 +97,12 @@ switch(path){
 		<%if(!path.equals("/SubContent.shop")){ %>
 		수령일*<input type="date" name="c_delivery_date" required><%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
 		구독 옵션*
-		<select name="sub_option"  size="1" onchange="showCalendar()" required>
+		<select name="sub_option" size="1" onchange="showCalendar(), isLetter(<%=price %>)" required>
 			<option hidden="" value="">구독기간을 선택해주세요.</option>
 			<option value=2>1개월동안 X 2주마다</option>
 			<option value=4>2개월동안 X 2주마다</option>
 			<option value=12>6개월동안 X 2주마다</option>
-			<option value=24>정기결제(2주마다 자동결제)</option>
+			<option value=24>12개월동안 X 2주마다</option>
 		</select>
 		<span id="showCalendar"></span>
 		
@@ -118,7 +123,7 @@ switch(path){
 				<input type="submit" value="구독 신청(비회원)" onclick="javascript:form.action=''"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
 			<%}else{%>
 				<input type="submit" value="장바구니(비회원)" onclick="javascript:form.action='VisitorCart.cr'"> 
-				<input type="submit" value="바로구매(비회원)" onclick="javascript:form.action='VisitorOrderCart.od'">
+				<input type="submit" value="바로구매(비회원)" onclick="javascript:form.action='VisitorJoin.me'">
 			<%} %>
 		<%}else{
 			if(path.equals("/SubContent.shop")){%> 

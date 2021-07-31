@@ -21,7 +21,7 @@ import action.OrderMypageDetailAction;
 import action.OrderMypageListAction;
 import action.OrderNowAction;
 import action.OrderSubAction;
-import action.VisitorCartAction;
+import action.VisitorNowAction;
 import vo.ActionForward;
 
 //서블릿 주소가 XXX.me 일 경우 OrderFrontController 로 해당 요청이 전달됨
@@ -100,8 +100,8 @@ public class OrderFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/VisitorOrderCart.od")) {
-			action = new VisitorCartAction();
+		} else if(command.equals("/VisitorOrderNow.od")) {
+			action = new VisitorNowAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

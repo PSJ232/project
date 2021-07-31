@@ -1,3 +1,5 @@
+<%@page import="vo.CartBean"%>
+<%@page import="vo.ItemBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+CartBean cartDetail = (CartBean) request.getAttribute("cartDetail"); // 비회원주문을 위한 정보
+%>
 <link rel="stylesheet" href="./css/login.css" type="text/css" />
 <link rel="stylesheet" href="./css/style.css" type="text/css" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -14,7 +19,6 @@
 	<header>
   		<jsp:include page="../inc/header.jsp"></jsp:include>
 	</header>
-	
 	
 	<h1 id="login">로그인</h1>
 	<form action="MemberLoginPro.me" method="post">
@@ -31,11 +35,22 @@
 		<a href="https://kukka.kr/account/social-login/kakao/"> <img src="member/img/kakao.png"></a><br>
 		<input type="button" value="회원가입" class="joinbutton" onclick="location.href='MemberJoin.me'"><br>
 	</form>
+		<%if(cartDetail != null){ %>
+		<form action="VisitorOrderNow.od" method="post">
+			<input type="hidden" name="c_delivery_date" value="<%=cartDetail.getC_delivery_date()%>">
+			<input type="hidden" name="i_id" value="<%=cartDetail.getI_id()%>">
+			<input type="hidden" name="c_qty" value="<%=cartDetail.getC_qty()%>">
+			<input type="hidden" name="c_letter" value="<%=cartDetail.getC_letter()%>">
+			<input type="submit" value="할인 없이 비회원 구매"><br>
+		</form>
+		<%} %>
 	<p id="now">
 		지금 회원가입 하시면 <span id="p1">1,000p</span> 바로 지급!
 	</p>
 	<br>
 	<p id="nonmember"><a href="VisitorLogin.me">비회원 주문 조회</a></p>
+	
+	
 
 	<footer>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>

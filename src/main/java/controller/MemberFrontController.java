@@ -24,6 +24,7 @@ import action.MemberLogoutAction;
 import action.MemberMypageDetailAction;
 import action.MemberMypagePointDetailAction;
 import action.MemberUpdateProAction;
+import action.VisitorJoinViewAction;
 import action.VisitorPageAction;
 import vo.ActionForward;
 
@@ -193,6 +194,13 @@ public class MemberFrontController extends HttpServlet {
 			
 		} else if(command.equals("/VisitorPage.me")) {
 			action = new VisitorPageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/VisitorJoin.me")) {
+			action = new VisitorJoinViewAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

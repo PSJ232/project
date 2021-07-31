@@ -10,11 +10,11 @@ import vo.ActionForward;
 import vo.CartBean;
 import vo.ItemBean;
 
-public class VisitorCartAction implements Action {
+public class VisitorNowAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("VisitorCartAction");
+		System.out.println("VisitorNowAction");
 		ActionForward forward = null;
 		
 		int i_id = Integer.parseInt(request.getParameter("i_id")); // 상품번호
