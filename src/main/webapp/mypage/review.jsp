@@ -90,9 +90,6 @@ String editId = a + "***";
 이미지:<input type="file" name="r_img"><br>
 <input type="submit" value="작성하기">
  </form>
-
-
- 
  
  </div>
  
