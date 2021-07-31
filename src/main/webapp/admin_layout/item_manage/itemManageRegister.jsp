@@ -43,6 +43,14 @@
                                     <input type="text" name="i_desc" class="product_manage_info" required>
                                 </li>
                                 <li>
+                                    <label>카테고리</label>
+                                    <select name="i_category" class="product_manage_size">
+                                    	<option value="1">일반상품</option>
+                                    	<option value="2">당일배송</option>
+                                    	<option value="3">정기구독</option>
+                                    </select>
+                                </li>
+                                <li>
                                     <label>size(S/M/L)</label>
                                     <select class="product_manage_size" name="i_size" required>
                                         <option value="null">선택</option>

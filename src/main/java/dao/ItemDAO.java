@@ -241,7 +241,7 @@ public class ItemDAO {
 		try {
 			String sql = "UPDATE item SET i_name=?, " + "i_desc=?, i_price=?, i_inven=?, i_img=?, i_subimg2=?,"
 					+ "i_subimg3=?, i_subimg4=?, i_discount=?, "
-					+ "i_size=?, i_dpstatus=?, i_itemstatus=?, i_detailpage=?," + "i_realfolder=? WHERE i_id=?";
+					+ "i_size=?, i_dpstatus=?, i_itemstatus=?, i_detailpage=?, i_realfolder=?, i_category=? WHERE i_id=?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ib.getI_name());
@@ -257,7 +257,8 @@ public class ItemDAO {
 			pstmt.setString(11, ib.getI_dpstatus());
 			pstmt.setString(12, ib.getI_itemstatus());
 			pstmt.setString(13, ib.getI_detailpage());
-			pstmt.setInt(14, ib.getI_id());
+			pstmt.setInt(14,  ib.getI_category());
+			pstmt.setInt(15, ib.getI_id());
 
 			updateCount = pstmt.executeUpdate();
 		} catch (SQLException e) {

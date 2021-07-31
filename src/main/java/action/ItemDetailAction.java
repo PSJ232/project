@@ -13,7 +13,7 @@ public class ItemDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("ItemDetailAction");
 		ActionForward forward = null;
 		
 		int itemId = Integer.parseInt(request.getParameter("i_id"));
