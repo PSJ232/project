@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import svc.MemberService;
 import svc.ReviewStatusService;
 import vo.ActionForward;
 import vo.ItemBean;
+import vo.MemberBean;
 import vo.OrderBean;
 import vo.OrderDetailBean;
 
@@ -23,10 +25,14 @@ public class ReviewInsertFormAction implements Action {
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
 		
-		ReviewStatusService reviewStatusService = new ReviewStatusService();
+		// 멤버 정보 전달
+		MemberService memberService = new MemberService();
+		MemberBean memberMypageDetail = memberService.selectMember(m_id);
+		request.setAttribute("memberMypageDetail", memberMypageDetail);
 		
-		// 정보 출력을 위해 불러오는 파일들
+		// 기존의 리뷰 정보 출력을 위해 불러오는 파일들
 		// 리뷰 미작성 : non~  || 리뷰 작성 : ~
+		ReviewStatusService reviewStatusService = new ReviewStatusService();
 		ArrayList<OrderBean> nonOrderArrayList = reviewStatusService.reviewNonStatusOrderList(m_id);
 		ArrayList<OrderBean> orderArrayList = reviewStatusService.reviewStatusOrderList(m_id);
 		ArrayList<ItemBean> nonItemArrayList = reviewStatusService.reviewNonStatusItemList(m_id);
@@ -37,8 +43,6 @@ public class ReviewInsertFormAction implements Action {
 		// review와 orders_detail 비교해 가져온 삭제된 리뷰 목록
 		ArrayList<Integer> deleteOdList = reviewStatusService.reviewDeleteOdList(m_id);
 		
-		
-
 		request.setAttribute("nonOrderArrayList", nonOrderArrayList);
 		request.setAttribute("orderArrayList", orderArrayList);
 		request.setAttribute("nonItemArrayList", nonItemArrayList);
@@ -47,8 +51,6 @@ public class ReviewInsertFormAction implements Action {
 		request.setAttribute("nonOrderDetailArrayList", nonOrderDetailArrayList);
 		request.setAttribute("orderDetailArrayList", orderDetailArrayList);
 		
-		
-//		command : /ReviewFormAction.rv
 		forward = new ActionForward();
 		forward.setPath("./mypage/reviewBefore.jsp");
 		forward.setRedirect(false);

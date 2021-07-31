@@ -1,7 +1,10 @@
 package action;
 
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,25 +25,48 @@ public class OrderInsertProAction implements Action {
 		System.out.println("OrderInsertProAction");
 		ActionForward forward = null;
 		
-
-		
-		int iNum = Integer.parseInt(request.getParameter("iNum"));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(Date.valueOf(request.getParameter("od_delivery_date0"))); // 정기구독 구독시작일 날자세팅
 		
 		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
 		OrderDetailBean orderDetailBean = null;
 		
-		for (int i = 0 ; i < iNum ; i++) {
-			orderDetailBean = new OrderDetailBean();
-//			orderDetailBean.setOd_id(od_id);
-//			orderDetailBean.setO_id(Integer.parseInt(request.getParameter("o_id")));
-			orderDetailBean.setL_id(Integer.parseInt(request.getParameter("l_id" + i)));
-			orderDetailBean.setI_id(Integer.parseInt(request.getParameter("i_id" + i)));
-			orderDetailBean.setOd_qty(Integer.parseInt(request.getParameter("od_qty" + i)));
-			orderDetailBean.setOd_message(request.getParameter("od_message" + i));
-			orderDetailBean.setM_id(request.getParameter("m_id"));
-			orderDetailBean.setC_id(Integer.parseInt(request.getParameter("c_id" + i)));
-			orderDetailBean.setOd_delivery_date(request.getParameter("od_delivery_date" + i));
-			orderDetailList.add(orderDetailBean);
+		int sub_option = Integer.parseInt(request.getParameter("sub_option"));
+		if(sub_option == 0) {
+		
+			int iNum = Integer.parseInt(request.getParameter("iNum"));
+			
+			for (int i = 0 ; i < iNum ; i++) {
+				orderDetailBean = new OrderDetailBean();
+	//			orderDetailBean.setOd_id(od_id);
+	//			orderDetailBean.setO_id(Integer.parseInt(request.getParameter("o_id")));
+				orderDetailBean.setL_id(Integer.parseInt(request.getParameter("l_id" + i)));
+				orderDetailBean.setI_id(Integer.parseInt(request.getParameter("i_id" + i)));
+				orderDetailBean.setOd_qty(Integer.parseInt(request.getParameter("od_qty" + i)));
+				orderDetailBean.setOd_message(request.getParameter("od_message" + i));
+				orderDetailBean.setM_id(request.getParameter("m_id"));
+				orderDetailBean.setC_id(Integer.parseInt(request.getParameter("c_id" + i)));
+				orderDetailBean.setOd_delivery_date(request.getParameter("od_delivery_date" + i));
+				orderDetailList.add(orderDetailBean);
+				
+			}
+		} else { // 정기구독 경유 시 표시
+			
+			for (int i = 0 ; i < sub_option ; i++) {
+				orderDetailBean = new OrderDetailBean();
+	//			orderDetailBean.setOd_id(od_id);
+	//			orderDetailBean.setO_id(Integer.parseInt(request.getParameter("o_id")));
+				orderDetailBean.setL_id(Integer.parseInt(request.getParameter("l_id0")));
+				orderDetailBean.setI_id(Integer.parseInt(request.getParameter("i_id0")));
+				orderDetailBean.setOd_qty(Integer.parseInt(request.getParameter("od_qty0")));
+				orderDetailBean.setOd_message(request.getParameter("od_message0"));
+				orderDetailBean.setM_id(request.getParameter("m_id"));
+				orderDetailBean.setC_id(77777777);
+				orderDetailBean.setOd_delivery_date(sdf.format(cal.getTime()));
+				orderDetailList.add(orderDetailBean);
+				cal.add(Calendar.DAY_OF_MONTH, 7);
+			}
 		}
 		
 		request.setAttribute("orderDetailList", orderDetailList);

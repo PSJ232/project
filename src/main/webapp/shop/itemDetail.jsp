@@ -97,7 +97,7 @@ switch(path){
 			<option value=2>1개월동안 X 2주마다</option>
 			<option value=4>2개월동안 X 2주마다</option>
 			<option value=12>6개월동안 X 2주마다</option>
-			<option value=99>정기결제(2주마다 자동결제)</option>
+			<option value=24>정기결제(2주마다 자동결제)</option>
 		</select>
 		<span id="showCalendar"></span>
 		
