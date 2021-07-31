@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <%
 CartBean cartDetail = (CartBean) request.getAttribute("cartDetail"); // 비회원주문을 위한 정보
+String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 옵션 정보
 %>
 <link rel="stylesheet" href="./css/login.css" type="text/css" />
 <link rel="stylesheet" href="./css/style.css" type="text/css" />
@@ -35,12 +36,15 @@ CartBean cartDetail = (CartBean) request.getAttribute("cartDetail"); // 비회�
 		<a href="https://kukka.kr/account/social-login/kakao/"> <img src="member/img/kakao.png"></a><br>
 		<input type="button" value="회원가입" class="joinbutton" onclick="location.href='MemberJoin.me'"><br>
 	</form>
-		<%if(cartDetail != null){ %>
+		<%if(cartDetail!=null){ %>
 		<form action="VisitorOrderNow.od" method="post">
 			<input type="hidden" name="c_delivery_date" value="<%=cartDetail.getC_delivery_date()%>">
 			<input type="hidden" name="i_id" value="<%=cartDetail.getI_id()%>">
 			<input type="hidden" name="c_qty" value="<%=cartDetail.getC_qty()%>">
 			<input type="hidden" name="c_letter" value="<%=cartDetail.getC_letter()%>">
+			<%if(sub_option!=null){ %>
+			<input type="hidden" name="sub_option" value="<%=sub_option%>">
+			<%} %>
 			<input type="submit" value="할인 없이 비회원 구매"><br>
 		</form>
 		<%} %>

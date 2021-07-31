@@ -97,7 +97,7 @@
 <title>Insert title here</title>
 <%
 Calendar cal = Calendar.getInstance();
-int sub_option = 0;
+int sub_option = 1;
 if(request.getParameter("sub_option") != null) {
 	sub_option = Integer.parseInt(request.getParameter("sub_option"));
 }
@@ -158,7 +158,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		case 7 : day = "토요일"; break;
 		}
 
-		price = ((int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100 * checkList.get(i).getC_qty()) + letterPrice; // 단일상품금액 = (원가 * 할인) * 수량 + 편지요금
+		price = ((int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100 * sub_option * checkList.get(i).getC_qty()) + letterPrice; // 단일상품금액 = (원가 * 할인) * 수량 + 편지요금
 		totalPrice += price; // 모든 상품의 누적 총 금액(쿠폰 및 포인트 제외)
 	%>
 		<img src="<%=itemList.get(i).getI_img()%>">
