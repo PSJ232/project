@@ -1,3 +1,5 @@
+<%@page import="java.sql.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.CartBean"%>
@@ -58,6 +60,19 @@
 <title>Insert title here</title>
 </head>
 <%
+Calendar cal = Calendar.getInstance();
+int sub_option = 1;
+if(!request.getParameter("sub_option").equals(null)) {
+	sub_option = Integer.parseInt(request.getParameter("sub_option"));
+}
+String sub_name = "";
+switch(sub_option){
+case 2 : sub_name = "1개월동안 X 2주마다"; break;
+case 4 : sub_name = "2개월동안 X 2주마다"; break;
+case 12 : sub_name = "6개월동안 X 2주마다"; break;
+case 24 : sub_name = "12개월동안 X 2주마다"; break;
+}
+
 MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
 String m_name = memberDetail.getM_name();
 int price = 0; // 단일상품금액
@@ -88,13 +103,32 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			addLetter = "";
 			letterPrice = 0;
 		}
+		
+		cal.setTime(Date.valueOf(checkList.get(i).getC_delivery_date())); // 요일
+		int dNum = cal.get(Calendar.DAY_OF_WEEK);
+		String day = "";
+		switch(dNum){
+		case 1 : day = "일요일"; break;
+		case 2 : day = "월요일"; break;
+		case 3 : day = "화요일"; break;
+		case 4 : day = "수요일"; break;
+		case 5 : day = "목요일"; break;
+		case 6 : day = "금요일"; break;
+		case 7 : day = "토요일"; break;
+		}
 
-		price = (itemList.get(i).getI_price() * checkList.get(i).getC_qty()) + letterPrice; // 단일상품금액 = (원가 * 수량) + 편지요금
+		price = (itemList.get(i).getI_price() * checkList.get(i).getC_qty() * sub_option) + letterPrice; // 단일상품금액 = (원가 * 수량) + 편지요금
 	%>
 		<img src="<%=itemList.get(i).getI_img()%>">
 		<%=itemList.get(i).getI_name() %><br>
 		<%=NumberFormat.getInstance().format(price) %><br>
-		수령일:<%=checkList.get(i).getC_delivery_date() %><br>
+		
+		<%if(sub_name.equals("")){%>
+		수령일:<%=day %>,<%=checkList.get(i).getC_delivery_date() %><br>
+		<%} else {%> <!-- 정기구독 경유 접속시 표시 -->
+		첫 구독일:<%=day %>,<%=checkList.get(i).getC_delivery_date() %><br>
+		구독내용:<%=sub_name %><br>
+		<%} %>
 		<%=addLetter %>
 		수량:<%=checkList.get(i).getC_qty()%><br>
 		<br>
@@ -170,6 +204,8 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			}
 		}
 		%>
+		
+		<input type="hidden" name="sub_option" value="<%=sub_option %>">
 		<input type="hidden" name="iNum" value="<%=i %>">
 		<input type="hidden" name="m_id" value="visitor"> <!-- 회원ID -->
 		<input type="hidden" name="o_amount" value="<%=price %>">

@@ -16,11 +16,14 @@ public class VisitorJoinViewAction implements Action {
 		String m_id = "visitor"; // 비회원
 		int i_id = Integer.parseInt(request.getParameter("i_id")); // 상품번호
 		int c_qty = Integer.parseInt(request.getParameter("c_qty")); // 상품 수량
-		int c_letter = Integer.parseInt(request.getParameter("c_letter")); //편지지 선택 여부
-		String c_delivery_date = request.getParameter("c_delivery_date"); //상품 배송 요청일
+		int c_letter = Integer.parseInt(request.getParameter("c_letter")); // 편지지 선택 여부
+		String c_delivery_date = request.getParameter("c_delivery_date"); // 상품 배송 요청일
+		
+		String sub_option = request.getParameter("sub_option"); // 정기구독 옵션
+		request.setAttribute("sub_option", sub_option);
 		
 		CartBean cartDetail = new CartBean();
-		cartDetail.setC_id(88888888);
+		cartDetail.setC_id(0);
 		cartDetail.setI_id(i_id);
 		cartDetail.setM_id(m_id);
 		cartDetail.setC_qty(c_qty);
