@@ -37,9 +37,9 @@
   오늘도 꽃같은 날이예요</article>
 	
   <article id="">
-  등급 정보 : <a href=""><%=realGrade %> </a>ㅣ 
-  포인트 : <a href=""><%=memberMypageDetail.getM_point() %></a>ㅣ
-  나의 구독 : <a href="">2</a>
+  등급 정보 : <a href="MemberMypageGradeDetail.me"><%=realGrade %> </a>ㅣ 
+  포인트 : <a href="MemberMypagePointDetail.me"><%=memberMypageDetail.getM_point() %></a>ㅣ
+  나의 구독 : <a href="#">2</a>
   </article>
   
   </section>
@@ -50,7 +50,7 @@
 	<div>
   	<h2>마이꾸까</h2>
   	<ul type="none">
-  		<li><a href="OrderMypageDetail.od">주문내역/배송조회</a></li>
+  		<li><a href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
   		<li><a href="">나의 정기구독</a></li>
   		<li><a href="">클래스 수강내역</a></li>
 		<li><a href="ReviewInsertForm.rv">상품 리뷰</a></li>
@@ -63,7 +63,7 @@
   		<li><a href="MemberUpdate.me">개인정보 수정</a></li>
   		<li><a href="MemberMypageGradeDetail.me">회원등급</a></li>
   		<li><a href="MemberMypagePointDetail.me">포인트</a></li>
-		<li><a href="../QnaInsert.qna">1:1 문의내역</a></li>
+		<li><a href="QnaInsert.qna">1:1 문의내역</a></li>
 		<li><a href="">자주묻는질문</a></li>
   	</ul>
   	</div>
