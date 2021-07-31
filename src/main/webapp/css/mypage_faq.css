@@ -12,16 +12,6 @@
     letter-spacing: -1px;
 }
 
-.btn_wide {
-	float: right;
-    height: 52px;
-    width: 267px;
-    border: transparent;
-    border-radius: 5px;
-    font-size: 16px;
-    margin: 36px 0;
-}
-
 .faq_list_layout {
 	display: flex;
     flex-direction: row;
@@ -66,7 +56,7 @@
 	display: none;
     padding: 0px 0 30px 52px;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: 300;
     letter-spacing: -.24px;
     color: #222;
 }

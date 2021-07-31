@@ -24,6 +24,7 @@ import action.MemberLogoutAction;
 import action.MemberMypageDetailAction;
 import action.MemberMypagePointDetailAction;
 import action.MemberUpdateProAction;
+import action.MypageClassListAction;
 import action.VisitorJoinViewAction;
 import action.VisitorPageAction;
 import vo.ActionForward;
@@ -203,6 +204,15 @@ public class MemberFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./mypage/faq.jsp");
 			forward.setRedirect(false);
+		} else if(command.equals("/Class.me")) {
+			action = new MypageClassListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
 		}
 
 		// -------------------------------------------------------------------------

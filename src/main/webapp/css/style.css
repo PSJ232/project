@@ -422,24 +422,6 @@ dd {
   padding: 10px 20px;
 }
 
-.btn_m{
-  width: 121px;
-  height: 39px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: none;
-  margin: 10px 5px;
-  cursor: pointer;
-}
-
-.btn_yellow{
-  background-color: #ffcd32;
-}
-
-.btn_gray{
-  background-color: #ececec;
-}
-
 
 /* sales */
 
