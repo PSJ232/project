@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <%
 	ClassBean classBean = (ClassBean)request.getAttribute("classBean");
-	ArrayList<Time> timeList = (ArrayList<Time>)request.getAttribute("timeList");
+	ArrayList<Time> selectedTimeList = (ArrayList<Time>)request.getAttribute("selectedTimeList");
 %>
 <!DOCTYPE html>
 <html>
@@ -30,10 +30,17 @@
 	#main_img {
 		width: 308px;
 		height: 308px;
+		border: 1px solid #fff;
+		border-radius: 5px;
+	}
+	.sub_img {
+		margin-top: 10px;
 	}
 	.sub_img img {
 		width: 100px;
 		height: 100px;
+		border: 1px solid #fff;
+		border-radius: 5px;
 	}
 	label {
 		width: 130px;
@@ -46,6 +53,18 @@
 	}
 	label, input[type=text]{
 		font-size: 15px;
+	}
+	input[type=button]{
+		width: 100px;
+		height: 40px;
+		border: 1px solid #fff;
+		border-radius: 5px;
+		background-color: #FFDF24;
+		margin-top: 10px;
+	}
+	input[type=button]:hover {
+		background-color: #FFCD12;
+		cursor: pointer;
 	}
 </style>
 <link rel="stylesheet" href="./css/admin.css">
@@ -81,6 +100,13 @@
 		<div class="sub_container">
 			<label>클래스명 </label><input type="text" value="<%=classBean.getClass_subject() %>" readonly><br>
 			<label>지점 </label><input type="text" value="<%=classBean.getClass_place()%>" readonly><br>
+			<label>시간 </label><span>
+			<%
+				for(Time time : selectedTimeList){
+					%><%=time%>/<%
+				}
+			%></span>
+			<br>
 			<label>비용 </label><input type="text" value="<%=classBean.getClass_price() %>" readonly><br>
 			<label>정원 </label><input type="text" value="<%=classBean.getClass_max_member() %>" readonly><br>
 			<label>현재인원 </label><input type="text" value="<%=classBean.getClass_current_member() %>" readonly><br>
@@ -88,11 +114,9 @@
 			<label>클래스일자 </label><input type="text" value="<%=classBean.getClass_date() %>" readonly><br>
 			<label>조회수 </label><input type="text" value="<%=classBean.getClass_readcount() %>" readonly><br>
 			<label>클래스설명 </label><input type="text" value="<%=classBean.getClass_desc() %>" readonly><br>
-			<div id="buttons">
-				<input type="button" name="listBtn" value="목록" onclick="location.href='ClassList.ad'">
-				<input type="button" name="modifyBtn" value="수정" onclick="location.href='ClassModifyForm.ad?class_num=<%=classBean.getClass_id()%>'">
-				<input type="button" value="삭제" onclick="deleteContent()">
-			</div>
+			<input type="button" name="listBtn" value="목록" onclick="location.href='ClassList.ad'">
+			<input type="button" name="modifyBtn" value="수정" onclick="location.href='ClassModifyForm.ad?class_num=<%=classBean.getClass_id()%>'">
+			<input type="button" value="삭제" onclick="deleteContent()">
 		</div>
 	</div>
 </body>

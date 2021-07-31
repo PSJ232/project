@@ -26,13 +26,14 @@ public class ClassDetailViewAction implements Action {
 		
 		if(command.equals("/ClassModifyForm.ad")) {
 			// 가지고있던 timeList 값 반환
-			ArrayList<Time> selectableTimeList = time_service.getTimeList(request.getParameter("place"), request.getParameter("date"));
+			ArrayList<Time> selectableTimeList = time_service.getSelectableTimeList(request.getParameter("place"), request.getParameter("date"));
 			request.setAttribute("selectableTimeList", selectableTimeList);
 			forward.setPath("./admin_layout/class_management/classModifyForm.jsp");
 			forward.setRedirect(false);
 			
 		}else if(command.equals("/ClassDetailView.ad")) {
-			
+			ArrayList<Time> selectedTimeList = time_service.getSelectedTimeList(classBean.getClass_id());
+			request.setAttribute("selectedTimeList", selectedTimeList);
 			forward.setPath("./admin_layout/class_management/classDetail.jsp");
 			forward.setRedirect(false);
 		}

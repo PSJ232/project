@@ -42,13 +42,13 @@
 		height: 45px;
 		border: 1px solid #fff;
 		border-radius: 7px;
-		background-color: #fff;
+		background-color: #FFDF24;
 		font-size: 20px;
 		margin-left: 550px;
 		margin-bottom: 20px;
 	}
 	#btn:hover {
-		background-color: #FFDF24;
+		background-color: #FFCD12;
 		cursor:pointer;
 	}
 </style>
