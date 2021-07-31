@@ -16,16 +16,16 @@
 ArrayList<CartBean> checkList = (ArrayList<CartBean>) request.getAttribute("checkList"); //장바구니에서 가져온 목록
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
 Calendar cal = Calendar.getInstance();
-int sub_option = 0;
 String sub_name = "";
-if(request.getParameter("sub_option") != null){ // 정기구독 경유로 접속한건지 판별
+int sub_option = 1;
+if (request.getParameter("sub_option") != null) { // 정기구독 옵션정보가 있을 경우
 	sub_option = Integer.parseInt(request.getParameter("sub_option"));
 }
 switch(sub_option){
 	case 2 : sub_name = "1개월동안 X 2주마다"; break;
 	case 4 : sub_name = "2개월동안 X 2주마다"; break;
 	case 12 : sub_name = "6개월동안 X 2주마다"; break;
-	case 99 : sub_name = "정기결제(2주마다 자동결제)"; break;
+	case 24 : sub_name = "12개월동안 X 2주마다"; break;
 }
 %>
 <body>

@@ -22,7 +22,7 @@ public class VisitorCartViewAction implements Action {
 		String c_delivery_date = request.getParameter("c_delivery_date"); //상품 배송 요청일
 		
 		CartBean cartDetail = new CartBean();
-		cartDetail.setC_id(88888888);
+		cartDetail.setC_id(0);
 		cartDetail.setI_id(i_id);
 		cartDetail.setM_id(m_id);
 		cartDetail.setC_qty(c_qty);

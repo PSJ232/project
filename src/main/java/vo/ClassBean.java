@@ -1,6 +1,5 @@
 package vo;
 
-import java.sql.Timestamp;
 
 public class ClassBean {
 	private int class_id;
@@ -10,7 +9,7 @@ public class ClassBean {
 	private int class_price;
 	private int class_max_member;
 	private int class_current_member;
-	private Timestamp class_create_date;
+	private String class_create_date;
 	private String class_date;
 	
 	private String class_main_img;
@@ -68,10 +67,10 @@ public class ClassBean {
 	public void setClass_current_member(int class_current_member) {
 		this.class_current_member = class_current_member;
 	}
-	public Timestamp getClass_create_date() {
+	public String getClass_create_date() {
 		return class_create_date;
 	}
-	public void setClass_create_date(Timestamp class_create_date) {
+	public void setClass_create_date(String class_create_date) {
 		this.class_create_date = class_create_date;
 	}
 	public String getClass_main_img() {

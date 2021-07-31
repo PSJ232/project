@@ -99,10 +99,10 @@ switch(path){
 		구독 옵션*
 		<select name="sub_option" size="1" onchange="showCalendar(), isLetter(<%=price %>)" required>
 			<option hidden="" value="">구독기간을 선택해주세요.</option>
-			<option value=2>1개월동안 X 2주마다</option>
-			<option value=4>2개월동안 X 2주마다</option>
-			<option value=12>6개월동안 X 2주마다</option>
-			<option value=24>12개월동안 X 2주마다</option>
+			<option value="2">1개월동안 X 2주마다</option>
+			<option value="4">2개월동안 X 2주마다</option>
+			<option value="12">6개월동안 X 2주마다</option>
+			<option value="24">12개월동안 X 2주마다</option>
 		</select>
 		<span id="showCalendar"></span>
 		
@@ -120,7 +120,7 @@ switch(path){
 		총주문금액 <span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %></span><br>
 		<%if(session.getAttribute("m_id") == null){ 
 				if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
-				<input type="submit" value="구독 신청(비회원)" onclick="javascript:form.action=''"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
+				<input type="submit" value="구독 신청(비회원)" onclick="javascript:form.action='VisitorJoin.me'"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
 			<%}else{%>
 				<input type="submit" value="장바구니(비회원)" onclick="javascript:form.action='VisitorCart.cr'"> 
 				<input type="submit" value="바로구매(비회원)" onclick="javascript:form.action='VisitorJoin.me'">

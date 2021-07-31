@@ -28,7 +28,7 @@ public class OrderSubAction implements Action {
 
 		CartBean cartDetail = new CartBean(); // 넘겨받은 값을 저장할 CartBean
 		
-		cartDetail.setC_id(77777777); // 바로 구매는 장바구니 번호가 없으므로 구분을 위해 임의의 숫자사용
+		cartDetail.setC_id(0); // 바로 구매는 장바구니 번호가 없으므로 구분을 위해 임의의 숫자사용
 		cartDetail.setI_id(i_id);
 		cartDetail.setM_id(m_id);
 		cartDetail.setC_qty(c_qty);

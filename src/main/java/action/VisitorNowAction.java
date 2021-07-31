@@ -22,8 +22,11 @@ public class VisitorNowAction implements Action {
 		int c_letter = Integer.parseInt(request.getParameter("c_letter")); //편지지 선택 여부
 		String c_delivery_date = request.getParameter("c_delivery_date"); //상품 배송 요청일
 		
+		String sub_option = request.getParameter("sub_option"); // 정기구독 옵션 선택 정보
+		request.setAttribute("sub_option", sub_option);
+		
 		CartBean cartDetail = new CartBean();
-		cartDetail.setC_id(88888888);
+		cartDetail.setC_id(0); // 장바구니 번호가 없으므로 임의 번호
 		cartDetail.setI_id(i_id);
 		cartDetail.setM_id("visitor"); // 비회원
 		cartDetail.setC_qty(c_qty);
@@ -39,11 +42,9 @@ public class VisitorNowAction implements Action {
 		ItemDetailService itemDetailService = new ItemDetailService();
 		ItemBean itemBean = itemDetailService.selectItem(i_id);
 		itemList.add(itemBean);
-
 		request.setAttribute("itemList", itemList); // 아이템목록 리스트에 저장
 
 		if (c_letter == 1) { // 추가상품으로 편지가 선택되었으면 letter.jsp로 이동
-
 			forward = new ActionForward();
 			forward.setPath("./order/letter.jsp?letterCount=1"); // 작성 편지수(1) 가지고 감 (단일상품이므로 1 고정값)
 			forward.setRedirect(false);
@@ -53,7 +54,6 @@ public class VisitorNowAction implements Action {
 			forward = new ActionForward();
 			forward.setPath("OrderForm.od");
 			forward.setRedirect(false);
-
 		}
 		
 		return forward;

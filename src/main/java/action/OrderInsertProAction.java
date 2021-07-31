@@ -30,13 +30,12 @@ public class OrderInsertProAction implements Action {
 		
 		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
 		OrderDetailBean orderDetailBean = null;
-		
-		int sub_option = 0;
-		if(request.getParameter("sub_option") != null) {
+		int sub_option = 1;
+		if(!request.getParameter("sub_option").equals(null)) {
 			sub_option = Integer.parseInt(request.getParameter("sub_option"));
 		}
 		
-		if(sub_option == 0) {
+		if(sub_option == 1) {
 			int iNum = Integer.parseInt(request.getParameter("iNum"));
 			
 			for (int i = 0 ; i < iNum ; i++) {
@@ -64,10 +63,10 @@ public class OrderInsertProAction implements Action {
 				orderDetailBean.setOd_qty(Integer.parseInt(request.getParameter("od_qty0")));
 				orderDetailBean.setOd_message(request.getParameter("od_message0"));
 				orderDetailBean.setM_id(request.getParameter("m_id"));
-				orderDetailBean.setC_id(Integer.parseInt(request.getParameter("c_id")));
+				orderDetailBean.setC_id(Integer.parseInt(request.getParameter("c_id0")));
 				orderDetailBean.setOd_delivery_date(sdf.format(cal.getTime()));
 				orderDetailList.add(orderDetailBean);
-				cal.add(Calendar.DAY_OF_MONTH, 7);
+				cal.add(Calendar.DAY_OF_MONTH, 14);
 			}
 		}
 		

@@ -15,17 +15,52 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="./css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-
+<style>
+	#img {
+		width: 150px;
+		height: 150px;
+		border-radius: 5px;
+		border: 1px solid #fff;
+	}
+	
+	.class_content {
+		margin-bottom: 10px;
+		width: 700px ;
+		height: 150px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		padding: 5px;
+	}
+	
+	.class_content:nth-child(odd){
+		background-color: #eee;
+		border: 1px solid #eee;
+	}
+	
+	#btn {
+		width: 150px;
+		height: 45px;
+		border: 1px solid #fff;
+		border-radius: 7px;
+		background-color: #FFDF24;
+		font-size: 20px;
+		margin-left: 550px;
+		margin-bottom: 20px;
+	}
+	#btn:hover {
+		background-color: #FFCD12;
+		cursor:pointer;
+	}
+</style>
 </head>
 <body>
 	<%
-			String date = "";
 			for(ClassBean cb : classList){
 				%>
 				<table class="class_content">
 				<tr>
-				<td rowspan="4" width="100"><img src="<%="img_upload/"+cb.getClass_main_img() %>"/></td>
-				<td width="500"><a href="ClassDetailView.ad?class_num=<%=cb.getClass_id()%>"><%=cb.getClass_subject() %></a></td>
+				<td rowspan="4" width="5"><img id="img" src="<%="img_upload/"+cb.getClass_main_img() %>"/></td>
+				<td width="500"><h2><a href="ClassDetailView.ad?class_num=<%=cb.getClass_id()%>"><%=cb.getClass_subject() %></a></h2></td>
 				</tr>
 				<tr>
 				<td>
@@ -41,12 +76,12 @@
 				%>
 				</td>
 				</tr>
-				<tr><td>정원: <%=cb.getClass_max_member() %></td><td>현재인원: <%=cb.getClass_current_member() %></td></tr>
-				<tr><td>등록날짜: <%=cb.getClass_create_date() %> </td><td> 클래스날짜: <%=cb.getClass_date() %></td></tr>
+				<tr><td>정원: <%=cb.getClass_current_member() %> / <%=cb.getClass_max_member() %></td></tr>
+				<tr><td> 클래스날짜: <%=cb.getClass_date() %></td></tr>
 				</table>
 				<%
 			}
 	%>
-	<input type="button" value="클래스 등록" onclick="location.href='ClassInsertForm.ad'">
+	<input type="button" value="클래스 등록" id="btn" onclick="location.href='ClassInsertForm.ad'">
 </body>
 </html>

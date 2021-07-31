@@ -31,7 +31,7 @@
 			<li><a href="#">리뷰관리</a></li>
 			<li><a href="ItemList.ad">상품관리</a></li>
 			<li><a href="#">매출관리</a></li>
-			<li><a href="OrderList">주문관리</a></li>
+			<li><a href="OrderList.ad">주문관리</a></li>
 			<li><a href="ClassList.ad">클래스관리</a></li>
 			<li><a href="#">문의관리</a></li>
 		</ul>

@@ -90,8 +90,8 @@ public class ClassDetailDAO {
 		return detailList;
 	}
 	
-	public ArrayList<Time> getTimeList(String place, String date){
-		System.out.println("ClassDetailDAO - getTimeList");
+	public ArrayList<Time> getSelectableTimeList(String place, String date){
+		System.out.println("ClassDetailDAO - getSelectableTimeList");
 		ArrayList<Time> selectedTimeList = new ArrayList<Time>();
 		ArrayList<Time> timeList = new ArrayList<Time>();
 		PreparedStatement pstmt = null;
@@ -126,6 +126,27 @@ public class ClassDetailDAO {
 					timeList.remove(j);
 				}
 			}
+		}
+		return timeList;
+	}
+	
+	public ArrayList<Time> getSelectedTimeList(int f_id) {
+		ArrayList<Time> timeList = new ArrayList<Time>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT fd_time FROM fclass_detail WHERE f_id=? and fd_isselected=1";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, f_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				timeList.add(rs.getTime(1));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL구문오류! - " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
 		return timeList;
 	}
