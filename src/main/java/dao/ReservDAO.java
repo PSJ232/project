@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import static db.JdbcUtil.*;
 
 import vo.ReservBean;
@@ -140,7 +142,37 @@ public class ReservDAO {
 		return currentNum;
 	}
 
-	
+	public ArrayList<ReservBean> getReservList(String m_id) {
+		ArrayList<ReservBean> reservList = new ArrayList<ReservBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM reservation WHERE m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ReservBean rb = new ReservBean();
+				rb.setF_id(rs.getInt("f_id"));
+				rb.setFd_id(rs.getInt("fd_id"));
+				rb.setM_id(rs.getString("m_id"));
+				rb.setR_id(rs.getInt("r_id"));
+				rb.setR_num(rs.getInt("r_num"));
+				rb.setR_payment(rs.getString("r_payment"));
+				rb.setR_date(rs.getString("r_date"));
+				reservList.add(rb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return reservList;
+	}
 	
 
 }

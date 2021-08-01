@@ -25,6 +25,8 @@ import action.MemberMypageDetailAction;
 import action.MemberMypagePointDetailAction;
 import action.MemberUpdateProAction;
 import action.MypageClassListAction;
+import action.PastMyClassListAction;
+import action.PlannedMyClassListAction;
 import action.VisitorJoinViewAction;
 import action.VisitorPageAction;
 import vo.ActionForward;
@@ -210,10 +212,24 @@ public class MemberFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+			}	
+		} else if(command.equals("/MyClass.me")) {
+			forward = new ActionForward();
+			forward.setPath("./mypage/class.jsp");
+		} else if(command.equals("/plannedMyClass.me")) {
+			action = new PlannedMyClassListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-			
-			
+		} else if(command.equals("/pastMyClass.me")) {
+			action = new PastMyClassListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} 
 
 		// -------------------------------------------------------------------------

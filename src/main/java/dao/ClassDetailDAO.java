@@ -259,4 +259,26 @@ public class ClassDetailDAO {
 			return detailList;
 		}
 	
+		public int getClassTime(int fd_id) {
+			int myclassTime = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT fd_time FROM fclass_detail WHERE fd_id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, fd_id);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					myclassTime = rs.getInt("fd_time");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return myclassTime;
+		}
 }

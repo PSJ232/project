@@ -7,8 +7,8 @@ public class ReservBean {
 	private int fd_id;
 	private int r_num;
 	private String r_payment;
+	private String r_date;
 
-	
 	public int getR_id() {
 		return r_id;
 	}
@@ -45,7 +45,12 @@ public class ReservBean {
 	public void setR_payment(String r_payment) {
 		this.r_payment = r_payment;
 	}
-
+	public String getR_date() {
+		return r_date;
+	}
+	public void setR_date(String r_date) {
+		this.r_date = r_date;
+	}
 	
 	
 }	

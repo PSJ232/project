@@ -374,5 +374,33 @@ public class ClassDAO {
 		return classList;
 	}
 
+	public ClassBean getMyClassInfo(int f_id) {
+		ClassBean cb = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM fclass WHERE f_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, f_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				cb = new ClassBean();
+				cb.setClass_subject(rs.getString("f_subject"));
+				cb.setClass_place(rs.getString("f_place"));
+				cb.setClass_price(rs.getInt("f_price"));
+				cb.setClass_date(rs.getString("f_cdate"));
+				cb.setClass_main_img(rs.getString("f_main_img"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return cb;
+	}
+	
 	
 }
