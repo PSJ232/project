@@ -204,7 +204,7 @@ public class MemberFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./mypage/faq.jsp");
 			forward.setRedirect(false);
-		} else if(command.equals("/Class.me")) {
+		} else if(command.equals("/ClassMypageDetail.me")) {
 			action = new MypageClassListAction();
 			try {
 				forward = action.execute(request, response);
@@ -213,7 +213,8 @@ public class MemberFrontController extends HttpServlet {
 			}
 			
 			
-		}
+			
+		} 
 
 		// -------------------------------------------------------------------------
 		// 포워딩 방식 결정

@@ -306,7 +306,73 @@ public class ClassDAO {
 		return f_maxmem;
 	}
 	
+	public ArrayList<ClassBean> getMypageStartClassList(String m_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
+		try {
+			String sql = "SELECT * FROM fclass WHERE date(f_cdate) > date(now()) AND f_id=(select f_id from reservation where m_id=?) ORDER BY f_subject, f_cdate DESC";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ClassBean classBean = new ClassBean();
+				classBean.setClass_id(rs.getInt("f_id"));
+				classBean.setClass_subject(rs.getString("f_subject"));
+				classBean.setClass_desc(rs.getString("f_desc"));
+				classBean.setClass_price(rs.getInt("f_price"));
+				classBean.setClass_max_member(rs.getInt("f_maxmem"));
+				classBean.setClass_main_img(rs.getString("f_main_img"));
+				classBean.setClass_create_date(rs.getString("f_rdate"));
+				classBean.setClass_date(rs.getString("f_cdate"));
+				classBean.setClass_place(rs.getString("f_place"));
+				classBean.setClass_sub_img1(rs.getString("f_sub_img1"));
+				classBean.setClass_sub_img2(rs.getString("f_sub_img2"));
+				classBean.setClass_sub_img3(rs.getString("f_sub_img3"));
+				classList.add(classBean);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문오류! - " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return classList;
+	}
 
+	public ArrayList<ClassBean> getMypageEndClassList(String m_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
+		try {
+			String sql = "SELECT * FROM fclass WHERE date(f_cdate) > date(now()) AND f_id=(select f_id from reservation where m_id=?) ORDER BY f_subject, f_cdate DESC";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ClassBean classBean = new ClassBean();
+				classBean.setClass_id(rs.getInt("f_id"));
+				classBean.setClass_subject(rs.getString("f_subject"));
+				classBean.setClass_desc(rs.getString("f_desc"));
+				classBean.setClass_price(rs.getInt("f_price"));
+				classBean.setClass_max_member(rs.getInt("f_maxmem"));
+				classBean.setClass_main_img(rs.getString("f_main_img"));
+				classBean.setClass_create_date(rs.getString("f_rdate"));
+				classBean.setClass_date(rs.getString("f_cdate"));
+				classBean.setClass_place(rs.getString("f_place"));
+				classBean.setClass_sub_img1(rs.getString("f_sub_img1"));
+				classBean.setClass_sub_img2(rs.getString("f_sub_img2"));
+				classBean.setClass_sub_img3(rs.getString("f_sub_img3"));
+				classList.add(classBean);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문오류! - " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return classList;
+	}
 
 	
 }

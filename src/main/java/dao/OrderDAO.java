@@ -246,6 +246,8 @@ public class OrderDAO {
 				orderBean.setO_rdate2(rs.getTimestamp("o_rdate"));
 				orderBean.setO_gdiscount(rs.getInt("o_gdiscount"));
 				orderBean.setO_visitor(rs.getString("o_visitor"));
+				orderBean.setO_point(rs.getInt("o_point"));
+				orderBean.setM_id(rs.getString("m_id"));
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류!(OrderDAO - getOrder(String o_id) - " + e.getMessage());

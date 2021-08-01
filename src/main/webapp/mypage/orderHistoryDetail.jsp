@@ -136,7 +136,7 @@
 			<td>상품 명 : <%=itemList.get(i).getI_name() %><br>
 				수령일 : <%=orderDetailList.get(i).getOd_delivery_date() %><br>
 				받는 분 : <%=orderBean.getO_receiver() %><br>
-				가격 : <%=(int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount()) %> / <%=orderDetailList.get(i).getOd_qty() %>
+				가격 : <%=(int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount()/100) * 100 %> / <%=orderDetailList.get(i).getOd_qty() %>
 			</td>
 		
 		<%if(i==0) {
@@ -171,7 +171,7 @@
 			상품 금액 <%=orderBean.getO_amount() - addPrice %>원<br>
 			추가 상품 <%=addPrice %>원<br>
 			배송비 0원</td>
-		<td>포인트 할인 <%=orderBean.getO_point() %><-포인트를 못가져옴,수정필요<br>
+		<td>포인트 할인 <%=orderBean.getO_point() %><br>
 			등급 할인 <%=orderBean.getO_gdiscount() %></td>
 		<td>결제 방법 <%=paymentMethod %><br>
 			결제 일자 <%=simpleDateFormat.format(orderBean.getO_rdate2()) %></td>

@@ -232,5 +232,31 @@ public class ClassDetailDAO {
 			return fd_id;
 		}
 
+		public ArrayList<ClassDetailBean> getMypageClassDetailList(){
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			ArrayList<ClassDetailBean> detailList = new ArrayList<ClassDetailBean>();
+			try {
+				String sql = "SELECT * FROM fclass_detail ORDER BY f_id DESC";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					ClassDetailBean classDetailBean = new ClassDetailBean();
+					classDetailBean.setClass_detail_id(rs.getInt("fd_id"));
+					classDetailBean.setClass_id(rs.getInt("f_id"));
+					classDetailBean.setTime(rs.getInt("fd_time"));
+					classDetailBean.setPlace(rs.getString("fd_place"));
+					classDetailBean.setDate(rs.getString("fd_date"));
+					detailList.add(classDetailBean);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+				
+			}
+			return detailList;
+		}
 	
 }

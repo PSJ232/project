@@ -80,7 +80,10 @@ if (qnaList.isEmpty()) {
 		<%} else if(qnaList.get(i).getQ_re_lev()==1) {%>
 			<tr>
 				<td>답변</td>
-				<td colspan="2"><%=qnaList.get(i).getQ_content() %></td>
+				<td colspan="2">
+				<%=qnaList.get(i).getQ_subject() %> <small><%=qnaList.get(i).getQ_rdate() %></small><br>
+				<%=qnaList.get(i).getQ_content() %>				
+				</td>
 			</tr>
 			<%}
 		}
