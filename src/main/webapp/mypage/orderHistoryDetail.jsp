@@ -171,7 +171,7 @@
 			상품 금액 <%=orderBean.getO_amount() - addPrice %>원<br>
 			추가 상품 <%=addPrice %>원<br>
 			배송비 0원</td>
-		<td>포인트 할인 <%=orderBean.getO_point() %><-포인트를 못가져옴,수정필요<br>
+		<td>포인트 할인 <%=orderBean.getO_point() %><br>
 			등급 할인 <%=orderBean.getO_gdiscount() %></td>
 		<td>결제 방법 <%=paymentMethod %><br>
 			결제 일자 <%=simpleDateFormat.format(orderBean.getO_rdate2()) %></td>
