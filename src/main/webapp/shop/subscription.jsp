@@ -211,8 +211,7 @@ for(ItemBean ib : itemList) {
 						</li>
 					</ol>
 					<p class="how_tip">
-						<span class="line">혹시, 일정을 변경하고 싶으신가요? <br>
-						마이페이지 혹은 고객센터를 통해 미리 일정을 변경하실 수 있습니다.</span>
+						<span class="line">혹시, 일정을 변경하고 싶으신가요? 마이페이지 혹은 고객센터를 통해 미리 일정을 변경하실 수 있습니다.</span>
 					</p>
 				</div>
 			</div>
@@ -223,5 +222,24 @@ for(ItemBean ib : itemList) {
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
+	
+	
+	
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.toggle').click(function(){
+				$('.faq_list_link').removeClass('is_clicked');
+				$(this).addClass('is_clicked');
+				
+				let address = $(this).attr('href').substring(1);
+				$('#faq_board').find('ul').removeClass('is_active');
+				document.getElementById(address).classList.add('is_active');
+			});
+
+			$('.faq_board_item').click(function(){
+				$(this).find('div').addClass('is_active');
+			});
+		});
+	</script>
 </body>
 </html>
