@@ -5,13 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 | 클래스 등록</title>
-<style>
-	body {
-		text-align: center;
-	}
-</style>
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -20,12 +13,12 @@
 <script>
 $.datepicker.setDefaults($.datepicker.regional['ko']);
 $(document).ready(function(){
-	
+// 	$('#timeList').hide();
  	 // 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
     // 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
   
     // 시작일
-    
+    $('.admin_header_subtitle').text("클래스 등록");
     $('#date').datepicker({
        dateFormat: "yy-mm-dd",
        changeMonth: true,
@@ -40,8 +33,9 @@ $(document).ready(function(){
           $('#toDate').datepicker("option", "maxDate", date);
        }
     });
-   // $('input:checkbox[input[name="radio"]').is(':checked')
     $('input[name="place"]').change(function(){
+	   if($('#date').val() != ""){
+//     	$('#timeList').show();
         $.ajax('TimeList.ad', {
            type: "GET",
            data: {
@@ -53,10 +47,124 @@ $(document).ready(function(){
               $('#timeList').append(rdata);
            }   // success
         });   //ajax
-        
+	   }else {
+		   alert("날짜를 선택하세요!");
+		   $('#date').focus();
+	   }
   });   //change
 });
 </script>
+<script>
+	var checkLengthResult = false;
+	function checkLength(num){
+		var regex = /^[0-9]{12}$/;
+		var element = document.getElementById('check_result');
+		if(regex.exec(num)) {
+	        element.innerHTML = '사용 가능';
+	        checkLengthResult = true; // 전역변수값을 true 로 변경
+	     } else {
+	        element.innerHTML = '사용 불가능';
+	        checkLengthResult = false; // 전역변수값을 false 로 변경
+	     }
+
+	}
+	function checkForm(){
+		if(checkLengthResult){
+			return true;
+		}else{
+			alert("올바른 운송장이 아닙니다!");
+			return false;
+		}
+	}
+</script>
+<style>
+	#insert_form {
+		display: flex;
+		width: 1000px;
+		margin-left: 350px;
+		margin-top: 110px;
+	
+	}
+	.sub_container1,.sub_container2 {
+		display: inline-block;
+		width: 500px;
+	}
+	.sub_container1 {
+		height: 500px;
+	}
+	.sub_container2 {
+		margin-top: 45px;
+		margin-bottom: 50px;
+	}
+	label {
+		width: 120px;
+		float:left;
+		font-size: 15px;
+		font-weight: bold;
+		margin-top: 5px;
+	}
+	input[type=text], input[type=file]{
+		outline: none;
+		border: none;
+		margin-bottom: 15px;
+ 		border-bottom: 2px solid #ccc; 
+ 		width: 300px;
+	}
+	input[type=text]{
+		padding: 3px;
+	}
+	input[type=text]:hover, input[type=file]:hover{
+		border-bottom: 2px solid #FFDF24;
+	}
+	#title {
+		margin-bottom: 40px;
+	}
+	#timeList {
+		overflow: hidden;
+		width: 80px;
+		height: 150px;
+		text-align: center;
+		border: none;
+		display: inline-block;
+		font-size: 13px;
+		overflow: visible;
+		margin-bottom: 20px;
+	}
+	textarea {
+		border: none;
+		outline: none;
+	}
+	fieldset {
+		border-radius: 5px;
+		border: 2px solid #ccc;
+		padding: 8px;
+		width: 315px;
+	}
+	fieldset:hover {
+		border: 2px solid #FFDF24;
+	}
+	legend {
+		font-size: 15px;
+		padding: 5px;
+	}
+	input[type=submit]{
+		width: 70px;
+		height: 30px;
+		float: right;
+		margin-right: 75px;
+		border: 1px solid #fff;
+		border-radius: 5px;
+		background-color: #FFDF24;
+	}
+	input[type=submit]:hover{
+		background-color: #FFCD12;
+		cursor: pointer;
+	}
+	.radio{
+		font-size: 15px;
+		font-weight: bold;
+	}
+</style>
 </head>
 <body>
     <!-- header -->
@@ -67,32 +175,33 @@ $(document).ready(function(){
 	<jsp:include page="/inc/navigation.jsp" ></jsp:include>
 	<!-- nav -->
 	
-    <!-- onclick하면 ajax로 띄워주기 -->
-	<div id="container"> <!-- css layout요소 추가 -->
-		<h1>클래스 등록</h1>
-		<form action="ClassInsertPro.ad" method="post" enctype="multipart/form-data" name="insert_form">
-			<div class="class_insert_container">
-				클래스 이름: <input type="text" name="class_subject" required><br>
-				날짜선택: <input type="text" id="date" name="date"><br>
-				<h1>장소선택</h1>
-				<input type="radio" name="place" value="서면">서면 
-				<input type="radio" name="place" value="남포">남포 
-				<input type="radio" name="place" value="해운대">해운대 
-				<h3>시간선택</h3>
-				<select name="timeList" id="timeList" multiple="multiple"></select><br>
-				클래스 설명: <textarea name="class_desc" rows="30" cols="100"></textarea><br>
-				비용: <input type="text" name="class_cost" required><br>
-				정원: <input type="text" name="max_member" required><br>
-				메인 이미지: <input type="file" name="class_main_img" required><br>
-				서브 이미지1: <input type="file" name="class_sub_img1"><br>
-				서브 이미지2: <input type="file" name="class_sub_img2"><br>
-				서브 이미지3: <input type="file" name="class_sub_img3"><br>
-				<input type="submit" value="등록">
-			</div>
-		</form>
-	</div>
+	<form action="ClassInsertPro.ad" id="insert_form" method="post" enctype="multipart/form-data" name="insert_form">
+		<div class="sub_container1">
+			<h1 id="title">클래스 등록</h1>
+			<label>클래스 명</label> <input type="text" name="class_subject" required><br>
+			<label>클래스 요약설명</label> <input type="text" name="class_sub_desc" required><br>
+			<label>날짜</label> <input type="text" id="date" name="date"><br>
+			<label>장소</label>
+			<input type="radio" name="place" class="radio" value="서면"> 서면  
+			<input type="radio" name="place" class="radio" value="남포"> 남포 
+			<input type="radio" name="place" class="radio" value="해운대"> 해운대  
+			<br><br><label>시간</label>
+			<select name="timeList" id="timeList" multiple="multiple"><option id="alrt">날짜와 장소 입력 후 선택 가능합니다.</option></select>
+			<br><label>비용</label> <input type="text" id="cost" name="class_cost" required><br>
+			<label>정원</label> <input type="text" name="max_member" required><br>
+		</div>
+		<div class="sub_container2">
+			<label>메인 이미지</label> <input type="file" name="class_main_img" required><br>
+			<label>서브 이미지1</label> <input type="file" name="class_sub_img1"><br>
+			<label>서브 이미지2</label> <input type="file" name="class_sub_img2"><br>
+			<label>서브 이미지3</label> <input type="file" name="class_sub_img3"><br>
+			<fieldset><legend>클래스 설명</legend><textarea name="class_desc" rows="20" cols="65"></textarea></fieldset><br>
+			<input type="submit" value="등록">
+		</div>
+	</form>
+<!-- 	</div> -->
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</footer>
-
+</body>
 </html>

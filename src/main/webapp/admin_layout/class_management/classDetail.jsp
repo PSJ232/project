@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 | 클래스 상세</title>
 <style>
 	#container {
 		display: flex;
@@ -24,6 +24,7 @@
 		margin-top: 15px;
 	}
 	.images {
+		margin-top: 15px;
 		display: inline-block;
 		width: 500px;
 	}
@@ -66,6 +67,9 @@
 		background-color: #FFCD12;
 		cursor: pointer;
 	}
+	#timespan {
+		font-size: 15px;
+	}
 </style>
 <link rel="stylesheet" href="./css/admin.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -99,14 +103,15 @@
 		</div>
 		<div class="sub_container">
 			<label>클래스명 </label><input type="text" value="<%=classBean.getClass_subject() %>" readonly><br>
+			<label>클래스요약설명 </label><input type="text" value="<%=classBean.getClass_sub_desc() %>" readonly><br>
 			<label>지점 </label><input type="text" value="<%=classBean.getClass_place()%>" readonly><br>
-			<label>시간 </label><span>
+			<label>시간 </label><span id="timespan">
 			<%
 				for(Time time : selectedTimeList){
 					%><%=time%>/<%
 				}
 			%></span>
-			<br>
+			<br><br>
 			<label>비용 </label><input type="text" value="<%=classBean.getClass_price() %>" readonly><br>
 			<label>정원 </label><input type="text" value="<%=classBean.getClass_max_member() %>" readonly><br>
 			<label>현재인원 </label><input type="text" value="<%=classBean.getClass_current_member() %>" readonly><br>

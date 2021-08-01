@@ -26,7 +26,7 @@ public class ClassDetailViewAction implements Action {
 		
 		if(command.equals("/ClassModifyForm.ad")) {
 			// 가지고있던 timeList 값 반환
-			ArrayList<Time> selectableTimeList = time_service.getSelectableTimeList(request.getParameter("place"), request.getParameter("date"));
+			ArrayList<Time> selectableTimeList = time_service.getSelectableTimeList(classBean.getClass_place(), classBean.getClass_date());
 			request.setAttribute("selectableTimeList", selectableTimeList);
 			forward.setPath("./admin_layout/class_management/classModifyForm.jsp");
 			forward.setRedirect(false);

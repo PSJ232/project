@@ -17,6 +17,7 @@ public class ClassBean {
 	private String class_sub_img2;
 	private String class_sub_img3;
 	private int class_readcount;
+	private String class_sub_desc;
 	
 	public String getClass_date() {
 		return class_date;
@@ -102,5 +103,11 @@ public class ClassBean {
 	}
 	public void setClass_readcount(int class_readcount) {
 		this.class_readcount = class_readcount;
+	}
+	public String getClass_sub_desc() {
+		return class_sub_desc;
+	}
+	public void setClass_sub_desc(String class_sub_desc) {
+		this.class_sub_desc = class_sub_desc;
 	}
 }

@@ -39,6 +39,7 @@ public class ClassModifyProAction implements Action {
 		classBean.setClass_date(multi.getParameter("date"));
 		classBean.setClass_place(multi.getParameter("place"));
 		classBean.setClass_desc(multi.getParameter("class_desc"));
+		classBean.setClass_sub_desc(multi.getParameter("class_sub_desc"));
 		classBean.setClass_max_member(Integer.parseInt(multi.getParameter("max_member")));
 		
 		String[] timeList = multi.getParameterValues("timeList");

@@ -44,7 +44,7 @@ public class ClassDAO {
 				num++;
 			}
 			close(pstmt);
-			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,0,?,?,?,?,now(),?,0)";
+			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,0,?,?,?,?,now(),?,0,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, classBean.getClass_subject());
@@ -57,6 +57,7 @@ public class ClassDAO {
 			pstmt.setString(9, classBean.getClass_sub_img2());
 			pstmt.setString(10, classBean.getClass_sub_img3());
 			pstmt.setString(11, classBean.getClass_date());
+			pstmt.setString(12, classBean.getClass_sub_desc());
 			pstmt.executeUpdate();
 			 
 			for(String time: timeList) {
@@ -134,6 +135,7 @@ public class ClassDAO {
 				classBean.setClass_sub_img1(rs.getString("f_sub_img1"));
 				classBean.setClass_sub_img2(rs.getString("f_sub_img2"));
 				classBean.setClass_sub_img3(rs.getString("f_sub_img3"));
+				classBean.setClass_sub_desc(rs.getString("f_sub_desc"));
 				classList.add(classBean);
 			}
 		} catch (SQLException e) {
@@ -170,7 +172,7 @@ public class ClassDAO {
 				classBean.setClass_create_date(rs.getString("f_rdate"));
 				classBean.setClass_date(rs.getString("f_cdate"));
 				classBean.setClass_readcount(rs.getInt("f_readcount"));
-				
+				classBean.setClass_sub_desc(rs.getString("f_sub_desc"));
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL구문 오류!(ClassDAO - getDetailContent) " + e.getMessage());
@@ -183,10 +185,9 @@ public class ClassDAO {
 
 	public int modifyClass(ClassBean classBean, String[] timeList) {
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		int modifyCount = 0;
 		try {
-			String sql = "UPDATE fclass SET f_subject=?,f_desc=?,f_maxmem=?,f_main_img=?,f_sub_img1=?,f_sub_img2=?,f_sub_img3=? WHERE f_id=?";
+			String sql = "UPDATE fclass SET f_subject=?,f_desc=?,f_maxmem=?,f_main_img=?,f_sub_img1=?,f_sub_img2=?,f_sub_img3=?,f_sub_desc=? WHERE f_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, classBean.getClass_subject());
 			pstmt.setString(2, classBean.getClass_desc());
@@ -195,7 +196,8 @@ public class ClassDAO {
 			pstmt.setString(5, classBean.getClass_sub_img1());
 			pstmt.setString(6, classBean.getClass_sub_img2());
 			pstmt.setString(7, classBean.getClass_sub_img3());
-			pstmt.setInt(8, classBean.getClass_id());
+			pstmt.setString(8, classBean.getClass_sub_desc());
+			pstmt.setInt(9, classBean.getClass_id());
 			modifyCount = pstmt.executeUpdate();
 			close(pstmt);
 			if(timeList != null) {

@@ -16,8 +16,7 @@ public class ClassDetailSelectTimelistAction implements Action {
 		ActionForward forward = new ActionForward();
 		ClassDetailSelectTimelistService service = new ClassDetailSelectTimelistService();
 		request.setCharacterEncoding("utf-8");
-		ArrayList<Time> timeList = service.getTimeList(request.getParameter("place"), request.getParameter("date"));
-		System.out.println(request.getParameter("place"));
+		ArrayList<Time> timeList = service.getSelectableTimeList(request.getParameter("place"), request.getParameter("date"));
 		request.setAttribute("timeList", timeList);
 		forward.setPath("admin_layout/class_management/timeSelect.jsp");
 		

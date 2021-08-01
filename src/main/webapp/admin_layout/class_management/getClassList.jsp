@@ -51,6 +51,9 @@
 		background-color: #FFCD12;
 		cursor:pointer;
 	}
+	#class_subject:hover {
+		color: #FFDF24;
+	}
 </style>
 </head>
 <body>
@@ -60,7 +63,7 @@
 				<table class="class_content">
 				<tr>
 				<td rowspan="4" width="5"><img id="img" src="<%="img_upload/"+cb.getClass_main_img() %>"/></td>
-				<td width="500"><h2><a href="ClassDetailView.ad?class_num=<%=cb.getClass_id()%>"><%=cb.getClass_subject() %></a></h2></td>
+				<td width="500"><h2 ><a id="class_subject" href="ClassDetailView.ad?class_num=<%=cb.getClass_id()%>"><%=cb.getClass_subject() %></a></h2></td>
 				</tr>
 				<tr>
 				<td>

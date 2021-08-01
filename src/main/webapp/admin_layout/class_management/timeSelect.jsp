@@ -12,16 +12,9 @@
 </head> 
 <body>
 		<%
-			if(request.getParameter("date") != ""){
-			
-		%>
-		<%
 			for(int i = 0; i < timeList.size(); i++){
 				%><option><%=timeList.get(i)%></option><%
 			}
-		%>
-		<%
-			} 
 		%>
 </body>
 </html>

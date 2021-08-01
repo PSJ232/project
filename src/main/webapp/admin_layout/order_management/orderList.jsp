@@ -20,7 +20,7 @@
 		margin-top: 90px;
 	}
 	.table {
-		margin-top: 80px;
+		margin-top: 50px;
 		margin-bottom: 100px;
 		width: 800px;
 		text-align: center;
@@ -37,13 +37,11 @@
 		justify-content: flex-start;
 	}
 	#order_status {
-		margin-top: 30px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		width: 800px;
+		width: 770px;
 		height: 70px;
-		background-color: #eee;
 		padding: 5px;
 	}
 	
@@ -53,6 +51,15 @@
 		font-size: 3em;
 		padding-top: 12px;
 		align-items: center;
+	}
+	fieldset {
+		width: 800px;
+		padding: 10px;
+		border-radius: 10px;
+	}
+	legend {
+		font-size: 20px;
+		padding: 15px;
 	}
 	
 </style>
@@ -97,12 +104,14 @@
 		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 	<div class="container">
-		<h1 id="order_title">주문현황</h1>
-		<div id="order_status">
-		<h2>주문접수 <%=orderCount.get("주문접수") %></h2>
-		<h2>배송중 <%=orderCount.get("배송중") %></h2> 
-		<h2>배송완료 <%=orderCount.get("배송완료") %></h2>
-		</div>
+		<fieldset>
+			<legend>주문현황</legend>
+			<div id="order_status">
+				<h2>주문접수 <%=orderCount.get("주문접수") %></h2>
+				<h2>배송중 <%=orderCount.get("배송중") %></h2> 
+				<h2>배송완료 <%=orderCount.get("배송완료") %></h2>
+			</div>
+		</fieldset>
 		<div class="search">
 		<select name="filter" id="filter">
 			<option value="m_id">filter</option>
