@@ -299,8 +299,8 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT o.* " + "FROM orders_detail od JOIN orders o " + "ON od.o_id = o.o_id "
-				+ "WHERE od.m_id = ? AND od.od_confirm = 0 OR od.od_confirm = 1;";
+		String sql = "SELECT o.* FROM orders_detail od JOIN orders o ON od.o_id = o.o_id"
+				+ " WHERE od.m_id =? AND od.i_id > 0 AND od.od_confirm = 0 OR od.od_confirm= 1;";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -337,7 +337,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT o.* " + "FROM orders_detail od JOIN orders o " + "ON od.o_id = o.o_id "
-				+ "WHERE od.od_confirm = 2 AND od.m_id = ?";
+				+ "WHERE od.i_id > 0 AND od.od_confirm = 2 AND od.m_id = ?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -374,7 +374,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT i.* " + "FROM orders_detail od JOIN item i " + "ON od.i_id = i.i_id "
-				+ "WHERE od.m_id = ? AND od.od_confirm = 0 OR od.od_confirm = 1;";
+				+ "WHERE od.i_id > 0 AND od.m_id = ? AND od.od_confirm = 0 OR od.od_confirm = 1;";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -416,7 +416,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT i.* " + "FROM orders_detail od JOIN item i " + "ON od.i_id = i.i_id "
-				+ "WHERE od.od_confirm = 2 AND od.m_id = ?";
+				+ "WHERE od.i_id > 0 AND od.od_confirm = 2 AND od.m_id = ?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -456,7 +456,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * " + "FROM orders_detail " + "WHERE m_id = ? AND od_confirm = 0 OR od_confirm = 1";
+		String sql = "SELECT * FROM orders_detail WHERE m_id = ? AND i_id >0 AND od_confirm = 0 OR od_confirm = 1";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -493,7 +493,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * " + "FROM orders_detail " + "WHERE od_confirm = 2 AND m_id = ?";
+		String sql = "SELECT * " + "FROM orders_detail " + "WHERE od_confirm = 2 AND i_id >0 AND m_id = ?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
