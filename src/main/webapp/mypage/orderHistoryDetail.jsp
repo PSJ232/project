@@ -26,12 +26,34 @@
 	String[] address = orderBean.getO_address().split("&");
 	
 	// 편지지 구매 이력을 기반으로 추가 상품 금액 도출
-	int addPrice = 0;
+// 	int addPrice = 0;
+// 	for(int i =0; i<orderDetailList.size(); i++) {
+// 		if(orderDetailList.get(i).getL_id()!=0) {
+// 			addPrice += 2500;
+// 		} else {}
+// 	}
+	
+	// 왜인지 모르겠지만,꾸까는 단품(한종류)으로 여러개를 시키면 편지지는 중복계산되지않고 1개만 계산함
+	// 아마도 같은 배송지이고 같은 날자이기때문에 1개만 추가되는 것 같음
+	// 또한 정기구독의 경우도 마찬가지로 최초결제시 2500원 1회만 포함됨
+	// 그래서 위와같이 계산하면 표시되는 금액에 오류가 있으므로, 조금 번거롭지만 아래 처럼 코드를 수정함
+	int sumPrice = 0;
 	for(int i =0; i<orderDetailList.size(); i++) {
-		if(orderDetailList.get(i).getL_id()!=0) {
-			addPrice += 2500;
-		} else {}
+		int i_id = orderDetailList.get(i).getI_id();
+		int od_qty = orderDetailList.get(i).getOd_qty();
+		
+		for(int j = 0; j < itemList.size(); j++) {
+			if(itemList.get(j).getI_id() == i_id) {
+				int i_price = itemList.get(j).getI_price();
+				float i_discount = itemList.get(j).getI_discount();
+				int price = (int)(i_price * i_discount / 100) * 100 * od_qty;
+				sumPrice += price;
+			}
+		}
 	}
+	int o_gdiscount = orderBean.getO_gdiscount();
+	int addPrice = orderBean.getO_amount() - sumPrice;
+	
 	
 	// 결제수단 구분
 	// 0:계좌이체, 1:신용카드, 2:카카오페이, 3:네이버페이 (미정)
@@ -149,7 +171,7 @@
 			상품 금액 <%=orderBean.getO_amount() - addPrice %>원<br>
 			추가 상품 <%=addPrice %>원<br>
 			배송비 0원</td>
-		<td>포인트 할인 <%=orderBean.getO_point() %><br>
+		<td>포인트 할인 <%=orderBean.getO_point() %><-포인트를 못가져옴,수정필요<br>
 			등급 할인 <%=orderBean.getO_gdiscount() %></td>
 		<td>결제 방법 <%=paymentMethod %><br>
 			결제 일자 <%=simpleDateFormat.format(orderBean.getO_rdate2()) %></td>
