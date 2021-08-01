@@ -46,8 +46,6 @@ for(int i =0; i<orderArrayList.size(); i++) {
 	if(i==orderArrayList.size()-1) {col.add(i+1);}
 	o_id = orderArrayList.get(i).getO_id() + "";
 }
-
-System.out.println("col : " + col.toString() );
 %>
 
 <!-- 헤더 들어가는곳 -->
