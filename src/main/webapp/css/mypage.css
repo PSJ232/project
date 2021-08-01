@@ -24,6 +24,7 @@ a, a:active, a:visited {
 .mypage_all {
 	width: 100%;
 	margin: 0 auto;
+	height: 100%;
 	/* 	float: right; */
 }
 
@@ -227,35 +228,132 @@ strong {
 }
 
 /* qnainsert */
-.qna_all {
-	margin: 0px auto;
-	margin-left: 400px;
-	margin-top: 200px;
+.qna_insert_all{
+	margin-right: 220px;
+	width: 800px;
+	float: right;
+	margin-top: 50px;
+}
+#qna_insert_i{
+	
 }
 
-.qna_title {
-	display: block;
-}
-
-#qna_one {
-	display: block;
-	font-size: x-large;
+#qna_insert_title{
 	font-weight: 700;
+	font-size: x-large;
+	color: black;
+/* 	padding: 50px; */
+	float: left;
+	width: 800px;
+	margin-bottom: 30px;
+	
 }
-
-#qna_two {
-	float: none;
-	padding-left: 300px;
+#qna_insert_title_spen{
+	float: right;
+	color: #969696;
 	font-size: medium;
-	font-weight: 500;
+	margin-top: 10px;
 }
-
-.qna_form {
-	width: 100%;
+#qna_insert_th{
+	display:inline-block;
+   	width: 800px;
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 800;
+	margin-bottom: 30px;
 }
-
-#qna_td {
+#qna_insert_order_td{
+	width: 450px;
+	height: 50px;
 	border-radius: 5px;
-	padding: 0px 20px;
-	display: block;
+	margin-left: 90px;
+	border: 1px solid #969696; 
+}
+
+#qna_insert_order_btn{
+	background-color: #969696;
+	width: 90px;
+	height: 50px;
+	margin-left: 40px;
+	border-radius: 5px;
+	border: none;
+	float: right;
+	color: white;
+	font-weight: 500;
+	font-size: 14px;	
+	
+}
+
+#qna_insert_subject_td{
+	width: 585px;
+	height: 50px;
+	border-radius: 5px;
+	margin-left: 100px;
+	font-size:medium;
+	border: 1px solid #969696; 
+	margin-left: 150px;
+	float: right;	
+}
+
+#qna_insert_contents_td{
+	float: right;	
+	border-radius: 5px;
+	font-size:medium;
+	width: 585px;
+}
+#qna_insert_p{
+	color: #969696; 
+	text-align: center;
+	margin-left: 120px;
+}
+#qna_insert_ul{
+	margin-bottom: 10px;
+}
+#qna_insert_li{
+	width: 400px;
+	height: 50px;
+	border-radius: 5px;
+	font-size:medium;
+	border: 1px solid #969696; 
+	margin-left: 210px;
+	margin-bottom: 5px;
+}
+
+.input-file-button{
+  padding: 15px 30px;
+  background-color:#969696;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  float: right;
+ 
+
+}
+#qna_insert_li_inp{
+	position: absolute; 
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip:rect(0,0,0,0);
+	border: 0;
+
+
+
+}
+
+#qna_insert_p2{
+	margin-left: 200px;	
+	color: #969696;
+}
+#qna_insert_submit{
+	background-color: #FFD228;
+	border-radius: 10px;
+	width: 400px;
+	height: 50px;
+	text-align: center;
+	border: none;
+	margin-top: 30px;
+	margin-left: 200px;
 }
