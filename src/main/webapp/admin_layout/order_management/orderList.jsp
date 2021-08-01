@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 	.container {
-		margin-left: 40em;
+		margin-left: 350px;
 		margin-top: 90px;
 	}
 	.table {
@@ -24,13 +24,19 @@
 		margin-bottom: 100px;
 		width: 800px;
 		text-align: center;
+		border: 1px solid #ececec;
 		border-collapse: collapse;
-		background-color: #ccc;
+		border-radius: 10px;
 	}
 	.table th,td {
 		height: 3em;
 	}
-	
+	.table th {
+		background-color: #f7f7f7;
+	}
+	.table tr:hover {
+		background-color: #FFDF24;
+	}
 	.search {
 		display: flex;
 		margin-top: 50px;
@@ -42,13 +48,14 @@
 		align-items: center;
 		width: 770px;
 		height: 70px;
-		padding: 5px;
+		padding-left: 50px;
+		padding-right: 50px;
 	}
 	
 	#order_status h2 {
 		
 		height: 50px;
-		font-size: 3em;
+		font-size: 25px;
 		padding-top: 12px;
 		align-items: center;
 	}
@@ -56,6 +63,7 @@
 		width: 800px;
 		padding: 10px;
 		border-radius: 10px;
+		border: 2px solid #FFDF24;
 	}
 	legend {
 		font-size: 20px;
@@ -82,8 +90,8 @@
 				var row = table.insertRow(0);
 				for(var j = 0; j < result[i].length; j++){
 					var cell = row.insertCell(j);
-					if(j == 0){
-						cell.innerHTML = "<a href='OrderDetail.ad?o_id=" + result[i][j].value + "'>" + result[i][j].value + "</a>";
+					if(j == 2){
+						cell.innerHTML = "<a href='OrderDetail.ad?o_id=" + result[i][0].value + "'>" + result[i][j].value + "</a>";
 					}else {
 						cell.innerHTML = result[i][j].value;
 					}
@@ -107,9 +115,9 @@
 		<fieldset>
 			<legend>주문현황</legend>
 			<div id="order_status">
-				<h2>주문접수 <%=orderCount.get("주문접수") %></h2>
-				<h2>배송중 <%=orderCount.get("배송중") %></h2> 
-				<h2>배송완료 <%=orderCount.get("배송완료") %></h2>
+				<h2>주문접수 <%=orderCount.get("주문접수") %> </h2>
+				<h2>배송중 <%=orderCount.get("배송중") %> </h2> 
+				<h2>배송완료 <%=orderCount.get("배송완료") %> </h2>
 			</div>
 		</fieldset>
 		<div class="search">
@@ -118,8 +126,8 @@
 			<option value="m_id">id</option>
 			<option value="o_id">date</option>
 			<option value="od_invoice">status</option>
-		</select>
-		<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
+		</select> 
+		 <input type="text" name="search" id="search_val" onkeyup="searchFunction()">
 		</div>
 		<div class="table_container">
 			<table class="table" border="1">

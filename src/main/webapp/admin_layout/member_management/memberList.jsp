@@ -20,24 +20,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 	table {
-/* 		margin: 0 auto; */
 		margin-top: 50px;
-		width: 100em;
+		border-radius: 10px;
+		width: 800px;
 		text-align: center;
-		
+		border-collapse: collapse;
+		border: 1px solid #ececec;
+	}
+	
+	table th{
+		background-color: #f7f7f7;
+	}
+	table th,td {
+		height: 15px;
+		padding: 5px;
+	}
+	table tr:hover{
+		background-color: #FFDF24;
 	}
 	
 	.container {
 		margin-top: 100px;
 		margin-bottom: 100px;
-		margin-left: 400px;
+		margin-left: 350px;
 	}
 	
 	.search_container {
-/* 		display: flex; */
-/* 		margin-top: 70px; */
-/* 		justify-content: flex-end; */
-/* 		margin-right: 300px; */
 		display: flex;
 		margin-top: 50px;
 		justify-content: flex-start;
@@ -50,14 +58,21 @@
 	}
 	
 	#pieChartCanvas {
-		margin-top: 100px;
-/* 		margin-left: 600px; */
-		margin-left: 300px;
+		margin-left: 100px;
 	}
 	
 	#pie {
-		margin-top: 100px;
 		margin-left: 50px;
+	}
+	
+	fieldset {
+		width: 800px;
+		padding: 15px;
+		border-radius: 10px;
+	}
+	legend {
+		padding: 10px;
+		font-size: 25px;
 	}
 </style>
 <script type="text/javascript">
@@ -151,11 +166,13 @@
 <!-- 	</nav> -->
 
 	<div class="container">
-		<h1>회원통계</h1>
-		<div class="chart-div">
-        <canvas id="pieChartCanvas" width="300px" height="300px" ></canvas>
-        <canvas id="pie" width="300px" height="300px"></canvas>
-   		</div>
+		<fieldset>
+			<legend>회원통계</legend>
+			<div class="chart-div">
+		        <canvas id="pieChartCanvas" width="250px" height="250px" ></canvas>
+		        <canvas id="pie" width="250px" height="250px"></canvas>
+	   		</div>
+   		</fieldset>
 		<div class="search_container">
 			<select name="filter" id="filter">
 				<option value="0">filter</option>

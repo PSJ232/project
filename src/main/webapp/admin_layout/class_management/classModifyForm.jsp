@@ -105,7 +105,7 @@
 <link rel="stylesheet" href="./css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
-	$document.ready(function(){
+	$(document).ready(function(){
 		$('.admin_header_subtitle').text("클래스 수정");
 	});
 </script>
@@ -147,7 +147,7 @@
 				<input type="hidden" name="ori_sub_img2" value="<%=classBean.getClass_sub_img2()%>">
 				<input type="hidden" name="ori_sub_img3" value="<%=classBean.getClass_sub_img3()%>">
 				<fieldset><legend>클래스 설명</legend><textarea name="class_desc" rows="20" cols="65"><%=classBean.getClass_desc() %></textarea></fieldset><br>
-				<input type="submit" value="등록">
+				<input type="submit" value="수정">
 			</div>
 		</form>
 	<footer>

@@ -264,7 +264,8 @@ public class OrderDAO {
 		ResultSet rs = null;
 		try {
 			String sql = "SELECT od.od_id,od.o_id,i.i_id,od.l_id,od.od_qty,od.od_message,od.m_id,od.od_delivery_date,od.od_invoice,od.od_confirm,i.i_name"
-					+ " FROM orders_detail od, item i WHERE i.i_id=od.i_id and o_id=?";
+					+ " FROM orders_detail od, item i "
+					+ "WHERE i.i_id=od.i_id and o_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, o_id);
 			rs = pstmt.executeQuery();
@@ -278,7 +279,11 @@ public class OrderDAO {
 				odb.setOd_message(rs.getString("od_message"));
 				odb.setM_id(rs.getString("m_id"));
 				odb.setOd_delivery_date(rs.getString("od_delivery_date"));
-				odb.setOd_invoice(rs.getString("od_invoice"));
+				if(rs.getString("od_invoice").equals("주문접수")) {
+					odb.setOd_invoice("운송장을 입력해주세요");
+				}else {
+					odb.setOd_invoice(rs.getString("od_invoice"));
+				}
 				odb.setOd_confirm(rs.getInt("od_confirm"));
 				odb.setI_name(rs.getString("i_name"));
 				orderDetailList.add(odb);
