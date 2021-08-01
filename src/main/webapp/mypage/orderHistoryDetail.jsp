@@ -136,7 +136,7 @@
 			<td>상품 명 : <%=itemList.get(i).getI_name() %><br>
 				수령일 : <%=orderDetailList.get(i).getOd_delivery_date() %><br>
 				받는 분 : <%=orderBean.getO_receiver() %><br>
-				가격 : <%=(int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount()) %> / <%=orderDetailList.get(i).getOd_qty() %>
+				가격 : <%=(int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount()/100) * 100 %> / <%=orderDetailList.get(i).getOd_qty() %>
 			</td>
 		
 		<%if(i==0) {

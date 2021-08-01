@@ -120,7 +120,7 @@ System.out.println("col : " + col.toString() );
    						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
 						수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %><br>
 						받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
-						가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount()) %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
+						가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
 					</td>
    					<%if(nonCol.contains(i)) {
    					if(nonOrderDetailArrayList.get(i).getOd_confirm()==1) {
@@ -157,7 +157,7 @@ System.out.println("col : " + col.toString() );
    						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
 						수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %><br>
 						받는 분 : <%=orderArrayList.get(i).getO_receiver() %><br>
-						가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount()) %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
+						가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
 					</td>
 					<%if(col.contains(i)) {
    						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td><%
