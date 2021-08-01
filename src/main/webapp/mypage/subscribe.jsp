@@ -1,3 +1,5 @@
+<%@page import="java.sql.Date"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.ItemBean"%>
 <%@page import="vo.OrderBean"%>
@@ -46,6 +48,9 @@ for(int i =0; i<orderArrayList.size(); i++) {
 	if(i==orderArrayList.size()-1) {col.add(i+1);}
 	o_id = orderArrayList.get(i).getO_id() + "";
 }
+
+System.out.println("nonCol : " + nonCol.toString());
+System.out.println("col : " + col.toString());
 %>
 
 <!-- 헤더 들어가는곳 -->
@@ -102,16 +107,21 @@ for(int i =0; i<orderArrayList.size(); i++) {
  		<div>
  		<h6>주문/배송내역</h6>
  		<table border="1">
- 			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
+ 			<tr><td>첫 구독일</td><td>상품 정보</td><td>상태</td></tr>
  	
 			<%
 			int count = 0;
 			for(int i=0; i<nonOrderArrayList.size(); i++) {
+
+				// 배송 날짜 String -> Date 변환
+				Date deliveryDate = Date.valueOf(nonOrderDetailArrayList.get(i).getOd_delivery_date());
+				Date today = Date.valueOf(LocalDate.now());
    				%>
    				
    				<tr>
    					<%if(nonCol.contains(i)) {
    						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td><%
+   						count++;
    					} else {}
    					%>
    					<td>
@@ -120,16 +130,14 @@ for(int i =0; i<orderArrayList.size(); i++) {
 						받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
 						가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
 					</td>
-   					<%if(nonCol.contains(i)) {
-   					if(nonOrderDetailArrayList.get(i).getOd_confirm()==1) {
-   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">배송 완료</td><%
-   					} else if(!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
-   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">배송 중</td><%
-   					} else if(nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
-   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">주문접수</td><%
+   					<%
+   					if(deliveryDate.before(today)) {
+   						%><td>배송 완료</td><%
+   					} else if(deliveryDate.after(today)) {
+   						%><td>배송 예정</td><%
+   					} else if(deliveryDate.equals(today)) {
+   						%><td>배송 완료</td><%
    					}
-   					count++;
-   					} else {}
    					%>
    				</tr>
 		<%}%>

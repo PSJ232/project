@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MypageSbscribeListAction;
 import action.OrderAddressAction;
 import action.OrderCancelAction;
 import action.OrderCartAction;
@@ -123,6 +124,13 @@ public class OrderFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/OrderSub.od")) {
 			action = new OrderSubAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MypageSubscribe.od")) {
+			action = new MypageSbscribeListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

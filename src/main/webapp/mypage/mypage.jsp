@@ -130,8 +130,8 @@
 				<ul id="mypage_menu_list">
 					<li id="mypage_list"><a id="mypage_list_a"
 						href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
-					<li id="mypage_list"><a id="mypage_list_a" href="">나의 정기구독</a></li>
-					<li id="mypage_list"><a id="mypage_list_a" href="">클래스
+					<li id="mypage_list"><a id="mypage_list_a" href="MypageSubscribe.od">나의 정기구독</a></li>
+					<li id="mypage_list"><a id="mypage_list_a" href="ClassMypageDetail.me">클래스
 							수강내역</a></li>
 					<li id="mypage_list"><a id="mypage_list_a"
 						href="ReviewInsertForm.rv">상품 리뷰</a></li>
