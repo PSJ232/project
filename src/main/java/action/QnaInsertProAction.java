@@ -29,12 +29,6 @@ public class QnaInsertProAction implements Action {
 		int q_id = idMakerService.newId("qna", "q_id", 0);
 		int o_id;
 
-		if (request.getParameter("o_id") == null) {
-			o_id = 0;
-		} else {
-			o_id = Integer.parseInt(request.getParameter("o_id"));
-		}
-
 		String realFolder = "";
 		String uploadFolder = "/mypage/qnaUpload";
 		int fileSize = 1024 * 1024 * 5; // 5mb
@@ -45,6 +39,12 @@ public class QnaInsertProAction implements Action {
 		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8",
 				new DefaultFileRenamePolicy());
 
+		if (multi.getParameter("o_id") == null) {
+			o_id = 0;
+		} else {
+			o_id = Integer.parseInt(multi.getParameter("o_id"));
+		}
+		
 		QnaBean qnaBean = new QnaBean();
 		qnaBean.setM_id(m_id);
 		qnaBean.setQ_id(q_id);

@@ -39,7 +39,7 @@ public class QnaDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "INSERT INTO qna VALUES(?,?,?,?,?,now(),?,?,?)";
+			String sql = "INSERT INTO qna VALUES(?,?,?,?,?,now(),?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, qnaBean.getQ_id());
 			pstmt.setInt(2, qnaBean.getO_id());
@@ -49,9 +49,9 @@ public class QnaDAO {
 			pstmt.setString(6, qnaBean.getQ_img2());
 			pstmt.setString(7, qnaBean.getQ_img3());
 			pstmt.setString(8, qnaBean.getM_id());
-			
-			
-			
+			pstmt.setInt(9, qnaBean.getQ_id()); //qna_re_ref
+			pstmt.setInt(10, 0); //qna_re_lev
+			pstmt.setInt(11, 0); //qna_re_seq
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
