@@ -89,8 +89,8 @@ switch(path){
 	<%=percent %> <%=NumberFormat.getInstance().format(i_price) %>원 -> <%} %><%=NumberFormat.getInstance().format(price) %>원<br>
 	<hr>
 	<%if(path.equals("/FlowersContent.shop")){ %>3만원 이상 구매시, 무료배송!<br>서울/경기/인천 일부지역은 새벽배송으로 신선하게 배송됩니다.<%} %> <!-- 꽃배달 경유 접속시 표시 -->
-	<%if(path.equals("/QuickContent.shop")){ %>정기구독 전상품, 무료배송!<br>서울/경기/인천 일부지역은 새벽배송으로 신선하게 배송됩니다.<%} %> <!-- 당일배송 경유 접속시 표시 -->
-	<%if(path.equals("/SubContent.shop")){ %>당일 배송 상품은 서울/경기 일부 지역만 배송 가능합니다.<br>배송비는 지역에 따라 차등 부과됩니다.<%} %> <!-- 정기구독 경유 접속시 표시 -->
+	<%if(path.equals("/SubContent.shop")){ %>정기구독 전상품, 무료배송!<br>서울/경기/인천 일부지역은 새벽배송으로 신선하게 배송됩니다.<%} %> <!-- 정기구독 경유 접속시 표시 -->
+	<%if(path.equals("/QuickContent.shop")){ %>당일 배송 상품은 서울/경기 일부 지역만 배송 가능합니다.<br>배송비는 지역에 따라 차등 부과됩니다.<%} %> <!-- 당일배송 경유 접속시 표시 -->
 	<hr>
 	<form method="post" name="order">
 		<input type="hidden" name="i_id" value=<%=i_id %>>

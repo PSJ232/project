@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="vo.OrderDetailBean"%>
@@ -18,6 +19,7 @@
 OrderBean order = (OrderBean) request.getAttribute("visitorOrder");
 OrderDetailBean orderDetail = (OrderDetailBean) request.getAttribute("orderDetail");
 ItemBean itemDetail = (ItemBean) request.getAttribute("itemDetail");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 String od_invoice = orderDetail.getOd_invoice();
 String status = "주문접수";
@@ -81,7 +83,7 @@ case 1: payment = "신용카드"; break;
 	총 결제금액: <%=NumberFormat.getInstance().format(order.getO_amount()) %>원<br>
 	
 	결제방법:<%=payment %><br>
-	결제일시:<%=order.getO_rdate2() %><br>
+	결제일시:<%=sdf.format(order.getO_rdate2())%><br>
 	
 	*현금 영수증 발행은 1:1문의를 이용 부탁드립니다.<br>
 	
