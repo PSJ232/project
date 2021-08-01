@@ -119,8 +119,8 @@ for(int i =0; i<orderArrayList.size(); i++) {
   	<h2>마이꾸까</h2>
   	<ul type="none">
   		<li><a href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
-  		<li><a href="">나의 정기구독</a></li>
-  		<li><a href="">클래스 수강내역</a></li>
+  		<li><a href="MypageSubscribe.od">나의 정기구독</a></li>
+  		<li><a href="ClassMypageDetail.me">클래스 수강내역</a></li>
 		<li><a href="ReviewInsertForm.rv">상품 리뷰</a></li>
   	</ul>
  	 </div>
