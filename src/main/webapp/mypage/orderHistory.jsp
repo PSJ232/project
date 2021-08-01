@@ -10,6 +10,50 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+
+})
+</script>
+<!-- ajax에 쓰이는 css : 수정 마음껏 하셔도 괜찮습니다. -->
+<style type="text/css">
+
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ ul.tabs li{ 
+ 	background: none; 
+ 	display: inline-block; 
+ 	padding: 10px 15px; 
+ 	cursor: pointer; 
+ } 
+
+ul.tabs li.current{
+	color: #222;
+}
+
+.tab-content{
+	display: none;
+	padding: 15px;
+}
+
+.tab-content.current{
+	display: inherit;
+}
+</style>
 </head>
 <body>
 
@@ -95,11 +139,19 @@ for(int i =0; i<orderArrayList.size(); i++) {
 	</section>
   	
   <!-- 본문 내용 -->
+  
  <section>
- 	<div>
  		<h2>주문내역/배송조회</h2>
  		
- 		<div>
+<!--   -------------------------------------------------- -->
+  	<ul class="tabs">
+		<li class="tab-link current" data-tab="tab-1">주문/배송내역</li>
+		<li class="tab-link" data-tab="tab-2">취소/환불내역</li>
+	</ul>
+<!--   -------------------------------------------------- -->
+ 		
+	<div>
+ 		<div id="tab-1" class="tab-content current">
  		<h6>주문/배송내역</h6>
  		<table border="1">
  			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
@@ -136,9 +188,9 @@ for(int i =0; i<orderArrayList.size(); i++) {
  		</table>
  		</div>
  		
- 		<div>
+		<div id="tab-2" class="tab-content">
  		<h6>취소/환불내역</h6>
- 		 		<table border="1">
+ 		 	<table border="1">
  			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
  	
 			<%
