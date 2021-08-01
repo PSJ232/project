@@ -86,10 +86,10 @@
 							<table border="1" class="memberPoint_table">
 								<caption class="memberPoint_caption"></caption>
 								<colgroup>
-									<col width="20%">
-									<col width="15%">
+									<col width="25%">
+									<col width="25%">
 									<col>
-									<col width="20%">
+									<col width="34%">
 								</colgroup>
 								<thead>
 									<tr>
@@ -120,10 +120,10 @@
 								%>
 								<tbody>
 								<tr>
-									<td><%=pbList.get(i).getR_rdate()%></td>
-									<td><%=division%></td>
-									<td><%=record%></td>
-									<td><%=pbList.get(i).getR_point()%></td>
+									<td><span><%=pbList.get(i).getR_rdate()%></span></td>
+									<td><span class="memberPoint_span3"><%=division%></span></td>
+									<td><span class="memberPoit_span4"><%=record%></span></td>
+									<td><span><%=pbList.get(i).getR_point()%></span></td>
 								</tr>
 								</tbody>
 								<%
@@ -132,8 +132,8 @@
 								<tbody>
 								<tr>
 									<td><%=memberMypageDetail.getM_rdate()%></td>
-									<td>적립</td>
-									<td>회원 가입 감사 적립금</td>
+									<td class="memberPoint_span3">적립</td>
+									<td class="memberPoit_span4">회원 가입 감사 적립금</td>
 									<td>1000</td>
 								</tr>
 								</tbody>

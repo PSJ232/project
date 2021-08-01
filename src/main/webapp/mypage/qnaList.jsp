@@ -90,6 +90,5 @@ if (qnaList.isEmpty()) {
 	}
 %>
 </table>
-
 </body>
 </html>
