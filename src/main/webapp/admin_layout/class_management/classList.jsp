@@ -50,7 +50,7 @@
 		// tab operation
 		$('.tabmenu').click(function() {
 			var activeTab = $(this).attr('data-tab');
-			$('li').css('background-color', '#fff');
+			$('.tabmenu').css('background-color', '#fff');
 			$(this).css('background-color', '#FFDF24');
 			$.ajax({
 				type : 'GET',                 //get방식으로 통신

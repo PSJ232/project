@@ -102,6 +102,9 @@
 	window.onload = function(){
 		searchFunction();
 	}
+	$(document).ready(function(){
+		$('.admin_header_subtitle').text("주문 목록");
+	});
 </script>
 </head>
 <body>

@@ -23,7 +23,7 @@
 	}
 	fieldset {
 		padding: 20px;
-		border: 2px solid #FAED7D;
+		border: 2px solid #FFCD12;
 		border-radius: 5px;
 		margin-right: 20px;
 	}
@@ -92,11 +92,17 @@
 	}
 </style>
 <link rel="stylesheet" href="./css/admin.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
 	function insertTrackingNum(od_id){
 		window.open("InsertTrackingNum.ad?od_id="+od_id, "운송장 등록", "width=400, height=250, left=1100, top=150");
 	}
+	$(document).ready(function(){
+		$('.admin_header_subtitle').text("주문 상세");
+	});
 </script>
 </head>
 <body>

@@ -7,6 +7,13 @@
 	MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
 	ArrayList<DetailBean> orderList = (ArrayList<DetailBean>)request.getAttribute("orderList");
 	ArrayList<DetailBean> reviewList = (ArrayList<DetailBean>)request.getAttribute("reviewList");
+	String grade = "";
+	switch(memberBean.getG_id()){
+	case 0: grade = "WHITE"; break;
+	case 1: grade = "GREEN"; break;
+	case 2: grade = "RED"; break;
+	case 3: grade = "BLACK"; break;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -16,15 +23,75 @@
 <style>
 	#memberDetail_container {
 	margin-left: 350px;
-	margin-top: 150px;
+	margin-top: 120px;
 	margin-bottom: 100px;
 	}
+	#memberDetail_container table {
+		border-collapse: collapse;
+		border: 1px solid #ececec;
+		width: 900px;
+		text-align: center;
+	}
+	#memberDetail_container table th {
+		background-color: #f7f7f7;
+	}
+	#memberDetail_container table td,th {
+		padding: 5px;
+	}
+	#memberDetail_container table tr:hover {
+		background-color: #FFDF24;
+	}
+	#memberDetail_container label {
+		float:left;
+		width: 150px;
+		font-size: 15px;
+		font-weight: bold;
+		margin-left: 15px;
+	}
+	#memberDetail_container input[type=text]{
+		border:none;
+		outline: none;
+		margin-bottom: 10px;
+		font-size: 14px;
+	}
+	#memberDetail_container fieldset {
+		padding: 20px;
+		border-radius: 5px;
+		width: 950px;
+		border: 2px solid #FFCD12;
+		margin-bottom: 25px;
+	}
+	#memberDetail_container legend {
+		padding: 15px;
+		font-size: 20px;
+	}
+	#memberDetail_container [id^='content_'] {
+		background-color: #FAF4C0;
+	}
+	#reviewList tr {
+		cursor: pointer;
+	}
+	#listBtn {
+		width: 100px;
+		height: 40px;
+		border: 1px solid #fff;
+		border-radius: 5px;
+		background-color: #FFDF24;
+		margin-left: 850px;
+	}
+	#listBtn:hover {
+		background-color: #FFCD12;
+		cursor: pointer;
+	}
+	
 </style>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="admin_layout/css/admin.css">
-<link rel="stylesheet" href="admin_layout/css/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+<link rel="stylesheet" href="./css/admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script type="text/javascript">
 	var request = new XMLHttpRequest();
 	function getContent(r_id, value){
@@ -38,7 +105,7 @@
 					var object = eval('('+request.responseText+')'); 
 					var result = object.result;
 					var row = table.insertRow(value_idx + 1);
-					row.innerHTML = "<td id=content_" + r_id + " colspan='4'>" + result[0].value + "</td>";
+					row.innerHTML = "<td id=content_" + r_id + " colspan='5'>" + result[0].value + "</td>";
 				}
 			};
 			request.send(null);
@@ -47,6 +114,9 @@
 			document.getElementById('content_'+r_id).parentNode.remove();
 		}
 	}
+	$(document).ready(function(){
+		$('.admin_header_subtitle').text("회원 상세");
+	});
 </script>
 </head>
 <body>
@@ -57,63 +127,81 @@
 		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 <div id="memberDetail_container">
-	<h1>회원상세정보</h1>
-	회원아이디: <%=memberBean.getM_id()%><br>
-	회원이름: <%=memberBean.getM_name()%><br>
-	회원전화번호: <%=memberBean.getM_phone()%><br>
-	회원생일: <%=memberBean.getM_birth()%><br>
-	회원성별: <%=memberBean.getM_gender()%><br>
-	회원등급: <%=memberBean.getG_id()%><br>
-	마케팅 동의여부: <%=memberBean.getM_agree()%><br>
-	가입날짜: <%=memberBean.getM_rdate()%><br>
-	포인트: <%=memberBean.getM_point()%><br>
-	<%
-	if(memberBean.getM_drop() != null){
-	%>탈퇴날짜: <%=memberBean.getM_drop()%><%
-	}
-	%><br>
-	
-	<h1>회원 주문 기록</h1>
-	<table id="orderList" border="1">
-		<tr>
-			<th>주문번호</th>
-			<th>주문자ID</th>
-			<th>주문상품</th>
-			<th>주문금액</th>
-			<th>주문일시</th>
-			<th>배송상태</th>
-		</tr>
-		<%
-		for(DetailBean order: orderList){
+	<fieldset id="info_field">
+		<legend>회원정보</legend>
+		<label>아이디</label> <input type="text" value="<%=memberBean.getM_id()%>"><br>
+		<label>이름</label> <input type="text" value="<%=memberBean.getM_name()%>"><br>
+		<label>전화번호</label> <input type="text" value="<%=memberBean.getM_phone()%>"><br>
+		<label>생일</label> <input type="text" value="<%=memberBean.getM_birth()%>"><br>
+		<label>성별</label> 
+		<%if(memberBean.getM_gender() == 1){
+			%><input type="text" value="남"><br><%
+		}else {
+			%><input type="text" value="여"><br><%
+		}
 		%>
-				<tr>
-				<td><a href='OrderDetail.ad?o_id=<%=order.getO_id() %>'><%=order.getO_id() %></a></td>
-				<td><%=order.getM_id() %></td>
-				<td><%=order.getI_name() %></td>
-				<td><%=order.getO_amount() %></td>
-				<td><%=order.getO_rdate() %></td>
-				<td><%=order.getOd_invoice() %></td>
-				</tr>
-				<%
+		<label>등급</label> <input type="text" value="<%=grade%>"><br>
+		<label>마케팅동의여부</label> 
+		<%
+			if(memberBean.getM_agree() == null){
+				%><input type="text" value="비동의"><br><%
+			}else {
+				%><input type="text" value="동의"><br><%
 			}
 		%>
-	</table>
-	<div class="review">
-		<h1>회원 리뷰 목록</h1>
+		
+		<label>가입날짜</label> <input type="text" value="<%=memberBean.getM_rdate()%>"><br>
+		<label>보유포인트</label> <input type="text" value="<%=memberBean.getM_point()%>"><br>
+		<%
+		if(memberBean.getM_drop() != null){
+			%>탈퇴날짜: <%=memberBean.getM_drop()%><%
+		}
+		%><br>
+	</fieldset>
+	
+	<fieldset id="order_field">
+		<legend>회원주문목록</legend>
+		<table id="orderList" border="1">
+			<tr>
+				<th>주문번호</th>
+				<th>주문상품</th>
+				<th>주문금액</th>
+				<th>주문일시</th>
+				<th>배송상태</th>
+			</tr>
+			<%
+			for(DetailBean order: orderList){
+			%>
+					<tr>
+					<td><a href='OrderDetail.ad?o_id=<%=order.getO_id() %>'><%=order.getO_id() %></a></td>
+					<td><%=order.getI_name() %></td>
+					<td><%=order.getO_amount() %></td>
+					<td><%=order.getO_rdate() %></td>
+					<td><%=order.getOd_invoice() %></td>
+					</tr>
+					<%
+				}
+			%>
+		</table>
+	</fieldset>
+	<fieldset id="review_field">
+		<legend>회원리뷰목록</legend>
 		<table id="reviewList" border="1">
 			<tr>
-				<th>순번</th>
-				<th>작성일시</th>
-				<th>제목</th>
-				<th>평점</th>
+				<th width="50px">순번</th>
+				<th >품목</th>
+				<th width="250px">제목</th>
+				<th width="150px">작성일시</th>
+				<th width="100px">평점</th>
 			</tr>
 			<%
 				for(int i = 0; i < reviewList.size(); i++){
 					%>
 					<tr id="showContent" onclick="getContent(<%=reviewList.get(i).getR_id()%>,this)">
 						<td><%=i+1 %></td>
-						<td><%=reviewList.get(i).getR_rdate() %></td>
+						<td><%=reviewList.get(i).getI_name() %></td>
 						<td><%=reviewList.get(i).getR_title() %></td>
+						<td><%=reviewList.get(i).getR_rdate() %></td>
 						<td>
 						<%
 						for(int j=0; j < reviewList.get(i).getR_rate(); j++){
@@ -126,8 +214,9 @@
 				}
 			%>
 		</table>
+	</fieldset>
+	<input type="button" value="목록" id="listBtn" onclick="location.href='MemberList.ad'">
 	</div>
-</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</footer>

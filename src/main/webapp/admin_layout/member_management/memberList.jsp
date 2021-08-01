@@ -14,28 +14,26 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
-<link rel="stylesheet" href="admin_layout/css/admin.css">
-<link rel="stylesheet" href="admin_layout/css/style.css">
 <link rel="stylesheet" href="./css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-	table {
+	.container table {
 		margin-top: 50px;
-		border-radius: 10px;
 		width: 800px;
 		text-align: center;
 		border-collapse: collapse;
 		border: 1px solid #ececec;
+		border-radius: 10px;
 	}
 	
-	table th{
+	.container table th{
 		background-color: #f7f7f7;
 	}
-	table th,td {
+	.container table th,td {
 		height: 15px;
 		padding: 5px;
 	}
-	table tr:hover{
+	.container table tr:hover{
 		background-color: #FFDF24;
 	}
 	
@@ -58,19 +56,20 @@
 	}
 	
 	#pieChartCanvas {
-		margin-left: 100px;
+		margin-left: 120px;
 	}
 	
 	#pie {
 		margin-left: 50px;
 	}
 	
-	fieldset {
+	.container fieldset {
 		width: 800px;
 		padding: 15px;
 		border-radius: 10px;
+		border: 2px solid #ccc;
 	}
-	legend {
+	.container legend {
 		padding: 10px;
 		font-size: 25px;
 	}
@@ -80,7 +79,7 @@
 		    labels: ["10대이하", "20대", "30대", "40대", "50대이상"],
 		    datasets: [{
 		        data: [<%=memberData.get("10대이하")%>, <%=memberData.get("20대")%>, <%=memberData.get("30대")%>, <%=memberData.get("40대")%>, <%=memberData.get("50대이상")%>],
-		        backgroundColor: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099']
+		        backgroundColor: ['#FAED7D', '#CEF279', '#B2EBF4', '#FFB2D9', '#DB9CFF']
 		    }] 
 		};
 	var doughnutChartDraw = function () {
@@ -90,8 +89,7 @@
 		    data: doughnutChartData,
 		    options: {
 		        pieceLabel: {
-		        	render: 'percentage',
-		        	precision: 2
+		        	render: 'label',
 		          },
 		        responsive: false
 	            }
@@ -102,7 +100,7 @@
 		    labels: ['남', '여'],
 		    datasets: [{
 		        data: [<%=memberData.get("남")%>, <%=memberData.get("여")%>],
-		        backgroundColor: ['blue', 'red']
+		        backgroundColor: ['#489CFF', '#FF6C6C']
 		    }] 
 		};
 		
@@ -155,6 +153,9 @@
 		searchFunction();
 		doughnutChartDraw();
 	}
+	$(document).ready(function(){
+		$('.admin_header_subtitle').text("회원 목록");
+	});
 </script>
 </head>
 <body>

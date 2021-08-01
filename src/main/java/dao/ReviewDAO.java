@@ -486,9 +486,9 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		ArrayList<DetailBean> reviewList = new ArrayList<DetailBean>();
 		try {
-			String sql = "SELECT r.r_title, r.r_rate, r.r_id, od.od_id, r.r_content, r.r_rdate "
-					+ "FROM member m, orders_detail od, review r "
-					+ "WHERE od.m_id=m.m_id AND od.od_id=r.od_id AND r.r_writer=?"
+			String sql = "SELECT r.r_title, r.r_rate, r.r_id, od.od_id, r.r_content, r.r_rdate, i.i_name "
+					+ "FROM member m, orders_detail od, item i, review r "
+					+ "WHERE od.m_id=m.m_id AND od.od_id=r.od_id AND od.i_id=i.i_id AND r.r_writer=?"
 					+ "ORDER BY r.r_rdate DESC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
@@ -501,6 +501,7 @@ public class ReviewDAO {
 				detailBean.setR_id(rs.getInt("r_id"));
 				detailBean.setOd_id(rs.getString("od_id"));
 				detailBean.setR_rdate(rs.getString("r_rdate"));
+				detailBean.setI_name(rs.getString("i_name"));
 				reviewList.add(detailBean);
 			}
 		} catch (SQLException e) {
