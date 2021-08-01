@@ -25,7 +25,7 @@
 	%>
 
 	<%
-	if (orderList == null) {
+	if (orderList.isEmpty()) {
 	%>
 	고객님의 주문 내역이 존재하지 않습니다.
 	<%

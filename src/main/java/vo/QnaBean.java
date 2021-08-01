@@ -12,7 +12,8 @@ public class QnaBean {
 	private String q_img3;
 	private Date q_rdate;
 	private String m_id;
-	
+	private int q_re_ref;
+	private int q_re_lev;
 	
 	
 	public String getQ_img2() {
@@ -69,6 +70,19 @@ public class QnaBean {
 	public void setQ_rdate(Date q_rdate) {
 		this.q_rdate = q_rdate;
 	}
+	public int getQ_re_ref() {
+		return q_re_ref;
+	}
+	public void setQ_re_ref(int q_re_ref) {
+		this.q_re_ref = q_re_ref;
+	}
+	public int getQ_re_lev() {
+		return q_re_lev;
+	}
+	public void setQ_re_lev(int q_re_lev) {
+		this.q_re_lev = q_re_lev;
+	}
+
 	
 	
 }

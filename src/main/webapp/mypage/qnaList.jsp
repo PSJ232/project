@@ -8,6 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+}
+</style>
 <script src="../script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -34,7 +39,7 @@ String m_id = (String) session.getAttribute("m_id");
 <br> 급한 문의는 1661-1031 (월~금 10:00~18:00)로 문의 주세요.
 <br> 운영 시간 내에는 2시간 이내에 답변을 드리나, 문의가 많을 때에는 다소 지연될 수 있습니다.
 <%
-if (qnaList == null) {
+if (qnaList.isEmpty()) {
 %>
 <br>
 <br>문의 내역이 존재하지 않습니다.
@@ -43,30 +48,43 @@ if (qnaList == null) {
 %>
 <table border="1">
 	<tr>
-<!-- 		<input type="hidden" value="QNA 번호"> -->
-		<td>작성일</td>
-		<td>제목</td>
-		<td>상태</td>
+		<td width="100px">작성일</td>
+		<td width="200px">제목</td>
+		<td width="100px">상태</td>
 	</tr>
+	
 	<%
 	for (int i = 0; i < qnaList.size(); i++) {
-		Date q_rdate = qnaList.get(i).getQ_rdate();
-		String q_subject = qnaList.get(i).getQ_subject();
-		String q_content = qnaList.get(i).getQ_content();
-	%>
-	<tr>
-<%-- 		<input type="hidden" value="<%=qnaList.get(i).getQ_id()%>"> --%>
-		<td><%=q_rdate%></td>
-		<td><a href="#" class="subject"><%=q_subject%></a></td>
-		<td>답변 대기중</td>
-	</tr>
-	<tr class="tr">
-		<td>문의내용</td>
-		<td colspan="3"><%=q_content%></td>
-	</tr>
-<%
+		if(qnaList.get(i).getQ_re_lev()==0)	{%>
+			<tr>
+				<td><%=qnaList.get(i).getQ_rdate() %></td>
+				<td><%=qnaList.get(i).getQ_subject() %></td>
+				<td>
+					<%if(i < qnaList.size()-1) {
+						// 밑의 판별식으로는 마지막 문의글의 답글이 없는 경우 오류 발생(비교식이 접근 가능한 list의 범위를 넘기 때문)
+						// 따라서 마지막 문의글의 답변이 없는 경우, 이를 별도로 구분하여 답변 게시 유무를 출력.
+						if(qnaList.get(i).getQ_re_ref() == qnaList.get(i+1).getQ_re_ref()) {%>
+							답변 완료
+						<%} else {%>
+							답변 대기중
+						<%} 
+					  } else if(i == qnaList.size()-1) {%>
+							답변 대기중
+					<%}%>
+				</td>
+			</tr>
+			<tr class="tr">
+				<td>문의내용</td>
+				<td colspan="2"><%=qnaList.get(i).getQ_content() %></td>
+			</tr>
+		<%} else if(qnaList.get(i).getQ_re_lev()==1) {%>
+			<tr>
+				<td>답변</td>
+				<td colspan="2"><%=qnaList.get(i).getQ_content() %></td>
+			</tr>
+			<%}
+		}
 	}
-}
 %>
 </table>
 

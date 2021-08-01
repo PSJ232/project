@@ -39,7 +39,7 @@ public class QnaInsertProAction implements Action {
 		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8",
 				new DefaultFileRenamePolicy());
 
-		if (multi.getParameter("o_id") == null) {
+		if (multi.getParameter("o_id").equals("")) {
 			o_id = 0;
 		} else {
 			o_id = Integer.parseInt(multi.getParameter("o_id"));

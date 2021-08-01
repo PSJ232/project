@@ -39,7 +39,7 @@ public class QnaDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "INSERT INTO qna VALUES(?,?,?,?,?,now(),?,?,?,?,?,?)";
+			String sql = "INSERT INTO qna VALUES(?,?,?,?,?,now(),?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, qnaBean.getQ_id());
 			pstmt.setInt(2, qnaBean.getO_id());
@@ -51,7 +51,6 @@ public class QnaDAO {
 			pstmt.setString(8, qnaBean.getM_id());
 			pstmt.setInt(9, qnaBean.getQ_id()); //qna_re_ref
 			pstmt.setInt(10, 0); //qna_re_lev
-			pstmt.setInt(11, 0); //qna_re_seq
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
@@ -71,7 +70,7 @@ public class QnaDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM qna where m_id=?";
+			String sql = "SELECT * FROM qna WHERE m_id=? OR m_id='admin@admin.com' ORDER BY q_re_ref, q_re_lev ASC;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
 			rs = pstmt.executeQuery();
@@ -87,6 +86,8 @@ public class QnaDAO {
 				qnaBean.setQ_img(rs.getString("q_img"));
 				qnaBean.setQ_img2(rs.getString("q_img2"));
 				qnaBean.setQ_img3(rs.getString("q_img3"));
+				qnaBean.setQ_re_ref(rs.getInt("q_re_ref"));
+				qnaBean.setQ_re_lev(rs.getInt("q_re_lev"));
 				
 				qnaList.add(qnaBean);
 			}
