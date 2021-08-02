@@ -18,6 +18,7 @@ import action.AdminOrderDetailAction;
 import action.AdminOrderListAction;
 import action.AdminQnaDeleteAnswerAction;
 import action.AdminQnaDetailAction;
+import action.AdminQnaGetListAction;
 import action.AdminQnaListAction;
 import action.AdminQnaWriteAnswerAction;
 import action.AdminSearchAction;
@@ -336,7 +337,12 @@ public class AdminFrontController extends HttpServlet {
 			}
 		}else if(command.equals("/QnaList.ad")) {
 			forward = new ActionForward();
-			forward.setPath("./admin_layout/qna_management/qna_list.jsp");
+			action = new AdminQnaGetListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/QnaDetail.ad")) {
 			forward = new ActionForward();
 			action = new AdminQnaDetailAction();

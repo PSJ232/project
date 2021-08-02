@@ -1,5 +1,9 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	HashMap<String,Integer> qnaCount = (HashMap<String,Integer>)request.getAttribute("qnaCount");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +18,7 @@
 <style>
 	#qna_status {
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		width: 770px;
 		height: 70px;
@@ -28,6 +32,7 @@
 		font-size: 25px;
 		padding-top: 12px;
 		align-items: center;
+		margin-left: 50px;
 	}
 	.container fieldset {
 		width: 800px;
@@ -92,9 +97,8 @@
 		<fieldset>
 			<legend>문의 현황</legend>
 			<div id="qna_status">
-				<h2>주문접수</h2>
-				<h2>배송중</h2> 
-				<h2>배송완료</h2>
+				<h2>미답변 <%=qnaCount.get("미답변") %></h2>
+				<h2>답변완료 <%=qnaCount.get("답변완료") %></h2> 
 			</div>
 		</fieldset>
 		<ul id="qna_tab">

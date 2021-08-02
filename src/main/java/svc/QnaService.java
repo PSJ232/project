@@ -1,10 +1,12 @@
 package svc;
 
+import static db.JdbcUtil.close;
 import static db.JdbcUtil.getConnection;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dao.CartDAO;
 import dao.QnaDAO;
@@ -85,6 +87,14 @@ public class QnaService {
 		JdbcUtil.close(con);
 		return isDeleteSuccess;
 	}
-
+	
+	public HashMap<String, Integer> getQnaCount(){
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		HashMap<String, Integer> qnaCount = qnaDAO.getQnaCount();
+		close(con);
+		return qnaCount;
+	}
 
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import db.JdbcUtil;
 import vo.QnaBean;
@@ -260,5 +261,34 @@ public class QnaDAO {
 		}
 		
 		return deleteCount;
+	}
+
+
+	public HashMap<String, Integer> getQnaCount() {
+		HashMap<String, Integer> qnaCount = new HashMap<String, Integer>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT COUNT(*) FROM qna WHERE q_answered=0";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				qnaCount.put("미답변", rs.getInt(1));
+			}
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			sql = "SELECT COUNT(DISTINCT q_re_ref) FROM qna WHERE q_answered=1";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				qnaCount.put("답변완료", rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문오류! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return qnaCount;
 	}
 }

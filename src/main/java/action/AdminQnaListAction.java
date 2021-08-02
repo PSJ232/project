@@ -17,6 +17,7 @@ public class AdminQnaListAction implements Action {
 		ArrayList<QnaBean> qnaList = new ArrayList<QnaBean>();
 		String activeTab = request.getParameter("activeTab");
 		QnaService service = new QnaService();
+		
 		if(activeTab.equals("tab1")) {
 			qnaList = service.getBeforeQnaList();
 		}else {

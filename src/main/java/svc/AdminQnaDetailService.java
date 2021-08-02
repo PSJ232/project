@@ -4,6 +4,7 @@ import vo.QnaBean;
 import static db.JdbcUtil.*;
 
 import java.sql.Connection;
+import java.util.HashMap;
 
 import dao.QnaDAO;
 
@@ -17,5 +18,6 @@ public class AdminQnaDetailService {
 		close(con);
 		return qnaBean;
 	}
+	
 
 }

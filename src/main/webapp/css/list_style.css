@@ -1,6 +1,6 @@
 	@charset "UTF-8";
 	.container {
-		margin-left: 500px;
+		margin-left: 450px;
 		margin-top: 120px;
 		margin-bottom: 100px;
 	}
@@ -33,3 +33,4 @@
  		border-radius: 5px; 
  		background-color: #FFDF24; 
  	} 
+ 	
