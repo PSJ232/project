@@ -41,8 +41,11 @@ public class MemberMypageDetailAction implements Action {
 			forward = new ActionForward();
 			forward.setPath("./mypage/reviewDelete.jsp");
 			forward.setRedirect(false);
+		} else if(command.equals("/QnaInsert.qna")) {
+			forward= new ActionForward();
+			forward.setPath("./mypage/qnaInsert.jsp");
+			forward.setRedirect(false);
 		}
-			
 		
 		return forward;
 	}

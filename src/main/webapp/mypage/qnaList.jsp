@@ -11,14 +11,6 @@
 <link rel="stylesheet" href="./css/mypage_qnaList.css"
 	type="text/css" />
 <script src="../script/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		$('.subject').click(function() {
-			$('.td').toggle('fast');
-		});
-	});
-</script>
 </head>
 <body>
 <!-- 헤더 들어가는곳 -->
@@ -77,7 +69,7 @@
 							for (int i = 0; i < qnaList.size(); i++) {
 								if (qnaList.get(i).getQ_re_lev() == 0) {
 							%>
-							<tr>
+							<tr onclick="$('.css_test<%=i %>').toggle()">
 								<td class="qnaList_td"><span class="qnaList_span3"><%=qnaList.get(i).getQ_rdate()%></span></td>
 								<td class="qnaList_td2"><span class="qnaList_span3"><%=qnaList.get(i).getQ_subject()%></span></td>
 								<td class="qnaList_td"><span class="qnaList_span4">
@@ -97,15 +89,15 @@
 										%>
 								</span></td>
 							</tr>
-							<tr>
+							<tr class="css_test<%=i %>">
 								<th class="qnaList_th"><span class="qnaList_span3">문의내용</span>
 								</th>
 								<td colspan="2" class="qnaList_td"><%=qnaList.get(i).getQ_content()%></td>
 							</tr>
 						<%
-						} else if (qnaList.get(i).getQ_re_lev() == 1) {
-						%>
-							<tr>
+							} else if (qnaList.get(i).getQ_re_lev() == 1) {
+			 			%> 
+							<tr id="b + <%=i %>">
 								<th class="qnaList_th"><span class="qnaList_span3">답변</span>
 								</th>
 								<td colspan="2" class="qnaList_td"><%=qnaList.get(i).getQ_subject()%>

@@ -115,7 +115,7 @@
 		   			
 		   		<div>
 		   		<h6>내 리뷰</h6>
-		   		<%if(nonOrderDetailArrayList.isEmpty()) {
+		   		<%if(orderDetailArrayList.isEmpty()) {
 					%>작성한 후기가 존재하지 않습니다.<br>
 					<input type="button"  onclick="location.href='Flowers.shop'" value="꽃다발 보러가기"><%
 				} else {%>

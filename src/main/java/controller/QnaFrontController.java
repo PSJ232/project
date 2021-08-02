@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberMypageDetailAction;
 import action.QnaInsertProAction;
 import action.QnaListAction;
 import action.QnaOrderListAction;
@@ -38,9 +39,12 @@ public class QnaFrontController extends HttpServlet {
 		Action action = null;
 
 		if (command.equals("/QnaInsert.qna")) {
-			forward = new ActionForward();
-			forward.setPath("./mypage/qnaInsert.jsp");
-			forward.setRedirect(false);
+			action = new MemberMypageDetailAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/QnaInsertPro.qna")) {
 			action = new QnaInsertProAction();
 
