@@ -12,7 +12,16 @@
 </head>
 <body>
 
-	<%
+	<!-- 헤더 들어가는곳 -->
+	<header>
+		<jsp:include page="../inc/header.jsp"></jsp:include>
+	</header>
+	<!-- 헤더 들어가는곳 -->
+	<hr>
+	
+	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
+
+<%
 	MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
 	String m_id = (String) session.getAttribute("m_id");
 
@@ -31,53 +40,8 @@
 		realGrade = "WHITE";
 		break;
 	}
+
 	%>
-
-	<!-- 헤더 들어가는곳 -->
-
-	<!-- 헤더 들어가는곳 -->
-
-	<!-- 본문들어가는 곳 -->
-	<!-- 본문 메인 상단 -->
-
-	<section id="">
-
-		<article id=""><%=m_id%>님,<br> 오늘도 꽃같은 날이예요
-		</article>
-
-		<article id="">
-			등급 정보 : <a href=""><%=realGrade%> </a>ㅣ 포인트 : <a href=""><%=memberMypageDetail.getM_point()%></a>ㅣ
-			나의 구독 : <a href="">2</a>
-		</article>
-
-	</section>
-
-	<!-- 본문 왼쪽 메뉴 -->
-	<!-- 큰 메뉴 두 가지 한 번에 묶여 있음 -->
-  <section id="">
-	<div>
-  	<h2>마이꾸까</h2>
-  	<ul type="none">
-  		<li><a href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
-  		<li><a href="MypageSubscribe.od">나의 정기구독</a></li>
-  		<li><a href="MyClass.me">클래스 수강내역</a></li>
-		<li><a href="ReviewInsertForm.rv">상품 리뷰</a></li>
-  	</ul>
- 	 </div>
- 	 
- 	 <div>
-  	 <h2>개인정보 관리</h2>
-  	<ul type="none">
-		<li class="list"><a href="MemberUpdate.me">개인정보 수정</a></li>
-		<li class="list"><a href="MemberMypageGradeDetail.me">회원등급</a></li>
-		<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
-		<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
-		<li class="list"><a href="QnaList.qna">QNA리스트</a></li>
-		<li class="list"><a href="Faq.me">자주묻는질문</a></li>
-  	</ul>
-  	</div>
-	</section>
-
 	<!-- 본문 내용 -->
 	<article class="memberGrade_article">
 		<h3 class="memberGrade_title">
@@ -87,13 +51,13 @@
 			<div class="memberGrade_div_level">
 				<dl class="memberGrade_dl">
 					<dd class="memberGrade_dd">
-						<strong class="memberGrade_strong"><%=realGrade%></strong>
+						<strong class="memberGrade_strong"><%//=realGrade%></strong>
 					</dd>
 					<dd class="memberGrade_dd2">
-						<strong class="memberGrade_strong2"> <%=m_id%>님의 <%=LocalDate.now().getMonthValue()%>월
-							회원 등급은 <%=realGrade%>입니다.<br>
+						<strong class="memberGrade_strong2"> <%//=m_id%>님의 <%=LocalDate.now().getMonthValue()%>월
+							회원 등급은 <%//=realGrade%>입니다.<br>
 						</strong><span class="memberGrade_span2"> <%=LocalDate.now().getMonthValue() + 1%>월
-							예상 등급은 <%=realGrade%>입니다.
+							예상 등급은 <%//=realGrade%>입니다.
 						</span>
 					</dd>
 				</dl>
@@ -208,8 +172,11 @@
 		</div>
 	</article>
 
+	<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 	<!-- 푸터 들어가는곳 -->
-
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
 	<!-- 푸터 들어가는곳 -->
 </body>
 </html>

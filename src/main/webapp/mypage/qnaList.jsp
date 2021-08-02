@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/mypage_qnaList.css"
+	type="text/css" />
 <script src="../script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -19,6 +21,15 @@
 </script>
 </head>
 <body>
+<!-- 헤더 들어가는곳 -->
+	<header>
+		<jsp:include page="../inc/header.jsp"></jsp:include>
+	</header>
+	<!-- 헤더 들어가는곳 -->
+	<hr>
+	
+	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
+	
 	<div class="qnaList_div">
 		<article id="qnaList_article">
 			<h3 class="qnaList_h3">
@@ -113,5 +124,11 @@
 			</div>
 		</article>
 	</div>
+	<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+	<!-- 푸터 들어가는곳 -->
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
+	<!-- 푸터 들어가는곳 -->
 </body>
 </html>
