@@ -16,6 +16,7 @@ import action.AdminMemberDetailAction;
 import action.AdminMemberListAction;
 import action.AdminOrderDetailAction;
 import action.AdminOrderListAction;
+import action.AdminQnaDeleteAnswerAction;
 import action.AdminQnaDetailAction;
 import action.AdminQnaListAction;
 import action.AdminQnaWriteAnswerAction;
@@ -360,7 +361,15 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}else if(command.equals("/DeleteQna.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaDeleteAnswerAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
 
 
 

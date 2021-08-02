@@ -70,5 +70,21 @@ public class QnaService {
 		return qnaList;
 	}
 
+	public boolean deleteAnswer(int q_id, int q_re_ref) {
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		boolean isDeleteSuccess = false; 
+		int deleteCount = qnaDAO.deleteAnswer(q_id, q_re_ref);
+		if(deleteCount > 0) {
+			JdbcUtil.commit(con);
+			isDeleteSuccess = true;
+		}else {
+			JdbcUtil.rollback(con);
+		}
+		JdbcUtil.close(con);
+		return isDeleteSuccess;
+	}
+
 
 }

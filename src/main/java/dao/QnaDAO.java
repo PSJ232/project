@@ -239,4 +239,26 @@ public class QnaDAO {
 		
 		return insertCount;
 	}
+
+	public int deleteAnswer(int q_id, int q_re_ref) {
+		PreparedStatement pstmt = null;
+		int deleteCount = 0;
+		try {
+			String sql = "DELETE FROM qna WHERE q_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, q_id);
+			deleteCount = pstmt.executeUpdate();
+			JdbcUtil.close(pstmt);
+			sql = "UPDATE qna SET q_answered=0 WHERE q_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, q_re_ref);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문오류! - " + e.getMessage());
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		return deleteCount;
+	}
 }

@@ -51,6 +51,13 @@
 	$(document).ready(function(){
 		$('.admin_header_subtitle').text("문의상세");
 	});
+	function deleteAnswer(){
+		var result = confirm("삭제하시겠습니까?");
+		if(result == true){
+			location.href="DeleteQna.ad?q_id=<%=qnaBean.getQ_id() %>&q_re_ref=<%=qnaBean.getQ_re_ref()%>";
+		}
+		
+	}
 </script>
 </head>
 <body>
@@ -96,6 +103,10 @@
 			}
 		%>
 		<input type="button" class="btn" value="목록" onclick="location.href='QnaList.ad'">
+		<%if(qnaBean.getM_id().equals("admin")){
+			%><input type="button" class="btn" value="삭제" onclick="deleteAnswer()"><%
+		}
+		%>
 	</div>
 
 	<footer>
