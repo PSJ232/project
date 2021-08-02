@@ -71,15 +71,14 @@ a, button {
 }
 
 .nav_bar_logo {
-  display: inline-block;
-  position: relative;
-  top: 11px;
-  margin: -2px 74px 0 0;
+    display: inline-block;
+    margin: 34px 116px 0 0;
 }
 
-.logo_small{
-  width: 80px;
-  transform: rotate(-2deg);
+.logo_small_black{
+	font-size: 46px;
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: 200;
 }
 
 .nav_service_bar{
@@ -91,20 +90,21 @@ a, button {
 }
 
 .nav_bar_list{
-  display: inline-block;
-  max-width: 1240px;
-  padding: 10px 0 10px 0;
-  vertical-align: top;
+    display: inline-block;
+    max-width: 1240px;
+    padding: 10px 0 10px 0;
+    vertical-align: top;
+    margin: 6px 0;
 }
 
 .nav_bar_list .item{
-  display: inline-block;
-  margin: 10px 15px;
-  padding: 10px 0;
-  font-weight: 600;
-  font-size: 18px;
-  border-bottom: 4px solid transparent;
-  transition: 0.1s;
+    display: inline-block;
+    margin: 10px 35px;
+    padding: 10px 0;
+    font-weight: 500;
+    font-size: 18px;
+    border-bottom: 4px solid transparent;
+    transition: 0.1s;
 }
 
 .nav_bar_list .item:hover{
@@ -113,8 +113,9 @@ a, button {
 }
 
 .nav_bar_icon {
-  display: inline-block;
-  margin: 0 0 0 40px;
+    display: inline-block;
+    margin: 0px 0px 0px 116px;
+    position: relative;
 }
 
 .nav_icon {
@@ -573,23 +574,16 @@ footer{
 }
 
 .footer_logo {
-  width: 150px;
-  height: 63px;
-  position: absolute;
-  top: 17px;
-  right: 0px;
-}
-
-.footer_logo::before{
-  content: '';
-  display: inline-block;
-  top: -60px;
-  right: 0;
-  background-image: url(../img/kukka.png);
-  background-position: 0 -612px;
-  width: 150px;
-  height: 63px;
-  background-size: 1252px 845px;
+	text-align: right;
+    width: 228px;
+    height: 63px;
+    position: absolute;
+    top: 46px;
+    right: 0px;
+    font-size: 46px;
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: 200;
+    color: white;
 }
 
 .customer_into3 tr{

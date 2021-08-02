@@ -375,7 +375,11 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	}
+		} else if(command.equals("/SalesManage.ad")) {
+			forward = new ActionForward();
+			forward.setPath("./admin_layout/sales_management/salesManage.jsp");
+			forward.setRedirect(false);
+		}
 
 
 
