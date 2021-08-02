@@ -60,11 +60,12 @@
 .notice_fresh {
 	border-top: #eeeeee solid 1px;
 	border-bottom: #eeeeee solid 1px;
-	padding: 22px 0px;
+	padding: 20px 0px;
 }
 
 .notice_fresh_info {
 	font-size: 16px;
+	line-height: 20px;
 }
 
 .notice_fresh_info b {
@@ -87,12 +88,21 @@
 	
 }
 
+#label_name_date {
+	padding-top: 10px;
+}
+
+#label_name_qty {
+	padding-top: 3px;
+}
+
 .label_div {
 	padding: 10px 0;
 }
 
 .delivery_date {
-	padding: 9px 155px 9px 10px;
+	padding: 11px 155px 11px 10px;
+	border: solid 1px #ffd324; 
 }
 
 .button_qty {
@@ -102,16 +112,21 @@
 	background-color: #eeeeee;
 	border-radius: 30px;
 	border: none;
+	cursor: pointer;
 }
 
 .c_qty {
-	width: 20px;
+	width: 30px;
 	border: none;
 	text-align: center;
 }
 
 .add_letter {
 	font-size: 13px;
+}
+
+.radiobtn {
+	cursor: pointer;
 }
 
 .extra {
@@ -132,7 +147,7 @@
 
 .free {
 	text-align: right;
-	margin: 20px 0 10px 441px;
+	margin: 20px 0 15px 441px;
 	font-size: 10px;
 	padding: 2px 5px;
 	background-color: #eeeeee;
@@ -149,11 +164,25 @@
 	font-weight: 600;
 }
 
+.cartbuy, .nowbuy {
+	width: 238px;
+	height: 50px;
+	margin: 25px 0;
+	border: none;
+	border-radius: 6px;
+	font-size: 14px;
+	cursor: pointer;
+}
 
+.nowbuy {
+	margin-left: 4px;
+	background-color: #ffd324;
+}
 
-
-
-
+.cartbuy {
+	margin-right: 4px;
+	background-color: #dddddd;
+}
 
 
 

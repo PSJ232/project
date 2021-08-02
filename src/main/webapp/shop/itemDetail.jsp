@@ -93,103 +93,101 @@ switch(path){
 					<li></li>
 				</ul>
 			</div>
-			<div class="selection">
-
-
-				<div class="category_product_detail">
-					<div class="summary">
-						<span class="name_1"><%=itemDetail.getI_desc() %></span><br>
-						<span class="name_2"><%=i_name %></span><br>
-						<span class="discount">
-							<%if (i_discount!=1){%> <!-- 할인이 없으면 표시 안함 -->
-							<span class="per"><%=percent %></span>
-							<span class="old_price"><del><%=NumberFormat.getInstance().format(i_price) %>원-&gt;</del></span><%} %>
-							<span class="price"><%=NumberFormat.getInstance().format(price) %>원</span>
-						</span>
-					</div>
-					<div class="notice_fresh">
-						<%if(path.equals("/FlowersContent.shop")){ %>
-						<p class="notice_fresh_info">3만원 이상 구매 시, <b>무료배송!</b> <br>
-							<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 꽃배달 경유 접속시 표시 -->
-						</p>
-						
-						<%if(path.equals("/SubContent.shop")){ %>
-						<p class="notice_fresh_info">정기구독 전상품, <b>무료배송!</b> <br>
-							<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 정기구독 경유 접속시 표시 -->
-						</p>
-						
-						<%if(path.equals("/QuickContent.shop")){ %>
-						<p class="notice_fresh_info">당일 배송 상품은 서울/경기 일부 지역만 배송 가능합니다. <br>
-							<span class="web">배송비는 지역에 따라 차등 부과됩니다.</span><%} %> <!-- 당일배송 경유 접속시 표시 -->
-						</p>
-					</div>
-					<div class="form_section">
-						<form method="post" name="order">
-							<input type="hidden" name="i_id" value=<%=i_id %>>
-							<%if(!path.equals("/SubContent.shop")){ %>
-								<div class="label_div">
-									<label class="label_name">수령일</label>
-									<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
-								</div>
-							<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
-								<div class="label_div">
-									<label class="label_name">구독 옵션</label>
-									<select name="sub_option" size="1" onchange="showCalendar(), isLetter(<%=price %>)" required>
-										<option hidden="" value="">구독기간을 선택해주세요.</option>
-										<option value="2">1개월동안 X 2주마다</option>
-										<option value="4">2개월동안 X 2주마다</option>
-										<option value="12">6개월동안 X 2주마다</option>
-										<option value="24">12개월동안 X 2주마다</option>
-									</select>
-									<span id="showCalendar"></span>
-								</div>
-							<%} %>
-							<div class="label_div">
-								<label class="label_name">수량</label> 
-								<input class="button_qty" type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
-								<input class="c_qty" type="text" name="c_qty" value="1" required readonly>
-								<input class="button_qty" type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)">
-								<span id="invenNotice"></span>
-							</div>
-							<div class=label_div>
-								<label class="label_name">편지 추가</label>
-								<span class="add_letter">
-									<label><input type="radio" class="radioA" name="c_letter" value="1" onclick="isLetter(<%=price %>)" checked>추가할게요(+2,500원)&emsp;</label>
-									<label><input type="radio" class="radioB" name="c_letter" value="0" onclick="isLetter(<%=price %>)">추가하지 않을게요</label>
-								</span>
-							</div>
-							<div class="extra">
-								<label class="label_name">상품가격</label>
-								<div class="extra_right">
-									<span id="amount"><%=NumberFormat.getInstance().format(price) %>원</span>
-								</div>
-							</div>
-							<div class="extra" id="letter" style="display: block;">
-								<label class="label_name">추가상품 : 편지추가</label>
-								<div class="extra_right">
-									<span class="letterPrice">2,500원<br></span>
-								</div>
-							</div>
-							<div class="free">무료배송</div>
-							<div class="total">총 주문금액&emsp;<span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %>원</span></div>
-							<%if(session.getAttribute("m_id") == null){ 
-									if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
-									<input class="subbuy" type="submit" value="구독 신청(비회원)" onclick="javascript:form.action='VisitorJoin.me'"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
-								<%}else{%>
-									<input class="cartbuy" type="submit" value="장바구니(비회원)" onclick="javascript:form.action='VisitorCart.cr'"> 
-									<input class="nowbuy" type="submit" value="바로구매(비회원)" onclick="javascript:form.action='VisitorJoin.me'">
-								<%} %>
-							<%}else{
-								if(path.equals("/SubContent.shop")){%> 
-									<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='OrderSub.od'"> <!-- 정기구독 경유 접속시 표시 -->
-								<%}else{%>
-									<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'"> 
-									<input class="nowbuy" type="submit" value="바로구매" onclick="javascript:form.action='OrderNow.od'"> 
-								<%}%>
-							<%}%>
-						</form>
+			<div class="category_product_detail">
+				<div class="summary">
+					<span class="name_1"><%=itemDetail.getI_desc() %></span><br>
+					<span class="name_2"><%=i_name %></span><br>
+					<span class="discount">
+						<%if (i_discount!=1){%> <!-- 할인이 없으면 표시 안함 -->
+						<span class="per"><%=percent %></span>
+						<span class="old_price"><del><%=NumberFormat.getInstance().format(i_price) %>원-&gt;</del></span><%} %>
+						<span class="price"><%=NumberFormat.getInstance().format(price) %>원</span>
+					</span>
+				</div>
+				<div class="notice_fresh">
+					<%if(path.equals("/FlowersContent.shop")){ %>
+					<p class="notice_fresh_info">3만원 이상 구매 시, <b>무료배송!</b> <br>
+						<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 꽃배달 경유 접속시 표시 -->
+					</p>
 					
-					</div>
+					<%if(path.equals("/SubContent.shop")){ %>
+					<p class="notice_fresh_info">정기구독 전상품, <b>무료배송!</b> <br>
+						<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 정기구독 경유 접속시 표시 -->
+					</p>
+					
+					<%if(path.equals("/QuickContent.shop")){ %>
+					<p class="notice_fresh_info">당일 배송 상품은 서울/경기 일부 지역만 배송 가능합니다. <br>
+						<span class="web">배송비는 지역에 따라 차등 부과됩니다.</span><%} %> <!-- 당일배송 경유 접속시 표시 -->
+					</p>
+				</div>
+				<div class="form_section">
+					<form method="post" name="order">
+						<input type="hidden" name="i_id" value=<%=i_id %>>
+						<%if(!path.equals("/SubContent.shop")){ %>
+							<div class="label_div">
+								<label class="label_name" id="label_name_date">수령일</label>
+								<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
+							</div>
+						<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
+							<div class="label_div">
+								<label class="label_name">구독 옵션</label>
+								<select name="sub_option" size="1" onchange="showCalendar(), isLetter(<%=price %>)" required>
+									<option hidden="" value="">구독기간을 선택해주세요.</option>
+									<option value="2">1개월동안 X 2주마다</option>
+									<option value="4">2개월동안 X 2주마다</option>
+									<option value="12">6개월동안 X 2주마다</option>
+									<option value="24">12개월동안 X 2주마다</option>
+								</select>
+								<span id="showCalendar"></span>
+							</div>
+						<%} %>
+						<div class="label_div">
+							<label class="label_name" id="label_name_qty">수량</label> 
+							<input class="button_qty" type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
+							<input class="c_qty" type="text" name="c_qty" value="1" required readonly>
+							<input class="button_qty" type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)">
+							<span id="invenNotice"></span>
+						</div>
+						<div class=label_div>
+							<label class="label_name">편지 추가</label>
+							<span class="add_letter">
+								<label class="radiobtn"><input type="radio" class="radioA" name="c_letter" value="1" onclick="isLetter(<%=price %>)" checked>추가할게요(+2,500원)&emsp;</label>
+								<label class="radiobtn"><input type="radio" class="radioB" name="c_letter" value="0" onclick="isLetter(<%=price %>)">추가하지 않을게요</label>
+							</span>
+						</div>
+						<div class="extra">
+							<label class="label_name">상품가격</label>
+							<div class="extra_right">
+								<span id="amount"><%=NumberFormat.getInstance().format(price) %>원</span>
+							</div>
+						</div>
+						<div class="extra" id="letter" style="display: block;">
+							<label class="label_name">추가상품 : 편지추가</label>
+							<div class="extra_right">
+								<span class="letterPrice">2,500원<br></span>
+							</div>
+						</div>
+						<div class="free">무료배송</div>
+						<div class="total">총 주문금액&emsp;<span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %>원</span></div>
+						<div>
+						<%if(session.getAttribute("m_id") == null){ 
+								if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
+								<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='VisitorJoin.me'"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
+							<%}else{%>
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='VisitorCart.cr'"> 
+								<input class="nowbuy" type="submit" value="바로 구매" onclick="javascript:form.action='VisitorJoin.me'">
+							<%} %>
+						<%}else{
+							if(path.equals("/SubContent.shop")){%> 
+								<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='OrderSub.od'"> <!-- 정기구독 경유 접속시 표시 -->
+							<%}else{%>
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'"> 
+								<input class="nowbuy" type="submit" value="바로 구매" onclick="javascript:form.action='OrderNow.od'"> 
+							<%}%>
+						<%}%>
+						</div>
+					</form>
+				
 				</div>
 			</div>
 		</div>
