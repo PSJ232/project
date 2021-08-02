@@ -44,10 +44,7 @@
 			document.getElementById('invenNotice').innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + inven + "개 입니다.<br>";
 		}
 	}
-	
-	function showCalendar(){
-		document.getElementById('showCalendar').innerHTML = "<br><input type='date' name='c_delivery_date' required>";
-	}
+
 </script>
 <%
 ItemBean itemDetail = (ItemBean)request.getAttribute("itemDetail");
@@ -84,14 +81,39 @@ switch(path){
 			HOME > <%=category %> > <%=i_name %>
 		</div>
 		<div class="inbox">
-			<div class="image">
-				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
+			<div class="category_product_image">
+				<div>
+					사진표시해주는 슬라이더				
+				</div>
+			
+				<div class="thumnail_mini">
+					<ul class="owl_hash images size_5">
+						<li class="image active">
+							<button type="button" class="in button secondary url" name="0">
+								<img src="" alt="">
+								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/Contents/2486/0_1.jpg&quot;);"></span>
+							</button>
+						</li>
+						<li class="image">
+							<button type="button" class="in button secondary url" name="1">
+								<img src=""	alt="">
+								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/ContentsProductImage/2021/07/29/0_2_WvOCfuY.jpg&quot;);"></span>
+							</button>
+						</li>
+						<li class="image">
+							<button type="button" class="in button secondary url" name="2">
+								<img src=""	alt="">
+								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/ContentsProductImage/2021/07/29/0_3_pVVwa9j.jpg&quot;);"></span>
+							</button>
+						</li>
+						<li class="image">
+							<button type="button" class="in button secondary url" name="3">
+								<img src=""	alt="">
+								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/ContentsProductImage/2021/07/29/0_4_8ixIqDl.jpg&quot;);"></span>
+							</button>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<div class="category_product_detail">
 				<div class="summary">
@@ -126,26 +148,29 @@ switch(path){
 						<%if(!path.equals("/SubContent.shop")){ %>
 							<div class="label_div">
 								<label class="label_name" id="label_name_date">수령일</label>
-								<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
+								<input class="delivery_date" type="date" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
 							</div>
 						<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
 							<div class="label_div">
-								<label class="label_name">구독 옵션</label>
-								<select name="sub_option" size="1" onchange="showCalendar(), isLetter(<%=price %>)" required>
+								<label class="label_name" id="label_name_option">구독 옵션</label>
+								<select class="sub_option" name="sub_option" size="1" onchange="isLetter(<%=price %>)" required>
 									<option hidden="" value="">구독기간을 선택해주세요.</option>
 									<option value="2">1개월동안 X 2주마다</option>
 									<option value="4">2개월동안 X 2주마다</option>
 									<option value="12">6개월동안 X 2주마다</option>
 									<option value="24">12개월동안 X 2주마다</option>
 								</select>
-								<span id="showCalendar"></span>
+							</div>
+							<div class="calendar_right">
+								<input class="showCalendar" type="date" name="c_delivery_date" style="display: none;" required>
+								<span class="designinfo" style="display: none">- 8월 17일 이후로 지정하시면 <b>꽃다발 디자인이 변경됩니다.</b></span>
 							</div>
 						<%} %>
 						<div class="label_div">
 							<label class="label_name" id="label_name_qty">수량</label> 
 							<input class="button_qty" type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
 							<input class="c_qty" type="text" name="c_qty" value="1" required readonly>
-							<input class="button_qty" type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)">
+							<input class="button_qty" type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)"><br>
 							<span id="invenNotice"></span>
 						</div>
 						<div class=label_div>
@@ -295,8 +320,14 @@ switch(path){
 			$('.radioA').click(function(){
 				$('#letter').css('display','block');
 			});
+			
 			$('.radioB').click(function(){
 				$('#letter').css('display','none');
+			});
+			
+			$('.sub_option').change(function(){ // 구독 옵션 선택하면 날짜입력창 보임
+				$('.showCalendar').css('display','block');
+				$('.designinfo').css('display','block');
 			});
 		});
 	</script>

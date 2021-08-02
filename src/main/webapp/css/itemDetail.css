@@ -9,7 +9,7 @@
 	height: 80px;
     width: 1240px;
     margin: 0 auto;
-    padding: 40px 60px 0;
+    padding: 40px 100px 0;
    	color: #999999;
 	font-size: 13px;
 }
@@ -17,12 +17,17 @@
 .inbox {
 	height: 800px;
 	width: 1240px;
-	padding: 0px 60px 0;
+	padding: 0px 100px 0;
 }
 
 .category_product_detail {
 	width: 490px;
 	float: right;
+}
+
+.category_product_image {
+	width: 490px;
+	float: left;
 }
 
 .name_1 {
@@ -88,7 +93,7 @@
 	
 }
 
-#label_name_date {
+#label_name_date, #label_name_option {
 	padding-top: 10px;
 }
 
@@ -100,9 +105,41 @@
 	padding: 10px 0;
 }
 
-.delivery_date {
-	padding: 11px 155px 11px 10px;
-	border: solid 1px #ffd324; 
+.sub_option {
+	padding: 11px 150px 11px 10px;
+	border: solid 1px #ffd324;
+	border-radius: 5px;
+	color: #999999;
+	font-size: 13px;
+}
+
+.sub_option option {
+	color: black;
+}
+
+.delivery_date, .showCalendar {
+	padding: 11px 176px 11px 10px;
+	border: solid 1px #ffd324;
+	border-radius: 5px;
+	color: #999999;
+	font-size: 13px;
+	display: block;
+} 
+
+.calendar_right {
+	margin-left:160px;
+	text-align: right;
+}
+
+.designinfo {
+	text-align: center;
+	line-height: 20px;
+	color: #999999;
+}
+
+.designinfo b {
+	color: red;
+	font-weight: 300;
 }
 
 .button_qty {
@@ -119,6 +156,10 @@
 	width: 30px;
 	border: none;
 	text-align: center;
+}
+
+#invenNotice {
+	color: red;
 }
 
 .add_letter {
@@ -140,7 +181,7 @@
 	text-align: right;
 }
 
-#amount, .letterPrice { /* 여기 오른쪽으로 float주면 div폭이 깨짐 ㅠㅠ */
+#amount, .letterPrice {
 	font-size: 16px;
 	font-weight: 400;
 }
@@ -183,9 +224,6 @@
 	margin-right: 4px;
 	background-color: #dddddd;
 }
-
-
-
 
 
 
