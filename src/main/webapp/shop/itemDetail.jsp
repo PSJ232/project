@@ -71,7 +71,8 @@ switch(path){
 }
 
 %>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="./css/itemDetail.css">
+<link rel="stylesheet" href="./css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
@@ -80,18 +81,57 @@ switch(path){
   <!-- header -->
   	<jsp:include page="../inc/header.jsp" ></jsp:include>
   <!-- header -->
-  
-	<!-- review -->
-	HOME><%=category %>><%=i_name %><br>
-	<%=itemDetail.getI_desc() %><br>
-	<%=i_name %><br>
-	<%if (i_discount!=1){%> <!-- 할인이 없으면 표시 안함 -->
-	<%=percent %> <%=NumberFormat.getInstance().format(i_price) %>원 -> <%} %><%=NumberFormat.getInstance().format(price) %>원<br>
-	<hr>
-	<%if(path.equals("/FlowersContent.shop")){ %>3만원 이상 구매시, 무료배송!<br>서울/경기/인천 일부지역은 새벽배송으로 신선하게 배송됩니다.<%} %> <!-- 꽃배달 경유 접속시 표시 -->
-	<%if(path.equals("/SubContent.shop")){ %>정기구독 전상품, 무료배송!<br>서울/경기/인천 일부지역은 새벽배송으로 신선하게 배송됩니다.<%} %> <!-- 정기구독 경유 접속시 표시 -->
-	<%if(path.equals("/QuickContent.shop")){ %>당일 배송 상품은 서울/경기 일부 지역만 배송 가능합니다.<br>배송비는 지역에 따라 차등 부과됩니다.<%} %> <!-- 당일배송 경유 접속시 표시 -->
-	<hr>
+	<div class="contents_container">
+		<div class="navigation">
+			HOME > <%=category %> > <%=i_name %>
+		</div>
+		<div class="inbox">
+			<div class="image">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="selection">
+
+
+				<div class="category_product_detail">
+					<div class="summary">
+						<span class="name_1"><%=itemDetail.getI_desc() %></span><br>
+						<span class="name_2"><%=i_name %></span><br>
+						<%if (i_discount!=1){%> <!-- 할인이 없으면 표시 안함 -->
+						<span class="discount">
+							<span class="per"><%=percent %></span>
+							<span class="old_price"><del><%=NumberFormat.getInstance().format(i_price) %>원-&gt;</del></span><%} %>
+							<span class="price"><%=NumberFormat.getInstance().format(price) %>원</span>
+						</span>
+					</div>
+					<div class="notice_fresh">
+						<%if(path.equals("/FlowersContent.shop")){ %>
+						<p class="notice_fresh_info">3만원 이상 구매 시, <b>무료배송!</b> <br>
+							<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 꽃배달 경유 접속시 표시 -->
+						</p>
+						
+						<%if(path.equals("/SubContent.shop")){ %>
+						<p class="notice_fresh_info">정기구독 전상품, <b>무료배송!</b> <br>
+							<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 정기구독 경유 접속시 표시 -->
+						</p>
+						
+						<%if(path.equals("/QuickContent.shop")){ %>
+						<p class="notice_fresh_info">당일 배송 상품은 서울/경기 일부 지역만 배송 가능합니다. <br>
+							<span class="web">배송비는 지역에 따라 차등 부과됩니다.</span><%} %> <!-- 당일배송 경유 접속시 표시 -->
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	
 	<form method="post" name="order">
 		<input type="hidden" name="i_id" value=<%=i_id %>>
 		<%if(!path.equals("/SubContent.shop")){ %>
