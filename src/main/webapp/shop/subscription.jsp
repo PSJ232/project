@@ -218,7 +218,7 @@ for(ItemBean ib : itemList) {
 	
 	
 	
-		<script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#toggleA').click(function(){
 				$('.subscribe').addClass('is_active');

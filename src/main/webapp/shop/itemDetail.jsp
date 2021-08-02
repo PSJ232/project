@@ -19,13 +19,11 @@
 		}
 		
 		if(c_letter==0){
-			document.getElementById('letter').innerHTML = "";
-			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			document.getElementById('totalPrice').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+			document.getElementById('totalPrice').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
 		} else {
-			document.getElementById('letter').innerHTML = "<label >추가상품 : 편지추가</label><span>2,500원<br></span>";
-			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			document.getElementById('totalPrice').innerHTML = ((qty*price*sub_option)+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+			document.getElementById('totalPrice').innerHTML = ((qty*price*sub_option)+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
 		}
 	}
 	
@@ -129,13 +127,13 @@ switch(path){
 						<form method="post" name="order">
 							<input type="hidden" name="i_id" value=<%=i_id %>>
 							<%if(!path.equals("/SubContent.shop")){ %>
-								<div class="label">
-									<label>수령일</label>
+								<div class="label_div">
+									<label class="label_name">수령일</label>
 									<input type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
 								</div>
 							<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
-								<div class="label">
-									<label>구독 옵션</label>
+								<div class="label_div">
+									<label class="label_name">구독 옵션</label>
 									<select name="sub_option" size="1" onchange="showCalendar(), isLetter(<%=price %>)" required>
 										<option hidden="" value="">구독기간을 선택해주세요.</option>
 										<option value="2">1개월동안 X 2주마다</option>
@@ -146,28 +144,34 @@ switch(path){
 									<span id="showCalendar"></span>
 								</div>
 							<%} %>
-							<div class="label">
-								<label>수량</label> 
+							<div class="label_div">
+								<label class="label_name">수량</label> 
 								<input type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
 								<input type="text" name="c_qty" value="1" required readonly>
 								<input type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)">
 								<span id="invenNotice"></span>
 							</div>
-							<div class="label">
-								<label>편지 추가</label>
-								<input type="radio" name="c_letter" value="1" onclick="isLetter(<%=price %>)" checked>추가할게요(2,500원)
-								<input type="radio" name="c_letter" value="0" onclick="isLetter(<%=price %>)">추가하지 않을게요
+							<div class=label_div>
+								<label class="label_name">편지 추가</label>
+								<span class="add_letter">
+									<label><input type="radio" class="radioA" name="c_letter" value="1" onclick="isLetter(<%=price %>)" checked>추가할게요(+2,500원)&emsp;</label>
+									<label><input type="radio" class="radioB" name="c_letter" value="0" onclick="isLetter(<%=price %>)">추가하지 않을게요</label>
+								</span>
 							</div>
 							<div class="extra">
-								<label>상품가격</label> 
-								<span id="amount"><%=NumberFormat.getInstance().format(price) %>원</span>
+								<label class="label_name">상품가격</label>
+								<div class="extra_right">
+									<span id="amount"><%=NumberFormat.getInstance().format(price) %>원</span>
+								</div>
 							</div>
-							<div class="extra" id="letter">
-								<label>추가상품 : 편지추가</label>
-								<span class="letterPrice">2,500원<br></span>
+							<div class="extra" id="letter" style="display: block;">
+								<label class="label_name">추가상품 : 편지추가</label>
+								<div class="extra_right">
+									<span class="letterPrice">2,500원<br></span>
+								</div>
 							</div>
-							<span class="free">무료배송</span><br>
-							<span class="total">총주문금액 <span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %></span></span><br>
+							<div class="free">무료배송</div>
+							<div class="total">총 주문금액&emsp;<span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %>원</span></div>
 							<%if(session.getAttribute("m_id") == null){ 
 									if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
 									<input class="subbuy" type="submit" value="구독 신청(비회원)" onclick="javascript:form.action='VisitorJoin.me'"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
@@ -287,6 +291,17 @@ switch(path){
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.radioA').click(function(){
+				$('#letter').css('display','block');
+			});
+			$('.radioB').click(function(){
+				$('#letter').css('display','none');
+			});
+		});
+	</script>
 </body>
 </html>
 
