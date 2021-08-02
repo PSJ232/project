@@ -184,13 +184,15 @@ table {
     display: table;
     text-indent: initial;
     border-spacing: 2px;
-    border-color: grey;
+    border-color: currentColor;
+    
 }
 
 .memberPoint_table {
 	width: 761.6px;
 	height: 107px;
-	display: block;
+	display: table;
+	
 	
 }
 
@@ -239,11 +241,9 @@ tr {
 .memberPoint_table tr td {
 	border-left: none;
 }
-
-.memberPoint_div6,
 .memberPoint_table thead th {
-	padding: 18px 10px;
-	background-color: #f7f7f7;
+    padding: 18px 10px;
+    background-color: #f7f7f7;
 }
 
 .memberPoint_table tr td,
@@ -265,7 +265,9 @@ th {
 }
 
 .memberPoint_span2 {
-	
+	 padding: 18px 10px;
+    font-weight: 800;
+    background-color: #f7f7f7;
 }
 
 tbody {
@@ -276,22 +278,19 @@ tbody {
     border-color: inherit;
 }
 
-.memberPoint_div6,
-.memberPoint_table tbody td,
-.memberPoint_table tbody th {
-	border-bottom: #ececec 1px solid;
-}
-
 td {
 	width: 152.31px;
 	height: 50.5px;
+	
 }
 
 .memberPoint_span3 {
 	color: #46cfa7;
+	font-weight: 800;
 }
 
 .memberPoint_span4 {
 	font-weight: 100;
+	font-weight: 800;
 }
 
