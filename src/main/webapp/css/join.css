@@ -1,0 +1,182 @@
+@charset "UTF-8";
+
+		*::before,
+		*::after {
+		  padding: 0;
+		  margin: 0;
+		  box-sizing: inherit;
+		}
+		
+		body {
+		  box-sizing: border-box;
+		}
+
+		.title {
+			font-size: 1.0em;
+			font-weight: 600;
+			margin-bottom: 50px;
+			margin-top: 20px;
+		}
+		
+		.topForm {
+			margin-top: 25px;
+			display: inline-block;
+			width: 80%;
+			text-align: center;
+		}	
+		
+		.joinForm {
+			display: inline-block;
+			box-sizing: content-box;	
+			width: 70%;
+			line-height: 25px;
+		  	text-align: center;
+		}
+
+		.bottomForm {
+			border: 1px solid #e7e7e7;
+			width: 80%;
+			margin: 50px auto;
+			border-radius: 5px;
+			display: block;	
+		}
+		
+		.bottomContent {
+			text-align: left;
+			font-size: 15px;
+			margin-left: 10px;
+			margin-top: 30px;
+			line-height: 30px;
+		}
+		
+		.row {
+			margin: 30px;
+			font-size: 1.8em;
+			vertical-align: middle;
+		}
+		
+		.checkMessage { 
+			font-size: 12px;
+			color: #FF0000;
+		}
+				
+		.leftLabel {
+			float: left;
+			width: 120px;
+			text-align: left;
+		 	font-size: 15px;
+		 	font-weight: 700;
+		 	letter-spacing: -.67px;		 	
+		 	color: #333;
+		 	display: inline-block;
+		 	clear: left;
+		}		
+
+		.textBox {
+			height: 44px;
+			width: 300px;
+			border: 1px solid #eaeaea;
+			border-radius: 5px;	
+			font-size: 14px;
+			display: inline-block;
+		}
+		
+		.textBox2 {
+			height: 44px;
+			width: 300px;
+			border: 1px solid #eaeaea;
+			border-radius: 5px;	
+			font-size: 14px;
+			display: inline-block;
+		}
+		
+		.btn {
+			width: 120px;
+			height: 44px;
+			margin-left: 10px;
+			border: none;
+			border-radius: 5px;
+			color: #878787;
+			font-weight: bold;
+			font-size: 14px;
+			cursor: pointer;
+		}
+		
+		
+		.btn:hover {
+			color: #FFFFFF;
+			background-color: #000000;
+		}
+		
+		.joinForm input:focus {	
+			outline: none;
+			border: 1px solid #ffcd32;
+			border-radius: 5px;	
+		}
+		
+		input::placeholder {
+			 padding: 10px;
+		}
+		
+		.joinForm input[type="radio"] {
+			width: 100px;
+		}
+				
+		.joinForm input[type="checkbox"] {
+			width: 70px;
+		}
+		
+		.longTextBox {
+			height: 44px;
+			border: 1px solid #eaeaea;
+			border-radius: 5px;	
+			font-size: 14px;
+			display: inline-block;
+			width: 20%;
+		}
+		
+		.shortTextBox{
+			height: 44px;
+			border: 1px solid #eaeaea;
+			border-radius: 5px;	
+			font-size: 14px;
+			margin-left: 10px;
+			display: inline-block;
+			width: 8%;
+		}
+		
+		.bottomText{
+			display: inline-block;
+			font-size: 14px;
+			margin-top: 10px;
+			color: #878787;
+			font-weight: bold;		
+			margin-bottom: 20px;	
+		}	
+		
+		.textRed{
+			color: #FF0000;
+		}
+		
+						
+		.textStar {
+			font-size: 14px;
+			color: #ffcd32;
+		}
+		
+		input[type="submit"] {
+			display: inline-block;
+			border-radius: 5px;
+			width: 38%;
+			height: 44px;
+			color: #878787;
+			font-weight: bold;
+			font-size: 14px;
+			margin-bottom: 70px;
+			border: none;
+		}
+
+		input[type="submit"]:hover {
+			color: #FFFFFF;
+			background-color: #000000;
+		}

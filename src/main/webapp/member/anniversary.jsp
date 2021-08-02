@@ -7,9 +7,9 @@
 <meta charset="UTF-8">
 
 <title>기념일 등록하기</title>
-<link rel="stylesheet" href="../css/join.css" type="text/css" />
-<link rel="stylesheet" href="../css/anniversary.css" type="text/css" />
-<link rel="stylesheet" href="../css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/join.css" type="text/css" />
+<link rel="stylesheet" href="css/anniversary.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
 	<div class="anniversaryForm">

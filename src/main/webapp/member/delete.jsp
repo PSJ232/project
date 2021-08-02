@@ -5,12 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 탈퇴</title>
-<link rel="stylesheet" href="../css/style.css" type="text/css" />
-<link rel="stylesheet" href="../css/delete.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/delete.css" type="text/css" />
 </head>
 <%
 String m_id = (String)session.getAttribute("m_id");
-
 %>
 <body>
 		<div class="hidden">세션ID = <%=m_id%></div>

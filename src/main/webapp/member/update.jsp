@@ -13,9 +13,9 @@
 <head>
 <meta charset="UTF-8">
 <title>개인정보 수정</title>
-<link rel="stylesheet" href="../css/join.css" type="text/css" />
-<link rel="stylesheet" href="../css/style.css" type="text/css" />
-<link rel="stylesheet" href="../css/update.css" type="text/css" />
+<link rel="stylesheet" href="css/join.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/update.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <%
