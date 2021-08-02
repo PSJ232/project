@@ -11,15 +11,16 @@
 CartBean cartDetail = (CartBean) request.getAttribute("cartDetail"); // 비회원주문을 위한 정보
 String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 옵션 정보
 %>
-<link rel="stylesheet" href="./css/login.css" type="text/css" />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-</head>
+<link rel="stylesheet" href="../css/login.css" type="text/css" />
+<link href="../css/style.css" rel="stylesheet" >
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet"></head>
 <body>
 
 	<header>
   		<jsp:include page="../inc/header.jsp"></jsp:include>
 	</header>
-	
+	<div class="login_all">
 	<h1 id="login">로그인</h1>
 	<form action="MemberLoginPro.me" method="post">
 		<input type="email" name="m_id" id="inp" placeholder="아이디(이메일)"><br>
@@ -30,9 +31,9 @@ String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 
 		<a id="fin" href="findPass.jsp">비밀번호 찾기</a><br>
 		
 		<p id="sns">SNS계정으로 간편 로그인</p> <br> 
-		<a href="https://kukka.kr/account/social-login/facebook/"> <img id="log_img" src="./img/facebook.png"></a>
-		<a href="https://kukka.kr/account/social-login/naver/"> <img id="log_img" src="./img/naver.png"></a> 
-		<a href="https://kukka.kr/account/social-login/kakao/"> <img id="log_img" src="./img/kakao.png"></a><br>
+		<a href="https://kukka.kr/account/social-login/facebook/"> <img id="log_img" src="/img/facebook.png"></a>
+		<a href="https://kukka.kr/account/social-login/naver/"> <img id="log_img" src="/img/naver.png"></a> 
+		<a href="https://kukka.kr/account/social-login/kakao/"> <img id="log_img" src="/img/kakao.png"></a><br>
 		<input type="button" value="회원가입" class="joinbutton" onclick="location.href='MemberJoin.me'"><br>
 	</form>
 		<%if(cartDetail!=null){ %>
@@ -52,7 +53,7 @@ String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 
 	</p>
 	<br>
 	<p id="nonmember"><a href="VisitorLogin.me">비회원 주문 조회</a></p>
-	
+	</div>
 	
 
 	<footer>

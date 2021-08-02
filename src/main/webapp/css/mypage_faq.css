@@ -4,6 +4,10 @@
 	padding-bottom: 100px;
 }
 
+.faq_layout_top button {
+	float: right;
+}
+
 .faq_title {
 	display: inline-block;
     font-size: 30px;

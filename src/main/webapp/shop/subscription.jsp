@@ -26,7 +26,7 @@ for(ItemBean ib : itemList) {
 }
 %>
 <link rel="stylesheet" href="./css/subscription.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="./css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
@@ -34,8 +34,7 @@ for(ItemBean ib : itemList) {
 	<!-- header -->
   	<jsp:include page="../inc/header.jsp" ></jsp:include>
   	<!-- header -->
-	
-	<div id="category_content">
+	<div class="category_content">
 		<div class="category_header bg_subscription">
 			<div class="inbox">
 				<div class="tbl">
@@ -50,7 +49,7 @@ for(ItemBean ib : itemList) {
 		<div class="inner">
 			<div class="subscription_category_tabs">
 				<h4 class="tit subscribe is_active">정기구독 상품
-					<button type="button" class="toggle" data-tab="product">
+					<button type="button" id="toggleA" class="toggle" data-tab="product">
 						<span class="blind">활성화</span>
 					</button>
 				</h4>
@@ -62,7 +61,6 @@ for(ItemBean ib : itemList) {
 									<dl class="detail">
 										<dt class="thumnail">
 											<a class="link" href="SubContent.shop?i_id=<%=sizeS.getI_id() %>" style="background-image: url('./img/subscription/sub_banner_s.jpg');">
-												<%-- <img src="../admin_layout/upload/<%=sizeS.getI_img() %>"> --%>
 												<img src="./img/subscription/subscription_list_thumnail.png" alt="가벼운 S 꽃구독">
 												<span class="image" style="background-image: url('./img/subscription/sub_banner_s.jpg');"></span>								
 												<span class="category_product_bdg"></span>
@@ -91,7 +89,6 @@ for(ItemBean ib : itemList) {
 									<dl class="detail">
 										<dt class="thumnail">
 											<a class="link" href="SubContent.shop?i_id=<%=sizeM.getI_id() %>" style="background-image: url('./img/subscription/sub_banner_m.jpg');">
-												<%-- <img src="../admin_layout/upload/<%=sizeM.getI_img() %>"> --%>
 												<img src="./img/subscription/subscription_list_thumnail.png" alt="딱좋은 M 꽃구독">
 												<span class="image" style="background-image: url('./img/subscription/sub_banner_m.jpg');"></span>								
 												<span class="category_product_bdg"></span>
@@ -120,7 +117,6 @@ for(ItemBean ib : itemList) {
 									<dl class="detail">
 										<dt class="thumnail">
 											<a class="link" href="SubContent.shop?i_id=<%=sizeL.getI_id() %>" style="background-image: url('./img/subscription/sub_banner_l.jpg');">
-												<%-- <img src="../admin_layout/upload/<%=sizeL.getI_img() %>"> --%>
 												<img src="./img/subscription/subscription_list_thumnail.png" alt="풍성한 L 꽃구독">
 												<span class="image" style="background-image: url('./img/subscription/sub_banner_l.jpg');"></span>								
 												<span class="category_product_bdg"></span>
@@ -149,7 +145,6 @@ for(ItemBean ib : itemList) {
 									<dl class="detail">
 										<dt class="thumnail">
 											<a class="link" href="SubContent.shop?i_id=<%=sizeXL.getI_id() %>" style="background-image: url('./img/subscription/sub_banner_xl.jpg');">
-												<%-- <img src="../admin_layout/upload/<%=sizeXL.getI_img() %>"> --%>
 												<img src="./img/subscription/subscription_list_thumnail.png" alt="가득찬 XL 꽃구독">
 												<span class="image" style="background-image: url('./img/subscription/sub_banner_xl.jpg');"></span>								
 												<span class="category_product_bdg"></span>
@@ -177,7 +172,7 @@ for(ItemBean ib : itemList) {
 					</div>
 				</div>
 				<h4 class="tit how_to">이용 방법
-					<button type="button" class="toggle" data-tab="how">
+					<button type="button" id="toggleB" class="toggle" data-tab="how">
 						<span class="blind">활성화</span>
 					</button>
 				</h4>
@@ -216,9 +211,7 @@ for(ItemBean ib : itemList) {
 				</div>
 			</div>
 		</div>
-	
-	
-
+	</div>
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
@@ -227,17 +220,17 @@ for(ItemBean ib : itemList) {
 	
 		<script type="text/javascript">
 		$(document).ready(function(){
-			$('.toggle').click(function(){
-				$('.faq_list_link').removeClass('is_clicked');
-				$(this).addClass('is_clicked');
-				
-				let address = $(this).attr('href').substring(1);
-				$('#faq_board').find('ul').removeClass('is_active');
-				document.getElementById(address).classList.add('is_active');
+			$('#toggleA').click(function(){
+				$('.subscribe').addClass('is_active');
+				$('.how_to').removeClass('is_active');
+				$('.category_product_list').css('display','block');
+				$('.subscription_how_to').css('display','none');
 			});
-
-			$('.faq_board_item').click(function(){
-				$(this).find('div').addClass('is_active');
+			$('#toggleB').click(function(){
+				$('.subscribe').removeClass('is_active');
+				$('.how_to').addClass('is_active');
+				$('.category_product_list').css('display','none');
+				$('.subscription_how_to').css('display','block');
 			});
 		});
 	</script>

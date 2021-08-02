@@ -120,7 +120,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
   	<ul type="none">
   		<li><a href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
   		<li><a href="MypageSubscribe.od">나의 정기구독</a></li>
-  		<li><a href="ClassMypageDetail.me">클래스 수강내역</a></li>
+  		<li><a href="MyClass.me">클래스 수강내역</a></li>
 		<li><a href="ReviewInsertForm.rv">상품 리뷰</a></li>
   	</ul>
  	 </div>
@@ -133,7 +133,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 		<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
 		<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
 		<li class="list"><a href="QnaList.qna">QNA리스트</a></li>
-		<li class="list"><a href="MemberMypageFAQList.me">자주묻는질문</a></li>
+		<li class="list"><a href="Faq.me">자주묻는질문</a></li>
   	</ul>
   	</div>
 	</section>
