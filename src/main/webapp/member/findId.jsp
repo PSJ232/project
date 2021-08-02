@@ -5,9 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../css/login.css" rel="stylesheet" >
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-</head>
+<link rel="stylesheet" href="../css/login.css" type="text/css" />
+<link href="../css/style.css" rel="stylesheet" >
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet"></head></head>
 <body>
 	<header>
 		<jsp:include page="../inc/header.jsp"></jsp:include>

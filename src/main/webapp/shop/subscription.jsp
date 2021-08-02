@@ -26,7 +26,7 @@ for(ItemBean ib : itemList) {
 }
 %>
 <link rel="stylesheet" href="./css/subscription.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="./css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
@@ -34,8 +34,7 @@ for(ItemBean ib : itemList) {
 	<!-- header -->
   	<jsp:include page="../inc/header.jsp" ></jsp:include>
   	<!-- header -->
-	
-	<div id="category_content">
+	<div class="category_content">
 		<div class="category_header bg_subscription">
 			<div class="inbox">
 				<div class="tbl">
@@ -62,7 +61,6 @@ for(ItemBean ib : itemList) {
 									<dl class="detail">
 										<dt class="thumnail">
 											<a class="link" href="SubContent.shop?i_id=<%=sizeS.getI_id() %>" style="background-image: url('./img/subscription/sub_banner_s.jpg');">
-												<%-- <img src="../admin_layout/upload/<%=sizeS.getI_img() %>"> --%>
 												<img src="./img/subscription/subscription_list_thumnail.png" alt="가벼운 S 꽃구독">
 												<span class="image" style="background-image: url('./img/subscription/sub_banner_s.jpg');"></span>								
 												<span class="category_product_bdg"></span>
@@ -91,7 +89,6 @@ for(ItemBean ib : itemList) {
 									<dl class="detail">
 										<dt class="thumnail">
 											<a class="link" href="SubContent.shop?i_id=<%=sizeM.getI_id() %>" style="background-image: url('./img/subscription/sub_banner_m.jpg');">
-												<%-- <img src="../admin_layout/upload/<%=sizeM.getI_img() %>"> --%>
 												<img src="./img/subscription/subscription_list_thumnail.png" alt="딱좋은 M 꽃구독">
 												<span class="image" style="background-image: url('./img/subscription/sub_banner_m.jpg');"></span>								
 												<span class="category_product_bdg"></span>
@@ -120,7 +117,6 @@ for(ItemBean ib : itemList) {
 									<dl class="detail">
 										<dt class="thumnail">
 											<a class="link" href="SubContent.shop?i_id=<%=sizeL.getI_id() %>" style="background-image: url('./img/subscription/sub_banner_l.jpg');">
-												<%-- <img src="../admin_layout/upload/<%=sizeL.getI_img() %>"> --%>
 												<img src="./img/subscription/subscription_list_thumnail.png" alt="풍성한 L 꽃구독">
 												<span class="image" style="background-image: url('./img/subscription/sub_banner_l.jpg');"></span>								
 												<span class="category_product_bdg"></span>
@@ -149,7 +145,6 @@ for(ItemBean ib : itemList) {
 									<dl class="detail">
 										<dt class="thumnail">
 											<a class="link" href="SubContent.shop?i_id=<%=sizeXL.getI_id() %>" style="background-image: url('./img/subscription/sub_banner_xl.jpg');">
-												<%-- <img src="../admin_layout/upload/<%=sizeXL.getI_img() %>"> --%>
 												<img src="./img/subscription/subscription_list_thumnail.png" alt="가득찬 XL 꽃구독">
 												<span class="image" style="background-image: url('./img/subscription/sub_banner_xl.jpg');"></span>								
 												<span class="category_product_bdg"></span>
@@ -216,7 +211,7 @@ for(ItemBean ib : itemList) {
 				</div>
 			</div>
 		</div>
-
+	</div>
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
