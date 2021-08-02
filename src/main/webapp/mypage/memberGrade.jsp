@@ -51,13 +51,13 @@
 			<div class="memberGrade_div_level">
 				<dl class="memberGrade_dl">
 					<dd class="memberGrade_dd">
-						<strong class="memberGrade_strong"><%//=realGrade%></strong>
+						<strong class="memberGrade_strong"><%=realGrade%></strong>
 					</dd>
 					<dd class="memberGrade_dd2">
-						<strong class="memberGrade_strong2"> <%//=m_id%>님의 <%=LocalDate.now().getMonthValue()%>월
-							회원 등급은 <%//=realGrade%>입니다.<br>
+						<strong class="memberGrade_strong2"> <%=m_id%>님의 <%=LocalDate.now().getMonthValue()%>월
+							회원 등급은 <%=realGrade%>입니다.<br>
 						</strong><span class="memberGrade_span2"> <%=LocalDate.now().getMonthValue() + 1%>월
-							예상 등급은 <%//=realGrade%>입니다.
+							예상 등급은 <%=realGrade%>입니다.
 						</span>
 					</dd>
 				</dl>
