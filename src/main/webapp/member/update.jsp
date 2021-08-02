@@ -13,9 +13,9 @@
 <head>
 <meta charset="UTF-8">
 <title>개인정보 수정</title>
-<link rel="stylesheet" href="member/css/join.css" type="text/css" />
-<link rel="stylesheet" href="member/css/style.css" type="text/css" />
-<link rel="stylesheet" href="member/css/update.css" type="text/css" />
+<link rel="stylesheet" href="../css/join.css" type="text/css" />
+<link rel="stylesheet" href="../css/style.css" type="text/css" />
+<link rel="stylesheet" href="../css/update.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <%
@@ -113,7 +113,7 @@
 			<input type="checkbox" name="m_agree" <%if(memberDetail.getM_agree()!=null){%>checked<%}%> >꾸까가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요. <br>
 			<input type="submit" class="yellowBtn" value="수정하기"> <br>
 		</form>
-		<input type="button" class="btn" value="회원 탈퇴" onclick="location.href='MemberDelete.me'">
+		<input type="button" class="btnDel" value="회원 탈퇴" onclick="location.href='MemberDelete.me'">
 	</div>
 </body>
 
