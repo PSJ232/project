@@ -16,6 +16,7 @@ public class MypageClassListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MypageClassListAction");
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
@@ -36,7 +37,7 @@ public class MypageClassListAction implements Action {
 		
 		forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("./mypage/memberClass.jsp");
+		forward.setPath("./mypage/mypageClass.jsp");
 		
 		return forward;
 	}

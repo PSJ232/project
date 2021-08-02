@@ -311,7 +311,7 @@ public class ClassDAO {
 		ResultSet rs = null;
 		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
 		try {
-			String sql = "SELECT * FROM fclass WHERE date(f_cdate) > date(now()) AND f_id=(select f_id from reservation where m_id=?) ORDER BY f_subject, f_cdate DESC";
+			String sql = "SELECT * FROM fclass WHERE date(f_cdate) > date(now()) AND f_id=(select f_id from reservation where m_id=?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
 			rs = pstmt.executeQuery();
