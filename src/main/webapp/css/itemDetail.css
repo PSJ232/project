@@ -84,9 +84,30 @@
 	width: 160px;
 	float: left;
 	text-align: left;
+	
 }
+
 .label_div {
-	height: 40px;
+	padding: 10px 0;
+}
+
+.delivery_date {
+	padding: 9px 155px 9px 10px;
+}
+
+.button_qty {
+	font-size: 20px;
+	color: #999999;
+	padding: 4px 7px;
+	background-color: #eeeeee;
+	border-radius: 30px;
+	border: none;
+}
+
+.c_qty {
+	width: 20px;
+	border: none;
+	text-align: center;
 }
 
 .add_letter {

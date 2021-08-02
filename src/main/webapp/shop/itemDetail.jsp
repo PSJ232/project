@@ -100,8 +100,8 @@ switch(path){
 					<div class="summary">
 						<span class="name_1"><%=itemDetail.getI_desc() %></span><br>
 						<span class="name_2"><%=i_name %></span><br>
-						<%if (i_discount!=1){%> <!-- 할인이 없으면 표시 안함 -->
 						<span class="discount">
+							<%if (i_discount!=1){%> <!-- 할인이 없으면 표시 안함 -->
 							<span class="per"><%=percent %></span>
 							<span class="old_price"><del><%=NumberFormat.getInstance().format(i_price) %>원-&gt;</del></span><%} %>
 							<span class="price"><%=NumberFormat.getInstance().format(price) %>원</span>
@@ -129,7 +129,7 @@ switch(path){
 							<%if(!path.equals("/SubContent.shop")){ %>
 								<div class="label_div">
 									<label class="label_name">수령일</label>
-									<input type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
+									<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
 								</div>
 							<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
 								<div class="label_div">
@@ -146,9 +146,9 @@ switch(path){
 							<%} %>
 							<div class="label_div">
 								<label class="label_name">수량</label> 
-								<input type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
-								<input type="text" name="c_qty" value="1" required readonly>
-								<input type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)">
+								<input class="button_qty" type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
+								<input class="c_qty" type="text" name="c_qty" value="1" required readonly>
+								<input class="button_qty" type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)">
 								<span id="invenNotice"></span>
 							</div>
 							<div class=label_div>
