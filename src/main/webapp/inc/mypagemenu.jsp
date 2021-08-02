@@ -19,7 +19,7 @@
 					<li id="mypage_list"><a id="mypage_list_a"
 						href="MypageSubscribe.od">나의 정기구독</a></li>
 					<li id="mypage_list"><a id="mypage_list_a"
-						href="ClassMypageDetail.me">클래스 수강내역</a></li>
+						href="MyClass.me">클래스 수강내역</a></li>
 					<li id="mypage_list"><a id="mypage_list_a"
 						href="ReviewInsertForm.rv">상품 리뷰</a></li>
 				</ul>
@@ -37,7 +37,7 @@
 					<li id="mypage_list"><a id="mypage_list_a" href="QnaList.qna">1:1
 							문의내역</a></li>
 					<li id="mypage_list"><a id="mypage_list_a"
-						href="MemberMypageFAQList.me">자주묻는질문</a></li>
+						href="Faq.me">자주묻는질문</a></li>
 				</ul>
 			</div>
 		</section>
