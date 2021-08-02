@@ -228,17 +228,35 @@ for(ItemBean ib : itemList) {
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$('.toggle').click(function(){
-				$('.faq_list_link').removeClass('is_clicked');
-				$(this).addClass('is_clicked');
+				if($('.subscribe').hasClass('is_active')){
+					$('.subscribe').removeClass('is_active');
+					$('.how_to').addClass('is_active');
+					$('.category_product_list').css('display','none');
+					$('.subscription_how_to').css('display','block');
+				} else {
+					$('.subscribe').addClass('is_active');
+					$('.how_to').removeClass('is_active');
+					$('.category_product_list').css('display','block');
+					$('.subscription_how_to').css('display','none');
+					
+				}
 				
-				let address = $(this).attr('href').substring(1);
-				$('#faq_board').find('ul').removeClass('is_active');
-				document.getElementById(address).classList.add('is_active');
+// 				if($('.tit').find('is_active').value()==null){
+// 					$('.tit').removeClass('is_active');
+// 				} else {
+// 					$('.tit').find('is_active').addClass('is_active');
+// 				}
+				
+// 				$('.tit').removeClass('is_active');
+				
+// 				let address = $(this).attr('href').substring(1);
+// 				$('#faq_board').find('ul').removeClass('is_active');
+// 				document.getElementById(address).classList.add('is_active');
 			});
 
-			$('.faq_board_item').click(function(){
-				$(this).find('div').addClass('is_active');
-			});
+// 			$('.faq_board_item').click(function(){
+// 				$(this).find('div').addClass('is_active');
+// 			});
 		});
 	</script>
 </body>
