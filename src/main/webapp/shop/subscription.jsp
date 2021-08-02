@@ -50,7 +50,7 @@ for(ItemBean ib : itemList) {
 		<div class="inner">
 			<div class="subscription_category_tabs">
 				<h4 class="tit subscribe is_active">정기구독 상품
-					<button type="button" class="toggle" data-tab="product">
+					<button type="button" id="toggleA" class="toggle" data-tab="product">
 						<span class="blind">활성화</span>
 					</button>
 				</h4>
@@ -177,7 +177,7 @@ for(ItemBean ib : itemList) {
 					</div>
 				</div>
 				<h4 class="tit how_to">이용 방법
-					<button type="button" class="toggle" data-tab="how">
+					<button type="button" id="toggleB" class="toggle" data-tab="how">
 						<span class="blind">활성화</span>
 					</button>
 				</h4>
@@ -216,8 +216,6 @@ for(ItemBean ib : itemList) {
 				</div>
 			</div>
 		</div>
-	
-	
 
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
@@ -227,36 +225,18 @@ for(ItemBean ib : itemList) {
 	
 		<script type="text/javascript">
 		$(document).ready(function(){
-			$('.toggle').click(function(){
-				if($('.subscribe').hasClass('is_active')){
-					$('.subscribe').removeClass('is_active');
-					$('.how_to').addClass('is_active');
-					$('.category_product_list').css('display','none');
-					$('.subscription_how_to').css('display','block');
-				} else {
-					$('.subscribe').addClass('is_active');
-					$('.how_to').removeClass('is_active');
-					$('.category_product_list').css('display','block');
-					$('.subscription_how_to').css('display','none');
-					
-				}
-				
-// 				if($('.tit').find('is_active').value()==null){
-// 					$('.tit').removeClass('is_active');
-// 				} else {
-// 					$('.tit').find('is_active').addClass('is_active');
-// 				}
-				
-// 				$('.tit').removeClass('is_active');
-				
-// 				let address = $(this).attr('href').substring(1);
-// 				$('#faq_board').find('ul').removeClass('is_active');
-// 				document.getElementById(address).classList.add('is_active');
+			$('#toggleA').click(function(){
+				$('.subscribe').addClass('is_active');
+				$('.how_to').removeClass('is_active');
+				$('.category_product_list').css('display','block');
+				$('.subscription_how_to').css('display','none');
 			});
-
-// 			$('.faq_board_item').click(function(){
-// 				$(this).find('div').addClass('is_active');
-// 			});
+			$('#toggleB').click(function(){
+				$('.subscribe').removeClass('is_active');
+				$('.how_to').addClass('is_active');
+				$('.category_product_list').css('display','none');
+				$('.subscription_how_to').css('display','block');
+			});
 		});
 	</script>
 </body>

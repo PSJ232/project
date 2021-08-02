@@ -606,23 +606,6 @@ p {
     left: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-[type=reset], [type=submit], button, html [type=button] {
-    -webkit-appearance: button;
-}
-
 button, input {
     border-radius: 0;
 }
