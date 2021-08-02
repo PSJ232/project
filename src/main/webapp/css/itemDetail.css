@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.contents_container {
+	width: 1240px;
+    margin: 0 auto;
+}
+
+.navigation {
+	height: 80px;
+    width: 1240px;
+    margin: 0 auto;
+    padding: 40px 60px 0;
+   	color: #999999;
+	font-size: 13px;
+}
+
+.inbox {
+	height: 800px;
+	width: 1240px;
+}
+
+.category_product_detail {
+	width: 490px;
+	float: right;
+}
+
+.notice_fresh_info {
+	border-top: black solid 1px;
+	border-bottom: black solid 1px;
+	height: 80px;
+	margin: 20px 0;
+}
