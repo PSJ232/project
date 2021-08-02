@@ -233,10 +233,16 @@ switch(path){
 	<table border="1">
 	<tr><td>별점</td><td>제목</td><td>작성자</td><td>주문일자</td></tr>
 	<%
-		System.out.println(rbList.size());
-		for(int i=0; i<rbList.size(); i++) {%>
-			<tr><td><%=rbList.get(i).getR_rate() %></td><td><%=rbList.get(i).getR_title() %></td><td><%=rbList.get(i).getR_writer() %></td><td><%=rbList.get(i).getR_rdate() %></td></tr>
-		<%
+		for(int i=0; i<rbList.size(); i++) {
+
+		//리뷰 아이디 설정
+		String r_writer[] = rbList.get(i).getR_writer().split("@");
+		String a = r_writer[0].substring(0, 4);
+		String editId = a + "***";
+		
+	%>
+		<tr><td><%=rbList.get(i).getR_rate() %></td><td><%=rbList.get(i).getR_title() %></td><td><%=editId %></td><td><%=rbList.get(i).getR_rdate() %></td></tr>
+	<%
 		} 
 	%>
 	</table>

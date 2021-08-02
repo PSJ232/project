@@ -49,7 +49,7 @@ public class ReviewInsertProAction implements Action {
 		
 		ReviewInsertProService reviewInsertProService = new ReviewInsertProService();
 		boolean isInsertSuccess = reviewInsertProService.registerReview(rb);
-		boolean isUpdateSuccess = reviewInsertProService.modifyMemberPoint(multi.getParameter("m_id"), r_point );
+		boolean isUpdateSuccess = reviewInsertProService.modifyMemberPoint(multi.getParameter("r_writer"), r_point );
 		
 		
 		if(isInsertSuccess && isUpdateSuccess) {

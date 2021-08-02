@@ -42,7 +42,7 @@ public class MemberMypageDetailAction implements Action {
 			forward.setPath("./mypage/reviewDelete.jsp");
 			forward.setRedirect(false);
 		} else if(command.equals("/QnaInsert.qna")) {
-			forward= new ActionForward();
+			forward = new ActionForward();
 			forward.setPath("./mypage/qnaInsert.jsp");
 			forward.setRedirect(false);
 		}

@@ -45,7 +45,7 @@
 			enctype="multipart/form-data">
 			<input type="hidden" name="od_id" value="<%=od_id%>"> 
 			작성자 :
-			<input type="text" name="r_writer" value="<%=editId%>" readonly>
+			<input type="text" name="r_writer" value="<%=m_id%>" readonly>
 			제목 : <input type="text" name="r_title"> <br> 
 			내용 :
 			<textarea rows="10" cols="20" name="r_content"></textarea>

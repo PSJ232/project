@@ -10,6 +10,50 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+
+})
+</script>
+<!-- ajax에 쓰이는 css : 수정 마음껏 하셔도 괜찮습니다. -->
+<style type="text/css">
+
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ ul.tabs li{ 
+ 	background: none; 
+ 	display: inline-block; 
+ 	padding: 10px 15px; 
+ 	cursor: pointer; 
+ } 
+
+ul.tabs li.current{
+	color: #222;
+}
+
+.tab-content{
+	display: none;
+	padding: 15px;
+}
+
+.tab-content.current{
+	display: inherit;
+}
+</style>
 </head>
 <body>
 
@@ -75,8 +119,7 @@
 		<li class="list"><a href="MemberUpdate.me">개인정보 수정</a></li>
 		<li class="list"><a href="MemberMypageGradeDetail.me">회원등급</a></li>
 		<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
-		<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
-		<li class="list"><a href="QnaList.qna">QNA리스트</a></li>
+		<li class="list"><a href="QQnaList.qna">1:1 문의내역</a></li>
 		<li class="list"><a href="Faq.me">자주묻는질문</a></li>
   	</ul>
   	</div>
@@ -85,9 +128,17 @@
   <!-- 본문 내용 -->
   	<section>
 	 	<div>
-		   	<h2>상품 리뷰</h2>
-		   		<div>
-		   		<h6>작성 가능한 후기</h6>
+		   	<h2>상품 리뷰</h2> 
+		   	
+<!--   -------------------------------------------------- -->
+  	<ul class="tabs">
+		<li class="tab-link current" data-tab="tab-1">작성 가능한 후기</li>
+		<li class="tab-link" data-tab="tab-2">내 리뷰</li>
+	</ul>
+<!--   -------------------------------------------------- -->
+
+		   	<div>
+		   		<div id="tab-1" class="tab-content current">
 	   			<table border="1">
 	   				<tr><td>주문/신청일자</td><td>상세 정보</td><td>상태</td></tr>
 				<%
@@ -113,8 +164,7 @@
 	   			</table>
 		   		</div>
 		   			
-		   		<div>
-		   		<h6>내 리뷰</h6>
+		   		<div id="tab-2" class="tab-content">
 		   		<%if(orderDetailArrayList.isEmpty()) {
 					%>작성한 후기가 존재하지 않습니다.<br>
 					<input type="button"  onclick="location.href='Flowers.shop'" value="꽃다발 보러가기"><%
