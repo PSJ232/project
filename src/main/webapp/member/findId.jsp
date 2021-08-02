@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/login.css" type="text/css" />
+<link href="../css/login.css" rel="stylesheet" >
 <link href="../css/style.css" rel="stylesheet" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	  rel="stylesheet"></head></head>
@@ -14,7 +14,7 @@
 		<jsp:include page="../inc/header.jsp"></jsp:include>
 	</header>
 	
-	
+	<div class="find">
 	<h1>아이디 찾기</h1>
 	<p id="joinnumber">가입하실 때 입력하셨던<br> 
 	전화번호를 입력해주세요.</p>
@@ -33,7 +33,7 @@
 	<p id="call">- 확인이 되지 않으시면 kukka 고객센터로 연락주세요.<br>
 	(1661-1031, 평일 AM10시-PM6시 / 점심시간 PM1시-2시 제외)<br>
 	로 연락주세요.</p>
-	
+	</div>
 	
 	<footer>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
