@@ -97,7 +97,7 @@
 						<%
 							} else if (qnaList.get(i).getQ_re_lev() == 1) {
 			 			%> 
-							<tr id="b + <%=i %>">
+							<tr class="css_test<%=i %>">
 								<th class="qnaList_th"><span class="qnaList_span3">답변</span>
 								</th>
 								<td colspan="2" class="qnaList_td"><%=qnaList.get(i).getQ_subject()%>
@@ -106,9 +106,9 @@
 							</tr>
 
 						<%
-						}
-						}
-						}
+						} // elseif문
+						} // for문
+						} // else문
 						%>
 						</tbody>
 					</table>

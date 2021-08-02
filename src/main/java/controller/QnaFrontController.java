@@ -41,7 +41,7 @@ public class QnaFrontController extends HttpServlet {
 		if (command.equals("/QnaInsert.qna")) {
 			action = new MemberMypageDetailAction();
 			try {
-				action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
