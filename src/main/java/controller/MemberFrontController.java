@@ -24,7 +24,6 @@ import action.MemberLogoutAction;
 import action.MemberMypageDetailAction;
 import action.MemberMypagePointDetailAction;
 import action.MemberUpdateProAction;
-import action.MypageClassListAction;
 import action.PastMyClassListAction;
 import action.PlannedMyClassListAction;
 import action.VisitorJoinViewAction;
@@ -206,14 +205,7 @@ public class MemberFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./mypage/faq.jsp");
 			forward.setRedirect(false);
-		} else if(command.equals("/ClassMypageDetail.me")) {
-			action = new MypageClassListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}	
-		} else if(command.equals("/MyClass.me")) {
+		}  else if(command.equals("/MyClass.me")) {
 			forward = new ActionForward();
 			forward.setPath("./mypage/class.jsp");
 		} else if(command.equals("/plannedMyClass.me")) {
