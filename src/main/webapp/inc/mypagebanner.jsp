@@ -11,7 +11,6 @@
 	<%
 	MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
 	String m_id = (String) session.getAttribute("m_id");
-	int od_id = Integer.parseInt(request.getParameter("od_id"));
 
 	String realGrade = "";
 	switch (memberMypageDetail.getG_id()) {
@@ -29,10 +28,6 @@
 		break;
 	}
 
-	// 아이디 설정
-	String mId[] = m_id.split("@");
-	String a = mId[0].substring(0, 4);
-	String editId = a + "***";
 	%>
 	<!-- 본문 메인 상단 -->
 	<div class="mypage_all">
