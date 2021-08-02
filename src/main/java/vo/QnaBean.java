@@ -1,6 +1,6 @@
 package vo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class QnaBean {
 	private int q_id;
@@ -10,12 +10,24 @@ public class QnaBean {
 	private String q_img;
 	private String q_img2;
 	private String q_img3;
-	private Date q_rdate;
+	private Timestamp q_rdate;
 	private String m_id;
 	private int q_re_ref;
 	private int q_re_lev;
+	private int q_answered;
 	
-	
+	public int getQ_answered() {
+		return q_answered;
+	}
+	public void setQ_answered(int q_answered) {
+		this.q_answered = q_answered;
+	}
+	public Timestamp getQ_rdate() {
+		return q_rdate;
+	}
+	public void setQ_rdate(Timestamp q_rdate) {
+		this.q_rdate = q_rdate;
+	}
 	public String getQ_img2() {
 		return q_img2;
 	}
@@ -63,12 +75,6 @@ public class QnaBean {
 	}
 	public void setQ_img(String q_img) {
 		this.q_img = q_img;
-	}
-	public Date getQ_rdate() {
-		return q_rdate;
-	}
-	public void setQ_rdate(Date q_rdate) {
-		this.q_rdate = q_rdate;
 	}
 	public int getQ_re_ref() {
 		return q_re_ref;

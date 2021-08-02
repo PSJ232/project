@@ -50,9 +50,6 @@
 		display: flex;
 		margin-left: 10px;
 	}
-	h1 {
-		margin-bottom: 50px;
-	}
 	input[type=text]{
 		border: none;
 		outline: none;
@@ -116,7 +113,6 @@
 	
 	<div class="container">
 		
-		<h1>Order Detail</h1>
 		<div id="product_list">
 			<fieldset>
 				<legend>주문상품 리스트</legend>

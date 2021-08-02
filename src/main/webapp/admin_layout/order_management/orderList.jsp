@@ -13,30 +13,9 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="./css/admin.css">
+<link rel="stylesheet" href="./css/list_style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-	.container {
-		margin-left: 350px;
-		margin-top: 90px;
-	}
-	.table {
-		margin-top: 50px;
-		margin-bottom: 100px;
-		width: 800px;
-		text-align: center;
-		border: 1px solid #ececec;
-		border-collapse: collapse;
-		border-radius: 10px;
-	}
-	.table th,td {
-		height: 3em;
-	}
-	.table th {
-		background-color: #f7f7f7;
-	}
-	.table tr:hover {
-		background-color: #FFDF24;
-	}
 	.search {
 		display: flex;
 		margin-top: 50px;
@@ -64,10 +43,6 @@
 		padding: 10px;
 		border-radius: 10px;
 		border: 2px solid #FFDF24;
-	}
-	legend {
-		font-size: 20px;
-		padding: 15px;
 	}
 	
 </style>

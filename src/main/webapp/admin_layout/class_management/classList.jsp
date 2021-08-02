@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 | 클래스 목록</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hahmlet:wght@100&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
 /* 		color: #ccc; */
 /* 	} */
 	.class_list_container {
-		margin-left: 400px;
+		margin-left: 500px;
 		margin-top: 100px;
 	}
 	#class_status {
@@ -46,7 +46,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
 	$(function() {
-		$('.admin_header_subtitle').text("클래스 리스트");
+		$('.admin_header_subtitle').text("클래스 목록");
 		// tab operation
 		$('.tabmenu').click(function() {
 			var activeTab = $(this).attr('data-tab');
@@ -81,8 +81,8 @@
 	<div class="class_list_container">
 <!-- 	<h1 id="class_list_title">Class List</h1> -->
 	<ul id="class_status">
-			<li data-tab="tab1" class='tabmenu' id="default">시작 전 클래스</li>
-			<li data-tab="tab2" class='tabmenu'>완료된 클래스</li>
+		<li data-tab="tab1" class='tabmenu' id="default">시작 전 클래스</li>
+		<li data-tab="tab2" class='tabmenu'>완료된 클래스</li>
 	</ul>
 
 	<div id="tabcontent"></div>

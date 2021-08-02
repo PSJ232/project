@@ -51,6 +51,7 @@
 	input[type=text]{
 		margin-bottom: 30px;
 		border: none;
+		outline:none;
 	}
 	label, input[type=text]{
 		font-size: 15px;

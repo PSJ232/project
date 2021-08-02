@@ -50,5 +50,25 @@ public class QnaService {
 	
 	}
 
+	public ArrayList<QnaBean> getBeforeQnaList() {
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		ArrayList<QnaBean> qnaList = qnaDAO.getBeforeQnaList();
+		JdbcUtil.close(con);
+
+		return qnaList;
+	}
+
+	public ArrayList<QnaBean> getAfterClassList() {
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		ArrayList<QnaBean> qnaList = qnaDAO.getAfterQnaList();
+		JdbcUtil.close(con);
+
+		return qnaList;
+	}
+
 
 }

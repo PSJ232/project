@@ -16,6 +16,9 @@ import action.AdminMemberDetailAction;
 import action.AdminMemberListAction;
 import action.AdminOrderDetailAction;
 import action.AdminOrderListAction;
+import action.AdminQnaDetailAction;
+import action.AdminQnaListAction;
+import action.AdminQnaWriteAnswerAction;
 import action.AdminSearchAction;
 import action.ChartAction;
 import action.ClassDeleteAction;
@@ -322,7 +325,43 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/GetQnaList.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/QnaList.ad")) {
+			forward = new ActionForward();
+			forward.setPath("./admin_layout/qna_management/qna_list.jsp");
+		}else if(command.equals("/QnaDetail.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/WriteAnswer.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/WriteAnswerPro.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaWriteAnswerAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+
 
 
 		if (forward != null) {
