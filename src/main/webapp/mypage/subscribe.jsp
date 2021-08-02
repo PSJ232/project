@@ -159,37 +159,43 @@ for(int i =0; i<orderArrayList.size(); i++) {
  			<tr><td>첫 구독일</td><td>상품 정보</td><td>상태</td></tr>
  	
 			<%
-			int count = 0;
-			for(int i=0; i<nonOrderArrayList.size(); i++) {
-
-				// 배송 날짜 String -> Date 변환
-				Date deliveryDate = Date.valueOf(nonOrderDetailArrayList.get(i).getOd_delivery_date());
-				Date today = Date.valueOf(LocalDate.now());
-   				%>
-   				
-   				<tr>
-   					<%if(nonCol.contains(i)) {
-   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td><%
-   						count++;
-   					} else {}
-   					%>
-   					<td>
-   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
-						수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %><br>
-						받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
-						가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
-					</td>
-   					<%
-   					if(deliveryDate.before(today)) {
-   						%><td>배송 완료</td><%
-   					} else if(deliveryDate.after(today)) {
-   						%><td>배송 예정</td><%
-   					} else if(deliveryDate.equals(today)) {
-   						%><td>배송 완료</td><%
-   					}
-   					%>
-   				</tr>
-		<%}%>
+			if(nonOrderDetailArrayList.isEmpty()) {
+				%><tr><td colspan="3">구독내역이 존재하지 않습니다.<br>
+					  <input type="button"  onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
+					  </td></tr><%
+			} else {
+				int count = 0;
+				for(int i=0; i<nonOrderArrayList.size(); i++) {
+	
+					// 배송 날짜 String -> Date 변환
+					Date deliveryDate = Date.valueOf(nonOrderDetailArrayList.get(i).getOd_delivery_date());
+					Date today = Date.valueOf(LocalDate.now());
+	   				%>
+	   				
+	   				<tr>
+	   					<%if(nonCol.contains(i)) {
+	   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td><%
+	   						count++;
+	   					} else {}
+	   					%>
+	   					<td>
+	   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
+							수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %><br>
+							받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
+							가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
+						</td>
+	   					<%
+	   					if(deliveryDate.before(today)) {
+	   						%><td>배송 완료</td><%
+	   					} else if(deliveryDate.after(today)) {
+	   						%><td>배송 예정</td><%
+	   					} else if(deliveryDate.equals(today)) {
+	   						%><td>배송 완료</td><%
+	   					}
+	   					%>
+	   				</tr>
+				<%}
+			}%>
  		</table>
  		</div>
  		
@@ -199,31 +205,37 @@ for(int i =0; i<orderArrayList.size(); i++) {
  			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
  	
 			<%
-			int ccount = 0;
-			for(int i=0; i<orderArrayList.size(); i++) {
-   				%>
-   				
-   				<tr>
-   					<%if(col.contains(i)) {
-   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_rdate() %></td><%
-   					} else {}
-   					%>
-   					<td>
-   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
-						수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %><br>
-						받는 분 : <%=orderArrayList.get(i).getO_receiver() %><br>
-						가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
-					</td>
-					<%if(col.contains(i)) {
-   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td><%
-   							ccount++;
-   					} else {}
-					%>
-   				</tr>
-		<%}%>
+			if(nonOrderDetailArrayList.isEmpty()) {
+				%><tr><td colspan="3">취소/환불한 구독내역이 존재하지 않습니다.<br>
+					  <input type="button"  onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
+					  </td></tr><%
+			} else {
+			
+				int ccount = 0;
+				for(int i=0; i<orderArrayList.size(); i++) {
+	   				%>
+	   				
+	   				<tr>
+	   					<%if(col.contains(i)) {
+	   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_rdate() %></td><%
+	   					} else {}
+	   					%>
+	   					<td>
+	   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
+							수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %><br>
+							받는 분 : <%=orderArrayList.get(i).getO_receiver() %><br>
+							가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
+						</td>
+						<%if(col.contains(i)) {
+	   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td><%
+	   							ccount++;
+	   					} else {}
+						%>
+	   				</tr>
+				<%}
+			}%>
  		</table>
  		</div>
-
  	</div>
  </section>
  
