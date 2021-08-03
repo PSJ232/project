@@ -63,7 +63,6 @@ CREATE TABLE `cart` (
   PRIMARY KEY (`c_id`),
   KEY `FK_item_TO_cart` (`i_id`),
   KEY `FK_member_TO_cart` (`m_id`),
-  CONSTRAINT `FK_item_TO_cart` FOREIGN KEY (`i_id`) REFERENCES `item` (`i_id`),
   CONSTRAINT `FK_member_TO_cart` FOREIGN KEY (`m_id`) REFERENCES `member` (`m_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='장바구니';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -176,7 +175,7 @@ DROP TABLE IF EXISTS `item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item` (
-  `i_id` int(11) NOT NULL COMMENT '상품번호',
+  `i_id` int(11) NOT NULL AUTO_INCREMENT,
   `i_name` varchar(45) NOT NULL COMMENT '상품명',
   `i_desc` varchar(1000) NOT NULL COMMENT '상품설명',
   `i_price` int(11) NOT NULL COMMENT '가격',
@@ -193,7 +192,7 @@ CREATE TABLE `item` (
   `i_detailpage` varchar(1000) NOT NULL,
   `i_category` int(11) NOT NULL,
   PRIMARY KEY (`i_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='상품';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='상품';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,7 +201,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'썬플라워 에디션','찬란한 여름 햇살 가득',33900,47,'1_1_1.jpg','1_1_2.jpg','1_1_3.jpg','1_1_4.jpg','2021-07-23 10:46:11',0.9,'M','판매','on sale','1_1_5.png',1),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,48,'2_1_1.jpg','2_1_2.jpg','2_1_3.jpg','2_1_4.jpg','2021-07-23 10:47:34',0.9,'L','판매','on sale','2_1_5.png',1),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',40100,50,'3_1_1.jpg','3_1_2.jpg','3_1_3.jpg','3_1_4.jpg','2021-07-23 10:48:46',0.9,'L','판매','on sale','3_1_5.png',1),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,49,'4_2_1.jpg','4_2_2.jpg','4_2_3.jpg','4_2_4.jpg','2021-07-23 10:50:14',0.9,'XL','판매','on sale','4_2_5.png',2),(5,'연핑크 수국 에디션','몽글몽글 피어나는 구름을 담은',59900,49,'5_2_1.jpg','5_2_2.jpg','5_2_3.jpg','5_2_4.jpg','2021-07-30 19:27:39',0.9,'XL','판매','on sale','5_2_5.png',2),(6,'가벼운 S 꽃구독','꽃이 일상이 되는 가벼운 시작',17900,911,'3_s_15.jpg','3_s_25.jpg','3_s_35.jpg','3_s_45.jpg','2021-07-30 13:03:24',1,'S','판매','on sale','3_s_52.png',3),(7,'가득찬 XL 꽃구독','꽃으로 가득차는 일상의 행복',49900,961,'3_xl_1.jpg','3_xl_2.jpg','3_xl_3.jpg','3_xl_4.jpg','2021-07-30 13:31:00',1,'XL','판매','on sale','3_xl_5.png',3),(8,'풍성한 L 꽃구독','매일이 풍성해지는 일상의 행복',34900,995,'3_l_1.jpg','3_l_2.jpg','3_l_3.jpg','3_l_4.jpg','2021-07-30 13:30:14',1,'L','판매','on sale','3_l_5.png',3),(9,'딱좋은 M 꽃구독','내 공간이 꽃이 되는 좋은 시작',26900,991,'3_m_1.jpg','3_m_2.jpg','3_m_3.jpg','3_m_4.jpg','2021-07-30 13:29:19',1,'M','판매','on sale','3_m_5.png',3);
+INSERT INTO `item` VALUES (1,'썬플라워 에디션','찬란한 여름 햇살 가득',33900,47,'1_1_1.jpg','1_1_2.jpg','1_1_3.jpg','1_1_4.jpg','2021-07-23 10:46:11',0.9,'M','판매','on sale','1_1_5.png',1),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,48,'2_1_1.jpg','2_1_2.jpg','2_1_3.jpg','2_1_4.jpg','2021-07-23 10:47:34',0.9,'L','판매','on sale','2_1_5.png',1),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',40100,50,'3_1_1.jpg','3_1_2.jpg','3_1_3.jpg','3_1_4.jpg','2021-07-23 10:48:46',0.9,'L','판매','on sale','3_1_5.png',1),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,49,'4_2_1.jpg','4_2_2.jpg','4_2_3.jpg','4_2_4.jpg','2021-07-23 10:50:14',0.9,'XL','판매','on sale','4_2_5.png',2),(5,'연핑크 수국 에디션','몽글몽글 피어나는 구름을 담은',59900,49,'5_2_1.jpg','5_2_2.jpg','5_2_3.jpg','5_2_4.jpg','2021-07-30 19:27:39',0.9,'XL','판매','on sale','5_2_5.png',2),(6,'가벼운 S 꽃구독','꽃이 일상이 되는 가벼운 시작',17900,911,'3_s_15.jpg','3_s_25.jpg','3_s_35.jpg','3_s_45.jpg','2021-07-30 13:03:24',1,'S','판매','on sale','3_s_52.png',3),(7,'가득찬 XL 꽃구독','꽃으로 가득차는 일상의 행복',49900,961,'3_xl_1.jpg','3_xl_2.jpg','3_xl_3.jpg','3_xl_4.jpg','2021-07-30 13:31:00',1,'XL','판매','on sale','3_xl_5.png',3),(8,'풍성한 L 꽃구독','매일이 풍성해지는 일상의 행복',34900,995,'3_l_1.jpg','3_l_2.jpg','3_l_3.jpg','3_l_4.jpg','2021-07-30 13:30:14',1,'L','판매','on sale','3_l_5.png',3),(9,'딱좋은 M 꽃구독','내 공간이 꽃이 되는 좋은 시작',26900,991,'3_m_1.jpg','3_m_2.jpg','3_m_3.jpg','3_m_4.jpg','2021-07-30 13:29:19',1,'M','판매','on sale','3_m_5.png',3),(10,'파랑새 에디션','행운을 전하는',56900,50,'10_2_1.jpg','10_2_2.jpg','10_2_3.jpg','10_2_4.jpg','2021-08-03 20:28:06',1,'XL','판매','on sale','10_2_5.png',2);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -449,4 +448,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-03 20:10:12
+-- Dump completed on 2021-08-03 20:32:32
