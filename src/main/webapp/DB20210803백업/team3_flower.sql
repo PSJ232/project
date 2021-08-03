@@ -59,6 +59,7 @@ CREATE TABLE `cart` (
   `c_rdate` datetime NOT NULL COMMENT 'date동기화',
   `c_letter` int(11) NOT NULL,
   `c_delivery_date` date NOT NULL,
+  `sub_option` int(11) DEFAULT NULL,
   PRIMARY KEY (`c_id`),
   KEY `FK_item_TO_cart` (`i_id`),
   KEY `FK_member_TO_cart` (`m_id`),
@@ -73,6 +74,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (3,3,'admin@admin.com',1,'2021-08-03 10:06:09',1,'2021-08-24',0),(4,6,'admin@admin.com',1,'2021-08-03 10:56:15',1,'2021-11-11',24);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +203,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (-4,'가득찬 XL 꽃구독','꽃으로 가득차는 일상의 행복',49900,965,NULL,NULL,NULL,NULL,'2021-07-30 13:31:00',1,'XL','판매','판매중','없음',3),(-3,'풍성한 L 꽃구독','매일이 풍성해지는 일상의 행복',34900,995,NULL,NULL,NULL,NULL,'2021-07-30 13:30:14',1,'L','판매','판매중','없음',3),(-2,'딱좋은 M 꽃구독','내 공간이 꽃이 되는 좋은 시작',26900,995,NULL,NULL,NULL,NULL,'2021-07-30 13:29:19',1,'M','판매','판매중','없음',3),(-1,'가벼운 S 꽃구독','꽃이 일상이 되는 가벼운 시작',17900,929,NULL,NULL,NULL,NULL,'2021-07-30 13:03:24',1,'S','판매','판매중','없음',3),(1,'산호초 에디션','바다의 꽃 산호초의 빛깔을 담은',59900,35,NULL,NULL,NULL,NULL,'2021-07-23 10:46:11',0.9,'M','판매','판매중','없음',1),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,37,NULL,NULL,NULL,NULL,'2021-07-23 10:47:34',0.8,'L','판매','판매중','없음',2),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',69800,39,NULL,NULL,NULL,NULL,'2021-07-23 10:48:46',0.95,'XL','판매','판매중','없음',1),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,37,NULL,NULL,NULL,NULL,'2021-07-23 10:50:14',1,'S','판매','판매중','없음',2),(5,'연핑크 수국 에디션','몽글몽글 피어나는 구름을 담은',59900,36,NULL,NULL,NULL,NULL,'2021-07-30 19:27:39',0.85,'XL','판매','판매중','없음',2);
+INSERT INTO `item` VALUES (1,'산호초 에디션','바다의 꽃 산호초의 빛깔을 담은',59900,35,NULL,NULL,NULL,NULL,'2021-07-23 10:46:11',0.9,'M','판매','판매중','없음',1),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,37,NULL,NULL,NULL,NULL,'2021-07-23 10:47:34',0.8,'L','판매','판매중','없음',2),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',69800,39,NULL,NULL,NULL,NULL,'2021-07-23 10:48:46',0.95,'XL','판매','판매중','없음',1),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,37,NULL,NULL,NULL,NULL,'2021-07-23 10:50:14',1,'S','판매','판매중','없음',2),(5,'연핑크 수국 에디션','몽글몽글 피어나는 구름을 담은',59900,36,NULL,NULL,NULL,NULL,'2021-07-30 19:27:39',0.85,'XL','판매','판매중','없음',2),(6,'가벼운 S 꽃구독','꽃이 일상이 되는 가벼운 시작',17900,929,NULL,NULL,NULL,NULL,'2021-07-30 13:03:24',1,'S','판매','판매중','없음',3),(7,'가득찬 XL 꽃구독','꽃으로 가득차는 일상의 행복',49900,965,NULL,NULL,NULL,NULL,'2021-07-30 13:31:00',1,'XL','판매','판매중','없음',3),(8,'풍성한 L 꽃구독','매일이 풍성해지는 일상의 행복',34900,995,NULL,NULL,NULL,NULL,'2021-07-30 13:30:14',1,'L','판매','판매중','없음',3),(9,'딱좋은 M 꽃구독','내 공간이 꽃이 되는 좋은 시작',26900,995,NULL,NULL,NULL,NULL,'2021-07-30 13:29:19',1,'M','판매','판매중','없음',3);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -390,6 +392,7 @@ CREATE TABLE `reservation` (
   `fd_id` int(11) NOT NULL,
   `r_num` int(11) NOT NULL,
   `r_payment` varchar(40) NOT NULL,
+  `r_date` date NOT NULL,
   PRIMARY KEY (`r_id`),
   KEY `reservation_f_id_fk` (`f_id`),
   KEY `reservation_fd_id_fk` (`fd_id`),
@@ -435,7 +438,6 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (1,7,'admin@admin.com','좋다구요','좋다구요',4,'2021-07-28 23:13:53',NULL,200),(2,10,'admin@admin.com','와이프가 너무좋아하네요','정말 강추드려요',5,'2021-07-29 01:58:59',NULL,200),(3,2,'admin@admin.com','산호초 같은 꽃','너무좋아',4,'2021-07-29 01:59:18',NULL,200),(4,5,'admin@admin.com','좋아요','좋아요',4,'2021-07-29 01:59:30',NULL,200),(5,8,'admin@admin.com','산호초가 왔어요','꽃은 어디에?',1,'2021-07-29 01:59:47',NULL,200),(6,4,'admin@admin.com','좋아요!!!','좋습니다',5,'2021-07-29 02:00:11',NULL,200),(7,9,'admin@admin.com','추천드려요','너무 싱싱해요',5,'2021-07-29 02:00:32',NULL,200),(8,12,'admin@admin.com','저번보다 덜 싱싱해요','실망이예요',3,'2021-07-29 02:03:32',NULL,200),(9,11,'admin@admin.com','향기롭다','너무좋다',3,'2021-07-29 02:03:48',NULL,200);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -448,4 +450,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-02 10:02:20
+-- Dump completed on 2021-08-03 12:51:48
