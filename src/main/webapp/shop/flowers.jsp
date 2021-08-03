@@ -67,7 +67,7 @@ if(request.getParameter("sort")!=null) {
 						<table>
 						<%if (item.getI_category() == 1 || item.getI_category() == 2){%> <!-- 1:일반배송, 2:당일배송  -->
 							<tbody>
-								<tr><td><a href="FlowersContent.shop?i_id=<%=i_id%>"><img src="../admin_layout/upload/<%=item.getI_img()%>" class="img"></a></td></tr>
+								<tr><td><a href="FlowersContent.shop?i_id=<%=i_id%>"><img src="./admin_layout/upload/<%=item.getI_img()%>" class="img"></a></td></tr>
 								<tr><td><span class="desc"><%=item.getI_desc() %></span></td></tr>
 								<tr><td><span class="item_name"><a href="FlowersContent.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a></span></td></tr>
 								<tr><td><span class="discount"><%if(i_discount!=1){%><%=percent %></span> <span class="origin_price"><%=NumberFormat.getInstance().format(item.getI_price())%>-></span><span class="price"><%}%><%=NumberFormat.getInstance().format(price) %></span></td></tr>
