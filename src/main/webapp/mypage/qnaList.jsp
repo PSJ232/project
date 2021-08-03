@@ -8,17 +8,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/mypage_qnaList.css"
+	type="text/css" />
 <script src="../script/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		$('.subject').click(function() {
-			$('.td').toggle('fast');
-		});
-	});
-</script>
+<style type="text/css">
+#hidden {
+	display: none;
+}
+</style>
 </head>
 <body>
+<!-- 헤더 들어가는곳 -->
+	<header>
+		<jsp:include page="../inc/header.jsp"></jsp:include>
+	</header>
+	<!-- 헤더 들어가는곳 -->
+	<hr>
+	
+	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
+	
 	<div class="qnaList_div">
 		<article id="qnaList_article">
 			<h3 class="qnaList_h3">
@@ -66,7 +74,7 @@
 							for (int i = 0; i < qnaList.size(); i++) {
 								if (qnaList.get(i).getQ_re_lev() == 0) {
 							%>
-							<tr>
+							<tr onclick="$('.css_test<%=qnaList.get(i).getQ_re_ref() %>').toggle()">
 								<td class="qnaList_td"><span class="qnaList_span3"><%=qnaList.get(i).getQ_rdate()%></span></td>
 								<td class="qnaList_td2"><span class="qnaList_span3"><%=qnaList.get(i).getQ_subject()%></span></td>
 								<td class="qnaList_td"><span class="qnaList_span4">
@@ -86,15 +94,15 @@
 										%>
 								</span></td>
 							</tr>
-							<tr>
+							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden">
 								<th class="qnaList_th"><span class="qnaList_span3">문의내용</span>
 								</th>
 								<td colspan="2" class="qnaList_td"><%=qnaList.get(i).getQ_content()%></td>
 							</tr>
 						<%
-						} else if (qnaList.get(i).getQ_re_lev() == 1) {
-						%>
-							<tr>
+							} else if (qnaList.get(i).getQ_re_lev() == 1) {
+			 			%> 
+							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden">
 								<th class="qnaList_th"><span class="qnaList_span3">답변</span>
 								</th>
 								<td colspan="2" class="qnaList_td"><%=qnaList.get(i).getQ_subject()%>
@@ -103,9 +111,9 @@
 							</tr>
 
 						<%
-						}
-						}
-						}
+						} // elseif문
+						} // for문
+						} // else문
 						%>
 						</tbody>
 					</table>
@@ -113,5 +121,11 @@
 			</div>
 		</article>
 	</div>
+	<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+	<!-- 푸터 들어가는곳 -->
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
+	<!-- 푸터 들어가는곳 -->
 </body>
 </html>

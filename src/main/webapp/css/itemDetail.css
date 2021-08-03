@@ -9,7 +9,7 @@
 	height: 80px;
     width: 1240px;
     margin: 0 auto;
-    padding: 40px 60px 0;
+    padding: 40px 100px 0;
    	color: #999999;
 	font-size: 13px;
 }
@@ -17,12 +17,17 @@
 .inbox {
 	height: 800px;
 	width: 1240px;
-	padding: 0px 60px 0;
+	padding: 0px 100px 0;
 }
 
 .category_product_detail {
 	width: 490px;
 	float: right;
+}
+
+.category_product_image {
+	width: 490px;
+	float: left;
 }
 
 .name_1 {
@@ -60,11 +65,12 @@
 .notice_fresh {
 	border-top: #eeeeee solid 1px;
 	border-bottom: #eeeeee solid 1px;
-	padding: 22px 0px;
+	padding: 20px 0px;
 }
 
 .notice_fresh_info {
 	font-size: 16px;
+	line-height: 20px;
 }
 
 .notice_fresh_info b {
@@ -79,34 +85,118 @@
 	margin: 18px 0;
 }
 
-label {
+.label_name {
 	font-size: 16px;
 	width: 160px;
 	float: left;
 	text-align: left;
+	
 }
-.label {
-	height: 40px;
+
+#label_name_date, #label_name_option {
+	padding-top: 10px;
+}
+
+#label_name_qty {
+	padding-top: 3px;
+}
+
+.label_div {
+	padding: 10px 0;
+}
+
+.sub_option {
+	padding: 11px 150px 11px 10px;
+	border: solid 1px #ffd324;
+	border-radius: 5px;
+	color: #999999;
+	font-size: 13px;
+}
+
+.sub_option option {
+	color: black;
+}
+
+.delivery_date, .showCalendar {
+	padding: 11px 176px 11px 10px;
+	border: solid 1px #ffd324;
+	border-radius: 5px;
+	color: #999999;
+	font-size: 13px;
+	display: block;
+} 
+
+.calendar_right {
+	margin-left:160px;
+	text-align: right;
+}
+
+.designinfo {
+	text-align: center;
+	line-height: 20px;
+	color: #999999;
+}
+
+.designinfo b {
+	color: red;
+	font-weight: 300;
+}
+
+.button_qty {
+	font-size: 20px;
+	color: #999999;
+	padding: 4px 7px;
+	background-color: #eeeeee;
+	border-radius: 30px;
+	border: none;
+	cursor: pointer;
+}
+
+.c_qty {
+	width: 30px;
+	border: none;
+	text-align: center;
+}
+
+#invenNotice {
+	color: red;
+}
+
+.add_letter {
+	font-size: 13px;
+}
+
+.radiobtn {
+	cursor: pointer;
 }
 
 .extra {
 	margin: 5px 0;
 	padding: 20px 15px;
-	background-color: #eeeeee;
+	background-color: #f6f6f6;
 	border-radius: 5px;
 }
 
-#amount, .letterPrice {
+.extra_right {
 	text-align: right;
 }
 
+#amount, .letterPrice {
+	font-size: 16px;
+	font-weight: 400;
+}
+
 .free {
-	float: right;
-	font-size: 12px;
+	text-align: right;
+	margin: 20px 0 15px 441px;
+	font-size: 10px;
+	padding: 2px 5px;
+	background-color: #eeeeee;
+	border-radius: 10px;
 }
 
 .total {
-	float: right;
+	text-align: right;
 	font-size: 15px;
 }
 
@@ -115,17 +205,25 @@ label {
 	font-weight: 600;
 }
 
+.cartbuy, .nowbuy, .subbuy {
+	width: 238px;
+	height: 50px;
+	margin: 25px 0;
+	border: none;
+	border-radius: 6px;
+	font-size: 14px;
+	cursor: pointer;
+}
 
+.nowbuy, .subbuy {
+	margin-left: 4px;
+	background-color: #ffd324;
+}
 
-
-
-
-
-
-
-
-
-
+.cartbuy {
+	margin-right: 4px;
+	background-color: #dddddd;
+}
 
 
 

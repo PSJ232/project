@@ -11,8 +11,8 @@
 CartBean cartDetail = (CartBean) request.getAttribute("cartDetail"); // 비회원주문을 위한 정보
 String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 옵션 정보
 %>
-<link rel="stylesheet" href="../css/login.css" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" >
+<link href="css/login.css" rel="stylesheet" >
+<link href="css/style.css" rel="stylesheet" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	  rel="stylesheet"></head>
 <body>
@@ -31,9 +31,9 @@ String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 
 		<a id="fin" href="findPass.jsp">비밀번호 찾기</a><br>
 		
 		<p id="sns">SNS계정으로 간편 로그인</p> <br> 
-		<a href="https://kukka.kr/account/social-login/facebook/"> <img id="log_img" src="/img/facebook.png"></a>
-		<a href="https://kukka.kr/account/social-login/naver/"> <img id="log_img" src="/img/naver.png"></a> 
-		<a href="https://kukka.kr/account/social-login/kakao/"> <img id="log_img" src="/img/kakao.png"></a><br>
+		<a href="https://kukka.kr/account/social-login/facebook/"> <img id="log_img" src="img/facebook.png"></a>
+		<a href="https://kukka.kr/account/social-login/naver/"> <img id="log_img" src="img/naver.png"></a> 
+		<a href="https://kukka.kr/account/social-login/kakao/"> <img id="log_img" src="img/kakao.png"></a><br>
 		<input type="button" value="회원가입" class="joinbutton" onclick="location.href='MemberJoin.me'"><br>
 	</form>
 		<%if(cartDetail!=null){ %>

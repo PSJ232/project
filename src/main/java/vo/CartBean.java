@@ -10,6 +10,7 @@ public class CartBean {
 	private Date c_rdate; // 장바구니담긴날(DB 시간 동기화)
 	private int c_letter; // 편지선택 0:안함, 1:선택함
 	private String c_delivery_date; // 배송요청일
+	private int sub_option; // 정기구독 선택 옵션
 
 	public int getC_letter() {
 		return c_letter;
@@ -65,6 +66,14 @@ public class CartBean {
 
 	public void setC_rdate(Date c_rdate) {
 		this.c_rdate = c_rdate;
+	}
+
+	public int getSub_option() {
+		return sub_option;
+	}
+
+	public void setSub_option(int sub_option) {
+		this.sub_option = sub_option;
 	}
 
 }

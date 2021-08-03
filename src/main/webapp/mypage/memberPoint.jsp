@@ -148,7 +148,9 @@
 
 
 	<!-- 푸터 들어가는곳 -->
-
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
 	<!-- 푸터 들어가는곳 -->
 </body>
 </html>

@@ -10,7 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="./css/cart.css"
+	type="text/css" />
 <%
 ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
@@ -33,14 +34,22 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
   <!-- header -->
   	<jsp:include page="../inc/header.jsp" ></jsp:include>
   <!-- header -->
-	<h2>장바구니</h2>
+  <div class="cart_div">
+  <header class="cart_header">
+	<h2 class="cart_h2">장바구니</h2>
+  </header>
+  
 	<form action="OrderCart.od" method="post">
-		<table border="1">
+	<div class="cart_div2">
+	<div class="cart_div3">
+		<div class="cart_div4">
+		<table border="1" class="cart_table">
 			<tr>
-				<td><input type="checkbox">상품정보</td>
-				<td>추가상품</td>
-				<td>합계금액</td>
+				<td class="cart_td"><input type="checkbox" class="cart_input"><span class="cart_span">상품정보</span></td>
+				<td class="cart_td"><span class="cart_span2">추가상품</span></td>
+				<td class="cart_td"><span class="cart_span3">합계금액</span></td>
 			</tr>
+			
 			<%
 			if (cartList.size() != 0) { // 장바구니 목록이 비어있는지 확인하여 화면을 선택 표시
 				int totalAmount = 0; // 총 합계 금액 저장할 변수
@@ -53,7 +62,9 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 					int c_qty = cartList.get(i).getC_qty(); // 상품 수량
 					int c_letter = cartList.get(i).getC_letter(); //편지지 선택 여부
 					int c_id = cartList.get(i).getC_id(); // 장바구니 상품 번호 
-					int i_inven = itemList.get(i).getI_inven();
+					int i_inven = itemList.get(i).getI_inven(); // 상품 재고
+					int i_category = itemList.get(i).getI_category(); // 상품 분류 번호
+					int sub_option = cartList.get(i).getSub_option(); // 구독옵션 번호
 	
 					int letterPrice = 0; // 편지지 추가에 따른 추가요금
 					String letter = ""; // 편지지가 선택되면 추가상품에 보이고, 선택되지 않으면 안보임(널스트링)
@@ -65,12 +76,26 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 					int sumAmount = i_price * c_qty + letterPrice; //각 상품에 대한 합계금액
 	
 					totalAmount += sumAmount; // 각 상품에 대한 합계금액을 누적한 총 합계금액
+					
+					String sub_content = "";
+					switch(sub_option){
+						case 2: sub_content = "1개월구독권 x 2주"; break;
+						case 4: sub_content = "2개월구독권 x 2주"; break;
+						case 12: sub_content = "6개월구독권 x 2주"; break;
+						case 24: sub_content = "12개월구독권 x 2주"; break;
+					}
 			
 			%>
 			<tr>
-				<td><input type="checkbox" name="c_id<%=i %>" value="<%=c_id %>" checked><img src="../admin_layout/upload/<%=i_img%>"><br>
-					<%=i_name%><input type="button" value="x" onclick="location.href='CartDeletePro.cr?c_id=<%=c_id%>'"><br>
-					수령일:<%=delivery_date%><br>
+				<td class="cart_td2"><input type="checkbox" class="cart_input2" name="c_id<%=i %>" value="<%=c_id %>" checked><img src="../admin_layout/upload/<%=i_img%>" class="cart_img"><br>
+					<span class="cart_span4"><%=i_name%></span><input type="button" value="x" onclick="location.href='CartDeletePro.cr?c_id=<%=c_id%>'"><br>
+					
+					<%if(i_category == 3){ %>
+					첫 구독일 : <%=delivery_date%><br>
+					구독내용 : <%=sub_content%><br>
+					<%}else{%> 
+					수령일 : <%=delivery_date%><br>
+					<%} %>
 					<%=NumberFormat.getInstance().format(i_price) %>원<br>
 					<input type="button" value="-" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=-1'"> 
 					<%=c_qty%> 
@@ -89,7 +114,9 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 			}
 			%>
 		</table>
-
+		</div>
+		</div>
+</div>
 
 		구매 전 확인해주세요.<br>
 		- 구매 금액 합산이 30,000원 이상일 경우, 배송비는 무료입니다.(단,[정기구독],[무료배송] 상품은 구매금액 합산에 포함되지 않습니다.)<br>
@@ -101,7 +128,6 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 		<input type="hidden" name="iNum" value="<%=i %>">
 		<input type="submit" value="구매하기">
 	</form>
-	
 	<%
 	} else {
 	%>
@@ -115,6 +141,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 	<%
 	}
 	%>
+	</div>
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->

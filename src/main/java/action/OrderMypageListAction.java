@@ -46,6 +46,13 @@ public class OrderMypageListAction implements Action {
 		request.setAttribute("nonOrderDetailArrayList", nonOrderDetailArrayList);
 		request.setAttribute("orderDetailArrayList", orderDetailArrayList);
 		
+		System.out.println(nonOrderArrayList.toString() +  ", " + nonOrderArrayList.size() );
+		System.out.println(orderArrayList.toString());
+		System.out.println(nonItemArrayList.toString());
+		System.out.println(itemArrayList.toString());
+		System.out.println(nonOrderDetailArrayList.toString());
+		System.out.println(orderDetailArrayList.toString());
+		
 		forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("./mypage/orderHistory.jsp");

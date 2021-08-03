@@ -47,7 +47,6 @@ public class ReviewInsertProAction implements Action {
 		rb.setR_img(img);
 		rb.setR_point(r_point);
 		
-		
 		ReviewInsertProService reviewInsertProService = new ReviewInsertProService();
 		boolean isInsertSuccess = reviewInsertProService.registerReview(rb);
 		boolean isUpdateSuccess = reviewInsertProService.modifyMemberPoint(multi.getParameter("r_writer"), r_point );

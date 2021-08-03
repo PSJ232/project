@@ -16,20 +16,11 @@
 <meta charset="UTF-8">
 <title>관리자 | 주문상세</title>
 <style>
-	.container {
-		margin-top: 100px;
-		margin-left: 350px;
-		margin-bottom: 100px;
-	}
 	fieldset {
 		padding: 20px;
 		border: 2px solid #FFCD12;
 		border-radius: 5px;
 		margin-right: 20px;
-	}
-	legend {
-		padding: 10px;
-		font-size: 20px;
 	}
 	label{
 		width: 120px; 
@@ -49,9 +40,6 @@
 	.sub_container {
 		display: flex;
 		margin-left: 10px;
-	}
-	h1 {
-		margin-bottom: 50px;
 	}
 	input[type=text]{
 		border: none;
@@ -95,6 +83,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="./css/list_style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
 	function insertTrackingNum(od_id){
@@ -116,7 +105,6 @@
 	
 	<div class="container">
 		
-		<h1>Order Detail</h1>
 		<div id="product_list">
 			<fieldset>
 				<legend>주문상품 리스트</legend>

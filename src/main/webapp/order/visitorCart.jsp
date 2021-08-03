@@ -13,6 +13,17 @@
 <%
 ItemBean itemDetail = (ItemBean) request.getAttribute("itemDetail");
 CartBean cartDetail = (CartBean) request.getAttribute("cartDetail");
+int sub_option = 1;
+String sub_content = "";
+if(request.getParameter("sub_option") != null){
+	sub_option = Integer.parseInt(request.getParameter("sub_option"));
+	switch(sub_option){
+	case 2: sub_content = "1개월구독권 x 2주"; break;
+	case 4: sub_content = "2개월구독권 x 2주"; break;
+	case 12: sub_content = "6개월구독권 x 2주"; break;
+	case 24: sub_content = "12개월구독권 x 2주"; break;
+	}
+}
 %>
 </head>
 <body>
@@ -46,7 +57,13 @@ CartBean cartDetail = (CartBean) request.getAttribute("cartDetail");
 			<tr>
 				<td>
 					<img src="<%=i_img%>"><br> <%=i_name%><br>
-					수령일:<%=c_delivery_date%><br> <%=NumberFormat.getInstance().format(i_price)%>원<br>
+					<%if(sub_option > 1){ %>
+					첫 구독일 : <%=c_delivery_date%><br>
+					구독내용 : <%=sub_content%><br>
+					<%}else{%> 
+					수령일 : <%=c_delivery_date%><br>
+					<%} %>
+					<%=NumberFormat.getInstance().format(i_price)%>원<br>
 					<%=c_qty%> 개<br>
 				</td>
 				<td><%=letter%></td>

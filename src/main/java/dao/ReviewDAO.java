@@ -86,10 +86,7 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT * "
-				+ "FROM orders_detail od JOIN orders o "
-				+ "ON od.o_id = o.o_id "
-				+ "WHERE od.od_review = 1 AND od.m_id = ?";
+		String sql = "SELECT * FROM orders_detail od JOIN orders o ON od.o_id = o.o_id WHERE od.od_review = 1 AND od.m_id = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);

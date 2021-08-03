@@ -17,7 +17,7 @@
           </div>
           <div class="footer_infobox">
             <span class="customer_info1">
-              꾸까 고객센터  1661-1031
+              사계 고객센터  1661-1031
             </span>
             <span class="customer_info2">(평일 10:00 - 13:00, 14:00 - 18:00/ 주말&공휴일 제외)</span>
             <div class="customer_info_btns">
@@ -25,19 +25,19 @@
               <a href="QnaInsert.qna">1:1 문의하기</a>
             </div>
           </div>
-          <a href="#" class="footer_logo"></a>
+          <span href="#" class="footer_logo s">Four Season</span>
         </div>
 
         <div class="footer_layout_down">
           <table class="company_info">
             <tr>
-              <td class="bar">상호명: 꾸까(kukka)</td><td class="bar">사업자 등록번호: 264-81-32594</td><td>대표자: 박춘화</td>
+              <td class="bar">상호명: 사계(Four Season)</td><td class="bar">사업자 등록번호: 264-81-32594</td><td>대표자: 박춘화</td>
             </tr>
             <tr>
-              <td class="bar">소재지: 서울시 서초구 남부순환로333길 10 kukka</td><td class="bar">기업공시</td><td>통신판매신고번호 2018-서울서초-1692</td>
+              <td class="bar">소재지: 서울시 서초구 남부순환로333길 10 Four Seasons</td><td class="bar">기업공시</td><td>통신판매신고번호 2018-서울서초-1692</td>
             </tr>
             <tr>
-              <td>&#169; 2014-2021 kukka, Inc. All rights reserved.</td>
+              <td>&#169; 2014-2021 Four Season, Inc. All rights reserved.</td>
             </tr>
           </table>
 

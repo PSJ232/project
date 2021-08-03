@@ -40,6 +40,7 @@ public class ReviewInsertProService {
 		rdao.setConnection(con);
 		
 		int updateCount = rdao.updateMemberPoint(m_id, r_point);
+		System.out.println("memberPoint updateCount : " + updateCount);
 		
 		if(updateCount > 0) {
 			commit(con);

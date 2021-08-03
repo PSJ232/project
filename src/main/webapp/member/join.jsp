@@ -62,6 +62,16 @@
 		});
 	});
 	
+	$('#idCheckBtn').click(function(){
+		alert("클릭");
+		$.ajax('test1.jsp', {
+			date:{id:$('#id').val'},
+			success:function(rdata) {
+				$('div').html(rdata);
+			}
+		})
+	})
+	
 </script>
 </head>
 <body>

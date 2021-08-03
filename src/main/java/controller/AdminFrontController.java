@@ -16,6 +16,11 @@ import action.AdminMemberDetailAction;
 import action.AdminMemberListAction;
 import action.AdminOrderDetailAction;
 import action.AdminOrderListAction;
+import action.AdminQnaDeleteAnswerAction;
+import action.AdminQnaDetailAction;
+import action.AdminQnaGetListAction;
+import action.AdminQnaListAction;
+import action.AdminQnaWriteAnswerAction;
 import action.AdminSearchAction;
 import action.ChartAction;
 import action.ClassDeleteAction;
@@ -322,7 +327,60 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/GetQnaList.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/QnaList.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaGetListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/QnaDetail.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/WriteAnswer.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/WriteAnswerPro.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaWriteAnswerAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/DeleteQna.ad")) {
+			forward = new ActionForward();
+			action = new AdminQnaDeleteAnswerAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/SalesManage.ad")) {
+			forward = new ActionForward();
+			forward.setPath("./admin_layout/sales_management/salesManage.jsp");
+			forward.setRedirect(false);
 		}
+
 
 
 		if (forward != null) {

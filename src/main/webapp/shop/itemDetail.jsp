@@ -19,13 +19,11 @@
 		}
 		
 		if(c_letter==0){
-			document.getElementById('letter').innerHTML = "";
-			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			document.getElementById('totalPrice').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+			document.getElementById('totalPrice').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
 		} else {
-			document.getElementById('letter').innerHTML = "<label >추가상품 : 편지추가</label><span>2,500원<br></span>";
-			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			document.getElementById('totalPrice').innerHTML = ((qty*price*sub_option)+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('amount').innerHTML = (qty*price*sub_option).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+			document.getElementById('totalPrice').innerHTML = ((qty*price*sub_option)+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
 		}
 	}
 	
@@ -46,10 +44,7 @@
 			document.getElementById('invenNotice').innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + inven + "개 입니다.<br>";
 		}
 	}
-	
-	function showCalendar(){
-		document.getElementById('showCalendar').innerHTML = "<br><input type='date' name='c_delivery_date' required>";
-	}
+
 </script>
 <%
 ItemBean itemDetail = (ItemBean)request.getAttribute("itemDetail");
@@ -86,106 +81,140 @@ switch(path){
 			HOME > <%=category %> > <%=i_name %>
 		</div>
 		<div class="inbox">
-			<div class="image">
-				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
+			<div class="category_product_image">
+				<div>
+					사진표시해주는 슬라이더				
+				</div>
+			
+				<div class="thumnail_mini">
+					<ul class="owl_hash images size_5">
+						<li class="image active">
+							<button type="button" class="in button secondary url" name="0">
+								<img src="" alt="">
+								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/Contents/2486/0_1.jpg&quot;);"></span>
+							</button>
+						</li>
+						<li class="image">
+							<button type="button" class="in button secondary url" name="1">
+								<img src=""	alt="">
+								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/ContentsProductImage/2021/07/29/0_2_WvOCfuY.jpg&quot;);"></span>
+							</button>
+						</li>
+						<li class="image">
+							<button type="button" class="in button secondary url" name="2">
+								<img src=""	alt="">
+								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/ContentsProductImage/2021/07/29/0_3_pVVwa9j.jpg&quot;);"></span>
+							</button>
+						</li>
+						<li class="image">
+							<button type="button" class="in button secondary url" name="3">
+								<img src=""	alt="">
+								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/ContentsProductImage/2021/07/29/0_4_8ixIqDl.jpg&quot;);"></span>
+							</button>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<div class="selection">
-
-
-				<div class="category_product_detail">
-					<div class="summary">
-						<span class="name_1"><%=itemDetail.getI_desc() %></span><br>
-						<span class="name_2"><%=i_name %></span><br>
+			<div class="category_product_detail">
+				<div class="summary">
+					<span class="name_1"><%=itemDetail.getI_desc() %></span><br>
+					<span class="name_2"><%=i_name %></span><br>
+					<span class="discount">
 						<%if (i_discount!=1){%> <!-- 할인이 없으면 표시 안함 -->
-						<span class="discount">
-							<span class="per"><%=percent %></span>
-							<span class="old_price"><del><%=NumberFormat.getInstance().format(i_price) %>원-&gt;</del></span><%} %>
-							<span class="price"><%=NumberFormat.getInstance().format(price) %>원</span>
-						</span>
-					</div>
-					<div class="notice_fresh">
-						<%if(path.equals("/FlowersContent.shop")){ %>
-						<p class="notice_fresh_info">3만원 이상 구매 시, <b>무료배송!</b> <br>
-							<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 꽃배달 경유 접속시 표시 -->
-						</p>
-						
-						<%if(path.equals("/SubContent.shop")){ %>
-						<p class="notice_fresh_info">정기구독 전상품, <b>무료배송!</b> <br>
-							<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 정기구독 경유 접속시 표시 -->
-						</p>
-						
-						<%if(path.equals("/QuickContent.shop")){ %>
-						<p class="notice_fresh_info">당일 배송 상품은 서울/경기 일부 지역만 배송 가능합니다. <br>
-							<span class="web">배송비는 지역에 따라 차등 부과됩니다.</span><%} %> <!-- 당일배송 경유 접속시 표시 -->
-						</p>
-					</div>
-					<div class="form_section">
-						<form method="post" name="order">
-							<input type="hidden" name="i_id" value=<%=i_id %>>
-							<%if(!path.equals("/SubContent.shop")){ %>
-								<div class="label">
-									<label>수령일</label>
-									<input type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
-								</div>
-							<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
-								<div class="label">
-									<label>구독 옵션</label>
-									<select name="sub_option" size="1" onchange="showCalendar(), isLetter(<%=price %>)" required>
-										<option hidden="" value="">구독기간을 선택해주세요.</option>
-										<option value="2">1개월동안 X 2주마다</option>
-										<option value="4">2개월동안 X 2주마다</option>
-										<option value="12">6개월동안 X 2주마다</option>
-										<option value="24">12개월동안 X 2주마다</option>
-									</select>
-									<span id="showCalendar"></span>
-								</div>
-							<%} %>
-							<div class="label">
-								<label>수량</label> 
-								<input type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
-								<input type="text" name="c_qty" value="1" required readonly>
-								<input type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)">
-								<span id="invenNotice"></span>
+						<span class="per"><%=percent %></span>
+						<span class="old_price"><del><%=NumberFormat.getInstance().format(i_price) %>원-&gt;</del></span><%} %>
+						<span class="price"><%=NumberFormat.getInstance().format(price) %>원</span>
+					</span>
+				</div>
+				<div class="notice_fresh">
+					<%if(path.equals("/FlowersContent.shop")){ %>
+					<p class="notice_fresh_info">3만원 이상 구매 시, <b>무료배송!</b> <br>
+						<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 꽃배달 경유 접속시 표시 -->
+					</p>
+					
+					<%if(path.equals("/SubContent.shop")){ %>
+					<p class="notice_fresh_info">정기구독 전상품, <b>무료배송!</b> <br>
+						<span class="web">서울/경기/인천 일부지역은 <b>새벽배송으로 신선하게</b> 배송됩니다.</span><%} %> <!-- 정기구독 경유 접속시 표시 -->
+					</p>
+					
+					<%if(path.equals("/QuickContent.shop")){ %>
+					<p class="notice_fresh_info">당일 배송 상품은 서울/경기 일부 지역만 배송 가능합니다. <br>
+						<span class="web">배송비는 지역에 따라 차등 부과됩니다.</span><%} %> <!-- 당일배송 경유 접속시 표시 -->
+					</p>
+				</div>
+				<div class="form_section">
+					<form method="post" name="order">
+						<input type="hidden" name="i_id" value=<%=i_id %>>
+						<%if(!path.equals("/SubContent.shop")){ %>
+							<div class="label_div">
+								<label class="label_name" id="label_name_date">수령일</label>
+								<input class="delivery_date" type="date" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
 							</div>
-							<div class="label">
-								<label>편지 추가</label>
-								<input type="radio" name="c_letter" value="1" onclick="isLetter(<%=price %>)" checked>추가할게요(2,500원)
-								<input type="radio" name="c_letter" value="0" onclick="isLetter(<%=price %>)">추가하지 않을게요
+						<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
+							<div class="label_div">
+								<label class="label_name" id="label_name_option">구독 옵션</label>
+								<select class="sub_option" name="sub_option" size="1" onchange="isLetter(<%=price %>)" required>
+									<option hidden="" value="">구독기간을 선택해주세요.</option>
+									<option value="2">1개월동안 X 2주마다</option>
+									<option value="4">2개월동안 X 2주마다</option>
+									<option value="12">6개월동안 X 2주마다</option>
+									<option value="24">12개월동안 X 2주마다</option>
+								</select>
 							</div>
-							<div class="extra">
-								<label>상품가격</label> 
+							<div class="calendar_right">
+								<input class="showCalendar" type="date" name="c_delivery_date" style="display: none;" required>
+								<span class="designinfo" style="display: none">- 8월 17일 이후로 지정하시면 <b>꽃다발 디자인이 변경됩니다.</b></span>
+							</div>
+						<%} %>
+						<div class="label_div">
+							<label class="label_name" id="label_name_qty">수량</label> 
+							<input class="button_qty" type="button" value="-" onclick="ctlQty(-1,<%=price %>,<%=inven%>)">
+							<input class="c_qty" type="text" name="c_qty" value="1" required readonly>
+							<input class="button_qty" type="button" value="+" onclick="ctlQty(1,<%=price %>,<%=inven%>)"><br>
+							<span id="invenNotice"></span>
+						</div>
+						<div class=label_div>
+							<label class="label_name">편지 추가</label>
+							<span class="add_letter">
+								<label class="radiobtn"><input type="radio" class="radioA" name="c_letter" value="1" onclick="isLetter(<%=price %>)" checked>추가할게요(+2,500원)&emsp;</label>
+								<label class="radiobtn"><input type="radio" class="radioB" name="c_letter" value="0" onclick="isLetter(<%=price %>)">추가하지 않을게요</label>
+							</span>
+						</div>
+						<div class="extra">
+							<label class="label_name">상품가격</label>
+							<div class="extra_right">
 								<span id="amount"><%=NumberFormat.getInstance().format(price) %>원</span>
 							</div>
-							<div class="extra" id="letter">
-								<label>추가상품 : 편지추가</label>
+						</div>
+						<div class="extra" id="letter" style="display: block;">
+							<label class="label_name">추가상품 : 편지추가</label>
+							<div class="extra_right">
 								<span class="letterPrice">2,500원<br></span>
 							</div>
-							<span class="free">무료배송</span><br>
-							<span class="total">총주문금액 <span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %></span></span><br>
-							<%if(session.getAttribute("m_id") == null){ 
-									if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
-									<input class="subbuy" type="submit" value="구독 신청(비회원)" onclick="javascript:form.action='VisitorJoin.me'"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
-								<%}else{%>
-									<input class="cartbuy" type="submit" value="장바구니(비회원)" onclick="javascript:form.action='VisitorCart.cr'"> 
-									<input class="nowbuy" type="submit" value="바로구매(비회원)" onclick="javascript:form.action='VisitorJoin.me'">
-								<%} %>
-							<%}else{
-								if(path.equals("/SubContent.shop")){%> 
-									<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='OrderSub.od'"> <!-- 정기구독 경유 접속시 표시 -->
-								<%}else{%>
-									<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'"> 
-									<input class="nowbuy" type="submit" value="바로구매" onclick="javascript:form.action='OrderNow.od'"> 
-								<%}%>
+						</div>
+						<div class="free">무료배송</div>
+						<div class="total">총 주문금액&emsp;<span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %>원</span></div>
+						<div>
+						<%if(session.getAttribute("m_id") == null){ 
+								if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='VisitorCart.cr'">
+								<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='VisitorJoin.me'"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
+							<%}else{%>
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='VisitorCart.cr'"> 
+								<input class="nowbuy" type="submit" value="바로 구매" onclick="javascript:form.action='VisitorJoin.me'">
+							<%} %>
+						<%}else{
+							if(path.equals("/SubContent.shop")){%>
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'">  
+								<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='OrderSub.od'"> <!-- 정기구독 경유 접속시 표시 -->
+							<%}else{%>
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'"> 
+								<input class="nowbuy" type="submit" value="바로 구매" onclick="javascript:form.action='OrderNow.od'"> 
 							<%}%>
-						</form>
-					
-					</div>
+						<%}%>
+						</div>
+					</form>
+				
 				</div>
 			</div>
 		</div>
@@ -206,10 +235,16 @@ switch(path){
 	<table border="1">
 	<tr><td>별점</td><td>제목</td><td>작성자</td><td>주문일자</td></tr>
 	<%
-		System.out.println(rbList.size());
-		for(int i=0; i<rbList.size(); i++) {%>
-			<tr><td><%=rbList.get(i).getR_rate() %></td><td><%=rbList.get(i).getR_title() %></td><td><%=rbList.get(i).getR_writer() %></td><td><%=rbList.get(i).getR_rdate() %></td></tr>
-		<%
+		for(int i=0; i<rbList.size(); i++) {
+
+		//리뷰 아이디 설정
+		String r_writer[] = rbList.get(i).getR_writer().split("@");
+		String a = r_writer[0].substring(0, 4);
+		String editId = a + "***";
+		
+	%>
+		<tr><td><%=rbList.get(i).getR_rate() %></td><td><%=rbList.get(i).getR_title() %></td><td><%=editId %></td><td><%=rbList.get(i).getR_rdate() %></td></tr>
+	<%
 		} 
 	%>
 	</table>
@@ -287,6 +322,23 @@ switch(path){
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.radioA').click(function(){
+				$('#letter').css('display','block');
+			});
+			
+			$('.radioB').click(function(){
+				$('#letter').css('display','none');
+			});
+			
+			$('.sub_option').change(function(){ // 구독 옵션 선택하면 날짜입력창 보임
+				$('.showCalendar').css('display','block');
+				$('.designinfo').css('display','block');
+			});
+		});
+	</script>
 </body>
 </html>
 

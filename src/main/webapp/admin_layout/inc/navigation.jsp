@@ -33,7 +33,7 @@
 			<li><a href="#">매출관리</a></li>
 			<li><a href="OrderList.ad">주문관리</a></li>
 			<li><a href="ClassList.ad">클래스관리</a></li>
-			<li><a href="#">문의관리</a></li>
+			<li><a href="QnaList.ad">문의관리</a></li>
 		</ul>
 	</div>
 </nav>

@@ -20,7 +20,6 @@ public class ClassListAction implements Action {
 		String activeTab = request.getParameter("activeTab");
 		ClassListService service = new ClassListService();
 		if(activeTab.equals("tab1")) {
-			
 			classList = service.getStartClassList();
 		}else {
 			classList = service.getEndClassList();

@@ -5,7 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tinos:ital@1&display=swap" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
@@ -87,15 +90,13 @@ if(m_id == null) {
 
 			<nav class="main_menu">
 				<div class="nav_bar_logo">
-					<a href="./"><img src="admin_layout/img/logo.png" alt="" class="logo_small"></a>
+					<a href="./"><span class="logo_small_black">Four Seson</span></a>
 				</div>
 				<ul class="nav_bar_list">
 					<li class="item"><a href="Subscription.shop">꽃 정기구독</a></li>
 					<li class="item"><a href="Flowers.shop">꽃다발</a></li>
 					<li class="item"><a href="Quick.shop">당일배송</a></li>
 					<li class="item"><a href="#">플라워클래스</a></li>
-					<li class="item"><a href="#">소품샵</a></li>
-					<li class="item"><a href="#">이벤트</a></li>
 				</ul>
 				<div class="nav_bar_icon">
 					<a href=<%=moveMypage %>><img src="admin_layout/img/profile.png" alt="go to mypage" class="nav_icon"></a> 

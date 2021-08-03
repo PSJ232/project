@@ -21,51 +21,46 @@
 <meta charset="UTF-8">
 <title>관리자 | 멤버상세</title>
 <style>
-	#memberDetail_container {
-	margin-left: 350px;
-	margin-top: 120px;
-	margin-bottom: 100px;
-	}
-	#memberDetail_container table {
+	.container table {
 		border-collapse: collapse;
 		border: 1px solid #ececec;
 		width: 900px;
 		text-align: center;
 	}
-	#memberDetail_container table th {
+	.container table th {
 		background-color: #f7f7f7;
 	}
-	#memberDetail_container table td,th {
+	.container table td,th {
 		padding: 5px;
 	}
-	#memberDetail_container table tr:hover {
+	.container table tr:hover {
 		background-color: #FFDF24;
 	}
-	#memberDetail_container label {
+	.container label {
 		float:left;
 		width: 150px;
 		font-size: 15px;
 		font-weight: bold;
 		margin-left: 15px;
 	}
-	#memberDetail_container input[type=text]{
+	.container input[type=text]{
 		border:none;
 		outline: none;
 		margin-bottom: 10px;
 		font-size: 14px;
 	}
-	#memberDetail_container fieldset {
+	.container fieldset {
 		padding: 20px;
 		border-radius: 5px;
 		width: 950px;
 		border: 2px solid #FFCD12;
 		margin-bottom: 25px;
 	}
-	#memberDetail_container legend {
+	.container legend {
 		padding: 15px;
 		font-size: 20px;
 	}
-	#memberDetail_container [id^='content_'] {
+	.container [id^='content_'] {
 		background-color: #FAF4C0;
 	}
 	#reviewList tr {
@@ -91,6 +86,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 <link rel="stylesheet" href="./css/admin.css">
+<link rel="stylesheet" href="./css/list_style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script type="text/javascript">
 	var request = new XMLHttpRequest();
@@ -126,7 +122,7 @@
 <!-- 	<nav> -->
 		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
-<div id="memberDetail_container">
+<div class="container">
 	<fieldset id="info_field">
 		<legend>회원정보</legend>
 		<label>아이디</label> <input type="text" value="<%=memberBean.getM_id()%>"><br>

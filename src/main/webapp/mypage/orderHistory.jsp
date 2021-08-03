@@ -131,8 +131,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 		<li class="list"><a href="MemberUpdate.me">개인정보 수정</a></li>
 		<li class="list"><a href="MemberMypageGradeDetail.me">회원등급</a></li>
 		<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
-		<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
-		<li class="list"><a href="QnaList.qna">QNA리스트</a></li>
+		<li class="list"><a href="QnaList.qna">1:1 문의내역</a></li>
 		<li class="list"><a href="Faq.me">자주묻는질문</a></li>
   	</ul>
   	</div>
@@ -152,39 +151,43 @@ for(int i =0; i<orderArrayList.size(); i++) {
  		
 	<div>
  		<div id="tab-1" class="tab-content current">
- 		<h6>주문/배송내역</h6>
  		<table border="1">
  			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
- 	
+ 			
 			<%
-			int count = 0;
-			for(int i=0; i<nonOrderArrayList.size(); i++) {
-   				%>
-   				
-   				<tr>
-   					<%if(nonCol.contains(i)) {
-   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td><%
-   					} else {}
-   					%>
-   					<td>
-   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
-						수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %><br>
-						받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
-						가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
-					</td>
-   					<%if(nonCol.contains(i)) {
-   					if(nonOrderDetailArrayList.get(i).getOd_confirm()==1) {
-   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">배송 완료</td><%
-   					} else if(!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
-   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">배송 중</td><%
-   					} else if(nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
-   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">주문접수</td><%
-   					}
-   					count++;
-   					} else {}
-   					%>
-   				</tr>
-		<%}%>
+			if(nonOrderDetailArrayList.isEmpty()) {
+				%><tr><td colspan="3">주문 / 배송내역이 존재하지 않습니다.</td></tr><%
+			} else {
+				
+				int count = 0;
+				for(int i=0; i<nonOrderArrayList.size(); i++) {
+	   				%>
+	   				
+	   				<tr>
+	   					<%if(nonCol.contains(i)) {
+	   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td><%
+	   					} else {}
+	   					%>
+	   					<td>
+	   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
+							수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %><br>
+							받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
+							가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
+						</td>
+	   					<%if(nonCol.contains(i)) {
+	   					if(nonOrderDetailArrayList.get(i).getOd_confirm()==1) {
+	   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">배송 완료</td><%
+	   					} else if(!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
+	   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">배송 중</td><%
+	   					} else if(nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {
+	   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>">주문접수</td><%
+	   					}
+	   					count++;
+	   					} else {}
+	   					%>
+	   				</tr>
+			<%}
+		}%>
  		</table>
  		</div>
  		
@@ -194,28 +197,32 @@ for(int i =0; i<orderArrayList.size(); i++) {
  			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
  	
 			<%
-			int ccount = 0;
-			for(int i=0; i<orderArrayList.size(); i++) {
-   				%>
-   				
-   				<tr>
-   					<%if(col.contains(i)) {
-   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_rdate() %></td><%
-   					} else {}
-   					%>
-   					<td>
-   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
-						수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %><br>
-						받는 분 : <%=orderArrayList.get(i).getO_receiver() %><br>
-						가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
-					</td>
-					<%if(col.contains(i)) {
-   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td><%
-   							ccount++;
-   					} else {}
-					%>
-   				</tr>
-		<%}%>
+			if(orderDetailArrayList.isEmpty()) {
+				%><tr><td colspan="3">취소 / 환불내역이 존재하지 않습니다.</td></tr><%
+			} else {
+				int ccount = 0;
+				for(int i=0; i<orderArrayList.size(); i++) {
+	   				%>
+	   				
+	   				<tr>
+	   					<%if(col.contains(i)) {
+	   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_rdate() %></td><%
+	   					} else {}
+	   					%>
+	   					<td>
+	   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
+							수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %><br>
+							받는 분 : <%=orderArrayList.get(i).getO_receiver() %><br>
+							가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
+						</td>
+						<%if(col.contains(i)) {
+	   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td><%
+	   							ccount++;
+	   					} else {}
+						%>
+	   				</tr>
+				<%}
+		}%>
  		</table>
  		</div>
 

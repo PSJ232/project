@@ -1,10 +1,12 @@
 package svc;
 
+import static db.JdbcUtil.close;
 import static db.JdbcUtil.getConnection;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dao.CartDAO;
 import dao.QnaDAO;
@@ -50,5 +52,49 @@ public class QnaService {
 	
 	}
 
+	public ArrayList<QnaBean> getBeforeQnaList() {
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		ArrayList<QnaBean> qnaList = qnaDAO.getBeforeQnaList();
+		JdbcUtil.close(con);
+
+		return qnaList;
+	}
+
+	public ArrayList<QnaBean> getAfterClassList() {
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		ArrayList<QnaBean> qnaList = qnaDAO.getAfterQnaList();
+		JdbcUtil.close(con);
+
+		return qnaList;
+	}
+
+	public boolean deleteAnswer(int q_id, int q_re_ref) {
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		boolean isDeleteSuccess = false; 
+		int deleteCount = qnaDAO.deleteAnswer(q_id, q_re_ref);
+		if(deleteCount > 0) {
+			JdbcUtil.commit(con);
+			isDeleteSuccess = true;
+		}else {
+			JdbcUtil.rollback(con);
+		}
+		JdbcUtil.close(con);
+		return isDeleteSuccess;
+	}
+	
+	public HashMap<String, Integer> getQnaCount(){
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		HashMap<String, Integer> qnaCount = qnaDAO.getQnaCount();
+		close(con);
+		return qnaCount;
+	}
 
 }

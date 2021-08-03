@@ -39,7 +39,7 @@ for(ItemBean ib : itemList) {
 			<div class="inbox">
 				<div class="tbl">
 					<div class="td">
-						<h3 class="title">꾸까 꽃 정기구독</h3>
+						<h3 class="title">사계 꽃 정기구독</h3>
 						<p class="desc">2주에 한번, 매번 새로운 꽃으로 당신의 일상을 행복으로 채울게요</p>
 					</div>				
 				</div>			
@@ -218,7 +218,7 @@ for(ItemBean ib : itemList) {
 	
 	
 	
-		<script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#toggleA').click(function(){
 				$('.subscribe').addClass('is_active');
