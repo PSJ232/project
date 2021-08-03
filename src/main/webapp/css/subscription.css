@@ -2,7 +2,7 @@
 
 .category_header {
 	height: 300px;
-	min-width: 1024px;
+	min-width: 1120px;
 	padding-bottom: 100px;
 	background-image: url("../img/subscription/category_subscription_w.png");
 	background-repeat: no-repeat;
@@ -12,7 +12,7 @@
 }
 
 .category_header .inbox {
-	max-width: 1240px;
+	width: 1120px;
     margin: 0 auto;
     padding: 0 60px;
 }
@@ -49,7 +49,7 @@
 }
 
 .subscription_category_tabs {
-    max-width: 1240px;
+	width: 1120px;
     margin: 0 auto;
     padding: 110px 60px 0;
     position: relative;
