@@ -43,14 +43,14 @@
 						<dl id="mypage_top_dl">
 							<dt id="mypage_top_dt">등급정보</dt>
 							<dd id="mypage_top_dd">
-								white<a href="MemberMypageGradeDetail.me" id="grade"><%=realGrade%>
+								<%=realGrade%><a href="MemberMypageGradeDetail.me" id="grade">
 								</a>
 							</dd>
 						</dl>
 						<dl id="mypage_top_dl">
 							<dt id="mypage_top_dt">포인트</dt>
 							<dd id="mypage_top_dd">
-								0 <a href="MemberMypagePointDetail.me" id="point"><%=memberMypageDetail.getM_point()%>
+								<%=memberMypageDetail.getM_point()%><a href="MemberMypagePointDetail.me" id="point">
 								</a>
 							</dd>
 						</dl>
