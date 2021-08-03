@@ -10,6 +10,7 @@
 <body>
 
 		<!-- 본문 왼쪽 메뉴 -->
+	<div class="mypage_left_div">
 		<section class="mypage_left_section">
 			<div id="mypage_left_menu">
 				<h2 id="mypage_left_title">마이꾸까</h2>
@@ -41,7 +42,7 @@
 				</ul>
 			</div>
 		</section>
-
+	</div>
 
 
 </body>
