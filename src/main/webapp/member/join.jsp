@@ -66,12 +66,13 @@
 				url : 'IdCheck.me',
 				type : "post",
 				datatype : "text",
-				date:{m_id:$('#m_id').val()},
+				data:{m_id:$('#m_id').val()},
 				success:function(rdata) {
 					$('#checkIdResult').html(rdata);
 				}
 			});
 		});
+		
 	});
 	
 	
