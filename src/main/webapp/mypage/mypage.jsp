@@ -64,8 +64,8 @@
 				<h3 class="mypage_main_subject">나의 주문내역</h3>
 				<dl class="mypage_main_dl">
 					<dt class="mypage_main_dt">Flower Subscriptions</dt>
-					<dt class="mypage_main_dd_one">2주에 한번, 소중한 나를 위한 행복으로 채워보세요!</dd>
-					<dt class="mypage_main_dd_two">꾸까 꽃 정기구독</dd>
+					<dt class="mypage_main_dd_one">2주에 한번, 소중한 나를 위한 행복으로 채워보세요!</dt>
+					<dt class="mypage_main_dd_two">꾸까 꽃 정기구독</dt>
 					<dd class="mypage_main_dd_three">
 						<input class="mypage_order_btn" type="button" value="보러가기">
 					</dd>
