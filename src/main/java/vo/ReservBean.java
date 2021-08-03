@@ -8,6 +8,9 @@ public class ReservBean {
 	private int r_num;
 	private String r_payment;
 	private String r_date;
+	private int r_confirm;
+
+	private int r_amount;
 
 	public int getR_id() {
 		return r_id;
@@ -51,6 +54,17 @@ public class ReservBean {
 	public void setR_date(String r_date) {
 		this.r_date = r_date;
 	}
-	
+	public int getR_confirm() {
+		return r_confirm;
+	}
+	public void setR_confirm(int r_confirm) {
+		this.r_confirm = r_confirm;
+	}
+	public int getR_amount() {
+		return r_amount;
+	}
+	public void setR_amount(int r_amount) {
+		this.r_amount = r_amount;
+	}
 	
 }	
