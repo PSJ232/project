@@ -197,13 +197,15 @@ switch(path){
 						<div>
 						<%if(session.getAttribute("m_id") == null){ 
 								if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='VisitorCart.cr'">
 								<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='VisitorJoin.me'"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
 							<%}else{%>
 								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='VisitorCart.cr'"> 
 								<input class="nowbuy" type="submit" value="바로 구매" onclick="javascript:form.action='VisitorJoin.me'">
 							<%} %>
 						<%}else{
-							if(path.equals("/SubContent.shop")){%> 
+							if(path.equals("/SubContent.shop")){%>
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'">  
 								<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='OrderSub.od'"> <!-- 정기구독 경유 접속시 표시 -->
 							<%}else{%>
 								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'"> 
