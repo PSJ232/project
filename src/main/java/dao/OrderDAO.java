@@ -864,7 +864,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM item WHERE i_id IN (SELECT i_id FROM orders_detail WHERE o_id= ?)";
+		String sql = "SELECT i.* FROM item i JOIN orders_detail od ON i.i_id = od.i_id WHERE od.o_id = ?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -887,6 +887,7 @@ public class OrderDAO {
 				ib.setI_dpstatus(rs.getString("i_dpstatus"));
 				ib.setI_itemstatus(rs.getString("i_itemstatus"));
 				ib.setI_detailpage(rs.getString("i_detailpage"));
+				ib.setI_category(rs.getInt("i_category"));
 				itemArrayList.add(ib);
 			}
 		} catch (Exception e) {
