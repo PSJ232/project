@@ -56,7 +56,7 @@ if(request.getParameter("sub_option") != null){
 			%>
 			<tr>
 				<td>
-					<img src="<%=i_img%>"><br> <%=i_name%><br>
+					<img src="./admin_layout/upload/<%=i_img%>"><br> <%=i_name%><br>
 					<%if(sub_option > 1){ %>
 					첫 구독일 : <%=c_delivery_date%><br>
 					구독내용 : <%=sub_content%><br>

@@ -107,7 +107,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 							<tr>
 								<td class="cart_td2"><input type="checkbox"
 									class="cart_input2" name="c_id<%=i%>" value="<%=c_id%>"
-									checked><img src="../admin_layout/upload/<%=i_img%>"
+									checked><img src="./admin_layout/upload/<%=i_img%>"
 									class="cart_img"><br> <span class="cart_span4"><%=i_name%></span><input
 									type="button" class="cart_input3" value="x"
 									onclick="location.href='CartDeletePro.cr?c_id=<%=c_id%>'"><br>

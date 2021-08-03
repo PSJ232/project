@@ -1,23 +1,22 @@
 @charset "UTF-8";
 
 .contents_container {
-	width: 1240px;
+	width: 1120px;
     margin: 0 auto;
 }
 
 .navigation {
 	height: 80px;
-    width: 1240px;
+    width: 1120px;
     margin: 0 auto;
-    padding: 40px 100px 0;
+    padding: 40px 0;
    	color: #999999;
 	font-size: 13px;
 }
 
 .inbox {
-	height: 800px;
-	width: 1240px;
-	padding: 0px 100px 0;
+	width: 1120px;
+	height: auto;
 }
 
 .category_product_detail {
@@ -225,9 +224,21 @@
 	background-color: #dddddd;
 }
 
+.category_product_description {
+	width: 1120px;
+	background-color: grey;
+	display: block;
+}
 
+* {
+	float: none;
+}
 
-
+.desc_image {
+	width: 740px;
+	text-align: center;
+	background-color: skyblue;
+}
 
 
 

@@ -14,7 +14,7 @@
 .category_header .inbox {
 	width: 1120px;
     margin: 0 auto;
-    padding: 0 60px;
+    padding: 0 0px; /* 60 -> 0수정 */
 }
 
 .category_header .inbox .tbl {
@@ -51,7 +51,7 @@
 .subscription_category_tabs {
 	width: 1120px;
     margin: 0 auto;
-    padding: 110px 60px 0;
+    padding: 110px 0px 0;
     position: relative;
 }
 
@@ -135,7 +135,7 @@ ol, ul {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    padding-inline-start: 0px;
 }
 
 .category_product_list .products .list {
@@ -409,7 +409,7 @@ fieldset, img {
 .subscription_how_to {
     max-width: 1240px;
     margin: 0 auto;
-    padding: 0 60px;
+    padding: 0 0px;
 }
 
 .subscription_how_to .how_tit {

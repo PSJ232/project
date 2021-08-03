@@ -219,9 +219,30 @@ switch(path){
 				
 				</div>
 			</div>
+			<div class="category_product_description">
+				<div>
+					상품설명/리뷰/배송안내dddddddddddddddddddd
+				</div>
+				<div class="desc_image">
+					<img src="./admin_layout/upload/<%=itemDetail.getI_detailpage() %>">
+				</div>
+			
+			</div>
 		</div>
 	</div>
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
