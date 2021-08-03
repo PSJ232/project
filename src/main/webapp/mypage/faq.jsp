@@ -13,12 +13,9 @@
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-	<!-- 헤더 들어가는곳 -->
-	<header>
-		<jsp:include page="../inc/header.jsp" ></jsp:include>
-	</header>
-	<!-- 헤더 들어가는곳 -->
-	
+
+	<jsp:include page="../inc/header.jsp" ></jsp:include>
+
 	<div id="container">
 		<div class="faq_container">
 			<div class="faq_layout_top">
@@ -269,14 +266,8 @@
 		</div>
 	</div>
 	
-	
-	
-	
-	<!-- 푸터 들어가는곳 -->
-	<footer>
-		<jsp:include page="../inc/footer.jsp"></jsp:include>
-	</footer>
-	<!-- 푸터 들어가는곳 -->
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+
 	
 	<script type="text/javascript">
 		$(document).ready(function(){

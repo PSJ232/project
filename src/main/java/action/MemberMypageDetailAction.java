@@ -20,7 +20,7 @@ public class MemberMypageDetailAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
-		
+		System.out.println(m_id);
 		MemberService memberService = new MemberService();
 		MemberBean memberMypageDetail = memberService.selectMember(m_id);
 		request.setAttribute("memberMypageDetail", memberMypageDetail);
@@ -45,6 +45,9 @@ public class MemberMypageDetailAction implements Action {
 			forward = new ActionForward();
 			forward.setPath("./mypage/qnaInsert.jsp");
 			forward.setRedirect(false);
+		} else if(command.equals("/MyClass.me")) {
+			forward = new ActionForward();
+			forward.setPath("./mypage/class.jsp");
 		}
 		
 		return forward;

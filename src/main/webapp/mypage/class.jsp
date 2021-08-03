@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="css/mypage.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/mypage_class.css">
 <link rel="stylesheet" href="./css/utility.css">
 <link rel="stylesheet" href="./css/style.css">
@@ -46,49 +47,53 @@
 </script>
 </head>
 <body>
-	<header>
-		<jsp:include page="../inc/header.jsp" ></jsp:include>
-	</header>
 
-	<div  id="myclass_container">
-		<div class="myclass_layout_top">
-			<h2 class="myclass_title">현재 수강(예정) 중인 클래스</h2>
-			<div class="myclass_box">
-				<table class="myclass_list_layout">
-					<colgroup>
-						<col width="25%">
-						<col width="75%">
-					</colgroup>
-					<thead class="myclass_list_head">
-						<th><span>신청 일자</span></th>
-						<th><span>클래스 정보</span></th>
-					</thead>
-					<tbody id="planned_myclass_list"></tbody>
-				</table>
+	<jsp:include page="../inc/header.jsp" ></jsp:include>
+
+	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
+	
+	<div class="mypage_container">
+		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+		
+		<div  id="myclass_container">
+			<div class="myclass_layout_top">
+				<h2 class="myclass_title">현재 수강(예정) 중인 클래스</h2>
+				<div class="myclass_box">
+					<table class="myclass_list_layout">
+						<colgroup>
+							<col width="25%">
+							<col width="75%">
+						</colgroup>
+						<thead class="myclass_list_head">
+							<th><span>신청 일자</span></th>
+							<th><span>클래스 정보</span></th>
+						</thead>
+						<tbody id="planned_myclass_list"></tbody>
+					</table>
+				</div>
+			</div>
+			<div class="myclass_layout_bottom">
+				<div>
+					<h2 class="myclass_title">지난 클래스</h2>
+					<span class="myclass_toggle">&nbsp;</span>
+				</div>
+				<div class="myclass_box past_myclass">
+					<table class="myclass_list_layout">
+						<colgroup>
+							<col width="25%">
+							<col width="75%">
+						</colgroup>
+						<thead class="myclass_list_head">
+							<th><span>신청 일자</span></th>
+							<th><span>클래스 정보</span></th>
+						</thead>
+						<tbody id="past_myclass_list"></tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-		<div class="myclass_layout_bottom">
-			<div>
-				<h2 class="myclass_title">지난 클래스</h2>
-				<span class="myclass_toggle">&nbsp;</span>
-			</div>
-			<div class="myclass_box past_myclass">
-				<table class="myclass_list_layout">
-					<colgroup>
-						<col width="25%">
-						<col width="75%">
-					</colgroup>
-					<thead class="myclass_list_head">
-						<th><span>신청 일자</span></th>
-						<th><span>클래스 정보</span></th>
-					</thead>
-					<tbody id="past_myclass_list"></tbody>
-				</table>
-			</div>
-		</div>
+		
 	</div>
-	
-	
 	
 	
 	

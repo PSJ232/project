@@ -28,7 +28,8 @@ a, button {
 
 .mypage_container{
 	width: 1120px;
-    margin: 0 auto;
+    margin: 53px auto 82px;
+    position: relative;
 }
 /* mypage_banner_list */
 .mypage_all {
@@ -80,7 +81,11 @@ strong {
     display: inline-block;
     text-align: center;
     text-align: center;
-    border-right: 1px solid #e6e4e4;
+
+}
+
+#mypage_top_dl:not(:last-child) {
+	border-right: 1px solid #e6e4e4;
 }
 
 #mypage_top_dt {
@@ -101,9 +106,6 @@ strong {
 .mypage_left_div {
 	display: inline-block;
 }
-.mypage_left_section{
-	margin: 59px 0;
-}
 
 .mypage_left_menu_section {
 	float: left;
@@ -123,7 +125,7 @@ strong {
 }
 
 #mypage_menu_list {
-	width: 200px;
+	width: 270px;
     margin: 18px 0px;
 }
 
@@ -133,35 +135,49 @@ strong {
     font-weight: 300;
 }
 
+#mypage_list_a:hover {
+	text-decoration: underline;
+}
+
 #mypage_list {
-	padding-top: 20px;
-    padding: 15px 0;
+    padding-top: 20px;
+    padding: 19px 0;
     border-bottom: 0.5px solid #e3e0e0;
     font-weight: 500;
+
 }
 
 /* mypage_main */
-.mypage_center_c {
-	float: right;
-    display: inline-block;
-    position: absolute;
 
+#mypage_order_delevery_box {
+	display: inline-block;
+    position: absolute;
+    margin-left: 40px;
+    margin-top: 0px;
 }
 
-#mypage_center_i {
+.mypage_center_c {
+    display: inline-block;
+}
+
+.mypage_center_i {
 	display: inline-block;
 }
 
-#mypage_center_subject {
-	font-size: x-large;
-    font-weight: 900;
+.mypage_center_subject {
+	font-size: 24px;
     background-color: white;
     line-height: 35px;
 }
 
-#mypage_title_r {
+.mypage_titme_l {
+	font-weight: 500;
+}
+
+.mypage_title_r {
     color: #969696;
-    font-size: medium;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .mypage_center_list {
@@ -169,13 +185,13 @@ strong {
     background-color: #fff9ee;
 }
 
-#mypage_center_dl {
+.mypage_center_dl {
     text-align: center;
     display: inline-block;
     margin: 37px 65px;;
 }
 
-#mypage_center_dt {
+.mypage_center_dt {
     padding-bottom: 20px;
     line-height: 20px;
     font-size: 24px;
@@ -183,7 +199,7 @@ strong {
     color: #66F8F0;
 }
 
-#mypage_center_dd {
+.mypage_center_dd {
 	line-height: 1.5;
     font-size: 18px;
     font-weight: 500;
@@ -194,54 +210,53 @@ strong {
     display: inline-block;
     background-image: url(../img/mypage_main.png);
     width: 800px;
+    margin: 31px 0px;
 }
 
-#mypage_main_subject {
-	font-size: x-large;
-    font-weight: 900;
+.mypage_main_subject {
+	font-size: 24px;
+    font-weight: 500;
     background-color: white;
-    padding: 10px;
+    padding: 10px 0;
+    line-height: 37px;
 }
 
-#mypage_main_dl {
-	margin: 20px;
-    margin-top: 50px;
+.mypage_main_dl {
+    margin: 47px 40px;
 }
 
-#mypage_main_dt {
-	font-weight: 900;
+.mypage_main_dt {
+    font-weight: 500;
+    font-size: 14px;
     color: #FFD228;
-    margin: 10px;
+    letter-spacing: .2px;
     clear: both;
-    margin-bottom: 10px;
+    margin-bottom: 23px;
 }
 
-#mypage_main_dd_one {
-	font-size: large;
-	font-weight: 500;
-	margin: 10px;
-	clear: both;
-	margin-bottom: 30px;
+.mypage_main_dd_one {
+    font-size: 24px;
+    font-weight: 300;
+    clear: both;
+    margin-bottom: 12px;
 }
 
-#mypage_main_dd_two {
+.mypage_main_dd_two {
 	font-size: x-large;
-	font-weight: 900;
-	margin: 10px;
-	clear: both;
-	margin-bottom: 50px;
-	
+    font-weight: 600;
+    clear: both;
+    margin-bottom: 26px;
+    line-height: 33px;
 }
 
 
-#mypage_order_btn {
-	background-color: #FFD228;
-	border-radius: 150px;
-	width: 150px;
-	height: 50px;
-	text-align: center;
-	border: none;
-	margin-bottom: 50px;
-	margin-left: 10px;
+.mypage_order_btn {
+    background-color: #FFD228;
+    border-radius: 150px;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    border: none;
+    font-size: 14px;
 }
 
