@@ -32,7 +32,7 @@
                                 </li>
                                 <li>
                                     <label>상품코드</label>
-                                    <input type="text" class="product_manage_code" name="i_id" value="<%=ib.getI_id()%>" disabled>
+                                    <input type="text" class="product_manage_code" name="i_id" value="<%=ib.getI_id()%>" readonly>
                                 </li>
                                 <li>
                                     <label>제품등록일</label>
@@ -51,9 +51,18 @@
                                     <input type="text" class="product_manage_info" name="i_desc" value="<%=ib.getI_desc()%>" required>
                                 </li>
                                 <li>
+                                    <label>카테고리</label>
+                                    <select name="i_category" class="product_manage_size"required>
+                                    	<option value="">선택</option>
+                                    	<option value="1">일반상품</option>
+                                    	<option value="2">당일배송</option>
+                                    	<option value="3">정기구독</option>
+                                    </select>
+                                </li>
+                                <li>
                                     <label>size(S/M/L)</label>
                                     <select class="product_manage_size" name="i_size" required>
-                                        <option value="null">선택</option>
+                                        <option value="">선택</option>
                                         <option value="S">Small</option>
                                         <option value="M">Medium</option>
                                         <option value="L">Large</option>

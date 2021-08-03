@@ -8,7 +8,7 @@
 		driverClassName="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/team3_flower?useSSL=false"
 		username="root"
-		password="1234"
+		password="Djfudns!qlalfqjsgh1"
 		maxActive="500"
 	/>
 </Context>
