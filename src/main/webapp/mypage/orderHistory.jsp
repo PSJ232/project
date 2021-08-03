@@ -192,7 +192,6 @@ for(int i =0; i<orderArrayList.size(); i++) {
  		</div>
  		
 		<div id="tab-2" class="tab-content">
- 		<h6>취소/환불내역</h6>
  		 	<table border="1">
  			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
  	

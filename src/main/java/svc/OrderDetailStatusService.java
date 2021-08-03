@@ -36,7 +36,7 @@ public class OrderDetailStatusService {
 		OrderDAO odao = OrderDAO.getInstance();
 		odao.setConnection(con);
 		
-		orderDetailList = odao.getOrderDetail(o_id);
+		orderDetailList = odao.getMypageOrderDetail(o_id);
 		
 		close(con);
 		
