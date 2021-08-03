@@ -8,6 +8,7 @@ public class ReservBean {
 	private int r_num;
 	private String r_payment;
 	private String r_date;
+	
 
 	public int getR_id() {
 		return r_id;

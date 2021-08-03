@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.ClassDetailDAO;
+import dao.ReservDAO;
 import vo.ClassDetailBean;
+import vo.ReservBean;
+
 import static db.JdbcUtil.*;
 
 public class ClassDetailListService {
@@ -16,6 +19,27 @@ public class ClassDetailListService {
 		ArrayList<ClassDetailBean> detailList = classDetailDAO.getDetailList();
 		close(con);
 		return detailList;
+	}
+
+	public String getReservInfo(String place, String time, String date) {
+		Connection con = getConnection();
+		ReservDAO reservDAO = ReservDAO.getInstance();
+		reservDAO.setConnection(con);
+		StringBuffer result = new StringBuffer("");
+		result.append("{\"result\":[");
+		ArrayList<ReservBean> resultList = reservDAO.getReservInfo(place, time, date);
+		
+		for(int i = 0; i < resultList.size(); i++) {
+			result.append("[{\"value\": \"" + resultList.get(i).getR_id() + "\"},");
+			result.append("{\"value\": \"" + resultList.get(i).getM_id() + "\"},");
+			result.append("{\"value\": \"" + resultList.get(i).getR_num() + "\"},");
+			result.append("{\"value\": \"" + resultList.get(i).getR_date() + "\"}],");
+		}
+		result.append("]}");
+		
+		close(con);
+		
+		return result.toString();
 	}
 
 }
