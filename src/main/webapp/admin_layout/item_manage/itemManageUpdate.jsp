@@ -46,10 +46,11 @@
                                     <label>할인율(%)</label>
                                     <select name="i_discount" class="product_manage_size" required>
                                     	<option value="">선택하세요</option>
-                                    	<option value="0.1">10%</option>
-                                    	<option value="0.2">20%</option>
-                                    	<option value="0.3">30%</option>
-                                    	<option value="0.4">40%</option>
+                                    	<option value="1">할인 없음</option>
+                                    	<option value="0.9">10%</option>
+                                    	<option value="0.8">20%</option>
+                                    	<option value="0.7">30%</option>
+                                    	<option value="0.6">40%</option>
                                     	<option value="0.5">50%</option>
                                     </select>
                                 </li>
