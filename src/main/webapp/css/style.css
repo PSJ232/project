@@ -374,11 +374,6 @@ a, button {
   overflow: hidden;
 }
 
-dd {
-  display: block;
-  height: 140px;
-  float: left;
-}
 
 
 .product_info_textbox {
@@ -575,7 +570,7 @@ footer{
 
 .footer_logo {
 	text-align: right;
-    width: 228px;
+    width: 240px;
     height: 63px;
     position: absolute;
     top: 46px;

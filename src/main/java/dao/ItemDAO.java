@@ -202,11 +202,10 @@ public class ItemDAO {
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT MAX(i_id) FROM item";
-		
+		System.out.println("I_subimg4() "+ib.getI_subimg4());
 		
 		try {
-			sql = "INSERT INTO item VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO item VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ib.getI_name());

@@ -1,6 +1,7 @@
 package action;
 
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +53,7 @@ public class ItemInsertAction implements Action{
 		ib.setI_subimg2(multi.getFilesystemName("i_subimg2"));
 		ib.setI_subimg3(multi.getFilesystemName("i_subimg3"));
 		ib.setI_subimg4(multi.getFilesystemName("i_subimg4"));
-		ib.setI_subimg4(multi.getFilesystemName("i_rdate"));
+		System.out.println("ddddddddddddd"+multi.getFilesystemName("i_subimg4"));
 		ib.setI_discount(Float.parseFloat(multi.getParameter("i_discount")));
 		ib.setI_size(multi.getParameter("i_size"));
 		ib.setI_dpstatus(multi.getParameter("i_dpstatus"));
