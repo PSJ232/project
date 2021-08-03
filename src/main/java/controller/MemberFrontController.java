@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.IdCheckAction;
 import action.MemberAnnDeleteProAction;
 import action.MemberAnnInsertProAction;
 import action.MemberAnnUpdateFormAction;
@@ -226,7 +227,14 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
+		} else if(command.equals("/IdCheck.me")) {
+			action = new IdCheckAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 		// -------------------------------------------------------------------------
 		// 포워딩 방식 결정

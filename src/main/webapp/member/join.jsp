@@ -60,17 +60,20 @@
 			      $("input[type=checkbox]") .prop("checked", false);
 			   }
 		});
+		
+		$('#idCheckBtn').click(function(){
+			$.ajax({
+				url : 'IdCheck.me',
+				type : "post",
+				datatype : "text",
+				date:{m_id:$('#m_id').val()},
+				success:function(rdata) {
+					$('#checkIdResult').html(rdata);
+				}
+			});
+		});
 	});
 	
-	$('#idCheckBtn').click(function(){
-		alert("클릭");
-		$.ajax('test1.jsp', {
-			date:{id:$('#id').val'},
-			success:function(rdata) {
-				$('div').html(rdata);
-			}
-		})
-	})
 	
 </script>
 </head>
@@ -89,7 +92,7 @@
 						<div class="topForm">
 							<table>
 								<th class="join_label">이메일(아이디)</th>
-								<td class="join_input"><input type="email" name="m_id" class="textBox" placeholder="예)four@season.kr" required>
+								<td class="join_input"><input type="email" name="m_id" id="m_id" class="textBox" placeholder="예)four@season.kr" required>
 																	 	 <input type="button" id="idCheckBtn" class="btn_m" onclick="checkId(m_id.value)" value="중복확인"><br>
 																		 <span id="checkIdResult" class="checkMessage">&nbsp;</span><br></td><!-- 아이디 유효성 검사 -->
 								<th class="join_label">비밀번호</th>
