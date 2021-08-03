@@ -296,6 +296,39 @@ public class OrderDAO {
 		}
 		return orderDetailList;
 	}
+	
+	public ArrayList<OrderDetailBean> getMypageOrderDetail(String o_id) {
+		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT od.* FROM orders_detail od, item i WHERE i.i_id=od.i_id and o_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, o_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				OrderDetailBean odb = new OrderDetailBean();
+				odb.setOd_id(rs.getInt("od_id"));
+				odb.setO_id(rs.getInt("o_id"));
+				odb.setI_id(rs.getInt("i_id"));
+				odb.setL_id(rs.getInt("l_id"));
+				odb.setOd_qty(rs.getInt("od_qty"));
+				odb.setOd_message(rs.getString("od_message"));
+				odb.setOd_review(rs.getInt("od_review"));
+				odb.setM_id(rs.getString("m_id"));
+				odb.setOd_delivery_date(rs.getString("od_delivery_date"));
+				odb.setOd_invoice(rs.getString("od_invoice"));
+				odb.setOd_confirm(rs.getInt("od_confirm"));
+				orderDetailList.add(odb);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류!(OrderDAO - getOrderDetail(String o_id) - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return orderDetailList;
+	}
 
 	// Order
 	public ArrayList<OrderBean> getOrderNonStatusOrderList(String m_id) {
@@ -306,7 +339,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT o.* FROM orders_detail od JOIN orders o ON od.o_id = o.o_id JOIN item i ON i.i_id = od.i_id"
-				+ " WHERE i.i_category!=3 AND od.m_id =? AND od.i_id > 0 AND od.od_confirm = 0 OR od.od_confirm= 1";
+				+ " WHERE i.i_category!=3 AND od.m_id =? AND od.od_confirm = 0 OR od.od_confirm= 1";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -343,7 +376,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		
 		String sql = "SELECT o.* FROM orders_detail od JOIN orders o ON od.o_id = o.o_id JOIN item i ON i.i_id = od.i_id"
-				+ " WHERE i.i_category=3 AND od.m_id =? AND od.i_id > 0 AND od.od_confirm = 0 OR od.od_confirm= 1";
+				+ " WHERE i.i_category=3 AND od.m_id =? AND od.od_confirm = 0 OR od.od_confirm= 1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -737,7 +770,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT od.* FROM orders_detail od JOIN item i ON od.i_id = i.i_id "
-				+ "WHERE m_id = ? AND i.i_category = 3 AND od_confirm = 2;";
+				+ "WHERE m_id = ? AND i.i_category = 3 AND od_confirm = 2";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -831,7 +864,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM item WHERE i_id IN (SELECT i_id FROM orders_detail WHERE o_id= ?)";
+		String sql = "SELECT i.* FROM item i JOIN orders_detail od ON i.i_id = od.i_id WHERE od.o_id = ?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -854,6 +887,7 @@ public class OrderDAO {
 				ib.setI_dpstatus(rs.getString("i_dpstatus"));
 				ib.setI_itemstatus(rs.getString("i_itemstatus"));
 				ib.setI_detailpage(rs.getString("i_detailpage"));
+				ib.setI_category(rs.getInt("i_category"));
 				itemArrayList.add(ib);
 			}
 		} catch (Exception e) {

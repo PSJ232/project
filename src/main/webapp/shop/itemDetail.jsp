@@ -71,6 +71,8 @@ switch(path){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
+
+
 </head>
 <body>
   <!-- header -->
@@ -148,7 +150,7 @@ switch(path){
 						<%if(!path.equals("/SubContent.shop")){ %>
 							<div class="label_div">
 								<label class="label_name" id="label_name_date">수령일</label>
-								<input class="delivery_date" type="date" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
+								<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
 							</div>
 						<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
 							<div class="label_div">
@@ -162,7 +164,7 @@ switch(path){
 								</select>
 							</div>
 							<div class="calendar_right">
-								<input class="showCalendar" type="date" name="c_delivery_date" style="display: none;" required>
+								<input class="showCalendar" type="text" name="c_delivery_date" style="display: none;" required>
 								<span class="designinfo" style="display: none">- 8월 17일 이후로 지정하시면 <b>꽃다발 디자인이 변경됩니다.</b></span>
 							</div>
 						<%} %>
@@ -197,13 +199,15 @@ switch(path){
 						<div>
 						<%if(session.getAttribute("m_id") == null){ 
 								if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='VisitorCart.cr'">
 								<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='VisitorJoin.me'"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
 							<%}else{%>
 								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='VisitorCart.cr'"> 
 								<input class="nowbuy" type="submit" value="바로 구매" onclick="javascript:form.action='VisitorJoin.me'">
 							<%} %>
 						<%}else{
-							if(path.equals("/SubContent.shop")){%> 
+							if(path.equals("/SubContent.shop")){%>
+								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'">  
 								<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='OrderSub.od'"> <!-- 정기구독 경유 접속시 표시 -->
 							<%}else{%>
 								<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'"> 

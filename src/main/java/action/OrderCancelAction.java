@@ -20,6 +20,9 @@ public class OrderCancelAction implements Action {
 		OrderService orderService = new OrderService();
 		boolean isOrderCancelSuccess = orderService.modifyOrderConfirm(o_id, num);
 		
+		// 취소한 주문에 따라 다른 주소 이동(일반 구매, 정기구독 구분)
+		int i_category = Integer.parseInt(request.getParameter("i_category"));
+		
 		if (!isOrderCancelSuccess) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -27,9 +30,13 @@ public class OrderCancelAction implements Action {
 			out.println("alert('주문취소가 되지않았습니다.');");
 			out.println("history.back();");
 			out.println("</script>");
-		} else {
+		} else if(i_category != 3) {
 			forward = new ActionForward();
 			forward.setPath("OrderMypageDetailList.od");
+			forward.setRedirect(true);
+		} else if(i_category == 3) {
+			forward = new ActionForward();
+			forward.setPath("MypageSubscribe.od");
 			forward.setRedirect(true);
 		}
 		

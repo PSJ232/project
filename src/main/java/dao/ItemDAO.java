@@ -202,26 +202,27 @@ public class ItemDAO {
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println("I_subimg4() "+ib.getI_subimg4());
+		
 		try {
-			String sql = "INSERT INTO item VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO item VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, ib.getI_id());
-			pstmt.setString(2, ib.getI_name());
-			pstmt.setString(3, ib.getI_desc());
-			pstmt.setInt(4, ib.getI_price());
-			pstmt.setInt(5, ib.getI_inven());
-			pstmt.setString(6, ib.getI_img());
-			pstmt.setString(7, ib.getI_subimg2());
-			pstmt.setString(8, ib.getI_subimg3());
-			pstmt.setString(9, ib.getI_subimg4());
-			pstmt.setTimestamp(10, ib.getI_rdate());
-			pstmt.setFloat(11, ib.getI_discount());
-			pstmt.setString(12, ib.getI_size());
-			pstmt.setString(13, ib.getI_dpstatus());
-			pstmt.setString(14, ib.getI_itemstatus());
-			pstmt.setString(15, ib.getI_detailpage());
-			pstmt.setInt(16, ib.getI_category());
+			pstmt.setString(1, ib.getI_name());
+			pstmt.setString(2, ib.getI_desc());
+			pstmt.setInt(3, ib.getI_price());
+			pstmt.setInt(4, ib.getI_inven());
+			pstmt.setString(5, ib.getI_img());
+			pstmt.setString(6, ib.getI_subimg2());
+			pstmt.setString(7, ib.getI_subimg3());
+			pstmt.setString(8, ib.getI_subimg4());
+			pstmt.setTimestamp(9, ib.getI_rdate());
+			pstmt.setFloat(10, ib.getI_discount());
+			pstmt.setString(11, ib.getI_size());
+			pstmt.setString(12, ib.getI_dpstatus());
+			pstmt.setString(13, ib.getI_itemstatus());
+			pstmt.setString(14, ib.getI_detailpage());
+			pstmt.setInt(15, ib.getI_category());
 
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -239,9 +240,9 @@ public class ItemDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "UPDATE item SET i_name=?, " + "i_desc=?, i_price=?, i_inven=?, i_img=?, i_subimg2=?,"
+			String sql = "UPDATE item SET i_name=?, i_desc=?, i_price=?, i_inven=?, i_img=?, i_subimg2=?,"
 					+ "i_subimg3=?, i_subimg4=?, i_discount=?, "
-					+ "i_size=?, i_dpstatus=?, i_itemstatus=?, i_detailpage=?, i_realfolder=?, i_category=? WHERE i_id=?";
+					+ "i_size=?, i_dpstatus=?, i_itemstatus=?, i_detailpage=?, i_category=? WHERE i_id=?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ib.getI_name());

@@ -32,7 +32,8 @@ a, button {
 
 .memberGrade_article {
 	padding-top: 40px;
-	width: 761.6px;
+/* 	width: 761.6px; */
+	width: 1120px;
 	height: 771px;
 	padding: 40px 0 0;
 	display: block;

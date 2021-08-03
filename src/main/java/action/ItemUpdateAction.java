@@ -69,7 +69,7 @@ public class ItemUpdateAction implements Action {
 				//db작업성공시
 				forward = new ActionForward();
 				//상품 관리 메인페이지로 이동
-				forward.setPath("itemDetail.ad?i_id="+i_id); 
+				forward.setPath("ItemList.ad"); 
 				forward.setRedirect(true);
 			} else {
 				//DB작업 실패시

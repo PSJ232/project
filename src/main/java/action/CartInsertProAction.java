@@ -32,6 +32,9 @@ public class CartInsertProAction implements Action {
 		cartBean.setC_qty(Integer.parseInt(request.getParameter("c_qty")));
 		cartBean.setC_letter(Integer.parseInt(request.getParameter("c_letter")));
 		cartBean.setC_delivery_date(request.getParameter("c_delivery_date"));
+		if(request.getParameter("sub_option") != null) {
+			cartBean.setSub_option(Integer.parseInt(request.getParameter("sub_option")));
+		}
 		
 		CartService cartService = new CartService();
 		boolean isInsertSuccess = cartService.putCart(cartBean);

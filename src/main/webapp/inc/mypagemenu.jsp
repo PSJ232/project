@@ -10,8 +10,9 @@
 <body>
 
 		<!-- 본문 왼쪽 메뉴 -->
+	<div class="mypage_left_div">
 		<section class="mypage_left_section">
-			<div id="mypage_left_menu">
+			<div id="mypage_left_menu_top">
 				<h2 id="mypage_left_title">마이꾸까</h2>
 				<ul id="mypage_menu_list">
 					<li id="mypage_list"><a id="mypage_list_a"
@@ -25,7 +26,7 @@
 				</ul>
 			</div>
 
-			<div id="mypage_left_menu">
+			<div id="mypage_left_menu_bottom">
 				<h2 id="mypage_left_title">개인정보 관리</h2>
 				<ul id="mypage_menu_list">
 					<li id="mypage_list"><a id="mypage_list_a"
@@ -41,7 +42,7 @@
 				</ul>
 			</div>
 		</section>
-
+	</div>
 
 
 </body>

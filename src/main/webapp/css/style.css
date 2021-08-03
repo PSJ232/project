@@ -72,7 +72,7 @@ a, button {
 
 .nav_bar_logo {
     display: inline-block;
-    margin: 34px 116px 0 0;
+    margin: 34px 95px 0 0;
 }
 
 .logo_small_black{
@@ -114,7 +114,7 @@ a, button {
 
 .nav_bar_icon {
     display: inline-block;
-    margin: 0px 0px 0px 116px;
+    margin: 0px 0px 0px 96px;
     position: relative;
 }
 
@@ -374,11 +374,6 @@ a, button {
   overflow: hidden;
 }
 
-dd {
-  display: block;
-  height: 140px;
-  float: left;
-}
 
 
 .product_info_textbox {
@@ -575,7 +570,7 @@ footer{
 
 .footer_logo {
 	text-align: right;
-    width: 228px;
+    width: 240px;
     height: 63px;
     position: absolute;
     top: 46px;

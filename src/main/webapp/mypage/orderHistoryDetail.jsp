@@ -117,8 +117,9 @@
   <!-- 본문 내용 -->
 
 <h1> OrderHistoryDetail </h1>
-<input type="button" value="주문 취소하기" onclick="location.href='OrderCancel.od?o_id=<%=orderBean.getO_id() %>'">
-
+<input type="button" value="주문 취소하기" 
+		onclick="location.href='OrderCancel.od?o_id=<%=orderBean.getO_id() %>&i_category=<%=itemList.get(0).getI_category() %>'">
+<h2>i_category : <%=itemList.get(0).getI_category() %></h2>
 <h3>주문내역 상세</h3>
 주문번호 : <%=orderBean.getO_id() %>
 
@@ -144,7 +145,7 @@
 					%><td rowspan=<%=itemList.size() %>>주문 취소</td><%
 				} else if(orderDetailList.get(i).getOd_confirm()==1) {
 					%><td rowspan=<%=itemList.size() %>>배송 완료</td><%
-				} else if(orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
+				} else if(!orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
 					%><td rowspan=<%=itemList.size() %>>배송중</td><%
 				} else if(orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
 					%><td rowspan=<%=itemList.size() %>>주문 접수</td><%

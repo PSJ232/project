@@ -33,7 +33,7 @@ if(request.getParameter("sort")!=null) {
   	<jsp:include page="../inc/header.jsp" ></jsp:include>
   	<!-- header -->
 
-꾸까 당일배송<br>
+사계 당일배송<br>
 가장 예쁘고 싱그러운 꽃 그대로<br>
 오늘 주문하고, 오늘 받아보세요.<br>
  
@@ -54,7 +54,7 @@ if(request.getParameter("sort")!=null) {
 		<table>
 		<%if (item.getI_category() == 2){%> <!--2:당일배송  -->
 			<tbody>
-				<tr><td><a href="QuickContent.shop?i_id=<%=i_id%>"><img src="../admin_layout/upload/<%=item.getI_img()%>" width="200" ></a></td></tr>
+				<tr><td><a href="QuickContent.shop?i_id=<%=i_id%>"><img src="./admin_layout/upload<%=item.getI_img()%>" width="200" ></a></td></tr>
 				<tr><td><%=item.getI_desc() %></td></tr>
 				<tr><td><a href="QuickContent.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a></td></tr>
 				<tr><td><%if(i_discount!=1){%><%=percent %> <%=NumberFormat.getInstance().format(item.getI_price())%>-> <%}%><%=NumberFormat.getInstance().format(price) %></td></tr>

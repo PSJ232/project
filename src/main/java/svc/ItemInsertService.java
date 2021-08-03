@@ -24,7 +24,7 @@ public class ItemInsertService {
 		itemDAO.setConnection(con);
 		Timestamp date = new Timestamp(System.currentTimeMillis());
 		ib.setI_rdate(date);
-		
+		System.out.println("I_subimg4() : " + ib.getI_subimg4());
 		//DB처리한 후 처리 성공여부 확인
 		int insertCount = itemDAO.insertItem(ib);
 		

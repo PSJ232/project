@@ -143,7 +143,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
   	
   <!-- 본문 내용 -->
  <section>
- 		<h2>주문내역/배송조회</h2>
+ 		<h2>나의 정기구독</h2>
 
 <!--   -------------------------------------------------- -->
   	<ul class="tabs">
@@ -205,7 +205,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
  			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
  	
 			<%
-			if(nonOrderDetailArrayList.isEmpty()) {
+			if(orderDetailArrayList.isEmpty()) {
 				%><tr><td colspan="3">취소/환불한 구독내역이 존재하지 않습니다.<br>
 					  <input type="button"  onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
 					  </td></tr><%

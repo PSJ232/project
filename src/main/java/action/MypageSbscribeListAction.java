@@ -38,7 +38,7 @@ public class MypageSbscribeListAction implements Action {
 		ArrayList<ItemBean> itemArrayList = subscribeStatusService.subscribeStatusItemList(m_id);
 		ArrayList<OrderDetailBean> nonOrderDetailArrayList = subscribeStatusService.subscribeNonStatusOrderDetailList(m_id);
 		ArrayList<OrderDetailBean> orderDetailArrayList = subscribeStatusService.subscribeStatusOrderDetailList(m_id);
-		
+	
 		request.setAttribute("nonOrderArrayList", nonOrderArrayList);
 		request.setAttribute("orderArrayList", orderArrayList);
 		request.setAttribute("nonItemArrayList", nonItemArrayList);

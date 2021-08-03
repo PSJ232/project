@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/mypage.css" rel="stylesheet">
+<link href="css/mypage_qnaInsert.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"

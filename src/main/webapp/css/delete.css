@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+body {
+	width: 100%;
+	text-align: left;
+	margin-left: 20px;
+	font-size: 16px;
+	color: #3a3a3a;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.deleteNotice {
+	height: 130px;
+	margin: 20px;
+	line-height: 20px;
+}
+
+.title {
+	padding: 20px;
+	font-size: 22px;
+}
+
+.deleteCheck {
+	margin: 20px;
+	height: 400px;
+
+}
+
+.label {
+	float: left;
+	font-size: 18px;
+	font-weight: 700;
+	width: 200px;		
+}
+
+
+.contentTextBox {
+	margin: 20px;
+	border: 1px solid #878787;
+	width: 700px;
+	height: 360px;
+}
