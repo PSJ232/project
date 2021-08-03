@@ -32,8 +32,10 @@ public class ClassDetailListService {
 		for(int i = 0; i < resultList.size(); i++) {
 			result.append("[{\"value\": \"" + resultList.get(i).getR_id() + "\"},");
 			result.append("{\"value\": \"" + resultList.get(i).getM_id() + "\"},");
-			result.append("{\"value\": \"" + resultList.get(i).getR_num() + "\"},");
-			result.append("{\"value\": \"" + resultList.get(i).getR_date() + "\"}],");
+			result.append("{\"value\": \"" + resultList.get(i).getR_num() + "명\"},");
+			result.append("{\"value\": \"" + resultList.get(i).getR_date() + "\"},");
+			result.append("{\"value\": \"" + resultList.get(i).getR_amount() + "원\"},");
+			result.append("{\"value\": \"" + resultList.get(i).getR_payment() + "\"}],");
 		}
 		result.append("]}");
 		

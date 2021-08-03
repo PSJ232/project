@@ -81,11 +81,16 @@
 	#timespan {
 		font-size: 15px;
 	}
-	#times {
-		display: inline-block;
+	.times {
 		margin-right: 10px;
-		margin-top: 20px;
-		margin-bottom: 30px;
+		margin-top: 30px;
+		margin-bottom: 10px;
+		font-size: 20px;
+		font-weight: bold;
+		display: inline-block;
+		padding: 8px;
+		border: 1px solid white;
+		border-radius: 8px;
 	}
 	#reserv_table {
 		margin-top: 30px;
@@ -142,9 +147,16 @@
 		}
 	}
 	$(document).ready(function(){
-		$('#times').click(function(){
-			$('#times').css('background-color', '#fff');
-			$(this).css('background-color', '#FFDF24');
+		$('.admin_header_subtitle').text("클래스 상세");
+		$('.times').click(function(){
+			  if ($(".times").hasClass("active")) { 
+			  		$(".times").removeClass("active");
+			  		$(this).addClass("active");
+				  }else {
+					  $(this).addClass("active");
+				  }
+			$('.times').css('background-color', '#ffffff');
+			$('.times.active').css('background-color', '#FFDF24');
 		});
 	});
 	
@@ -194,21 +206,23 @@
 		<h1>예약정보</h1>
 		<%
 			for(Time time : selectedTimeList){
-				%><h2 id="times"><a href="#" onclick="getReservInfo(this)"><%=time%></a></h2><%
+				%><a href="#" class="times" onclick="getReservInfo(this)"><%=time%></a><%
 			}
 		%>
 		<table id="reserv_table" border="1">
 			<thead>
 				<tr>
-					<th>예약번호</th>
-					<th>ID</th>
+					<th width="50">예약번호</th>
+					<th width="250">ID</th>
 					<th>인원</th>
 					<th>신청날짜</th>
+					<th>결제금액</th>
+					<th>결제수단</th>
 				</tr>
 			</thead>
 			<tbody id="ajaxTable">
 				<tr>
-					<td colspan="4">조회할 시간을 선택해주세요</td>
+					<td colspan="6">조회할 시간을 선택해주세요</td>
 				</tr>
 			</tbody>
 		</table>

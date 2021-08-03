@@ -194,6 +194,8 @@ public class ReservDAO {
 				reservBean.setR_num(rs.getInt("r_num"));
 				reservBean.setR_payment(rs.getString("r_payment"));
 				reservBean.setR_date(rs.getString("r_date"));
+				reservBean.setR_payment(rs.getString("r_payment"));
+				reservBean.setR_amount(rs.getInt("r_amount"));
 				resultList.add(reservBean);
 			}
 		} catch (SQLException e) {
