@@ -71,7 +71,7 @@ public class QnaDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM qna WHERE m_id=? OR m_id='admin' ORDER BY q_re_ref, q_re_lev ASC;";
+			String sql = "SELECT * FROM qna WHERE m_id=? OR m_id='admin' ORDER BY q_re_ref, q_re_lev ASC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
 			rs = pstmt.executeQuery();
