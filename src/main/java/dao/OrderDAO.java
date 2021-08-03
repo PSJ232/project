@@ -306,7 +306,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT o.* FROM orders_detail od JOIN orders o ON od.o_id = o.o_id JOIN item i ON i.i_id = od.i_id"
-				+ " WHERE i.i_category!=3 AND od.m_id =? AND od.i_id > 0 AND od.od_confirm = 0 OR od.od_confirm= 1";
+				+ " WHERE i.i_category!=3 AND od.m_id =? AND od.od_confirm = 0 OR od.od_confirm= 1";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -343,7 +343,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		
 		String sql = "SELECT o.* FROM orders_detail od JOIN orders o ON od.o_id = o.o_id JOIN item i ON i.i_id = od.i_id"
-				+ " WHERE i.i_category=3 AND od.m_id =? AND od.i_id > 0 AND od.od_confirm = 0 OR od.od_confirm= 1";
+				+ " WHERE i.i_category=3 AND od.m_id =? AND od.od_confirm = 0 OR od.od_confirm= 1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -737,7 +737,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT od.* FROM orders_detail od JOIN item i ON od.i_id = i.i_id "
-				+ "WHERE m_id = ? AND i.i_category = 3 AND od_confirm = 2;";
+				+ "WHERE m_id = ? AND i.i_category = 3 AND od_confirm = 2";
 
 		try {
 			pstmt = con.prepareStatement(sql);

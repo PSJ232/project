@@ -117,7 +117,8 @@
   <!-- 본문 내용 -->
 
 <h1> OrderHistoryDetail </h1>
-<input type="button" value="주문 취소하기" onclick="location.href='OrderCancel.od?o_id=<%=orderBean.getO_id() %>'">
+<input type="button" value="주문 취소하기" 
+		onclick="location.href='OrderCancel.od?o_id=<%=orderBean.getO_id() %>&i_category=<%=itemList.get(0).getI_category() %>'">
 
 <h3>주문내역 상세</h3>
 주문번호 : <%=orderBean.getO_id() %>
