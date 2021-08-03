@@ -38,7 +38,7 @@ if(request.getParameter("sort")!=null) {
 					<div class="inbox">
 						<div class="tbl">
 							<div class="td">
-								<h3 class="title">꾸까 꽃다발</h3>
+								<h3 class="title">사계 꽃다발</h3>
 								<p class="desc"> 계절을 가득 담은 꽃다발로</p>
 								<p class="desc_2">당신의 일상을 특별한 날로 만들어보세요.</p>
 							</div>

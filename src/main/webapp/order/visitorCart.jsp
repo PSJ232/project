@@ -51,8 +51,8 @@ if(request.getParameter("sub_option") != null){
 					letter = "편지 2,500원";
 				}
 
-				String sumAmount = NumberFormat.getInstance().format((i_price * c_qty) + letterPrice); //각 상품에 대한 합계금액
-				String visiorAmount = NumberFormat.getInstance().format((itemDetail.getI_price() * c_qty) + letterPrice); //각 상품에 대한 합계금액
+				String sumAmount = NumberFormat.getInstance().format((i_price * c_qty * sub_option) + letterPrice); //각 상품에 대한 합계금액
+				String visiorAmount = NumberFormat.getInstance().format((itemDetail.getI_price() * c_qty  * sub_option) + letterPrice); //각 상품에 대한 할인전 합계금액
 			%>
 			<tr>
 				<td>
@@ -60,10 +60,11 @@ if(request.getParameter("sub_option") != null){
 					<%if(sub_option > 1){ %>
 					첫 구독일 : <%=c_delivery_date%><br>
 					구독내용 : <%=sub_content%><br>
+					<%=NumberFormat.getInstance().format(i_price * c_qty * sub_option)%>원<br>
 					<%}else{%> 
 					수령일 : <%=c_delivery_date%><br>
+					<%=NumberFormat.getInstance().format(i_price * c_qty)%>원<br>
 					<%} %>
-					<%=NumberFormat.getInstance().format(i_price)%>원<br>
 					<%=c_qty%> 개<br>
 				</td>
 				<td><%=letter%></td>

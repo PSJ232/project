@@ -106,7 +106,7 @@
 }
 
 .sub_option {
-	padding: 11px 150px 11px 10px;
+	padding: 11px 157px 11px 10px;
 	border: solid 1px #ffd324;
 	border-radius: 5px;
 	color: #999999;
@@ -118,7 +118,7 @@
 }
 
 .delivery_date, .showCalendar {
-	padding: 11px 176px 11px 10px;
+	padding: 11px 153px 11px 10px;
 	border: solid 1px #ffd324;
 	border-radius: 5px;
 	color: #999999;
@@ -132,7 +132,7 @@
 }
 
 .designinfo {
-	text-align: center;
+	text-align: left;
 	line-height: 20px;
 	color: #999999;
 }

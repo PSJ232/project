@@ -33,7 +33,7 @@ if(request.getParameter("sort")!=null) {
   	<jsp:include page="../inc/header.jsp" ></jsp:include>
   	<!-- header -->
 
-꾸까 당일배송<br>
+사계 당일배송<br>
 가장 예쁘고 싱그러운 꽃 그대로<br>
 오늘 주문하고, 오늘 받아보세요.<br>
  
