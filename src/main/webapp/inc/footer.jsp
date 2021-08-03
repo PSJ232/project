@@ -25,13 +25,13 @@
               <a href="QnaInsert.qna">1:1 문의하기</a>
             </div>
           </div>
-          <span href="#" class="footer_logo s">Four Season</span>
+          <span href="#" class="footer_logo s">Four Seasons</span>
         </div>
 
         <div class="footer_layout_down">
           <table class="company_info">
             <tr>
-              <td class="bar">상호명: 사계(Four Season)</td><td class="bar">사업자 등록번호: 264-81-32594</td><td>대표자: 박춘화</td>
+              <td class="bar">상호명: 사계(Four Seasons)</td><td class="bar">사업자 등록번호: 264-81-32594</td><td>대표자: 박춘화</td>
             </tr>
             <tr>
               <td class="bar">소재지: 서울시 서초구 남부순환로333길 10 Four Seasons</td><td class="bar">기업공시</td><td>통신판매신고번호 2018-서울서초-1692</td>
