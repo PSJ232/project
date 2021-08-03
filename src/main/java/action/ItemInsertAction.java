@@ -43,7 +43,6 @@ public class ItemInsertAction implements Action{
 		ItemBean ib = new ItemBean();
 
 		//i_rdate값은 service페이지에서 생성함
-		ib.setI_id(Integer.parseInt(multi.getParameter("i_id")));
 		ib.setI_name(multi.getParameter("i_name"));
 		ib.setI_desc(multi.getParameter("i_desc"));
 		ib.setI_category(Integer.parseInt(multi.getParameter("i_category")));

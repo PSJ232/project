@@ -202,26 +202,28 @@ public class ItemDAO {
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String sql = "SELECT MAX(i_id) FROM item";
+		
+		
 		try {
-			String sql = "INSERT INTO item VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO item VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, ib.getI_id());
-			pstmt.setString(2, ib.getI_name());
-			pstmt.setString(3, ib.getI_desc());
-			pstmt.setInt(4, ib.getI_price());
-			pstmt.setInt(5, ib.getI_inven());
-			pstmt.setString(6, ib.getI_img());
-			pstmt.setString(7, ib.getI_subimg2());
-			pstmt.setString(8, ib.getI_subimg3());
-			pstmt.setString(9, ib.getI_subimg4());
-			pstmt.setTimestamp(10, ib.getI_rdate());
-			pstmt.setFloat(11, ib.getI_discount());
-			pstmt.setString(12, ib.getI_size());
-			pstmt.setString(13, ib.getI_dpstatus());
-			pstmt.setString(14, ib.getI_itemstatus());
-			pstmt.setString(15, ib.getI_detailpage());
-			pstmt.setInt(16, ib.getI_category());
+			pstmt.setString(1, ib.getI_name());
+			pstmt.setString(2, ib.getI_desc());
+			pstmt.setInt(3, ib.getI_price());
+			pstmt.setInt(4, ib.getI_inven());
+			pstmt.setString(5, ib.getI_img());
+			pstmt.setString(6, ib.getI_subimg2());
+			pstmt.setString(7, ib.getI_subimg3());
+			pstmt.setString(8, ib.getI_subimg4());
+			pstmt.setTimestamp(9, ib.getI_rdate());
+			pstmt.setFloat(10, ib.getI_discount());
+			pstmt.setString(11, ib.getI_size());
+			pstmt.setString(12, ib.getI_dpstatus());
+			pstmt.setString(13, ib.getI_itemstatus());
+			pstmt.setString(14, ib.getI_detailpage());
+			pstmt.setInt(15, ib.getI_category());
 
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {

@@ -27,16 +27,19 @@
                                     <input type="text" name="i_name" class="product_manage_name" required>
                                 </li>
                                 <li>
-                                    <label>상품코드</label>
-                                    <input type="text" name="i_id" class="product_manage_code" required>
-                                </li>
-                                <li>
                                     <label>가격</label>
                                     <input type="text" name="i_price" class="product_manage_name" required>
                                 </li>
                                 <li>
                                     <label>할인율(%)</label>
-                                    <input type="text" name="i_discount" class="product_manage_discount" required>
+                                    <select name="i_discount" class="product_manage_size" required>
+                                    	<option value="">선택하세요</option>
+                                    	<option value="0.1">10%</option>
+                                    	<option value="0.2">20%</option>
+                                    	<option value="0.3">30%</option>
+                                    	<option value="0.4">40%</option>
+                                    	<option value="0.5">50%</option>
+                                    </select>
                                 </li>
                                 <li>
                                     <label>요약설명</label>
@@ -53,7 +56,7 @@
                                 <li>
                                     <label>size(S/M/L)</label>
                                     <select class="product_manage_size" name="i_size" required>
-                                        <option value="null">선택</option>
+                                        <option value="null">선택하세요</option>
                                         <option value="S">S</option>
                                         <option value="M">M</option>
                                         <option value="L">L</option>
