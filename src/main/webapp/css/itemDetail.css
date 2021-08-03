@@ -13,6 +13,39 @@
    	color: #999999;
 	font-size: 13px;
 }
+/* 사진 스라이더 부분 */
+
+.thumnail_main img {
+	width: 550px;
+	height: 550px;
+}
+
+.owl_hash .image .in img {
+	width: 122px;
+	height: 122px;
+}
+
+.owl_hash {
+	width: 550px;
+}
+
+.owl_hash .image {
+	display: inline-block;
+}
+
+.owl_hash .image button {
+	border: none;
+}
+
+button[name="1"] {
+	margin: 0 17.5px;
+}
+
+button[name="2"] {
+	margin-right: 17.5px;
+}
+
+
 
 .inbox {
 	width: 1120px;
@@ -102,6 +135,7 @@
 
 .label_div {
 	padding: 10px 0;
+	height: 60px;
 }
 
 .sub_option {
@@ -224,20 +258,18 @@
 	background-color: #dddddd;
 }
 
-.category_product_description {
-	width: 1120px;
-	background-color: grey;
-	display: block;
+.clear{
+	clear: both;
 }
 
-* {
-	float: none;
+.category_product_description {
+	width: 1120px;
+	display: inline-block;
 }
 
 .desc_image {
 	width: 740px;
-	text-align: center;
-	background-color: skyblue;
+	margin: 0 auto;
 }
 
 

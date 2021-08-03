@@ -84,34 +84,34 @@ switch(path){
 		</div>
 		<div class="inbox">
 			<div class="category_product_image">
-				<div>
-					사진표시해주는 슬라이더				
+				<div class="thumnail_main">
+					<img src="./admin_layout/upload/<%=itemDetail.getI_img() %>" alt="">				
 				</div>
 			
 				<div class="thumnail_mini">
 					<ul class="owl_hash images size_5">
 						<li class="image active">
 							<button type="button" class="in button secondary url" name="0">
-								<img src="" alt="">
-								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/Contents/2486/0_1.jpg&quot;);"></span>
+								<img src="./admin_layout/upload/<%=itemDetail.getI_img() %>" alt="">
+								<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_img() %>');"></span>
 							</button>
 						</li>
 						<li class="image">
 							<button type="button" class="in button secondary url" name="1">
-								<img src=""	alt="">
-								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/ContentsProductImage/2021/07/29/0_2_WvOCfuY.jpg&quot;);"></span>
+								<img src="./admin_layout/upload/<%=itemDetail.getI_subimg2() %>" alt="">
+								<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_subimg2() %>');"></span>
 							</button>
 						</li>
 						<li class="image">
 							<button type="button" class="in button secondary url" name="2">
-								<img src=""	alt="">
-								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/ContentsProductImage/2021/07/29/0_3_pVVwa9j.jpg&quot;);"></span>
+								<img src="./admin_layout/upload/<%=itemDetail.getI_subimg3() %>" alt="">
+								<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_subimg3() %>');"></span>
 							</button>
 						</li>
 						<li class="image">
 							<button type="button" class="in button secondary url" name="3">
-								<img src=""	alt="">
-								<span class="real_image" style="background-image: url(&quot;https://kukka-2-media-123.s3.amazonaws.com/media/class-name/ContentsProductImage/2021/07/29/0_4_8ixIqDl.jpg&quot;);"></span>
+								<img src="./admin_layout/upload/<%=itemDetail.getI_subimg4() %>" alt="">
+								<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_subimg4() %>');"></span>
 							</button>
 						</li>
 					</ul>
@@ -221,12 +221,11 @@ switch(path){
 			</div>
 			<div class="category_product_description">
 				<div>
-					상품설명/리뷰/배송안내dddddddddddddddddddd
+					상품설명/리뷰/배송안내 (버튼작업)
 				</div>
 				<div class="desc_image">
 					<img src="./admin_layout/upload/<%=itemDetail.getI_detailpage() %>">
 				</div>
-			
 			</div>
 		</div>
 	</div>
