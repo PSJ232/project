@@ -37,7 +37,7 @@ public class CartDAO {
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
 		try {
-			String sql = "INSERT INTO cart VALUES(?,?,?,?,now(),?,?)";
+			String sql = "INSERT INTO cart VALUES(?,?,?,?,now(),?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, cartBean.getC_id());
 			pstmt.setInt(2, cartBean.getI_id());
@@ -45,6 +45,7 @@ public class CartDAO {
 			pstmt.setInt(4, cartBean.getC_qty());
 			pstmt.setInt(5, cartBean.getC_letter());
 			pstmt.setString(6, cartBean.getC_delivery_date());
+			pstmt.setInt(7, cartBean.getSub_option());
 
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -61,7 +62,7 @@ public class CartDAO {
 		System.out.println("CartDAO - getCart()");
 
 		ArrayList<CartBean> cartList = null;
-		CartBean cartdetail = null;
+		CartBean cartDetail = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -73,16 +74,17 @@ public class CartDAO {
 			cartList = new ArrayList<CartBean>();
 
 			while (rs.next()) {
-				cartdetail = new CartBean();
-				cartdetail.setC_id(rs.getInt("c_id"));
-				cartdetail.setC_qty(rs.getInt("c_qty"));
-				cartdetail.setC_rdate(rs.getDate("c_rdate"));
-				cartdetail.setI_id(rs.getInt("i_id"));
-				cartdetail.setM_id(rs.getString("m_id"));
-				cartdetail.setC_letter(rs.getInt("c_letter"));
-				cartdetail.setC_delivery_date(rs.getString("c_delivery_date"));
+				cartDetail = new CartBean();
+				cartDetail.setC_id(rs.getInt("c_id"));
+				cartDetail.setC_qty(rs.getInt("c_qty"));
+				cartDetail.setC_rdate(rs.getDate("c_rdate"));
+				cartDetail.setI_id(rs.getInt("i_id"));
+				cartDetail.setM_id(rs.getString("m_id"));
+				cartDetail.setC_letter(rs.getInt("c_letter"));
+				cartDetail.setC_delivery_date(rs.getString("c_delivery_date"));
+				cartDetail.setSub_option(rs.getInt("sub_option"));
 
-				cartList.add(cartdetail);
+				cartList.add(cartDetail);
 			}
 
 		} catch (SQLException e) {
@@ -118,6 +120,7 @@ public class CartDAO {
 				cartDetail.setM_id(rs.getString("m_id"));
 				cartDetail.setC_letter(rs.getInt("c_letter"));
 				cartDetail.setC_delivery_date(rs.getString("c_delivery_date"));
+				cartDetail.setSub_option(rs.getInt("sub_option"));
 
 			}
 
