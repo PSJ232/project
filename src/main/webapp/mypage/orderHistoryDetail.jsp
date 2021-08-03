@@ -145,7 +145,7 @@
 					%><td rowspan=<%=itemList.size() %>>주문 취소</td><%
 				} else if(orderDetailList.get(i).getOd_confirm()==1) {
 					%><td rowspan=<%=itemList.size() %>>배송 완료</td><%
-				} else if(orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
+				} else if(!orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
 					%><td rowspan=<%=itemList.size() %>>배송중</td><%
 				} else if(orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
 					%><td rowspan=<%=itemList.size() %>>주문 접수</td><%
