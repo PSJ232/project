@@ -25,12 +25,12 @@ $(document).ready(function(){
        maxDate: 21,
        minDate: 7,
        onClose: function(selectedDate){
-          $('toDate').datepicker('option', 'minDate', selectedDate);
+          $('#date').datepicker('option', 'minDate', selectedDate);
           
           var date = $(this).datepicker('getDate');
           
           date.setDate(date.getDate() + 14);
-          $('#toDate').datepicker("option", "maxDate", date);
+          $('#date').datepicker("option", "maxDate", date);
        }
     });
     $('input[name="place"]').change(function(){
@@ -53,29 +53,6 @@ $(document).ready(function(){
 	   }
   });   //change
 });
-</script>
-<script>
-	var checkLengthResult = false;
-	function checkLength(num){
-		var regex = /^[0-9]{12}$/;
-		var element = document.getElementById('check_result');
-		if(regex.exec(num)) {
-	        element.innerHTML = '사용 가능';
-	        checkLengthResult = true; // 전역변수값을 true 로 변경
-	     } else {
-	        element.innerHTML = '사용 불가능';
-	        checkLengthResult = false; // 전역변수값을 false 로 변경
-	     }
-
-	}
-	function checkForm(){
-		if(checkLengthResult){
-			return true;
-		}else{
-			alert("올바른 운송장이 아닙니다!");
-			return false;
-		}
-	}
 </script>
 <style>
 	#insert_form {
@@ -180,7 +157,7 @@ $(document).ready(function(){
 			<h1 id="title">클래스 등록</h1>
 			<label>클래스 명</label> <input type="text" name="class_subject" required><br>
 			<label>클래스 요약설명</label> <input type="text" name="class_sub_desc" required><br>
-			<label>날짜</label> <input type="text" id="date" name="date"><br>
+			<label>날짜</label> <input type="text" id="date" name="date" readonly><br>
 			<label>장소</label>
 			<input type="radio" name="place" class="radio" value="서면"> 서면  
 			<input type="radio" name="place" class="radio" value="남포"> 남포 
