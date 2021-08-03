@@ -18,7 +18,7 @@
 		<!-- nav -->
         <div id="wrap">
             <main id="container">
-                <form action="ItemInsert.ad" method="post" enctype="multipart/sform-data">
+                <form action="ItemInsert.ad" method="post" enctype="multipart/form-data">
                     <section class="product_manage_box">
                         <div>
                             <ul class="product_manage_layout">
