@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function setOrder(o_id) {
-		opener.document.qnaForm.oid.value = o_id;
+		opener.document.qnaForm.qna_insert_order_td.value = o_id;
 		window.close();
 	}
 </script>
