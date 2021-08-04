@@ -130,11 +130,12 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=nonOrderArrayList.get(i).getO_rdate()%></td>
 							<%} else {}%>
 							<td id="mypage_orderHistory_td">
-								<span id="mypage_orderHistory_span_one">상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></span></a><br>
+								<img src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/>
+								<span id="mypage_orderHistory_span_one">상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></span><br>
 								<span id="mypage_orderHistory_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%><br>
 								받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></span><br> 
 								<span id="mypage_orderHistory_span_one"> 가격 :</span> <%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
-										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>
+										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개
 							</td>
 							<%if (nonCol.contains(i)) {if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%>
 							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td>
@@ -177,12 +178,13 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<td rowspan="<%=col.get(ccount + 1) - col.get(ccount)%>"><%=orderArrayList.get(i).getO_rdate()%></td>
 							<%} else {}%>
 							<td>
+							<img src="./admin_layout/upload/<%=itemArrayList.get(i).getI_img() %>"/>
 							<span id="mypage_orderHistory_span_one">상품 명 : 
 							<a href="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id()%>"><%=itemArrayList.get(i).getI_name()%></a></span><br>
 								수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date()%><br>
 								받는 분 : <%=orderArrayList.get(i).getO_receiver()%><br> 
 								가격 : <%=(int) (itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100%>
-										/ <%=orderDetailArrayList.get(i).getOd_qty()%>
+										/ <%=orderDetailArrayList.get(i).getOd_qty()%>개
 							</td>
 							<%if (col.contains(i)) {%>
 							<td rowspan="<%=col.get(ccount + 1) - col.get(ccount)%>">주문 취소</td>
