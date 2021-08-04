@@ -594,4 +594,32 @@ public class MemberDAO {
 		return memberData;
 	}
 
+
+	public ArrayList<Integer> getSubscribeCount(String m_id) {
+		System.out.println("MemberDAO - getMemberPointList()");
+		ArrayList<Integer> subscribeList = new ArrayList<Integer>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT DISTINCT o_id FROM orders_detail WHERE m_id = ?"
+					+ " AND od_confirm = 0 AND i_id IN (SELECT i_id FROM item WHERE i_category = 3)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int o_id = rs.getInt("o_id");
+				subscribeList.add(o_id);
+			} 
+		} catch (Exception e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return subscribeList;
+	}
+
+	
 }

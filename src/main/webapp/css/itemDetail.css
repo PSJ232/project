@@ -198,6 +198,10 @@ ul.tabs li.current{
 	display: block;
 } 
 
+.required_mark {
+	color: #ffd324;
+}
+
 .calendar_right {
 	margin-left:160px;
 	text-align: right;
@@ -344,6 +348,9 @@ ul.tabs li.current{
 	color: black;
 }
 
+.radiobtnA.checked, .radiobtnB.checked {
+	font-weight: 500;
+}
 
 
 

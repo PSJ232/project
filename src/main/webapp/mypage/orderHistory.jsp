@@ -10,6 +10,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="css/mypage.css" rel="stylesheet">
+<link href="css/mypage_orderHistory.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	rel="stylesheet">
+
+</head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -73,14 +81,6 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 	o_id = orderArrayList.get(i).getO_id() + "";
 }
 %>
-<link href="css/mypage.css" rel="stylesheet">
-<link href="css/mypage_orderHistory.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-
-</head>
 <body>
 	<!-- 헤더 들어가는곳 -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -101,7 +101,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 			<!--   -------------------------------------------------- -->
 			<ul class="tabs">
-				<li class="tab-link current" data-tab="tab-1">주문/배송내역</li>
+				<li class="tab_link_current" data-tab="tab-1">주문/배송내역</li>
 				<li class="tab-link" data-tab="tab-2">취소/환불내역</li>
 			</ul>
 			<!--   -------------------------------------------------- -->
@@ -127,20 +127,21 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 						<tr>
 							<%if (nonCol.contains(i)) {%>
-							<td rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=nonOrderArrayList.get(i).getO_rdate()%></td>
+							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=nonOrderArrayList.get(i).getO_rdate()%></td>
 							<%} else {}%>
-							<td>상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a><br>
-								수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%><br>
-								받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%><br> 
-								가격 : <%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
+							<td id="mypage_orderHistory_td">
+								<span id="mypage_orderHistory_span_one">상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></span></a><br>
+								<span id="mypage_orderHistory_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%><br>
+								받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></span><br> 
+								<span id="mypage_orderHistory_span_one"> 가격 :</span> <%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
 										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>
 							</td>
 							<%if (nonCol.contains(i)) {if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%>
-							<td rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td>
+							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td>
 							<%} else if (!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {%>
-							<td rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송중</td>
+							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송중</td>
 							<%} else if (nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {%>
-							<td rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">주문접수</td>
+							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">주문접수</td>
 							<%}
 							count++;
 							} else {
@@ -175,8 +176,9 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<%if (col.contains(i)) {%>
 							<td rowspan="<%=col.get(ccount + 1) - col.get(ccount)%>"><%=orderArrayList.get(i).getO_rdate()%></td>
 							<%} else {}%>
-							<td>상품 명 : 
-							<a href="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id()%>"><%=itemArrayList.get(i).getI_name()%></a><br>
+							<td>
+							<span id="mypage_orderHistory_span_one">상품 명 : 
+							<a href="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id()%>"><%=itemArrayList.get(i).getI_name()%></a></span><br>
 								수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date()%><br>
 								받는 분 : <%=orderArrayList.get(i).getO_receiver()%><br> 
 								가격 : <%=(int) (itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100%>

@@ -30,6 +30,11 @@ public class OrderMypageListAction implements Action {
 		MemberBean memberMypageDetail = memberService.selectMember(m_id);
 		request.setAttribute("memberMypageDetail", memberMypageDetail);
 		
+		// 마이페이지 정기구독 정보 호출
+		ArrayList<Integer> subscribeList = memberService.selectSubscribe(m_id);
+		request.setAttribute("subscribeList", subscribeList);
+		
+		
 		// 주문 내역(취소x) : non~ || 취소 내역 : ~ 
 		OrderStatusService orderStatusService = new OrderStatusService();
 		ArrayList<OrderBean> nonOrderArrayList = orderStatusService.orderNonStatusOrderList(m_id);

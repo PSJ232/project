@@ -27,6 +27,10 @@ public class MemberMypagePointDetailAction implements Action {
 		MemberBean memberMypageDetail = memberService.selectMember(m_id);
 		request.setAttribute("memberMypageDetail", memberMypageDetail);
 		
+		// 구독 수 전달
+		ArrayList<Integer> subscribeList = memberService.selectSubscribe(m_id);
+		request.setAttribute("subscribeList", subscribeList);
+		
 		// 포인트 내역 정보
 		ArrayList<ReviewBean> pbList = memberService.selectMemberPointList(m_id);
 		request.setAttribute("pbList", pbList);
