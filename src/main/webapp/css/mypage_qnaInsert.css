@@ -25,43 +25,42 @@ a:visited {
 a, button {
   cursor: pointer;
 }/* qnainsert */
+
 .qna_insert_all{
-	margin-right: 400px;
-	width: 800px;
+	margin-left: 50px;
+	width: 765px;
 	float: right;
-	margin-top: 50px;
 }
 
 
 #qna_insert_title{
-	font-weight: 700;
-	font-size: x-large;
+	font-weight: 600;
+	font-size: 25px;
 	color: black;
-/* 	padding: 50px; */
 	float: left;
-	width: 800px;
-	margin-bottom: 30px;
+	width: 765px;
+	
 	
 }
 #qna_insert_title_spen{
 	float: right;
 	color: #969696;
-	font-size: medium;
+	font-size: 15px;
 	margin-top: 10px;
 }
 #qna_insert_th{
 	display:inline-block;
-   	width: 800px;
-    font-size: 18px;
-    line-height: 25px;
-    font-weight: 800;
-	margin-bottom: 30px;
+   	width: 765px;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 500;
+	
 }
 #qna_insert_order_td{
 	width: 450px;
 	height: 50px;
 	border-radius: 5px;
-	margin-left: 90px;
+	margin-left: 52px;
 	border: 1px solid #969696; 
 }
 
@@ -98,11 +97,10 @@ a, button {
 }
 #qna_insert_p{
 	color: #969696; 
-	text-align: center;
-	margin-left: 120px;
+	margin-left: 190px;
 }
 #qna_insert_ul{
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 #qna_insert_li{
 	width: 400px;
@@ -110,7 +108,7 @@ a, button {
 	border-radius: 5px;
 	font-size:medium;
 	border: 1px solid #969696; 
-	margin-left: 210px;
+	margin-left: 180px;
 	margin-bottom: 5px;
 }
 
@@ -125,7 +123,7 @@ a, button {
 
 }
 #qna_insert_li_inp{
-	position: absolute; 
+/* 	position: absolute;  */
 	width: 1px; 
 	height: 1px; 
 	padding: 0; 
@@ -136,7 +134,7 @@ a, button {
 }
 
 #qna_insert_p2{
-	margin-left: 200px;	
+	margin-left: 190px;	
 	color: #969696;
 }
 #qna_insert_submit{
@@ -146,6 +144,7 @@ a, button {
 	height: 50px;
 	text-align: center;
 	border: none;
-	margin-top: 30px;
-	margin-left: 200px;
+	margin-top: 10px;
+	margin-left: 190px;
+	margin-bottom: 50px;
 }
