@@ -23,9 +23,14 @@ public class MemberUpdateFormAction implements Action {
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
 		
+		// 멤버 정보 전달
 		MemberService memberService = new MemberService();
 		MemberBean memberDetail  = memberService.selectMember(m_id);
 		request.setAttribute("memberDetail", memberDetail);
+		
+		// 구독 수 전달
+		ArrayList<Integer> subscribeList = memberService.selectSubscribe(m_id);
+		request.setAttribute("subscribeList", subscribeList);
 		
 		MemberAnniversaryService memberAnniversaryService = new MemberAnniversaryService();
 		ArrayList<AnniversaryBean> annList = memberAnniversaryService.getAnnList(m_id);
