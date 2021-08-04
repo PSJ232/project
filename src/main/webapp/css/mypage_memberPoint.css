@@ -31,7 +31,7 @@ a, button {
 }
 
 .memberPoint_article {
-	width: 809.65px;
+	width: 761.6px;
 	height: 540.4px;
 	float: right;
 /* 	padding-top: 40px; */
@@ -65,7 +65,7 @@ a, button {
     text-overflow: ellipsis;
     white-space: nowrap;
     float: left;
-    font-weight: bold;
+    font-weight: normal;
 	
 }
 
@@ -161,7 +161,7 @@ h4 {
     color: #222;
     display: block;
     float: left;
-    font-weight: bold;
+    font-weight: normal;
  }
 
 .memberPoint_div5 {
@@ -186,6 +186,7 @@ table {
     text-indent: initial;
     border-spacing: 2px;
     border-color: currentColor;
+    border: none;
     
 }
 
@@ -235,12 +236,15 @@ tr {
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
+    
 }
 
 .memberPoint_div6, 
 .memberPoint_table tr th,
 .memberPoint_table tr td {
-	border-left: none;
+	border-left : none;
+	border-right : 1px solid silver;
+	border-bottom: none;
 }
 .memberPoint_table thead th {
     padding: 18px 10px;

@@ -186,7 +186,7 @@ tr {
     background-color: #f7f7f7;
     display: table-cell;
     vertical-align: inherit;
-    font-weight: bold;
+    font-weight: 500;
     text-align: -internal-center;
 }
 

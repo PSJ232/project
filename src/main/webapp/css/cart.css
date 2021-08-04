@@ -175,9 +175,9 @@ div {
 }
 
 .cart_span4 {
-	width: 250px;
+	width: 304px;
 	height: 24px;
-	padding: 0 70px;
+	padding: 0 40px;
 	padding-right: 30px;
     font-size: 16px;
     line-height: 24px;
@@ -199,29 +199,39 @@ div {
     width: 20px;
     height: 20px;
     padding: 0;
-    margin: 0;
+    margin-left: -77px;
     cursor: pointer;
     
 }
 
+.cart_input4 {
+	top: 0;
+    right: 30px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 9px;
+    
+}
+
 .cart_span5 {
-	width: 290px;
-	width: 114.25px;
-	height: 20.8px;
-	font-size: 14px;
+	width: 302.25px;
+    height: 20.8px;
+    font-size: 14px;
     line-height: 20px;
     font-weight: 100;
     letter-spacing: -.21px;
     color: #787878;
-    float: left;
-/*     text-align: center; */
+    float: right;
 }
 
 .cart_span6 {
 	width: 304px;
 	height: 24px;
 	float: left;
-    margin-left: 0;
+    margin-left: 6px;
     font-size: 16px;
     line-height: 24px;
     font-weight: 500;
@@ -267,7 +277,7 @@ div {
 	display: block;
     text-align: center;
     font-size: 18px;
-    line-height: 28px;
+    line-height: 0px;
     font-weight: 500;
     letter-spacing: -.27px;
     color: #0d0d0d;
@@ -518,7 +528,16 @@ p {
     background: #ffcd32;
 }
 
-
+.cart_input7 {
+	top: 0;
+    right: 30px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    
+}
 
 
 
