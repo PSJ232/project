@@ -189,9 +189,6 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 	<input type="button" class="cart_input6" value="쇼핑하러 가기" onclick="location='./'">
 	</p>
 
-	<input type="button" value="쇼핑하러 가기" onclick="location='./'">
-
-
 	<%
 	}
 	%>
