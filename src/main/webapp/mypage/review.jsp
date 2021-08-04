@@ -48,11 +48,11 @@
 				<label>	제목 : <input type="text" name="r_title"></label> <br>
 				<label>내용 : <textarea rows="10" cols="20" name="r_content"></textarea></label> <br> 
 				평점 : <select name="r_rate">
-					<option value="5">5</option>
-					<option value="4">4</option>
-					<option value="3">3</option>
-					<option value="2">2</option>
-					<option value="1">1</option>
+					<option value="5">★★★★★</option>
+					<option value="4">★★★★</option>
+					<option value="3">★★★</option>
+					<option value="2">★★</option>
+					<option value="1">★</option>
 				</select><br> 
 				<label>이미지:<input type="file" name="r_img"></label><br> 
 				<input type="submit" value="작성하기">

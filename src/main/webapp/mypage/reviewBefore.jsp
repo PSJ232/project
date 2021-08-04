@@ -149,13 +149,14 @@ ul.tabs li.current{
 				} else {
 				
 					for(int i=0; i<nonOrderArrayList.size(); i++) {
-		   				int sumAmount = nonOrderArrayList.get(i).getO_amount() + nonOrderArrayList.get(i).getO_point() + nonOrderArrayList.get(i).getO_gdiscount();
+		   				int sumAmount = (nonOrderArrayList.get(i).getO_amount() + nonOrderArrayList.get(i).getO_point() + nonOrderArrayList.get(i).getO_gdiscount() / 100) * 100;
 		   			%>
 		   				<tr><td><%=nonOrderArrayList.get(i).getO_rdate() %></td>
-		   					<td><%=nonItemArrayList.get(i).getI_name() %><br>
-		   						수령인 : <%=nonItemArrayList.get(i).getI_name() %><br>
-		   						가격 : <%=sumAmount %><br>
-		   						수량 : <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
+		   					<td><img src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/>
+		   						<%=nonItemArrayList.get(i).getI_name() %><br>
+		   						수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %>
+		   						받는분 : <%=nonItemArrayList.get(i).getI_name() %><br>
+		   						가격 : <%=sumAmount %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>개
 		   					</td>
 		   					<td><a href="ReviewInsert.rv?od_id=<%=nonOrderDetailArrayList.get(i).getOd_id() %>">리뷰 작성</a></td>
 		   				</tr>
@@ -175,13 +176,14 @@ ul.tabs li.current{
 		   			<%
 		   			
 		   			for(int i=0; i<orderArrayList.size(); i++) {
-		   				int sumAmount = orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point() + orderArrayList.get(i).getO_gdiscount();
+		   				int sumAmount = (orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point() + orderArrayList.get(i).getO_gdiscount() / 100) * 100;
 		   			%>
 		   				<tr><td><%=orderArrayList.get(i).getO_rdate() %></td>
-		   					<td><%=itemArrayList.get(i).getI_name() %><br>
-		   						수령인 : <%=itemArrayList.get(i).getI_name() %><br>
-		   						가격 : <%=sumAmount %><br>
-		   						수량 : <%=orderDetailArrayList.get(i).getOd_qty() %>
+		   					<td><img src="./admin_layout/upload/<%=itemArrayList.get(i).getI_img() %>"/>
+		   						<%=itemArrayList.get(i).getI_name() %><br>
+		   						수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %>
+		   						받는분 : <%=itemArrayList.get(i).getI_name() %><br>
+		   						가격 : <%=sumAmount %> / <%=orderDetailArrayList.get(i).getOd_qty() %>개
 		   					</td>
 	
 	<!-- 				삭제된 리뷰와, 수정 및 삭제가 가능한 리뷰를 구분	   			 -->
