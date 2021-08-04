@@ -31,12 +31,12 @@ a, button {
 }
 
 .memberGrade_article {
-	padding-top: 40px;
-/* 	width: 761.6px; */
-	width: 1120px;
+	width: 809.65px;
 	height: 771px;
-	padding: 40px 0 0;
+	float: right;
+	padding-top: 40px;
 	display: block;
+	
 }
 
 .memberGrade_title {

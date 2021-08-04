@@ -104,7 +104,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 
 									totalAmount += sumAmount; // 각 상품에 대한 합계금액을 누적한 총 합계금액
 							%>
-							<tr>
+							<tr class="cart_tr">
 								<td class="cart_td2"><input type="checkbox"
 									class="cart_input2" name="c_id<%=i%>" value="<%=c_id%>"
 									checked><img src="./admin_layout/upload/<%=i_img%>"
@@ -153,15 +153,27 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 						무료입니다.(단,[정기구독],[무료배송] 상품은 구매금액 합산에 포함되지 않습니다.)</span><br> 
 						<span class="cart_span11">- [정기구독]상품의 첫 번째 발송일에 일반 택배 상품을 함께 구매하실 경우,중복 배송비는 부분 환불 처리해 드립니다.</span>
 					</p>
-					<br>
-					<hr>
-
-					총 주문금액
-					<%=totalAmount%>
-					원 + 배송비 0원 = 총 결제 금액
-					<%=totalAmount%>원 (체크하면 금액계산되는 기능 구현 필요)<br> <input
-						type="hidden" name="iNum" value="<%=i%>"> <input
-						type="submit" value="구매하기">
+					<p class="cart_p2">
+					<span class="cart_span12">
+					<span class="cart_span13">총 주문금액</span><span class="cart_span14">&nbsp;<%=totalAmount%>원</span>
+					</span> 
+					<span class="cart_span15">+</span> 
+					<span class="cart_span12">
+					<span class="cart_span13">배송비<span class="cart_span16">0원</span></span>
+					</span> 
+					<span class="cart_span19">=</span>
+					<span class="cart_span17">
+					 <span class="cart_span18">총 결제 금액</span>
+					<span class="cart_span20"><%=totalAmount%>원</span> <%-- (체크하면 금액계산되는 기능 구현 필요)--%>
+					</span>
+					</p>
+					<br> 
+					<input type="hidden" name="iNum" value="<%=i%>">
+					<div class="cart_div6">
+					<div class="cart_div7">
+					<input type="submit" class="cart_input5" value="구매하기">
+					</div>
+					</div> 
 			</div>
 		</form>
 	         
@@ -171,9 +183,11 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 	</table>
 	</form>
 	<!-- if문안에서 태그가 짤려서 추가 -->
-	장바구니가 비어있습니다.
-	<br> 그 계절 가장 이쁜 꽃으로 행복을 채워보세요.
-	<br>
+	<p class="cart_p3">
+	<span class="cart_span21">장바구니가 비어있습니다.
+	<br> 그 계절 가장 이쁜 꽃으로 행복을 채워보세요.</span>
+	<input type="button" class="cart_input6" value="쇼핑하러 가기" onclick="location='./'">
+	</p>
 
 	<input type="button" value="쇼핑하러 가기" onclick="location='./'">
 

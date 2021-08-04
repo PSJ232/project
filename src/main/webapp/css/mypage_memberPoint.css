@@ -31,8 +31,9 @@ a, button {
 }
 
 .memberPoint_article {
-	width: 761.6px;
+	width: 809.65px;
 	height: 540.4px;
+	float: right;
 	padding-top: 40px;
 	display: block;
 	
@@ -266,7 +267,7 @@ th {
 
 .memberPoint_span2 {
 	 padding: 18px 10px;
-    font-weight: 800;
+    font-weight: normal;
     background-color: #f7f7f7;
 }
 
