@@ -4,6 +4,21 @@
 	margin-bottom: 65px;
 }
 
+#container div {
+	position: relative;
+    text-align: right;
+}
+
+#container div select {
+	width: 93px;
+    font-size: 15px;
+    border: none;
+}
+
+#container div select:focus {
+	outline: none;
+}
+
 .quick_banner_img {
     background-image: url(../img/quick_banner.png);
     background-repeat: no-repeat;
@@ -43,9 +58,9 @@
 }
 
 
-
 .quick_list_layout {
 	width: 100%;
+    margin: 25px 0 80px;
 }
 
 .quick_item_box {
@@ -75,6 +90,7 @@
 }
 .quick_item_img {
 	width: 265px;
+	height: 256px;
 }
 
 .quick_item_name td a {

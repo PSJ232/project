@@ -55,7 +55,7 @@
 	<div class="mypage_container">
 		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 		
-		<div  id="myclass_container">
+		<div id="myclass_container">
 			<div class="myclass_layout_top">
 				<h2 class="myclass_title">현재 수강(예정) 중인 클래스</h2>
 				<div class="myclass_box">
@@ -95,11 +95,7 @@
 		
 	</div>
 	
-	
-	
 
-	<footer>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
-	</footer>
 </body>
 </html>

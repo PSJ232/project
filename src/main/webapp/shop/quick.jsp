@@ -49,12 +49,14 @@ if(request.getParameter("sort")!=null) {
 	</div>
 
 <div id="container">
- 
-	<select name="item_sort" size="1" onchange="sortSelect(this.value)">
-		<option value="1" <%if(sort==1){%>selected<%} %>>추천순</option>
-		<option value="2" <%if(sort==2){%>selected<%} %>>인기순</option>
-		<option value="3" <%if(sort==3){%>selected<%} %>>신상품순</option>
-	</select>
+ 	<div>
+ 		<select name="item_sort" size="1" onchange="sortSelect(this.value)">
+			<option value="1" <%if(sort==1){%>selected<%} %>>추천순</option>
+			<option value="2" <%if(sort==2){%>selected<%} %>>인기순</option>
+			<option value="3" <%if(sort==3){%>selected<%} %>>신상품순</option>
+		</select>
+ 	</div>
+
 	<table class="quick_list_layout">
 		<%
 		for (ItemBean item : itemList) {
@@ -83,7 +85,7 @@ if(request.getParameter("sort")!=null) {
 							if(i_discount!=1){
 								%>
 								<span class="quick_item_discount"><%=percent %></span>
-								<span class="quick_item_discountprice"><%=NumberFormat.getInstance().format(item.getI_price())%></span>
+								<span class="quick_item_discountprice"><del><%=NumberFormat.getInstance().format(item.getI_price())%>-></del></span>
 							<%
 							}
 							%>
