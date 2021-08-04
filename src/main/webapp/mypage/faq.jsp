@@ -16,11 +16,23 @@
 
 	<jsp:include page="../inc/header.jsp" ></jsp:include>
 
+<%
+String m_id = (String)session.getAttribute("m_id");
+
+String url = "";
+if(m_id == null) {
+	url = "MemberLogin.me";
+} else {
+	url = "QnaList.qna";
+}
+
+%>
+
 	<div id="container">
 		<div class="faq_container">
 			<div class="faq_layout_top">
 				<h2 class="faq_title">자주묻는 질문</h2>
-				<button class="btn_wide btn_yellow">1:1문의하기</button>
+				<button class="btn_wide btn_yellow" onclick="location.href='<%=url%>'">1:1문의하기</button>
 			</div>
 			
 			<div class="faq_layout_bottom">
