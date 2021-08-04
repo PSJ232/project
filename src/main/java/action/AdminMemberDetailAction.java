@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import svc.AdminMemberDetailService;
 import svc.AdminOrderSearchService;
+import svc.ClassReservService;
 import svc.ReviewListService;
 import vo.ActionForward;
 import vo.MemberBean;
@@ -25,10 +26,13 @@ public class AdminMemberDetailAction implements Action {
 		ArrayList<DetailBean> orderList = o_service.getMemberOrders(m_id);
 		ReviewListService r_service = new ReviewListService();
 		ArrayList<DetailBean> reviewList = r_service.getMemberReviewList(m_id);
+		ClassReservService reserv_service = new ClassReservService();
+		ArrayList<DetailBean> reservList = reserv_service.getMemberReservList(m_id);
 		
 		request.setAttribute("memberBean", memberBean);
 		request.setAttribute("orderList", orderList);
 		request.setAttribute("reviewList", reviewList);
+		request.setAttribute("reservList", reservList);
 		
 		forward = new ActionForward();
 		forward.setPath("./admin_layout/member_management/memberDetail.jsp");

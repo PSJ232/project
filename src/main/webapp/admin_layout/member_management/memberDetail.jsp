@@ -7,6 +7,8 @@
 	MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
 	ArrayList<DetailBean> orderList = (ArrayList<DetailBean>)request.getAttribute("orderList");
 	ArrayList<DetailBean> reviewList = (ArrayList<DetailBean>)request.getAttribute("reviewList");
+	ArrayList<DetailBean> reservList = (ArrayList<DetailBean>)request.getAttribute("reservList");
+	
 	String grade = "";
 	switch(memberBean.getG_id()){
 	case 0: grade = "WHITE"; break;
@@ -209,6 +211,31 @@
 						%>
 						</td>
 					</tr>
+					<%
+				}
+			%>
+		</table>
+	</fieldset>
+	<fieldset id="review_field">
+		<legend>클래스 수강 목록</legend>
+		<table id="reviewList" border="1">
+			<tr>
+				<th width="50px">순번</th>
+				<th>수강날짜</th>
+				<th width="100px">수강장소</th>
+				<th width="100px">수강시간</th>
+				<th width="250px">클래스명</th>
+				<th width="50px">인원</th>
+				<th width="70px">결제금액</th>
+				<th width="70px">결제방법</th>
+			</tr>
+			<%
+				for(int i = 0; i < reservList.size(); i++){
+					%>
+						<tr>
+						<td><%=i+1 %></td>
+						<td><%=reservList.get(i).getR_date() %></td>
+						</tr>
 					<%
 				}
 			%>

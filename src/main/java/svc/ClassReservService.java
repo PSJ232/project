@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 import dao.ClassDAO;
 import dao.ClassDetailDAO;
+import dao.ReservDAO;
 import vo.ClassBean;
+import vo.DetailBean;
 
 import static db.JdbcUtil.close;
 
@@ -57,6 +59,15 @@ public class ClassReservService {
 		close(con);
 		
 		return timeList;
+	}
+
+	public ArrayList<DetailBean> getMemberReservList(String m_id) {
+		Connection con = getConnection();
+		ReservDAO reservDAO = ReservDAO.getInstance();
+		reservDAO.setConnection(con);
+		ArrayList<DetailBean> reservList = reservDAO.getMemberReservList(m_id);
+		close(con);
+		return reservList;
 	}
 
 
