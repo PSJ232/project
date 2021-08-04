@@ -28,7 +28,7 @@ public class ReservInsertProAction implements Action {
 		rb.setR_payment(request.getParameter("r_payment"));
 		rb.setFd_id(Integer.parseInt(request.getParameter("fd_id")));
 		rb.setR_num(Integer.parseInt(request.getParameter("r_num")));
-//		rb.setR_amount(0);
+		rb.setR_amount(Integer.parseInt(request.getParameter("total_fee")));
 		
 		ReservInsertProService reservInsertProService = new ReservInsertProService();	
 		boolean isInsertSuccess = reservInsertProService.insertReserv(rb);

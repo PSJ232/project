@@ -24,6 +24,7 @@ if(request.getParameter("sort")!=null) {
 	sort = Integer.parseInt(request.getParameter("sort"));
 }
 %>
+<link rel="stylesheet" href="css/quick.css">
 <link rel="stylesheet" href="css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -33,38 +34,75 @@ if(request.getParameter("sort")!=null) {
   	<jsp:include page="../inc/header.jsp" ></jsp:include>
   	<!-- header -->
 
-사계 당일배송<br>
-가장 예쁘고 싱그러운 꽃 그대로<br>
-오늘 주문하고, 오늘 받아보세요.<br>
+	<div id="quick_banner_container">
+		<div class="quick_banner_img">
+			<div>
+				<div class="quick_banner_textbox">
+					<span>사계 당일배송</span>
+					<div>
+						<span>가장 예쁘고 싱그러운 꽃 그대로</span>
+						<span>오늘 주문하고, 오늘 받아보세요.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div id="container">
  
 	<select name="item_sort" size="1" onchange="sortSelect(this.value)">
 		<option value="1" <%if(sort==1){%>selected<%} %>>추천순</option>
 		<option value="2" <%if(sort==2){%>selected<%} %>>인기순</option>
 		<option value="3" <%if(sort==3){%>selected<%} %>>신상품순</option>
 	</select>
-	<%
-	for (ItemBean item : itemList) {
-		int i_id = item.getI_id();
-		float i_discount = item.getI_discount();
-		String percent = (int)(100 - i_discount * 100) + "%";
-		item.getI_itemstatus();
-		item.getI_price();
-		int price = (int)(item.getI_price() * i_discount)/100*100;
-	%>
-		<table>
-		<%if (item.getI_category() == 2){%> <!--2:당일배송  -->
-			<tbody>
-				<tr><td><a href="QuickContent.shop?i_id=<%=i_id%>"><img src="./admin_layout/upload/<%=item.getI_img()%>" width="200" ></a></td></tr>
-				<tr><td><%=item.getI_desc() %></td></tr>
-				<tr><td><a href="QuickContent.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a></td></tr>
-				<tr><td><%if(i_discount!=1){%><%=percent %> <%=NumberFormat.getInstance().format(item.getI_price())%>-> <%}%><%=NumberFormat.getInstance().format(price) %></td></tr>
-				<tr><td><%=item.getI_size()%> size 무료배송</td></tr>
-			</tbody>
+	<table class="quick_list_layout">
+		<%
+		for (ItemBean item : itemList) {
+			int i_id = item.getI_id();
+			float i_discount = item.getI_discount();
+			String percent = (int)(100 - i_discount * 100) + "%";
+			item.getI_itemstatus();
+			item.getI_price();
+			int price = (int)(item.getI_price() * i_discount)/100*100;
+		%>
+			
+			<%if (item.getI_category() == 2){%> <!--2:당일배송  -->
+				<tbody class="quick_item_box">
+					<tr><td><a href="QuickContent.shop?i_id=<%=i_id%>"><img src="./admin_layout/upload/<%=item.getI_img()%>" class="quick_item_img" ></a></td></tr>
+					<tr class="quick_item_desc">
+						<td><%=item.getI_desc() %></td>
+					</tr>
+					<tr class="quick_item_name">
+						<td>
+							<a href="QuickContent.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a>
+						</td>
+					</tr>
+					<tr class="quick_item_price">
+						<td>
+							<%
+							if(i_discount!=1){
+								%>
+								<span class="quick_item_discount"><%=percent %></span>
+								<span class="quick_item_discountprice"><%=NumberFormat.getInstance().format(item.getI_price())%></span>
+							<%
+							}
+							%>
+							<span><%=NumberFormat.getInstance().format(price) %></span>
+						</td>
+					</tr>
+					<tr class="quick_item_size">
+						<td>
+							<span class="quick_item_size_icon"><%=item.getI_size()%></span> 
+							<span class="quick_item_size_letter">size</span> 
+							<span class="quick_item_free">무료배송</span>
+						</td>
+					</tr>
+				</tbody>
+			<%} %>
+			
 		<%} %>
-		</table>
-	<%} %>
-	
-
+	</table>
+</div>
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
