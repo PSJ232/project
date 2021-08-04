@@ -174,9 +174,9 @@ div {
 }
 
 .cart_span4 {
-	width: 160px;
+	width: 250px;
 	height: 24px;
-	padding: 0 15px;
+	padding: 0 70px;
 	padding-right: 30px;
     font-size: 16px;
     line-height: 24px;
@@ -204,7 +204,7 @@ div {
 }
 
 .cart_span5 {
-	width: 200px;
+	width: 290px;
 	width: 114.25px;
 	height: 20.8px;
 	font-size: 14px;
@@ -213,13 +213,13 @@ div {
     letter-spacing: -.21px;
     color: #787878;
     float: left;
-/*     text-align: left; */
+/*     text-align: center; */
 }
 
 .cart_span6 {
 	width: 304px;
 	height: 24px;
-	float: none;
+	float: left;
     margin-left: 0;
     font-size: 16px;
     line-height: 24px;
