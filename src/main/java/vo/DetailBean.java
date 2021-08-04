@@ -14,7 +14,64 @@ public class DetailBean {
 	private String r_content;
 	private String r_rdate;
 	private int od_confirm;
+	// reservation
+	private int r_num;	// reservation 인원
+	private String r_payment;
+	private String r_date;
+	private int r_confirm;
+	private int r_amount;
+	private String fd_time;
+	private String fd_place;
+	private String f_subject;
 	
+	public String getF_subject() {
+		return f_subject;
+	}
+	public void setF_subject(String f_subject) {
+		this.f_subject = f_subject;
+	}
+	public String getFd_time() {
+		return fd_time;
+	}
+	public void setFd_time(String fd_time) {
+		this.fd_time = fd_time;
+	}
+	public String getFd_place() {
+		return fd_place;
+	}
+	public void setFd_place(String fd_place) {
+		this.fd_place = fd_place;
+	}
+	public int getR_num() {
+		return r_num;
+	}
+	public void setR_num(int r_num) {
+		this.r_num = r_num;
+	}
+	public String getR_payment() {
+		return r_payment;
+	}
+	public void setR_payment(String r_payment) {
+		this.r_payment = r_payment;
+	}
+	public String getR_date() {
+		return r_date;
+	}
+	public void setR_date(String r_date) {
+		this.r_date = r_date;
+	}
+	public int getR_confirm() {
+		return r_confirm;
+	}
+	public void setR_confirm(int r_confirm) {
+		this.r_confirm = r_confirm;
+	}
+	public int getR_amount() {
+		return r_amount;
+	}
+	public void setR_amount(int r_amount) {
+		this.r_amount = r_amount;
+	}
 	public int getOd_confirm() {
 		return od_confirm;
 	}

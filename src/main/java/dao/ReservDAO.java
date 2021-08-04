@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import static db.JdbcUtil.*;
 
+import vo.DetailBean;
 import vo.ReservBean;
 
 public class ReservDAO {
@@ -205,6 +206,39 @@ public class ReservDAO {
 			close(pstmt);
 		}
 		return resultList;
+	}
+
+	public ArrayList<DetailBean> getMemberReservList(String m_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<DetailBean> reservList = new ArrayList<DetailBean>();
+		try {
+			String sql = "SELECT r.r_id,fd.fd_time,fd.fd_place,r.r_num,r.r_payment,r.r_date,r.r_comfirm,r.r_amount,f.f_subject" +
+						"FROM fclass f, fclass_detail fd, reservation r" + 
+						"WHERE f.f_id=r.f_id AND fd.fd_id=r.fd_id AND r.m_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				DetailBean detailBean = new DetailBean();
+				detailBean.setR_id(rs.getInt("r_id"));
+				detailBean.setFd_time(rs.getString("fd_time"));
+				detailBean.setFd_place(rs.getString("fd_place"));
+				detailBean.setR_num(rs.getInt("r_num"));
+				detailBean.setR_payment(rs.getString("r_payment"));
+				detailBean.setR_date(rs.getString("r_date"));
+				detailBean.setR_confirm(rs.getInt("r_confirm"));
+				detailBean.setR_amount(rs.getInt("r_amount"));
+				detailBean.setF_subject(rs.getString("f_subject"));
+				reservList.add(detailBean);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL구문 오류!" + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return reservList;
 	}
 	
 	
