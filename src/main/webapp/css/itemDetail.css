@@ -310,25 +310,28 @@ ul.tabs li.current{
 }
 
 .middle_nav {
-	width: 1120px;
-	height: 60px;
-	margin-bottom: 50px;
-	text-align: center;
+	height: 53px;
+	margin-bottom: 60px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	list-style: none;
 }
 
-.middle_nav button {
-	border: solid 1px #eeeeee;
-	background-color: white;
-	height: 60px;
-	width: 373px;
-	font-size: 15px;
+.middle_nav li {
+	position: relative;
+	flex: 1;
+	text-align: center;
+	font-size: 16px;
 	color: #888888;
-	margin-right: -3px;
+	line-height: 50px;
+	border: solid 1px #eeeeee;
 }
 
 .middle_nav .active {
 	border-top: solid 2px #ffd324;
 	border-bottom: none;
+	color: black;
 }
 
 

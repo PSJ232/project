@@ -237,11 +237,11 @@ switch(path){
 				</div>
 			</div>
 			<div class="category_product_description">
-				<div class="middle_nav">
-					<button type="button" class="middle_btn active" name="0">상품설명</button>
-					<button type="button" class="middle_btn" name="1">리뷰</button>
-					<button type="button" class="middle_btn" name="2">배송안내</button>
-				</div>
+				<ul class="middle_nav">
+					<li class="middle_li li_desc active">상품설명</li>
+					<li class="middle_li li_review">리뷰</li>
+					<li class="middle_li li_deli_info">배송안내</li>
+				</ul>
 				<div class="desc_image">
 					<img src="./admin_layout/upload/<%=itemDetail.getI_detailpage() %>">
 				</div>
@@ -412,8 +412,19 @@ switch(path){
 				alert($(this).attr('name'));
 			});
 			
-			$('.middle_btn').click(function(){
-				alert($(this).attr('name'));
+			$('.middle_li').click(function(){
+				if($(this).hasClass('li_desc')){
+					$('.middle_li').removeClass('active');
+					$(this).addClass('active');
+				}
+				if($(this).hasClass('li_review')){
+					$('.middle_li').removeClass('active');
+					$(this).addClass('active');
+				}
+				if($(this).hasClass('li_deli_info')){
+					$('.middle_li').removeClass('active');
+					$(this).addClass('active');
+				}
 			});
 			
 		});
