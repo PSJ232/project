@@ -1,18 +1,19 @@
 @charset "UTF-8";
 
 #myclass_container {
-	margin-bottom: 120px;
+	display: inline-block;
+    position: relative;
+    margin-left: 108px;
 }
 
 .myclass_title {
 	font-size: 22px;
     font-weight: 500;
     line-height: 35px;
-    margin: 25px 0px;
 }
 
 .myclass_box {
-	margin-bottom: 25px;
+	margin: 25px 0;
 }
 
 .myclass_list_layout {
@@ -34,7 +35,7 @@
 	display: inline-block;
     font-size: 15px;
     font-weight: 500;
-    padding: 0 23px;
+    padding: 0 42px;
 }
 
 #myclass_list_body {

@@ -40,28 +40,27 @@
 
 
 	<!-- 본문 내용 -->
-	<div>
-		<form action="ReviewInsertPro.rv" method="post" name="fr"
-			enctype="multipart/form-data">
-			<input type="hidden" name="od_id" value="<%=od_id%>"> 
-			작성자 :
-			<input type="text" name="r_writer" value="<%=m_id%>" readonly>
-			제목 : <input type="text" name="r_title"> <br> 
-			내용 :
-			<textarea rows="10" cols="20" name="r_content"></textarea>
-			<br> 평점 : <select name="r_rate">
-				<option value="5">5</option>
-				<option value="4">4</option>
-				<option value="3">3</option>
-				<option value="2">2</option>
-				<option value="1">1</option>
-			</select><br> 이미지:<input type="file" name="r_img"><br> <input
-				type="submit" value="작성하기">
-		</form>
+	<div class="mypage_container">
+		<div id="mypage_review_div">
+			<form action="ReviewInsertPro.rv" method="post" name="fr" enctype="multipart/form-data">
+				<input type="hidden" name="od_id" value="<%=od_id%>"> 
+				<label>작성자 : <input type="text" name="r_writer" value="<%=m_id%>" readonly></label> 
+				<label>	제목 : <input type="text" name="r_title"></label> <br>
+				<label>내용 : <textarea rows="10" cols="20" name="r_content"></textarea></label> <br> 
+				평점 : <select name="r_rate">
+					<option value="5">5</option>
+					<option value="4">4</option>
+					<option value="3">3</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
+				</select><br> 
+				<label>이미지:<input type="file" name="r_img"></label><br> 
+				<input type="submit" value="작성하기">
+			</form>
 
+		</div>
 	</div>
-	
-	
+
 
 	<!-- 푸터 들어가는곳 -->
 

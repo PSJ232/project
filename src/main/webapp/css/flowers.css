@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
 .flowers_container{
-	margin-bottom: 100px;	
+	margin-bottom: 100px;
+	width: 1120px;
+	margin: 0px auto;
 }
 
 .flowers_subject {
@@ -68,10 +70,10 @@
 }
 
 .flower_list {
-	width: 1120px;	
+	width: 250px;
 	display: inline-block;
 	text-align: right;
-	margin-right: 30px;
+	margin: 0px auto;
 }
 
 .inbox{
@@ -80,8 +82,8 @@
 }
 
 .img {
-	width: 300px;
-	height: 300px;
+	width: 250px;
+	height: 250px;
 }
 
 .desc {

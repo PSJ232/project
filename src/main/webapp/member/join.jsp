@@ -58,8 +58,20 @@
 			      $("input[type=checkbox]") .prop("checked", false);
 			   }
 		});
+		
+		$('#idCheckBtn').click(function(){
+			$.ajax({
+				url : 'IdCheck.me',
+				type : "post",
+				datatype : "text",
+				data:{m_id:$('#m_id').val()},
+				success:function(rdata) {
+					$('#checkIdResult').html(rdata);
+				}
+			});
+		});
+		
 	});
-	
 </script>
 </head>
 <body>
@@ -68,39 +80,40 @@
    	<jsp:include page="../inc/header.jsp" ></jsp:include>
  	<!-- header -->
    	
+		<div class="page_title"><h2>회원가입</h2></div>
 
-	<div class="joinForm">
-		<div class="title"><h1>회원가입</h1></div>
-			<hr>
+	<div class="join_us_box">	
+		<div class="inbox">
 			<form action="MemberJoinPro.me" name=formJoin method="post">				
-					<div class="topForm">
-					
+					<div class="inner">
+						
 							 <div class="row">
 							 	<div class="join_name">이메일(아이디) </div>
 							 	<div class="join_input">
 							 		<input type="email" name="m_id" class="textBox" placeholder="예)four@season.kr" required>
 									<input type="button" id="idCheckBtn" class="btn" onclick="checkId(m_id.value)" value="중복확인"><br>
-									<span id="checkIdResult" class="checkMessage">&nbsp;</span><br></div><!-- 아이디 유효성 검사 -->
-								</div>	
+									<span id="checkIdResult" class="checkMessage">&nbsp;</span><br><!-- 아이디 유효성 검사 -->
+								</div>
+							</div>
 								
 							 <div class="row">
 							 	<div class="join_name">비밀번호</div>
 							 	<div class="join_input">
-							 		<input type="password" name="m_pass" class="textBox2" placeholder="비밀번호를 입력해주세요." required><br>
+							 		<input type="password" name="m_pass" class="textBox" placeholder="비밀번호를 입력해주세요." required><br>
 							 	</div>
 							</div>
 							
 							 <div class="row">
 							 	<div class="join_name">비밀번호확인</div>
 							 	<div class="join_input">
-							 		<input type="password" class="textBox2" placeholder="비밀번호를 한 번 더 입력해주세요." required><br>
+							 		<input type="password" class="textBox" placeholder="비밀번호를 한 번 더 입력해주세요." required><br>
 							 	</div>
 							 </div>
 							 
 							<div class="row">
 								<div class="join_name">이름</div>
 								<div class="join_input">
-								 <input type="text" name="m_name" class="textBox2" placeholder="이름을 입력해주세요." required><br>
+								 <input type="text" name="m_name" class="textBox" placeholder="이름을 입력해주세요." required><br>
 								 </div>
 							</div>
 							
@@ -134,26 +147,36 @@
 							 		  	     	  	   					  <input type="radio" name="m_gender" value="0">남성<br>
 								</div>
 							</div>
+					</div>
 							
-							 <hr><br><br>		 
+					
+					<div class="bottomForm">
+						<div class="inner">
 							 <div class="row">
-							 	<label class="leftLabel">이용약관 동의</label><br>
+							 	<div class="join_name">이용약관 동의</div>
 							 </div>
 							 
+							<ul class="agreement_list">
+									<li class="agree_all"><input type="checkbox" id="termCAll">모두 동의합니다.<br></li>
+									<li class="agree_part"><input type="checkbox"  id="termC1" required>이용약관 동의 <span class="textRed">(필수)</span></li>
+									<li class="agree_part"><input type="checkbox"  id="termC2" required>개인정보 수집, 이용동의 <span class="textRed">(필수)</span></li>
+									<li class="agree_part"><input type="checkbox"  id="termC3" required>개인정보 이용 동의 <span class="textRed">(필수)</span></li>
+									<li class="agree_part"><input type="checkbox" name="m_agree"  id="termC4" >이벤트, 혜택정보 수신 동의 (선택)</li><!-- 원래 name이 m_agree였음 -->
+							</ul>
+						</div>
 					</div>
-					<div class="bottomForm">
-							<div class="bottomContent"><input type="checkbox" id="termCAll">모두 동의합니다.<br>
-									<hr width=90% size="1px" color="#eaeaea">
-									<input type="checkbox"  id="termC1" required>이용약관 동의 <span class="textRed">(필수)</span><br>
-									<input type="checkbox"  id="termC2" required>개인정보 수집, 이용동의 <span class="textRed">(필수)</span><br>
-									<input type="checkbox"  id="termC3" required>개인정보 이용 동의 <span class="textRed">(필수)</span><br>
-									<input type="checkbox" name="m_agree"  id="termC4" >이벤트, 혜택정보 수신 동의 (선택)<br><!-- 원래 name이 m_agree였음 -->
+					
+							<div class="agree_terms">이용약관 보기 · 개인정보 처리방침 보기</div>
+
+						<div class="inner">
+							<div class="row">
+								<input type="submit" class="btn_submit" value="회원가입">
 							</div>
-					</div><br>
-				<div class="bottomText">이용약관 보기 · 개인정보 처리방침 보기</div><br>
-					<input type="submit" class="btns" value="회원가입">
+						</div>	
+					
 													
 			</form>
+		</div>										
 	</div>
 	
 	<jsp:include page="../inc/footer.jsp" ></jsp:include>

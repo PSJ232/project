@@ -173,6 +173,41 @@ public class ReservDAO {
 		
 		return reservList;
 	}
+
+	public ArrayList<ReservBean> getReservInfo(String place, String time, String date) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ReservBean> resultList = new ArrayList<ReservBean>();
+		try {
+			String sql = "SELECT * FROM reservation r, fclass_detail fd WHERE r.fd_id=fd.fd_id AND fd_place=? AND fd_time=? AND fd_date=? ORDER BY r.r_date";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, place);
+			pstmt.setString(2, time);
+			pstmt.setString(3, date);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReservBean reservBean = new ReservBean();
+				reservBean.setR_id(rs.getInt("r_id"));
+				reservBean.setM_id(rs.getString("m_id"));
+				reservBean.setF_id(rs.getInt("f_id"));
+				reservBean.setFd_id(rs.getInt("fd_id"));
+				reservBean.setR_num(rs.getInt("r_num"));
+				reservBean.setR_payment(rs.getString("r_payment"));
+				reservBean.setR_date(rs.getString("r_date"));
+				reservBean.setR_payment(rs.getString("r_payment"));
+				reservBean.setR_amount(rs.getInt("r_amount"));
+				resultList.add(reservBean);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL구문 오류!" + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return resultList;
+	}
+	
+	
 	
 
 }

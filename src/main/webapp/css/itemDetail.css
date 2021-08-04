@@ -1,23 +1,86 @@
 @charset "UTF-8";
 
+/* 리뷰 ajax에 쓰이는 코드  */
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ ul.tabs li{ 
+ 	background: none; 
+ 	display: inline-block; 
+ 	padding: 10px 15px; 
+ 	cursor: pointer; 
+ } 
+ul.tabs li.current{
+	color: #222;
+}
+.tab-content{
+	display: none;
+	padding: 15px;
+}
+.tab-content.current{
+	display: inherit;
+}
+#hidden {
+	display: none;
+}
+
 .contents_container {
-	width: 1240px;
+	width: 1120px;
     margin: 0 auto;
 }
 
 .navigation {
 	height: 80px;
-    width: 1240px;
+    width: 1120px;
     margin: 0 auto;
-    padding: 40px 100px 0;
+    padding: 40px 0;
    	color: #999999;
 	font-size: 13px;
 }
 
+/* 사진 슬라이더 부분 */
+.thumnail_main img {
+	width: 550px;
+	height: 550px;
+}
+
+.images_4 .image .change_img img {
+	width: 122px;
+	height: 122px;
+}
+
+.images_4 {
+	margin-top: 15px;
+	width: 550px;
+}
+
+.images_4 .image {
+	display: inline-block;
+}
+
+.images_4 .image button {
+	border: none;
+}
+
+.change_img[name="1"] {
+	margin: 0 17.5px;
+}
+
+.change_img[name="2"] {
+	margin-right: 17.5px;
+}
+
+/*  */
+
 .inbox {
-	height: 800px;
-	width: 1240px;
-	padding: 0px 100px 0;
+	width: 1120px;
+	height: auto;
+}
+
+.top_box {
+	height: 750px;
 }
 
 .category_product_detail {
@@ -31,14 +94,14 @@
 }
 
 .name_1 {
-	line-height: 20px;
-	font-size: 15px;
+	line-height: 27px;
+	font-size: 16px;
 	color: #999999;
 }
 
 .name_2 {
-	line-height: 40px;
-	font-size: 25px;
+	line-height: 50px;
+	font-size: 27px;
 	font-weight: 700;
 }
 
@@ -48,24 +111,28 @@
 
 .per {
 	color: red;
-	font-size: 14px;
-	font-weight: 600;
+	font-size: 16px;
+	font-weight: 800;
+	vertical-align: top;
 }
 
 .old_price {
 	color: #999999;
-	font-size: 14px;
+	font-size: 16px;
+	font-weight: 100;
+	vertical-align: top;
 }
 
 .price {
-	font-size: 25px;
-	font-weight: 600;
+	font-size: 28px;
+	font-weight: 500;
+	letter-spacing: -1px;
 }
 
 .notice_fresh {
 	border-top: #eeeeee solid 1px;
 	border-bottom: #eeeeee solid 1px;
-	padding: 20px 0px;
+	padding: 25px 0px;
 }
 
 .notice_fresh_info {
@@ -90,19 +157,21 @@
 	width: 160px;
 	float: left;
 	text-align: left;
+	font-weight: 450;
 	
 }
 
 #label_name_date, #label_name_option {
-	padding-top: 10px;
+	padding-top: 13px;
 }
 
 #label_name_qty {
-	padding-top: 3px;
+	padding-top: 5px;
 }
 
 .label_div {
 	padding: 10px 0;
+	height: 60px;
 }
 
 .sub_option {
@@ -118,11 +187,11 @@
 }
 
 .delivery_date, .showCalendar {
-	padding: 11px 153px 11px 10px;
+	padding: 13px 130px 13px 10px;
 	border: solid 1px #ffd324;
 	border-radius: 5px;
 	color: #999999;
-	font-size: 13px;
+	font-size: 14px;
 	display: block;
 } 
 
@@ -156,6 +225,7 @@
 	width: 30px;
 	border: none;
 	text-align: center;
+	font-size: 13px;
 }
 
 #invenNotice {
@@ -163,7 +233,7 @@
 }
 
 .add_letter {
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .radiobtn {
@@ -172,7 +242,7 @@
 
 .extra {
 	margin: 5px 0;
-	padding: 20px 15px;
+	padding: 22px 15px;
 	background-color: #f6f6f6;
 	border-radius: 5px;
 }
@@ -182,8 +252,8 @@
 }
 
 #amount, .letterPrice {
-	font-size: 16px;
-	font-weight: 400;
+	font-size: 15px;
+	font-weight: 550;
 }
 
 .free {
@@ -197,7 +267,7 @@
 
 .total {
 	text-align: right;
-	font-size: 15px;
+	font-size: 14px;
 }
 
 #totalPrice {
@@ -225,12 +295,41 @@
 	background-color: #dddddd;
 }
 
+.clear{
+	clear: both;
+}
 
+.category_product_description {
+	width: 1120px;
+	display: inline-block;
+}
 
+.desc_image {
+	width: 740px;
+	margin: 0 auto;
+}
 
+.middle_nav {
+	width: 1120px;
+	height: 60px;
+	margin-bottom: 50px;
+	text-align: center;
+}
 
+.middle_nav button {
+	border: solid 1px #eeeeee;
+	background-color: white;
+	height: 60px;
+	width: 373px;
+	font-size: 15px;
+	color: #888888;
+	margin-right: -3px;
+}
 
-
+.middle_nav .active {
+	border-top: solid 2px #ffd324;
+	border-bottom: none;
+}
 
 
 

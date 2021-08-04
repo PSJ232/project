@@ -44,42 +44,42 @@ if(request.getParameter("sort")!=null) {
 							</div>
 						</div>
 				 	</div>
-				 </div>
-					 
-			 <div class="sort">
-					<select name="item_sort" class="select_product_view" size="1" onchange="sortSelect(this.value)">
-						<option value="1" <%if(sort==1){%>selected<%} %>>추천순</option>
-						<option value="2" <%if(sort==2){%>selected<%} %>>인기순</option>
-						<option value="3" <%if(sort==3){%>selected<%} %>>신상품순</option>
-					</select>
-			</div>
-				<%
-				for (ItemBean item : itemList) {
-					int i_id = item.getI_id();
-					float i_discount = item.getI_discount();
-					String percent = (int)(100 - i_discount * 100) + "%";
-					item.getI_itemstatus();
-					item.getI_price();
-					int price = (int)(item.getI_price() * i_discount)/100*100;
-				%>
-				<div class="flower_list">
-					<div class="inbox">
-						<table>
-						<%if (item.getI_category() == 1 || item.getI_category() == 2){%> <!-- 1:일반배송, 2:당일배송  -->
-							<tbody>
-								<tr><td><a href="FlowersContent.shop?i_id=<%=i_id%>"><img src="./admin_layout/upload/<%=item.getI_img()%>" class="img"></a></td></tr>
-								<tr><td><span class="desc"><%=item.getI_desc() %></span></td></tr>
-								<tr><td><span class="item_name"><a href="FlowersContent.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a></span></td></tr>
-								<tr><td><span class="discount"><%if(i_discount!=1){%><%=percent %></span> <span class="origin_price"><%=NumberFormat.getInstance().format(item.getI_price())%>-></span><span class="price"><%}%><%=NumberFormat.getInstance().format(price) %></span></td></tr>
-								<tr><td class="more"><span class="size"><%=item.getI_size()%></span> <span class="size_txt">size</span> <span class="delivery">무료배송</span></td></tr>
-							</tbody>
-						<%} %>
-						</table>
-					</div>
 				</div>
-				<%} %>
+					 
+				 <div class="sort">
+						<select name="item_sort" class="select_product_view" size="1" onchange="sortSelect(this.value)">
+							<option value="1" <%if(sort==1){%>selected<%} %>>추천순</option>
+							<option value="2" <%if(sort==2){%>selected<%} %>>인기순</option>
+							<option value="3" <%if(sort==3){%>selected<%} %>>신상품순</option>
+						</select>
+				</div>
+					<%
+					for (ItemBean item : itemList) {
+						int i_id = item.getI_id();
+						float i_discount = item.getI_discount();
+						String percent = (int)(100 - i_discount * 100) + "%";
+						item.getI_itemstatus();
+						item.getI_price();
+						int price = (int)(item.getI_price() * i_discount)/100*100;
+					%>
+					<div class="flower_list">
+						<div class="inbox">
+							<table>
+								<%if (item.getI_category() == 1 || item.getI_category() == 2){%> <!-- 1:일반배송, 2:당일배송  -->
+									<tbody>
+										<tr><td><a href="FlowersContent.shop?i_id=<%=i_id%>"><img src="./admin_layout/upload/<%=item.getI_img()%>" class="img"></a></td></tr>
+										<tr><td><span class="desc"><%=item.getI_desc() %></span></td></tr>
+										<tr><td><span class="item_name"><a href="FlowersContent.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a></span></td></tr>
+										<tr><td><span class="discount"><%if(i_discount!=1){%><%=percent %></span> <span class="origin_price"><%=NumberFormat.getInstance().format(item.getI_price())%>-></span><span class="price"><%}%><%=NumberFormat.getInstance().format(price) %></span></td></tr>
+										<tr><td class="more"><span class="size"><%=item.getI_size()%></span> <span class="size_txt">size</span> <span class="delivery">무료배송</span></td></tr>
+									</tbody>
+								<%} %>
+							</table>
+						</div>
+					</div>
+						<%} %>
 		</div>
-	
+
 		<!-- footer -->
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
 		<!-- footer -->

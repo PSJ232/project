@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.AdminGetReservInfoAction;
 import action.AdminInsertTrackingNumProAction;
 import action.AdminMemberDetailAction;
 import action.AdminMemberListAction;
@@ -379,6 +380,13 @@ public class AdminFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/sales_management/salesManage.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/GetReservInfo.ad")) {
+			AdminGetReservInfoAction reservAction = new AdminGetReservInfoAction();
+			try {
+				reservAction.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 
