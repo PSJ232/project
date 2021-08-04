@@ -79,16 +79,17 @@
    	<!-- header -->
    	<jsp:include page="../inc/header.jsp" ></jsp:include>
  	<!-- header -->
-   	
+   	<div class="top_banner">
 		<div class="page_title"><h2>회원가입</h2></div>
-
+	</div>
+	
 	<div class="join_us_box">	
 		<div class="inbox">
 			<form action="MemberJoinPro.me" name=formJoin method="post">				
 					<div class="inner">
 						
 							 <div class="row">
-							 	<div class="join_name">이메일(아이디) </div>
+							 	<div class="join_name">이메일(아이디)</div>
 							 	<div class="join_input">
 							 		<input type="email" name="m_id" class="textBox" placeholder="예)four@season.kr" required>
 									<input type="button" id="idCheckBtn" class="btn" onclick="checkId(m_id.value)" value="중복확인"><br>
@@ -135,52 +136,59 @@
 								
 							 <div class="row">
 							 	<div class="join_name">생년월일</div>
-							 	<div class="join_input"><input type="text" class="longTextBox" name="year" placeholder="년도) 1999" required>
-													 					   <input type="text" class="shortTextBox" name="month" placeholder="월" required>
-													 					   <input type="text" class="shortTextBox" name="day" placeholder="일" required><br>
+							 	<div class="join_input"><input type="text" class="textbox_long" name="year" placeholder="년도) 1999" required>
+													 					   <input type="text" class="textbox_short" name="month" placeholder="월" required>
+													 					   <input type="text" class="textbox_short" name="day" placeholder="일" required><br>
 								</div>
 							</div>
 							
 							 <div class="row">
 							 	<div class="join_name">성별</div>
-							 	<div class="join_input"><input type="radio" name="m_gender" value="1" checked>여성
-							 		  	     	  	   					  <input type="radio" name="m_gender" value="0">남성<br>
+							 	<div class="join_input"><input type="radio" class="radio_gender" name="m_gender" value="1" checked><span class="gender_txt">여성</span>
+							 		  	     	  	   					   <input type="radio" class="radio_gender" name="m_gender" value="0"><span class="gender_txt">남성</span>
 								</div>
 							</div>
-					</div>
+								
+							 
+						</div> <!-- inner -->
+					</div><!-- inbox -->
 							
 					
 					<div class="bottomForm">
 						<div class="inner">
 							 <div class="row">
 							 	<div class="join_name">이용약관 동의</div>
+							 	<div class="join_input"></div>
 							 </div>
-							 
-							<ul class="agreement_list">
-									<li class="agree_all"><input type="checkbox" id="termCAll">모두 동의합니다.<br></li>
-									<li class="agree_part"><input type="checkbox"  id="termC1" required>이용약관 동의 <span class="textRed">(필수)</span></li>
-									<li class="agree_part"><input type="checkbox"  id="termC2" required>개인정보 수집, 이용동의 <span class="textRed">(필수)</span></li>
-									<li class="agree_part"><input type="checkbox"  id="termC3" required>개인정보 이용 동의 <span class="textRed">(필수)</span></li>
-									<li class="agree_part"><input type="checkbox" name="m_agree"  id="termC4" >이벤트, 혜택정보 수신 동의 (선택)</li><!-- 원래 name이 m_agree였음 -->
-							</ul>
-						</div>
-					</div>
-					
-							<div class="agree_terms">이용약관 보기 · 개인정보 처리방침 보기</div>
+							 <br><br>
 
-						<div class="inner">
-							<div class="row">
-								<input type="submit" class="btn_submit" value="회원가입">
+								<ul class="agreement_list">
+										<li class="agree_all"><input type="checkbox" id="termCAll">모두 동의합니다.<br></li>
+										<li class="agree_part"><input type="checkbox"  id="termC1" required>이용약관 동의 <span class="textRed">(필수)</span></li>
+										<li class="agree_part"><input type="checkbox"  id="termC2" required>개인정보 수집, 이용동의 <span class="textRed">(필수)</span></li>
+										<li class="agree_part"><input type="checkbox"  id="termC3" required>개인정보 이용 동의 <span class="textRed">(필수)</span></li>
+										<li class="agree_part"><input type="checkbox" name="m_agree"  id="termC4" >이벤트, 혜택정보 수신 동의 (선택)</li><!-- 원래 name이 m_agree였음 -->
+								</ul>
+								
+							<div class="agree_terms">이용약관 보기 · 개인정보 처리방침 보기</div>
+								
+							<div class="inner">
+								<div class="row">
+									<input type="submit" class="btn_submit" value="회원가입">
+								</div>
 							</div>
-						</div>	
-					
-													
+						</div><!-- inner -->
+
+														
+					</div><!-- bottomForm -->
 			</form>
-		</div>										
-	</div>
+					
+			
+ 		</div> <!-- join_us_box 닫기 -->		
+
 	
 	<jsp:include page="../inc/footer.jsp" ></jsp:include>
-	</div>
+  </div> <!-- container 닫기 -->
 	
 	
 </body>

@@ -1,9 +1,7 @@
 @charset "UTF-8";
 
 .flowers_container{
-	margin-bottom: 100px;
-	width: 1120px;
-	margin: 0px auto;
+	margin-bottom: 100px;	
 }
 
 .flowers_subject {
@@ -21,6 +19,7 @@
 	max-width: 1120px;
     margin: 0 auto;
     padding: 0 60px;
+    box-sizing: border-box;
 }
 
 .flowers_subject .inbox .tbl {
@@ -44,10 +43,14 @@
 .flowers_subject .inbox .desc, .flowers_subject .inbox .desc_2 {
 	margin-top: 20px;
 	font-size: 18px;
-    line-height: 27px;
+    line-height: 25px;
     font-weight: 100;
     letter-spacing: -.27px;
     color: #222;
+}
+
+.inner {
+	padding: 0 0 20 0px;
 }
 
 .sort {
@@ -69,16 +72,17 @@
 	display: inline-block;	
 }
 
-.flower_list {
-	width: 250px;
-	display: inline-block;
-	text-align: right;
-	margin: 0px auto;
+.flower_list  {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 60px;
 }
 
-.inbox{
-	margin: 20px auto;
-	display: inline-block;
+.flower_list .products {
+    margin: 0 -10px;
+   	width: 250px;
+	text-align: right;
+	margin-right: 30px;
 }
 
 .img {
