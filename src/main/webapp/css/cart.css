@@ -35,6 +35,7 @@ div {
 .cart_div {
 	width: 1519.2px;
 	height: 874.38px;
+	display: relative;
 }
 
 .cart_header {

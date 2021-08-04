@@ -30,12 +30,21 @@ a, button {
   cursor: pointer;
 }
 
-.memberGrade_article {
-	width: 809.65px;
+.memberGrade_div6 {
+	width: 1120px;
 	height: 771px;
-	float: right;
-	padding-top: 40px;
-	display: block;
+	position: absolute;
+    float: right;
+    width: 68%;
+    padding-bottom: 40px;
+}
+
+.memberGrade_article {
+	width: 761.6px;
+    height: 771px;
+    float: right;
+    padding-top: 40px;
+    display: block;
 	
 }
 

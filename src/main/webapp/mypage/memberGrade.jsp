@@ -47,6 +47,7 @@
 
 	%>
 	<!-- 본문 내용 -->
+	<div class="memberGrade_div6">
 	<article class="memberGrade_article">
 		<h3 class="memberGrade_title">
 			<span class="memberGrade_span">회원등급</span>
@@ -175,6 +176,7 @@
 			</div>
 		</div>
 	</article>
+	</div>
 	</div>
 
 	<!-- 푸터 들어가는곳 -->
