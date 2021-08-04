@@ -430,15 +430,15 @@ switch(path){
 			$('.middle_li').click(function(){
 				if($(this).hasClass('li_desc')){
 					$('.middle_li').removeClass('active');
-					$(this).addClass('active');
+					$('.li_desc').addClass('active');
 				}
 				if($(this).hasClass('li_review')){
 					$('.middle_li').removeClass('active');
-					$(this).addClass('active');
+					$('.li_review').addClass('active');
 				}
 				if($(this).hasClass('li_deli_info')){
 					$('.middle_li').removeClass('active');
-					$(this).addClass('active');
+					$('.li_deli_info').addClass('active');
 				}
 			});
 			
