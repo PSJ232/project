@@ -103,31 +103,28 @@ switch(path){
 			<div class="top_box">
 				<div class="category_product_image">
 					<div class="thumnail_main">
-						<span><img src="./admin_layout/upload/<%=itemDetail.getI_img() %>"></span>				
+						<img src="./admin_layout/upload/<%=itemDetail.getI_img() %>">		
 					</div>
 					<div class="thumnail_mini">
 						<ul class="images_4">
 							<li class="image">
-								<button type="button" class="change_img" name="0">
-									<span class="real_image"><img src="./admin_layout/upload/<%=itemDetail.getI_img() %>"></span>
+								<button type="button" class="change_img active" name="0">
+									<img src="./admin_layout/upload/<%=itemDetail.getI_img() %>">
 								</button>
 							</li>
 							<li class="image">
 								<button type="button" class="change_img" name="1">
 									<img src="./admin_layout/upload/<%=itemDetail.getI_subimg2() %>">
-									<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_subimg2() %>');"></span>
 								</button>
 							</li>
 							<li class="image">
 								<button type="button" class="change_img" name="2">
 									<img src="./admin_layout/upload/<%=itemDetail.getI_subimg3() %>">
-									<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_subimg3() %>');"></span>
 								</button>
 							</li>
 							<li class="image">
 								<button type="button" class="change_img" name="3">
 									<img src="./admin_layout/upload/<%=itemDetail.getI_subimg4() %>">
-									<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_subimg4() %>');"></span>
 								</button>
 							</li>
 						</ul>
@@ -238,17 +235,21 @@ switch(path){
 			</div>
 			<div class="category_product_description">
 				<ul class="middle_nav">
-					<li class="middle_li li_desc active">상품설명</li>
-					<li class="middle_li li_review">리뷰</li>
-					<li class="middle_li li_deli_info">배송안내</li>
+					<li class="middle_li li_desc active" onclick="location.href='#desc_image'">상품설명</li>
+					<li class="middle_li li_review" onclick="location.href='#review_list'">리뷰</li>
+					<li class="middle_li li_deli_info" onclick="location.href='#delivery_info'">배송안내</li>
 				</ul>
-				<div class="desc_image">
+				<div id="desc_image" class="desc_image">
 					<img src="./admin_layout/upload/<%=itemDetail.getI_detailpage() %>">
 				</div>
 			</div>
+			<div id="review_list">
+			</div>
+			<div id="delivery_info">
+			</div>
 		</div>
 	</div>
-	
+
 	
 	
 	
@@ -393,6 +394,14 @@ switch(path){
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
 	
+</body>
+	<div class="sticky">
+		<ul class="middle_nav">
+			<li class="middle_li li_desc active" onclick="location.href='#desc_image'">상품설명</li>
+			<li class="middle_li li_review" onclick="location.href='#review_list'">리뷰</li>
+			<li class="middle_li li_deli_info" onclick="location.href='#delivery_info'">배송안내</li>
+		</ul>
+	</div>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.radioA').click(function(){
@@ -403,15 +412,21 @@ switch(path){
 				$('#letter').css('display','none');
 			});
 			
-			$('.sub_option').change(function(){ // 구독 옵션 선택하면 날짜입력창 보임
+			 // 구독 옵션 선택하면 날짜입력창 보임
+			$('.sub_option').change(function(){
 				$('.showCalendar').css('display','block');
 				$('.designinfo').css('display','block');
 			});
 			
+			// 이미지 전환
 			$('.change_img').click(function(){
-				alert($(this).attr('name'));
+				$('.change_img').removeClass('active');
+				$(this).addClass('active');
+				var imgUrl = $(this).find('img').attr('src')
+			 	$('.thumnail_main img').attr('src', imgUrl);
 			});
 			
+			// 중간 네비게이션 바 선택
 			$('.middle_li').click(function(){
 				if($(this).hasClass('li_desc')){
 					$('.middle_li').removeClass('active');
@@ -427,9 +442,18 @@ switch(path){
 				}
 			});
 			
+			// 하단 네비게이션 바 보이기
+			$(document).scroll(function(){
+				var point = $(this).scrollTop();
+				if(point > $(".middle_nav").offset().top){
+					$('.sticky').addClass('visible');
+				} else {
+					$('.sticky').removeClass('visible');
+				}
+			});
+			
 		});
 	</script>
-</body>
 </html>
 
 
