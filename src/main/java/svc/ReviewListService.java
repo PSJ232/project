@@ -34,5 +34,15 @@ public class ReviewListService {
 		close(con);
 		return reviewList;
 	}
+	
+	public ArrayList<ReviewBean> getReviewList(){
+		Connection con = getConnection();
+		ReviewDAO reviewDAO = ReviewDAO.getInstance();
+		reviewDAO.setConnection(con);
+		
+		ArrayList<ReviewBean> reviewList = reviewDAO.getReviewList();
+		close(con);
+		return reviewList;
+	}
 
 }

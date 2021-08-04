@@ -434,6 +434,9 @@ public class ReviewDAO {
 			} 
 		} catch (Exception e) {
 			System.out.println("ReviewDAO - getDeleteOdList() SQL 구문 오류 : " + e.getMessage());
+		}finally {
+			close(pstmt);
+			close(rs);
 		}
 		return deleteOdList;
 	}
@@ -503,6 +506,9 @@ public class ReviewDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println("ReviewDAO - getMemberReviewList() SQL문 오류 : " + e.getMessage());
+		}finally {
+			close(pstmt);
+			close(rs);
 		}
 		
 		return reviewList;
@@ -522,8 +528,39 @@ public class ReviewDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println("ReviewDAO - getContent() SQL문 오류 : " + e.getMessage());
+		}finally {
+			close(pstmt);
+			close(rs);
 		}
 		return content;
+	}
+
+	public ArrayList<ReviewBean> getReviewList() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ReviewBean> reviewList = new ArrayList<ReviewBean>();
+		try {
+			String sql = "SELECT * FROM review ORDER BY r_id DESC";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewBean reviewBean = new ReviewBean();
+				reviewBean.setR_id(rs.getInt("r_id"));
+				reviewBean.setOd_id(rs.getInt("od_id"));
+				reviewBean.setR_writer(rs.getString("r_writer"));
+				reviewBean.setR_title(rs.getString("r_title"));
+				reviewBean.setR_rate(rs.getInt("r_rate"));
+				reviewBean.setR_content(rs.getString("r_content"));
+				reviewBean.setR_rdate(rs.getDate("r_rdate"));
+				reviewBean.setR_img(rs.getString("r_img"));
+				reviewBean.setR_point(rs.getInt("r_point"));
+				reviewList.add(reviewBean);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reviewList;
 	}
 
 }

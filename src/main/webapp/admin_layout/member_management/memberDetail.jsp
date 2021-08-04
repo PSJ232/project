@@ -113,6 +113,9 @@
 	$(document).ready(function(){
 		$('.admin_header_subtitle').text("회원 상세");
 	});
+	function openOrderDetail(o_id){
+		window.open('OrderDetail.ad?o_id='+o_id,'PopupWin','width=1700,height=900')
+	}
 </script>
 </head>
 <body>
@@ -169,7 +172,7 @@
 			for(DetailBean order: orderList){
 			%>
 					<tr>
-					<td><a href='OrderDetail.ad?o_id=<%=order.getO_id() %>'><%=order.getO_id() %></a></td>
+					<td><a target="_blank" onclick="openOrderDetail(<%=order.getO_id()%>)"><%=order.getO_id() %></a></td>
 					<td><%=order.getI_name() %></td>
 					<td><%=order.getO_amount() %></td>
 					<td><%=order.getO_rdate() %></td>

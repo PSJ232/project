@@ -28,7 +28,7 @@
 	  -->
 		<ul id="menu">
 			<li><a href="MemberList.ad">회원관리</a></li>
-			<li><a href="#">리뷰관리</a></li>
+			<li><a href="ReviewList.ad">리뷰관리</a></li>
 			<li><a href="ItemList.ad">상품관리</a></li>
 			<li><a href="#">매출관리</a></li>
 			<li><a href="OrderList.ad">주문관리</a></li>
