@@ -174,4 +174,20 @@ public class MemberService {
 		return pbList;
 	}
 
+
+	// 회원의 정기구독 리스트 가져옴
+	public ArrayList<Integer> selectSubscribe(String m_id) {
+		System.out.println("MemberService - selectSubscribe()");
+		
+		Connection con = JdbcUtil.getConnection();
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		memberDAO.setConnection(con);
+		
+		ArrayList<Integer> subscribeList = memberDAO.getSubscribeCount(m_id);
+	
+		JdbcUtil.close(con);
+				
+		return subscribeList;
+	}
+
 }

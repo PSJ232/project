@@ -1,5 +1,7 @@
 package action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import svc.MemberService;
 import vo.ActionForward;
 import vo.MemberBean;
+import vo.OrderBean;
 
 public class MemberMypageDetailAction implements Action {
 
@@ -25,6 +28,9 @@ public class MemberMypageDetailAction implements Action {
 		MemberService memberService = new MemberService();
 		MemberBean memberMypageDetail = memberService.selectMember(m_id);
 		request.setAttribute("memberMypageDetail", memberMypageDetail);
+		
+		ArrayList<Integer> subscribeList = memberService.selectSubscribe(m_id);
+		request.setAttribute("subscribeList", subscribeList);
 		
 		if(m_id == null) {
 			forward = new ActionForward();

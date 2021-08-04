@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+html {
+	scroll-behavior: smooth;
+}
+
 /* 리뷰 ajax에 쓰이는 코드  */
 ul.tabs{
 	margin: 0px;
@@ -10,7 +14,6 @@ ul.tabs{
  	background: none; 
  	display: inline-block; 
  	padding: 10px 15px; 
- 	cursor: pointer; 
  } 
 ul.tabs li.current{
 	color: #222;
@@ -53,23 +56,23 @@ ul.tabs li.current{
 
 .images_4 {
 	margin-top: 15px;
-	width: 550px;
+	width: 570px;
+	display: flex;
 }
 
 .images_4 .image {
-	display: inline-block;
+	flex: 1;
+	transition-delay: 1s;
 }
 
 .images_4 .image button {
 	border: none;
+	width: 122px;
+	height: 122px;
 }
 
-.change_img[name="1"] {
-	margin: 0 17.5px;
-}
-
-.change_img[name="2"] {
-	margin-right: 17.5px;
+.images_4 .active img {
+	border: solid 1px #ffd324;
 }
 
 /*  */
@@ -195,6 +198,10 @@ ul.tabs li.current{
 	display: block;
 } 
 
+.required_mark {
+	color: #ffd324;
+}
+
 .calendar_right {
 	margin-left:160px;
 	text-align: right;
@@ -309,28 +316,41 @@ ul.tabs li.current{
 	margin: 0 auto;
 }
 
-.middle_nav {
-	width: 1120px;
-	height: 60px;
-	margin-bottom: 50px;
-	text-align: center;
+.sticky.visible {
+	position: sticky;
+	bottom: 0px;
 }
 
-.middle_nav button {
-	border: solid 1px #eeeeee;
-	background-color: white;
-	height: 60px;
-	width: 373px;
-	font-size: 15px;
+.middle_nav {
+	height: 53px;
+	margin-bottom: 60px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	list-style: none;
+}
+
+.middle_nav li {
+	position: relative;
+	flex: 1;
+	text-align: center;
+	font-size: 16px;
 	color: #888888;
-	margin-right: -3px;
+	line-height: 50px;
+	border: solid 1px #eeeeee;
+	cursor: pointer;
+	background: white;
 }
 
 .middle_nav .active {
 	border-top: solid 2px #ffd324;
 	border-bottom: none;
+	color: black;
 }
 
+.radiobtnA.checked, .radiobtnB.checked {
+	font-weight: 500;
+}
 
 
 

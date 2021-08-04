@@ -103,31 +103,28 @@ switch(path){
 			<div class="top_box">
 				<div class="category_product_image">
 					<div class="thumnail_main">
-						<span><img src="./admin_layout/upload/<%=itemDetail.getI_img() %>"></span>				
+						<img src="./admin_layout/upload/<%=itemDetail.getI_img() %>">		
 					</div>
 					<div class="thumnail_mini">
 						<ul class="images_4">
 							<li class="image">
-								<button type="button" class="change_img" name="0">
-									<span class="real_image"><img src="./admin_layout/upload/<%=itemDetail.getI_img() %>"></span>
+								<button type="button" class="change_img active" name="0">
+									<img src="./admin_layout/upload/<%=itemDetail.getI_img() %>">
 								</button>
 							</li>
 							<li class="image">
 								<button type="button" class="change_img" name="1">
 									<img src="./admin_layout/upload/<%=itemDetail.getI_subimg2() %>">
-									<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_subimg2() %>');"></span>
 								</button>
 							</li>
 							<li class="image">
 								<button type="button" class="change_img" name="2">
 									<img src="./admin_layout/upload/<%=itemDetail.getI_subimg3() %>">
-									<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_subimg3() %>');"></span>
 								</button>
 							</li>
 							<li class="image">
 								<button type="button" class="change_img" name="3">
 									<img src="./admin_layout/upload/<%=itemDetail.getI_subimg4() %>">
-									<span class="real_image" style="background-image: url('./admin_layout/upload/<%=itemDetail.getI_subimg4() %>');"></span>
 								</button>
 							</li>
 						</ul>
@@ -165,12 +162,12 @@ switch(path){
 							<input type="hidden" name="i_id" value=<%=i_id %>>
 							<%if(!path.equals("/SubContent.shop")){ %>
 								<div class="label_div">
-									<label class="label_name" id="label_name_date">수령일*</label>
+									<label class="label_name" id="label_name_date">수령일<span class="required_mark"> *</span></label>
 									<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
 								</div>
 							<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
 								<div class="label_div">
-									<label class="label_name" id="label_name_option">구독 옵션*</label>
+									<label class="label_name" id="label_name_option">구독 옵션<span class="required_mark"> *</span></label>
 									<select class="sub_option" name="sub_option" size="1" onchange="isLetter(<%=price %>)" required>
 										<option hidden="" value="">구독기간을 선택해주세요.</option>
 										<option value="2">1개월동안 X 2주마다</option>
@@ -194,8 +191,8 @@ switch(path){
 							<div class=label_div>
 								<label class="label_name">편지 추가</label>
 								<span class="add_letter">
-									<label class="radiobtn"><input type="radio" class="radioA" name="c_letter" value="1" onclick="isLetter(<%=price %>)" checked>추가할게요.(+2,500원)&emsp;&emsp;</label>
-									<label class="radiobtn"><input type="radio" class="radioB" name="c_letter" value="0" onclick="isLetter(<%=price %>)">추가하지 않을게요.</label>
+									<label class="radiobtnA checked"><input type="radio" class="radio" name="c_letter" value="1" onclick="isLetter(<%=price %>)" checked>추가할게요.(+2,500원)&emsp;&emsp;</label>
+									<label class="radiobtnB"><input type="radio" class="radio" name="c_letter" value="0" onclick="isLetter(<%=price %>)">추가하지 않을게요.</label>
 								</span>
 							</div>
 							<div class="extra">
@@ -237,39 +234,82 @@ switch(path){
 				</div>
 			</div>
 			<div class="category_product_description">
-				<div class="middle_nav">
-					<button type="button" class="middle_btn active" name="0">상품설명</button>
-					<button type="button" class="middle_btn" name="1">리뷰</button>
-					<button type="button" class="middle_btn" name="2">배송안내</button>
-				</div>
-				<div class="desc_image">
+				<ul class="middle_nav">
+					<li class="middle_li li_desc active" onclick="location.href='#desc_image'">상품설명</li>
+					<li class="middle_li li_review" onclick="location.href='#review_list'">리뷰</li>
+					<li class="middle_li li_deli_info" onclick="location.href='#delivery_info'">배송안내</li>
+				</ul>
+				<div id="desc_image" class="desc_image">
 					<img src="./admin_layout/upload/<%=itemDetail.getI_detailpage() %>">
 				</div>
 			</div>
+			<div id="review_list">
+				<h4 class="review_title">
+				<b class="point_event"></b>
+				</h4>
+				<div class="review_inbox">
+					<div class="review_write_btn">
+						<a href="" class="">리뷰 쓰기</a>
+					</div>
+					<ul class="select_reviews">
+						<li class="item">
+							<button type="button" class="btn best_reviews select">
+								<span>꽃다발 베스트 리뷰</span>
+							</button>
+						</li>
+						<li class="item">
+							<button type="button" class="btn common_reviews">
+								<span>이 상품의 리뷰</span>
+							</button>
+						</li>
+					</ul>
+					<div class="row">
+						<div class="review_best">
+							<ul>
+								<li>
+									<a href="#" class="review-opener closed">
+										<div class="review-preview">
+											<div class="review-star">
+												<span class="star" data-alt="0"><b class="blind">별점1</b></span><span
+													class="star" data-alt="1"><b class="blind">별점1</b></span><span
+													class="star" data-alt="2"><b class="blind">별점1</b></span><span
+													class="star" data-alt="3"><b class="blind">별점1</b></span><span
+													class="star" data-alt="4"><b class="blind">별점1</b></span>
+											</div>
+											<span class="review-title">너무너무 마음에 들어요❤️<span
+												class="bdg img"></span></span><span class="review-user">jung***님
+												(4회 구매)</span><span class="review-date">2021-03-04</span><span
+												class="review-box-name" style="display: none;">[시즈널]
+												탠저린 로즈 에디션 (03/04 수령)</span>
+										</div>
+										<div class="row review-detail">
+											<div class="inner">
+												<span class="review-contents"><span>꽃상태며 색감이며
+														모든게 마음에 들어요❣️ <br>
+												</span><span>제 생일기념으로 남편이 고르고 선물 해준건데, 덕분에 완벽한 하루가 될 것 같아요:)
+														<br>
+												</span><span>주변에 꽃선물 할 일이 있을 때 꼭 kukka로 올게요!<br></span></span>
+												<div class="detail_img">
+													<div class="review-image-link">
+														<img src="" class="review-image" alt="[시즈널] 탠저린 로즈 에디션 (03/04 수령)">
+													</div>
+												</div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			<div id="delivery_info">
+			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	<br>
-			
-	<h3>상품설명</h3>
+
 		
 		
 	<h3>리뷰</h3>
@@ -393,32 +433,71 @@ switch(path){
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
 	
+	<div class="sticky">
+		<ul class="middle_nav">
+			<li class="middle_li li_desc active" onclick="location.href='#desc_image'">상품설명</li>
+			<li class="middle_li li_review" onclick="location.href='#review_list'">리뷰</li>
+			<li class="middle_li li_deli_info" onclick="location.href='#delivery_info'">배송안내</li>
+		</ul>
+	</div>
+</body>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.radioA').click(function(){
-				$('#letter').css('display','block');
+			// 편지지 추가 옵션
+			$('.radio').click(function(){
+				if($(this).val() == 1) {
+					$('#letter').css('display','block');
+					$('.radiobtnB').removeClass('checked');
+					$('.radiobtnA').addClass('checked');
+				} else {
+					$('#letter').css('display','none');
+					$('.radiobtnA').removeClass('checked');
+					$('.radiobtnB').addClass('checked');
+				}
 			});
 			
-			$('.radioB').click(function(){
-				$('#letter').css('display','none');
-			});
-			
-			$('.sub_option').change(function(){ // 구독 옵션 선택하면 날짜입력창 보임
+			 // 구독 옵션 선택하면 날짜입력창 보임
+			$('.sub_option').change(function(){
 				$('.showCalendar').css('display','block');
 				$('.designinfo').css('display','block');
 			});
 			
+			// 이미지 전환
 			$('.change_img').click(function(){
-				alert($(this).attr('name'));
+				$('.change_img').removeClass('active');
+				$(this).addClass('active');
+				var imgUrl = $(this).find('img').attr('src')
+			 	$('.thumnail_main img').attr('src', imgUrl);
 			});
 			
-			$('.middle_btn').click(function(){
-				alert($(this).attr('name'));
+			// 중간 네비게이션 바 선택
+			$('.middle_li').click(function(){
+				if($(this).hasClass('li_desc')){
+					$('.middle_li').removeClass('active');
+					$('.li_desc').addClass('active');
+				}
+				if($(this).hasClass('li_review')){
+					$('.middle_li').removeClass('active');
+					$('.li_review').addClass('active');
+				}
+				if($(this).hasClass('li_deli_info')){
+					$('.middle_li').removeClass('active');
+					$('.li_deli_info').addClass('active');
+				}
+			});
+			
+			// 하단 네비게이션 바 보이기
+			$(document).scroll(function(){
+				var point = $(this).scrollTop();
+				if(point > $(".middle_nav").offset().top){
+					$('.sticky').addClass('visible');
+				} else {
+					$('.sticky').removeClass('visible');
+				}
 			});
 			
 		});
 	</script>
-</body>
 </html>
 
 

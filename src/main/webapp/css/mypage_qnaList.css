@@ -31,7 +31,7 @@ a, button {
 }
 
 .qnaList_div {
-	width: 761.6px;
+	width: 1120px;
 	height: 498.8px;
 	display: block;
     float: right;
@@ -41,7 +41,7 @@ a, button {
 
 .qnaList_article {
 	width: 761.6px;
-	height: 358.8px;
+	height: 360px;
 	padding-top: 40px;
 	padding: 0;
 	display: block;
@@ -65,12 +65,12 @@ a, button {
     clear: both;
 }
 
-.qnaList_article
-.qnaList_h3
+/* .qnaList_article */
+/* .qnaList_h3 */
 .qnaList_span {
 	width: 114.04px;
 	height: 32.8px;
-	font-size: 22px;
+	font-size: 18px;
     line-height: 33px;
     font-weight: 500;
     letter-spacing: -.44px;
@@ -87,8 +87,8 @@ a {
     outline-width: 1px;
 }
 
-.qnaList_article
-.qnaList_h3
+/* .qnaList_article */
+/* .qnaList_h3 */
 .qnaList_a {
 	width: 164.41px;
 	height: 46px;
@@ -111,7 +111,7 @@ a {
 .qnaList_p {
 	width: 761.6px;
 	height: 105px;
-	margin-top: 15px;
+	margin-top: 10px;
     padding-top: 20px;
     border-top: #d3d3d3 1px solid;
     padding: 0;
@@ -127,7 +127,8 @@ a {
 .qnaList_span2 {
 	padding-left: 12px;
     font-size: 16px;
-    line-height: 28px;
+    margin-top: 10px;
+    line-height: 20px;
     font-weight: 100;
     letter-spacing: -.24px;
     color: #222;
@@ -137,14 +138,14 @@ a {
     padding: 0;
 }
 
-.qnaList_div {
+.qnaList_div2 {
 	width: 761.6px;
 	height: 126px;
 	margin-top: 40px;
 	display: block;
 }
 
-.qnaList_div2 {
+.qnaList_div3 {
 	width: 761.6px;
 	height: 126px;
 	display: block;
@@ -185,7 +186,7 @@ tr {
     background-color: #f7f7f7;
     display: table-cell;
     vertical-align: inherit;
-    font-weight: bold;
+    font-weight: 500;
     text-align: -internal-center;
 }
 

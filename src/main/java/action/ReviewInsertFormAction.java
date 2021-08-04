@@ -30,6 +30,10 @@ public class ReviewInsertFormAction implements Action {
 		MemberBean memberMypageDetail = memberService.selectMember(m_id);
 		request.setAttribute("memberMypageDetail", memberMypageDetail);
 		
+		// 구독 수 전달
+		ArrayList<Integer> subscribeList = memberService.selectSubscribe(m_id);
+		request.setAttribute("subscribeList", subscribeList);
+		
 		// 기존의 리뷰 정보 출력을 위해 불러오는 파일들
 		// 리뷰 미작성 : non~  || 리뷰 작성 : ~
 		ReviewStatusService reviewStatusService = new ReviewStatusService();

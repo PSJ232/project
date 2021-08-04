@@ -18,14 +18,12 @@
 </head>
 <body>
 
-	<!-- 헤더 들어가는곳 -->
-	<header>
-		<jsp:include page="../inc/header.jsp"></jsp:include>
-	</header>
-	<!-- 헤더 들어가는곳 -->
-	<hr>
-	
+	<jsp:include page="../inc/header.jsp" ></jsp:include>
+
 	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
+	
+	<div class="mypage_container">
+		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 
 <%
 	MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
@@ -49,6 +47,7 @@
 
 	%>
 	<!-- 본문 내용 -->
+	<div class="memberGrade_div6">
 	<article class="memberGrade_article">
 		<h3 class="memberGrade_title">
 			<span class="memberGrade_span">회원등급</span>
@@ -177,8 +176,9 @@
 			</div>
 		</div>
 	</article>
+	</div>
+	</div>
 
-	<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 	<!-- 푸터 들어가는곳 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>

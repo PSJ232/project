@@ -23,14 +23,12 @@
 </style>
 </head>
 <body>
-<!-- 헤더 들어가는곳 -->
-	<header>
-		<jsp:include page="../inc/header.jsp"></jsp:include>
-	</header>
-	<!-- 헤더 들어가는곳 -->
-	<hr>
-	
+	<jsp:include page="../inc/header.jsp" ></jsp:include>
+
 	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
+	
+	<div class="mypage_container">
+		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 	
 	<div class="qnaList_div">
 		<article id="qnaList_article">
@@ -39,11 +37,11 @@
 					href="QnaInsert.qna" class="qnaList_a">1:1 문의하기</a>
 			</h3>
 			<p class="qnaList_p">
-				<span class="qnaList_span2">[1:1 문의 게시판]은 월~금 10:00~18:00
+				<span class="qnaList_span2"><br>· [1:1 문의 게시판]은 월~금 10:00~18:00
 					운영됩니다.</span> <br>
-				<span class="qnaList_span2">급한 문의는 1661-1031 (월~금
+				<span class="qnaList_span2">· 급한 문의는 1661-1031 (월~금
 					10:00~18:00)로 문의 주세요.</span> <br>
-				<span class="qnaList_span2">운영 시간 내에는 2시간 이내에 답변을 드리나, 문의가 많을
+				<span class="qnaList_span2">· 운영 시간 내에는 2시간 이내에 답변을 드리나, 문의가 많을
 					때에는 다소 지연될 수 있습니다.</span>
 			</p>
 			<%
@@ -58,8 +56,8 @@
 			<%
  } else {
  %>
-			<div class="qnaList_div">
-				<div class="qnaList_div2">
+			<div class="qnaList_div2">
+				<div class="qnaList_div3">
 					<table border="1" class="qnaList_table">
 						<thead>
 							<tr>
@@ -126,7 +124,7 @@
 			</div>
 		</article>
 	</div>
-	<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+</div>
 	<!-- 푸터 들어가는곳 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>

@@ -19,14 +19,12 @@
 </head>
 <body>
 
-<!-- 헤더 들어가는곳 -->
-	<header>
-		<jsp:include page="../inc/header.jsp"></jsp:include>
-	</header>
-	<!-- 헤더 들어가는곳 -->
-	<hr>
-	
+	<jsp:include page="../inc/header.jsp" ></jsp:include>
+
 	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
+	
+	<div class="mypage_container">
+		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 
 	<%
 	String m_id = (String) session.getAttribute("m_id");
@@ -104,8 +102,8 @@
 								<tbody>
 								<tr>
 									<td><%=memberMypageDetail.getM_rdate()%></td>
-									<td class="memberPoint_span3">적립</td>
-									<td class="memberPoit_span4">회원 가입 감사 적립금</td>
+									<td><span class="memberPoint_span3">적립</span></td>
+									<td><span class="memberPoit_span4">회원 가입 감사 적립금</span></td>
 									<td>1000</td>
 								</tr>
 								</tbody>
@@ -116,8 +114,7 @@
 			</div>
 		</div>
 	</article>
-
-<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+</div>
 	<!-- 푸터 들어가는곳 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>

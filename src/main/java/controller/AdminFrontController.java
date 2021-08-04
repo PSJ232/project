@@ -22,6 +22,7 @@ import action.AdminQnaDetailAction;
 import action.AdminQnaGetListAction;
 import action.AdminQnaListAction;
 import action.AdminQnaWriteAnswerAction;
+import action.AdminReviewListAction;
 import action.AdminSearchAction;
 import action.ChartAction;
 import action.ClassDeleteAction;
@@ -384,6 +385,14 @@ public class AdminFrontController extends HttpServlet {
 			AdminGetReservInfoAction reservAction = new AdminGetReservInfoAction();
 			try {
 				reservAction.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ReviewList.ad")) {
+			forward = new ActionForward();
+			action = new AdminReviewListAction();
+			try {
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
