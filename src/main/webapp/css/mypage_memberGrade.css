@@ -33,9 +33,9 @@ a, button {
 .memberGrade_div6 {
 	width: 1120px;
 	height: 771px;
-	position: absolute;
-    float: right;
-    width: 68%;
+	display: absolute;
+/*     float: right; */
+/*     width: 68%; */
     padding-bottom: 40px;
 }
 
