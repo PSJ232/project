@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
 	$(document).ready(function(){
-        $.ajax('ReservClassPlace.ad', {
+        $.ajax('ReservClassPlace.od', {
             type : 'GET',
             data: {
                 'f_place': $('#place').val(),
@@ -29,14 +29,14 @@
             }  
         }); 
         
-        $.ajax('ReservClassTime.ad', {
+        $.ajax('ReservClassTime.od', {
             type : 'GET',
             data: { 'f_id': $('#f_id').val() },
             datatype: 'json',
             success:function(rdata){
 				$.each(rdata, function(i, value){
 					console.log("i: " + i + ", value: " + value);
-	                 	$.ajax('ReservClassMem.ad', {
+	                 	$.ajax('ReservClassMem.od', {
                 		type: 'POST',
                 		data: {
                 			'fc_date': $('#date').val(),
@@ -71,7 +71,7 @@
 			<img alt="" src="<%=cb.getClass_sub_img2()%>">
 			<img alt="" src="<%=cb.getClass_sub_img3()%>">
 			<div><!-- 예약정보 입력 칸 -->
-				<form action="ReservInsert.ad" method="post">
+				<form action="ReservInsert.od" method="post">
 					<div>
 						<span><%=cb.getClass_sub_desc()%></span>
 						<h2><%=cb.getClass_subject()%></h2>
@@ -90,8 +90,6 @@
 							<input type="number" name="r_num" id="r_num" min="0" required>
 						</div>
 					</div>
-					<input type="hidden" name="fc_date" id="date" value="<%=cb.getClass_date()%>">
-					<input type="hidden" name="fc_date" id="date" value="<%=cb.getClass_date()%>">
 					<input type="hidden" name="fc_date" id="date" value="<%=cb.getClass_date()%>">
 					<input type="hidden" name="f_id" id="f_id" value="<%=cb.getClass_id()%>">
 					<input type="hidden" name="fd_place" id="place" value="<%=cb.getClass_place()%>">

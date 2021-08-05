@@ -55,7 +55,7 @@
   	    	//
   	    	var msg = '';
   	        msg += rsp.error_msg;
-  	        location.href='ReservMiddleCancle.ad?imp_uid=<%=rb.getR_id()%>&merchant_uid=<%=rb.getF_id()%>';
+  	        location.href='ReservMiddleCancle.od?imp_uid=<%=rb.getR_id()%>&merchant_uid=<%=rb.getF_id()%>';
   	    }
   	  alert(msg);
   	  });

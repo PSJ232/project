@@ -82,7 +82,7 @@ public class ReservInsertAction implements Action {
 			request.setAttribute("fd_time", fd_time);
 			request.setAttribute("grade", g_discount);
 			forward = new ActionForward();
-			forward.setPath("./admin_layout/reserv_manage/reservInsert.jsp");
+			forward.setPath("./reservation/reservInsert.jsp");
 			forward.setRedirect(false);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");

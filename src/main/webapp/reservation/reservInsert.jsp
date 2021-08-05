@@ -34,7 +34,7 @@ float grade = (float) request.getAttribute("grade");
 	<jsp:include page="/inc/navigation.jsp" ></jsp:include>
 	<!-- nav -->
 	<div id="container">
-		<form action="ReservInsertPro.ad" method="post">
+		<form action="ReservInsertPro.od" method="post">
 			<h1>오프라인 주문</h1>
 			<div>
 				<h5>수강 내용 확인</h5>

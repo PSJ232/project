@@ -28,7 +28,7 @@ public class ClassReservAction implements Action {
 		
 		//리턴값 설정
 		forward = new ActionForward();
-		forward.setPath("./admin_layout/class_member/classReserv.jsp");
+		forward.setPath("./reservation/classReserv.jsp");
 		
 		return forward;
 	}
