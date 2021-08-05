@@ -38,7 +38,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 			<div>
 				<h5>수강 내용 확인</h5>
 				<div>
-					<img alt="" src="">
+					<img alt="8" src="">
 					<div>
 						<span>[<%=fclassDetail.getPlace()%>]<%=fclass.getClass_subject() %></span><br>
 						<span>수강시작일 : <%=startDate %>요일, <%=fclassDetail.getDate() %>, <%=fd_time%>:00</span><br>
@@ -91,7 +91,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 					<div>
 						<div>
 							<span>포인트 할인</span>
-							<span id="use_point2"> - 0원</span>
+							<span id="use_point2"> - <%//= %>원</span>
 						</div>
 						
 						<div>
@@ -133,6 +133,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 				<!-- r_id 생성 -->
 				<div>
 					<input type="hidden" id="total_fee" name="total_fee" value="">
+					<input type="hidden" id="use_point3" name="use_point" value="">
 					<input type="hidden" id="m_id" value="<%=mb.getM_id()%>">
 					<input type="hidden" name="f_id" value="<%=fclass.getClass_id()%>">
 					<input type="hidden" value="<%=r_num%>">
@@ -158,6 +159,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 				let fee = $('#fee').val();
 				if(use_point.trim()!=""){
 					$('#use_point2').html('- '+use_point+'원');
+					$('#use_point3').val(use_point);
 					$('#total_fee').val(parseInt(fee) - parseInt(use_point));
 					$('#total_fee_print').html(parseInt(fee) - parseInt(use_point));
 					$('#use_point').val('');
