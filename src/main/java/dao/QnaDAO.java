@@ -51,7 +51,6 @@ public class QnaDAO {
 			pstmt.setString(7, qnaBean.getQ_img3());
 			pstmt.setString(8, qnaBean.getM_id());
 			pstmt.setInt(9, qnaBean.getQ_id()); //qna_re_ref
-			pstmt.setInt(10, 0); //qna_re_lev
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
