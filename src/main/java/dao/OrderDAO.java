@@ -904,7 +904,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		HashMap<String, Integer> orderCount = new HashMap<String, Integer>();
 		try {
-			String sql = "SELECT COUNT(DISTINCT o_id) FROM orders_detail WHERE od_invoice='주문접수'";
+			String sql = "SELECT COUNT(od_id) FROM orders_detail WHERE od_invoice='주문접수'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -912,7 +912,7 @@ public class OrderDAO {
 			}
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);
-			sql = "SELECT COUNT(DISTINCT o_id) FROM orders_detail WHERE NOT od_invoice='주문접수' AND NOT od_confirm=1";
+			sql = "SELECT COUNT(od_id) FROM orders_detail WHERE NOT od_invoice='주문접수' AND od_confirm=0";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -921,7 +921,7 @@ public class OrderDAO {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);
 			
-			sql = "SELECT COUNT(DISTINCT o_id) FROM orders_detail WHERE NOT od_invoice='주문접수' AND od_confirm=1";
+			sql = "SELECT COUNT(od_id) FROM orders_detail WHERE NOT od_invoice='주문접수' AND od_confirm=1";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

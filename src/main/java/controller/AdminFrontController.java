@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.AdminDashBoardAction;
 import action.AdminGetReservInfoAction;
 import action.AdminInsertTrackingNumProAction;
 import action.AdminMemberDetailAction;
@@ -389,6 +390,14 @@ public class AdminFrontController extends HttpServlet {
 		}else if(command.equals("/ReviewList.ad")) {
 			forward = new ActionForward();
 			action = new AdminReviewListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/DashBoard.ad")) {
+			forward = new ActionForward();
+			action = new AdminDashBoardAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

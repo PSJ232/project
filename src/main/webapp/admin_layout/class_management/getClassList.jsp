@@ -16,21 +16,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 	#img {
-		width: 150px;
-		height: 150px;
+		width: 180px;
+		height: 180px;
 		border-radius: 5px;
 		border: 1px solid #fff;
 	}
 	
 	.class_content {
-		margin-bottom: 10px;
-		width: 700px ;
+		margin-bottom: 20px;
+		width: 800px ;
 		height: 150px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
 		padding: 5px;
 	}
 	
+	.class_content:nth-child(odd) #img{
+		border: 1px solid #eee;
+	}
 	.class_content:nth-child(odd){
 		background-color: #eee;
 		border: 1px solid #eee;
@@ -43,7 +46,7 @@
 		border-radius: 7px;
 		background-color: #FFDF24;
 		font-size: 20px;
-		margin-left: 550px;
+		margin-left: 650px;
 		margin-bottom: 20px;
 	}
 	#btn:hover {
@@ -62,11 +65,11 @@
 				<table class="class_content">
 				<tr>
 				<td rowspan="4" width="5"><img id="img" src="<%="img_upload/"+cb.getClass_main_img() %>"/></td>
-				<td width="500"><h2 ><a id="class_subject" href="ClassDetailView.ad?class_num=<%=cb.getClass_id()%>"><%=cb.getClass_subject() %></a></h2></td>
+				<td width="500"><h1 ><a id="class_subject" href="ClassDetailView.ad?class_num=<%=cb.getClass_id()%>"><%=cb.getClass_subject() %></a></h1></td>
 				</tr>
 				<tr>
-				<td>
-				<h3><%=cb.getClass_place() %></h3>
+				<td height="100">
+				<h2><%=cb.getClass_place() %></h2>
 				<%
 			for(ClassDetailBean cdb: classDetailList){
 				if(cb.getClass_id() == cdb.getClass_id()){

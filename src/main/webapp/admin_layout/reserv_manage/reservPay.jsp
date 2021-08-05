@@ -33,6 +33,7 @@
   	    merchant_uid: "<%=rb.getR_id()%>",
   	    name: "<%=cb.getClass_subject()%>",
   	    amount: 100,
+<%--   	    amount: "<%=rb.getR_amount()%>", --%>
   	    buyer_email: "<%=mb.getM_id()%>",
   	    buyer_name: "<%=mb.getM_name()%>",
   	    buyer_tel: "<%=mb.getM_phone()%>",
@@ -44,7 +45,9 @@
   	        msg += '상점 거래ID : ' + rsp.merchant_uid;
   	        msg += '결제 금액 : ' + rsp.paid_amount;
   	        msg += '카드 승인번호 : ' + rsp.apply_num;
-  	        console.log(msg);
+  	        document.getElementById("r_id").value = rsp.merchant_uid;
+  	        document.getElementById("tr_amount").value = rsp.paid_amount;
+  	        document.getElementById("tr_approval_id").value = rsp.apply_num;
   	        isSuccess = true;
   	    } else {
   	    	var msg = '';
@@ -59,5 +62,12 @@
   </script>
 </head>
 <body>
+	<input type="hidden" name="r_id" value="">
+	<input type="hidden" name="tr_amount" value="">
+	<input type="hidden" name="tr_payment" value="<%=rb.getR_payment()%>">
+	<input type="hidden" name="tr_discount" value="">
+	<input type="hidden" name="tr_usepoint" value="">
+	<input type="hidden" name="tr_approval_id" value="">
+	
 </body>
 </html>

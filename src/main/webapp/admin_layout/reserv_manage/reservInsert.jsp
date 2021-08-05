@@ -108,7 +108,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 							 원 가격 - (포인트 할인 + 등급 할인) 한 가격이 30000원 이하일 때 
 							 원 가격 - (포인트 할인 + 등급 할인) 한 가격 표시 할지 의논필요-->
 						<div>총 결제 금액(예약금)</div>
-						<div><span id="total_fee_print"><%=fclass.getClass_price()%></span><span>원</span></div>
+						<div><span id="total_fee_print"><%=fclass.getClass_price()*r_num%></span><span>원</span></div>
 					</div>
 				</div>
 				

@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 | 클래스 목록</title>
+<!-- <link rel="stylesheet" href="./css/list_style.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hahmlet:wght@100&display=swap" rel="stylesheet">
@@ -22,8 +23,9 @@
 /* 		color: #ccc; */
 /* 	} */
 	.class_list_container {
-		margin-left: 500px;
-		margin-top: 100px;
+		margin-left: 250px;
+		margin-top: 120px;
+		width: 1240px;
 	}
 	#class_status {
 		margin-top: 10px;
