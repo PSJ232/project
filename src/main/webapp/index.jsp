@@ -15,12 +15,41 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
   
-
-<script>
+  <script>
     $(document).ready(function(){
-    	$('.bxSlider').bxSlider();
+    	$('.bxSlider').bxSlider({
+    		controls: false,
+   		 	pager: false,
+   		 	speed: 1000
+    	});
+    	
+    	$('.bxSlider2').bxSlider({
+   		 	mode: 'horizontal',
+   		 	controls: true,
+   		 	speed: 1500,
+   		    slideWidth: 400,   // 슬라이드 너비
+   		    minSlides: 2,      // 최소 노출 개수
+   		    maxSlides: 2,      // 최대 노출 개수
+   		    slideMargin: 5,    // 슬라이드간의 간격
+			pager: false,
+			infiniteLoop: false,
+			hideControlOnEnd: true
+    	});
     });
 </script>
+
+<style>
+#img{
+	width: 330px;
+	height: 340px;
+}
+.bx-wrapper {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 0;
+}
+</style>
 
 
 
@@ -58,9 +87,26 @@ if(cookie_check != null){
 		<li><a href="#"><img src="./img/main/main_banner_5.png"></a></li>	
 		<li><a href="#"><img src="./img/main/main_banner_6.png"></a></li>	
 	</ul>
-  
-  
 
+<!--   <ul class="bxSlider2"> -->
+<!--   		<li><a href="#"><img id="img" src="./admin_layout/upload/3_s_2.jpg"></a></li> -->
+<!--   		<li><a href="#"><img id="img" src="./admin_layout/upload/3_m_2.jpg"></a></li> -->
+<!--   		<li><a href="#"><img id="img" src="./admin_layout/upload/3_l_2.jpg"></a></li> -->
+<!--   		<li><a href="#"><img id="img" src="./admin_layout/upload/3_xl_2.jpg"></a></li> -->
+<!--   </ul> -->
+
+
+<div class = "wrapper">
+ <div class="bxSlider2">
+ 	<div>
+ 		<a href="#"><img id="img" src="./admin_layout/upload/3_s_2.jpg"></a>
+ 		꽃이 일상이 되는 가벼운 시작<br> 가벼운 S 꽃구독 <br> 1회 기준 17,900원~
+ 	</div>
+ 	<div><a href="#"><img id="img" src="./admin_layout/upload/3_m_2.jpg"></a></div>
+ 	<div><a href="#"><img id="img" src="./admin_layout/upload/3_l_2.jpg"></a></div>
+ 	<div><a href="#"><img id="img" src="./admin_layout/upload/3_xl_2.jpg"></a></div>
+ </div>
+ </div>
   
 
 
