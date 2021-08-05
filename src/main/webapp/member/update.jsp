@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="css/update.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+</script>
 </head>
 <%
 	MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
@@ -32,7 +35,7 @@
 	<!-- 헤더 들어가는곳 -->
 
 	<!-- 본문 메인 상단 -->
-<%-- 	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include> --%>
+	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
 
 		<!-- 본문 내용 -->
 	<div class ="mypage_update_container">
