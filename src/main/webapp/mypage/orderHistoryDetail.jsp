@@ -55,14 +55,11 @@ int addPrice = orderBean.getO_amount() - sumPrice;
 // 0:계좌이체, 1:신용카드, 2:카카오페이, 3:네이버페이 (미정)
 String paymentMethod = "";
 switch (orderBean.getO_payment()) {
+case 0:
+	paymentMethod = "계좌이체";
+	break;
 case 1:
 	paymentMethod = "신용카드";
-	break;
-case 2:
-	paymentMethod = "카카오페이";
-	break;
-case 3:
-	paymentMethod = "네이버페이";
 	break;
 }
 

@@ -33,21 +33,31 @@ public class ReservInsertProAction implements Action {
 		rb.setR_num(Integer.parseInt(request.getParameter("r_num")));
 		rb.setR_amount(Integer.parseInt(request.getParameter("total_fee")));
 		
+		IdMakerService idMakerService = new IdMakerService(); // 번호생성 알고리즘 Service 
+		int r_id = idMakerService.newId("reservation", "r_id", 1);
+		rb.setR_id(r_id);
+		System.out.println("reservation 아이디 :"+r_id);
 		ReservInsertProService reservInsertProService = new ReservInsertProService();	
 		boolean isInsertSuccess = reservInsertProService.insertReserv(rb);
-
-		ReservSelectIdService reservSelectIdService = new ReservSelectIdService();
-		int r_id = reservSelectIdService.getrId(rb);
+		
+		//등급할인 금액
+		float grade_discount = Float.parseFloat(request.getParameter("grade_discount"));
+		//사용 포인트
+		int point_discount = Integer.parseInt(request.getParameter("point_discount"));
+		
+		System.out.println("grade_discount: " + grade_discount);
+		System.out.println("point_discount: " + point_discount);
 		
 		if(isInsertSuccess) {
-			rb.setR_id(r_id);
 			System.out.println("reservBean insert 성공");
+			rb.setR_id(r_id);
 			System.out.println(rb.getM_id());
 			request.setAttribute("reservBean", rb);
-			System.out.println("@@@@@@@@" + rb.getR_id());
+			request.setAttribute("grade_discount", grade_discount);
+			request.setAttribute("point_discount", point_discount);
 			forward = new ActionForward();
 			//결제페이지로 이동
-			forward.setPath("/ReservPay.ad");
+			forward.setPath("/ReservPay.od");
 			forward.setRedirect(false);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");

@@ -1,191 +1,257 @@
 @charset "UTF-8";
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
 
-		.title {
-		    height: auto;
-		    padding: 40px 0;
-		    border-bottom: 50px;
-		    font-size: 30px;
-		    font-weight: 600;
-		    line-height: 45px;
-		    color: #333;
-		    text-align: center;
-		}
-		
-		.joinform {
-			display: block;
-			width: 1120px;
-			margin: 0 auto;
-			padding: 0 60px;			
-		}
-		
-		.joinform_container {
-		    max-width: 1240px;
-		    margin: 0 auto;
-		    padding: 0 60px;
-		}
-		
-		.topForm {
-		    max-width: 620px;
-		    margin: 0 auto;
-		    padding: 0 0 40px;
-		}
+body {
+  box-sizing: border-box;
+}
 
-		.bottomForm {
-			border: 1px solid #e7e7e7;
-			width: 80%;
-			margin: 50px auto;
-			border-radius: 5px;
-			display: block;	
-		}
-		
-		.bottomContent {
-			text-align: left;
-			font-size: 15px;
-			margin-left: 10px;
-			margin-top: 30px;
-			line-height: 30px;
-		}
-		
-		.row {
-			margin: 30px;
-			font-size: 1.8em;
-			vertical-align: middle;
-		}
-		
-		.checkMessage { 
-			font-size: 12px;
-			color: #FF0000;
-		}
-			
-		.leftLabel {
-			float: left;
-			width: 120px;
-			text-align: left;
-		 	font-size: 16px;
-		 	font-weight: 600;
-		 	letter-spacing: -.67px;
-		 	padding-top: 10px; 	
-		 	color: #333;
-		}		
+.top_banner {
+	top: 36px;
+	position: static;
+	display: block;
+	max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 60px;
+    text-align: center;
+}
 
-		.textBox {
-		    padding: 0;
-		    margin: 0;
-		    border: none;
-		    background: 0 0;
-		    outline: 0;
-		    display: block;
-		    width: 300px;
-		    height: 44px;
-		    margin-right: 110px;
-		    padding: 0 20px;
-		    -webkit-border-radius: 5px;
-		    -moz-border-radius: 5px;
-		    border-radius: 5px;
-		    border: #d3d3d3 1px solid;
-		    font-size: 14px;
-		    line-height: 44px;
-		    font-weight: 300;
-		    letter-spacing: -.21px;
-		    color: #222;
-		}
-		
-		.textBox2 {
-			height: 44px;
-			width: 300px;
-			border: 1px solid #eaeaea;
-			border-radius: 5px;	
-			font-size: 14px;
-			display: inline-block;
-		}
-		
-		.btn {
-			width: 120px;
-			height: 44px;
-			margin-left: 10px;
-			border: none;
-			border-radius: 5px;
-			color: #878787;
-			font-weight: bold;
-			font-size: 14px;
-			cursor: pointer;
-		}
-		
-		
-		.btn:hover {
-			color: #FFFFFF;
-			background-color: #000000;
-		}
-		
-		.joinForm input:focus {	
-			outline: none;
-			border: 1px solid #ffcd32;
-			border-radius: 5px;	
-		}
-		
-		input::placeholder {
-			 padding: 10px;
-		}
-		
-		.joinForm input[type="radio"] {
-			width: 100px;
-		}
-				
-		.joinForm input[type="checkbox"] {
-			width: 70px;
-		}
-		
-		.longTextBox {
-			height: 44px;
-			border: 1px solid #eaeaea;
-			border-radius: 5px;	
-			font-size: 14px;
-			display: inline-block;
-			width: 20%;
-		}
-		
-		.shortTextBox{
-			height: 44px;
-			border: 1px solid #eaeaea;
-			border-radius: 5px;	
-			font-size: 14px;
-			margin-left: 10px;
-			display: inline-block;
-			width: 8%;
-		}
-		
-		.bottomText{
-			display: inline-block;
-			font-size: 14px;
-			margin-top: 10px;
-			color: #878787;
-			font-weight: bold;		
-			margin-bottom: 20px;	
-		}	
-		
-		.textRed{
-			color: #FF0000;
-		}
-		
-						
-		.textStar {
-			font-size: 14px;
-			color: #ffcd32;
-		}
-		
-		input[type="submit"] {
-			display: inline-block;
-			border-radius: 5px;
-			width: 38%;
-			height: 44px;
-			color: #878787;
-			font-weight: bold;
-			font-size: 14px;
-			margin-bottom: 70px;
-			border: none;
-		}
+.top_banner h2 {
+    height: auto;
+    padding: 40px 0;
+    border-bottom: none;
+    font-size: 30px;
+    line-height: 45px;
+    font-weight: 800;
+    letter-spacing: -.6px;
+    color: #333;
+}
 
-		input[type="submit"]:hover {
-			color: #FFFFFF;
-			background-color: #000000;
-		}
+.join_us_box {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: block;
+}
+
+.join_us_box .inbox {
+    border-top: #d3d3d3 1px solid;
+    padding: 38px 0 50px;
+}
+
+.join_us_box .inbox .inner:first-of-type {
+    padding-top: 40px;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 0 40px;
+}
+
+.row {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.join_us_box .row .join_name {
+    float: left;
+    width: 120px;
+    padding-top: 10px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    letter-spacing: -.24px;
+    color: #222;
+    position: relative;
+}
+
+.join_us_box .row .join_input {
+	margin-top: 0;
+    overflow: hidden;
+    padding-right: 140px;
+    position: relative;
+    display: block;
+}
+
+.join_us_box .row .join_input .textBox {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: 0 0;
+    outline: 0;
+    display: block;
+    width: 100%;
+    height: 44px;
+    margin-right: 110px;
+    padding: 0 20px;
+    border-radius: 5px;
+    border: #d3d3d3 1px solid;
+    font-size: 14px;
+    line-height: 44px;
+    font-weight: 300;
+    letter-spacing: -.21px;
+    color: #222;
+}
+
+.join_us_box .row .join_input .textbox_long{
+	float: left;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    width: 45%;
+    height: 44px;
+    margin-right: 10px;
+    padding: 0 20px;
+    border-radius: 5px;
+    border: #d3d3d3 1px solid;
+    font-size: 14px;
+    line-height: 44px;
+    font-weight: 300;
+    letter-spacing: -.21px;
+    color: #222;	
+}
+
+.join_us_box .row .join_input .textbox_short {
+	float: left;
+	position: relative;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    width: 22%;
+    height: 44px;
+    margin-right: 12px;
+    padding: 0 20px;
+    border-radius: 5px;
+    border: #d3d3d3 1px solid;
+    font-size: 14px;
+    line-height: 44px;
+    font-weight: 300;
+    letter-spacing: -.21px;
+    color: #222;	
+}
+
+.join_us_box .row .join_input .btn {
+    border: none;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 44px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 44px;
+    font-weight: 700;
+    letter-spacing: -.21px;
+    color: #787878;
+    background: #ececec;
+    text-align: center;
+}
+
+.join_us_box .row .join_input .radio_gender {
+	width: 120px;
+	height: 30px;
+	margin-right: 20px;
+	text-align: center;
+	font-size: 20px;	
+}
+
+.join_us_box .row .join_input .gender_txt {
+	font-size: 14px;
+	font-weight: 300;	
+}
+
+.checkMessage{
+	color: #FF0000;
+	padding-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+ } 
+ 
+ .join_us_box .bottomForm {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+    padding: 0;
+    letter-spacing: -.5px;
+    outline-width: 1px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    line-height: 15px;
+}
+
+.join_us_box .bottomForm .agreement_list {
+    padding: 10px 20px 20px;
+    border: #ececec 1px solid;
+    border-radius: 5px;
+    padding: 30px 20px;    
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.join_us_box .row .agreement_list .agree_part {
+    margin-top: 20px;
+    padding-top: 10px;   
+    
+}
+
+.join_us_box .row .agreement_list .agree_part:first-of-type {
+    margin-top: 20px;
+    padding-top: 10px;    
+	border-top: #ececec 1px solid;
+}
+
+.agree_terms {
+    padding-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -.24px;
+    color: #888;
+}
+
+.join_us_box .bottomForm .inner .row .btn_submit {
+    padding: 0 0;
+    margin: 0 0;
+    border: none;
+    cursor: pointer;
+    width: 360px;
+    height: 48px;
+    background: #ececec;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 48px;
+    font-weight: 700;
+    letter-spacing: -.24px;
+    color: #787878;
+}
+
+
+.join_us_box .bottomForm .inner:last-of-type {
+    padding-bottom: 100px;
+}
+
+.join_us_box .bottomForm .inner {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 0 40px;
+}
+
+.join_us_box bottomForm .inner .row {
+    margin-top: 40px;
+}

@@ -12,6 +12,22 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" >
+</script>
+<script type="text/javascript">
+$(document).on("change", ".file-input1", function(){
+      
+    $filename1 = $(this).val();
+
+    if($filename1 == "")
+      $filename1 = "파일을 선택해주세요.";
+
+    $(".filename1").val($filename1);
+
+  })
+</script>
+
+
 
 </head>
 <%
@@ -59,17 +75,17 @@ String m_id = (String) session.getAttribute("m_id");
 				<p id="qna_insert_p">- 게시판 성격에 맞지 않는 글의 경우, 게시가 중단될 수 있습니다.</p>
 				<br>
 				<h2 id="qna_insert_th">사진 첨부</h2>
-				<div id="qna_insert_ul">
-					<input id="qna_insert_li" type="text" name="q_text"> 
-					
+				
+				<div id="qna_insert_ul" class="filebox">
 					<label class="input-file-button" for="qna_insert_li_inp"> 사진첨부</label> 
-						<input id="qna_insert_li_inp" type="file" name="q_img" value="사진 첨부">
-						<input id="qna_insert_li" type="text" name="q_text2"> 
-					
+						<input id="qna_insert_li_inp" type="file" name="q_img" class="file-input1">
+					<input id="qna_insert_li" type="text" name="q_text" class="filename1"> 
+
 					<label class="input-file-button" for="qna_insert_li_inp"> 사진첨부</label> 
-						<input id="qna_insert_li_inp" type="file" name="q_img2" value="사진 첨부">
-						<input id="qna_insert_li" type="text" name="q_text3"> 
-					
+						<input id="qna_insert_li_inp" type="file" name="q_img2" class="file-input2">
+					<input id="qna_insert_li" type="text" name="q_text2" class="filename2"> 
+
+					<input id="qna_insert_li" type="text" name="q_text3"> 
 					<label class="input-file-button" for="qna_insert_li_inp"> 사진첨부</label> 
 						<input id="qna_insert_li_inp" type="file" name="q_img3" value="사진 첨부">
 					<p id="qna_insert_p2">- ( 5mb, 3장 첨부가능 )</p>

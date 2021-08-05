@@ -244,191 +244,171 @@ switch(path){
 				</div>
 			</div>
 			<div id="review_list">
-				<h4 class="review_title">
-				<b class="point_event"></b>
-				</h4>
-				<div class="review_inbox">
-					<div class="review_write_btn">
-						<a href="" class="">리뷰 쓰기</a>
+				<div class="review_top">
+					<div class="review_title">
+					리뷰
+						<b class="point_event">리뷰 작성 시 200P 적립 (사진 등록 시 300P)</b>
 					</div>
-					<ul class="select_reviews">
-						<li class="item">
-							<button type="button" class="btn best_reviews select">
+					<div class="review_write_btn">
+						<a href="ReviewInsertForm.rv" class="btn_a">리뷰 쓰기</a>
+					</div>
+				</div>
+				<div class="review_inbox">
+					<ul class="tabs">
+						<li class="tab-link current" data-tab="tab-1">
+							<button type="button" class="btn best_reviews">
 								<span>꽃다발 베스트 리뷰</span>
 							</button>
 						</li>
-						<li class="item">
+						<li class="tab-link" data-tab="tab-2">
 							<button type="button" class="btn common_reviews">
 								<span>이 상품의 리뷰</span>
 							</button>
 						</li>
 					</ul>
 					<div class="row">
-						<div class="review_best">
-							<ul>
-								<li>
-									<a href="#" class="review-opener closed">
-										<div class="review-preview">
-											<div class="review-star">
-												<span class="star" data-alt="0"><b class="blind">별점1</b></span><span
-													class="star" data-alt="1"><b class="blind">별점1</b></span><span
-													class="star" data-alt="2"><b class="blind">별점1</b></span><span
-													class="star" data-alt="3"><b class="blind">별점1</b></span><span
-													class="star" data-alt="4"><b class="blind">별점1</b></span>
-											</div>
-											<span class="review-title">너무너무 마음에 들어요❤️<span
-												class="bdg img"></span></span><span class="review-user">jung***님
-												(4회 구매)</span><span class="review-date">2021-03-04</span><span
-												class="review-box-name" style="display: none;">[시즈널]
-												탠저린 로즈 에디션 (03/04 수령)</span>
-										</div>
-										<div class="row review-detail">
-											<div class="inner">
-												<span class="review-contents"><span>꽃상태며 색감이며
-														모든게 마음에 들어요❣️ <br>
-												</span><span>제 생일기념으로 남편이 고르고 선물 해준건데, 덕분에 완벽한 하루가 될 것 같아요:)
-														<br>
-												</span><span>주변에 꽃선물 할 일이 있을 때 꼭 kukka로 올게요!<br></span></span>
-												<div class="detail_img">
-													<div class="review-image-link">
-														<img src="" class="review-image" alt="[시즈널] 탠저린 로즈 에디션 (03/04 수령)">
-													</div>
-												</div>
-											</div>
-										</div>
-									</a>
-								</li>
-							</ul>
+						<div id="tab-1" class="tab-content current">
+							<!-- 베스트 댓글 jsp파일  -->
+							<jsp:include page="../inc/best_review.jsp"></jsp:include>
+						</div>
+						<div id="tab-2" class="tab-content">
+						<%if(rbList.isEmpty()) {
+							%>작성된 리뷰가 없습니다.<%
+						} else {%>	
+							<table>
+						<!-- 	<tr><td>별점</td><td>제목</td><td>작성자</td><td>주문일자</td></tr> -->
+							<%for(int i=0; i<rbList.size(); i++) {
+									//리뷰 아이디 설정
+									String r_writer[] = rbList.get(i).getR_writer().split("@");
+									String a = r_writer[0].substring(0, 4);
+									String editId = a + "***";
+								
+									// 평점 설정
+									String rate = "";
+									switch(rbList.get(i).getR_rate()) {
+									case 5: rate =  "★★★★★"; break;
+									case 4: rate =  "★★★★"; break;
+									case 3: rate =  "★★★"; break;
+									case 2: rate =  "★★"; break;
+									case 1: rate =  "★"; break;
+										
+									}
+									
+									String content = rbList.get(i).getR_content(); // 본문 줄바꿈
+									if (content != null) {
+										content = content.replaceAll("\r\n", "<br>");
+									}
+							%>
+								<tr onclick="$(this).next('tr').toggle()">
+									<td class="td1"><%=rate %></td>
+									<td class="td2"><%=rbList.get(i).getR_title() %><span class="icon_img"></span></td>
+									<td class="td3"><%=editId %>님</td>
+									<td class="td4"><%=rbList.get(i).getR_rdate() %></td>
+								</tr>
+								<tr id="hidden">
+									<td class="td5" colspan="5">
+										<p><%=content %></p><br>
+										<img src="./reviewUpload/<%=rbList.get(i).getR_img()%>"/>
+									</td>
+								</tr>
+							<%}	%>
+							</table>
+						<%} %>
 						</div>
 					</div>
 				</div>
-				
-				
 			</div>
 			<div id="delivery_info">
+				<div class="delivery_info_tit_tab is_open">
+					<div class="intab">
+						<button type="button" class="opener" data-type="information">
+							<span class="deli_title">배송안내</span>&nbsp;<span class="icon_arrow">∨</span><span class="icon_arrow" style="display: none">∧</span>
+						</button>
+					</div>
+				</div>
+				<div class="inner">
+					<div id="info_html">
+						<h3>
+							<strong>1. 배송 정보</strong>
+						</h3>
+						<p>
+							<strong>1-1. 배송비 정책</strong>
+						</p>
+						<p>[공통]&nbsp;구매 금액 합산 30,000원 이상일 경우 배송비는 무료입니다.&nbsp;</p>
+						<p>[유의사항] 정기구독 상품 및 일부 3만원 미만의&nbsp;배송비 무료 상품은&nbsp;구매금액 합산에 포함되지 않습니다.</p>
+						<p>&nbsp;</p>
+						<p>
+							<strong>1-2. 일반배송&nbsp;(택배배송)</strong>
+						</p>
+						<p>[배송일]&nbsp;선택하신 수령일 전날 발송되어 해당 일에 수령합니다.</p>
+						<p>[배송방법]&nbsp;우체국 택배와 cj대한통운 택배를 통해서 배송되며, 카카오톡 알림톡을 통해 주문하신 분께 송장 번호를 개별적으로 공지합니다.</p>
+						<p>[배송지역]&nbsp;&nbsp;전국 모든 지역에 배송이 가능합니다. (제주도 및 도서 산간 지역은 1~2일 늦어질 수 있습니다.)</p>
+						<p>[배송시간]&nbsp;택배로 배송되는 특성상 당일 정확한 배송 시간 안내는 어려운 점 양해 부탁드려요.</p>
+						<p>&nbsp;해당 주소지에 평소 우체국택배 집배원님이 배송 가시는 시간에 받아보실 수 있습니다.</p>
+						<p>&nbsp;</p>
+						<p>
+							<strong>1-3. 새벽배송&nbsp;</strong>
+						</p>
+						<p>[배송지역] 서울/경기 일부지역에만 제공되며, 섬/공단/학교/학교기숙사/병원/관공서는 배송이 불가합니다.</p>
+						<p>[배송방법] 새벽배송 가능지역은 오전 8시 이전까지 작성하신 배송지로 배송되며, 그 외 지역은 일반배송 (택배배송)으로 발송됩니다.</p>
+						<p>[배송시간] 오후 2시 이전 주문완료건에 대하여 다음날 오전 8시 이전까지 배송받을 수 있습니다. 폭설, 한파, 자연재해 등 도로상황이 좋지 못할 경우 다소 지연될 수 있습니다.</p>
+						<p>[배송비 정책] 새벽배송 가능지역일 경우, 추가비용없이 배송됩니다.</p>
+						<p>[유의사항]</p>
+						<p>- 새벽배송은 저온의 온도를 유지하기 위해 단열재 없이 배송됩니다.</p>
+						<p>- 결제시, 공동현관 비밀번호 기입이 필수이며, 미기입시 1층 현관에 배송됩니다.</p>
+						<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+						<p>
+							<strong>▶ 새벽배송 가능지역 ◀</strong>
+						</p>
+						<p>1) 전지역 가능</p>
+						<p>서울, 안양시, 부천시, 구리시, 성남시, 수원시, 광명시, 의정부시, 안산시, 시흥시 (안산/시흥 공단지역 제외)</p>
+						<p>&nbsp;</p>
+						<p>2) 일부지역가능</p>
+						<p><u>광주시</u>&nbsp; 오포읍</p>
+						<p>&nbsp;</p>
+						<p><u>고양시</u></p>
+						<p>덕양구 – ( 벽제, 고양, 내유, 관산, 대자, 선유, 오금, 효자, 북한, 동산, 용두 ) 제외 전 지역 가능</p>
+						<p>일산동구 – 전 지역 가능</p>
+						<p>일산서구 – 전 지역 가능</p>
+						<p>&nbsp;</p>
+						<p><u>과천시</u>&nbsp; &nbsp;관문동 제외 전지역</p>
+						<p>&nbsp;</p>
+						<p><u>용인시</u>&nbsp; &nbsp;수지구 고기동, 처인구 제외 전지역</p>
+						<p>&nbsp;</p>
+						<p><u>인천광역시</u>&nbsp; &nbsp;계양구, 부평구, 남동구, 연수구, 미추홀구, 서구, 동구, 중 ( 송현동, 송림동, 화수동, 만석동, 화평동, 송월동, 북성동, 항동, 해안동, 중앙동, 관동, 신포동, 내동, 전동, 인현동, 용동, 경동, 금곡동, 창영동, 도원동, 선화동, 유동, 신흥동, 신생동, 사동, 답동, 율목동 )</p>
+						<p>&nbsp;</p>
+						<p><u>하남시</u>&nbsp; &nbsp;</p>
+						<p>미사동(미사1~2동), 신장동(신장1~2동), 덕풍동(덕풍1~3동), 망월동, 선동, 풍산동, 창우동, 천현동, 학암동, 위례동</p>
+						<p>&nbsp;</p>
+						<p><u>파주시</u>&nbsp; &nbsp;</p>
+						<p>금촌동(금촌1~3동), 운정1~3동, 야동동, 다율동, 와동동, 목동동, 동패동, 문발동, 야당동, 교하동</p>
+						<p>&nbsp;</p>
+						<p><u>화성시</u></p>
+						<p>병점동(병점1~2동), 동탄1~6동, 진안동, 반월동, 기산동, 능동, 반송동, 석우동, 영천동, 청계동, 오산동, 목동, 산척동, 봉담읍 일부</p>
+						<p>&nbsp;</p>
+						<p><u>의왕시</u>&nbsp; &nbsp;내손동(내손1~2동), 포일동, 오전동, 고천동, 청계동</p>
+						<p>&nbsp;</p>
+						<p><u>군포시</u>&nbsp; &nbsp;군포1~2동, 산본동(산본1~2동), 금정동, 당동, 당정동, 부곡동, 광정동, 궁내동, 수리동, 재궁동, 오금동</p>
+						<p>&nbsp;</p>
+						<p><u>김포시</u>&nbsp; &nbsp;양촌읍, 고촌읍, 운양동, 장기동, 구래동, 마산동, 걸포동, 감정동, 사우동, 북변동, 풍무동</p>
+						<p>&nbsp;</p>
+						<p><u>남양주시</u></p>
+						<p>진전읍, 진건읍, 와부읍, 별내면, 퇴계원면, 다산동(다산1~2동), 별내동, 평내동, 호평동, 금곡동, 이패동, 도농동, 지금동</p>
+						<p>&nbsp;</p>
+						<h3>
+							<strong>2. 교환 및 환불 정책</strong>
+						</h3>
+						<p>[결제 완료] 상태라면 언제든지 홈페이지 및 고객센터를 통해 해지 가능합니다. (마이페이지 &gt; 주문내역)</p>
+						<p>[발송 준비] 단계에서는 주문 내역 변경 및 주문 취소가 불가합니다.</p>
+						<p>[배송 완료] 배송 이후에는 원칙적으로 환불이 불가하며, 100% happiness program에 따라</p>
+						<p>꽃 신선도, 배송 상태(꽃 부러짐) 등 문제가 있는 경우에는 동일 꽃 혹은 동일 크기의 꽃으로 다시 보내드립니다.</p>
+						<p>[기타]&nbsp;무통장 결제의 환불은 주문취소요청이 확인된 날짜 기준으로 다음날(휴일 제외)에 일괄적으로 이루어집니다.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
-		
-		
-	<h3>리뷰</h3>
-	리뷰 작성 시 200P 적립 (사진 등록 시 300P)<br>
-	<a href="ReviewInsertForm.rv">리뷰쓰기</a> 
-	
-	
-	<!--   -------------------------------------------------- -->
-  	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">꽃다발 베스트 리뷰</li>
-		<li class="tab-link" data-tab="tab-2">이 상품의 리뷰</li>
-	</ul>
-<!--   -------------------------------------------------- -->
-	<div id="tab-1" class="tab-content current">
-	</div>
-	<div id="tab-2" class="tab-content">
-	<%if(rbList.isEmpty()) {
-		%>작성된 리뷰가 없습니다.<%
-	} else {%>	
-	
-		<table border="1">
-	<!-- 	<tr><td>별점</td><td>제목</td><td>작성자</td><td>주문일자</td></tr> -->
-		<%for(int i=0; i<rbList.size(); i++) {
-				//리뷰 아이디 설정
-				String r_writer[] = rbList.get(i).getR_writer().split("@");
-				String a = r_writer[0].substring(0, 4);
-				String editId = a + "***";
-			
-				// 평점 설정
-				String rate = "";
-				switch(rbList.get(i).getR_rate()) {
-				case 5: rate =  "★★★★★"; break;
-				case 4: rate =  "★★★★"; break;
-				case 3: rate =  "★★★"; break;
-				case 2: rate =  "★★"; break;
-				case 1: rate =  "★"; break;
-					
-				}
-		%>
-			<tr onclick="$(this).next('tr').toggle()"><td><%=rate %></td><td><%=rbList.get(i).getR_title() %></td><td><%=editId %></td><td><%=rbList.get(i).getR_rdate() %></td></tr>
-			<tr id="hidden"><td colspan="4"><%=rbList.get(i).getR_content() %><br><img src="./reviewUpload/<%=rbList.get(i).getR_img()%>"/></td></tr>
-		<%
-			} 
-		%>
-		</table>
-	<%} %>
-	</div>
-	
-	
-	<h3>배송안내</h3>
-	<textarea rows="30" cols="150">
-1. 배송 정보
-1-1. 배송비 정책
-[공통] 구매 금액 합산 30,000원 이상일 경우 배송비는 무료입니다. 
-[유의사항] 정기구독 상품 및 일부 3만원 미만의 배송비 무료 상품은 구매금액 합산에 포함되지 않습니다.
-
-1-2. 일반배송 (택배배송)
-[배송일] 선택하신 수령일 전날 발송되어 해당 일에 수령합니다.
-[배송방법] 우체국 택배와 cj대한통운 택배를 통해서 배송되며, 카카오톡 알림톡을 통해 주문하신 분께 송장 번호를 개별적으로 공지합니다.
-[배송지역]  전국 모든 지역에 배송이 가능합니다. (제주도 및 도서 산간 지역은 1~2일 늦어질 수 있습니다.)
-[배송시간] 택배로 배송되는 특성상 당일 정확한 배송 시간 안내는 어려운 점 양해 부탁드려요.
- 해당 주소지에 평소 우체국택배 집배원님이 배송 가시는 시간에 받아보실 수 있습니다.
-
-1-3. 새벽배송 
-[배송지역] 서울/경기 일부지역에만 제공되며, 섬/공단/학교/학교기숙사/병원/관공서는 배송이 불가합니다.
-[배송방법] 새벽배송 가능지역은 오전 8시 이전까지 작성하신 배송지로 배송되며, 그 외 지역은 일반배송 (택배배송)으로 발송됩니다.
-[배송시간] 오후 2시 이전 주문완료건에 대하여 다음날 오전 8시 이전까지 배송받을 수 있습니다. 폭설, 한파, 자연재해 등 도로상황이 좋지 못할 경우 다소 지연될 수 있습니다.
-[배송비 정책] 새벽배송 가능지역일 경우, 추가비용없이 배송됩니다.
-[유의사항]
-- 새벽배송은 저온의 온도를 유지하기 위해 단열재 없이 배송됩니다.
-- 결제시, 공동현관 비밀번호 기입이 필수이며, 미기입시 1층 현관에 배송됩니다.
-
-▶ 새벽배송 가능지역 ◀
-1) 전지역 가능
-서울, 안양시, 부천시, 구리시, 성남시, 수원시, 광명시, 의정부시, 안산시, 시흥시 (안산/시흥 공단지역 제외)
-
-2) 일부지역가능
-광주시  오포읍
-
-고양시
-덕양구 – ( 벽제, 고양, 내유, 관산, 대자, 선유, 오금, 효자, 북한, 동산, 용두 ) 제외 전 지역 가능
-일산동구 – 전 지역 가능
-일산서구 – 전 지역 가능
-
-과천시   관문동 제외 전지역
-
-용인시   수지구 고기동, 처인구 제외 전지역
-
-인천광역시   계양구, 부평구, 남동구, 연수구, 미추홀구, 서구, 동구, 중 ( 송현동, 송림동, 화수동, 만석동, 화평동, 송월동, 북성동, 항동, 해안동, 중앙동, 관동, 신포동, 내동, 전동, 인현동, 용동, 경동, 금곡동, 창영동, 도원동, 선화동, 유동, 신흥동, 신생동, 사동, 답동, 율목동 )
-
-하남시   
-미사동(미사1~2동), 신장동(신장1~2동), 덕풍동(덕풍1~3동), 망월동, 선동, 풍산동, 창우동, 천현동, 학암동, 위례동
-
-파주시   
-금촌동(금촌1~3동), 운정1~3동, 야동동, 다율동, 와동동, 목동동, 동패동, 문발동, 야당동, 교하동
-
-화성시
-병점동(병점1~2동), 동탄1~6동, 진안동, 반월동, 기산동, 능동, 반송동, 석우동, 영천동, 청계동, 오산동, 목동, 산척동, 봉담읍 일부
-
-의왕시   내손동(내손1~2동), 포일동, 오전동, 고천동, 청계동
-
-군포시   군포1~2동, 산본동(산본1~2동), 금정동, 당동, 당정동, 부곡동, 광정동, 궁내동, 수리동, 재궁동, 오금동
-
-김포시   양촌읍, 고촌읍, 운양동, 장기동, 구래동, 마산동, 걸포동, 감정동, 사우동, 북변동, 풍무동
-
-남양주시
-진전읍, 진건읍, 와부읍, 별내면, 퇴계원면, 다산동(다산1~2동), 별내동, 평내동, 호평동, 금곡동, 이패동, 도농동, 지금동
-
-2. 교환 및 환불 정책
-[결제 완료] 상태라면 언제든지 홈페이지 및 고객센터를 통해 해지 가능합니다. (마이페이지 > 주문내역)
-[발송 준비] 단계에서는 주문 내역 변경 및 주문 취소가 불가합니다.
-[배송 완료] 배송 이후에는 원칙적으로 환불이 불가하며, 100% happiness program에 따라
-꽃 신선도, 배송 상태(꽃 부러짐) 등 문제가 있는 경우에는 동일 꽃 혹은 동일 크기의 꽃으로 다시 보내드립니다.
-[기타] 무통장 결제의 환불은 주문취소요청이 확인된 날짜 기준으로 다음날(휴일 제외)에 일괄적으로 이루어집니다.
-	</textarea>
-	
-	
-	
-	
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
@@ -486,7 +466,7 @@ switch(path){
 				}
 			});
 			
-			// 하단 네비게이션 바 보이기
+			// 중간 네비게이션 바 하단에 보이기
 			$(document).scroll(function(){
 				var point = $(this).scrollTop();
 				if(point > $(".middle_nav").offset().top){
@@ -494,6 +474,13 @@ switch(path){
 				} else {
 					$('.sticky').removeClass('visible');
 				}
+			});
+			
+			// 배송안내 내용 보이기
+			$('.intab .opener').click(function(){
+				$('#info_html').toggle();
+				$('.icon_arrow').toggle();
+				
 			});
 			
 		});

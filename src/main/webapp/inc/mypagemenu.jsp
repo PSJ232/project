@@ -30,7 +30,7 @@
 				<h2 id="mypage_left_title">개인정보 관리</h2>
 				<ul id="mypage_menu_list">
 					<li id="mypage_list"><a id="mypage_list_a"
-						href="MemberUpdate.me">개인정보 수정</a></li>
+						href="UpdateMyInfo.me">개인정보 수정</a></li>
 					<li id="mypage_list"><a id="mypage_list_a"
 						href="MemberMypageGradeDetail.me">회원등급</a></li>
 					<li id="mypage_list"><a id="mypage_list_a"
