@@ -22,7 +22,10 @@ public class ReservClassTimeAction{
 		
 		ClassReservService classReservService = new ClassReservService();
 		ArrayList<Integer> reservTimeList = classReservService.getTimeList(f_id);
-		
+		System.out.println("size: "+reservTimeList.size());
+		for(int i = 0; i < reservTimeList.size(); i++) {
+			System.out.println("Time: " + reservTimeList.get(i));
+		}
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
