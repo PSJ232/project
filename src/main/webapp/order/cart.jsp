@@ -48,7 +48,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 						<table border="1" class="cart_table">
 							<tr>
 								<td class="cart_td"><input type="checkbox"
-									class="cart_input"><span class="cart_span">상품정보</span></td>
+									class="cart_input" checked><span class="cart_span">상품정보</span></td>
 								<td class="cart_td"><span class="cart_span2">추가상품</span></td>
 								<td class="cart_td"><span class="cart_span3">합계금액</span></td>
 							</tr>

@@ -244,119 +244,86 @@ switch(path){
 				</div>
 			</div>
 			<div id="review_list">
-				<h4 class="review_title">
-				<b class="point_event"></b>
-				</h4>
-				<div class="review_inbox">
-					<div class="review_write_btn">
-						<a href="" class="">리뷰 쓰기</a>
+				<div class="review_top">
+					<div class="review_title">
+					리뷰
+						<b class="point_event">리뷰 작성 시 200P 적립 (사진 등록 시 300P)</b>
 					</div>
-					<ul class="select_reviews">
-						<li class="item">
-							<button type="button" class="btn best_reviews select">
+					<div class="review_write_btn">
+						<a href="ReviewInsertForm.rv" class="btn_a">리뷰 쓰기</a>
+					</div>
+				</div>
+				<div class="review_inbox">
+					<ul class="tabs">
+						<li class="tab-link current" data-tab="tab-1">
+							<button type="button" class="btn best_reviews">
 								<span>꽃다발 베스트 리뷰</span>
 							</button>
 						</li>
-						<li class="item">
+						<li class="tab-link" data-tab="tab-2">
 							<button type="button" class="btn common_reviews">
 								<span>이 상품의 리뷰</span>
 							</button>
 						</li>
 					</ul>
 					<div class="row">
-						<div class="review_best">
-							<ul>
-								<li>
-									<a href="#" class="review-opener closed">
-										<div class="review-preview">
-											<div class="review-star">
-												<span class="star" data-alt="0"><b class="blind">별점1</b></span><span
-													class="star" data-alt="1"><b class="blind">별점1</b></span><span
-													class="star" data-alt="2"><b class="blind">별점1</b></span><span
-													class="star" data-alt="3"><b class="blind">별점1</b></span><span
-													class="star" data-alt="4"><b class="blind">별점1</b></span>
-											</div>
-											<span class="review-title">너무너무 마음에 들어요❤️<span
-												class="bdg img"></span></span><span class="review-user">jung***님
-												(4회 구매)</span><span class="review-date">2021-03-04</span><span
-												class="review-box-name" style="display: none;">[시즈널]
-												탠저린 로즈 에디션 (03/04 수령)</span>
-										</div>
-										<div class="row review-detail">
-											<div class="inner">
-												<span class="review-contents"><span>꽃상태며 색감이며
-														모든게 마음에 들어요❣️ <br>
-												</span><span>제 생일기념으로 남편이 고르고 선물 해준건데, 덕분에 완벽한 하루가 될 것 같아요:)
-														<br>
-												</span><span>주변에 꽃선물 할 일이 있을 때 꼭 kukka로 올게요!<br></span></span>
-												<div class="detail_img">
-													<div class="review-image-link">
-														<img src="" class="review-image" alt="[시즈널] 탠저린 로즈 에디션 (03/04 수령)">
-													</div>
-												</div>
-											</div>
-										</div>
-									</a>
-								</li>
-							</ul>
+						<div id="tab-1" class="tab-content current">
+							<!-- 베스트 댓글 jsp파일  -->
+							<jsp:include page="../inc/best_review.jsp"></jsp:include>
+						</div>
+						<div id="tab-2" class="tab-content">
+						<%if(rbList.isEmpty()) {
+							%>작성된 리뷰가 없습니다.<%
+						} else {%>	
+							<table>
+						<!-- 	<tr><td>별점</td><td>제목</td><td>작성자</td><td>주문일자</td></tr> -->
+							<%for(int i=0; i<rbList.size(); i++) {
+									//리뷰 아이디 설정
+									String r_writer[] = rbList.get(i).getR_writer().split("@");
+									String a = r_writer[0].substring(0, 4);
+									String editId = a + "***";
+								
+									// 평점 설정
+									String rate = "";
+									switch(rbList.get(i).getR_rate()) {
+									case 5: rate =  "★★★★★"; break;
+									case 4: rate =  "★★★★"; break;
+									case 3: rate =  "★★★"; break;
+									case 2: rate =  "★★"; break;
+									case 1: rate =  "★"; break;
+										
+									}
+									
+									String content = rbList.get(i).getR_content(); // 본문 줄바꿈
+									if (content != null) {
+										content = content.replaceAll("\r\n", "<br>");
+									}
+							%>
+								<tr onclick="$(this).next('tr').toggle()">
+									<td class="td1"><%=rate %></td>
+									<td class="td2"><%=rbList.get(i).getR_title() %><span class="icon_img"></span></td>
+									<td class="td3"><%=editId %></td>
+									<td class="td4"><%=rbList.get(i).getR_rdate() %></td>
+								</tr>
+								<tr id="hidden">
+									<td class="td5" colspan="5">
+										<p><%=content %></p><br>
+										<img src="./reviewUpload/<%=rbList.get(i).getR_img()%>"/>
+									</td>
+								</tr>
+							<%}	%>
+							</table>
+						<%} %>
 						</div>
 					</div>
 				</div>
-				
-				
 			</div>
 			<div id="delivery_info">
 			</div>
 		</div>
 	</div>
 
-		
-		
-	<h3>리뷰</h3>
-	리뷰 작성 시 200P 적립 (사진 등록 시 300P)<br>
-	<a href="ReviewInsertForm.rv">리뷰쓰기</a> 
 	
-	
-	<!--   -------------------------------------------------- -->
-  	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">꽃다발 베스트 리뷰</li>
-		<li class="tab-link" data-tab="tab-2">이 상품의 리뷰</li>
-	</ul>
-<!--   -------------------------------------------------- -->
-	<div id="tab-1" class="tab-content current">
-	</div>
-	<div id="tab-2" class="tab-content">
-	<%if(rbList.isEmpty()) {
-		%>작성된 리뷰가 없습니다.<%
-	} else {%>	
-	
-		<table border="1">
-	<!-- 	<tr><td>별점</td><td>제목</td><td>작성자</td><td>주문일자</td></tr> -->
-		<%for(int i=0; i<rbList.size(); i++) {
-				//리뷰 아이디 설정
-				String r_writer[] = rbList.get(i).getR_writer().split("@");
-				String a = r_writer[0].substring(0, 4);
-				String editId = a + "***";
-			
-				// 평점 설정
-				String rate = "";
-				switch(rbList.get(i).getR_rate()) {
-				case 5: rate =  "★★★★★"; break;
-				case 4: rate =  "★★★★"; break;
-				case 3: rate =  "★★★"; break;
-				case 2: rate =  "★★"; break;
-				case 1: rate =  "★"; break;
-					
-				}
-		%>
-			<tr onclick="$(this).next('tr').toggle()"><td><%=rate %></td><td><%=rbList.get(i).getR_title() %></td><td><%=editId %></td><td><%=rbList.get(i).getR_rdate() %></td></tr>
-			<tr id="hidden"><td colspan="4"><%=rbList.get(i).getR_content() %><br><img src="./reviewUpload/<%=rbList.get(i).getR_img()%>"/></td></tr>
-		<%
-			} 
-		%>
-		</table>
-	<%} %>
-	</div>
 	
 	
 	<h3>배송안내</h3>
@@ -486,7 +453,7 @@ switch(path){
 				}
 			});
 			
-			// 하단 네비게이션 바 보이기
+			// 중간 네비게이션 바 하단에 보이기
 			$(document).scroll(function(){
 				var point = $(this).scrollTop();
 				if(point > $(".middle_nav").offset().top){
