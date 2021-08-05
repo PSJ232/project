@@ -40,7 +40,7 @@ public class QnaDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "INSERT INTO qna VALUES(?,?,?,?,?,now(),?,?,?,?,?,0)";
+			String sql = "INSERT INTO qna VALUES(?,?,?,?,?,now(),?,?,?,?,0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, qnaBean.getQ_id());
 			pstmt.setInt(2, qnaBean.getO_id());

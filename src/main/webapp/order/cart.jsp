@@ -11,6 +11,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/cart.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	rel="stylesheet">
 <%
 ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
@@ -25,12 +29,8 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 	}
 }
 </script>
-<link rel="stylesheet" href="css/style.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
 </head>
 <body>
 	<!-- header -->
@@ -123,14 +123,13 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 									}
 									%> <input type="button" class="cart_input4" value="-"
 									onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=-1'">
-									<span class="cart_span7"><%=c_qty%></span> <input type="button"
-									value="+"
-									onclick="qtyUpdate(<%=c_id%>, <%=i_inven%>, <%=c_qty%>)">
+									<span class="cart_span7"><%=c_qty%></span> <input type="button" 
+									class="cart_input4" value="+" onclick="qtyUpdate(<%=c_id%>, <%=i_inven%>, <%=c_qty%>)">
 									<br> <span id="cartNotice<%=c_id%>"></span></td>
 								<td class="cart_td3"><span class="cart_span8"><%=letter%></span>
 									<%
 									if (c_letter == 1) {
-									%><input type="button" class="cart_input3" value="x"
+									%><input type="button" class="cart_input7" value="x"
 									onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&letter=0'">
 									<%
 									}
@@ -185,14 +184,17 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 			</span> <input type="button" class="cart_input6" value="쇼핑하러 가기"
 				onclick="location='./'">
 		</p>
+		
 		<%
 		}
 		%>
 	</div>
-
+	
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
+
+	
 	
 </body>
 </html>
