@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.ClassReservAction;
 import action.MypageSbscribeListAction;
 import action.OrderAddressAction;
 import action.OrderCancelAction;
@@ -23,15 +22,7 @@ import action.OrderMypageDetailAction;
 import action.OrderMypageListAction;
 import action.OrderNowAction;
 import action.OrderSubAction;
-import action.ReservClassNumAction;
-import action.ReservClassPlaceAction;
-import action.ReservClassTimeAction;
-import action.ReservInsertAction;
-import action.ReservInsertProAction;
-import action.ReservMiddleCancleAction;
-import action.ReservPayAction;
 import action.VisitorNowAction;
-import svc.OrderService;
 import vo.ActionForward;
 
 //서블릿 주소가 XXX.me 일 경우 OrderFrontController 로 해당 요청이 전달됨
@@ -145,74 +136,6 @@ public class OrderFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/ClassReserv.od")) {
-			forward = new ActionForward();
-			action = new ClassReservAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		//예약및 결제 페이지 
-		} else if(command.equals("/ReservInsert.od")){
-			forward = new ActionForward();
-			action = new ReservInsertAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/ReservInsertPro.od")) {
-			forward = new ActionForward();
-			action = new ReservInsertProAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/ReservPay.od")) {
-			forward = new ActionForward();
-			action = new ReservPayAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}  else if(command.equals("/ReservMiddleCancle.od")) {
-			forward = new ActionForward();
-			action = new ReservMiddleCancleAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/ReservClassPlace.od")) {
-			forward = new ActionForward();
-			action = new ReservClassPlaceAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}	else if(command.equals("/ReservClassTime.od")) {
-			ReservClassTimeAction reservClassTimeAction = new ReservClassTimeAction();
-			try {
-				reservClassTimeAction.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/ReservClassMem.od")) {
-			ReservClassNumAction reservClassNumAction = new ReservClassNumAction();
-			try {
-				reservClassNumAction.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/Receipt.od")) {
-			forward = new ActionForward();
-			forward.setPath("./order/payment_info.jsp");
-			forward.setRedirect(false);
 		}
 
 		// -------------------------------------------------------------------------

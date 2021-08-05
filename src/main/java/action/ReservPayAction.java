@@ -42,7 +42,7 @@ public class ReservPayAction implements Action {
 			request.setAttribute("member", mb);
 			
 			forward = new ActionForward();
-			forward.setPath("./reservation/reservPay.jsp");
+			forward.setPath("./admin_layout/reserv_manage/reservPay.jsp");
 			forward.setRedirect(false);
 		} else {
 			

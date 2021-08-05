@@ -19,6 +19,8 @@ public class ReservClassPlaceAction implements Action {
 		String f_place = request.getParameter("f_place");
 		System.out.println("f_subject"+f_subject);
 		System.out.println("f_place"+f_place);
+		//회원쪽 class 페이지 만드시면 
+		//f_subject, f_place값중에 맨 첫번쨰 값 넘겨주시고 위의 변수초기화식으로 바꿔주세요~
 		
 		ClassReservService classReservService = new ClassReservService();
 		

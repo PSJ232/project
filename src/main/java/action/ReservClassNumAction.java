@@ -56,6 +56,20 @@ public class ReservClassNumAction{
 		String gson = new Gson().toJson(remainNum);
 		response.getWriter().write(gson);
 		
+//		if(f_maxmem!=0&&fd_id!=0) {
+//			request.setAttribute("remainNum", remainNum);
+//			forward = new ActionForward();
+//			forward.setPath("./admin_layout/class_member/classReservMem.jsp");
+//		} else {
+//			response.setContentType("text/html; charset=UTF-8");
+//			PrintWriter out = response.getWriter();
+//			out.print("<script>");
+//			out.print("alert('예약 페이지 불러오기에 실패했습니다!');");
+//			out.print("history.back();");
+//			out.print("</script>");
+//		}
+//		
+//		return forward;
 	}
 
 }
