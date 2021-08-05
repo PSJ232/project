@@ -123,13 +123,14 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 									}
 									%> <input type="button" class="cart_input4" value="-"
 									onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=-1'">
-									<span class="cart_span7"><%=c_qty%></span> <input type="button" 
-									class="cart_input4" value="+" onclick="qtyUpdate(<%=c_id%>, <%=i_inven%>, <%=c_qty%>)">
+									<span class="cart_span7"><%=c_qty%></span> <input type="button"
+									value="+"
+									onclick="qtyUpdate(<%=c_id%>, <%=i_inven%>, <%=c_qty%>)">
 									<br> <span id="cartNotice<%=c_id%>"></span></td>
 								<td class="cart_td3"><span class="cart_span8"><%=letter%></span>
 									<%
 									if (c_letter == 1) {
-									%><input type="button" class="cart_input7" value="x"
+									%><input type="button" class="cart_input3" value="x"
 									onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&letter=0'">
 									<%
 									}
@@ -148,7 +149,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 			</div>
 			<div class="cart_div5">
 				<p class="cart_p">
-					<strong class="cart_strong">&nbsp;&nbsp;구매 전 확인해주세요.</strong><br> <span
+					<strong class="cart_strong">구매 전 확인해주세요.</strong><br> <span
 						class="cart_span11">- 구매 금액 합산이 30,000원 이상일 경우, 배송비는
 						무료입니다.(단,[정기구독],[무료배송] 상품은 구매금액 합산에 포함되지 않습니다.)</span><br> <span
 						class="cart_span11">- [정기구독]상품의 첫 번째 발송일에 일반 택배 상품을 함께 구매하실
@@ -177,8 +178,6 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 		<%
 		} else {
 		%>
-		</table>
-		</form>
 		<!-- if문안에서 태그가 짤려서 추가 -->
 		<p class="cart_p3">
 			<span class="cart_span21">장바구니가 비어있습니다. <br> 그 계절 가장 이쁜
@@ -194,7 +193,6 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
-	
 	
 </body>
 </html>

@@ -56,10 +56,10 @@
 							<table border="1" class="memberPoint_table">
 								<caption class="memberPoint_caption"></caption>
 								<colgroup>
-									<col width="25%">
-									<col width="25%">
-									<col>
+									<col width="23%">
+									<col width="23%">
 									<col width="34%">
+									<col>
 								</colgroup>
 								<thead>
 									<tr>

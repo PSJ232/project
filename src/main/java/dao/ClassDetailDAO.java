@@ -213,6 +213,7 @@ public class ClassDetailDAO {
 			
 			try {
 				String sql = "SELECT fd_id FROM fclass_detail WHERE fd_date = ? and fd_time = ? and fd_place =?";
+				System.out.println("날짜: " + cdb.getDate() + "시간: " + fd_time + "장소: " + cdb.getPlace());
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, cdb.getDate());
 				pstmt.setString(2, fd_time);

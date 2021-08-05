@@ -5,27 +5,29 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.google.gson.Gson;
+
 import svc.ClassReservService;
 import vo.ActionForward;
 
-public class ReservClassTimeAction implements Action {
+public class ReservClassTimeAction{
 
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ReservClassTimeAction - execute");
-		ActionForward forward = null;
 		
 		int f_id = Integer.parseInt(request.getParameter("f_id"));
 		
 		ClassReservService classReservService = new ClassReservService();
 		ArrayList<Integer> reservTimeList = classReservService.getTimeList(f_id);
 		
-		request.setAttribute("reservTimeList", reservTimeList);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 		
-		forward = new ActionForward();
-		forward.setPath("./admin_layout/class_member/classReservTimeList.jsp");
-		
-		return forward;
+		String gson = new Gson().toJson(reservTimeList);
+		response.getWriter().write(gson);
 	}
 
 }

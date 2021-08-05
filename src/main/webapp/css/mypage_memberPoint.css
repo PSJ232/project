@@ -184,9 +184,8 @@ table {
     outline-width: 1px;
     display: table;
     text-indent: initial;
-    border-spacing: 2px;
-    border-color: currentColor;
-    border: none;
+/*     border-spacing: 2px; */
+    border-color: silver;
     
 }
 
@@ -194,8 +193,6 @@ table {
 	width: 761.6px;
 	height: 107px;
 	display: table;
-	
-	
 }
 
 caption {
@@ -242,24 +239,20 @@ tr {
 .memberPoint_div6, 
 .memberPoint_table tr th,
 .memberPoint_table tr td {
-	border-left : none;
-	border-right : 1px solid silver;
-	border-bottom: none;
-}
-.memberPoint_table thead th {
-    padding: 18px 10px;
-    background-color: #f7f7f7;
-}
-
-.memberPoint_table tr td,
-.memberPoint_div6,
-.memberPoint_table tr th {
+	border-right : 1px thin silver;
+	border-bottom: thin silver;
 	font-size: 14px;
     line-height: 20px;
     font-weight: 300;
     letter-spacing: -.21px;
     color: #222;
     text-align: center;
+	
+	
+}
+.memberPoint_table thead th {
+    padding: 18px 10px;
+    background-color: #f7f7f7;
 }
 
 th {
@@ -291,7 +284,7 @@ td {
 
 .memberPoint_span3 {
 	color: #46cfa7;
-	font-weight: 800;
+	font-weight: 500;
 }
 
 .memberPoint_span4 {

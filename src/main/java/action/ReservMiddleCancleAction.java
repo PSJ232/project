@@ -25,7 +25,7 @@ public class ReservMiddleCancleAction implements Action {
 		
 		if(isDeleted) {
 			forward = new ActionForward();
-			forward.setPath("/ClassReserv.ad"); //f_id값 넣어서 상품 예약 페이지(결제페이지 ㄴㄴ)로 이동
+			forward.setPath("ClassReserv.ad"); //f_id값 넣어서 상품 예약 페이지(결제페이지 ㄴㄴ)로 이동
 			forward.setRedirect(true);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");

@@ -12,6 +12,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="css/mypage.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/utility.css">
+<link rel="stylesheet" href="./css/mypage_subscribe.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -21,8 +25,9 @@ $(document).ready(function(){
 
 		$('ul.tabs li').removeClass('current');
 		$('.tab-content').removeClass('current');
-
-		$(this).addClass('current');
+		
+		$('.tabs').find('li').removeClass('current_clicked');
+		$(this).addClass('current current_clicked');
 		$("#"+tab_id).addClass('current');
 	})
 
@@ -31,30 +36,6 @@ $(document).ready(function(){
 <!-- ajax에 쓰이는 css : 수정 마음껏 하셔도 괜찮습니다. -->
 <style type="text/css">
 
-ul.tabs{
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
- ul.tabs li{ 
- 	background: none; 
- 	display: inline-block; 
- 	padding: 10px 15px; 
- 	cursor: pointer; 
- } 
-
-ul.tabs li.current{
-	color: #222;
-}
-
-.tab-content{
-	display: none;
-	padding: 15px;
-}
-
-.tab-content.current{
-	display: inherit;
-}
 </style>
 </head>
 <body>
@@ -95,156 +76,141 @@ for(int i =0; i<orderArrayList.size(); i++) {
 
 %>
 
-<!-- 헤더 들어가는곳 -->
+	<jsp:include page="../inc/header.jsp" ></jsp:include>
 
-<!-- 헤더 들어가는곳 -->
-  
-<!-- 본문들어가는 곳 -->
-  <!-- 본문 메인 상단 -->
-  
-  <section id=""> 
-
-  <article id=""><%=m_id %>님,<br>
-  오늘도 꽃같은 날이예요</article>
+	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
 	
-  <article id="">
-  등급 정보 : <a href=""><%=memberMypageDetail.getG_id() %> </a>ㅣ 
-  포인트 : <a href=""><%=memberMypageDetail.getM_point() %></a>ㅣ
-  나의 구독 : <a href="">2</a>
-  </article>
-  
-  </section>
-  
-  <!-- 본문 왼쪽 메뉴 -->
-  <!-- 큰 메뉴 두 가지 한 번에 묶여 있음 -->
-  <section id="">
-	<div>
-  	<h2>마이꾸까</h2>
-  	<ul type="none">
-  		<li><a href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
-  		<li><a href="MypageSubscribe.od">나의 정기구독</a></li>
-  		<li><a href="MyClass.me">클래스 수강내역</a></li>
-		<li><a href="ReviewInsertForm.rv">상품 리뷰</a></li>
-  	</ul>
- 	 </div>
- 	 
- 	 <div>
-  	 <h2>개인정보 관리</h2>
-  	<ul type="none">
-		<li class="list"><a href="MemberUpdate.me">개인정보 수정</a></li>
-		<li class="list"><a href="MemberMypageGradeDetail.me">회원등급</a></li>
-		<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
-		<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
-		<li class="list"><a href="QnaList.qna">QNA리스트</a></li>
-		<li class="list"><a href="Faq.me">자주묻는질문</a></li>
-  	</ul>
-  	</div>
-	</section>
-  	
-  <!-- 본문 내용 -->
- <section>
- 		<h2>나의 정기구독</h2>
-
-<!--   -------------------------------------------------- -->
-  	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">주문/배송내역</li>
-		<li class="tab-link" data-tab="tab-2">취소/환불내역</li>
-	</ul>
-<!--   -------------------------------------------------- -->
-
- 	<div>
- 		<div id="tab-1" class="tab-content current">
- 		<h6>주문/배송내역</h6>
- 		<table border="1">
- 			<tr><td>첫 구독일</td><td>상품 정보</td><td>상태</td></tr>
- 	
-			<%
-			if(nonOrderDetailArrayList.isEmpty()) {
-				%><tr><td colspan="3">구독내역이 존재하지 않습니다.<br>
-					  <input type="button"  onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
-					  </td></tr><%
-			} else {
-				int count = 0;
-				for(int i=0; i<nonOrderArrayList.size(); i++) {
+	<div class="mypage_container">
+		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+<!-- 본문 내용 -->
+	<section id="mysubscribe_container">
+		<h2 class="my_title">나의 정기구독</h2>
 	
-					// 배송 날짜 String -> Date 변환
-					Date deliveryDate = Date.valueOf(nonOrderDetailArrayList.get(i).getOd_delivery_date());
-					Date today = Date.valueOf(LocalDate.now());
-	   				%>
-	   				
-	   				<tr>
-	   					<%if(nonCol.contains(i)) {
-	   						%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td><%
-	   						count++;
-	   					} else {}
-	   					%>
-	   					<td>
-	   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
-							수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %><br>
-							받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
-							가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
-						</td>
-	   					<%
-	   					if(deliveryDate.before(today)) {
-	   						%><td>배송 완료</td><%
-	   					} else if(deliveryDate.after(today)) {
-	   						%><td>배송 예정</td><%
-	   					} else if(deliveryDate.equals(today)) {
-	   						%><td>배송 완료</td><%
-	   					}
-	   					%>
-	   				</tr>
-				<%}
-			}%>
- 		</table>
- 		</div>
- 		
- 		<div id="tab-2" class="tab-content">
- 		<h6>취소/환불내역</h6>
- 		 		<table border="1">
- 			<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
- 	
-			<%
-			if(orderDetailArrayList.isEmpty()) {
-				%><tr><td colspan="3">취소/환불한 구독내역이 존재하지 않습니다.<br>
-					  <input type="button"  onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
-					  </td></tr><%
-			} else {
-			
-				int ccount = 0;
-				for(int i=0; i<orderArrayList.size(); i++) {
-	   				%>
-	   				
-	   				<tr>
-	   					<%if(col.contains(i)) {
-	   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_rdate() %></td><%
-	   					} else {}
-	   					%>
-	   					<td>
-	   						상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
-							수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %><br>
-							받는 분 : <%=orderArrayList.get(i).getO_receiver() %><br>
-							가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
-						</td>
-						<%if(col.contains(i)) {
-	   						%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td><%
-	   							ccount++;
-	   					} else {}
+		<!--   -------------------------------------------------- -->
+		<ul class="tabs">
+			<li class="current tab-link current_clicked" data-tab="tab-1">주문/배송내역</li>
+			<li class="tab-link" data-tab="tab-2">취소/환불내역</li>
+		</ul>
+		<!--   -------------------------------------------------- -->
+		
+		<div class="mysubscribe_layout">
+			<div id="tab-1" class="tab-content current">
+			<table class="mysubscribe_list_layout">
+				<colgroup>
+					<col width="22%">
+					<col width="58%">
+					<col width="20%">
+				</colgroup>
+				<thead class="mysubscribe_head">
+					<th><span>첫 구독일</span></th>
+					<th><span>상품 정보</span></th>
+					<th><span>상태</span></th>
+				</thead>
+	
+				<%
+					if(nonOrderDetailArrayList.isEmpty()) {
 						%>
-	   				</tr>
-				<%}
-			}%>
- 		</table>
- 		</div>
- 	</div>
- </section>
- 
- 
+						<tbody class="mysubscribe_order_none">
+							<tr>
+								<td colspan="3">
+									<span>구독내역이 존재하지 않습니다</span>
+									<input class ="btn_wide btn_yellow" type="button"  onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
+								</td>
+							</tr>
+						</tbody>
+						<%
+					} else {
+						int count = 0;
+						for(int i=0; i<nonOrderArrayList.size(); i++) {
+	
+							// 배송 날짜 String -> Date 변환
+							Date deliveryDate = Date.valueOf(nonOrderDetailArrayList.get(i).getOd_delivery_date());
+							Date today = Date.valueOf(LocalDate.now());
+							%>
+	 						<tbody>
+								<tr>
+									<%
+									if(nonCol.contains(i)) {
+										%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td><%
+										count++;
+									} else {}
+										%>
+									<td>
+										상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
+										수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %><br>
+										받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
+										가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
+									</td>
+									<%
+									if(deliveryDate.before(today)) {
+										%><td>배송 완료</td><%
+									} else if(deliveryDate.after(today)) {
+										%><td>배송 예정</td><%
+									} else if(deliveryDate.equals(today)) {
+										%><td>배송 완료</td><%
+									}
+									%>
+								</tr>
+							</tbody>
+							<%
+						}
+					}
+					%>
+				</table>
+			</div>
+	 		
+			<div id="tab-2" class="tab-content">
+				<table border="1">
+					<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
+	
+					<%
+					if(orderDetailArrayList.isEmpty()) {
+						%>
+						<tr>
+							<td colspan="3">취소/환불한 구독내역이 존재하지 않습니다.<br>
+							<input type="button"  onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
+							</td>
+						</tr><%
+					} else {
+						int ccount = 0;
+						for(int i=0; i<orderArrayList.size(); i++) {
+						%>
+	
+							<tr>
+								<%
+								if(col.contains(i)) {
+									%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_rdate() %></td><%
+								} else {}
+								%>
+								<td>
+									상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
+									수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %><br>
+									받는 분 : <%=orderArrayList.get(i).getO_receiver() %><br>
+									가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
+								</td>
+								<%
+								if(col.contains(i)) {
+									%>
+									<td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td>
+									<%
+									ccount++;
+								} else {}
+								%>
+							</tr>
+							<%
+						}
+					}
+					%>
+				</table>
+			</div>
+		</div>
+	</section>
+</div>
  
  
  
 <!-- 푸터 들어가는곳 -->
-
+<jsp:include page="../inc/footer.jsp"></jsp:include>
 <!-- 푸터 들어가는곳 -->
 </body>
 </html>

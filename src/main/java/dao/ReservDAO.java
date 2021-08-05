@@ -56,14 +56,17 @@ public class ReservDAO {
 		max_rid++;
 		
 		try {
-			sql = "INSERT INTO reservation VALUES(?,?,?,?,?,?)";
+			sql = "INSERT INTO reservation VALUES(?,?,?,?,?,?,now(),?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, max_rid);
+			
 			pstmt.setString(2, rb.getM_id());
 			pstmt.setInt(3, rb.getF_id());
 			pstmt.setInt(4, rb.getFd_id());
 			pstmt.setInt(5, rb.getR_num());
 			pstmt.setString(6, rb.getR_payment());
+			pstmt.setInt(7, 1);
+			pstmt.setInt(8,rb.getR_amount());
 			insertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("sql 예외 - " + e.getMessage());

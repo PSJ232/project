@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import svc.ClassDetailDetailService;
 import svc.ClassDetailViewService;
@@ -31,7 +32,8 @@ public class ReservInsertAction implements Action {
 		int r_num = Integer.parseInt(request.getParameter("r_num"));
 		
 		//회원정보 가져오기
-		String m_id = "hye304@naver.com"; //request.getParameter("m_id"); 아니면 세션값
+		HttpSession session = request.getSession();
+		String m_id = (String) session.getAttribute("m_id"); //아니면 세션값
 		MemberService memberService = new MemberService();
 		MemberBean mb = memberService.selectMember(m_id);
 		

@@ -145,6 +145,8 @@ String fd_time = (String)request.getAttribute("fd_time");
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$('#total_fee').val($('#total_fee_print').text());
+			
 			$('#pointAll').change(function(){
 				if($('#pointAll').is(':checked')){
 	 				$('#use_point').val($('#pointAll').val());
@@ -154,10 +156,12 @@ String fd_time = (String)request.getAttribute("fd_time");
 			$('#pointApplybtn').click(function(){
 				let use_point = $('#use_point').val();
 				let fee = $('#fee').val();
-				$('#use_point2').html('- '+use_point+'원');
-				$('#total_fee').val(parseInt(fee) - parseInt(use_point));
-				$('#total_fee_print').html(parseInt(fee) - parseInt(use_point));
-				$('#use_point').val('');
+				if(use_point.trim()!=""){
+					$('#use_point2').html('- '+use_point+'원');
+					$('#total_fee').val(parseInt(fee) - parseInt(use_point));
+					$('#total_fee_print').html(parseInt(fee) - parseInt(use_point));
+					$('#use_point').val('');
+				}
 			})
 
 		});
