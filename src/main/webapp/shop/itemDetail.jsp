@@ -268,22 +268,9 @@ switch(path){
 					</ul>
 					<div class="row">
 						<div id="tab-1" class="tab-content current">
-							<table>
-								<tr onclick="$(this).next('tr').toggle()">
-									<td class="td1">★★★★★</td>
-									<td class="td2">너무너무 마음에 들어요❤<td>
-									<td class="td3">jung***님</td>
-									<td class="td4">2021-03-04</td>
-								</tr>
-								<tr id="hidden">
-									<td class="td5" colspan="5">
-										<p>꽃 상태며 색감이며 모든 게 마음에 들어요<br>
-										제 생일기념으로 남편이 고르고 선물 해준건데, 덕분에 완벽한 하루가 될 것 같아요:)<br>
-										주변에 꽃선물 할 일이 있을 때 꼭 kukka로 올게요!</p><br>
-										<img src="">
-									</td>
-								</tr>
-							</table>
+						
+							<jsp:include page="../inc/best_review.jsp"></jsp:include>
+							
 						</div>
 						<div id="tab-2" class="tab-content">
 						<%if(rbList.isEmpty()) {
