@@ -31,6 +31,7 @@ import action.ReservInsertProAction;
 import action.ReservMiddleCancleAction;
 import action.ReservPayAction;
 import action.VisitorNowAction;
+import svc.OrderService;
 import vo.ActionForward;
 
 //서블릿 주소가 XXX.me 일 경우 OrderFrontController 로 해당 요청이 전달됨
@@ -208,6 +209,10 @@ public class OrderFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/Receipt.od")) {
+			forward = new ActionForward();
+			forward.setPath("./order/payment_info.jsp");
+			forward.setRedirect(false);
 		}
 
 		// -------------------------------------------------------------------------
