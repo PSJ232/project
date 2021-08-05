@@ -268,9 +268,8 @@ switch(path){
 					</ul>
 					<div class="row">
 						<div id="tab-1" class="tab-content current">
-						
+							<!-- 베스트 댓글 jsp파일  -->
 							<jsp:include page="../inc/best_review.jsp"></jsp:include>
-							
 						</div>
 						<div id="tab-2" class="tab-content">
 						<%if(rbList.isEmpty()) {
@@ -294,9 +293,24 @@ switch(path){
 									case 1: rate =  "★"; break;
 										
 									}
+									
+									String content = rbList.get(i).getR_content(); // 본문 줄바꿈
+									if (content != null) {
+										content = content.replaceAll("\r\n", "<br>");
+									}
 							%>
-								<tr onclick="$(this).next('tr').toggle()"><td><%=rate %></td><td><%=rbList.get(i).getR_title() %></td><td><%=editId %></td><td><%=rbList.get(i).getR_rdate() %></td></tr>
-								<tr id="hidden"><td colspan="4"><%=rbList.get(i).getR_content() %><br><img src="./reviewUpload/<%=rbList.get(i).getR_img()%>"/></td></tr>
+								<tr onclick="$(this).next('tr').toggle()">
+									<td class="td1"><%=rate %></td>
+									<td class="td2"><%=rbList.get(i).getR_title() %><span class="icon_img"></span></td>
+									<td class="td3"><%=editId %></td>
+									<td class="td4"><%=rbList.get(i).getR_rdate() %></td>
+								</tr>
+								<tr id="hidden">
+									<td class="td5" colspan="5">
+										<p><%=content %></p><br>
+										<img src="./reviewUpload/<%=rbList.get(i).getR_img()%>"/>
+									</td>
+								</tr>
 							<%}	%>
 							</table>
 						<%} %>
@@ -439,7 +453,7 @@ switch(path){
 				}
 			});
 			
-			// 하단 네비게이션 바 보이기
+			// 중간 네비게이션 바 하단에 보이기
 			$(document).scroll(function(){
 				var point = $(this).scrollTop();
 				if(point > $(".middle_nav").offset().top){

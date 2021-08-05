@@ -5,7 +5,7 @@
 <table>
 	<tr onclick="$(this).next('tr').toggle()">
 		<td class="td1">★★★★★</td>
-		<td class="td2">너무너무 마음에 들어요❤<td>
+		<td class="td2">너무너무 마음에 들어요❤<span class="icon_img"></span><td>
 		<td class="td3">jung***님</td>
 		<td class="td4">2021-03-04</td>
 	</tr>
@@ -19,7 +19,7 @@
 	</tr>
 	<tr onclick="$(this).next('tr').toggle()">
 		<td class="td1">★★★★★</td>
-		<td class="td2">망고 튤립<td>
+		<td class="td2">망고 튤립<span class="icon_img"></span><td>
 		<td class="td3">hann***님</td>
 		<td class="td4">2021-02-25</td>
 	</tr>
@@ -32,7 +32,7 @@
 	</tr>
 	<tr onclick="$(this).next('tr').toggle()">
 		<td class="td1">★★★★★</td>
-		<td class="td2">아주 만족합니다.<td>
+		<td class="td2">아주 만족합니다.<span class="icon_img"></span><td>
 		<td class="td3">mihy***님</td>
 		<td class="td4">2021-02-18</td>
 	</tr>
@@ -47,7 +47,7 @@
 	</tr>
 		<tr onclick="$(this).next('tr').toggle()">
 		<td class="td1">★★★★★</td>
-		<td class="td2">향기향기해요<td>
+		<td class="td2">향기향기해요<span class="icon_img"></span><td>
 		<td class="td3">jyki***님</td>
 		<td class="td4">2021-02-16</td>
 	</tr>
@@ -60,7 +60,7 @@
 	</tr>
 	<tr onclick="$(this).next('tr').toggle()">
 		<td class="td1">★★★★★</td>
-		<td class="td2">생기발랄하다<td>
+		<td class="td2">생기발랄하다<span class="icon_img"></span><td>
 		<td class="td3">cher***님</td>
 		<td class="td4">2021-02-16</td>
 	</tr>
@@ -75,7 +75,7 @@
 	</tr>
 	<tr onclick="$(this).next('tr').toggle()">
 		<td class="td1">★★★★★</td>
-		<td class="td2">자가격리중인 지인에게 선물했어요<td>
+		<td class="td2">자가격리중인 지인에게 선물했어요<span class="icon_img"></span><td>
 		<td class="td3">nyki***님</td>
 		<td class="td4">2021-02-02</td>
 	</tr>
@@ -88,7 +88,7 @@
 	</tr>
 	<tr onclick="$(this).next('tr').toggle()">
 		<td class="td1">★★★★★</td>
-		<td class="td2">예쁘고 싱싱해서 좋아요<td>
+		<td class="td2">예쁘고 싱싱해서 좋아요<span class="icon_img"></span><td>
 		<td class="td3">yooh***님</td>
 		<td class="td4">2021-02-02</td>
 	</tr>
@@ -102,7 +102,7 @@
 	</tr>
 		<tr onclick="$(this).next('tr').toggle()">
 		<td class="td1">★★★★★</td>
-		<td class="td2">정말 예뻐요<td>
+		<td class="td2">정말 예뻐요<span class="icon_img"></span><td>
 		<td class="td3">saem***님</td>
 		<td class="td4">2021-01-30</td>
 	</tr>
@@ -120,7 +120,7 @@
 	</tr>
 	<tr onclick="$(this).next('tr').toggle()">
 		<td class="td1">★★★★★</td>
-		<td class="td2">너무 예뻐요<td>
+		<td class="td2">너무 예뻐요<span class="icon_img"></span><td>
 		<td class="td3">rohy***님</td>
 		<td class="td4">2021-01-26</td>
 	</tr>

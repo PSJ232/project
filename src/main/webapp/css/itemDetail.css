@@ -436,6 +436,16 @@ html {
 	max-width: 224px;
 }
 
+.icon_img {
+	margin-left: 10px;
+    display: inline-block;
+    background-image: url(../img/subscription/kukka.png);
+    background-position: -168px -817px;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
 /* 리뷰 ajax에 쓰이는 코드  */
 .tab-content {
 	display: none;
