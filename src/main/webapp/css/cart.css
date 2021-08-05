@@ -303,12 +303,11 @@ div {
 
 .cart_div5 {
     max-width: 1240px;
-	position: sticky;
-	top: 100px;
+	position: inherit;
+    left: 140px;
     margin: 0 auto;
     padding: 0 60px;
     height: 380.58px;
-/* 	height: auto; */
 }
 
 .cart_div6 {
