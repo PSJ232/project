@@ -302,18 +302,16 @@ public class AdminFrontController extends HttpServlet {
 			forward = new ActionForward();
 			action = new ChartAction();
 		} else if(command.equals("/ReservClassTime.ad")) {
-			forward = new ActionForward();
-			action = new ReservClassTimeAction();
+			ReservClassTimeAction reservClassTimeAction = new ReservClassTimeAction();
 			try {
-				forward = action.execute(request, response);
+				reservClassTimeAction.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/ReservClassMem.ad")) {
-			forward = new ActionForward();
-			action = new ReservClassNumAction();
+			ReservClassNumAction reservClassNumAction = new ReservClassNumAction();
 			try {
-				forward = action.execute(request, response);
+				reservClassNumAction.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
