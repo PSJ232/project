@@ -44,6 +44,7 @@
   	        msg += '상점 거래ID : ' + rsp.merchant_uid;
   	        msg += '결제 금액 : ' + rsp.paid_amount;
   	        msg += '카드 승인번호 : ' + rsp.apply_num;
+  	        console.log(msg);
   	        isSuccess = true;
   	    } else {
   	    	var msg = '';
