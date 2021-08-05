@@ -9,6 +9,24 @@
 <link rel="stylesheet" href="admin_layout/css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+	.overlay {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 2;
+	  width: 100%;
+	  height: 100%;
+	  background: rgba(0, 0, 0, .7);
+	  opacity: 0;
+	  visibility: hidden;
+	  transition: .3s linear;
+	}
+	.overlay.is-open {
+	  opacity: 1;
+	  visibility: visible;
+	}
+</style>
 </head>
 <body>
 	<!-- header -->
@@ -19,7 +37,7 @@
 	<jsp:include page="/inc/navigation.jsp" ></jsp:include>
 	<!-- nav -->
 	<div>
-
+	<div class="overlay"><h1>overlay</h1></div>
 	<h1>DashBoard</h1>
 	<h1 id="total_income">총 매출액 2000000원</h1> <h1 id="cash">현금 1000000원</h1> <h1 id="card">카드 1000000원</h1>
 	

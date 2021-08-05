@@ -33,7 +33,7 @@ public class ReservClassNumService {
 		System.out.println("ReservClassNumService - getClassDetailId(ClassDetailBean cdb)");
 		//classdetil
 		int fd_id = 0;
-		System.out.println(cdb.getPlace());
+		System.out.println("============================시간: " + fd_time);
 		Connection con = getConnection();
 		ClassDetailDAO classDetailDAO = ClassDetailDAO.getInstance();
 		classDetailDAO.setConnection(con);		
