@@ -6,16 +6,17 @@ import java.sql.Time;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import svc.ReservClassNumService;
 import vo.ActionForward;
 import vo.ClassDetailBean;
 
-public class ReservClassNumAction implements Action {
+public class ReservClassNumAction{
 
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ReservClassNumAction - execute");
-		ActionForward forward = null;
+//		ActionForward forward = null;
 		int f_maxmem = 0;
 		int fd_id = 0;
 		int currentNum = 0;
@@ -23,7 +24,7 @@ public class ReservClassNumAction implements Action {
 		
 		String fc_date = request.getParameter("fc_date");
 		String f_place = request.getParameter("f_place");
-		String fd_time = request.getParameter("fd_time").trim()+":00:00";
+		String fd_time = request.getParameter("fd_time").trim();
 		int f_id = Integer.parseInt(request.getParameter("f_id"));
 		
 		//한강의 수강가능 인원수
@@ -49,20 +50,26 @@ public class ReservClassNumAction implements Action {
 		System.out.println("currentNum : " +currentNum);
 		System.out.println("remainNum : " + remainNum);
 		
-		if(f_maxmem!=0&&fd_id!=0) {
-			request.setAttribute("remainNum", remainNum);
-			forward = new ActionForward();
-			forward.setPath("./admin_layout/class_member/classReservMem.jsp");
-		} else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('예약 페이지 불러오기에 실패했습니다');");
-			out.print("history.back();");
-			out.print("</script>");
-		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 		
-		return forward;
+		String gson = new Gson().toJson(remainNum);
+		response.getWriter().write(gson);
+		
+//		if(f_maxmem!=0&&fd_id!=0) {
+//			request.setAttribute("remainNum", remainNum);
+//			forward = new ActionForward();
+//			forward.setPath("./admin_layout/class_member/classReservMem.jsp");
+//		} else {
+//			response.setContentType("text/html; charset=UTF-8");
+//			PrintWriter out = response.getWriter();
+//			out.print("<script>");
+//			out.print("alert('예약 페이지 불러오기에 실패했습니다!');");
+//			out.print("history.back();");
+//			out.print("</script>");
+//		}
+//		
+//		return forward;
 	}
 
 }

@@ -32,22 +32,26 @@
         $.ajax('ReservClassTime.ad', {
             type : 'GET',
             data: { 'f_id': $('#f_id').val() },
+            datatype: 'json',
             success:function(rdata){
-            	
-            	$.ajax('ReservClassMem.ad', {
-            		type: 'POST',
-            		data: {
-            			'fc_date': $('#date').val(),
-            			'f_place': $('#place').val(),
-            			'fd_time': rdata,
-            			'f_id': $('#f_id').val()
-            		},
-            		success:function(data){
-            			$('#classReservNum').append('<option value='+rdata+'>'+rdata+'|'+data+'명 가능</option>');
-            		}
-            	});
-//                 $('#classReservNum').append('<option>'+rdata+'</option>');
-            }  
+				$.each(rdata, function(i, value){
+					console.log("i: " + i + ", value: " + value);
+	                 	$.ajax('ReservClassMem.ad', {
+                		type: 'POST',
+                		data: {
+                			'fc_date': $('#date').val(),
+                			'f_place': $('#place').val(),
+                			'fd_time': value+":00:00",
+                			'f_id': $('#f_id').val()
+                		},
+                		success:function(data){
+                			$('#classReservNum').append('<option value='+value+':00:00>'+value+'시 | '+data+'명 가능</option>');
+                		},
+                		async: false
+                	});   
+				});
+            },
+            async: false
         }); 
 	});
 </script>
@@ -83,7 +87,7 @@
 						</div>
 						<div>
 							<label>수강 인원</label>
-							<input type="number" name="r_num" id="r_num" required>
+							<input type="number" name="r_num" id="r_num" min="0" required>
 						</div>
 					</div>
 					

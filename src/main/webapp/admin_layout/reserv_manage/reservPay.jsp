@@ -46,8 +46,8 @@
   	        msg += '카드 승인번호 : ' + rsp.apply_num;
   	        isSuccess = true;
   	    } else {
-  	    	var msg = '결제에 실패하였습니다.';
-  	        msg += '에러내용 : ' + rsp.error_msg + <%=rb.getR_id()%>;
+  	    	var msg = '';
+  	        msg += rsp.error_msg;
   	        location.href='ReservMiddleCancle.ad?imp_uid=<%=rb.getR_id()%>&merchant_uid=<%=rb.getF_id()%>';
   	    }
   	  alert(msg);
