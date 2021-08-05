@@ -19,6 +19,7 @@
 	max-width: 1120px;
     margin: 0 auto;
     padding: 0 60px;
+    box-sizing: border-box;
 }
 
 .flowers_subject .inbox .tbl {
@@ -42,10 +43,14 @@
 .flowers_subject .inbox .desc, .flowers_subject .inbox .desc_2 {
 	margin-top: 20px;
 	font-size: 18px;
-    line-height: 27px;
+    line-height: 25px;
     font-weight: 100;
     letter-spacing: -.27px;
     color: #222;
+}
+
+.inner {
+	padding: 0 0 20 0px;
 }
 
 .sort {
@@ -67,21 +72,22 @@
 	display: inline-block;	
 }
 
-.flower_list {
-	width: 1120px;	
-	display: inline-block;
+.flower_list  {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.flower_list .products {
+    margin: 0 -10px;
+   	width: 250px;
 	text-align: right;
 	margin-right: 30px;
 }
 
-.inbox{
-	margin: 20px auto;
-	display: inline-block;
-}
-
 .img {
-	width: 300px;
-	height: 300px;
+	width: 250px;
+	height: 250px;
 }
 
 .desc {

@@ -18,7 +18,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 <meta charset="UTF-8">
 <title>	플라워클래스 예약</title>
 <link rel="stylesheet" href="./css/admin.css">
-<script src="../script/jquery-3.6.0.js"></script>
+<!-- <script src="../script/jquery-3.6.0.js"></script> -->
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->

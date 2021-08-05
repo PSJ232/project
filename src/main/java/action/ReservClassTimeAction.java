@@ -22,7 +22,6 @@ public class ReservClassTimeAction{
 		
 		ClassReservService classReservService = new ClassReservService();
 		ArrayList<Integer> reservTimeList = classReservService.getTimeList(f_id);
-		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		

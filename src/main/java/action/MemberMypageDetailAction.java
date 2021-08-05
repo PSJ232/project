@@ -59,6 +59,10 @@ public class MemberMypageDetailAction implements Action {
 		} else if(command.equals("/MyClass.me")) {
 			forward = new ActionForward();
 			forward.setPath("./mypage/class.jsp");
+		} else if(command.equals("/UpdateMyInfo.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/update.jsp");
+			forward.setRedirect(false);
 		}
 		
 		return forward;
