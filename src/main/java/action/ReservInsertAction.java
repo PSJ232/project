@@ -33,7 +33,8 @@ public class ReservInsertAction implements Action {
 		
 		//회원정보 가져오기
 		HttpSession session = request.getSession();
-		String m_id = (String) session.getAttribute("m_id"); //아니면 세션값
+		String m_id = (String) session.getAttribute("m_id");
+		System.out.println("m_id!: " + m_id);
 		MemberService memberService = new MemberService();
 		MemberBean mb = memberService.selectMember(m_id);
 		//회원 등급 가져오기

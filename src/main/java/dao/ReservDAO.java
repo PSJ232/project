@@ -36,30 +36,13 @@ public class ReservDAO {
 	public int insertReserv(ReservBean rb) {
 		System.out.println("ReservDAO - insertReserv(rb)");
 		int insertCount = 0;
-		int max_rid = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql;
 		try {
-			sql = "SELECT MAX(r_id) from reservation";
+			String sql = "INSERT INTO reservation VALUES(?,?,?,?,?,?,now(),?,?)";
 			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				max_rid = rs.getInt("MAX(r_id)");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		max_rid++;
-		
-		try {
-			sql = "INSERT INTO reservation VALUES(?,?,?,?,?,?,now(),?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, max_rid);
-			
+			pstmt.setInt(1, rb.getR_id());
 			pstmt.setString(2, rb.getM_id());
 			pstmt.setInt(3, rb.getF_id());
 			pstmt.setInt(4, rb.getFd_id());
