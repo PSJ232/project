@@ -38,19 +38,18 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 	<!-- header -->
 	<div class="cart_div">
 		<header class="cart_header">
-			<h2 class="cart_h2">장바구니</h2>
+			<h5>장바구니</h5>
 		</header>
-
 		<form action="OrderCart.od" method="post">
 			<div class="cart_div2">
 				<div class="cart_div3">
 					<div class="cart_div4">
 						<table border="1" class="cart_table">
-							<tr>
-								<td class="cart_td"><input type="checkbox"
-									class="cart_input" checked><span class="cart_span">상품정보</span></td>
-								<td class="cart_td"><span class="cart_span2">추가상품</span></td>
-								<td class="cart_td"><span class="cart_span3">합계금액</span></td>
+							<tr class="cart_tr1">
+								<td class="cart_td1"><input type="checkbox"
+									class="cart_input" checked><div class="cart_span1">상품정보</div></td>
+								<td class="cart_td2"><span class="cart_span">추가상품</span></td>
+								<td class="cart_td3"><span class="cart_span">합계금액</span></td>
 							</tr>
 
 							<%
@@ -104,10 +103,13 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 
 									totalAmount += sumAmount; // 각 상품에 대한 합계금액을 누적한 총 합계금액
 							%>
-							<tr class="cart_tr">
+							<tr class="cart_tr2">
 								<td class="cart_td2"><input type="checkbox"
 									class="cart_input2" name="c_id<%=i%>" value="<%=c_id%>" checked><img
 									src="./admin_layout/upload/<%=i_img%>" class="cart_img"><br>
+									
+									<div class="cart_desc">
+									
 									<span class="cart_span4"><%=i_name%></span><input type="button"
 									class="cart_input3" value="x"
 									onclick="location.href='CartDeletePro.cr?c_id=<%=c_id%>'"><br>
@@ -117,7 +119,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 									구독내용 : <%=sub_content%><br> <%=NumberFormat.getInstance().format(i_price * c_qty)%>원<br>
 									<%
 									} else {
-									%> <span class="cart_span5">수령일:<%=delivery_date%></span><br>
+									%> <span class="cart_span5">수령일 : <%=delivery_date%></span><br>
 									<span class="cart_span6"><%=NumberFormat.getInstance().format(i_price * c_qty)%>원</span><br>
 									<%
 									}
@@ -125,7 +127,10 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 									onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&add=-1'">
 									<span class="cart_span7"><%=c_qty%></span> <input type="button" 
 									class="cart_input4" value="+" onclick="qtyUpdate(<%=c_id%>, <%=i_inven%>, <%=c_qty%>)">
-									<br> <span id="cartNotice<%=c_id%>"></span></td>
+									<br> <span id="cartNotice<%=c_id%>"></span></div></td>
+									
+								
+									
 								<td class="cart_td3"><span class="cart_span8"><%=letter%></span>
 									<%
 									if (c_letter == 1) {
@@ -156,12 +161,12 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 				</p>
 				<p class="cart_p2">
 					<span class="cart_span12"> <span class="cart_span13">총
-							주문금액</span><span class="cart_span14">&nbsp;<%=totalAmount%>원
+							주문금액</span><span class="cart_span14">&nbsp;<%=NumberFormat.getInstance().format(totalAmount)%>원
 					</span>
 					</span> <span class="cart_span15">+</span> <span class="cart_span12">
 						<span class="cart_span13">배송비<span class="cart_span16">0원</span></span>
 					</span> <span class="cart_span19">=</span> <span class="cart_span17">
-						<span class="cart_span18">총 결제 금액</span> <span class="cart_span20"><%=totalAmount%>원</span>
+						<span class="cart_span18">총 결제 금액</span> <span class="cart_span20"><%=NumberFormat.getInstance().format(totalAmount)%>원</span>
 						<%-- (체크하면 금액계산되는 기능 구현 필요)--%>
 					</span>
 				</p>
