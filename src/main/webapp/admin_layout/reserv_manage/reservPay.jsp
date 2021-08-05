@@ -28,16 +28,17 @@
   	  
   	  // IMP.request_pay(param, callback) 호출
   	  IMP.request_pay({ // param
-  	    pg: "<%=rb.getR_payment()%>",
-  	    pay_method: "card",
-  	    merchant_uid: "<%=rb.getR_id()%>",
-  	    name: "<%=cb.getClass_subject()%>",
-  	    amount: 100,
-  	    buyer_email: "<%=mb.getM_id()%>",
-  	    buyer_name: "<%=mb.getM_name()%>",
-  	    buyer_tel: "<%=mb.getM_phone()%>",
+  	    pg: "<%=rb.getR_payment()%>", //결제플랫폼 네이버 카카오 등등
+  	    pay_method: "card", //결제수단 카드 고정
+  	    merchant_uid: "<%=rb.getR_id()%>", //제품 id
+  	    name: "<%=cb.getClass_subject()%>", //제품명
+  	    amount: 100, //가격
+  	    buyer_email: "<%=mb.getM_id()%>", //구매자 이메일(=사계 아이디)
+  	    buyer_name: "<%=mb.getM_name()%>", //구매자 이름
+  	    buyer_tel: "<%=mb.getM_phone()%>", //구매자 전화번호
   	  }, function (rsp) { // callback
   	    if (rsp.success) {
+  	    	//결제 완료시
   	    	 // jQuery로 HTTP 요청
   	    	var msg = '결제가 완료되었습니다.';
   	        msg += '고유ID : ' + rsp.imp_uid;
@@ -47,6 +48,9 @@
   	        console.log(msg);
   	        isSuccess = true;
   	    } else {
+  	    	//결제 실패시 
+  	    	//ReservMiddleCancle.ad
+  	    	//
   	    	var msg = '';
   	        msg += rsp.error_msg;
   	        location.href='ReservMiddleCancle.ad?imp_uid=<%=rb.getR_id()%>&merchant_uid=<%=rb.getF_id()%>';

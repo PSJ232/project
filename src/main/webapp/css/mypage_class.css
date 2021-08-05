@@ -74,7 +74,7 @@
     margin-bottom: 3px;
 }
 
-.myclass_info_box div span:not(.myclass_place){
+.myclass_info_box div span:not(.myclass_place) {
 	font-size: 13px;
     margin-right: 4px;
 }

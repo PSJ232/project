@@ -73,7 +73,7 @@
 			<div><!-- 예약정보 입력 칸 -->
 				<form action="ReservInsert.ad" method="post">
 					<div>
-						<span>빛에 따른 색채 변화의 아름다움을 감상하며</span>
+						<span><%=cb.getClass_sub_desc()%></span>
 						<h2><%=cb.getClass_subject()%></h2>
 						
 						<h3>지점</h3>
@@ -90,14 +90,21 @@
 							<input type="number" name="r_num" id="r_num" min="0" required>
 						</div>
 					</div>
-					
+					<input type="hidden" name="fc_date" id="date" value="<%=cb.getClass_date()%>">
+					<input type="hidden" name="fc_date" id="date" value="<%=cb.getClass_date()%>">
 					<input type="hidden" name="fc_date" id="date" value="<%=cb.getClass_date()%>">
 					<input type="hidden" name="f_id" id="f_id" value="<%=cb.getClass_id()%>">
 					<input type="hidden" name="fd_place" id="place" value="<%=cb.getClass_place()%>">
 					<input type="hidden" name="subject" id="subject" value="<%=cb.getClass_subject()%>">
 					<input type="submit" value="신청하기">
 				</form>
-
+<!-- 
+거의 편지 수준이네여 보시고 삭제해주세요
+	결제창에 넘어가기전에 ReservInsert.ad를 통해서 받은 값을 먼저 db에 저장하고 결제 페이지로 넘어갑니다
+	보안떄문에 아이엠포트에서 이런 방식을 추천하더라구요 하지만 저희는 아이엠포트에서 결제관련
+	api를 받지 못하니까 그냥 패스하시고 결제 성공시에 payment 테이블에 저장하셔도 될것같습니다
+	저는 이미 구현하고 그 사실을 알아서 결제 중간 취소시에 reservation 행 삭제하는 reserMiddleCancleAction을 만들었습니당
+	 -->
 			</div>
 		</div>
 	</div>
