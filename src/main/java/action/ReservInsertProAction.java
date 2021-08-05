@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -23,8 +24,10 @@ public class ReservInsertProAction implements Action {
 		
 		ReservBean rb = new ReservBean();
 		rb.setF_id(Integer.parseInt(request.getParameter("f_id")));
-//		rb.setM_id(request.getParameter("m_id"));
-		rb.setM_id("hye304@naver.com");
+		
+		HttpSession session = request.getSession();
+		rb.setM_id((String)session.getAttribute("m_id"));
+
 		rb.setR_payment(request.getParameter("r_payment"));
 		rb.setFd_id(Integer.parseInt(request.getParameter("fd_id")));
 		rb.setR_num(Integer.parseInt(request.getParameter("r_num")));
