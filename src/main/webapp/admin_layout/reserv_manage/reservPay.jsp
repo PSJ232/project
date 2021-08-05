@@ -10,6 +10,8 @@
 	ClassBean cb = (ClassBean) request.getAttribute("fclass");
 	ClassDetailBean cdb = (ClassDetailBean) request.getAttribute("fclass_detail");
 	MemberBean mb = (MemberBean) request.getAttribute("member");
+	int point_discount = (int) request.getAttribute("point_discount");
+	float grade_discount = (float) request.getAttribute("grade_discount");	
 %>
 <!DOCTYPE html>
 <html>

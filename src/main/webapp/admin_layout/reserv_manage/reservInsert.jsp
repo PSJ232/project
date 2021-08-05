@@ -4,12 +4,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-int r_num = (int)request.getAttribute("r_num");
-MemberBean mb = (MemberBean)request.getAttribute("memberDetail");
-ClassBean fclass = (ClassBean)request.getAttribute("fclass");
+int r_num = (int) request.getAttribute("r_num");
+MemberBean mb = (MemberBean) request.getAttribute("member");
+ClassBean fclass = (ClassBean) request.getAttribute("fclass");
 ClassDetailBean fclassDetail = (ClassDetailBean)request.getAttribute("fclass_detail");
 String startDate = (String) request.getAttribute("startDate");
-String fd_time = (String)request.getAttribute("fd_time");
+String fd_time = (String) request.getAttribute("fd_time");
+float grade = (float) request.getAttribute("grade");
 
 %>
 <!DOCTYPE html>
@@ -76,7 +77,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 								사용가능한 포인트는 000입니다 알리기
 								더 적거나 같은 경우(사용가능한 경우) 
 								최종 결제금액의 포인트 할인에 값 전달-->
-						<input type="text" id="use_point" placeholder="0">
+						<input type="text" id="use_point" name="use_point" placeholder="0" value="">
 						<input type="button" id="pointApplybtn" value="적용"> 
 						<div>
 							<span>- 사용가능 포인트 : </span><span id="avail_point"><%=mb.getM_point()%></span>
@@ -91,7 +92,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 					<div>
 						<div>
 							<span>포인트 할인</span>
-							<span id="use_point2"> - <%//= %>원</span>
+							<span id="use_point2"> - 0원</span>
 						</div>
 						
 						<div>
@@ -133,7 +134,10 @@ String fd_time = (String)request.getAttribute("fd_time");
 				<!-- r_id 생성 -->
 				<div>
 					<input type="hidden" id="total_fee" name="total_fee" value="">
-					<input type="hidden" id="use_point3" name="use_point" value="">
+					<!-- 등급할인 금액 -->
+					<input type="text" id="grade_discount" name="grade_discount" value="<%=fclass.getClass_price()-(grade*fclass.getClass_price())%>">
+					<!-- 포인트 할인금액 -->
+					<input type="hidden" id="point_discount" name="point_discount" value="">
 					<input type="hidden" id="m_id" value="<%=mb.getM_id()%>">
 					<input type="hidden" name="f_id" value="<%=fclass.getClass_id()%>">
 					<input type="hidden" value="<%=r_num%>">
@@ -147,6 +151,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#total_fee').val($('#total_fee_print').text());
+			$('#use_point').val(0);
 			
 			$('#pointAll').change(function(){
 				if($('#pointAll').is(':checked')){
@@ -159,7 +164,7 @@ String fd_time = (String)request.getAttribute("fd_time");
 				let fee = $('#fee').val();
 				if(use_point.trim()!=""){
 					$('#use_point2').html('- '+use_point+'원');
-					$('#use_point3').val(use_point);
+					$('#point_discount').val(use_point);
 					$('#total_fee').val(parseInt(fee) - parseInt(use_point));
 					$('#total_fee_print').html(parseInt(fee) - parseInt(use_point));
 					$('#use_point').val('');

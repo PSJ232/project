@@ -36,7 +36,9 @@ public class ReservInsertAction implements Action {
 		String m_id = (String) session.getAttribute("m_id"); //아니면 세션값
 		MemberService memberService = new MemberService();
 		MemberBean mb = memberService.selectMember(m_id);
-		
+		//회원 등급 가져오기
+		int g_id = mb.getG_id();
+		float g_discount = memberService.getGradeDetail(g_id);
 		//classDetail 정보
 		int f_id = Integer.parseInt(request.getParameter("f_id"));
 		String fc_date = request.getParameter("fc_date");
@@ -72,12 +74,12 @@ public class ReservInsertAction implements Action {
 		
 		if(mb!=null&&cb!=null&&cdb!=null) {
 			request.setAttribute("r_num", r_num);
-			request.setAttribute("memberDetail", mb);
+			request.setAttribute("member", mb);
 			request.setAttribute("fclass", cb);
 			request.setAttribute("fclass_detail", cdb);
 			request.setAttribute("startDate", startDate);
 			request.setAttribute("fd_time", fd_time);
-			
+			request.setAttribute("grade", g_discount);
 			forward = new ActionForward();
 			forward.setPath("./admin_layout/reserv_manage/reservInsert.jsp");
 			forward.setRedirect(false);

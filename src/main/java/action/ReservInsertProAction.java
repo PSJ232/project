@@ -39,12 +39,22 @@ public class ReservInsertProAction implements Action {
 		ReservSelectIdService reservSelectIdService = new ReservSelectIdService();
 		int r_id = reservSelectIdService.getrId(rb);
 		
+		
+		//등급할인 금액
+		float grade_discount = Float.parseFloat(request.getParameter("grade_discount"));
+		//사용 포인트
+		int point_discount = Integer.parseInt(request.getParameter("point_discount"));
+		
+		System.out.println("grade_discount: " + grade_discount);
+		System.out.println("point_discount: " + point_discount);
+		
 		if(isInsertSuccess) {
-			rb.setR_id(r_id);
 			System.out.println("reservBean insert 성공");
+			rb.setR_id(r_id);
 			System.out.println(rb.getM_id());
 			request.setAttribute("reservBean", rb);
-			System.out.println("@@@@@@@@" + rb.getR_id());
+			request.setAttribute("grade_discount", grade_discount);
+			request.setAttribute("point_discount", point_discount);
 			forward = new ActionForward();
 			//결제페이지로 이동
 			forward.setPath("/ReservPay.ad");
