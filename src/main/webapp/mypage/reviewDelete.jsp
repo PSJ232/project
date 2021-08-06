@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="css/mypage.css" rel="stylesheet">
+<link href="css/mypage_reviewBefore.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/utility.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 function button_click() {
 	history.back();
@@ -28,53 +35,17 @@ switch(memberMypageDetail.getG_id()) {
 }
 
 %>
+	<!-- 헤더 들어가는곳 -->
+	<jsp:include page="../inc/header.jsp"></jsp:include>
+	<!-- 헤더 들어가는곳 -->
 
-<!-- 헤더 들어가는곳 -->
+	<!-- 본문 메인 상단 -->
+	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
 
-<!-- 헤더 들어가는곳 -->
-  
-<!-- 본문들어가는 곳 -->
-  <!-- 본문 메인 상단 -->
-  
-  <section id=""> 
+	<!-- 본문 왼쪽 메뉴 -->
+	<div class="mypage_container">
+		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 
-  <article id=""><%=m_id %>님,<br>
-  오늘도 꽃같은 날이예요</article>
-	
-  <article id="">
-  등급 정보 : <a href="MemberMypageGradeDetail.me"><%=realGrade %> </a>ㅣ 
-  포인트 : <a href="MemberMypagePointDetail.me"><%=memberMypageDetail.getM_point() %></a>ㅣ
-  나의 구독 : <a href="">2</a>
-  </article>
-  
-  </section>
-  
-  <!-- 본문 왼쪽 메뉴 -->
-  <!-- 큰 메뉴 두 가지 한 번에 묶여 있음 -->
-  <section id="">
-	<div>
-  	<h2>마이꾸까</h2>
-  	<ul type="none">
-  		<li><a href="OrderMypageDetailList.od">주문내역/배송조회</a></li>
-  		<li><a href="MypageSubscribe.od">나의 정기구독</a></li>
-  		<li><a href="MyClass.me">클래스 수강내역</a></li>
-		<li><a href="ReviewInsertForm.rv">상품 리뷰</a></li>
-  	</ul>
- 	 </div>
- 	 
- 	 <div>
-  	 <h2>개인정보 관리</h2>
-  	<ul type="none">
-		<li class="list"><a href="MemberUpdate.me">개인정보 수정</a></li>
-		<li class="list"><a href="MemberMypageGradeDetail.me">회원등급</a></li>
-		<li class="list"><a href="MemberMypagePointDetail.me">포인트</a></li>
-		<li class="list"><a href="QnaInsert.qna">1:1 문의내역</a></li>
-		<li class="list"><a href="QnaList.qna">QNA리스트</a></li>
-		<li class="list"><a href="Faq.me">자주묻는질문</a></li>
-  	</ul>
-  	</div>
-	</section>
-  	
  <!-- 본문 내용 -->
  <div>
  <form action="ReviewDeletePro.rv" method="post" name="fr">
@@ -85,12 +56,16 @@ switch(memberMypageDetail.getG_id()) {
  </form>
 
 
- 
- 
  </div>
  
-<!-- 푸터 들어가는곳 -->
+	</div>
 
-<!-- 푸터 들어가는곳 -->
+
+
+	<!-- 푸터 들어가는곳 -->
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
+	<!-- 푸터 들어가는곳 -->
 </body>
 </html>

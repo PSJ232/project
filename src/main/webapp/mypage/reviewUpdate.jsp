@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/mypage.css" rel="stylesheet">
-<link href="css/mypage_reviwe.css" rel="stylesheet">
+<link href="css/mypage_reviewBefore.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-
+<link rel="stylesheet" href="./css/utility.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <body>
 <%
 MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
@@ -51,18 +51,16 @@ case 0:
 
 		<!-- 본문 내용 -->
 
-		<div>
-			<form action="ReviewUpdatePro.rv" method="post" name="fr"
-				enctype="multipart/form-data">
-				<input type="hidden" name="od_id" value="<%=rb.getOd_id()%>">
-				<input type="hidden" name="r_id" value="<%=rb.getR_id()%>">
-				r_id :
-				<%=rb.getR_id()%>
-				<br> 작성자 : <input type="text" name="r_writer"
-					value="<%=m_id%>" readonly> 제목 : <input type="text"
-					name="r_title" value=<%=rb.getR_title()%>> <br> 내용 :
-				<textarea rows="10" cols="20" name="r_content"><%=rb.getR_content()%></textarea>
-				<br> 평점 :
+		<div class="mypage_ReviewUpdat_all">
+			<form action="ReviewUpdatePro.rv" method="post" name="fr" enctype="multipart/form-data">
+				<input id="mypage_ReviewUpdat_od_id" type="hidden" name="od_id" value="<%=rb.getOd_id()%>">
+				<input id="mypage_ReviewUpdat_r_id" type="hidden" name="r_id" value="<%=rb.getR_id()%>">
+				
+				<label> r_id : 	<%=rb.getR_id()%></label>
+				<label id="mypage_ReviewUpdat_od_id">작성자 : <input id="mypage_ReviewUpdat_od_id" type="text" name="r_writer"	value="<%=m_id%>" readonly> </label><br>
+				<label>제목 : <input type="text" name="r_title" value=<%=rb.getR_title()%>></label>
+				<label>내용 : <textarea rows="10" cols="20" name="r_content"><%=rb.getR_content()%></textarea></label>
+				<label>평점 :
 				<%
 				String s5 = "", s4 = "", s3 = "", s2 = "", s1 = "";
 				switch (rb.getR_rate()) {
@@ -90,7 +88,8 @@ case 0:
 					<option value="3" <%=s3%>>3</option>
 					<option value="2" <%=s2%>>2</option>
 					<option value="1" <%=s1%>>1</option>
-				</select><br> 이미지:<input type="file" name="r_img"><%=rb.getR_img()%><br>
+				</select></label>
+				이미지:<input type="file" name="r_img"><%=rb.getR_img()%><br>
 				<input type="hidden" name="oldr_img" value="<%=rb.getR_img()%>">
 				<input type="submit" value="작성하기">
 			</form>

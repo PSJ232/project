@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="css/mypage.css" rel="stylesheet">
+<link href="css/mypage_reviewBefore.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/utility.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 	<%
@@ -34,10 +41,16 @@
 	String a = mId[0].substring(0, 4);
 	String editId = a + "***";
 	%>
+<!-- 헤더 들어가는곳 -->
+	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- 헤더 들어가는곳 -->
 
-	<!-- 헤더 들어가는곳 -->
+	<!-- 본문 메인 상단 -->
+	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
 
+	<!-- 본문 왼쪽 메뉴 -->
+	<div class="mypage_container">
+		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 
 	<!-- 본문 내용 -->
 	<div class="mypage_container">
@@ -62,8 +75,14 @@
 	</div>
 
 
-	<!-- 푸터 들어가는곳 -->
+	</div>
 
+
+
+	<!-- 푸터 들어가는곳 -->
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
 	<!-- 푸터 들어가는곳 -->
 </body>
 </html>
