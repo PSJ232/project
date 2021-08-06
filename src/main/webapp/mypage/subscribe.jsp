@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="./css/utility.css">
 <link rel="stylesheet" href="./css/mypage_subscribe.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -95,17 +96,17 @@ for(int i =0; i<orderArrayList.size(); i++) {
 		
 		<div class="mysubscribe_layout">
 			<div id="tab-1" class="tab-content current">
-			<table class="mysubscribe_list_layout">
-				<colgroup>
-					<col width="22%">
-					<col width="58%">
-					<col width="20%">
-				</colgroup>
-				<thead class="mysubscribe_head">
-					<th><span>첫 구독일</span></th>
-					<th><span>상품 정보</span></th>
-					<th><span>상태</span></th>
-				</thead>
+				<table class="mysubscribe_list_layout">
+					<colgroup>
+						<col width="22%">
+						<col width="58%">
+						<col width="20%">
+					</colgroup>
+					<thead class="mysubscribe_head">
+						<th><span>첫 구독일</span></th>
+						<th><span>상품 정보</span></th>
+						<th><span>상태</span></th>
+					</thead>
 	
 				<%
 					if(nonOrderDetailArrayList.isEmpty()) {
@@ -114,7 +115,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 							<tr>
 								<td colspan="3">
 									<span>구독내역이 존재하지 않습니다</span>
-									<input class ="btn_wide btn_yellow" type="button"  onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
+									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
 								</td>
 							</tr>
 						</tbody>
@@ -127,7 +128,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 							Date deliveryDate = Date.valueOf(nonOrderDetailArrayList.get(i).getOd_delivery_date());
 							Date today = Date.valueOf(LocalDate.now());
 							%>
-	 						<tbody>
+	 						<tbody class="mysubscribe_order_none">
 								<tr>
 									<%
 									if(nonCol.contains(i)) {
@@ -160,17 +161,30 @@ for(int i =0; i<orderArrayList.size(); i++) {
 			</div>
 	 		
 			<div id="tab-2" class="tab-content">
-				<table border="1">
-					<tr><td>주문 일자</td><td>상품 정보</td><td>상태</td></tr>
+				<table class="mysubscribe_list_layout">
+					<colgroup>
+						<col width="22%">
+						<col width="58%">
+						<col width="20%">
+					</colgroup>
+					<thead class="mysubscribe_head">
+						<th><span>주문 일자</span></th>
+						<th><span>상품 정보</span></th>
+						<th><span>상태</span></th>
+					</thead>
 	
 					<%
 					if(orderDetailArrayList.isEmpty()) {
 						%>
-						<tr>
-							<td colspan="3">취소/환불한 구독내역이 존재하지 않습니다.<br>
-							<input type="button"  onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
-							</td>
-						</tr><%
+						<tbody class="mysubscribe_order_none">
+							<tr>
+								<td colspan="3">
+									<span>취소/환불한 구독내역이 존재하지 않습니다.</span>
+									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Subscription.shop'" value="구독 상품 보러가기">
+								</td>
+							</tr>
+						</tbody>
+						<%
 					} else {
 						int ccount = 0;
 						for(int i=0; i<orderArrayList.size(); i++) {

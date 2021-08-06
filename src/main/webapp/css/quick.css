@@ -4,21 +4,27 @@
 	margin-bottom: 65px;
 }
 
-#container div {
+#shop_container div {
 	position: relative;
     text-align: right;
+    padding: 0 6px;
 }
 
-#container div select {
+#shop_container div select {
 	width: 93px;
     font-size: 15px;
     border: none;
 }
 
-#container div select:focus {
+#shop_container div select:focus {
 	outline: none;
 }
 
+#container div:first-child {
+	padding: 0 8px;
+    font-size: 25px;
+    line-height: 35px;
+}
 .quick_banner_img {
     background-image: url(../img/quick_banner.png);
     background-repeat: no-repeat;
@@ -29,6 +35,34 @@
 }
 
 .quick_banner_img > div {
+	width: 1120px;
+    margin: 0 auto;
+}
+
+.flowerList_banner_img {
+    background-image: url(../img/category_flower_w.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center right;
+    background-color: #eeece8;
+    height: 300px;
+}
+
+.flowerList_banner_img > div {
+	width: 1120px;
+    margin: 0 auto;
+}
+
+.classList_banner_img {
+	background-image: url(../img/category_class_w.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center right;
+    background-color: #eeece8;
+    height: 300px;
+}
+
+.classList_banner_img > div {
 	width: 1120px;
     margin: 0 auto;
 }
@@ -65,11 +99,19 @@
 
 .quick_item_box {
 	display: inline-block;
+	padding: 0 7px;
+    border-collapse: collapse;
+    height: 420px;
 }
 
-.quick_item_box:not(:last-child){
-	margin-right: 13px;
+.class_item_box {
+	display: inline-block;
+    padding: 0 7px;
+    border-collapse: collapse;
+    height: 420px;
+    width: 33.333%;
 }
+
 
 .quick_item_desc {
 	display: inline-block;
@@ -89,7 +131,7 @@
     color: #787878;
 }
 .quick_item_img {
-	width: 265px;
+	width: 100%;
 	height: 256px;
 }
 

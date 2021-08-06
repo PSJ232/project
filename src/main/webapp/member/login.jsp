@@ -13,13 +13,18 @@ String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 
 %>
 <link href="css/login.css" rel="stylesheet" >
 <link href="css/style.css" rel="stylesheet" >
+<link href="css/mypage.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	  rel="stylesheet"></head>
+	  rel="stylesheet">
+	 
+</head>
+	  
 <body>
 
 	<header>
   		<jsp:include page="../inc/header.jsp"></jsp:include>
 	</header>
+	<div class="mypage_container">
 	<div class="login_all">
 	<h1 id="login">로그인</h1>
 	<form action="MemberLoginPro.me" method="post">
@@ -54,7 +59,7 @@ String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 
 	<br>
 	<p id="nonmember"><a href="VisitorLogin.me">비회원 주문 조회</a></p>
 	</div>
-	
+	</div>
 
 	<footer>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>

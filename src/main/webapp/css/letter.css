@@ -601,9 +601,36 @@ b {
     height: 20.8px;
 }
 
+.letter_p {
+	width: 620px;
+    height: 120px;
+    margin-top: 15px;
+    margin: 0 -30px;
+    padding: 30px;
+    background-color: #f7f7f7;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    
+}
 
-
-
+.letter_span18 {
+	width: 560px;
+    height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 100;
+    letter-spacing: -.21px;
+    color: #222;
+    position: relative;
+    padding-left: 7px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    
+}
 
 
 

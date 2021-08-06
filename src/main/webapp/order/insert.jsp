@@ -218,6 +218,19 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<h4>총 결제 금액</h4>
 		<span id="totalPrice"><%=NumberFormat.getInstance().format(totalPrice-gradeDiscount) %></span> 원
 		<h3>결제 수단</h3>
+		<table border="1">
+			<tr>
+				<td>네이버 페이<input type="radio" id="o_payment" name="o_payment" value="3"></td>
+				<td>카카오<input type="radio" name="o_payment" value="2"></td>
+				<td>신용카드<input type="radio" name="o_payment" value="1"></td>
+				<td>payco<input type="radio" name="o_payment" value="4"></td>
+			</tr>
+			<tr>
+				<td>무통장 입금<input type="radio" name="o_payment" value="0"></td>
+				<td>휴대폰 결제<input type="radio" name="o_payment" value="5"></td>
+				<td colspan="2"></td>
+			</tr>
+		</table>
 		
 		<%
 		int i;
@@ -260,10 +273,27 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
 		<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
 		<input type="hidden" name="paymentAmount" value="<%=totalPrice %>"> <!-- 포인트 적용버튼을 누르면 계산된 금액으로 value가 변경됨 (확인필요)-->
-		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500'), defaultPoint()" > <!-- 결제 api에 따라서 변경해야됨  -->
-	<br>
-	<br>
-	
 	</form>
+		
+	<form name="payfrm" method="post">
+		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>">
+		<input type="hidden" name="o_point" value="document.o_point.value()">
+		<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
+		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
+	</form>
+	<input type="button" value="결제하기" onClick="payment_popup()" >
+	
+	<script type="text/javascript">
+		function payment_popup() {
+			defaultPoint();
+			window.open('', 'payment', 'width=auto, height=auto');
+			var payform = document.payfrm;
+			payform.action = "./order/payment.jsp";
+			payform.target = "payment";
+			payform.submit();
+		}
+	
+	
+	</script>
 </body>
 </html>

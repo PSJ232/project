@@ -13,36 +13,12 @@
 <link rel="stylesheet" href="./css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./css/list_style.css">
-<style type="text/css">
-	.container input[type=text], textarea{
-		font-size: 15px;
-		border: none;
-		outline: none;
-		margin-bottom: 20px;
-		border: 1px solid #ccc;
-		padding: 10px;
-		border-radius: 5px;
-		width: 500px;
-	}
-	.container label {
-		width: 200px;
-		font-size: 17px;
-		float:left;
-	}
-	.container {
-		width: 700px;
-	}
-	#title {
-		margin-bottom: 30px;
-	}
-	.btn {
-		float:right;
-	}
-	.btn:hover {
-		background-color: #FFCD12;
-		cursor: pointer;
-	}
-</style>
+<link rel="stylesheet" href="./css/admin_qna.css">
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.admin_header_subtitle').text("답변등록");
+	});
+</script>
 </head>
 <body>
 <!-- 	<header> -->
@@ -59,8 +35,10 @@
 			<label>제목</label><input type="text" name="q_subject" value="ANSWER: <%=qnaBean.getQ_subject() %>"><br>
 			<label>내용</label><textarea name="q_content" rows="20" cols="70"></textarea><br>
 			<input type="hidden" name="q_id" value="<%=qnaBean.getQ_id() %>">
-			<input type="submit" class="btn" value="작성" onclick="location.href='AnswerWritePro.ad'">
-			<input type="button" class="btn" value="목록" onclick="location.href='QnaList.ad'">
+			<div id="buttons">
+				<input type="submit" class="btn" value="작성" onclick="location.href='AnswerWritePro.ad'">
+				<input type="button" class="btn" value="목록" onclick="location.href='QnaList.ad'">
+			</div>
 		</form>
 	</div>
 	<footer>

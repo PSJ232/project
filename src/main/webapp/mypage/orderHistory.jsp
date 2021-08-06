@@ -13,13 +13,13 @@
 <link href="css/mypage.css" rel="stylesheet">
 <link href="css/mypage_orderHistory.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
+<link rel="stylesheet" href="./css/utility.css">
+<link rel="stylesheet" href="./css/mypage_subscribe.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -109,6 +109,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 			<div class="mypage_orderHistory_main">
 				<div id="tab-1" class="tab-content current">
 					<table id="mypage_orderHistory_table" >
+						
 						<tr>
 							<td id="mypage_orderHistory_table_td_s" >주문 일자</td>
 							<td id="mypage_orderHistory_table_td_b">상품 정보</td>
@@ -125,7 +126,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 						for (int i = 0; i < nonOrderArrayList.size(); i++) {
 						%>
 
-						<tr>
+						<tr id="mypage_orderHistory_tr">
 							<%if (nonCol.contains(i)) {%>
 							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=nonOrderArrayList.get(i).getO_rdate()%></td>
 							<%} else {}%>
@@ -160,6 +161,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 				<div id="tab-2" class="tab-content">
 					<table id="mypage_orderHistory_table">
+						
 						<tr>
 							<td id="mypage_orderHistory_table_td_s">주문 일자</td>
 							<td id="mypage_orderHistory_table_td_b">상품 정보</td>
@@ -169,7 +171,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 						<%
 						if (orderDetailArrayList.isEmpty()) {
 						%><tr>
-							<td id="mypage_orderHistory_table_th" colspan="3">취소 / 환불내역이 존재하지 않습니다.</td>
+							<td class="mypage_orderHistory_table_th" colspan="3">취소 / 환불내역이 존재하지 않습니다.</td>
 						</tr>
 						<%} else {int ccount = 0;
 						for (int i = 0; i < orderArrayList.size(); i++) {

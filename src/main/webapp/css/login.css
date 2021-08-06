@@ -5,6 +5,11 @@
   margin: 0;
   box-sizing: inherit;
 }
+.container {
+		display: flex;
+		width: 1240px;
+		margin: 100px auto;
+	}
 
 body {
   box-sizing: border-box;
@@ -30,7 +35,8 @@ a, button {
 	margin: 0px auto;
 	text-align: center;
 	width: 100%;
-	
+	clear: both;
+	height: 1000px;
 }
 
 #login {
@@ -40,7 +46,7 @@ a, button {
 #log_img {
 	width: 50px;
 	height: 50px;
-	  object-fit: cover;
+	object-fit: cover;
 	margin: 10px;
 }
 
@@ -107,7 +113,7 @@ a, button {
 #nonmember {
 	font-weight: 700;
 	font-size: medium;
-	margin-bottom: 10px;
+	margin-bottom: 50px;
 }
 /* 아이디찾기 */
 #joinnumber {
@@ -115,6 +121,7 @@ a, button {
 	font-size: medium;
 	margin: 10px;
 	padding: 10px;
+	
 }
 .find{
 	margin: 0px auto;

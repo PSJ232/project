@@ -25,36 +25,39 @@ if(request.getParameter("sort")!=null) {
 }
 %>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/flowers.css">
+<link rel="stylesheet" href="css/quick.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 </head>
 	<body>	
 		<!-- header -->
 	  	<jsp:include page="../inc/header.jsp" ></jsp:include>
 	  	<!-- header -->
-	  	<div class="flowers_container">
-				<div class="flowers_subject">
-					<div class="inbox">
-						<div class="tbl">
-							<div class="td">
-								<h3 class="title">사계 꽃다발</h3>
-								<p class="desc"> 계절을 가득 담은 꽃다발로</p>
-								<p class="desc_2">당신의 일상을 특별한 날로 만들어보세요.</p>
-							</div>
+
+		<div id="quick_banner_container">
+			<div class="flowerList_banner_img">
+				<div>
+					<div class="quick_banner_textbox">
+						<span>사계 꽃다발</span>
+						<div>
+							<span>계절을 가득 담은 꽃다발로</span>
+							<span>당신의 일상을 특별한 날로 만들어보세요</span>
 						</div>
-				 	</div>
+					</div>
 				</div>
-				
-			 <div class="inner">
-				 <div class="sort">
-						<select name="item_sort" class="select_product_view" size="1" onchange="sortSelect(this.value)">
-							<option value="1" <%if(sort==1){%>selected<%} %>>추천순</option>
-							<option value="2" <%if(sort==2){%>selected<%} %>>인기순</option>
-							<option value="3" <%if(sort==3){%>selected<%} %>>신상품순</option>
-						</select>
+			</div>
+		</div>
+		<div id="container">
+			<div id="shop_container">
+				 <div>
+					<select name="item_sort" size="1" onchange="sortSelect(this.value)">
+						<option value="1" <%if(sort==1){%>selected<%} %>>추천순</option>
+						<option value="2" <%if(sort==2){%>selected<%} %>>인기순</option>
+						<option value="3" <%if(sort==3){%>selected<%} %>>신상품순</option>
+					</select>
 				</div>
-					<div class="flower_list">
+				<table class="quick_list_layout">
 					<%
 					for (ItemBean item : itemList) {
 						int i_id = item.getI_id();
@@ -63,27 +66,53 @@ if(request.getParameter("sort")!=null) {
 						item.getI_itemstatus();
 						item.getI_price();
 						int price = (int)(item.getI_price() * i_discount)/100*100;
+						
+						if (item.getI_category() == 1 || item.getI_category() == 2){
+							%> <!-- 1:일반배송, 2:당일배송  -->
+							<tbody class="quick_item_box">
+								<tr>
+									<td>
+										<a href="FlowersContent.shop?i_id=<%=i_id%>">
+											<img src="./admin_layout/upload/<%=item.getI_img()%>" class="quick_item_img">
+										</a>
+									</td>
+								</tr>
+								<tr class="quick_item_desc">
+									<td><%=item.getI_desc() %></td>
+								</tr>
+								<tr class="quick_item_name">
+									<td>
+										<a href="FlowersContent.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a>
+									</td>
+								</tr>
+								<tr class="quick_item_price">
+									<td>
+										<%
+										if(i_discount!=1){
+											%>
+											<span class="quick_item_discount"><%=percent %></span>
+											<span class="quick_item_discountprice"><del><%=NumberFormat.getInstance().format(item.getI_price())%>-></del></span>	
+										<%
+										}
+										%>
+										<span><%=NumberFormat.getInstance().format(price) %></span>
+									</td>
+								</tr>
+								<tr class="quick_item_size">
+									<td>
+										<span class="quick_item_size_icon"><%=item.getI_size()%></span>
+										<span class="quick_item_size_letter">size</span>
+										<span class="quick_item_free">무료배송</span>
+									</td>
+								</tr>
+							</tbody>
+						<%
+						} 
+					}
 					%>
-						<div class="inbox">
-							<div class="products">
-								<table>
-									<%if (item.getI_category() == 1 || item.getI_category() == 2){%> <!-- 1:일반배송, 2:당일배송  -->
-										<tbody>
-											<tr><td><a href="FlowersContent.shop?i_id=<%=i_id%>"><img src="./admin_layout/upload/<%=item.getI_img()%>" class="img"></a></td></tr>
-											<tr><td><span class="desc"><%=item.getI_desc() %></span></td></tr>
-											<tr><td><span class="item_name"><a href="FlowersContent.shop?i_id=<%=i_id%>"><%=item.getI_name() %></a></span></td></tr>
-											<tr><td><span class="discount"><%if(i_discount!=1){%><%=percent %></span> <span class="origin_price"><%=NumberFormat.getInstance().format(item.getI_price())%>-></span><span class="price"><%}%><%=NumberFormat.getInstance().format(price) %></span></td></tr>
-											<tr><td class="more"><span class="size"><%=item.getI_size()%></span> <span class="size_txt">size</span> <span class="delivery">무료배송</span></td></tr>
-										</tbody>
-									<%} %>
-								</table>
-							</div>
-						</div>
-					</div>
-						<%} %>
+				</table>
 			</div>
 		</div>
-
 		<!-- footer -->
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
 		<!-- footer -->

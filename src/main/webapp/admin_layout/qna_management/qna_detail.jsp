@@ -13,40 +13,7 @@
 <link rel="stylesheet" href="./css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./css/list_style.css">
-<style>
-	.container {
-		width: 700px;
-	}
-	.container input[type=text], textarea{
-		font-size: 15px;
-		border: none;
-		outline: none;
-		margin-bottom: 20px;
-		border: 1px solid #ccc;
-		padding: 10px;
-		border-radius: 5px;
-		width: 500px;
-	}
-	.container label {
-		width: 200px;
-		font-size: 17px;
-		float:left;
-	}
-	#title {
-		margin-bottom: 30px;
-	}
-	.link:hover {
-		color: #FFDF24;
-		cursor: pointer;
-	}
-	.btn {
-		float:right;
-	}
-	.btn:hover {
-		background-color: #FFCD12;
-		cursor: pointer;
-	}
-</style>
+<link rel="stylesheet" href="./css/admin_qna.css">
 <script>
 	$(document).ready(function(){
 		$('.admin_header_subtitle').text("문의상세");
@@ -97,16 +64,18 @@
 				%><input type="text" value="" readonly><br><%
 			}
 		%>
+		<div id="buttons">
 		<%
 			if(qnaBean.getQ_answered() == 0){
 				%><input type="button" class="btn" value="답변작성" onclick="location.href='WriteAnswer.ad?q_id=<%=qnaBean.getQ_id() %>'"><%
 			}
 		%>
-		<input type="button" class="btn" value="목록" onclick="location.href='QnaList.ad'">
-		<%if(qnaBean.getM_id().equals("admin")){
-			%><input type="button" class="btn" value="삭제" onclick="deleteAnswer()"><%
-		}
-		%>
+			<input type="button" class="btn" value="목록" onclick="location.href='QnaList.ad'">
+			<%if(qnaBean.getM_id().equals("admin")){
+				%><input type="button" class="btn" value="삭제" onclick="deleteAnswer()"><%
+			}
+			%>
+		</div>
 	</div>
 
 	<footer>

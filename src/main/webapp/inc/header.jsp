@@ -72,7 +72,7 @@ if(m_id == null) {
 			} else { 
 				if (m_id.equals("admin@admin.com")) {
 			%>
-					<a href="./admin_layout/main/main.jsp">관리자페이지</a>
+					<a href="DashBoard.ad">관리자페이지</a>
 					<i class="nav_service_bar"></i>
 				<%
 				}
@@ -94,7 +94,7 @@ if(m_id == null) {
 					<li class="item"><a href="Subscription.shop">꽃 정기구독</a></li>
 					<li class="item"><a href="Flowers.shop">꽃다발</a></li>
 					<li class="item"><a href="Quick.shop">당일배송</a></li>
-					<li class="item"><a href="#">플라워클래스</a></li>
+					<li class="item"><a href="Class.shop">플라워클래스</a></li>
 				</ul>
 				<div class="nav_bar_icon">
 					<a href=<%=moveMypage %>><img src="admin_layout/img/profile.png" alt="go to mypage" class="nav_icon"></a> 

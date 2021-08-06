@@ -72,7 +72,7 @@ a, button {
 
 .nav_bar_logo {
     display: inline-block;
-    margin: 34px 95px 0 0;
+    margin: 34px 86px 0 9px;
 }
 
 .logo_small_black{
@@ -458,11 +458,12 @@ body, button, input, select, table, textarea {
   font-family: 'Noto Sans KR',sans-serif,NanumGothic,'나눔고딕',Dotum,'돋움',Helvetica,"Apple SD Gothic Neo";
 }
 
+
 footer{
+  clear: both;
   background-color: #222;
   width: 100%;
   padding: 30px 0;
-
 }
 
 .footer_layout{

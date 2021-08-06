@@ -12,7 +12,7 @@ public class OrderBean {
 	private String o_phone; // 받는사람 연락처
 	private int o_amount; // 총주문금액((상품원가 * 상품할인율 * 수량) + 편지)
 	private int o_point; // 사용포인트
-	private int o_payment; // 결제수단 0:계좌이체, 1:신용카드, 2:카카오페이, 3:네이버페이 (미정)
+	private int o_payment; // 결제수단 0:계좌이체, 1:신용카드, 2:카카오페이, 3:네이버페이, 4:페이코, 5:휴대폰결제
 	private Date o_rdate; // 주문등록일(DB시간 동기화)
 	private Timestamp o_rdate2; // 주문등록일이 Date로 선언되면 안되는데...실수했음 고치기엔 너무 늦어서. 꼭 필요한 경우 이 변수 사용.
 	private int o_gdiscount; // 등급할인액
