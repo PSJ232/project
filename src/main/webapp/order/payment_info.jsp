@@ -43,15 +43,15 @@ if(mb == null) {
 				<%if(ob.getO_payment()==0){ %>
 			<dl class="bank_info">		
 				<dt class="th">
-					<span class="span_1">입금계좌 안내</span>
-					<span class="span_2">다음 계좌로 입금해주시면 주문이 완료됩니다.</span>
+					입금계좌 안내
+					<span class="span_th">다음 계좌로 입금해주시면 주문이 완료됩니다.</span>
 				</dt>								
 				<dd class="td">
-					<span class="span_3">계좌번호 기업은행 274-072066-01-041</span>
-					<span class="span_4">예금주 (주)사계</span>
-					<span class="span_5">입금금액 <%=NumberFormat.getInstance().format(pay) %>원</span>
-					<span class="span_6">보내시는분 <%=ob.getO_sender() %></span>
-					<span class="span_7">입금기한 선택하신 수령일 1일 전 오후 2시까지</span>
+					<span class="span_td">계좌번호 기업은행 274-072066-01-041</span>
+					<span class="span_td">예금주 (주)사계</span>
+					<span class="span_td">입금금액 <%=NumberFormat.getInstance().format(pay) %>원</span>
+					<span class="span_td">보내시는분 <%=ob.getO_sender() %></span>
+					<span class="span_td">입금기한 선택하신 수령일 1일 전 오후 2시까지</span>
 				</dd>
 			</dl>
 		<%} %>
