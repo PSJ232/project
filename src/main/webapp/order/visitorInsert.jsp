@@ -215,7 +215,6 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	</form>
 	
 	<form name="payfrm" method="post">
-		<input type="hidden" name="o_visitor" value="">
 		<input type="hidden" name="pay_point" value="0">
 		<input type="hidden" name="pay_gdiscount" value="0">
 		<input type="hidden" name="pay_amount" value="<%=price%>">
@@ -226,7 +225,6 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	
 	<script type="text/javascript">
 		function payment_popup() {
-			document.payfrm.o_sender.value = document.order.o_sender.value;
 			window.open('', 'payment', 'width=850, height=630');
 			var payform = document.payfrm;
 			payform.action = "./order/payment.jsp";

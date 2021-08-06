@@ -17,8 +17,7 @@ public class ClassReservAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		//플라워 클래스 리스트에서 받아온 f_id
-		//int f_id = Integer.parseInt(request.getParameter("f_id"));
-		int f_id = 2;
+		int f_id = Integer.parseInt(request.getParameter("f_id"));
 
 		ClassDetailViewService classDetailViewService = new ClassDetailViewService();
 		ClassBean cb = classDetailViewService.getDetailContent(f_id);

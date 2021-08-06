@@ -11,7 +11,6 @@
 	HashMap<String, Integer> weekCardSales = (HashMap<String, Integer>)request.getAttribute("weekCardSales");
 	List<String> weekCardSalesKeys = (List<String>)request.getAttribute("weekCardSalesKeys");
 	HashMap<String, Integer> weekCashSales = (HashMap<String, Integer>)request.getAttribute("weekCashSales");
-	List<String> weekCashSalesKeys = (List<String>)request.getAttribute("weekCashSalesKeys");
 	ArrayList<ItemBean> rankingItems = (ArrayList<ItemBean>)request.getAttribute("rankingItems");
 	ArrayList<ReviewBean> recentReview = (ArrayList<ReviewBean>)request.getAttribute("recentReview");
 %>
@@ -20,7 +19,6 @@
 <head>
 <meta charset="UTF-8">
 <title>메인</title>
-<!-- <script type="text/javascript" src="../script/Chart.js"></script> -->
 <link rel="stylesheet" href="./css/admin.css">
 <link rel="stylesheet" href="./css/list_style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -166,9 +164,8 @@
 	
 </body>
 <script type="text/javascript">
-		var card_dates = [];
+		var dates = [];
 		var card_numbers = [];
-		var cash_dates = [];
 		var cash_numbers = [];
 		function numberWithCommas(x) {
 		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -178,14 +175,14 @@
 		document.getElementById("card").innerHTML = "<span class='span'>Card</span> ￦" + numberWithCommas(<%=salesInfo.get("카드매출") %>);
 		<%
 			for(String str: weekCardSalesKeys){
-				%>card_dates.push("<%=str%>");
+				%>dates.push("<%=str%>");
 				card_numbers.push("<%=weekCardSales.get(str)%>");
 				<%
 			}
 		%>
 		<%
-			for(String str: weekCashSalesKeys){
-				%>cash_dates.push("<%=str%>");
+			for(String str: weekCardSalesKeys){
+				%>
 				cash_numbers.push("<%=weekCashSales.get(str)%>");
 				<%
 			}
@@ -211,7 +208,7 @@
 		var myLineChart = new Chart(context_line, {
 			type: 'bar',
 			data: {
-				labels: card_dates,
+				labels: dates,
 				datasets: [data_card, data_cash]
 			},
 			options: {

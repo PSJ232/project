@@ -184,12 +184,12 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<%} else {}%>
 							<td>
 							<dl id="mypage_orderHistory_td">
-								<dt id="mypage_orderHistory_img"><img id="mypage_orderHistory_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
-								<dt id="mypage_orderHistory_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
-								<dd id="mypage_orderHistory_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dd>
-								<dt id="mypage_orderHistory_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
-								<dd id="mypage_orderHistory_span_one">가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
-										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dd>
+								<dt id="mypage_orderHistory_img"><img id="mypage_orderHistory_img" src="./admin_layout/upload/<%=itemArrayList.get(i).getI_img() %>"/></dt>
+								<dt id="mypage_orderHistory_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id()%>"><%=itemArrayList.get(i).getI_name()%></a></dt>
+								<dd id="mypage_orderHistory_span_two">수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date()%></dd>
+								<dt id="mypage_orderHistory_span_two"> 받는 분 : <%=orderArrayList.get(i).getO_receiver()%></dt>
+								<dd id="mypage_orderHistory_span_one">가격 :<%=(int) (itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100%>
+										/ <%=orderDetailArrayList.get(i).getOd_qty()%>개</dd>
 							</dl>
 							</td>
 							<%if (col.contains(i)) {%>

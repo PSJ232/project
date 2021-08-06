@@ -33,4 +33,29 @@
  		border-radius: 5px; 
  		background-color: #FFDF24; 
  	} 
+ 	.page_btn {
+		border: none;
+		background-color: white;
+		
+	}
+	.page_btn:hover {
+		cursor: pointer;
+		color: #FFDF24;
+	}
+	#pageList {
+		margin: 0 auto;
+		width: 530px;
+		font-size: 15px;
+	}
+	#page_num {
+		padding: 5px;
+	}
+	#page_num:hover {
+		color: #FFDF24;
+	}
+	#selected_page_num {
+		font-weight: bold;
+		padding: 5px;
+		color: #FFDF24;
+	}
  	
