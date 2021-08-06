@@ -9,28 +9,8 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-
-		function checkId(id) {
-			
-			var regex = new RegExp(/\S{2,}(@)\S{2,}(.)\S{2,}/); // 2자이상@2자이상.2자이상 조합이어야 이메일 형식으로 인정
-			var element = document.getElementById('checkIdResult');
-			if (document.formJoin.m_id.value == ""){
-				element.innerHTML = '- 이메일 (아이디)를 입력해 주세요.';
-				return;
-			}
-			
-			if (regex.exec(id)) {
-				element.innerHTML = '- 사용 가능한 이메일입니다.(DB쪽체크는 아직 미구현)';
-				checkIdResult = true;
-			} else {
-				element.innerHTML = '- 이메일 형식으로 입력해주세요.';
-				checkIdResult = false;
-			}
-			
-		}
 		
 		function checkPhone(phone) {
-			
 			var regex = new RegExp(/\d{3}\d{3,4}\d{4}/);
 			var element = document.getElementById('checkPhoneResult');
 			if(document.formJoin.m_phone.value=="") {
@@ -45,7 +25,6 @@
 		         element.innerHTML = '- 형식에 맞지 않는 번호입니다.';
 		         checkPhoneResult = false;
 		      }    
-
 		}
 		
 	$(document).ready(function() {
@@ -60,18 +39,98 @@
 		});
 		
 		$('#idCheckBtn').click(function(){
-			$.ajax({
-				url : 'IdCheck.me',
-				type : "post",
-				datatype : "text",
-				data:{m_id:$('#m_id').val()},
-				success:function(rdata) {
-					$('#checkIdResult').html(rdata);
-				}
-			});
+			var regex = new RegExp(/\S{2,}(@)\S{2,}(.)\S{2,}/); // 2자이상@2자이상.2자이상 조합이어야 이메일 형식으로 인정
+			var testResult = regex.test($("#m_id").val());
+			if ($("#m_id") == ""){
+				$('#checkIdResult').html('- 이메일 (아이디)를 입력해 주세요.');
+			} 
+			if(testResult) {
+				$.ajax({
+					url : 'IdCheck.me',
+					type : "post",
+					datatype : "text",
+					data:{m_id:$('#m_id').val()},
+					success:function(rdata) {
+						$('#checkIdResult').html(rdata);
+					}
+				});
+			} else {
+				$('#checkIdResult').html('- 이메일 형식으로 입력해주세요.');
+				checkIdResult = false;
+			}
 		});
 		
 	});
+	
+	   function checkPassword(password) { // 패스워드 입력값 검증
+		      var lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
+		      var engUpperCaseRegex = /[A-Z]/;
+		      var engLowerCaseRegex = /[a-z]/;
+		      var digitRegex = /[0-9]/;
+		      var specRegex = /[!@#$%]/;
+		      
+		      var element = document.getElementById('checkPasswordResult');
+		      
+		      if(lengthRegex.exec(password)) {
+		         var safetyCount = 0;
+		         if(engUpperCaseRegex.exec(password)) safetyCount++;
+		         if(engLowerCaseRegex.exec(password)) safetyCount++;
+		         if(digitRegex.exec(password)) safetyCount++;
+		         if(specRegex.exec(password)) safetyCount++;
+		         
+		         switch (safetyCount) {
+		            case 4: 
+		               element.innerHTML = '안전';
+		               element.style.color = 'green';
+		               checkPasswordResult = true;
+		               break;
+		            case 3: 
+		               element.innerHTML = '보통';
+		               element.style.color = 'orange';
+		               checkPasswordResult = true; 
+		               break;
+		            case 2: 
+		               element.innerHTML = '위험';
+		               element.style.color = 'red';
+		               checkPasswordResult = true; 
+		               break;
+		            case 1: 
+		               element.innerHTML = '사용불가';
+		               element.style.color = 'black';
+		               checkPasswordResult = false;
+		               break;
+		         }
+		         
+		      } else {
+		         element.innerHTML = '8~16자리 영문자,숫자,특수문자 조합 필수!';
+		         element.style.color = 'black';
+		         checkPasswordResult = false; 
+		      }
+		      
+		   }
+	   
+	   function checkPasswordConfirm(password) { // 패스워드 일치 확인
+		      var element = document.getElementById('passwordConfirmResult');
+		      
+		      if(password == document.formJoin.m_pass.value) {
+		         element.innerHTML = '패스워드 일치';
+		         checkPasswordConfirmResult = true; 
+		      } else {
+		         element.innerHTML = '패스워드 불일치';
+		         checkPasswordConfirmResult = false; 
+		      }
+		      
+		   }
+	   
+	   
+	   function checkForm() {
+		      if(checkIdResult && checkPasswordResult && checkPasswordConfirmResult) {
+		         return true;
+		      } else {
+		         alert('입력 항목을 확인하세요!');
+		         return false;
+		      }
+		   }
 </script>
 </head>
 <body>
@@ -84,7 +143,7 @@
 	</div>
 	
 	<div class="join_us_box">	
-		<form action="MemberJoinPro.me" name=formJoin method="post">				
+		<form action="MemberJoinPro.me" name=formJoin method="post" onsubmit="return checkForm()">				
 				<div class="inbox">
 					<div class="inner">
 						
@@ -100,14 +159,16 @@
 							 <div class="row">
 							 	<div class="join_name">비밀번호</div>
 							 	<div class="join_input">
-							 		<input type="password" name="m_pass" class="textBox" placeholder="비밀번호를 입력해주세요." required><br>
+							 		<input type="password" name="m_pass" class="textBox" placeholder="비밀번호를 입력해주세요." required onkeyup="checkPassword(this.value)"><br>
+							 		<span id="checkPasswordResult"></span>  
 							 	</div>
 							</div>
 							
 							 <div class="row">
 							 	<div class="join_name">비밀번호확인</div>
 							 	<div class="join_input">
-							 		<input type="password" class="textBox" placeholder="비밀번호를 한 번 더 입력해주세요." required><br>
+							 		<input type="password" class="textBox" placeholder="비밀번호를 한 번 더 입력해주세요." required onkeyup="checkPasswordConfirm(this.value)"><br>
+							 		<span id="passwordConfirmResult"></span>
 							 	</div>
 							 </div>
 							 
