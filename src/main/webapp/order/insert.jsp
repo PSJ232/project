@@ -267,6 +267,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	</form>
 	<input type="button" value="결제하기" onClick="payment_popup()" >
 	
+	
 	<script type="text/javascript">
 		function payment_popup() {
 			defaultPoint();
@@ -277,8 +278,6 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			payform.target = "payment";
 			payform.submit();
 		}
-	
-	
 	</script>
 </body>
 </html>
