@@ -16,7 +16,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -32,7 +35,6 @@
 
 	})
 </script>
-</head>
 <!-- ajax에 쓰이는 css : 수정 마음껏 하셔도 괜찮습니다. -->
 
 
@@ -131,10 +133,10 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<dl id="mypage_orderHistory_td">
 								<dt id="mypage_orderHistory_img"><img id="mypage_orderHistory_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
 								<dt id="mypage_orderHistory_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
-								<dd id="mypage_orderHistory_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dd>
+								<dt id="mypage_orderHistory_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dt>
 								<dt id="mypage_orderHistory_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
-								<dd id="mypage_orderHistory_span_one">가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
-										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dd>
+								<dt id="mypage_orderHistory_span_one">가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
+										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
 							</dl>
 							</td>
 							<%if (nonCol.contains(i)) {if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%>
