@@ -11,13 +11,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/mypage.css" rel="stylesheet">
-<link rel="stylesheet" href="./css/style.css">
+<link href="css/mypage_reviewBefore.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/utility.css">
-<!-- <link rel="stylesheet" href="./css/mypage_subscribe.css"> -->
+<link rel="stylesheet" href="./css/mypage_subscribe.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -87,9 +88,9 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 
 
 		<!-- 본문 내용 -->
-		<section>
+		<section class="mypage_reviewBefore_all">
 
-			<h2>상품 리뷰</h2>
+			<h2 id="mypage_reviewBefore_title">상품 리뷰</h2>
 
 			<!--   -------------------------------------------------- -->
 			<ul class="tabs">
@@ -98,30 +99,27 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 			</ul>
 			<!--   -------------------------------------------------- -->
 
-			<div class="mysubscribe_layout">
+			<div class="mypage_reviewBefore_main">
 				<div id="tab-1" class="tab-content current">
-					<table class="mysubscribe_list_layout">
-						<colgroup>
-							<col width="22%">
-							<col width="58%">
-							<col width="20%">
-						</colgroup>
-						<thead class="mysubscribe_head">
-							<th><span>첫 구독일</span></th>
-							<th><span>상품 정보</span></th>
-							<th><span>상태</span></th>
-						</thead>
+					<table id="mypage_reviewBefore_table" >
+						
+						<tr>
+							<td id="mypage_reviewBefore_table_td_s" >첫 구독일</td>
+							<td id="mypage_reviewBefore_table_td_b">상품 정보</td>
+							<td id="mypage_reviewBefore_table_td_s">상태</td>
+						</tr>
+						
 						<%
 						if (nonOrderDetailArrayList.isEmpty()) {
 						%>
-						<tbody class="mysubscribe_order_none">
+
 							<tr>
 								<td colspan="3">작성 가능한 후기가 존재하지 않습니다.<br> <input
 									type="button" onclick="location.href='Flowers.shop'"
 									value="꽃다발 보러가기">
 								</td>
 							</tr>
-						</tbody>
+						
 						<%
 						} else {
 
@@ -129,31 +127,19 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							int sumAmount = (nonOrderArrayList.get(i).getO_amount() + nonOrderArrayList.get(i).getO_point()
 							+ nonOrderArrayList.get(i).getO_gdiscount() / 100) * 100;
 						%>
-						<tr>
-							<td><%=nonOrderArrayList.get(i).getO_rdate()%></td>
+						<tr id="mypage_reviewBefore_tr">
+							<td id="mypage_reviewBefore_situation" ><%=nonOrderArrayList.get(i).getO_rdate()%></td>
 							<td>
-								<dl id="mypage_reviewBefore_td">
-									<dt id="mypage_reviewBefore_img">
-										<img id="mypage_orderHistory_img"
-											src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img()%>" />
-									</dt>
-									<dt id="mypage_reviewBefore_dt"><%=nonItemArrayList.get(i).getI_name()%></dt>
-									<dt id="mypage_reviewBefore_dd">
-										수령일 :
-										<%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dt>
-									<dt id="mypage_reviewBefore_dd">
-										받는 분 :
-										<%=nonOrderArrayList.get(i).getO_receiver()%></dt>
-									<dt id="mypage_reviewBefore_dt">
-										가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
-										/
-										<%=nonOrderDetailArrayList.get(i).getOd_qty()%>개
-									</dt>
-								</dl>
+							<dl id="mypage_reviewBefore_td">
+								<dt id="mypage_reviewBefore_img"><img id="mypage_reviewBefore_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
+								<dt id="mypage_reviewBefore_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
+								<dt id="mypage_reviewBefore_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dt>
+								<dt id="mypage_reviewBefore_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
+								<dt id="mypage_reviewBefore_span_one">가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
+										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
+							</dl>
 							</td>
-							<td><a
-								href="ReviewInsert.rv?od_id=<%=nonOrderDetailArrayList.get(i).getOd_id()%>">리뷰
-									작성</a></td>
+							<td id="mypage_reviewBefore_situation"><a href="ReviewInsert.rv?od_id=<%=nonOrderDetailArrayList.get(i).getOd_id()%>">리뷰 작성</a></td>
 						</tr>
 						<%
 						}
@@ -161,21 +147,20 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 						%>
 					</table>
 				</div>
-
+			<div class="mypage_orderHistory_table_th">
 				<div id="tab-2" class="tab-content">
-					<%
-					if (orderDetailArrayList.isEmpty()) {
-					%>작성한 후기가 존재하지 않습니다.<br> <input type="button"
-						onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
+					<%if (orderDetailArrayList.isEmpty()) { %> 작성한 후기가 존재하지 않습니다. 
+					<input id="mypage_reviewBefore_btn" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
 					<%
 					} else {
 					%>
-
-					<table >
+			</div>
+					<table id="mypage_reviewBefore_table">
+						
 						<tr>
-							<td>주문/신청일자</td>
-							<td>상세 정보</td>
-							<td>상태</td>
+							<td id="mypage_reviewBefore_table_td_s">주문 일자</td>
+							<td id="mypage_reviewBefore_table_td_b">상품 정보</td>
+							<td id="mypage_reviewBefore_table_td_s">상태</td>
 						</tr>
 						<%
 						for (int i = 0; i < orderArrayList.size(); i++) {
@@ -185,40 +170,25 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 						<tr>
 							<td><%=orderArrayList.get(i).getO_rdate()%></td>
 							<td>
-								<dl id="mypage_reviewBefore_td">
-									<dt id="mypage_reviewBefore_img">
-										<img id="mypage_orderHistory_img"
-											src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img()%>" />
-									</dt>
-									<dt id="mypage_reviewBefore_dt"><%=nonItemArrayList.get(i).getI_name()%></dt>
-									<dt id="mypage_reviewBefore_dd">
-										수령일 :
-										<%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dt>
-									<dt id="mypage_reviewBefore_dd">
-										받는 분 :
-										<%=nonOrderArrayList.get(i).getO_receiver()%></dt>
-									<dt id="mypage_reviewBefore_dt">
-										가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
-										/
-										<%=nonOrderDetailArrayList.get(i).getOd_qty()%>개
-									</dt>
-								</dl>
+							<dl id="mypage_reviewBefore_td">
+								<dt id="mypage_reviewBefore_img"><img id="mypage_reviewBefore_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
+								<dt id="mypage_reviewBefore_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
+								<dd id="mypage_reviewBefore_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dd>
+								<dt id="mypage_reviewBefore_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
+								<dd id="mypage_reviewBefore_span_one">가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
+										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dd>
+							</dl>
 							</td>
 							<!-- 				삭제된 리뷰와, 수정 및 삭제가 가능한 리뷰를 구분	   			 -->
 							<%
 							if (deleteOdList.contains(orderDetailArrayList.get(i).getOd_id())) {
 							%>
-							<td><a
-								href="ReviewUpdate.rv?od_id=<%=orderDetailArrayList.get(i).getOd_id()%>">리뷰
-									수정(od_id : <%=orderDetailArrayList.get(i).getOd_id()%>)
-							</a> | <a
-								href="ReviewDelete.rv?od_id=<%=orderDetailArrayList.get(i).getOd_id()%>">리뷰
-									삭제</a></td>
+							<td id="mypage_reviewBefore_t"><a href="ReviewUpdate.rv?od_id=<%=orderDetailArrayList.get(i).getOd_id()%>">리뷰 수정(od_id : <%=orderDetailArrayList.get(i).getOd_id()%>)</a> | 
+								<a href="ReviewDelete.rv?od_id=<%=orderDetailArrayList.get(i).getOd_id()%>">리뷰 삭제</a></td>
 							<%
 							} else {
 							%>
-							<td>삭제된 리뷰 (od_id : <%=orderDetailArrayList.get(i).getOd_id()%>)
-							</td>
+							<td>삭제된 리뷰 (od_id : <%=orderDetailArrayList.get(i).getOd_id()%>)</td>
 							<%
 							}
 							%>

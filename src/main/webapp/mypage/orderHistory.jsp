@@ -15,14 +15,11 @@
 <link href="css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/utility.css">
 <link rel="stylesheet" href="./css/mypage_subscribe.css">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -174,7 +171,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 						<%
 						if (orderDetailArrayList.isEmpty()) {
 						%><tr>
-							<td id="mypage_orderHistory_table_th" colspan="3">취소 / 환불내역이 존재하지 않습니다.</td>
+							<td class="mypage_orderHistory_table_th" colspan="3">취소 / 환불내역이 존재하지 않습니다.</td>
 						</tr>
 						<%} else {int ccount = 0;
 						for (int i = 0; i < orderArrayList.size(); i++) {
