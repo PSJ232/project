@@ -13,9 +13,9 @@
 <link href="css/mypage.css" rel="stylesheet">
 <link href="css/mypage_orderHistory.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
+<link rel="stylesheet" href="./css/utility.css">
+<link rel="stylesheet" href="./css/mypage_subscribe.css">
+
 
 </head>
 <script
@@ -109,6 +109,11 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 			<div class="mypage_orderHistory_main">
 				<div id="tab-1" class="tab-content current">
 					<table id="mypage_orderHistory_table" >
+						<colgroup>
+							<col width="22%">
+							<col width="58%">
+							<col width="20%">
+						</colgroup>
 						<tr>
 							<td id="mypage_orderHistory_table_td_s" >주문 일자</td>
 							<td id="mypage_orderHistory_table_td_b">상품 정보</td>
@@ -160,6 +165,11 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 				<div id="tab-2" class="tab-content">
 					<table id="mypage_orderHistory_table">
+						<colgroup>
+							<col width="22%">
+							<col width="58%">
+							<col width="20%">
+						</colgroup>
 						<tr>
 							<td id="mypage_orderHistory_table_td_s">주문 일자</td>
 							<td id="mypage_orderHistory_table_td_b">상품 정보</td>

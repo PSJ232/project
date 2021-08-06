@@ -459,6 +459,7 @@ body, button, input, select, table, textarea {
 }
 
 footer{
+  clear: both;
   background-color: #222;
   width: 100%;
   padding: 30px 0;

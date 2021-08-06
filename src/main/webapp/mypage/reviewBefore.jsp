@@ -11,13 +11,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/mypage.css" rel="stylesheet">
-<link href="css/mypage_reviwe.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/utility.css">
+<!-- <link rel="stylesheet" href="./css/mypage_subscribe.css"> -->
 
-</head>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -29,40 +27,20 @@
 			$('ul.tabs li').removeClass('current');
 			$('.tab-content').removeClass('current');
 
-			$(this).addClass('current');
-			$("#" + tab_id).addClass('current');
+			$('.tabs').find('li').removeClass('current_clicked');
+			$(this).addClass('current current_clicked');
+			$("#"+tab_id).addClass('current');
 		})
 
 	})
 </script>
+
 <!-- ajax에 쓰이는 css : 수정 마음껏 하셔도 괜찮습니다. -->
 <style type="text/css">
-ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
 
-ul.tabs li {
-	background: none;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
-}
-
-ul.tabs li.current {
-	color: #222;
-}
-
-.tab-content {
-	display: none;
-	padding: 15px;
-}
-
-.tab-content.current {
-	display: inherit;
-}
 </style>
+</head>
+<body>
 
 <%
 MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
@@ -96,7 +74,6 @@ case 0:
 
 request.setAttribute("memberMypageDetail", memberMypageDetail);
 %>
-<body>
 	<!-- 헤더 들어가는곳 -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- 헤더 들어가는곳 -->
@@ -121,9 +98,9 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 			</ul>
 			<!--   -------------------------------------------------- -->
 
-			<div>
+			<div class="mysubscribe_layout">
 				<div id="tab-1" class="tab-content current">
-					<table border="1">
+					<table class="mysubscribe_list_layout">
 						<colgroup>
 							<col width="22%">
 							<col width="58%">
@@ -194,7 +171,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 					} else {
 					%>
 
-					<table border="1">
+					<table >
 						<tr>
 							<td>주문/신청일자</td>
 							<td>상세 정보</td>

@@ -47,7 +47,6 @@ ul.tabs li {
 }
 
 ul.tabs li.current {
-	background: #f7f7f7;
 	border-top: 2px solid #FFD228;
 }
 
