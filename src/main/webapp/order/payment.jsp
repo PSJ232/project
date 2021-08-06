@@ -1,20 +1,33 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <script type="text/javascript">
-	function payment(){
+	function paymentSuccess(){
 		window.opener.order.submit();
-		self.close();
 	}
 </script>
-<%
-String o_amount = request.getParameter("o_amount");
-
-%>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+int pay_amount = Integer.parseInt(request.getParameter("pay_amount"));
+String m_id = request.getParameter("m_id");
+String m_name = request.getParameter("m_name");
+/* if(m_name.equals("비회원구매")){
+	m_name = request.getParameter("o_sender");
+} */
+	
+int pay_gdiscount = Integer.parseInt(request.getParameter("pay_gdiscount"));
+int pay_point = Integer.parseInt(request.getParameter("pay_point"));
+
+// 최종결제가격
+int finalAmount = pay_amount - pay_gdiscount - pay_point; 
+// 결제관리번호
+String uid = m_id.substring(0, 5) + new Date().getTime();
+
+%>
  <!-- jQuery -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
   <!-- iamport.payment.js -->
@@ -27,14 +40,12 @@ String o_amount = request.getParameter("o_amount");
   	  
   	  // IMP.request_pay(param, callback) 호출
   	  IMP.request_pay({ // param
-  	    pg: "카카오", //결제플랫폼 네이버 카카오 등등
   	    pay_method: "card", //결제수단 카드 고정
-  	    merchant_uid: "1234", //제품 id
-  	    name: "", //제품명
-  	    amount: <%=o_amount%>, //가격
-  	    buyer_email: "", //구매자 이메일(=사계 아이디)
-  	    buyer_name: "", //구매자 이름
-  	    buyer_tel: "", //구매자 전화번호
+  	    merchant_uid: '<%=uid%>', //제품 id
+  	    name: "사계-꽃주문", //제품명
+  	    amount: 100, //가격
+  	    buyer_name: '<%=m_name %>님',
+  	    buyer_email: '<%=m_id %>' //구매자 이메일(=사계 아이디)
   	  }, function (rsp) { // callback
   	    if (rsp.success) {
   	    	//결제 완료시
@@ -46,24 +57,15 @@ String o_amount = request.getParameter("o_amount");
   	        msg += '카드 승인번호 : ' + rsp.apply_num;
   	        console.log(msg);
   	        isSuccess = true;
+  	      	paymentSuccess();
   	    } else {
   	    	//결제 실패시 
-  	    	//ReservMiddleCancle.ad
-  	    	//
-  	    	var msg = '';
+  	    	var msg = '결제가 승인되지않았습니다. 다시 시도해주세요.';
   	    }
-  	  alert(msg);
+  	  	alert(msg);
+		self.close();
   	  });
-  	  
-  	  
   	});
   </script>
-  <!-- 
-	거의 편지 수준이네여 보시고 삭제해주세요
-	결제창에 넘어가기전에 ReservInsert.ad를 통해서 받은 값을 먼저 db에 저장하고 결제 페이지(현재페이지)로 넘어갑니다
-	보안떄문에 아이엠포트에서 이런 방식을 추천하더라구요 하지만 저희는 아이엠포트에서 결제관련
-	api를 받지 못하니까 그냥 패스하시고 결제 성공시에 payment 테이블에 저장하셔도 될것같습니다
-	저는 이미 구현하고 그 사실을 알아서 결제 중간 취소시에 reservation 행 삭제하는 reserMiddleCancleAction을 만들었습니당
-	 -->
 </head>
 </html>
