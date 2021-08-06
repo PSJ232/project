@@ -44,23 +44,7 @@
 			document.getElementById('invenNotice').innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + inven + "개 입니다.<br>";
 		}
 	}
-
-</script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
 	
-	$('ul.tabs li').click(function(){
-		var tab_id = $(this).attr('data-tab');
-
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
-
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	})
-
-})
 </script>
 
 <%
@@ -82,12 +66,32 @@ switch(path){
 	case "/SubContent.shop" : category = "정기구독"; break;
 }
 
+int i_category = itemDetail.getI_category();
+String minDate = "";
+String maxDate = "";
+switch (i_category) {
+	case 1:
+		minDate = "+1d";
+		maxDate = "+14d";
+		break;
+	case 2:
+		minDate = "+0d";
+		maxDate = "+14d";
+		break;
+	case 3:
+		minDate = "+1d";
+		maxDate = "+20d";
+		break;
+}
 %>
 <link rel="stylesheet" href="./css/itemDetail.css">
 <link rel="stylesheet" href="./css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 </head>
@@ -177,7 +181,7 @@ switch(path){
 									</select>
 								</div>
 								<div class="calendar_right">
-									<input class="showCalendar" type="text" name="c_delivery_date" style="display: none;" required>
+									<input class="delivery_date" type="text" name="c_delivery_date" style="display: none;" required>
 									<span class="designinfo" style="display: none">- 8월 17일 이후로 지정하시면 <b>꽃다발 디자인이 변경됩니다.</b></span>
 								</div>
 							<%} %>
@@ -438,7 +442,7 @@ switch(path){
 			
 			 // 구독 옵션 선택하면 날짜입력창 보임
 			$('.sub_option').change(function(){
-				$('.showCalendar').css('display','block');
+				$('.delivery_date').css('display','block');
 				$('.designinfo').css('display','block');
 			});
 			
@@ -483,6 +487,43 @@ switch(path){
 				
 			});
 			
+			// 리뷰 탭 이동
+			$('ul.tabs li').click(function(){
+				var tab_id = $(this).attr('data-tab');
+		
+				$('ul.tabs li').removeClass('current');
+				$('.tab-content').removeClass('current');
+		
+				$(this).addClass('current');
+				$("#"+tab_id).addClass('current');
+			})
+			
+			// 달력 한글화
+			  $.datepicker.setDefaults({
+		        dateFormat: 'yymmdd',
+		        prevText: '이전 달',
+		        nextText: '다음 달',
+		        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		        showMonthAfterYear: true,
+		        yearSuffix: '년'
+		    });
+			
+		    // 달력 설정 시작일
+		    $('.admin_header_subtitle').text("수령일");
+		    $('.delivery_date').datepicker({
+		       dateFormat: "yy-mm-dd",
+		       changeMonth: true,
+		       maxDate: "<%=maxDate%>",
+		       minDate: "<%=minDate%>",
+		       beforeShowDay: function(date) {
+		            var day = date.getDay();
+		            return [(day != 0 && day != 1), '']; //일,월 배송일 제외
+		        }
+		    });
 		});
 	</script>
 </html>

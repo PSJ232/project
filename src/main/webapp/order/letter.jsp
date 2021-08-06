@@ -155,6 +155,7 @@ case 24:
 												</label></li>
 											</ul>
 										</div>
+										
 										<div class="letter_div13">
 											<div class="letter_div14">
 												<span class="letter_span15"> <img
@@ -172,6 +173,48 @@ case 24:
 														</div>
 													</div>
 													<strong class="letter_strong">안쪽면(감사메시지)</strong>
+												</div>
+											</div>
+										</div>
+										
+										<div class="letter_div13">
+											<div class="letter_div14">
+												<span class="letter_span15"> <img
+													src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_cheer_cover.png"
+													class="letter_img2">
+												</span> <strong class="letter_strong">앞면</strong>
+												<div class="letter_div15">
+													<div class="letter_div16">
+														<div class="letter_div17">
+															<div class="letter_div18">
+																<span class="letter_span16"> 당신의 꽃길을 응원해요.<br>
+																		앞으로도 우리 꽃길만 걸어요.
+																</span>
+															</div>
+														</div>
+													</div>
+													<strong class="letter_strong">안쪽면(응원메시지)</strong>
+												</div>
+											</div>
+										</div>
+										
+										<div class="letter_div13">
+											<div class="letter_div14">
+												<span class="letter_span15"> <img
+													src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_love_cover.png"
+													class="letter_img2">
+												</span> <strong class="letter_strong">앞면</strong>
+												<div class="letter_div15">
+													<div class="letter_div16">
+														<div class="letter_div17">
+															<div class="letter_div18">
+																<span class="letter_span16"> 당신이 매일 행복했으면 좋겠어요.<br>진심을 담은<br>
+																이 순간을 기억해주세요.
+																</span>
+															</div>
+														</div>
+													</div>
+													<strong class="letter_strong">안쪽면(사랑메시지)</strong>
 												</div>
 											</div>
 										</div>
@@ -217,7 +260,15 @@ case 24:
 
 				<input type="hidden" name="iNum" value="<%=i%>">
 				<!-- 주문페이지에서 getParameter를 몇번 반복할지 참조가 되는 값 -->
-				<input type="submit" value="작성완료">
+				<div class="letter_div19">
+				<div class="letter_div20">
+				<div class="letter_div21">
+				<div class="letter_div22">
+				<input type="submit" class="letter_input2" value="작성완료">
+				</div>
+				</div>
+				</div>
+				</div>
 				</form>
 			</div>
 		</div>

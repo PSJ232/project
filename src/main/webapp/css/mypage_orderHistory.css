@@ -60,10 +60,11 @@ ul.tabs li.current {
 	display: inherit;
 }
 
-.mypage_container.mypage_orderHistory_all {
+.mypage_orderHistory_all {
 	float: right;
 	height: 100%;
-	overflow: auto;
+	padding: 0;
+	margin: 0;
 }
 
 #mypage_orderHistory_title {
@@ -129,7 +130,7 @@ ul.tabs li.current {
 	margin: 20px;
 	font-size: 15px;
 	float: right;
-	text-align: center;
+	
 	
 }
 
@@ -137,6 +138,7 @@ ul.tabs li.current {
 	color: #aaaaaa;
 	margin: 20px;
 	font-size: 15px;
+	font-weight: 300;
 	float: right;
-	text-align: center;
+	
 }
