@@ -72,7 +72,7 @@ if(m_id == null) {
 			} else { 
 				if (m_id.equals("admin@admin.com")) {
 			%>
-					<a href="./admin_layout/main/main.jsp">관리자페이지</a>
+					<a href="DashBoard.ad">관리자페이지</a>
 					<i class="nav_service_bar"></i>
 				<%
 				}

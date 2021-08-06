@@ -24,6 +24,23 @@ public class AdminDashBoardAction implements Action {
 		HashMap<String, Integer> weekCashSales = service.getWeekCashSales();
 		List<String> weekCardSalesKeys = new ArrayList<String>(weekCardSales.keySet());
 		List<String> weekCashSalesKeys = new ArrayList<String>(weekCashSales.keySet());
+		if(weekCardSalesKeys.size() != weekCashSalesKeys.size()) {
+			if(weekCardSalesKeys.size() > weekCashSalesKeys.size()) {
+				for(String key : weekCardSalesKeys) {
+					if(!weekCashSalesKeys.contains(key)) {
+						weekCashSales.put(key, 0);
+						weekCashSalesKeys.add(key);
+					}
+				}
+			}else {
+				for(String key : weekCardSalesKeys) {
+					if(!weekCardSalesKeys.contains(key)) {
+						weekCardSales.put(key, 0);
+						weekCardSalesKeys.add(key);
+					}
+				}
+			}
+		}
 		Collections.sort(weekCardSalesKeys);
 		Collections.sort(weekCashSalesKeys);
 		ArrayList<ItemBean> rankingItems = service.getItemRanking();

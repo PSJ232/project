@@ -18,31 +18,30 @@
 <style>
 	#qna_status {
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: center;
-		width: 770px;
-		height: 70px;
-		padding-left: 50px;
-		padding-right: 50px;
+		width: 700px;
+		height: 150px;
+		margin-bottom: 50px;
+		text-align: center;
+		border-radius: 10px;
+ 		padding-left: 20px; 
+/* 		padding-right: 50px; */
+	}
+	#qna_status legend {
+		text-align: left;
+		padding: 10px;
 	}
 	
-	#qna_status h2 {
-		
+	#qna_status h1 {
 		height: 50px;
-		font-size: 25px;
-		padding-top: 12px;
+		font-size: 35px;
 		align-items: center;
-		margin-left: 50px;
-	}
-	.container fieldset {
-		width: 800px;
-		padding: 10px;
-		border-radius: 10px;
-		border: 2px solid #FFDF24;
-	}
-	.container legend {
-		font-size: 20px;
-		padding: 15px;
+/* 		border: 2px solid #ccc; */
+/* 		border-radius: 10px; */
+		padding: 20px 0 20px 0;
+		width: 400px;
+		height: 100px;
 	}
 	#qna_tab {
 		margin-top: 10px;
@@ -58,6 +57,11 @@
 		border-radius: 10px;
 		padding: 15px;
 		font-family: 'Gowun Dodum', sans-serif;
+	}
+	.span {
+		display: block;
+		font-size: 15px;
+		text-align: left;
 	}
 </style>
 <script>
@@ -94,13 +98,14 @@
 	<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 	<div class="container">
-		<fieldset>
-			<legend>문의 현황</legend>
-			<div id="qna_status">
-				<h2>미답변 <%=qnaCount.get("미답변") %></h2>
-				<h2>답변완료 <%=qnaCount.get("답변완료") %></h2> 
-			</div>
-		</fieldset>
+<!-- 		<fieldset> -->
+<!-- 			<legend>문의 현황</legend> -->
+			<fieldset id="qna_status">
+				<legend>답변현황</legend>
+				<h1><span class="span">미답변</span> <%=qnaCount.get("미답변") %>건</h1>
+				<h1><span class="span">답변완료</span> <%=qnaCount.get("답변완료") %>건</h1> 
+			</fieldset>
+<!-- 		</fieldset> -->
 		<ul id="qna_tab">
 			<li data-tab="tab1" class='tabmenu' id="default">미답변</li>
 			<li data-tab="tab2" class='tabmenu'>답변완료</li>
