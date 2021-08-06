@@ -18,7 +18,7 @@
 			<div class="admin_header_title">Four Season 관리자 페이지</div>
 			<div class="admin_header_subtitle">페이지 이름 적는 곳</div>
 			<div class="customerpage">
-				<a href="index.jsp" class="customerpage">회원페이지 &gt;</a>
+				<a href="/project" class="customerpage">회원페이지 &gt;</a>
 			</div>
 		</div>
 	</header>

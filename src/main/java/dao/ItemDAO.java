@@ -305,4 +305,47 @@ public class ItemDAO {
 		return updateCount;
 	}
 
+	public ArrayList<ItemBean> getItemRanking() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ItemBean> rankingItems = new ArrayList<ItemBean>();
+		try {
+			String sql = "SELECT *, sum(orders_detail.od_qty) selling "
+					+ "FROM item "
+					+ "LEFT JOIN orders_detail "
+					+ "ON item.i_id = orders_detail.i_id "
+					+ "GROUP BY i_name "
+					+ "ORDER BY selling DESC LIMIT 5";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ItemBean ib = new ItemBean();
+				ib = new ItemBean();
+				ib.setI_id(rs.getInt("i_id"));
+				ib.setI_name(rs.getString("i_name"));
+				ib.setI_desc(rs.getString("i_desc"));
+				ib.setI_price(rs.getInt("i_price"));
+				ib.setI_inven(rs.getInt("i_inven"));
+				ib.setI_img(rs.getString("i_img"));
+				ib.setI_subimg2(rs.getString("i_subimg2"));
+				ib.setI_subimg3(rs.getString("i_subimg3"));
+				ib.setI_subimg4(rs.getString("i_subimg4"));
+				ib.setI_rdate(rs.getTimestamp("i_rdate"));
+				ib.setI_discount(rs.getFloat("i_discount"));
+				ib.setI_size(rs.getString("i_size"));
+				ib.setI_dpstatus(rs.getString("i_dpstatus"));
+				ib.setI_itemstatus(rs.getString("i_itemstatus"));
+				ib.setI_detailpage(rs.getString("i_detailpage"));
+				ib.setI_category(rs.getInt("i_category"));
+				rankingItems.add(ib);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return rankingItems;
+	}
+
 }

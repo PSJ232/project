@@ -12,39 +12,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hahmlet:wght@100&display=swap" rel="stylesheet">
-<style>
-/* 	#class_list_title { */
-/* 		margin-bottom: 10px; */
-/* 		width: 700px; */
-/* 		display: inline-block; */
-/* 		padding-bottom: 10px; */
-/* 		font-family: 'Hahmlet', serif; */
-/* 		font-size: 60px; */
-/* 		color: #ccc; */
-/* 	} */
-	.class_list_container {
-		margin-left: 250px;
-		margin-top: 120px;
-		width: 1240px;
-	}
-	#class_status {
-		margin-top: 10px;
-		margin-bottom: 15px;
-		font-size: 20px;
-		width: 700px;
-		
-	}	
-	#class_status li {
-		display: inline-block;
-		cursor: pointer;
-		border: 1px solid #fff;
-		border-radius: 10px;
-		padding: 15px;
-		font-family: 'Gowun Dodum', sans-serif;
-	}
-
-</style>
 <link rel="stylesheet" href="./css/admin.css">
+<link rel="stylesheet" href="./css/admin_class_list.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
 	$(function() {

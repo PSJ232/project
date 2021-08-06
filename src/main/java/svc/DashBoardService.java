@@ -3,11 +3,16 @@ package svc;
 import static db.JdbcUtil.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import dao.ItemDAO;
 import dao.PaymentDAO;
+import dao.ReviewDAO;
+import vo.ItemBean;
+import vo.ReviewBean;
 
-public class PaymentService {
+public class DashBoardService {
 
 	public HashMap<String, Integer> getSalesInfo() {
 		Connection con = getConnection();
@@ -33,6 +38,24 @@ public class PaymentService {
 		HashMap<String, Integer> weekCashSales = paymentDAO.getWeekCashSales();
 		close(con);
 		return weekCashSales;
+	}
+
+	public ArrayList<ItemBean> getItemRanking() {
+		Connection con = getConnection();
+		ItemDAO itemDAO = ItemDAO.getInstance();
+		itemDAO.setConnection(con);
+		ArrayList<ItemBean> rankingItems = itemDAO.getItemRanking();
+		close(con);
+		return rankingItems;
+	}
+
+	public ArrayList<ReviewBean> getRecentReview() {
+		Connection con = getConnection();
+		ReviewDAO reviewDAO = ReviewDAO.getInstance();
+		reviewDAO.setConnection(con);
+		ArrayList<ReviewBean> recentReview = reviewDAO.getRecentReview();
+		close(con);
+		return recentReview;
 	}
 	
 }

@@ -7,58 +7,6 @@
 	ArrayList<ClassBean> classList = (ArrayList<ClassBean>)request.getAttribute("classList");
 	ArrayList<ClassDetailBean> classDetailList = (ArrayList<ClassDetailBean>)request.getAttribute("classDetailList");
 %>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="./css/admin.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<style>
-	#img {
-		width: 180px;
-		height: 180px;
-		border-radius: 5px;
-		border: 1px solid #fff;
-	}
-	
-	.class_content {
-		margin-bottom: 20px;
-		width: 800px ;
-		height: 150px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		padding: 5px;
-	}
-	
-	.class_content:nth-child(odd) #img{
-		border: 1px solid #eee;
-	}
-	.class_content:nth-child(odd){
-		background-color: #eee;
-		border: 1px solid #eee;
-	}
-	
-	#btn {
-		width: 150px;
-		height: 45px;
-		border: 1px solid #fff;
-		border-radius: 7px;
-		background-color: #FFDF24;
-		font-size: 20px;
-		margin-left: 650px;
-		margin-bottom: 20px;
-	}
-	#btn:hover {
-		background-color: #FFCD12;
-		cursor:pointer;
-	}
-	#class_subject:hover {
-		color: #FFDF24;
-	}
-</style>
-</head>
-<body>
 	<%
 			for(ClassBean cb : classList){
 				%>
@@ -88,5 +36,3 @@
 			}
 	%>
 	<input type="button" value="클래스 등록" id="btn" onclick="location.href='ClassInsertForm.ad'">
-</body>
-</html>

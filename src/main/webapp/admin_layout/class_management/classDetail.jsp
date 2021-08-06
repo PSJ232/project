@@ -13,105 +13,10 @@
 <meta charset="UTF-8">
 <title>관리자 | 클래스 상세</title>
 <style>
-	.container {
-		display: flex;
-		width: 1000px;
-		margin-left: 450px;
-		margin-top: 120px;
-		margin-bottom: 50px;
-	}
-	.reserv_container {
-		width: 1000px;
-		margin-left: 450px;
-		margin-top: 120px;
-		margin-bottom: 100px;
-		display: inline-block;
-	}
-	.sub_container {
-		display: inline-block;
-		width: 500px;
-		height: 500px;
-		margin-top: 15px;
-	}
-	.images {
-		margin-top: 15px;
-		display: inline-block;
-		width: 500px;
-	}
-	#main_img {
-		width: 308px;
-		height: 308px;
-		border: 1px solid #fff;
-		border-radius: 5px;
-	}
-	.sub_img {
-		margin-top: 10px;
-	}
-	.sub_img img {
-		width: 100px;
-		height: 100px;
-		border: 1px solid #fff;
-		border-radius: 5px;
-	}
-	label {
-		width: 130px;
-		float: left;
-		font-weight: bold;
-	}
-	input[type=text]{
-		margin-bottom: 30px;
-		border: none;
-		outline:none;
-	}
-	label, input[type=text]{
-		font-size: 15px;
-	}
-	input[type=button]{
-		width: 100px;
-		height: 40px;
-		border: 1px solid #fff;
-		border-radius: 5px;
-		background-color: #FFDF24;
-		margin-top: 10px;
-	}
-	input[type=button]:hover {
-		background-color: #FFCD12;
-		cursor: pointer;
-	}
-	#timespan {
-		font-size: 15px;
-	}
-	.times {
-		margin-right: 10px;
-		margin-top: 30px;
-		margin-bottom: 10px;
-		font-size: 20px;
-		font-weight: bold;
-		display: inline-block;
-		padding: 8px;
-		border: 1px solid white;
-		border-radius: 8px;
-	}
-	#reserv_table {
-		margin-top: 30px;
-		margin-bottom: 100px;
-		width: 800px;
-		text-align: center;
-		border: 1px solid #ececec;
-		border-collapse: collapse;
-		border-radius: 10px;
-	}
-	#reserv_table th,td {
-		padding: 10px;
-	}
-	#reserv_table th {
-		background-color: #f7f7f7;
-	}
-	#reserv_table tr:hover {
-		background-color: #FFDF24;
-	}
+	
 </style>
 <link rel="stylesheet" href="./css/admin.css">
+<link rel="stylesheet" href="./css/admin_class_detail.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script>
