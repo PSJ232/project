@@ -18,7 +18,7 @@
   <script>
     $(document).ready(function(){
     	$('.bxSlider').bxSlider({
-    		controls: false,
+    		controls: true,
    		 	pager: false,
    		 	speed: 1000
     	});
