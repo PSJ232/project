@@ -479,6 +479,8 @@ b {
 	width: 280px;
     height: 415px;
     overflow: hidden;
+    margin: 298px;
+    margin-top: -414px;
 }
 
 .letter_div16 {
@@ -522,11 +524,53 @@ b {
     white-space: normal;
 }
 
+.letter_div19 {
+	width: 360px;
+    height: 68px;
+    margin: 40px auto 0;
+}
 
+.letter_div20 {
+	width: 360px;
+    height: 68px;
+    margin: 0;
+}
 
+.letter_div21 {
+	width: 330px;
+    height: 48px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 0 -5px;
+}
 
+.letter_div22 {
+	width: 330px;
+    height: 48px;
+    flex: 1;
+    padding: 0 5px;
+}
 
+[type=submit] {
+    -webkit-appearance: button;
+}
 
-
-
-
+.letter_input2 {
+	padding: 0;
+    margin: 0;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 48px;
+    background: #ffcd32;
+    text-align: center;
+    font-size: 14px;
+    line-height: 48px;
+    font-weight: 300;
+    letter-spacing: -.21px;
+    color: #222;
+    border-radius: 5px;
+}
