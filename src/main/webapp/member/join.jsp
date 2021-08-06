@@ -39,7 +39,7 @@
 			}
 		      
 		      if(regex.exec(phone)) {
-		         element.innerHTML = '- 인증번호를 발송했습니다.(미구현)';
+// 		         element.innerHTML = '- 인증번호를 발송했습니다.(미구현)';
 		         checkPhoneResult = true;
 		      } else {
 		         element.innerHTML = '- 형식에 맞지 않는 번호입니다.';
@@ -84,14 +84,14 @@
 	</div>
 	
 	<div class="join_us_box">	
-		<div class="inbox">
-			<form action="MemberJoinPro.me" name=formJoin method="post">				
+		<form action="MemberJoinPro.me" name=formJoin method="post">				
+				<div class="inbox">
 					<div class="inner">
 						
 							 <div class="row">
 							 	<div class="join_name">이메일(아이디)</div>
 							 	<div class="join_input">
-							 		<input type="email" name="m_id" class="textBox" placeholder="예)four@season.kr" required>
+							 		<input type="email" name="m_id" id="m_id" class="textBox" placeholder="예)four@season.kr" required>
 									<input type="button" id="idCheckBtn" class="btn" onclick="checkId(m_id.value)" value="중복확인"><br>
 									<span id="checkIdResult" class="checkMessage">&nbsp;</span><br><!-- 아이디 유효성 검사 -->
 								</div>
