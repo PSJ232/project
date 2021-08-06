@@ -28,7 +28,11 @@ public class MypageSbscribeListAction implements Action {
 		// 마이페이지 멤버 정보 호출
 		MemberService memberService = new MemberService();
 		MemberBean memberMypageDetail = memberService.selectMember(m_id);
-		request.setAttribute("memberMypageDetail", memberMypageDetail);		
+		request.setAttribute("memberMypageDetail", memberMypageDetail);	
+		
+		// 구독 내역 정보
+		ArrayList<Integer> subscribeList = memberService.selectSubscribe(m_id);
+		request.setAttribute("subscribeList", subscribeList);
 		
 		// 주문 내역(취소x) : non~ || 취소 내역 : ~ 
 		SubscribeStatusService subscribeStatusService = new SubscribeStatusService();
