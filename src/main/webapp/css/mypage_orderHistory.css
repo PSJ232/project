@@ -77,7 +77,8 @@ ul.tabs li.current {
 
 #mypage_orderHistory_table {
 	width: 800px;
-	margin-bottom: 300px;
+	margin-bottom: 200px;
+	margin-top: 30px;
 }
 
 #mypage_orderHistory_table_td_s {
@@ -99,23 +100,26 @@ ul.tabs li.current {
 
 #mypage_orderHistory_table_th {
 	text-align: center;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 #mypage_orderHistory_situation {
 	text-align: center;
-	font-size: 12px;
+	font-size: 15px;
 	font-weight: 500;
+	border-bottom: 1px solid #aaaaaa; 	
 }
+
 
 #mypage_orderHistory_td {
 	margin: 0;
 	text-align: left;
+	border-bottom: 1px solid #aaaaaa;
 	
 }
 
 #mypage_orderHistory_img {
-	width: 200px;
+	width: 100px;
 	height: auto;
 	background: no-repeat;
 	background-size: contain;
@@ -124,20 +128,16 @@ ul.tabs li.current {
 }
 
 #mypage_orderHistory_span_one {
-	font-size: 12px;
 	font-weight: 500;
-	margin: 20px;
+	margin: 10px;
 	font-size: 15px;
-	float: right;
-	
-	
+	text-align: center;
 }
 
 #mypage_orderHistory_span_two {
-	color: #aaaaaa;
-	margin: 20px;
+/* 	color: #aaaaaa; */
+	margin: 10px;
 	font-size: 15px;
 	font-weight: 300;
-	float: right;
-	
+	text-align: center;
 }
