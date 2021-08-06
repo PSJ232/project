@@ -264,9 +264,6 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="pay_point" value="">
 		<input type="hidden" name="pay_gdiscount" value="<%=gradeDiscount %>">
 		<input type="hidden" name="pay_amount" value="<%=totalPrice %>">
-		<input type="hidden" name="pay_i_name" value="<%=itemList.get(0).getI_name() %>">
-		<input type="hidden" name="m_name" value="<%=m_name %>">
-		
 	</form>
 	<input type="button" value="결제하기" onClick="payment_popup()" >
 	

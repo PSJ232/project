@@ -59,8 +59,8 @@ int finalAmount = pay_amount - pay_gdiscount - pay_point;
 //   	    	var msg = '결제가 승인되지않았습니다. 다시 시도해주세요.';
   	    }
 //   	  	alert(msg);
+		self.close();
   	  });
-	self.close();
   	});
   </script>
 </head>
