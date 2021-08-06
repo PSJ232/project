@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 	<%
@@ -16,7 +17,6 @@
 	
 	// 포인트 100 단위 , 표시 설정
 	String point = String.format("%,d", memberMypageDetail.getM_point());
-
 	// 등급 변환
 	String realGrade = "";
 	switch (memberMypageDetail.getG_id()) {
@@ -41,7 +41,6 @@
 	} else {
 		subscribeCount = 0;
 	}
-
 	%>
 	<!-- 본문 메인 상단 -->
 	<div class="mypage_all">

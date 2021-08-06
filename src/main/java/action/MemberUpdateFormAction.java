@@ -25,8 +25,8 @@ public class MemberUpdateFormAction implements Action {
 		
 		// 멤버 정보 전달
 		MemberService memberService = new MemberService();
-		MemberBean memberDetail  = memberService.selectMember(m_id);
-		request.setAttribute("memberDetail", memberDetail);
+		MemberBean memberMypageDetail = memberService.selectMember(m_id);
+		request.setAttribute("memberMypageDetail", memberMypageDetail);
 		
 		// 구독 수 전달
 		ArrayList<Integer> subscribeList = memberService.selectSubscribe(m_id);

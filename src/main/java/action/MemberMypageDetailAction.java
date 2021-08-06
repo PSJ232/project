@@ -59,7 +59,7 @@ public class MemberMypageDetailAction implements Action {
 		} else if(command.equals("/MyClass.me")) {
 			forward = new ActionForward();
 			forward.setPath("./mypage/class.jsp");
-		}
+		} 
 		
 		return forward;
 	}
