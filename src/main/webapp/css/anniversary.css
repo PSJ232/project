@@ -1,33 +1,79 @@
 @charset "UTF-8";
 
-		body {
-			width: 100%;
-			text-align: center;
-		}		
-	
-		.anniversaryForm {
-			display: inline-block;
-			box-sizing: content-box;	
-			width: 70%;
-			line-height: 25px;
-		  	text-align: center;
-		  	margin-top: 35px;
-		}
-		
-		.formAnniversary li {
-			margin-bottom: 30px;
-		}
-		
-		.annSelect {
-			width: 300px;
-			height: 44px;
-			border: 1px solid #eaeaea;
-			border-radius: 5px;
-			font-size: 14px;
-			color: #000;
-			outline: none;
-			display: inline-block;
-		}
+*, *::before, *::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: inherit;
+}
 
+body {
+	box-sizing: border-box;
+}
 
-		
+anniversary_container {
+	max-width: 490px;
+	padding: 40px 65px;
+}
+
+.top_banner span {
+    height: auto;
+    padding: 40px 0;
+    border-bottom: none;
+    font-size: 30px;
+    line-height: 45px;
+    font-weight: 800;
+    letter-spacing: -.6px;
+    color: #333;
+}
+
+.anniversary_container .ann_content_box {
+	margin-top: 15px;
+	padding-top: 20px;
+	border-top: #d3d3d3 1px solid;
+}
+
+.anniversaryForm {
+	display: inline-block;
+	box-sizing: content-box;
+	width: 70%;
+	line-height: 25px;
+	text-align: center;
+	margin-top: 35px;
+}
+
+.ann_content_box .row {
+	padding: 0 5px;
+}
+
+.ann_content_box .row .ann_name {
+	float: left;
+	width: 110px;
+	padding-top: 8px;
+	margin-right: 20px;
+	font-size: 18px;
+	line-height: 27px;
+	font-weight: 300;
+	letter-spacing: -.27px;
+	color: #222;
+}
+
+.ann_content_box .row .ann_input {
+	width: 350px;
+	padding-top: 8px;
+	margin-right: 20px;
+}
+
+.formAnniversary li {
+	margin-bottom: 30px;
+}
+
+.annSelect {
+	width: 300px;
+	height: 44px;
+	border: 1px solid #eaeaea;
+	border-radius: 5px;
+	font-size: 14px;
+	color: #000;
+	outline: none;
+	display: inline-block;
+}

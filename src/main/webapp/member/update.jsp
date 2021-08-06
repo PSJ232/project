@@ -35,11 +35,11 @@
 	<!-- 헤더 들어가는곳 -->
 
 	<!-- 본문 메인 상단 -->
-	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
+<%-- 	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include> --%>
 
 		<!-- 본문 내용 -->
-	<div class ="mypage_update_container">
 		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+	<div class ="mypage_update_container">
 
 
 		
@@ -105,12 +105,12 @@
 							<span class="textSubject">기념일 관리</span> 
 							<span class="textNormal">  기념일을 등록하시면</span>
 							<span class="textGreen">5일전에</span> 
-							<span class="textNormal">kukka가 메일로 알려드릴게요!</span><br>						
+							<span class="textNormal">Fourseason이 메일로 알려드릴게요!</span><br>						
 						</div>	
 						
 							<div class="anniversary">
 										<span class="textBlack">기념일을 등록해주세요.</span><br>
-										<span class="textNormal">kukka 회원들은 평균 7.5개의 기념일을 등록하여 꽃을 즐기고있어요!</span>
+										<span class="textNormal">Fourseason 회원들은 평균 7.5개의 기념일을 등록하여 꽃을 즐기고있어요!</span>
 									<table id="annInsert">
 										<%
 										for (AnniversaryBean ab : annList) { // 반복문으로 기념일 정보를 하나씩 꺼내어 판별
@@ -169,7 +169,7 @@
 									<input type="button" class="btn" value="기념일 등록하기" onclick="window.open('MemberAnnForm.me', 'anniversary', 'width=450, height=500')">
 							</div>		
 							<input type="hidden" name="m_pass_origin" value="<%=memberDetail.getM_pass() %>">
-							<input type="checkbox" name="m_agree" <%if(memberDetail.getM_agree()!=null){%>checked<%}%> >꾸까가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요. <br>
+							<input type="checkbox" name="m_agree" <%if(memberDetail.getM_agree()!=null){%>checked<%}%> >FourSeason이 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요. <br>
 							<input type="submit" class="yellowBtn" value="수정하기"> <br>
 						</form>
 						
