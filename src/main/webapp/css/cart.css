@@ -121,13 +121,9 @@
 
 
 
-
-
-
-
 .cart_td3 {	
 	display: table-cell;
-/*     vertical-align: middle; */
+    vertical-align: middle;
 }
 
 .cart_span8 {
@@ -404,8 +400,3 @@ p {
     cursor: pointer;
     
 }
-
-
-
-
-

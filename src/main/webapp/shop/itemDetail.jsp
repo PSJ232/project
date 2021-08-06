@@ -326,7 +326,9 @@ switch (i_category) {
 				<div class="delivery_info_tit_tab is_open">
 					<div class="intab">
 						<button type="button" class="opener" data-type="information">
-							<span class="deli_title">배송안내</span>&nbsp;<span class="icon_arrow">∨</span><span class="icon_arrow" style="display: none">∧</span>
+							<span class="deli_title">배송안내</span>&nbsp;&nbsp;&nbsp;
+							<span class="icon_arrow"><img src="./img/arrow_icon1.png" width="20px"></span>
+							<span class="icon_arrow" style="display: none"><img src="./img/arrow_icon2.png" width="20px"></span>
 						</button>
 					</div>
 				</div>
