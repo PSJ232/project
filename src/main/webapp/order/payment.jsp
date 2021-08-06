@@ -13,8 +13,14 @@
 <title>Insert title here</title>
 <%
 int pay_amount = Integer.parseInt(request.getParameter("pay_amount"));
-String m_id = request.getParameter("m_id");
-String name = m_id.split("@")[0].toString();
+String m_id = "";
+String name = "";
+if(request.getParameter("m_id") == null){
+	name = request.getParameter("o_sender");
+} else {
+	m_id = request.getParameter("m_id");
+	name = m_id.split("@")[0].toString();
+}
 	
 int pay_gdiscount = Integer.parseInt(request.getParameter("pay_gdiscount"));
 int pay_point = Integer.parseInt(request.getParameter("pay_point"));
@@ -46,19 +52,19 @@ int finalAmount = pay_amount - pay_gdiscount - pay_point;
   	    if (rsp.success) {
   	    	//결제 완료시
   	    	 // jQuery로 HTTP 요청
-//   	    	var msg = '결제가 완료되었습니다.';
-//   	        msg += '\n고유ID : ' + rsp.imp_uid;
-//   	        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-//   	        msg += '\n결제 금액 : ' + rsp.paid_amount;
-//   	        msg += '\n카드 승인번호 : ' + rsp.apply_num;
+  	    	var msg = '결제가 완료되었습니다.';
+  	        msg += '\n고유ID : ' + rsp.imp_uid;
+  	        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+  	        msg += '\n결제 금액 : ' + rsp.paid_amount;
+  	        msg += '\n카드 승인번호 : ' + rsp.apply_num;
   	        console.log(msg);
   	        isSuccess = true;
   	      	paymentSuccess();
   	    } else {
   	    	//결제 실패시 
-//   	    	var msg = '결제가 승인되지않았습니다. 다시 시도해주세요.';
+  	    	var msg = '결제가 승인되지않았습니다. 다시 시도해주세요.';
+	  	  	alert(msg);
   	    }
-//   	  	alert(msg);
 		self.close();
   	  });
   	});

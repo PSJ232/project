@@ -93,19 +93,6 @@ public class OrderInsertProAction implements Action {
 		orderBean.setO_visitor(request.getParameter("o_visitor"));
 		// o_rdate 는 sql구문 now()로 설정
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		OrderService orderSerive = new OrderService();
 		boolean isOrderSuccess = orderSerive.registOrder(orderBean);
 		
