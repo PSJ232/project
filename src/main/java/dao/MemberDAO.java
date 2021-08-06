@@ -377,22 +377,25 @@ public class MemberDAO {
 		return annDetail;
 	}
 	
-	public ArrayList<MemberBean> search(String memberName, String filter){
+	public ArrayList<MemberBean> search(String memberName, String filter, int page, int limit){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<MemberBean> resultList = new ArrayList<MemberBean>();
+		int startRow = (page - 1) * limit;
 		String sql = "";
 		try {
 			switch (filter) {
-			case "1": sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_name"; break;
-			case "2": sql = "SELECT * FROM member WHERE m_id LIKE ? ORDER BY m_drop desc, m_id"; break;
-			case "3": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,m_phone"; break;
-			case "4": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,g_id"; break;
-			default: sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_id";
+			case "1": sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_name LIMIT ?,?"; break;
+			case "2": sql = "SELECT * FROM member WHERE m_id LIKE ? ORDER BY m_drop desc, m_id LIMIT ?,?"; break;
+			case "3": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,m_phone LIMIT ?,?"; break;
+			case "4": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,g_id LIMIT ?,?"; break;
+			default: sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_id LIMIT ?,?";
 			}
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + memberName + "%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				MemberBean mb = new MemberBean();
@@ -618,6 +621,27 @@ public class MemberDAO {
 		}
 		
 		return subscribeList;
+	}
+
+	public int getListCount() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int listCount = 0;
+		try {
+			String sql = "SELECT COUNT(*) FROM member";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생!(MemberDAO getListCount()) - " + e.getMessage());
+
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return listCount;
 	}
 
 	

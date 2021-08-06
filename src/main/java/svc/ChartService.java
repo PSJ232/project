@@ -17,5 +17,7 @@ public class ChartService {
 		close(con);
 		return memberData;
 	}
+
+	
 	
 }

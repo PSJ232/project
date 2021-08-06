@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import db.JdbcUtil;
 import vo.DetailBean;
 import vo.ItemBean;
 import vo.MemberBean;
@@ -535,13 +536,16 @@ public class ReviewDAO {
 		return content;
 	}
 
-	public ArrayList<ReviewBean> getReviewList() {
+	public ArrayList<ReviewBean> getReviewList(int page, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		int startRow = (page - 1) * limit;
 		ArrayList<ReviewBean> reviewList = new ArrayList<ReviewBean>();
 		try {
-			String sql = "SELECT * FROM review ORDER BY r_id DESC";
+			String sql = "SELECT * FROM review ORDER BY r_id DESC LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ReviewBean reviewBean = new ReviewBean();
@@ -595,6 +599,27 @@ public class ReviewDAO {
 			close(pstmt);
 		}
 		return recentReview;
+	}
+
+	public int getListCount() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int listCount = 0;
+		try {
+			String sql = "SELECT COUNT(*) FROM review";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생!(OrderDAO getListCount()) - " + e.getMessage());
+
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return listCount;
 	}
 
 }

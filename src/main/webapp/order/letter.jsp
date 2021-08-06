@@ -36,6 +36,8 @@
 ul.letter_ul{
 	margin: 0px;
 	padding: 0px;
+	margin-top: 17px;
+	margin-left: 14px;
 	list-style: none;
 }
  ul.letter_ul li{ 
@@ -93,6 +95,7 @@ case 24:
 		</div>
 		<div class="letter_div3">
 			<div class="letter_div4">
+				<form action="OrderLetter.od" method="post">
 				<div class="letter_div5">
 					<div class="letter_div6">
 						<h5 class="letter_h5">
@@ -103,7 +106,7 @@ case 24:
 							<div class="letter_div8">
 								<article class="letter_article">
 									<div class="letter_div9">
-										<form action="OrderLetter.od" method="post">
+										
 											<%
 											int i; // for문 돌때 각각의 주문구분번호 부여
 											for (i = 0; i < checkList.size(); i++) { // 장바구니와 아이템의 ArrayList에서 필요 정보 반복 추출
@@ -275,8 +278,8 @@ case 24:
 													<div class="letter_div16">
 														<div class="letter_div17">
 															<div class="letter_div18">
-															<textarea class="letter_textarea" rows="8" maxlength="160"></textarea>
-															<input type="text" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)">	
+															<textarea class="letter_textarea" rows="8" maxlength="160" placeholder="내용을 입력해주세요:)"></textarea>
+															<input type="text" name="od_message<%=i%>" >	
 															</div>
 														</div>
 													</div>

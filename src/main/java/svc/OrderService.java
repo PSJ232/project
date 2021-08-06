@@ -1,5 +1,7 @@
 package svc;
 
+import static db.JdbcUtil.getConnection;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -187,5 +189,14 @@ public class OrderService {
 		}
 		JdbcUtil.close(con);
 		return isInsertSuccess;
+	}
+
+	public int getListCount() {
+		Connection con = getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		int listCount = orderDAO.getListCount();
+		JdbcUtil.close(con);
+		return listCount;
 	}
 }

@@ -1,9 +1,17 @@
+<%@page import="vo.PageInfo"%>
 <%@page import="vo.ReviewBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>)request.getAttribute("reviewList");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	
+	int currentPage = pageInfo.getPage();
+	int listCount = pageInfo.getListCount();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -75,6 +83,30 @@
 				%>
 			</tbody>
 		</table>
+		<section id="pageList">
+		<%
+		if(maxPage != 1){
+			if(currentPage <= 1) {%>
+					<input type="button" value="이전">&nbsp;
+			<%} else {%>
+					<input type="button" value="이전" onclick="location.href='ReviewList.ad?page=<%=currentPage - 1 %>'">&nbsp;
+			<%} %>
+			
+			<%for(int i = startPage; i <= endPage; i++) { 
+					if(i == currentPage) { %>
+						[<%=i %>]
+				<%} else {%>
+				<a href="ReviewList.ad?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<%} %>
+			<%} %>
+			
+			<%if(currentPage >= maxPage) {%>
+				<input type="button" value="다음">
+			<%} else { %>
+				<input type="button" value="다음" onclick="location.href='ReviewList.ad?page=<%=currentPage + 1 %>'">
+			<% } 
+			} %>
+		</section>
 	</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>

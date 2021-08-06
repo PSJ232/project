@@ -72,7 +72,7 @@ if(request.getParameter("sub_option") != null){
 			%>
 			<tr class="cart_tr2">
 				<td class="cart_td2">
-					<img src="./admin_layout/upload/<%=i_img%>" class="cart_img"><br>
+					<img src="./admin_layout/upload/<%=i_img%>" class="cart_img2"><br>
 					<div class="cart_desc">
 					<span class="cart_span4"><%=i_name%></span><br>
 					<%if(sub_option > 1){ %>
@@ -80,50 +80,83 @@ if(request.getParameter("sub_option") != null){
 					구독내용 : <%=sub_content%><br>
 					<%=NumberFormat.getInstance().format(i_price * c_qty * sub_option)%>원<br>
 					<%}else{%> 
-					수령일 : <%=c_delivery_date%><br>
-					<%=NumberFormat.getInstance().format(i_price * c_qty)%>원<br>
+					<span class="cart_span5">수령일 : <%=c_delivery_date%></span><br>
+					<span class="cart_span6"><%=NumberFormat.getInstance().format(i_price * c_qty)%>원</span><br>
 					<%} %>
-					<%=c_qty%> 개<br>
+					<span class="cart_span23"><%=c_qty%> 개</span><br>
 					</div>
 				</td>
-				<td><%=letter%></td>
-				<td>
-					<%=sumAmount%>원<br>
-					무료배송
+				<td class="cart_td3">
+				<span class="cart_span8"><%=letter%></span>
+				</td>
+				<td class="cart_td4">
+					<span class="cart_span9"><%=sumAmount%>원</span><br>
+					<span class="cart_span10">무료배송</span>
 				</td>
 			</tr>
 		</table>
 		</div>
-		</div>
-		</div>
-
-
-		구매 전 확인해주세요.<br>
-		 - 구매 금액 합산이 30,000원 이상일 경우, 배송비는 무료입니다.(단,[정기구독],[무료배송] 상품은 구매금액 합산에 포함되지 않습니다.)<br>
-		<hr>
-
-		총 주문금액	<%=visiorAmount%>원 + 배송비 0원 = 총 결제 금액 <%=visiorAmount%>원 <%if(itemDetail.getI_discount() != 1){%>[회원가 <%=sumAmount%>원]<%}%><br>
+	</div>
+</div>
+<div class="cart_div5">
+	<p class="cart_p">
+		<strong class="cart_strong">구매 전 확인해주세요.</strong><br>
+		<span class="cart_span11">- 구매 금액 합산이 30,000원 이상일 경우, 배송비는 무료입니다.(단,[정기구독],[무료배송] 상품은 구매금액 합산에 포함되지 않습니다.)</span><br>
+		<span class="cart_span11">- [정기구독]상품의 첫 번째 발송일에 일반 택배 상품을 함께 구매하실 경우,중복 배송비는 부분 환불 처리해 드립니다.</span>
+	</p>
+	<p class="cart_p2">
+		<span class="cart_span12">
+		<span class="cart_span13">총 주문금액</span>	
+		<span class="cart_span14">&nbsp;<%=visiorAmount%>원</span>
+		 </span>
+		 <span class="cart_span15">+</span>
+		 <span class="cart_span12">
+		 	<span class="cart_span13">
+		  배송비 
+		  <span class="cart_span16">0원</span>
+		  </span>
+		  </span>
+		   <span class="cart_span19">=</span>
+		   <span class="cart_span17">
+		    <span class="cart_span18">총 결제 금액</span>
+		    <span class="cart_span20"><%=visiorAmount%>원</span>
+		    </span>
+		    </p><br>
+		    <%if(itemDetail.getI_discount() != 1){%><span class="cart_span22">[회원가 <%=sumAmount%>원]</span><%}%><br>
 		
 		<input type="hidden" name="c_delivery_date" value="<%=c_delivery_date%>">
 		<input type="hidden" name="i_id" value="<%=request.getParameter("i_id")%>">
 		<input type="hidden" name="c_qty" value="<%=c_qty%>">
 		<input type="hidden" name="c_letter" value="<%=c_letter%>">
 		
-		<input type="submit" value="할인없이 구매하기"><br>
-		<input type="button" value="회원가입" onclick="location.href='MemberJoin.me'"><br>
-		지금 회원가입 하시면 1,000p 바로 지급!
-	</form>
+		<div class="cart_div8">
+			<div class="cart_div9">
+				<input type="button" class="cart_input5" value="회원가입" onclick="location.href='MemberJoin.me'"><br>
+			</div>
+		</div>
+		
+		<div class="cart_div10">
+			<div class="cart_div11">
+				<input type="submit" class="cart_input7" value="할인없이 구매하기"><br>
+			</div>
+		</div>
+		<p class="cart_p4">
+		지금 회원가입 하시면 <b>1,000p</b> 바로 지급!
+		</p>
+		
+</div>
+</form>
 
 	<%
 	} else {
 	%>
-	</table></div>
-	</form>
+	</table></div></div></div></form>
 	<!-- if문안에서 태그가 짤려서 추가 -->
-	장바구니가 비어있습니다.<br>
-	그 계절 가장 이쁜 꽃으로 행복을 채워보세요.<br>
+	<p class="cart_p3">
+	<span class="cart_span21">장바구니가 비어있습니다.<br>
+	그 계절 가장 이쁜 꽃으로 행복을 채워보세요.</span><br>
 
-	<input type="button" value="쇼핑하러 가기" onclick="location='./'">
+	<input type="button" class="cart_input6" value="쇼핑하러 가기" onclick="location='./'">
 
 
 	<%
