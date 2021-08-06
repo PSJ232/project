@@ -163,12 +163,12 @@ html {
 }
 
 .delivery_date, .showCalendar {
-	padding: 13px 130px 13px 10px;
+	padding: 13px;
+	width: 330px;
 	border: solid 1px #ffd324;
 	border-radius: 5px;
 	color: #999999;
 	font-size: 14px;
-	display: block;
 }
 
 .required_mark {

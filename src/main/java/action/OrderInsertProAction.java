@@ -88,11 +88,23 @@ public class OrderInsertProAction implements Action {
 		orderBean.setO_phone(request.getParameter("o_phone"));
 		orderBean.setO_amount(Integer.parseInt(request.getParameter("o_amount")));
 		orderBean.setO_point(newPoint);
-		// orderBean.setO_payment(Integer.parseInt(request.getParameter("o_payment")));
-		orderBean.setO_payment(1); //테스트용 결제수단 임시 번호
+		orderBean.setO_payment(Integer.parseInt(request.getParameter("o_payment")));
 		orderBean.setO_gdiscount(-(Integer.parseInt(request.getParameter("o_gdiscount")))); // 할인금액 음수(-)처리
 		orderBean.setO_visitor(request.getParameter("o_visitor"));
 		// o_rdate 는 sql구문 now()로 설정
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		OrderService orderSerive = new OrderService();
 		boolean isOrderSuccess = orderSerive.registOrder(orderBean);
