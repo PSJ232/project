@@ -154,7 +154,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 					<%
 					} else {
 					%>
-			</div>
+			
 					<table id="mypage_reviewBefore_table">
 						
 						<tr>
@@ -183,12 +183,12 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							<%
 							if (deleteOdList.contains(orderDetailArrayList.get(i).getOd_id())) {
 							%>
-							<td id="mypage_reviewBefore_t"><a href="ReviewUpdate.rv?od_id=<%=orderDetailArrayList.get(i).getOd_id()%>">리뷰 수정(od_id : <%=orderDetailArrayList.get(i).getOd_id()%>)</a> | 
+							<td id="mypage_reviewBefore_t"><a href="ReviewUpdate.rv?od_id=<%=orderDetailArrayList.get(i).getOd_id()%>">리뷰 수정</a> | 
 								<a href="ReviewDelete.rv?od_id=<%=orderDetailArrayList.get(i).getOd_id()%>">리뷰 삭제</a></td>
 							<%
 							} else {
 							%>
-							<td>삭제된 리뷰 (od_id : <%=orderDetailArrayList.get(i).getOd_id()%>)</td>
+							<td>삭제된 리뷰</td>
 							<%
 							}
 							%>
