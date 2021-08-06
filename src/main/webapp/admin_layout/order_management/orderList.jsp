@@ -1,8 +1,16 @@
+<%@page import="vo.PageInfo"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	HashMap<String,Integer> orderCount = (HashMap<String,Integer>)request.getAttribute("orderCount");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	
+	int currentPage = pageInfo.getPage();
+	int listCount = pageInfo.getListCount();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -51,7 +59,8 @@
 	function searchFunction(){
 		var search_val = document.getElementById("search_val").value;
 		var filter = document.getElementById("filter").value;
-		request.open("Post", "http://localhost:8080/project/OrderSearch.ad?search_val=" + encodeURIComponent(search_val) + "&filter=" + encodeURIComponent(filter), true);
+		var page = <%=currentPage%>;
+		request.open("Post", "http://localhost:8080/project/OrderSearch.ad?search_val=" + encodeURIComponent(search_val) + "&filter=" + encodeURIComponent(filter)+ "&page=" + encodeURIComponent(page), true);
 		request.onreadystatechange = searchProcess;
 		request.send(null);
 	}
@@ -119,10 +128,34 @@
 						<th>배송상태</th>
 					</tr>
 				</thead>
+				
 				<tbody id="ajaxTable">
 				</tbody>
 			</table>
 		</div>
+		<section id="pageList">
+		<% if(maxPage != 1){
+			if(currentPage <= 1) {%>
+					<input type="button" value="이전">&nbsp;
+			<%} else {%>
+					<input type="button" value="이전" onclick="location.href='OrderList.ad?page=<%=currentPage - 1 %>'">&nbsp;
+			<%} %>
+			
+			<%for(int i = startPage; i <= endPage; i++) { 
+					if(i == currentPage) { %>
+						[<%=i %>]
+				<%} else {%>
+				<a href="OrderList.ad?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<%} %>
+			<%} %>
+			
+			<%if(currentPage >= maxPage) {%>
+				<input type="button" value="다음">
+			<%} else { %>
+				<input type="button" value="다음" onclick="location.href='OrderList.ad?page=<%=currentPage + 1 %>'">
+			<% } 
+		}%>
+		</section>
 	</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>

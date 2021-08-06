@@ -4,19 +4,20 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.MemberDAO;
+import dao.OrderDAO;
 import vo.MemberBean;
 import static db.JdbcUtil.*;
 
 public class AdminMemberSearchService {
 
-	public String getJSON(String m_name, String filter) {
+	public String getJSON(String m_name, String filter, int page, int limit) {
 		Connection con = getConnection();
 		if(m_name == null) m_name = "";
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
-		ArrayList<MemberBean> resultList = memberDAO.search(m_name, filter);
+		ArrayList<MemberBean> resultList = memberDAO.search(m_name, filter, page, limit);
 		for(int i = 0; i < resultList.size(); i++) {
 			result.append("[{\"value\": \"" + resultList.get(i).getM_id() + "\"},");
 			result.append("{\"value\": \"" + resultList.get(i).getM_name() + "\"},");
@@ -44,6 +45,15 @@ public class AdminMemberSearchService {
 		close(con);
 		
 		return result.toString();
+	}
+
+	public int getListCount() {
+		Connection con = getConnection();
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		memberDAO.setConnection(con);
+		int listCount = memberDAO.getListCount();
+		close(con);
+		return listCount;
 	}
 
 }

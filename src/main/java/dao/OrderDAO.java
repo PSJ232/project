@@ -173,9 +173,10 @@ public class OrderDAO {
 
 	}
 
-	public ArrayList<DetailBean> search(String search_val, String filter) {
+	public ArrayList<DetailBean> search(String search_val, String filter, int page, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		int startRow = (page - 1) * limit;
 		ArrayList<DetailBean> resultList = new ArrayList<DetailBean>();
 		String sql = "";
 		try {
@@ -183,25 +184,27 @@ public class OrderDAO {
 			case "1":
 				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id LIMIT ?,?";
 				break;
 			case "2":
 				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? " + "GROUP BY o_id";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? " + "GROUP BY o_id LIMIT ?,?";
 				break;
 			case "3":
 				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id LIMIT ?,?";
 				break;
 			default:
 				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id LIMIT ?,?";
 			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + search_val + "%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				DetailBean olb = new DetailBean();
@@ -1022,6 +1025,27 @@ public class OrderDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return insertCount;
+	}
+
+	public int getListCount() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int listCount = 0;
+		try {
+			String sql = "SELECT COUNT(*) FROM orders";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생!(OrderDAO getListCount()) - " + e.getMessage());
+
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return listCount;
 	}
 
 }

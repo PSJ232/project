@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.MemberDAO;
+import dao.OrderDAO;
 import dao.ReviewDAO;
 
 public class AdminMemberDetailService {
@@ -20,15 +21,6 @@ public class AdminMemberDetailService {
 		close(con);
 		return memberBean;
 	}
-	
-//	public ArrayList<OrderBean> getMemberOrders(String m_id) {
-//		Connection con = getConnection();
-//		MemberDAO memberDAO = MemberDAO.getInstance();
-//		memberDAO.setConnection(con);
-//		ArrayList<OrderBean> orderList = memberDAO.getMemberOrders(m_id);
-//		close(con);
-//		return orderList;
-//	}
 	
 	public String getJSON(int r_id) {
 		Connection con = getConnection();
@@ -42,5 +34,13 @@ public class AdminMemberDetailService {
 		close(con);
 		
 		return result.toString();
+	}
+
+	public int getListCount() {
+		Connection con = getConnection();
+		ReviewDAO reviewDAO = ReviewDAO.getInstance();
+		reviewDAO.setConnection(con);
+		int listCount = reviewDAO.getListCount();
+		return listCount;
 	}
 }
