@@ -40,7 +40,6 @@ CREATE TABLE `anniversary` (
 
 LOCK TABLES `anniversary` WRITE;
 /*!40000 ALTER TABLE `anniversary` DISABLE KEYS */;
-INSERT INTO `anniversary` VALUES (1,'admin@admin.com','2021-07-27','테스트1',0),(2,'admin@admin.com','2021-07-27','테스트1',1),(3,'admin@admin.com','2021-07-27','테스트1',100),(4,'admin@admin.com','2020-07-27','테스트2',0),(5,'admin@admin.com','2020-07-27','테스트2',1),(6,'admin@admin.com','2020-07-27','테스트2',100);
 /*!40000 ALTER TABLE `anniversary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,6 +62,7 @@ CREATE TABLE `cart` (
   PRIMARY KEY (`c_id`),
   KEY `FK_item_TO_cart` (`i_id`),
   KEY `FK_member_TO_cart` (`m_id`),
+  CONSTRAINT `FK_item_TO_cart` FOREIGN KEY (`i_id`) REFERENCES `item` (`i_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_member_TO_cart` FOREIGN KEY (`m_id`) REFERENCES `member` (`m_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='장바구니';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -192,7 +192,7 @@ CREATE TABLE `item` (
   `i_detailpage` varchar(1000) NOT NULL,
   `i_category` int(11) NOT NULL,
   PRIMARY KEY (`i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='상품';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='상품';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +201,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'썬플라워 에디션','찬란한 여름 햇살 가득',33900,47,'1_1_1.jpg','1_1_2.jpg','1_1_3.jpg','1_1_4.jpg','2021-07-23 10:46:11',0.9,'M','판매','on sale','1_1_5.png',1),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,48,'2_1_1.jpg','2_1_2.jpg','2_1_3.jpg','2_1_4.jpg','2021-07-23 10:47:34',0.9,'L','판매','on sale','2_1_5.png',1),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',40100,50,'3_1_1.jpg','3_1_2.jpg','3_1_3.jpg','3_1_4.jpg','2021-07-23 10:48:46',0.9,'L','판매','on sale','3_1_5.png',1),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,49,'4_2_1.jpg','4_2_2.jpg','4_2_3.jpg','4_2_4.jpg','2021-07-23 10:50:14',0.9,'XL','판매','on sale','4_2_5.png',2),(5,'연핑크 수국 에디션','몽글몽글 피어나는 구름을 담은',59900,49,'5_2_1.jpg','5_2_2.jpg','5_2_3.jpg','5_2_4.jpg','2021-07-30 19:27:39',0.9,'XL','판매','on sale','5_2_5.png',2),(6,'가벼운 S 꽃구독','꽃이 일상이 되는 가벼운 시작',17900,911,'3_s_15.jpg','3_s_25.jpg','3_s_35.jpg','3_s_45.jpg','2021-07-30 13:03:24',1,'S','판매','on sale','3_s_52.png',3),(7,'가득찬 XL 꽃구독','꽃으로 가득차는 일상의 행복',49900,961,'3_xl_1.jpg','3_xl_2.jpg','3_xl_3.jpg','3_xl_4.jpg','2021-07-30 13:31:00',1,'XL','판매','on sale','3_xl_5.png',3),(8,'풍성한 L 꽃구독','매일이 풍성해지는 일상의 행복',34900,995,'3_l_1.jpg','3_l_2.jpg','3_l_3.jpg','3_l_4.jpg','2021-07-30 13:30:14',1,'L','판매','on sale','3_l_5.png',3),(9,'딱좋은 M 꽃구독','내 공간이 꽃이 되는 좋은 시작',26900,991,'3_m_1.jpg','3_m_2.jpg','3_m_3.jpg','3_m_4.jpg','2021-07-30 13:29:19',1,'M','판매','on sale','3_m_5.png',3),(10,'파랑새 에디션','행운을 전하는',56900,50,'10_2_1.jpg','10_2_2.jpg','10_2_3.jpg','10_2_4.jpg','2021-08-03 20:28:06',1,'XL','판매','on sale','10_2_5.png',2);
+INSERT INTO `item` VALUES (1,'썬플라워 에디션','찬란한 여름 햇살 가득',33900,47,'1_1_1.jpg','1_1_2.jpg','1_1_3.jpg','1_1_4.jpg','2021-07-23 10:46:11',0.9,'M','판매','on sale','1_1_5.png',1),(2,'보라빛 향기 에디션','청초하고 은은한 매력',42900,44,'2_1_1.jpg','2_1_2.jpg','2_1_3.jpg','2_1_4.jpg','2021-07-23 10:47:34',0.9,'L','판매','on sale','2_1_5.png',1),(3,'오렌지 로즈 부케','마음과 함께 수줍게 전하는',40100,50,'3_1_1.jpg','3_1_2.jpg','3_1_3.jpg','3_1_4.jpg','2021-07-23 10:48:46',0.9,'L','판매','on sale','3_1_5.png',1),(4,'레드 로즈 부케','클래식한 사랑의 꽃',54900,49,'4_2_1.jpg','4_2_2.jpg','4_2_3.jpg','4_2_4.jpg','2021-07-23 10:50:14',0.9,'XL','판매','on sale','4_2_5.png',2),(5,'연핑크 수국 에디션','몽글몽글 피어나는 구름을 담은',59900,49,'5_2_1.jpg','5_2_2.jpg','5_2_3.jpg','5_2_4.jpg','2021-07-30 19:27:39',0.9,'XL','판매','on sale','5_2_5.png',2),(6,'가벼운 S 꽃구독','꽃이 일상이 되는 가벼운 시작',17900,911,'3_s_15.jpg','3_s_25.jpg','3_s_35.jpg','3_s_45.jpg','2021-07-30 13:03:24',1,'S','판매','on sale','3_s_52.png',3),(7,'가득찬 XL 꽃구독','꽃으로 가득차는 일상의 행복',49900,961,'3_xl_1.jpg','3_xl_2.jpg','3_xl_3.jpg','3_xl_4.jpg','2021-07-30 13:31:00',1,'XL','판매','on sale','3_xl_5.png',3),(8,'풍성한 L 꽃구독','매일이 풍성해지는 일상의 행복',34900,995,'3_l_1.jpg','3_l_2.jpg','3_l_3.jpg','3_l_4.jpg','2021-07-30 13:30:14',1,'L','판매','on sale','3_l_5.png',3),(9,'딱좋은 M 꽃구독','내 공간이 꽃이 되는 좋은 시작',26900,991,'3_m_1.jpg','3_m_2.jpg','3_m_3.jpg','3_m_4.jpg','2021-07-30 13:29:19',1,'M','판매','on sale','3_m_5.png',3),(10,'파랑새 에디션','행운을 전하는',56900,50,'10_2_1.jpg','10_2_2.jpg','10_2_3.jpg','10_2_4.jpg','2021-08-03 20:28:06',1,'XL','판매','on sale','10_2_5.png',2);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('admin@admin.com','1234','관리자','0','2000-10-10',1,3,'on','2021-07-27',NULL,973500),('visitor','1234','비회원구매','0','2020-01-01',1,0,NULL,'2021-07-27',NULL,0);
+INSERT INTO `member` VALUES ('admin@admin.com','1234','관리자','0','2000-10-10',1,3,'on','2021-07-27',NULL,974100),('visitor','1234','비회원구매','0','2020-01-01',1,0,NULL,'2021-07-27',NULL,0);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +296,6 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (2021080301,'admin@admin.com','관리자','36752&경북 안동시 강남1길 9&집','신종현','01011111111',41100,-2000,1,'2021-08-03 19:54:02',-2000,NULL),(2021080302,'admin@admin.com','관리자','51021&경남 김해시 가락대로 929-1&집','박세정','01022222222',179900,-1500,1,'2021-08-03 19:56:30',-8900,NULL),(2021080303,'admin@admin.com','관리자','49414&부산 사하구 괴정로 2&회사','안혜경','01033333333',110100,-3000,1,'2021-08-03 19:57:55',-5500,NULL),(2021080304,'visitor','홍길동','38882&경북 영천시 금호읍 대구대길 15&집','김길동','01044445555',36400,0,1,'2021-08-03 19:59:38',0,'01044444444'),(2021080305,'visitor','이순신','42463&대구 남구 경상길 1&회사','홍길동','01044444444',36400,0,1,'2021-08-03 20:00:35',0,'01055555555'),(2021080306,'visitor','강감찬','46036&부산 기장군 장안읍 길천길 47-8&회사','이순신','01055555555',202100,0,1,'2021-08-03 20:07:56',0,'01066666666');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,7 +335,6 @@ CREATE TABLE `orders_detail` (
 
 LOCK TABLES `orders_detail` WRITE;
 /*!40000 ALTER TABLE `orders_detail` DISABLE KEYS */;
-INSERT INTO `orders_detail` VALUES (1,2021080301,2,4,1,'메세지 - 회원 바로주문테스트',0,'admin@admin.com',0,'2021-08-10','주문접수',0),(2,2021080302,5,4,1,'메세지 - 회원 장바구니구매',0,'admin@admin.com',1,'2021-08-03','주문접수',0),(3,2021080302,4,0,1,'',0,'admin@admin.com',2,'2021-08-03','주문접수',0),(4,2021080302,1,4,1,'메세지 - 회원 장바구니구매',0,'admin@admin.com',3,'2021-08-09','주문접수',0),(5,2021080302,2,4,1,'메세지 - 회원 장바구니구매',0,'admin@admin.com',4,'2021-08-12','주문접수',0),(6,2021080303,9,4,1,'메세지 - 회원 정기구독 4회 테스트',0,'admin@admin.com',0,'2021-08-20','주문접수',0),(7,2021080303,9,4,1,'메세지 - 회원 정기구독 4회 테스트',0,'admin@admin.com',0,'2021-09-03','주문접수',0),(8,2021080303,9,4,1,'메세지 - 회원 정기구독 4회 테스트',0,'admin@admin.com',0,'2021-09-17','주문접수',0),(9,2021080303,9,4,1,'메세지 - 회원 정기구독 4회 테스트',0,'admin@admin.com',0,'2021-10-01','주문접수',0),(10,2021080304,1,4,1,'메세지 - 비회원 장바구니(바로구매)',0,'visitor',0,'2021-08-11','주문접수',0),(11,2021080305,1,4,1,'메세지 - 비회원 바로구매',0,'visitor',0,'2021-08-21','주문접수',0),(12,2021080306,7,4,1,'메세지 - 비회원 정기구독 4회 테스트',0,'visitor',0,'2021-08-30','주문접수',0),(13,2021080306,7,4,1,'메세지 - 비회원 정기구독 4회 테스트',0,'visitor',0,'2021-09-13','주문접수',0),(14,2021080306,7,4,1,'메세지 - 비회원 정기구독 4회 테스트',0,'visitor',0,'2021-09-27','주문접수',0),(15,2021080306,7,4,1,'메세지 - 비회원 정기구독 4회 테스트',0,'visitor',0,'2021-10-11','주문접수',0);
 /*!40000 ALTER TABLE `orders_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,7 +370,6 @@ CREATE TABLE `qna` (
 
 LOCK TABLES `qna` WRITE;
 /*!40000 ALTER TABLE `qna` DISABLE KEYS */;
-INSERT INTO `qna` VALUES (1,0,'질문있습니다','답변해주세요',NULL,'2021-07-29 23:34:00',NULL,NULL,'admin@admin.com',NULL,NULL),(2,0,'상태가 안좋아요','상태가 메롱','숫자3콤마.txt','2021-07-30 12:37:22',NULL,NULL,'admin@admin.com',NULL,NULL);
 /*!40000 ALTER TABLE `qna` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,6 +388,8 @@ CREATE TABLE `reservation` (
   `r_num` int(11) NOT NULL,
   `r_payment` varchar(40) NOT NULL,
   `r_date` date NOT NULL,
+  `r_comfirm` int(11) NOT NULL,
+  `r_amount` int(11) NOT NULL,
   PRIMARY KEY (`r_id`),
   KEY `reservation_f_id_fk` (`f_id`),
   KEY `reservation_fd_id_fk` (`fd_id`),
@@ -448,4 +447,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-03 20:32:32
+-- Dump completed on 2021-08-06 23:12:07

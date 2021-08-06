@@ -147,9 +147,9 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		받는분 연락처 <input type="text" name="o_phone"><br>
 	
 		
-		우편번호 <input type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색">
+		우편번호 <input type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색" readonly>
 		<input type="button" onclick="sample6_execDaumPostcode()" value="찾기"><br>
-		주소 <input type="text" id="sample6_address" name="address2"  placeholder="주소"><br>
+		주소 <input type="text" id="sample6_address" name="address2"  placeholder="주소" readonly><br>
 		<input type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소"><br>
 		
 		<br>
@@ -159,11 +159,11 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<br>
 			
 		<h3>쿠폰/포인트</h3>
-		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용">(미구현)<br>
+		쿠폰 할인 <input type="text" placeholder="코드를 입력해주세요"><input type="button" value="적용"><br>
 		<h3>최종 결제 금액</h3>
 		총 상품 금액 <%=NumberFormat.getInstance().format(price) %> 원<br>
 		배송비 0 원<br>
-		쿠폰 할인 -0 원 (미구현)<br>
+		쿠폰 할인 -0 원<br>
 		
 		<h4>총 결제 금액</h4>
 		<%=NumberFormat.getInstance().format(price) %> 원
@@ -211,11 +211,29 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="o_amount" value="<%=price %>">
 		<input type="hidden" name="o_gdiscount" value="0">
 		<input type="hidden" name="o_point" value="0">
-		<input type="hidden" name="paymentAmount" value="<%=price %>">
-		<input type="button" value="결제하기" onClick="window.open('./order/payment.jsp', 'payment', 'width=450, height=180, top=300, left=500')" > <!-- 결제 api에 따라서 변경해야됨  -->
-	<br>
-	<br>
-	
+		<input type="hidden" name="o_payment" value="">
 	</form>
+	
+	<form name="payfrm" method="post">
+		<input type="hidden" name="o_visitor" value="">
+		<input type="hidden" name="pay_point" value="0">
+		<input type="hidden" name="pay_gdiscount" value="0">
+		<input type="hidden" name="pay_amount" value="<%=price%>">
+	</form>
+	<input type="button" value="결제하기" onClick="payment_popup()">
+	
+	
+	
+	<script type="text/javascript">
+		function payment_popup() {
+			document.payfrm.o_sender.value = document.order.o_sender.value;
+			window.open('', 'payment', 'width=850, height=630');
+			var payform = document.payfrm;
+			payform.action = "./order/payment.jsp";
+			payform.target = "payment";
+			payform.submit();
+		}
+	</script>
+	
 </body>
 </html>

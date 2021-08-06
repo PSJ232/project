@@ -128,7 +128,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 								<td class="cart_td3">
 									<span class="cart_span8"><%=letter%></span>
 									<%if (c_letter == 1) {%>
-									<input type="button" class="cart_input7" value="x" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&letter=0'">
+									<input type="button" class="cart_input3" value="x" onclick="location.href='CartUpdatePro.cr?c_id=<%=c_id%>&letter=0'">
 									<%}%>
 								</td>
 								<td class="cart_td4">
