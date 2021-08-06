@@ -6,6 +6,8 @@
     
 <% 
 	ClassBean cb = (ClassBean) request.getAttribute("cb");
+	HttpSession id = request.getSession();
+	String m_id = (String)id.getAttribute("m_id");
 %>
 <!DOCTYPE html>
 <html>
@@ -94,7 +96,17 @@
 					<input type="hidden" name="f_id" id="f_id" value="<%=cb.getClass_id()%>">
 					<input type="hidden" name="fd_place" id="place" value="<%=cb.getClass_place()%>">
 					<input type="hidden" name="subject" id="subject" value="<%=cb.getClass_subject()%>">
-					<input type="submit" value="신청하기">
+					<%
+						if(m_id!=null){
+							%>
+							<input type="submit" value="신청하기" onclick="javascript:form.action='ReservInsert.od'">
+							<%
+						} else {
+							%>
+							<input type="submit" value="신청하기" onclick="javascript:form.action='MemberLogin.me'">
+							<%
+						}
+					%>	
 				</form>
 			</div>
 		</div>

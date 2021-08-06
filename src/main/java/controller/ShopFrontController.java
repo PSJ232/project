@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.ShopClassListAction;
 import action.ShopDetailViewAction;
 import action.ShopViewAction;
 import vo.ActionForward;
@@ -78,6 +79,13 @@ public class ShopFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/Class.shop")) {
+			action = new ShopClassListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
 		}
 
 		// 포워딩 방식 결정

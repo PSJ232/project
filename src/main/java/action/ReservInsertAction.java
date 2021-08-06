@@ -34,7 +34,6 @@ public class ReservInsertAction implements Action {
 		//회원정보 가져오기
 		HttpSession session = request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
-		System.out.println("m_id!: " + m_id);
 		MemberService memberService = new MemberService();
 		MemberBean mb = memberService.selectMember(m_id);
 		//회원 등급 가져오기
@@ -73,7 +72,8 @@ public class ReservInsertAction implements Action {
 		case 7: startDate = "토"; break;
 		}
 		
-		if(mb!=null&&cb!=null&&cdb!=null) {
+		
+		if(cb!=null&&cdb!=null) {
 			request.setAttribute("r_num", r_num);
 			request.setAttribute("member", mb);
 			request.setAttribute("fclass", cb);
@@ -82,9 +82,8 @@ public class ReservInsertAction implements Action {
 			request.setAttribute("fd_time", fd_time);
 			request.setAttribute("grade", g_discount);
 			forward = new ActionForward();
-			forward.setPath("./reservation/reservInsert.jsp");
 			forward.setRedirect(false);
-		} else {
+		} else{
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
@@ -92,6 +91,8 @@ public class ReservInsertAction implements Action {
 			out.print("history.back();");
 			out.print("</script>");
 		}
+		
+		
 
 		return forward;
 	}
