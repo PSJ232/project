@@ -135,7 +135,7 @@
 		<label>전화번호</label> <input type="text" value="<%=memberBean.getM_phone()%>"><br>
 		<label>생일</label> <input type="text" value="<%=memberBean.getM_birth()%>"><br>
 		<label>성별</label> 
-		<%if(memberBean.getM_gender() == 1){
+		<%if(memberBean.getM_gender() == 0){
 			%><input type="text" value="남"><br><%
 		}else {
 			%><input type="text" value="여"><br><%

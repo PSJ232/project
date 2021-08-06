@@ -402,7 +402,6 @@ public class MemberDAO {
 				mb.setM_birth(rs.getString("m_birth"));
 				mb.setM_gender(rs.getInt("m_gender"));
 				mb.setG_id(rs.getInt("g_id"));
-//				System.out.println("g_id: " + rs.getInt("g_id"));
 				mb.setM_agree(rs.getString("m_agree"));
 				mb.setM_rdate(rs.getDate("m_rdate"));
 				mb.setM_drop(rs.getDate("m_drop"));
@@ -510,7 +509,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT COUNT(m_gender) FROM member WHERE m_gender=1 and m_drop IS NULL";
+			String sql = "SELECT COUNT(m_gender) FROM member WHERE m_gender=0 and m_drop IS NULL";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -518,7 +517,7 @@ public class MemberDAO {
 			}
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
-			sql = "SELECT COUNT(m_gender) FROM member WHERE m_gender=2 and m_drop IS NULL";
+			sql = "SELECT COUNT(m_gender) FROM member WHERE m_gender=1 and m_drop IS NULL";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

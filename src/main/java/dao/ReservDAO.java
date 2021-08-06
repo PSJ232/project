@@ -199,8 +199,8 @@ public class ReservDAO {
 		ResultSet rs = null;
 		ArrayList<DetailBean> reservList = new ArrayList<DetailBean>();
 		try {
-			String sql = "SELECT r.r_id,fd.fd_time,fd.fd_place,r.r_num,r.r_payment,r.r_date,r.r_comfirm,r.r_amount,f.f_subject" +
-						"FROM fclass f, fclass_detail fd, reservation r" + 
+			String sql = "SELECT r.r_id,fd.fd_time,fd.fd_place,r.r_num,r.r_payment,r.r_date,r.r_comfirm,r.r_amount,f.f_subject " +
+						"FROM fclass f, fclass_detail fd, reservation r " + 
 						"WHERE f.f_id=r.f_id AND fd.fd_id=r.fd_id AND r.m_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);

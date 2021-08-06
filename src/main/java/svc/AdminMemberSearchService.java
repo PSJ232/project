@@ -21,7 +21,7 @@ public class AdminMemberSearchService {
 			result.append("[{\"value\": \"" + resultList.get(i).getM_id() + "\"},");
 			result.append("{\"value\": \"" + resultList.get(i).getM_name() + "\"},");
 			result.append("{\"value\": \"" + resultList.get(i).getM_phone() + "\"},");
-			if(resultList.get(i).getM_gender() == 1) {
+			if(resultList.get(i).getM_gender() == 0) {
 				result.append("{\"value\": \"" + "남" + "\"},");
 			}else {
 				result.append("{\"value\": \"" + "여" + "\"},");
