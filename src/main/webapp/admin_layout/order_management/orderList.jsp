@@ -53,6 +53,7 @@
 		border: 2px solid #FFDF24;
 	}
 	
+	
 </style>
 <script type="text/javascript">
 	var request = new XMLHttpRequest();
@@ -136,23 +137,23 @@
 		<section id="pageList">
 		<% if(maxPage != 1){
 			if(currentPage <= 1) {%>
-					<input type="button" value="이전">&nbsp;
+					<input class="page_btn" type="button" value="<<">&nbsp;
 			<%} else {%>
-					<input type="button" value="이전" onclick="location.href='OrderList.ad?page=<%=currentPage - 1 %>'">&nbsp;
+					<input class="page_btn" type="button" value="<<" onclick="location.href='OrderList.ad?page=<%=currentPage - 1 %>'">&nbsp;
 			<%} %>
 			
 			<%for(int i = startPage; i <= endPage; i++) { 
 					if(i == currentPage) { %>
-						[<%=i %>]
+						<span id="selected_page_num"><%="  "+ i + "  " %></span>
 				<%} else {%>
-				<a href="OrderList.ad?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<a id="page_num" href="OrderList.ad?page=<%=i %>"><%="  "+ i + "  " %></a>&nbsp;
 				<%} %>
 			<%} %>
 			
 			<%if(currentPage >= maxPage) {%>
-				<input type="button" value="다음">
+				<input class="page_btn" type="button" value=">>">
 			<%} else { %>
-				<input type="button" value="다음" onclick="location.href='OrderList.ad?page=<%=currentPage + 1 %>'">
+				<input class="page_btn" type="button" value=">>" onclick="location.href='OrderList.ad?page=<%=currentPage + 1 %>'">
 			<% } 
 		}%>
 		</section>
