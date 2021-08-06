@@ -84,28 +84,27 @@
 			</tbody>
 		</table>
 		<section id="pageList">
-		<%
-		if(maxPage != 1){
-			if(currentPage <= 1) {%>
-					<input type="button" value="이전">&nbsp;
-			<%} else {%>
-					<input type="button" value="이전" onclick="location.href='ReviewList.ad?page=<%=currentPage - 1 %>'">&nbsp;
-			<%} %>
-			
-			<%for(int i = startPage; i <= endPage; i++) { 
-					if(i == currentPage) { %>
-						[<%=i %>]
+			<% if(maxPage != 1){
+				if(currentPage <= 1) {%>
+						<input class="page_btn" type="button" value="<<">&nbsp;
 				<%} else {%>
-				<a href="ReviewList.ad?page=<%=i %>">[<%=i %>]</a>&nbsp;
+						<input class="page_btn" type="button" value="<<" onclick="location.href='ReviewList.ad?page=<%=currentPage - 1 %>'">&nbsp;
 				<%} %>
-			<%} %>
-			
-			<%if(currentPage >= maxPage) {%>
-				<input type="button" value="다음">
-			<%} else { %>
-				<input type="button" value="다음" onclick="location.href='ReviewList.ad?page=<%=currentPage + 1 %>'">
-			<% } 
-			} %>
+				
+				<%for(int i = startPage; i <= endPage; i++) { 
+						if(i == currentPage) { %>
+							<span id="selected_page_num"><%="  "+ i + "  " %></span>
+					<%} else {%>
+					<a id="page_num" href="ReviewList.ad?page=<%=i %>"><%="  "+ i + "  " %></a>&nbsp;
+					<%} %>
+				<%} %>
+				
+				<%if(currentPage >= maxPage) {%>
+					<input class="page_btn" type="button" value=">>">
+				<%} else { %>
+					<input class="page_btn" type="button" value=">>" onclick="location.href='ReviewList.ad?page=<%=currentPage + 1 %>'">
+				<% } 
+			}%>
 		</section>
 	</div>
 	<footer>
