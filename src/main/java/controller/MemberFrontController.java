@@ -77,15 +77,6 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-		} else if (command.equals("/MemberUpdate.me")) {
-			action = new MemberUpdateFormAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
 		} else if (command.equals("/MemberUpdatePro.me")) {
 			action = new MemberUpdateProAction();
 			try {
@@ -235,11 +226,11 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/UpdateMyInfo.me")) {
-	         action = new MemberMypageDetailAction();
+	         action = new MemberUpdateFormAction();
 	         try {
-	         forward = action.execute(request, response);
+	        	 forward = action.execute(request, response);
 	         } catch (Exception e) {
-	         e.printStackTrace();
+	        	 e.printStackTrace();
 	         }
 		}
 

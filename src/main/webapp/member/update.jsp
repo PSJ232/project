@@ -14,6 +14,7 @@
 <meta charset="UTF-8">
 <title>개인정보 수정</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+<link href="css/mypage.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/update.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -21,10 +22,10 @@
 </script>
 </head>
 <%
-	MemberBean memberDetail = (MemberBean) request.getAttribute("memberDetail");
+	MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
 	ArrayList<AnniversaryBean> annList = (ArrayList<AnniversaryBean>) request.getAttribute("annList");
 	
-	String date[] = memberDetail.getM_birth().split("-"); // 날짜 "-"을 기준으로 분리해서 배열에 저장
+	String date[] = memberMypageDetail.getM_birth().split("-"); // 날짜 "-"을 기준으로 분리해서 배열에 저장
 	String year = date[0];
 	String month = date[1];
 	String day = date[2];
@@ -55,7 +56,7 @@
 							<div class="row">
 								<div class="update_name">이메일(아이디)</div>
 								<div class="update_input">
-								 		<input type="text"  class="textBox" name="m_id" value="<%=memberDetail.getM_id() %>" readonly>
+								 		<input type="text"  class="textBox" name="m_id" value="<%=memberMypageDetail.getM_id() %>" readonly>
 								 	</div>
 							 </div>
 							 
@@ -70,14 +71,14 @@
 					 		<div class="row">
 					 			<div class="update_name">이름</div>
 					 			<div class="update_input">
-					 				  		<input type="text" class="textBox"  name="m_name" value="<%=memberDetail.getM_name() %>" required>
+					 				  		<input type="text" class="textBox"  name="m_name" value="<%=memberMypageDetail.getM_name() %>" required>
 					 			</div>
 					 		</div>	
 					 			  						   
 							<div class="row">
 								<div class="update_name">휴대폰 본인인증</div>
 								<div class="update_input">
-								   	   <input type="text"  class="textBox" name="m_phone" value="<%=memberDetail.getM_phone() %>" required>
+								   	   <input type="text"  class="textBox" name="m_phone" value="<%=memberMypageDetail.getM_phone() %>" required>
 								   	 </div>
 								</div>
 									<!-- 뷰페이지 참고 : 휴대폰번호 수정하면 본인인증 창이 나타남 -->
@@ -93,8 +94,8 @@
 							<div class="row">
 								<div class="update_name">성별</div>
 								<div class="update_input">
-									<input type="radio" name="m_gender" value="0" <%if(memberDetail.getM_gender()==0){%>checked<%}%>>남
-									<input type="radio" name="m_gender" value="1" <%if(memberDetail.getM_gender()==1){%>checked<%}%>>여								
+									<input type="radio" name="m_gender" value="0" <%if(memberMypageDetail.getM_gender()==0){%>checked<%}%>>남
+									<input type="radio" name="m_gender" value="1" <%if(memberMypageDetail.getM_gender()==1){%>checked<%}%>>여								
 								</div>
 					  		</div>
 					  		
@@ -168,8 +169,8 @@
 									</table>
 									<input type="button" class="btn" value="기념일 등록하기" onclick="window.open('MemberAnnForm.me', 'anniversary', 'width=450, height=500')">
 							</div>		
-							<input type="hidden" name="m_pass_origin" value="<%=memberDetail.getM_pass() %>">
-							<input type="checkbox" name="m_agree" <%if(memberDetail.getM_agree()!=null){%>checked<%}%> >꾸까가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요. <br>
+							<input type="hidden" name="m_pass_origin" value="<%=memberMypageDetail.getM_pass() %>">
+							<input type="checkbox" name="m_agree" <%if(memberMypageDetail.getM_agree()!=null){%>checked<%}%> >꾸까가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요. <br>
 							<input type="submit" class="yellowBtn" value="수정하기"> <br>
 						</form>
 						
