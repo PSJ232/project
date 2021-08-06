@@ -10,6 +10,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/cart.css">
+<link rel="stylesheet" href="./css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 <%
 ItemBean itemDetail = (ItemBean) request.getAttribute("itemDetail");
 CartBean cartDetail = (CartBean) request.getAttribute("cartDetail");
@@ -27,14 +31,26 @@ if(request.getParameter("sub_option") != null){
 %>
 </head>
 <body>
-	<h2>장바구니(비회원 미리보기)</h2>
+
+	<!-- header -->
+	<jsp:include page="../inc/header.jsp"></jsp:include>
+	<!-- header -->
+	
+	<div class="cart_div">
+	<div class="cart_header">
+	<h5>장바구니(비회원 미리보기)</h5>
+	</div>
 	<form action="VisitorOrderNow.od" method="post">
-		<table border="1">
-			<tr>
-				<td>상품정보</td>
-				<td>추가상품</td>
-				<td>합계금액</td>
-			</tr>
+		<div class="cart_div2">
+			<div class="cart_div3">
+				<div class="cart_div4">
+					<table border="1" class="cart_table">
+						<tr class="cart_tr1">
+							<td class="cart_td1">
+							<div class="cart_span1">상품정보</div></td>
+							<td class="cart_td2"><span class="cart_span">추가상품</span></td>
+							<td class="cart_td3"><span class="cart_span">합계금액</span></td>
+						</tr>
 			<%
 			if (itemDetail != null) { // 비어있는지 확인하여 화면을 선택 표시
 				String i_img = itemDetail.getI_img(); //상품 이미지
@@ -54,9 +70,11 @@ if(request.getParameter("sub_option") != null){
 				String sumAmount = NumberFormat.getInstance().format((i_price * c_qty * sub_option) + letterPrice); //각 상품에 대한 합계금액
 				String visiorAmount = NumberFormat.getInstance().format((itemDetail.getI_price() * c_qty  * sub_option) + letterPrice); //각 상품에 대한 할인전 합계금액
 			%>
-			<tr>
-				<td>
-					<img src="./admin_layout/upload/<%=i_img%>"><br> <%=i_name%><br>
+			<tr class="cart_tr2">
+				<td class="cart_td2">
+					<img src="./admin_layout/upload/<%=i_img%>" class="cart_img"><br>
+					<div class="cart_desc">
+					<span class="cart_span4"><%=i_name%></span><br>
 					<%if(sub_option > 1){ %>
 					첫 구독일 : <%=c_delivery_date%><br>
 					구독내용 : <%=sub_content%><br>
@@ -66,6 +84,7 @@ if(request.getParameter("sub_option") != null){
 					<%=NumberFormat.getInstance().format(i_price * c_qty)%>원<br>
 					<%} %>
 					<%=c_qty%> 개<br>
+					</div>
 				</td>
 				<td><%=letter%></td>
 				<td>
@@ -74,6 +93,9 @@ if(request.getParameter("sub_option") != null){
 				</td>
 			</tr>
 		</table>
+		</div>
+		</div>
+		</div>
 
 
 		구매 전 확인해주세요.<br>
@@ -95,7 +117,7 @@ if(request.getParameter("sub_option") != null){
 	<%
 	} else {
 	%>
-	</table>
+	</table></div>
 	</form>
 	<!-- if문안에서 태그가 짤려서 추가 -->
 	장바구니가 비어있습니다.<br>
@@ -107,5 +129,9 @@ if(request.getParameter("sub_option") != null){
 	<%
 	}
 	%>
+	
+	<!-- footer -->
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+	<!-- footer -->
 </body>
 </html>

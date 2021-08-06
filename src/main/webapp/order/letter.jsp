@@ -121,10 +121,12 @@ case 24:
 												<%
  												} else {
  												%> <!-- 정기구독 경유 접속시 표시 --> 
- 												<span class="letter_span8">첫 구독일 : <%=day%>, <%=delivery_date%></span><br> <span class="letter_span8">구독내용
-															: <%=sub_name%></span><br> <%
- }
- %> <span class="letter_span9">추가상품 : 편지</span>
+ 												<span class="letter_span8">첫 구독일 : <%=day%>, <%=delivery_date%></span><br> 
+ 												<span class="letter_span8">구독내용 : <%=sub_name%></span><br> 
+ 												<%
+ 												}
+ 												%> 
+ 												<span class="letter_span9">추가상품 : 편지</span>
 												</span>
 												</span><br>
 											</div>
@@ -267,10 +269,10 @@ case 24:
 										}
 										}
 										%>
-										<p class="">
-										<span>- 최대8줄, 한줄당 최대 20자까지 인쇄됩니다.(공백포함)</span> 
-										<span>- 이모티콘은 편지 내용에 포함되지않습니다.</span>
-										<span>- 붙여넣기 사용시 편지가 입력 되지 않습니다.</span>
+										<p class="letter_p">
+										<span class="letter_span18">- 최대8줄, 한줄당 최대 20자까지 인쇄됩니다.(공백포함)</span> 
+										<span class="letter_span18">- 이모티콘은 편지 내용에 포함되지않습니다.</span>
+										<span class="letter_span18">- 붙여넣기 사용시 편지가 입력 되지 않습니다.</span>
 										</p>
 									</div>
 									<br>
