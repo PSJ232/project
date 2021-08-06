@@ -105,21 +105,23 @@ case 24:
 
 												if (c_letter == 1) { //편지 선택함
 											%>
-											<img src="<%=i_img%>" class="letter_img"><span
-												class="letter_span3"></span>
+											<img src="<%=i_img%>" class="letter_img">
+											<span class="letter_span3"></span>
 											<div class="letter_div10">
-												<span class="letter_span4"></span> <span
-													class="letter_span5"><%=i_name%></span>
+												<span class="letter_span4"></span> 
+												<span class="letter_span5"><%=i_name%></span>
 
 												<%
 												if (sub_name.equals("")) {
 												%>
-												<span class="letter_span6"> <span
-													class="letter_span7"> <span class="letter_span8">수령일
-															: <%=day%>, <%=delivery_date%></span><br> <%
- } else {
- %> <!-- 정기구독 경유 접속시 표시 --> <span class="letter_span8">첫 구독일 : <%=day%>,
-															<%=delivery_date%></span><br> <span class="letter_span8">구독내용
+												<span class="letter_span6"> 
+												<span class="letter_span7"> 
+												<span class="letter_span8">
+												수령일 : <%=day%>, <%=delivery_date%></span><br> 
+												<%
+ 												} else {
+ 												%> <!-- 정기구독 경유 접속시 표시 --> 
+ 												<span class="letter_span8">첫 구독일 : <%=day%>, <%=delivery_date%></span><br> <span class="letter_span8">구독내용
 															: <%=sub_name%></span><br> <%
  }
  %> <span class="letter_span9">추가상품 : 편지</span>
@@ -158,10 +160,11 @@ case 24:
 										
 										<div class="letter_div13">
 											<div class="letter_div14">
-												<span class="letter_span15"> <img
-													src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_thank_cover.png"
+												<span class="letter_span15"> 
+												<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_thank_cover.png"
 													class="letter_img2">
-												</span> <strong class="letter_strong">앞면</strong>
+												</span> 
+												<strong class="letter_strong">앞면</strong>
 												<div class="letter_div15">
 													<div class="letter_div16">
 														<div class="letter_div17">
@@ -179,10 +182,11 @@ case 24:
 										
 										<div class="letter_div13">
 											<div class="letter_div14">
-												<span class="letter_span15"> <img
-													src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_cheer_cover.png"
+												<span class="letter_span15">
+												<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_cheer_cover.png"
 													class="letter_img2">
-												</span> <strong class="letter_strong">앞면</strong>
+												</span> 
+												<strong class="letter_strong">앞면</strong>
 												<div class="letter_div15">
 													<div class="letter_div16">
 														<div class="letter_div17">
@@ -200,10 +204,11 @@ case 24:
 										
 										<div class="letter_div13">
 											<div class="letter_div14">
-												<span class="letter_span15"> <img
-													src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_love_cover.png"
+												<span class="letter_span15"> 
+												<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_love_cover.png"
 													class="letter_img2">
-												</span> <strong class="letter_strong">앞면</strong>
+												</span> 
+												<strong class="letter_strong">앞면</strong>
 												<div class="letter_div15">
 													<div class="letter_div16">
 														<div class="letter_div17">
@@ -218,15 +223,33 @@ case 24:
 												</div>
 											</div>
 										</div>
-
-										<input type="text" name="od_message<%=i%>"
-											placeholder="내용을 입력해주세요 :)"> <input type="hidden"
-											name="c_id<%=i%>" value="<%=c_id%>"> <input
-											type="hidden" name="i_id<%=i%>" value="<%=i_id%>"> <input
-											type="hidden" name="c_qty<%=i%>" value="<%=c_qty%>">
-										<input type="hidden" name="od_delivery_date<%=i%>"
-											value="<%=delivery_date%>"> <input type="hidden"
-											name="sub_option" value="<%=sub_option%>"><br>
+										
+										<div class="letter_div13">
+											<div class="letter_div14">
+												<span class="letter_span15"> 
+												<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_write_cover.png" class="letter_img2">
+												</span> 
+												<strong class="letter_strong">앞면</strong>
+												<div class="letter_div15">
+													<div class="letter_div16">
+														<div class="letter_div17">
+															<div class="letter_div18">
+															<textarea class="letter_textarea" rows="8" maxlength="160"></textarea>
+															<input type="text" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)">	
+															</div>
+														</div>
+													</div>
+													<strong class="letter_strong">안쪽면(직접입력)</strong>
+												</div>
+											</div>
+										</div>
+										
+										
+										<input type="hidden" name="c_id<%=i%>" value="<%=c_id%>"> 
+										<input type="hidden" name="i_id<%=i%>" value="<%=i_id%>"> 
+										<input type="hidden" name="c_qty<%=i%>" value="<%=c_qty%>">
+										<input type="hidden" name="od_delivery_date<%=i%>" value="<%=delivery_date%>"> 
+										<input type="hidden" name="sub_option" value="<%=sub_option%>"><br>
 
 										<%
 										} else { //편지 선택안함
@@ -237,19 +260,18 @@ case 24:
 										<input type="hidden" name="c_id<%=i%>" value="<%=c_id%>">
 										<input type="hidden" name="i_id<%=i%>" value="<%=i_id%>">
 										<input type="hidden" name="c_qty<%=i%>" value="<%=c_qty%>">
-										<input type="hidden" name="od_delivery_date<%=i%>"
-											value="<%=delivery_date%>"> <input type="hidden"
-											name="od_message<%=i%>" value=""> <input
-											type="hidden" name="sub_option" value="<%=sub_option%>">
-
-
+										<input type="hidden" name="od_delivery_date<%=i%>" value="<%=delivery_date%>"> 
+										<input type="hidden" name="od_message<%=i%>" value=""> 
+										<input type="hidden" name="sub_option" value="<%=sub_option%>">
 										<%
 										}
 										}
 										%>
-
-										- 최대8줄, 한줄당 최대 20자까지 인쇄됩니다.(공백포함) - 이모티콘은 편지 내용에 포함되지않습니다. -
-										붙여넣기 사용시 편지가 입력 되지 않습니다.
+										<p class="">
+										<span>- 최대8줄, 한줄당 최대 20자까지 인쇄됩니다.(공백포함)</span> 
+										<span>- 이모티콘은 편지 내용에 포함되지않습니다.</span>
+										<span>- 붙여넣기 사용시 편지가 입력 되지 않습니다.</span>
+										</p>
 									</div>
 									<br>
 								</article>

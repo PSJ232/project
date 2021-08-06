@@ -104,7 +104,7 @@
 .cart_span6 {
     font-size: 16px;
     font-weight: 500;
-    line-height: 40px;
+    line-height: 19px;
     letter-spacing: -.24px;
     color: #0d0d0d;
 }
@@ -369,6 +369,7 @@ p {
 	height: 80px;
 	margin-top: 0;
 	text-align: center;
+	font-weight: normal;
 }
 
 .cart_input6 {
@@ -376,7 +377,7 @@ p {
 	margin-top: 80px;
 	width: 360px;
     height: 52px;
-    margin: 0 auto;
+    margin: 70px auto;
     font-size: 16px;
     line-height: 52px;
     font-weight: 300;

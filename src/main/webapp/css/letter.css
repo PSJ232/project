@@ -574,3 +574,50 @@ b {
     color: #222;
     border-radius: 5px;
 }
+
+.letter_textarea {
+	width: 278px;
+    height: 379px;
+	opacity: 0;
+    outline: none;
+    color: transparent;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border: none;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 100;
+    letter-spacing: -.21px;
+    text-align: center;
+    resize: none;
+}
+
+.letter_span17 {
+	width: 127.33px;
+    height: 20.8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
