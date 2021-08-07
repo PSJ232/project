@@ -26,33 +26,46 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 }
 
 
-var cart_totalAmount = 0;
 $(document).ready(function() {
+	//장바구니 체크기능 및 금액부분
+	var cart_totalAmount = 0;
 	$('#cart_check_all').click(function() {
 		if($("input:checkbox[id='cart_check_all']") .prop("checked")) {
-	      $("input[type=checkbox]").prop("checked" , true);
+	      	$("input[type=checkbox]").prop("checked" , true);
+	      	$(".cart_span20").text($('.cart_span20').attr('data-tap').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
+	      	$(".cart_span14").text($('.cart_span20').attr('data-tap').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
+			cart_totalAmount = Number($('.cart_span20').attr('data-tap'));
 	   	} else {  
-	      $("input[type=checkbox]").prop("checked", false);
+	    	$("input[type=checkbox]").prop("checked", false);
+		    $(".cart_span20").text('0원');
+		    $(".cart_span14").text('0원');
+			cart_totalAmount = 0;
 	   	}
 	});
-	
-// 	$('.cart_input2').click(function() {
-// 		if($('input[type=checkbox]').prop("checked")) {
-		
-// 			cart_totalAmount += $(this).attr('data-tab');
-// 	   	} else {  
-// 	   		cart_totalAmount -= $(this).attr('data-tab');
-// 	   	}
+	//장바구니 체크기능 및 금액부분
+	$('.cart_input2').click(function() {
+		if($(this).prop("checked")) {
+			var id_name = $(this).attr('id');
+			$(this).attr('name', id_name);
 			
-// 		$(".cart_span20").text(cart_totalAmount);
+			cart_totalAmount += Number($(this).attr('data-tab'));
+		} else {  
+			$(this).attr('name', '');
+			
+			cart_totalAmount -= Number($(this).attr('data-tab'));
+	   	}
+		$(".cart_span20").text(cart_totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
+		$(".cart_span14").text(cart_totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
+	});
 	
-// 	});
+	
 	
 });
 </script>
 <%
 ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
+
 %>
 </head>
 <body>
@@ -72,7 +85,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 					<div class="cart_div4">
 						<table border="1" class="cart_table">
 							<tr class="cart_tr1">
-								<td class="cart_td1"><input type="checkbox" id="cart_check_all" class="cart_input" checked><div class="cart_span1">상품정보</div></td>
+								<td class="cart_td1"><input type="checkbox" id="cart_check_all" class="cart_input" checked data-tab="0"><div class="cart_span1">상품정보</div></td>
 								<td class="cart_td2"><span class="cart_span">추가상품</span></td>
 								<td class="cart_td3"><span class="cart_span">합계금액</span></td>
 							</tr>
@@ -130,7 +143,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 							%>
 							<tr class="cart_tr2">
 								<td class="cart_td2">
-									<input type="checkbox" class="cart_input2" name="c_id<%=i%>" value="<%=c_id%>" data-tab="<%=sumAmount %>" checked>
+									<input type="checkbox" class="cart_input2" id="c_id<%=i%>" name="c_id<%=i%>" value="<%=c_id%>" data-tab="<%=sumAmount %>" checked>
 									<img src="./admin_layout/upload/<%=i_img%>" class="cart_img"><br>
 									<div class="cart_desc">
 										<span class="cart_span4"><%=i_name%></span>
@@ -186,7 +199,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 					<span class="cart_span19">=</span>
 					<span class="cart_span17">
 						<span class="cart_span18">총 결제 금액</span>
-						<span class="cart_span20"><%=NumberFormat.getInstance().format(totalAmount)%>원</span>
+						<span class="cart_span20" data-tap="<%=totalAmount%>"><%=NumberFormat.getInstance().format(totalAmount)%>원</span>
 					</span>
 				</p><br>
 				<input type="hidden" name="iNum" value="<%=i%>">
