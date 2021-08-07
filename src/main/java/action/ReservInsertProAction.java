@@ -63,7 +63,7 @@ public class ReservInsertProAction implements Action {
 			request.setAttribute("point_discount", point_discount);
 			forward = new ActionForward();
 			//결제페이지로 이동
-			forward.setPath("/MemberMypageDetail.me");
+			forward.setPath("/ReservPay.od");
 //			forward.setPath("/ReservPay.od");
 			forward.setRedirect(false);
 		} else {

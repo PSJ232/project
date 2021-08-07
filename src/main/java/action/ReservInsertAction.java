@@ -41,6 +41,7 @@ public class ReservInsertAction implements Action {
 		int g_id = mb.getG_id();
 		float g_discount = memberService.getGradeDetail(g_id);
 		//classDetail 정보
+		ClassDetailViewService classDetailViewService = new ClassDetailViewService();
 		int f_id = Integer.parseInt(request.getParameter("f_id"));
 		String fc_date = request.getParameter("fc_date");
 		String fd_place = request.getParameter("fd_place");
@@ -49,10 +50,14 @@ public class ReservInsertAction implements Action {
 		cdb.setClass_id(f_id);
 		cdb.setDate(fc_date);
 		cdb.setPlace(fd_place);
+		System.out.println("fd_time: " + fd_time );
+		int fd_id = classDetailViewService.getClassDetailId(cdb, fd_time);
+		cdb.setClass_detail_id(fd_id);
+		
 		//타임은 따로
 		System.out.println("fc_date: " + fc_date);
 		//클래스 정보 가져오기
-		ClassDetailViewService classDetailViewService = new ClassDetailViewService();
+		
 		ClassBean cb = classDetailViewService.getDetailContent(f_id);
 		
 		//요일 구하기
