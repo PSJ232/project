@@ -216,4 +216,37 @@ public class OrderService {
 		JdbcUtil.close(con);
 		return isUpdateSuccess;
 	}
+
+	public boolean checkSoldOut(int i_id, int c_qty) {
+		System.out.println("OrdersService - checkSoldOut()");
+		Connection con = JdbcUtil.getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		
+		int nowInven = orderDAO.checkInven(i_id);
+		
+		boolean isSoldOut = false;
+		
+		if (nowInven < c_qty) {
+			isSoldOut = true;
+		}
+		
+		return isSoldOut;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
