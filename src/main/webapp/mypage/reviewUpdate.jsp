@@ -59,7 +59,7 @@ case 0:
 				
 				<label id="mypage_Review_title"> r_id : 	<%=rb.getR_id()%></label><br>
 				<label id="mypage_Review_title"> 작성자 : <input id="mypage_Review_list" id="mypage_Review_title"  type="text" name="r_writer"	value="<%=m_id%>" readonly> </label><br>
-				<label id="mypage_Review_title">제목 : &nbsp;&nbsp;&nbsp;<input id="mypage_Review_list" id="mypage_Review_title"  type="text" name="r_title" value=<%=rb.getR_title()%>></label><br>
+				<label id="mypage_Review_title">제목 : &nbsp;&nbsp;&nbsp;<input id="mypage_Review_list"   type="text" name="r_title" value="<%=rb.getR_title()%>"></label><br>
 				<label id="mypage_Review_title">내용 : <br>&nbsp;&nbsp;&nbsp;<textarea id="mypage_Review_list_t" rows="10" cols="20" name="r_content"><%=rb.getR_content()%></textarea></label><br>
 				<%
 				String s5 = "", s4 = "", s3 = "", s2 = "", s1 = "";
