@@ -73,9 +73,10 @@ public class QnaDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM qna WHERE m_id=? OR m_id='admin@admin.com' ORDER BY q_re_ref, q_re_lev ASC";
+			String sql = "SELECT * FROM qna WHERE m_id=? OR (q_re_ref IN (SELECT q_re_ref FROM qna WHERE m_id=?) AND m_id='admin@admin.com') ORDER BY q_re_ref, q_re_lev ASC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
+			pstmt.setString(2, m_id);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
