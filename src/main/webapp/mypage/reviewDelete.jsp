@@ -52,7 +52,7 @@ switch(memberMypageDetail.getG_id()) {
  <form action="ReviewDeletePro.rv" method="post" name="fr">
 해당 리뷰를 삭제하시겠습니까?
 <input type="hidden" name="od_id" value="<%=od_id %>"><br>
-<input id="mypage_reviewDelete_smt" value="삭제">
+<input id="mypage_reviewDelete_smt" type="submit" value="삭제">
 <input id="mypage_reviewDelete_btn" type="button" value="취소" onclick="button_click();">
  </form>
 
