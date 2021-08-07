@@ -200,7 +200,7 @@ tr {
 
 tbody {
 	width: 761.6px;
-	height: 64px;
+	height: 376px;
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
@@ -223,18 +223,55 @@ tbody {
 }
 
 .qnaList_span4 {
-	font-size: 16px;
+	font-size: 15px;
     line-height: 24px;
     font-weight: 300;
     letter-spacing: -.24px;
     color: #222;
 }
 
+.qnaList_th2 {
+	width: 167.55px;
+	height: 250.5px;
+	padding: 20px;
+    background-color: #f7f7f7;
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: 500;
+    text-align: -internal-center;
+}
 
+.qnaList_span4 {
+	padding-left: 25px;
+	position: relative;
+    display: block;
+	font-size: 15px;
+    line-height: 20px;
+    font-weight: 300;
+    letter-spacing: -.21px;
+    color: #222;
+}
 
+.qnaList_span5 {
+	margin-top: 10px;
+	padding-left: 0;
+	display: block;
+	font-size: 16px;
+    line-height: 20px;
+    font-weight: 100;
+    letter-spacing: -.21px;
+    color: #222;
+	font-size: 13px;
+}
 
-
-
-
+.qnaList_span6 {
+	display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 100;
+    letter-spacing: -.21px;
+    color: #787878;
+}
 
 

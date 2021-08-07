@@ -199,4 +199,21 @@ public class OrderService {
 		JdbcUtil.close(con);
 		return listCount;
 	}
+
+	public boolean confirmPurchase(int od_id) {
+		System.out.println("OrdersService - confirmPurchase()");
+		Connection con = JdbcUtil.getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		int updateCount = orderDAO.updatePurchaseConfirm(od_id);
+		boolean isUpdateSuccess = false;
+		if(updateCount > 0) {
+			JdbcUtil.commit(con);
+			isUpdateSuccess = true;
+		}else {
+			JdbcUtil.rollback(con);
+		}
+		JdbcUtil.close(con);
+		return isUpdateSuccess;
+	}
 }

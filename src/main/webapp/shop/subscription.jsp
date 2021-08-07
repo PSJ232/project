@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 언제나 꽃과함께, NO.1 플라워브랜드</title>
 <%
 ItemBean sizeS = null;
 ItemBean sizeM = null;
