@@ -101,9 +101,11 @@ ul.tabs li.current {
 	text-align: center;
 }
 
-.mypage_reviewBefore_table_th {
+.mypage_reviewBefore_table_tr {
+	margin-left:200px;
 	text-align: center;
 	font-size: 15px;
+	padding: 200px;
 }
 
 #mypage_reviewBefore_situation {

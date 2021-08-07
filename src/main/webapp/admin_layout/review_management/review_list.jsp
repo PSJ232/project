@@ -48,6 +48,15 @@
 	}
 	$(document).ready(function(){
 		$('.admin_header_subtitle').text("리뷰 목록");
+		$('#filter').change(function(){
+			if($(this).val() =="r_id_desc"){
+				location.href="ReviewList.ad";
+			}else if($(this).val() == "rate_asc"){
+				location.href="ReviewList.ad?filter=rate_asc";
+			}else if($(this).val() == "rate_desc"){
+				location.href="ReviewList.ad?filter=rate_desc";
+			}
+		});
 	});
 </script>
 </head>
@@ -58,10 +67,17 @@
 	<!-- 	<nav> -->
 		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 	<!-- 	</nav> -->
+	<h1>오늘 작성된 리뷰</h1>
 	<div class="container">
+		<select name="filter" id="filter">
+			<option value="">필터선택</option>
+			<option value="r_id_desc">등록순</option>
+			<option value="rate_asc">별점낮은순</option>
+			<option value="rate_desc">별점높은순</option>
+		</select>
 		<table border="1" id="reviewList">
 			<thead>
-				<tr><th width="50">순번</th><th width="120">작성날짜</th><th width="150">작성자</th><th width="250">제목</th><th width="100">평점</th></tr>
+				<tr><th width="50">순번</th><th width="120">작성날짜</th><th width="150">작성자</th><th width="250">제목</th><th width="100">별점</th></tr>
 			</thead>
 			<tbody>
 				<%

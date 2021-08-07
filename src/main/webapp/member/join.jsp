@@ -102,7 +102,7 @@
 		         }
 		         
 		      } else {
-		         element.innerHTML = '8~16자리 영문자,숫자,특수문자 조합 필수!';
+		         element.innerHTML = '- 8~16자리 영문자,숫자,특수문자 조합 필수!';
 		         element.style.color = 'black';
 		         checkPasswordResult = false; 
 		      }
@@ -113,10 +113,10 @@
 		      var element = document.getElementById('passwordConfirmResult');
 		      
 		      if(password == document.formJoin.m_pass.value) {
-		         element.innerHTML = '패스워드 일치';
+		         element.innerHTML = '- 패스워드 일치';
 		         checkPasswordConfirmResult = true; 
 		      } else {
-		         element.innerHTML = '패스워드 불일치';
+		         element.innerHTML = '- 패스워드 불일치';
 		         checkPasswordConfirmResult = false; 
 		      }
 		      
@@ -160,7 +160,7 @@
 							 	<div class="join_name">비밀번호</div>
 							 	<div class="join_input">
 							 		<input type="password" name="m_pass" class="textBox" placeholder="비밀번호를 입력해주세요." required onkeyup="checkPassword(this.value)"><br>
-							 		<span id="checkPasswordResult"></span>  
+							 		<span id="checkPasswordResult" class="checkMessage"></span>  
 							 	</div>
 							</div>
 							
@@ -168,7 +168,7 @@
 							 	<div class="join_name">비밀번호확인</div>
 							 	<div class="join_input">
 							 		<input type="password" class="textBox" placeholder="비밀번호를 한 번 더 입력해주세요." required onkeyup="checkPasswordConfirm(this.value)"><br>
-							 		<span id="passwordConfirmResult"></span>
+							 		<span id="passwordConfirmResult" class="checkMessage"></span>
 							 	</div>
 							 </div>
 							 

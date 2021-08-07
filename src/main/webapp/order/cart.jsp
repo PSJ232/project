@@ -24,6 +24,31 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 		document.getElementById('cartNotice'+c_id).innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + i_inven + "개 입니다.";
 	}
 }
+
+
+var cart_totalAmount = 0;
+$(document).ready(function() {
+	$('#cart_check_all').click(function() {
+		if($("input:checkbox[id='cart_check_all']") .prop("checked")) {
+	      $("input[type=checkbox]").prop("checked" , true);
+	   	} else {  
+	      $("input[type=checkbox]").prop("checked", false);
+	   	}
+	});
+	
+// 	$('.cart_input2').click(function() {
+// 		if($('input[type=checkbox]').prop("checked")) {
+		
+// 			cart_totalAmount += $(this).attr('data-tab');
+// 	   	} else {  
+// 	   		cart_totalAmount -= $(this).attr('data-tab');
+// 	   	}
+			
+// 		$(".cart_span20").text(cart_totalAmount);
+	
+// 	});
+	
+});
 </script>
 <%
 ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
@@ -47,8 +72,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 					<div class="cart_div4">
 						<table border="1" class="cart_table">
 							<tr class="cart_tr1">
-								<td class="cart_td1"><input type="checkbox"
-									class="cart_input" checked><div class="cart_span1">상품정보</div></td>
+								<td class="cart_td1"><input type="checkbox" id="cart_check_all" class="cart_input" checked><div class="cart_span1">상품정보</div></td>
 								<td class="cart_td2"><span class="cart_span">추가상품</span></td>
 								<td class="cart_td3"><span class="cart_span">합계금액</span></td>
 							</tr>
@@ -106,7 +130,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 							%>
 							<tr class="cart_tr2">
 								<td class="cart_td2">
-									<input type="checkbox" class="cart_input2" name="c_id<%=i%>" value="<%=c_id%>" checked>
+									<input type="checkbox" class="cart_input2" name="c_id<%=i%>" value="<%=c_id%>" data-tab="<%=sumAmount %>" checked>
 									<img src="./admin_layout/upload/<%=i_img%>" class="cart_img"><br>
 									<div class="cart_desc">
 										<span class="cart_span4"><%=i_name%></span>
@@ -149,8 +173,8 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 				</p>
 				<p class="cart_p2">
 					<span class="cart_span12">
-						<span class="cart_span13">총 주문금액</span>
-						<span class="cart_span14">&nbsp;<%=NumberFormat.getInstance().format(totalAmount)%>원</span>
+						<span class="cart_span13">총 주문금액</span>&nbsp;
+						<span class="cart_span14"><%=NumberFormat.getInstance().format(totalAmount)%>원</span>
 					</span>
 					<span class="cart_span15">+</span>
 					<span class="cart_span12">
@@ -163,7 +187,6 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 					<span class="cart_span17">
 						<span class="cart_span18">총 결제 금액</span>
 						<span class="cart_span20"><%=NumberFormat.getInstance().format(totalAmount)%>원</span>
-					<%-- (체크하면 금액계산되는 기능 구현 필요)--%>
 					</span>
 				</p><br>
 				<input type="hidden" name="iNum" value="<%=i%>">

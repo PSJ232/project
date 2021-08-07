@@ -39,14 +39,14 @@ ArrayList<OrderBean> orderList = (ArrayList<OrderBean>) request.getAttribute("or
 				ob = orderList.get(i);
 				String o_receiver = ob.getO_receiver();
 				String o_phone = ob.getO_phone();
-				String customPhone = ob.getO_phone().substring(0, 3) + "-" + ob.getO_phone().substring(3, 7) + "-" + ob.getO_phone().substring(7, 11); // 전화번호
+// 				String customPhone = ob.getO_phone().substring(0, 3) + "-" + ob.getO_phone().substring(3, 7) + "-" + ob.getO_phone().substring(7, 11); // 전화번호 "-"넣기
 				String[] address = ob.getO_address().split("&");
 			%>
 
 			<tr>
 				<td><input type="radio" name="selectAddress"
 					value="<%=o_receiver%>,<%=o_phone%>,<%=address[0]%>,<%=address[1]%>,<%=address[2]%>">
-					<%=o_receiver%>,<%=customPhone%><br>
+					<%=o_receiver%>,<%=o_phone%><br>
 					[<%=address[0]%>] <%=address[1]%> <%=address[2]%>
 				</td>
 			</tr>

@@ -180,7 +180,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	<h3>주문자 정보</h3>
 	이름 : <%=m_name %><br>
 	전화번호 : <%=memberDetail.getM_phone() %><br>
-	<form action="OrderInsertPro.od" name="order" method="post">
+	<form action="OrderInsertPro.od" name="order" method="post" onsubmit="defaultPoint()">
 		<h3>발신인 정보</h3>
 		이름 <input type="text" name="o_sender" value="<%=m_name%>"><br> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
 		<h3>배송지 정보</h3>
@@ -256,7 +256,8 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="sub_option" value="<%=sub_option%>"> <!-- 정기구독 옵션 번호 -->
 		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
 		<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
-		<input type="hidden" name="o_payment" value="">
+		<input type="hidden" name="o_payment" value="1"> <!-- 비안씨 작업용 수정 다시 ""로 돌려놓기 -->
+		<input type="submit" value="결제하기"> 			<!-- 비안씨 작업용 임시용 코드 삭제예정 이거지우고 밑에꺼 활성화 -->
 	</form>
 		
 	<form name="payfrm" method="post">
@@ -265,7 +266,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="pay_gdiscount" value="<%=gradeDiscount %>">
 		<input type="hidden" name="pay_amount" value="<%=totalPrice %>">
 	</form>
-	<input type="button" value="결제하기" onClick="payment_popup()" >
+	<!-- <input type="button" value="결제하기" onClick="payment_popup()" > -->
 	
 	
 	<script type="text/javascript">

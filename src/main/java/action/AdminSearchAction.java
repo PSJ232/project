@@ -23,6 +23,9 @@ public class AdminSearchAction {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
+		if(request.getParameter("filter") != "") {
+			page = 1;
+		}
 		
 		
 		if(command.equals("/OrderSearch.ad")) {

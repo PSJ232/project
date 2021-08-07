@@ -15,7 +15,6 @@ import action.MemberAnnDeleteProAction;
 import action.MemberAnnInsertProAction;
 import action.MemberAnnUpdateFormAction;
 import action.MemberAnnUpdateProAction;
-import action.MemberDeleteFormAction;
 import action.MemberDeleteProAction;
 import action.MemberFindIdAction;
 import action.MemberUpdateFormAction;
@@ -86,7 +85,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 
 		} else if (command.equals("/MemberDelete.me")) {
-			action = new MemberDeleteFormAction();
+			action = new MemberMypageDetailAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

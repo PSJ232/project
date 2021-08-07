@@ -35,12 +35,12 @@ public class ReviewListService {
 		return reviewList;
 	}
 	
-	public ArrayList<ReviewBean> getReviewList(int page, int limit){
+	public ArrayList<ReviewBean> getReviewList(int page, int limit, String filter){
 		Connection con = getConnection();
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
 		reviewDAO.setConnection(con);
 		
-		ArrayList<ReviewBean> reviewList = reviewDAO.getReviewList(page, limit);
+		ArrayList<ReviewBean> reviewList = reviewDAO.getReviewList(page, limit, filter);
 		close(con);
 		return reviewList;
 	}

@@ -58,7 +58,7 @@ public class OrderDetailProAction implements Action {
 			
 		} else {
 			forward = new ActionForward();
-			forward.setPath("Receipt.od"); // 임시 이동 페이지, 나중에 mypage로 이동해야됨
+			forward.setPath("Receipt.od");
 			forward.setRedirect(false);
 		}
 

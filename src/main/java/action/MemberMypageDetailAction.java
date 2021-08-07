@@ -23,7 +23,6 @@ public class MemberMypageDetailAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
-		System.out.println(m_id);
 		
 		MemberService memberService = new MemberService();
 		MemberBean memberMypageDetail = memberService.selectMember(m_id);
@@ -59,8 +58,11 @@ public class MemberMypageDetailAction implements Action {
 		} else if(command.equals("/MyClass.me")) {
 			forward = new ActionForward();
 			forward.setPath("./mypage/class.jsp");
-		} 
-		
+		} else if(command.equals("/MemberDelete.me")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./member/delete.jsp");
+		}
 		return forward;
 	}
 

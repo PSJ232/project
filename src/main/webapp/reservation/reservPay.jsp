@@ -30,7 +30,7 @@
   	  
   	  // IMP.request_pay(param, callback) 호출
   	  IMP.request_pay({ // param
-  	    pg: "<%=rb.getR_payment()%>", //결제플랫폼 네이버 카카오 등등
+  	    pg: "html5_inicis", //결제플랫폼 네이버 카카오 등등
   	    pay_method: "card", //결제수단 카드 고정
   	    merchant_uid: "<%=rb.getR_id()%>", //제품 id
   	    name: "<%=cb.getClass_subject()%>", //제품명
@@ -38,6 +38,7 @@
   	    buyer_email: "<%=mb.getM_id()%>", //구매자 이메일(=사계 아이디)
   	    buyer_name: "<%=mb.getM_name()%>", //구매자 이름
   	    buyer_tel: "<%=mb.getM_phone()%>", //구매자 전화번호
+
   	  }, function (rsp) { // callback
   	    if (rsp.success) {
   	    	//결제 완료시
@@ -55,7 +56,8 @@
   	    	//
   	    	var msg = '';
   	        msg += rsp.error_msg;
-  	        location.href='ReservMiddleCancle.od?imp_uid=<%=rb.getR_id()%>&merchant_uid=<%=rb.getF_id()%>';
+  	      	location.href='Class.shop';
+<%--   	        location.href='ReservMiddleCancle.od?imp_uid=<%=rb.getR_id()%>&merchant_uid=<%=rb.getF_id()%>'; --%>
   	    }
   	  alert(msg);
   	  });

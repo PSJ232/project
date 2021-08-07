@@ -536,13 +536,20 @@ public class ReviewDAO {
 		return content;
 	}
 
-	public ArrayList<ReviewBean> getReviewList(int page, int limit) {
+	public ArrayList<ReviewBean> getReviewList(int page, int limit, String filter) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int startRow = (page - 1) * limit;
+		String sql = "";
 		ArrayList<ReviewBean> reviewList = new ArrayList<ReviewBean>();
 		try {
-			String sql = "SELECT * FROM review ORDER BY r_id DESC LIMIT ?,?";
+			switch(filter) {
+			case "rate_asc": sql = "SELECT * FROM review ORDER BY r_rate ASC LIMIT ?,?"; break;
+			case "rate_desc": sql = "SELECT * FROM review ORDER BY r_rate DESC LIMIT ?,?"; break;
+			case "r_id_desc" : sql = "SELECT * FROM review ORDER BY r_id DESC LIMIT ?,?"; break;
+			default : sql = "SELECT * FROM review ORDER BY r_id DESC LIMIT ?,?";
+			}
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
@@ -621,5 +628,6 @@ public class ReviewDAO {
 		}
 		return listCount;
 	}
+
 
 }

@@ -110,7 +110,7 @@
 		</fieldset>
 		<div class="search">
 		<select name="filter" id="filter">
-			<option value="m_id">filter</option>
+			<option value="">filter</option>
 			<option value="m_id">id</option>
 			<option value="o_id">date</option>
 			<option value="od_invoice">status</option>

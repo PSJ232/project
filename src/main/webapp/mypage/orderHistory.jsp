@@ -21,19 +21,20 @@
 
 </head>
 <script type="text/javascript">
-	$(document).ready(function() {
+$(document).ready(function() {
 
-		$('ul.tabs li').click(function() {
-			var tab_id = $(this).attr('data-tab');
+	$('ul.tabs li').click(function() {
+		var tab_id = $(this).attr('data-tab');
 
-			$('ul.tabs li').removeClass('current');
-			$('.tab-content').removeClass('current');
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
 
-			$(this).addClass('current');
-			$("#" + tab_id).addClass('current');
-		})
-
+		$('.tabs').find('li').removeClass('current_clicked');
+		$(this).addClass('current current_clicked');
+		$("#"+tab_id).addClass('current');
 	})
+
+})
 </script>
 <!-- ajax에 쓰이는 css : 수정 마음껏 하셔도 괜찮습니다. -->
 
