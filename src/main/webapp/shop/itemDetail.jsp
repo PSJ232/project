@@ -312,7 +312,7 @@ switch (i_category) {
 								<tr id="hidden">
 									<td class="td5" colspan="5">
 										<p><%=content %></p><br>
-										<img src="./reviewUpload/<%=rbList.get(i).getR_img()%>"/>
+										<img src="./reviewUpload/<%=rbList.get(i).getR_img()%>"  onerror="this.style.display='none'" alt=''/>
 									</td>
 								</tr>
 							<%}	%>
