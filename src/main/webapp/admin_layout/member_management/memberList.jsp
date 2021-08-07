@@ -113,6 +113,7 @@
 		table.innerHTML = "";
 		if(request.readyState == 4 && request.status == 200){
 			var object = eval('('+request.responseText+')'); 
+			console.log(request.responseText);
 			var result = object.result;
 			for(var i = 0; i < result.length; i++){
 				var row = table.insertRow(0);
