@@ -100,13 +100,14 @@
 							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden">
 								<th class="qnaList_th"><span class="qnaList_span3">문의내용</span>
 								</th>
-								<td colspan="2" class="qnaList_td"><%=qnaList.get(i).getQ_content()%></td>
+								<td colspan="2" class="qnaList_td"><span class="qnaList_span3"><%=qnaList.get(i).getQ_content()%></span></td>
 							</tr>
 						<%
 							} else if (qnaList.get(i).getQ_re_lev() == 1) {
 			 			%> 
 							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden">
-								<th class="qnaList_th" style="height:250px"><span class="qnaList_span3">답변</span>
+								<th class="qnaList_th" style="height:250px">
+								<span class="qnaList_span3">답변</span>
 								</th>
 								<td colspan="2" class="qnaList_td">
 								<span class="qnaList_span4"><%=qnaList.get(i).getQ_subject()%></span>
