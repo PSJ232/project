@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		<div id="container">
-			<div>
+			<div class="shop_class_title">
 				One-day Class<br>
 				<strong>원데이 클래스</strong>
 			</div>

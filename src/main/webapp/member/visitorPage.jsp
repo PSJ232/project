@@ -33,11 +33,14 @@ String[] address = order.getO_address().split("&");
 
 int o_payment = order.getO_payment();
 String payment = "";
-switch(o_payment){
-case 0: payment = "무통장입금"; break;
-case 1: payment = "신용카드"; break;
+switch (o_payment) {
+case 0:
+	payment = "무통장입금";
+	break;
+case 1:
+	payment = "신용카드";
+	break;
 }
-
 %>
 </head>
 <body>

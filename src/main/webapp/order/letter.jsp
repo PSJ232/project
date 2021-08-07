@@ -278,8 +278,8 @@ case 24:
 													<div class="letter_div16">
 														<div class="letter_div17">
 															<div class="letter_div18">
-															<textarea class="letter_textarea" rows="8" maxlength="160" placeholder="내용을 입력해주세요:)"></textarea>
-															<input type="text" name="od_message<%=i%>" >	
+															<textarea class="letter_textarea" rows="8" maxlength="160" ></textarea>
+															<input type="text" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)" >	
 															</div>
 														</div>
 													</div>
