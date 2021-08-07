@@ -34,13 +34,9 @@ $(document).ready(function(){
 
 })
 </script>
-<!-- ajax에 쓰이는 css : 수정 마음껏 하셔도 괜찮습니다. -->
 <style type="text/css">
 
 </style>
-</head>
-<body>
-
 <%  
 // 멤버 정보
 String m_id = (String)session.getAttribute("m_id");
@@ -74,8 +70,14 @@ for(int i =0; i<orderArrayList.size(); i++) {
 	if(i==orderArrayList.size()-1) {col.add(i+1);}
 	o_id = orderArrayList.get(i).getO_id() + "";
 }
-
 %>
+<script type="text/javascript">
+	function confirmPurchase(od_id){
+		window.open("ConfirmPurchase.od?od_id="+od_id, "구매확정", "width=400, height=400, left=500, top=100");
+	}
+</script>
+</head>
+<body>
 
 	<jsp:include page="../inc/header.jsp" ></jsp:include>
 
