@@ -8,7 +8,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <script type="text/javascript">
 	function isLetter(price) {
 		var c_letter = document.order.c_letter.value;
@@ -93,7 +92,7 @@ switch (i_category) {
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
+<title><%=itemDetail.getI_name() %></title>
 </head>
 <body>
   <!-- header -->
