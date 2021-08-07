@@ -203,6 +203,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 					%>
 				</div>
 			</div>
+		</div>
 		</section>
 	</div>
 
