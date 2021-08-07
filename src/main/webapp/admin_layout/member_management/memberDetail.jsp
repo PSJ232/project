@@ -235,6 +235,12 @@
 						<tr>
 						<td><%=i+1 %></td>
 						<td><%=reservList.get(i).getR_date() %></td>
+						<td><%=reservList.get(i).getFd_place() %></td>
+						<td><%=reservList.get(i).getFd_time() %></td>
+						<td><%=reservList.get(i).getF_subject() %></td>
+						<td><%=reservList.get(i).getR_num() %></td>
+						<td><%=reservList.get(i).getR_amount() %></td>
+						<td><%=reservList.get(i).getR_payment() %></td>
 						</tr>
 					<%
 				}

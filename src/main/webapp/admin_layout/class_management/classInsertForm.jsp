@@ -85,6 +85,7 @@ $(document).ready(function(){
 			<label>서브 이미지1</label> <input type="file" name="class_sub_img1"><br>
 			<label>서브 이미지2</label> <input type="file" name="class_sub_img2"><br>
 			<label>서브 이미지3</label> <input type="file" name="class_sub_img3"><br>
+			<label>설명 이미지</label> <input type="file" name="class_desc_img"><br>
 			<fieldset><legend>클래스 설명</legend><textarea name="class_desc" rows="20" cols="65"></textarea></fieldset><br>
 			<input type="submit" value="등록">
 		</div>

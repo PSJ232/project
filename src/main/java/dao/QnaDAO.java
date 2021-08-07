@@ -292,7 +292,15 @@ public class QnaDAO {
 			if(rs.next()) {
 				qnaCount.put("답변완료", rs.getInt(1));
 			}
-			qnaCount.put("문의개수", getListCount());
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			sql = "SELECT COUNT(*) FROM qna WHERE q_re_lev=0";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				qnaCount.put("문의개수", rs.getInt(1));
+			}
+			
 		} catch (SQLException e) {
 			System.out.println("SQL 구문오류! - " + e.getMessage());
 		} finally {
@@ -308,6 +316,48 @@ public class QnaDAO {
 		int listCount = 0;
 		try {
 			String sql = "SELECT COUNT(*) FROM Qna";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생!(MemberDAO getListCount()) - " + e.getMessage());
+
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return listCount;
+	}
+
+	public int getBeforeListCount() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int listCount = 0;
+		try {
+			String sql = "SELECT COUNT(*) FROM qna WHERE q_answered=0";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생!(MemberDAO getListCount()) - " + e.getMessage());
+
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return listCount;
+	}
+
+	public int getAfterListCount() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int listCount = 0;
+		try {
+			String sql = "SELECT COUNT(*) FROM qna WHERE q_answered=1";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

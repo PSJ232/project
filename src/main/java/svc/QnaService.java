@@ -109,4 +109,22 @@ public class QnaService {
 		return listCount;
 	}
 
+	public int getBeforeListCount() {
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		int listCount = qnaDAO.getBeforeListCount();
+		close(con);
+		return listCount;
+	}
+
+	public int getAfterListCount() {
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		int listCount = qnaDAO.getAfterListCount();
+		close(con);
+		return listCount;
+	}
+
 }

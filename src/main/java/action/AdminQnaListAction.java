@@ -20,6 +20,10 @@ public class AdminQnaListAction implements Action {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		request.setAttribute("page", page);
+		if(request.getParameter("tab") != null) {
+			String tab = request.getParameter("tab");
+			request.setAttribute("tab", tab);
+		}
 		
 		HashMap<String, Integer> qnaCount = service.getQnaCount();
 		request.setAttribute("qnaCount", qnaCount);

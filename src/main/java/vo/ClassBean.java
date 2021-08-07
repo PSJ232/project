@@ -18,7 +18,14 @@ public class ClassBean {
 	private String class_sub_img3;
 	private int class_readcount;
 	private String class_sub_desc;
+	private String f_desc_img;
 	
+	public String getF_desc_img() {
+		return f_desc_img;
+	}
+	public void setF_desc_img(String f_desc_img) {
+		this.f_desc_img = f_desc_img;
+	}
 	public String getClass_date() {
 		return class_date;
 	}

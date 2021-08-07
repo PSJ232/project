@@ -2,6 +2,7 @@ package action;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,6 +36,10 @@ public class AdminDashBoardAction implements Action {
 				weekCardSales.put(key, 0);
 				weekCardSalesKeys.add(key);
 			}
+		}
+		Collections.sort(weekCardSalesKeys, Comparator.reverseOrder());
+		if(weekCardSalesKeys.size() > 7) {
+			weekCardSalesKeys = weekCardSalesKeys.subList(0, 7);
 		}
 		Collections.sort(weekCardSalesKeys);
 		ArrayList<ItemBean> rankingItems = service.getItemRanking();
