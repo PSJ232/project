@@ -212,7 +212,7 @@ public class ReviewDAO {
 		
 		String sql = "SELECT * "
 				+ "FROM orders_detail "
-				+ "WHERE od_review = 0 AND m_id = ? And od.od_confirm=1";
+				+ "WHERE od_review = 0 AND m_id = ? And od_confirm=1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -251,7 +251,7 @@ public class ReviewDAO {
 		
 		String sql = "SELECT * "
 				+ "FROM orders_detail "
-				+ "WHERE od_review = 1 AND m_id = ? And od.od_confirm=1";
+				+ "WHERE od_review = 1 AND m_id = ? And od_confirm=1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
