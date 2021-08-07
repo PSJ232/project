@@ -1213,4 +1213,23 @@ public class OrderDAO {
 		return weekCardSales;
 	}
 
+	public int updatePurchaseConfirm(int od_id) {
+		System.out.println("OrderDAO - updatePurchaseConfirm");
+		PreparedStatement pstmt = null;
+
+		String sql = "UPDATE orders_detail SET od_confirm=1 WHERE od_id=?";
+		int updateCount = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, od_id);
+			updateCount = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		return updateCount;
+	}
+
 }
