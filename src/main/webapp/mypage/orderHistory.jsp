@@ -22,18 +22,14 @@
 </head>
 <script type="text/javascript">
 $(document).ready(function() {
-
 	$('ul.tabs li').click(function() {
 		var tab_id = $(this).attr('data-tab');
-
 		$('ul.tabs li').removeClass('current');
 		$('.tab-content').removeClass('current');
-
 		$('.tabs').find('li').removeClass('current_clicked');
 		$(this).addClass('current current_clicked');
 		$("#"+tab_id).addClass('current');
 	})
-
 })
 </script>
 
@@ -41,14 +37,12 @@ $(document).ready(function() {
 // 멤버 정보
 String m_id = (String) session.getAttribute("m_id");
 MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
-
 ArrayList<OrderBean> nonOrderArrayList = (ArrayList<OrderBean>) request.getAttribute("nonOrderArrayList");
 ArrayList<OrderBean> orderArrayList = (ArrayList<OrderBean>) request.getAttribute("orderArrayList");
 ArrayList<ItemBean> nonItemArrayList = (ArrayList<ItemBean>) request.getAttribute("nonItemArrayList");
 ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>) request.getAttribute("itemArrayList");
 ArrayList<OrderDetailBean> nonOrderDetailArrayList = (ArrayList<OrderDetailBean>) request.getAttribute("nonOrderDetailArrayList");
 ArrayList<OrderDetailBean> orderDetailArrayList = (ArrayList<OrderDetailBean>) request.getAttribute("orderDetailArrayList");
-
 // 출력되는 행의 컬럼번호 받아오기(해당 행에만 <td rowspan="">부여)
 // 주문내역의 o_id에 따른 번호 리스트
 String o_id = "";
@@ -143,12 +137,12 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							</dl>
 							</td>
 							<%if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%>
-								<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td>
+								<td id="mypage_orderHistory_situation">배송 완료</td>
 							<%} else if (!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {%>
-								<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=invoiceNo %>
+								<td id="mypage_orderHistory_situation"><%=invoiceNo %>
 															<input type="button" onclick="confirmPurchase(<%=nonOrderDetailArrayList.get(i).getOd_id() %>)" value="구매확정"></td>
 							<%} else if (invoiceNo.equals("주문접수")) {%>
-								<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">주문접수</td>
+								<td id="mypage_orderHistory_situation">주문접수</td>
 							<%}
 							%>
 						</tr>
