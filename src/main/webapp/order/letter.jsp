@@ -17,30 +17,6 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-	
-		$('ul.letter_ul li').click(function() {
-			var tab_id = $(this).attr('data-tab');
-	
-			$('ul.letter_ul li').removeClass('current');
-			$('.letter_div13').removeClass('current');
-	
-			$(this).addClass('current');
-			$("#" + tab_id).addClass('current');
-			
-			if(tab_id == 'tab-4'){
-				$('.letter_p').addClass('current');
-			} else {
-				$('.letter_p.current').removeClass('current');
-			}
-			
-			
-			
-		})
-	
-	})
-</script>
 </head>
 <%
 ArrayList<CartBean> checkList = (ArrayList<CartBean>) request.getAttribute("checkList"); //장바구니에서 가져온 목록
@@ -164,7 +140,7 @@ case 24:
 									<div class="letter_div11">
 										<div class="letter_div12">
 											<ul class="letter_ul">
-												<li class="letter_li" data-tab="tab-1">
+												<li class="letter_li letter_div13<%=i%>" id="letter_div13<%=i%>" data-tab="tab-1<%=i%>">
 													<label class="letter_label">
 														<input type="radio" class="letter_input" name="l_id<%=i%>" value=1> 
 														<span class="letter_span10"> 
@@ -173,7 +149,7 @@ case 24:
 														<span class="letter_span11">감사</span>
 													</label>
 												</li>
-												<li class="letter_li" data-tab="tab-2">
+												<li class="letter_li letter_div13<%=i%>" id="letter_div13<%=i%>" data-tab="tab-2<%=i%>">
 													<label class="letter_label">
 														<input type="radio" class="letter_input" name="l_id<%=i%>" value=2> 
 														<span class="letter_span12"> 
@@ -182,7 +158,7 @@ case 24:
 														<span class="letter_span11">응원</span>
 													</label>
 												</li>
-												<li class="letter_li" data-tab="tab-3">
+												<li class="letter_li letter_div13<%=i%>" id="letter_div13<%=i%>" data-tab="tab-3<%=i%>">
 													<label class="letter_label">
 														<input type="radio" class="letter_input" name="l_id<%=i%>" value=3> 
 														<span class="letter_span13"> 
@@ -191,7 +167,7 @@ case 24:
 														<span class="letter_span11">사랑</span>
 													</label>
 												</li>
-												<li class="letter_li current" data-tab="tab-4">
+												<li class="letter_li current letter_div13<%=i%>" id="letter_div13<%=i%>" data-tab="tab-4<%=i%>">
 													<label class="letter_label">
 														<input type="radio" class="letter_input" name="l_id<%=i%>" value=4 checked> 
 														<span class="letter_span14">
@@ -202,7 +178,7 @@ case 24:
 												</li>
 											</ul>
 										</div>
-										<div id="tab-1" class="letter_div13">
+										<div id="tab-1<%=i%>" class="letter_div13 letter_div13<%=i%>">
 											<div class="letter_div14">
 												<span class="letter_span15"> 
 													<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_thank_cover.png" class="letter_img2">
@@ -223,7 +199,7 @@ case 24:
 											</div>
 										</div>
 										
-										<div id="tab-2" class="letter_div13">
+										<div id="tab-2<%=i%>" class="letter_div13 letter_div13<%=i%>">
 											<div class="letter_div14">
 												<span class="letter_span15">
 													<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_cheer_cover.png" class="letter_img2">
@@ -244,7 +220,7 @@ case 24:
 											</div>
 										</div>
 										
-										<div id="tab-3" class="letter_div13">
+										<div id="tab-3<%=i%>" class="letter_div13 letter_div13<%=i%>">
 											<div class="letter_div14">
 												<span class="letter_span15"> 
 													<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_love_cover.png" class="letter_img2">
@@ -265,7 +241,7 @@ case 24:
 											</div>
 										</div>
 										
-										<div id="tab-4" class="letter_div13 current">
+										<div id="tab-4<%=i%>" class="letter_div13 current letter_div13<%=i%>">
 											<div class="letter_div14">
 												<span class="letter_span15"> 
 													<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_write_cover.png" class="letter_img2">
@@ -304,15 +280,15 @@ case 24:
 										<input type="hidden" name="od_delivery_date<%=i%>" value="<%=delivery_date%>"> 
 										<input type="hidden" name="od_message<%=i%>" value=""> 
 										<input type="hidden" name="sub_option" value="<%=sub_option%>">
-										<%
-										}
-										}
-										%>
-										<p class="letter_p current">
+										<%} %>
+										<p class="letter_p letter_div13<%=i%> current">
 											<span class="letter_span18">- 최대8줄, 한줄당 최대 20자까지 인쇄됩니다.(공백포함)</span> 
 											<span class="letter_span18">- 이모티콘은 편지 내용에 포함되지않습니다.</span>
 											<span class="letter_span18">- 붙여넣기 사용시 편지가 입력 되지 않습니다.</span>
 										</p>
+										<div class=letter_bottom_space>
+										</div>
+										<%}	%>
 									</div>
 									<br>
 								</article>
@@ -340,6 +316,28 @@ case 24:
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
-
+	
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('ul.letter_ul li').click(function() {
+				var tab_id = $(this).attr('data-tab');
+				var letter_div13_id = $(this).attr('id');
+		
+				$('.' + letter_div13_id).removeClass('current');
+		
+				$(this).addClass('current');
+				$("#" + tab_id).addClass('current');
+				
+				if(tab_id.indexOf('tab-4')){
+					$('.letter_p.current.' + letter_div13_id).removeClass('current');
+				} else {
+					$('.letter_p.' + letter_div13_id).addClass('current');
+				}
+				
+			})
+		
+		})
+	</script>
 </body>
 </html>
