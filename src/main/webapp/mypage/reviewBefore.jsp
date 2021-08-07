@@ -51,10 +51,8 @@ ArrayList<OrderBean> nonOrderArrayList = (ArrayList<OrderBean>) request.getAttri
 ArrayList<OrderBean> orderArrayList = (ArrayList<OrderBean>) request.getAttribute("orderArrayList");
 ArrayList<ItemBean> nonItemArrayList = (ArrayList<ItemBean>) request.getAttribute("nonItemArrayList");
 ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>) request.getAttribute("itemArrayList");
-ArrayList<OrderDetailBean> nonOrderDetailArrayList = (ArrayList<OrderDetailBean>) request
-		.getAttribute("nonOrderDetailArrayList");
-ArrayList<OrderDetailBean> orderDetailArrayList = (ArrayList<OrderDetailBean>) request
-		.getAttribute("orderDetailArrayList");
+ArrayList<OrderDetailBean> nonOrderDetailArrayList = (ArrayList<OrderDetailBean>) request.getAttribute("nonOrderDetailArrayList");
+ArrayList<OrderDetailBean> orderDetailArrayList = (ArrayList<OrderDetailBean>) request.getAttribute("orderDetailArrayList");
 ArrayList<Integer> deleteOdList = (ArrayList<Integer>) request.getAttribute("deleteOdList");
 
 String realGrade = "";

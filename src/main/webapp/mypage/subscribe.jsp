@@ -140,7 +140,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 										받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
 										가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
 									</td>
-									<%if (nonCol.contains(i)) {if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%>
+									<%if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%>
 									<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td>
 									<%} else if (!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {%>
 									<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=invoiceNo %>
@@ -148,9 +148,6 @@ for(int i =0; i<orderArrayList.size(); i++) {
 									<%} else if (invoiceNo.equals("주문접수")) {%>
 									<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">주문접수</td>
 									<%}
-									count++;
-									} else {
-									}
 									%>
 								</tr>
 							</tbody>
