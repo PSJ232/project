@@ -83,13 +83,13 @@ case 0:
 				%>
 				
 				<label id="mypage_Review_title">평점 :&nbsp;&nbsp;&nbsp;&nbsp;<select id="mypage_Review_list_s" name="r_rate">
-					<option value="5" <%=s5%>>5</option>
-					<option value="4" <%=s4%>>4</option>
-					<option value="3" <%=s3%>>3</option>
-					<option value="2" <%=s2%>>2</option>
-					<option value="1" <%=s1%>>1</option>
+					<option value="5" <%=s5%>>★★★★★</option>
+					<option value="4" <%=s4%>>★★★★</option>
+					<option value="3" <%=s3%>>★★★</option>
+					<option value="2" <%=s2%>>★★</option>
+					<option value="1" <%=s1%>>★</option>
 				</select></label><br> 
-				<label id="mypage_Review_title">이미지 : <input id="mypage_Review_list_s" id="mypage_Review_title"  type="text" name="r_title"></label>
+				<label id="mypage_Review_title">이미지 : <input id="mypage_Review_list_s" id="mypage_Review_title"  type="text"></label>
 				<label class="input-file-button" for="mypage_Review_li_inp" >사진첨부</label>
 					<input id="mypage_Review_li_inp" type="file" name="q_img" class="file-input1"><%=rb.getR_img()%><br>
 				<input type="hidden" name="oldr_img" value="<%=rb.getR_img()%>">
