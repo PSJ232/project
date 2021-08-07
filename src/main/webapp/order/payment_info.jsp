@@ -47,11 +47,11 @@ if(mb == null) {
 					<span class="span_th">다음 계좌로 입금해주시면 주문이 완료됩니다.</span>
 				</dt>						
 				<dd class="td">
-					<span class="span_td">계좌번호 기업은행 274-072066-01-041</span>
-					<span class="span_td">예금주 (주)사계</span>
-					<span class="span_td">입금금액 <%=NumberFormat.getInstance().format(pay) %>원</span>
-					<span class="span_td">보내시는분 <%=ob.getO_sender() %></span>
-					<span class="span_td">입금기한 선택하신 수령일 1일 전 오후 2시까지</span>
+					<div class="span_td"><b class="info_name">계좌번호</b> 기업은행 274-072066-01-041</div>
+					<div class="span_td"><b class="info_name">예금주</b> (주)사계</div>
+					<div class="span_td"><b class="info_name">입금금액</b> <%=NumberFormat.getInstance().format(pay) %>원</div>
+					<div class="span_td"><b class="info_name">보내시는분</b> <%=ob.getO_sender() %></div>
+					<div class="span_td"><b class="info_name">입금기한</b> 선택하신 수령일 1일 전 오후 2시까지</div>
 				</dd>
 			</dl>
 					<%} %>

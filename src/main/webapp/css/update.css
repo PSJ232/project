@@ -61,15 +61,20 @@ a, button {
 }
 
 .mypage_title {
-	height: auto;
-    padding: 40px 0;
-    border-bottom: none;
-    font-size: 30px;
-    line-height: 45px;
-    font-weight: 800;
-    letter-spacing: -.6px;
-    color: #333;
+	display: block;	
+    padding: 40px 0;    
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 700;
+    letter-spacing: -.24px;
+    color: #222;
 }
+
+.update_box {
+	margin: 0 80 40 0px;
+	margin-bottom: 80px;
+}
+
 
 .update_box .inbox {
     border-top: #d3d3d3 1px solid;
@@ -78,7 +83,7 @@ a, button {
 
 .update_box .inbox .inner:first-of-type {
     padding-top: 40px;
-    max-width: 620px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 0 40px;
 }

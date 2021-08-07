@@ -38,27 +38,28 @@ body {
     font-weight: 300;
     letter-spacing: -.21px;
     color: #3a3a3a;
-    margin-top: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .purchase_complete_container .checkout .checkout_order_num {
     display: block;
-    width: 325px;
+    width: 350px;
     padding: 15px 15px;    
-    margin: 15px auto;
+    margin: 20px auto;
     border-radius: 20px;
     background-color: #fff;
     text-align: center;
     font-size: 16px;
     line-height: 20px;
-    font-weight: 200;
+    font-weight: 300;
     letter-spacing: -.21px;
     color: #3a3a3a;
 }
 
 .purchase_complete_container .checkout .bank_info {
     display: block;
-    max-width: 320px;
+    max-width: 350px;
     padding: 20px;
     margin: 0 auto;
     border-radius: 5px;
@@ -67,15 +68,28 @@ body {
 }
 
 .purchase_complete_container .checkout .bank_info .th {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
     font-weight: 300;
     letter-spacing: -.21px;
     color: #222;
 }
 
-.purchase_complete_container .checkout .bank_info .th>span {
+.purchase_complete_container .checkout .bank_info .th .span_th {
     display: block;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 200;
+    letter-spacing: -.2px;
+    color: #787878;
+}
+
+.purchase_complete_container .checkout .bank_info .td {
+    display: block;
+}
+
+.purchase_complete_container .checkout .bank_info .td .span_td:first-of-type {
+	margin-top: 10px;
     font-size: 13px;
     line-height: 20px;
     font-weight: 100;
@@ -83,8 +97,20 @@ body {
     color: #787878;
 }
 
-.purchase_complete_container .checkout .bank_info .td {
+
+.purchase_complete_container .checkout .bank_info .td .span_td {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 100;
+    letter-spacing: -.2px;
+    color: #787878;
+}
+
+.purchase_complete_container .checkout .bank_info .td .span_td .info_name {
     display: block;
+    float: left;
+    min-width: 90px;
+    padding-right: 10px;
 }
 
 .purchase_complete_container .checkout .info_more {
