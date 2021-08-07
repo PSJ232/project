@@ -40,6 +40,7 @@ if(request.getParameter("sub_option") != null){
 	<div class="cart_header">
 	<h5>장바구니(비회원 미리보기)</h5>
 	</div>
+	
 	<form action="VisitorOrderNow.od" method="post">
 		<div class="cart_div2">
 			<div class="cart_div3">

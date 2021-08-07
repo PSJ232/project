@@ -109,9 +109,9 @@
 								<th class="qnaList_th" style="height:250px"><span class="qnaList_span3">답변</span>
 								</th>
 								<td colspan="2" class="qnaList_td">
-								<%=qnaList.get(i).getQ_subject()%>
-								<%=qnaList.get(i).getQ_rdate()%><br>
-								<%=qnaList.get(i).getQ_content()%>
+								<span class="qnaList_span4"><%=qnaList.get(i).getQ_subject()%></span>
+								<span class="qnaList_span6"><%=qnaList.get(i).getQ_rdate()%></span><br>
+								<span class="qnaList_span5"><%=qnaList.get(i).getQ_content()%></span>
 								</td>
 							</tr>
 
