@@ -32,6 +32,8 @@ a, a:active, a:visited {
 a, button {
 	cursor: pointer;
 }
+
+/* 리뷰, 리뷰수정 공통 작업 */
 .mypage_Review_all{
 	float: right;
 	width: 750px;
@@ -112,6 +114,39 @@ a, button {
 	text-align: center;
 	border: none;
 	vertical-align: middle bottom;
-	margin-left: 100px;
+	margin-left: 165px;
 	margin-top: 50px;
+}
+
+
+/* mypage_reviewDelete */
+.mypage_reviewDelete_all{
+	float: right;
+	margin-top: 120px;
+	margin-right: 30px;
+	text-align: center;
+	font-size: 30px;
+	width: 750px;
+	height: auto;
+}
+#mypage_reviewDelete_smt{
+	background-color: #FFD228;
+	border-radius: 10px;
+	width: 120px;
+	height: 50px;
+	text-align: center;
+	border: none;
+	vertical-align: middle bottom;
+	margin-top: 50px;
+	margin-right: 30px;
+}
+#mypage_reviewDelete_btn{
+	background-color: #dcdcdc;
+	border-radius: 10px;
+	width: 120px;
+	height: 50px;
+	text-align: center;
+	border: none;
+	vertical-align: middle bottom;
+	margin-top: 30px;
 }
