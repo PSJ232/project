@@ -344,7 +344,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT o.* FROM orders_detail od JOIN orders o ON od.o_id = o.o_id JOIN item i ON i.i_id = od.i_id"
-				+ " WHERE i.i_category!=3 AND od.m_id =? AND od.od_confirm = 0 OR od.od_confirm= 1";
+				+ " WHERE i.i_category!=3 AND od.m_id =? AND (od.od_confirm = 0 OR od.od_confirm= 1)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -381,7 +381,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		
 		String sql = "SELECT o.* FROM orders_detail od JOIN orders o ON od.o_id = o.o_id JOIN item i ON i.i_id = od.i_id"
-				+ " WHERE i.i_category=3 AND od.m_id =? AND od.od_confirm = 0 OR od.od_confirm= 1";
+				+ " WHERE i.i_category=3 AND od.m_id =? AND (od.od_confirm = 0 OR od.od_confirm= 1)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -493,7 +493,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT i.* FROM orders_detail od JOIN item i ON od.i_id = i.i_id "
-				+ "WHERE i.i_category !=3 AND od.m_id = ? AND od.od_confirm = 0 OR od.od_confirm = 1";
+				+ "WHERE i.i_category !=3 AND od.m_id = ? AND (od.od_confirm = 0 OR od.od_confirm = 1)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -535,7 +535,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		
 		String sql = "SELECT i.* FROM orders_detail od JOIN item i ON od.i_id = i.i_id "
-				+ "WHERE i.i_category =3 AND od.m_id = ? AND od.od_confirm = 0 OR od.od_confirm = 1";
+				+ "WHERE i.i_category =3 AND od.m_id = ? AND (od.od_confirm = 0 OR od.od_confirm = 1)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -661,7 +661,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT od.* FROM orders_detail od JOIN item i ON od.i_id = i.i_id "
-				+ "WHERE m_id = ? AND i.i_category != 3 AND od_confirm = 0 OR od_confirm = 1;";
+				+ "WHERE m_id = ? AND i.i_category != 3 AND (od_confirm = 0 OR od_confirm = 1)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -699,7 +699,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		
 		String sql = "SELECT od.* FROM orders_detail od JOIN item i ON od.i_id = i.i_id "
-				+ "WHERE m_id = ? AND i.i_category = 3 AND od_confirm = 0 OR od_confirm = 1;";
+				+ "WHERE m_id = ? AND i.i_category = 3 AND (od_confirm = 0 OR od_confirm = 1)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -1211,6 +1211,25 @@ public class OrderDAO {
 			close(pstmt);
 		}
 		return weekCardSales;
+	}
+
+	public int updatePurchaseConfirm(int od_id) {
+		System.out.println("OrderDAO - updatePurchaseConfirm");
+		PreparedStatement pstmt = null;
+
+		String sql = "UPDATE orders_detail SET od_confirm=1 WHERE od_id=?";
+		int updateCount = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, od_id);
+			updateCount = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		return updateCount;
 	}
 
 }

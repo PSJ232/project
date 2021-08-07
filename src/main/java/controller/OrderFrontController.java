@@ -23,6 +23,7 @@ import action.OrderMypageDetailAction;
 import action.OrderMypageListAction;
 import action.OrderNowAction;
 import action.OrderSubAction;
+import action.PurchaseConfirmAction;
 import action.ReservClassNumAction;
 import action.ReservClassPlaceAction;
 import action.ReservClassTimeAction;
@@ -213,6 +214,17 @@ public class OrderFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./order/payment_info.jsp");
 			forward.setRedirect(false);
+		} else if(command.equals("/ConfirmPurchase.od")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./mypage/confirmPurchase.jsp");
+		} else if(command.equals("/ConfirmPurchasePro.od")) {
+			action = new PurchaseConfirmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// -------------------------------------------------------------------------

@@ -130,7 +130,8 @@ case 24:
 													break;
 												case 3:
 													day = "화요일";
-													break;
+													break
+													;
 												case 4:
 													day = "수요일";
 													break;
@@ -147,6 +148,8 @@ case 24:
 
 												if (c_letter == 1) { //편지 선택함
 											%>
+											<span class="letter_span20"></span>
+							
 											<img src="<%=i_img%>" class="letter_img">
 											<span class="letter_span3"></span>
 											<div class="letter_div10">
@@ -178,27 +181,42 @@ case 24:
 										<h5 class="letter_h52">편지지를 선택해주세요.</h5>
 										<div class="letter_div12">
 											<ul class="letter_ul">
-												<li class="letter_li current" data-tab="tab-1"><label class="letter_label">
-														<input type="radio" class="letter_input" name="l_id<%=i%>"
-														value=1> <span class="letter_span10"> <b></b>
-													</span> <span class="letter_span11">감사</span>
-												</label></li>
-												<li class="letter_li" data-tab="tab-2"><label class="letter_label">
-														<input type="radio" class="letter_input" name="l_id<%=i%>"
-														value=2> <span class="letter_span12"> <b></b>
-													</span> <span class="letter_span11">응원</span>
-												</label></li>
-												<li class="letter_li" data-tab="tab-3"><label class="letter_label">
-														<input type="radio" class="letter_input" name="l_id<%=i%>"
-														value=3> <span class="letter_span13"> <b></b>
-													</span> <span class="letter_span11">사랑</span>
-												</label></li>
-												<li class="letter_li" data-tab="tab-4"><label class="letter_label">
-														<input type="radio" class="letter_input" name="l_id<%=i%>"
-														value=4 checked> <span class="letter_span14">
-															<b></b>
-													</span> <span class="letter_span11">직접쓰기</span>
-												</label></li>
+												<li class="letter_li current" data-tab="tab-1">
+													<label class="letter_label">
+														<input type="radio" class="letter_input" name="l_id<%=i%>" value=1> 
+														<span class="letter_span10"> 
+														<b></b>
+														</span> 
+														<span class="letter_span11">감사</span>
+													</label>
+												</li>
+												<li class="letter_li" data-tab="tab-2">
+													<label class="letter_label">
+														<input type="radio" class="letter_input" name="l_id<%=i%>" value=2> 
+														<span class="letter_span12"> 
+														<b></b>
+														</span> 
+														<span class="letter_span11">응원</span>
+													</label>
+													</li>
+												<li class="letter_li" data-tab="tab-3">
+													<label class="letter_label">
+														<input type="radio" class="letter_input" name="l_id<%=i%>" value=3> 
+														<span class="letter_span13"> 
+														<b></b>
+														</span> 
+														<span class="letter_span11">사랑</span>
+													</label>
+												</li>
+												<li class="letter_li" data-tab="tab-4">
+													<label class="letter_label">
+														<input type="radio" class="letter_input" name="l_id<%=i%>" value=4 checked> 
+														<span class="letter_span14">
+														<b></b>
+														</span>
+														<span class="letter_span11">직접쓰기</span>
+													</label>
+												</li>
 											</ul>
 										</div>
 										
@@ -279,7 +297,7 @@ case 24:
 														<div class="letter_div17">
 															<div class="letter_div18">
 															<textarea class="letter_textarea" rows="8" maxlength="160" ></textarea>
-															<input type="text" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)" >	
+															<input type="text" class="letter_textarea" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)" >	
 															</div>
 														</div>
 													</div>

@@ -70,9 +70,9 @@
 					<option id="mypage_Review_option" value="1">★</option>
 				</select></label><br> 
 				
-				<label id="mypage_Review_title">이미지 : <input id="mypage_Review_list_s" id="mypage_Review_title"  type="text" name="r_title"></label>
+				<label id="mypage_Review_title">이미지 : <input id="mypage_Review_list_s" id="mypage_Review_title"  type="text"></label>
 				<label class="input-file-button" for="mypage_Review_li_inp" >사진첨부</label>
-					<input id="mypage_Review_li_inp" type="file" name="q_img" class="file-input1">
+					<input id="mypage_Review_li_inp" type="file" name="r_img" class="file-input1">
 	
 				<input id="mypage_Review_smt" type="submit" value="작성하기">
 			</form>

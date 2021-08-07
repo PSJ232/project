@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 장바구니</title>
 <link rel="stylesheet" href="./css/cart.css">
 <link rel="stylesheet" href="./css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -150,11 +150,12 @@ if(request.getParameter("sub_option") != null){
 	<%
 	} else {
 	%>
-	</table></div></div></div></form>
+	</table></div></div></form>
 	<!-- if문안에서 태그가 짤려서 추가 -->
 	<p class="cart_p3">
 	<span class="cart_span21">장바구니가 비어있습니다.<br>
-	그 계절 가장 이쁜 꽃으로 행복을 채워보세요.</span><br>
+	그 계절 가장 이쁜 꽃으로 행복을 채워보세요.
+	</span><br>
 
 	<input type="button" class="cart_input6" value="쇼핑하러 가기" onclick="location='./'">
 
