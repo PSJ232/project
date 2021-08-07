@@ -37,8 +37,11 @@ public class AdminReviewListAction implements Action {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
-		
-		ArrayList<ReviewBean> reviewList = service.getReviewList(page, limit);
+		String filter = "";
+		if(request.getParameter("filter") != null) {
+			filter = request.getParameter("filter");
+		}
+		ArrayList<ReviewBean> reviewList = service.getReviewList(page, limit, filter);
 		PageInfo pageInfo = new PageInfo(page, listCount, maxPage, startPage, endPage);
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("reviewList", reviewList);

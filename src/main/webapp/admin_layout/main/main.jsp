@@ -37,7 +37,7 @@
 		border-radius: 10px;
 		padding: 30px;
 		width: 280px;
-		font-size: 32px;
+		font-size: 28px;
 		text-align: center;
 	}
 	.span {
