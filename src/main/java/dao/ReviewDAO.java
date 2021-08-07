@@ -51,7 +51,7 @@ public class ReviewDAO {
 		String sql = "SELECT o.* "
 				+ "FROM orders_detail od JOIN orders o "
 				+ "ON od.o_id = o.o_id "
-				+ "WHERE od.od_review = 0 AND od.m_id = ?";
+				+ "WHERE od.od_review = 0 AND od.m_id = ? AND od.od_confirm=1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -87,7 +87,7 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT * FROM orders_detail od JOIN orders o ON od.o_id = o.o_id WHERE od.od_review = 1 AND od.m_id = ?";
+		String sql = "SELECT * FROM orders_detail od JOIN orders o ON od.o_id = o.o_id WHERE od.od_review = 1 AND od.m_id = ? And od.od_confirm=1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -126,7 +126,7 @@ public class ReviewDAO {
 		String sql = "SELECT i.* "
 			+	"FROM orders_detail od JOIN item i "
 			+	"ON od.i_id = i.i_id "
-			+	"WHERE od.od_review = 0 AND m_id = ?";
+			+	"WHERE od.od_review = 0 AND m_id = ? And od.od_confirm=1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -170,7 +170,7 @@ public class ReviewDAO {
 		String sql = "SELECT i.* "
 				+	"FROM orders_detail od JOIN item i "
 				+	"ON od.i_id = i.i_id "
-				+	"WHERE od.od_review = 1 AND m_id = ?";
+				+	"WHERE od.od_review = 1 AND m_id = ? And od.od_confirm=1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -212,7 +212,7 @@ public class ReviewDAO {
 		
 		String sql = "SELECT * "
 				+ "FROM orders_detail "
-				+ "WHERE od_review = 0 AND m_id = ?";
+				+ "WHERE od_review = 0 AND m_id = ? And od_confirm=1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -251,7 +251,7 @@ public class ReviewDAO {
 		
 		String sql = "SELECT * "
 				+ "FROM orders_detail "
-				+ "WHERE od_review = 1 AND m_id = ?";
+				+ "WHERE od_review = 1 AND m_id = ? And od_confirm=1";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -568,7 +568,6 @@ public class ReviewDAO {
 				reviewList.add(reviewBean);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(rs);
@@ -599,7 +598,6 @@ public class ReviewDAO {
 				recentReview.add(reviewBean);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(rs);

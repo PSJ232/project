@@ -1,8 +1,10 @@
+<%@page import="vo.PageInfo"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	HashMap<String,Integer> qnaCount = (HashMap<String,Integer>)request.getAttribute("qnaCount");
+	int currentPage = (int)request.getAttribute("page");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,7 +42,7 @@
 /* 		border: 2px solid #ccc; */
 /* 		border-radius: 10px; */
 		padding: 20px 0 20px 0;
-		width: 400px;
+		width: 260px;
 		height: 100px;
 	}
 	#qna_tab {
@@ -65,26 +67,69 @@
 	}
 </style>
 <script>
+	var curTab = "tab1";
 	$(function() {
 		$('.admin_header_subtitle').text("문의 목록");
 		// tab operation
 		$('.tabmenu').click(function() {
+			var currentPage = <%=currentPage%>;
 			var activeTab = $(this).attr('data-tab');
+			if(curTab == "tab1" && activeTab == "tab2"){
+				currentPage = 1;
+				curTab = "tab2";
+				$('#pageList').empty();
+			}else if(curTab == "tab2" && activeTab == "tab1"){
+				currentPage = 1;
+				curTab = "tab1";
+				$('#pageList').empty();
+			}
 			$('.tabmenu').css('background-color', '#fff');
 			$(this).css('background-color', '#FFDF24');
-			$.ajax({
-				type : 'GET',                 //get방식으로 통신
-				url : "GetQnaList.ad",    //탭의 data-tab속성의 값으로 된 html파일로 통신
-				data : {
-					'activeTab': activeTab
+			$.ajax("GetQnaList.ad",{
+				type: "GET",
+				data: {
+					'activeTab': activeTab,
+					'page': currentPage
 				},
-				error : function() {          //통신 실패시
-					alert('통신실패!');
+				dataType: "json",
+				success:function(data){ 
+					console.log(data.result);
+					
+					$('#tabcontent').empty();
+					var result = data.result;
+					for(var i=0; i < result.length; i++){
+						for(var j=0; j < result[i].length; j++){
+							$('#tabcontent').append("<tr><td>"+result[i][j].q_id+"</td><td>"+result[i][j].m_id+"</td><td><a href='QnaDetail.ad?q_id="+result[i][j].q_id+"'>"+result[i][j].q_subject+"</a></td><td>"+result[i][j].q_rdate+"</td></tr>");
+						}
+					}
+					var pages = data.page[0];
+					if(pages.maxPage == 1){
+						
+					}
+					if(pages.maxPage != 1){
+						if(pages.page <= 1){
+							$('#pageList').append("<input class='page_btn' type='button' value='<<'> ");
+						}else {
+							$('#pageList').append("<input class='page_btn' type='button' value='<<' onclick='goPrevious("+page+")'> ");
+						}
+						for(var i = pages.startPage; i <= pages.endPage; i++){
+							if(i == pages.page){
+								$('#pageList').append("<span id='selected_page_num'> "+i+"</span>");
+							}else {
+								$('#pageList').append("<a id='page_num' href='QnaList.ad?page="+i+"'> " + i + " ");
+							}
+						}
+					}
+					
+					console.log(pages);
+// 					$.each(data.result, function(i, value){
+// 						$('#tabcontent').append("<tr><td>"+value.q_id+"</td><td>"+value.m_id+"</td><td><a href='QnaDetail.ad?q_id="+value.q_id+"'>"+value.q_subject+"</a></td><td>"+value.q_rdate+"</td></tr>");
+// 					});
+					
 				},
-				success : function(data) {    //통신 성공시 탭 내용담는 div를 읽어들인 값으로 채운다.
-					$('#tabcontent').html(data);
-				}
-			});
+				async:false
+				
+			});	//getJSON
 		});
 		$('#default').click();          
 	});
@@ -102,6 +147,7 @@
 <!-- 			<legend>문의 현황</legend> -->
 			<fieldset id="qna_status">
 				<legend>답변현황</legend>
+				<h1><span class="span">전체</span> <%=qnaCount.get("문의개수") %>건</h1>
 				<h1><span class="span">미답변</span> <%=qnaCount.get("미답변") %>건</h1>
 				<h1><span class="span">답변완료</span> <%=qnaCount.get("답변완료") %>건</h1> 
 			</fieldset>
@@ -110,7 +156,15 @@
 			<li data-tab="tab1" class='tabmenu' id="default">미답변</li>
 			<li data-tab="tab2" class='tabmenu'>답변완료</li>
 		</ul>
-		<div id="tabcontent"></div>
+		<table border=1>
+			<thead>
+			</thead>
+			<tbody id="tabcontent">
+			
+			</tbody>
+		</table>
+		<section id="pageList">
+		</section>
 	</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>

@@ -142,17 +142,14 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
 							</dl>
 							</td>
-							<%if (nonCol.contains(i)) {if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%>
-							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td>
+							<%if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%>
+								<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td>
 							<%} else if (!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {%>
-							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=invoiceNo %>
+								<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=invoiceNo %>
 															<input type="button" onclick="confirmPurchase(<%=nonOrderDetailArrayList.get(i).getOd_id() %>)" value="구매확정"></td>
 							<%} else if (invoiceNo.equals("주문접수")) {%>
-							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">주문접수</td>
+								<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">주문접수</td>
 							<%}
-							count++;
-							} else {
-							}
 							%>
 						</tr>
 						<%

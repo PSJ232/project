@@ -31,7 +31,7 @@
   	  // IMP.request_pay(param, callback) 호출
   	  IMP.request_pay({ // param
   	    pg: "html5_inicis", //결제플랫폼 네이버 카카오 등등
-  	    pay_method: "card", //결제수단 카드 고정
+  	    pay_method: "<%=rb.getR_payment()%>", //결제수단 카드 고정
   	    merchant_uid: "<%=rb.getR_id()%>", //제품 id
   	    name: "<%=cb.getClass_subject()%>", //제품명
   	    amount: 100, //가격

@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import db.JdbcUtil;
 import vo.QnaBean;
 
@@ -101,14 +104,17 @@ public class QnaDAO {
 		return qnaList;
 	}
 
-	public ArrayList<QnaBean> getBeforeQnaList() {
-		ArrayList<QnaBean> qnaList = new ArrayList<QnaBean>();;
+	public ArrayList<QnaBean> getBeforeQnaList(int page, int limit) {
+		ArrayList<QnaBean> qnaList = new ArrayList<QnaBean>();
+		int startRow = (page - 1) * limit;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM qna WHERE q_answered=0 ORDER BY q_id DESC";
+			String sql = "SELECT * FROM qna WHERE q_answered=0 ORDER BY q_id DESC LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				QnaBean qnaBean = new QnaBean();
@@ -135,14 +141,17 @@ public class QnaDAO {
 		return qnaList;
 	}
 
-	public ArrayList<QnaBean> getAfterQnaList() {
-		ArrayList<QnaBean> qnaList = new ArrayList<QnaBean>();;
+	public ArrayList<QnaBean> getAfterQnaList(int page, int limit) {
+		ArrayList<QnaBean> qnaList = new ArrayList<QnaBean>();
+		int startRow = (page - 1) * limit;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM qna WHERE q_answered=1 ORDER BY q_re_ref DESC, q_re_lev";
+			String sql = "SELECT * FROM qna WHERE q_answered=1 ORDER BY q_re_ref DESC, q_re_lev LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				QnaBean qnaBean = new QnaBean();
@@ -172,6 +181,7 @@ public class QnaDAO {
 	public QnaBean getQnaDetail(int q_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		QnaBean qnaBean = null;
 		try {
 			String sql = "SELECT * FROM qna WHERE q_id=?";
@@ -282,6 +292,7 @@ public class QnaDAO {
 			if(rs.next()) {
 				qnaCount.put("답변완료", rs.getInt(1));
 			}
+			qnaCount.put("문의개수", getListCount());
 		} catch (SQLException e) {
 			System.out.println("SQL 구문오류! - " + e.getMessage());
 		} finally {
@@ -289,5 +300,26 @@ public class QnaDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return qnaCount;
+	}
+
+	public int getListCount() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int listCount = 0;
+		try {
+			String sql = "SELECT COUNT(*) FROM Qna";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생!(MemberDAO getListCount()) - " + e.getMessage());
+
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return listCount;
 	}
 }
