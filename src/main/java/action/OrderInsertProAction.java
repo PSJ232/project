@@ -30,13 +30,36 @@ public class OrderInsertProAction implements Action {
 		
 		ArrayList<OrderDetailBean> orderDetailList = new ArrayList<OrderDetailBean>();
 		OrderDetailBean orderDetailBean = null;
+		
+		int iNum = Integer.parseInt(request.getParameter("iNum"));
+		
+		for (int i = 0 ; i < iNum ; i++) {
+			int i_id = Integer.parseInt(request.getParameter("i_id" + i));
+			int od_qty = Integer.parseInt(request.getParameter("od_qty" + i));
+			
+			OrderService orderService = new OrderService();
+			boolean isSoldOut = orderService.checkSoldOut(i_id, od_qty);
+			
+			if (isSoldOut) { // 상품의 재고가 구매수량 보다 적으면 true 
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('상품번호:"+i_id+"("+od_qty+"개)"+" - 상품의 재고가 부족합니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return forward;
+			}
+			
+			
+			
+		}
+		
 		int sub_option = 1;
 		if(!request.getParameter("sub_option").equals(null)) {
 			sub_option = Integer.parseInt(request.getParameter("sub_option"));
 		}
 		
 		if(sub_option == 1) {
-			int iNum = Integer.parseInt(request.getParameter("iNum"));
 			
 			for (int i = 0 ; i < iNum ; i++) {
 				orderDetailBean = new OrderDetailBean();

@@ -1,5 +1,6 @@
 package action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import svc.ItemDetailService;
+import svc.OrderService;
 import vo.ActionForward;
 import vo.CartBean;
 import vo.ItemBean;
@@ -25,7 +27,7 @@ public class OrderNowAction implements Action {
 		int c_qty = Integer.parseInt(request.getParameter("c_qty")); // 상품수량
 		int c_letter = Integer.parseInt(request.getParameter("c_letter")); // 편지 추가 여부
 		String c_delivery_date = request.getParameter("c_delivery_date"); // 배송 요청일
-
+		
 		CartBean cartDetail = new CartBean(); // 넘겨받은 값을 저장할 CartBean
 		
 		cartDetail.setC_id(0); // 바로 구매는 장바구니 번호가 없으므로 구분을 위해 임의의 숫자사용

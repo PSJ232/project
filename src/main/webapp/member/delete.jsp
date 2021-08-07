@@ -6,12 +6,18 @@
 <meta charset="UTF-8">
 <title>회원 탈퇴</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+<link href="css/mypage.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/delete.css" type="text/css" />
 </head>
 <%
 String m_id = (String)session.getAttribute("m_id");
 %>
 <body>
+
+	<jsp:include page="../inc/header.jsp"></jsp:include>
+<%-- 	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include> --%>
+	<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+
 		<div class="hidden">세션ID = <%=m_id%></div>
 		<hr size="1px" width=90% color="#878787">		
 		<div class="title"><h3>회원 탈퇴 안내</h3></div>

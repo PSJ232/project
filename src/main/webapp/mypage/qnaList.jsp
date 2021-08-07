@@ -17,9 +17,9 @@
 	type="text/css" />
 <script src="../script/jquery-3.6.0.js"></script>
 <style type="text/css">
-#hidden {
-	display: none;
-}
+ #hidden { 
+ 	display: none; 
+ } 
 </style>
 </head>
 <body>
@@ -100,16 +100,17 @@
 							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden">
 								<th class="qnaList_th"><span class="qnaList_span3">문의내용</span>
 								</th>
-								<td colspan="2" class="qnaList_td"><%=qnaList.get(i).getQ_content()%></td>
+								<td colspan="2" class="qnaList_td"><span class="qnaList_span3"><%=qnaList.get(i).getQ_content()%></span></td>
 							</tr>
 						<%
 							} else if (qnaList.get(i).getQ_re_lev() == 1) {
 			 			%> 
 							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden">
-								<th class="qnaList_th" style="height:250px"><span class="qnaList_span3">답변</span>
+								<th class="qnaList_th" style="height:250px">
+								<span class="qnaList_span3">답변</span>
 								</th>
 								<td colspan="2" class="qnaList_td">
-								<span class="qnaList_span4"><%=qnaList.get(i).getQ_subject()%> </span>
+								<span class="qnaList_span4"><%=qnaList.get(i).getQ_subject()%></span>
 								<span class="qnaList_span6"><%=qnaList.get(i).getQ_rdate()%></span><br>
 								<span class="qnaList_span5"><%=qnaList.get(i).getQ_content()%></span>
 								</td>

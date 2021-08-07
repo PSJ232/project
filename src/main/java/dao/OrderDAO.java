@@ -1220,4 +1220,25 @@ public class OrderDAO {
 		return updateCount;
 	}
 
+	public int checkInven(int i_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int nowInven = 0;
+		try {
+			String sql = "SELECT * FROM item WHERE i_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, i_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				nowInven = rs.getInt("i_inven");
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류!(OrderDAO - getOrder(String o_id) - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return nowInven;
+	}
+
 }
