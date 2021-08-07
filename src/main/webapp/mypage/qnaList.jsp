@@ -17,9 +17,9 @@
 	type="text/css" />
 <script src="../script/jquery-3.6.0.js"></script>
 <style type="text/css">
-#hidden {
-	display: none;
-}
+ #hidden { 
+ 	display: none; 
+ } 
 </style>
 </head>
 <body>
@@ -109,9 +109,9 @@
 								<th class="qnaList_th" style="height:250px"><span class="qnaList_span3">답변</span>
 								</th>
 								<td colspan="2" class="qnaList_td">
-								<span class="qnaList_span4"><%=qnaList.get(i).getQ_subject()%> </span>
-								<span class="qnaList_span6"><%=qnaList.get(i).getQ_rdate()%></span><br>
-								<span class="qnaList_span5"><%=qnaList.get(i).getQ_content()%></span>
+								<%=qnaList.get(i).getQ_subject()%>
+								<%=qnaList.get(i).getQ_rdate()%><br>
+								<%=qnaList.get(i).getQ_content()%>
 								</td>
 							</tr>
 
