@@ -20,8 +20,8 @@ import action.AdminOrderDetailAction;
 import action.AdminOrderListAction;
 import action.AdminQnaDeleteAnswerAction;
 import action.AdminQnaDetailAction;
-import action.AdminQnaGetListAction;
 import action.AdminQnaListAction;
+import action.AdminQnaGetListAction;
 import action.AdminQnaWriteAnswerAction;
 import action.AdminReviewListAction;
 import action.AdminSearchAction;
@@ -329,16 +329,15 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/GetQnaList.ad")) {
-			forward = new ActionForward();
-			action = new AdminQnaListAction();
+			AdminQnaGetListAction q_action = new AdminQnaGetListAction();
 			try {
-				forward = action.execute(request, response);
+				q_action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/QnaList.ad")) {
 			forward = new ActionForward();
-			action = new AdminQnaGetListAction();
+			action = new AdminQnaListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

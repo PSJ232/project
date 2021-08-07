@@ -33,6 +33,7 @@
 					alert('통신실패!');
 				},
 				success : function(data) {    //통신 성공시 탭 내용담는 div를 읽어들인 값으로 채운다.
+					console.log(data);
 					$('#tabcontent').html(data);
 				}
 			});

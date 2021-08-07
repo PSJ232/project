@@ -8,7 +8,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.simple.JSONArray;
+
 import dao.CartDAO;
+import dao.MemberDAO;
 import dao.QnaDAO;
 import db.JdbcUtil;
 import vo.CartBean;
@@ -52,21 +55,21 @@ public class QnaService {
 	
 	}
 
-	public ArrayList<QnaBean> getBeforeQnaList() {
+	public ArrayList<QnaBean> getBeforeQnaList(int page, int limit) {
 		Connection con = getConnection();
 		QnaDAO qnaDAO = QnaDAO.getInstance();
 		qnaDAO.setConnection(con);
-		ArrayList<QnaBean> qnaList = qnaDAO.getBeforeQnaList();
+		ArrayList<QnaBean> qnaList = qnaDAO.getBeforeQnaList(page, limit);
 		JdbcUtil.close(con);
 
 		return qnaList;
 	}
 
-	public ArrayList<QnaBean> getAfterClassList() {
+	public ArrayList<QnaBean> getAfterQnaList(int page, int limit) {
 		Connection con = getConnection();
 		QnaDAO qnaDAO = QnaDAO.getInstance();
 		qnaDAO.setConnection(con);
-		ArrayList<QnaBean> qnaList = qnaDAO.getAfterQnaList();
+		ArrayList<QnaBean> qnaList = qnaDAO.getAfterQnaList(page, limit);
 		JdbcUtil.close(con);
 
 		return qnaList;
@@ -95,6 +98,15 @@ public class QnaService {
 		HashMap<String, Integer> qnaCount = qnaDAO.getQnaCount();
 		close(con);
 		return qnaCount;
+	}
+	
+	public int getListCount() {
+		Connection con = getConnection();
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		qnaDAO.setConnection(con);
+		int listCount = qnaDAO.getListCount();
+		close(con);
+		return listCount;
 	}
 
 }
