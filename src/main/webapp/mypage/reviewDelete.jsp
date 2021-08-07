@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/mypage.css" rel="stylesheet">
-<link href="css/mypage_reviewBefore.css" rel="stylesheet">
+<link href="css/mypage_review.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/utility.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
@@ -47,12 +47,13 @@ switch(memberMypageDetail.getG_id()) {
 		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 
  <!-- 본문 내용 -->
- <div>
+ <div class="mypage_reviewDelete_all">
+ 
  <form action="ReviewDeletePro.rv" method="post" name="fr">
 해당 리뷰를 삭제하시겠습니까?
-<input type="hidden" name="od_id" value="<%=od_id %>">
-<input type="submit" value="삭제">
-<input type="button" value="취소" onclick="button_click();">
+<input type="hidden" name="od_id" value="<%=od_id %>"><br>
+<input id="mypage_reviewDelete_smt" value="삭제">
+<input id="mypage_reviewDelete_btn" type="button" value="취소" onclick="button_click();">
  </form>
 
 
