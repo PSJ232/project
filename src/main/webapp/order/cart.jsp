@@ -26,6 +26,13 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
 }
 
 
+function emptyCart() { // 선택된 상품이 없으면 sumbit 안됨
+	if(!$('.cart_input2').prop('checked')){
+		alert('선택된 상품이 없습니다');
+		return false;
+	}
+}
+
 $(document).ready(function() {
 	//장바구니 체크기능 및 금액부분
 	var cart_totalAmount = 0;
@@ -51,14 +58,12 @@ $(document).ready(function() {
 			cart_totalAmount += Number($(this).attr('data-tab'));
 		} else {  
 			$(this).attr('name', '');
-			
+			$("input:checkbox[id='cart_check_all']") .prop('checked', false);
 			cart_totalAmount -= Number($(this).attr('data-tab'));
 	   	}
 		$(".cart_span20").text(cart_totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
 		$(".cart_span14").text(cart_totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
 	});
-	
-	
 	
 });
 </script>
@@ -74,12 +79,11 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 	<!-- header -->
 	
 	
-	
 	<div class="cart_div">
 		<div class="cart_header">
 			<h5>장바구니</h5>
 		</div>
-		<form action="OrderCart.od" method="post">
+		<form action="OrderCart.od" method="post" onsubmit="return emptyCart()">
 			<div class="cart_div2">
 				<div class="cart_div3">
 					<div class="cart_div4">
