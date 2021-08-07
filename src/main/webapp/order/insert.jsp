@@ -257,6 +257,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
 		<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
 		<input type="hidden" name="o_payment" value="">
+		<input type="submit" value="결제하기" onClick="defaultPoint()" > 			<!-- 비안씨 작업용 임시용 코드 삭제예정 이거지우고 밑에꺼 활성화 -->
 	</form>
 		
 	<form name="payfrm" method="post">
@@ -265,7 +266,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="pay_gdiscount" value="<%=gradeDiscount %>">
 		<input type="hidden" name="pay_amount" value="<%=totalPrice %>">
 	</form>
-	<input type="button" value="결제하기" onClick="payment_popup()" >
+	<!-- <input type="button" value="결제하기" onClick="payment_popup()" > -->
 	
 	
 	<script type="text/javascript">
