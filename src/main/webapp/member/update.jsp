@@ -32,22 +32,20 @@
 <body>
 	<!-- 헤더 들어가는곳 -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
-	<!-- 헤더 들어가는곳 -->
-
-	<!-- 본문 메인 상단 -->
 	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
 
-		<!-- 본문 내용 -->
 	<div class ="mypage_update_container">
 		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
-
-
 		
-			<div class="top_banner">
-				<div class="page_title"><h2>개인정보 수정</h2></div>
+		<div class="mypage_update_box">
+			<div class="mypage_center_c">
+				<div class="mypage_center_i">
+					<span class="mypage_title">개인정보 수정</span>
+				</div>				
 			</div>
 			
 			<div class="update_box">
+			
 				<div class="inbox">
 					<form action="MemberUpdatePro.me" id="formUpdate" method="post">
 						<div class="inner">
@@ -187,8 +185,8 @@
 			 	
 			</div><!-- update_box 닫기 -->		
 		
-		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	</div><!--  container 닫기 -->
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	
 </body>
 </html>

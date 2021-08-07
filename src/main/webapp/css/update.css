@@ -11,18 +11,57 @@ body {
   box-sizing: border-box;
 }
 
-.top_banner {
-	top: 36px;
-	position: static;
-	display: block;
-	max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 60px;
-    text-align: center;
+li {
+  list-style: none;
+  text-decoration: none;
 }
 
-.top_banner h2 {
-    height: auto;
+a,
+a:active,
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+.mypage_update_container {
+	width: 1120px;
+    margin: 53px auto 82px;
+    position: relative;
+}
+
+/* .top_banner { */
+/* 	top: 36px; */
+/* 	position: static; */
+/* 	display: block; */
+/* 	width: 740px; */
+/*     margin: 0 auto; */
+/*     padding: 0 60px; */
+/*     text-align: center; */
+/* } */
+
+
+/* 본문 */
+.mypage_update_box {
+	display: inline-block;
+    position: absolute;
+    margin-left: 40px;
+    margin-top: 0px;
+}
+
+.mypage_center_c {
+    display: inline-block;
+}
+
+.mypage_center_i {
+	display: inline-block;
+}
+
+.mypage_title {
+	height: auto;
     padding: 40px 0;
     border-bottom: none;
     font-size: 30px;
@@ -30,13 +69,6 @@ body {
     font-weight: 800;
     letter-spacing: -.6px;
     color: #333;
-}
-
-.update_box {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 60px;
-    display: block;
 }
 
 .update_box .inbox {
@@ -154,8 +186,8 @@ body {
 .anniversary {
 			border: 1px solid #ffca18;
 			border-radius: 5px;
-			margin: 30px 30px;
-			padding: 50px 50px;
+			margin: 10px 10px;
+			padding: 30px 30px;
 }
 
 		

@@ -10,6 +10,7 @@
 
 body {
   box-sizing: border-box;
+  
 }
 
 .purchase_complete_container {
@@ -17,13 +18,13 @@ body {
 }
 
 .purchase_complete_container .checkout {
-    padding: 40px 20px;
+    padding: 80px 20px;
     background-color: #ffcd32;
     text-align: center;
 }
 
 .purchase_complete_container .checkout .checkout_title {
-    font-size: 20px;
+    font-size: 38px;
     line-height: 32px;
     font-weight: 700;
     letter-spacing: -.3px;
@@ -32,24 +33,25 @@ body {
 
 .purchase_complete_container .checkout .checkout_desc {
     display: block;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 20px;
-    font-weight: 100;
+    font-weight: 300;
     letter-spacing: -.21px;
     color: #3a3a3a;
+    margin-top: 40px;
 }
 
 .purchase_complete_container .checkout .checkout_order_num {
     display: block;
-    max-width: 280px;
-    padding: 10px 10px;
-    margin: 0 auto;
+    width: 325px;
+    padding: 15px 15px;    
+    margin: 15px auto;
     border-radius: 20px;
     background-color: #fff;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
-    font-weight: 100;
+    font-weight: 200;
     letter-spacing: -.21px;
     color: #3a3a3a;
 }
@@ -87,20 +89,52 @@ body {
 
 .purchase_complete_container .checkout .info_more {
     display: block;
-    font-size: 14px;
-    line-height: 22px;
-    font-weight: 100;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 300;
     letter-spacing: -.21px;
-    color: #222;
+    color: #3a3a3a;
+    margin-top: 20px;
 }
 
 .checkout_submit_box {
+	padding-top: 40px;
     padding-bottom: 60px;
 }
 
 .submit_button {
+    margin: 0 auto;
+}
+
+.submit_button .submit_row {
     position: relative;
+    display: flex;
+   	width: 800px;
+    justify-content: center;    
+    margin: 0 auto;
+}
+
+.submit_button .submit_row .submit_col {
+    flex: 1;
+    padding: 0 5px;
+}
+
+.submit_button .shop_continue {
+    padding: 0;
     margin: 0;
+    border: none;
+    cursor: pointer;
+    display: block;
+    width: 350px;
+    height: 48px;
+    background: #ececec;
+    text-align: center;
+    font-size: 18px;
+    line-height: 48px;
+    font-weight: 300;
+    letter-spacing: -.21px;
+    color: #222;
+    border-radius: 5px;
 }
 
 .submit_button .show_detail {
@@ -108,14 +142,13 @@ body {
     margin: 0;
     border: none;
     background: 0 0;
-    outline: 0;
     cursor: pointer;
     display: block;
-    width: 100%;
+    width: 350px;
     height: 48px;
     background: #ffcd32;
     text-align: center;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 48px;
     font-weight: 300;
     letter-spacing: -.21px;
