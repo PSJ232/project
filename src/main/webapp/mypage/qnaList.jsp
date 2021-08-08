@@ -104,7 +104,8 @@
 							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden" style="height:60px">
 								<th class="qnaList_th"><span class="qnaList_span3">문의내용</span>
 								</th>
-								<td colspan="2" class="qnaList_td"><span class="qnaList_span3"><%=qnaList.get(i).getQ_content()%></span></td>
+								<td colspan="2" class="qnaList_td"><span class="qnaList_span3"><%=qnaList.get(i).getQ_content()%><br>
+									<img src="./mypage/qnaUpload/<%=qnaList.get(i).getQ_img()%>" onerror="this.style.display='none'" alt='이미지 출력 오류' width=200/></span></td>
 							</tr>
 						<%
 							} else if (qnaList.get(i).getQ_re_lev() == 1) {

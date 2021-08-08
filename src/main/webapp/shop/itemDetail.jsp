@@ -8,7 +8,58 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+	function sample6_execDaumPostcode() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	            var addr = ''; // 주소 변수
+	            var extraAddr = ''; // 참고항목 변수
+	
+	            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                addr = data.roadAddress;
+	            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                addr = data.jibunAddress;
+	            }
+	
+	            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	            if(data.userSelectedType === 'R'){
+	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                    extraAddr += data.bname;
+	                }
+	                // 건물명이 있고, 공동주택일 경우 추가한다.
+	                if(data.buildingName !== '' && data.apartment === 'Y'){
+	                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                }
+	                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                if(extraAddr !== ''){
+	                    extraAddr = ' (' + extraAddr + ')';
+	                }                 
+	            }
+	            
+	            
+	            if(addr.indexOf("서울 ") == 0 || addr.indexOf("경기 ") == 0){
+		            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+		          	// document.getElementById('sample6_postcode').value = data.zonecode;
+		            document.getElementById("sample6_address").value = addr;
+		            // 커서를 상세주소 필드로 이동한다.
+		            //document.getElementById("sample6_detailAddress").focus();
+	            } else {
+	            	alert("당일 배송 상품은\n서울/경기 일부 지역만 배송 가능합니다.\n주소를 다시 확인 부탁드립니다.");
+	            };
+	        }
+	    }).open();
+	}
+
+
+
 	function isLetter(price) {
 		var c_letter = document.order.c_letter.value;
 		var qty = document.order.c_qty.value;
@@ -163,12 +214,7 @@ switch (i_category) {
 					<div class="form_section">
 						<form method="post" name="order">
 							<input type="hidden" name="i_id" value=<%=i_id %>>
-							<%if(!path.equals("/SubContent.shop")){ %>
-								<div class="label_div">
-									<label class="label_name" id="label_name_date">수령일<span class="required_mark"> *</span></label>
-									<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
-								</div>
-							<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
+							<%if(path.equals("/SubContent.shop")){ %> <!-- 정기구독 경유 접속시 표시 -->
 								<div class="label_div">
 									<label class="label_name" id="label_name_option">구독 옵션<span class="required_mark"> *</span></label>
 									<select class="sub_option" name="sub_option" size="1" onchange="isLetter(<%=price %>)" required>
@@ -182,6 +228,32 @@ switch (i_category) {
 								<div class="calendar_right">
 									<input class="delivery_date" type="text" name="c_delivery_date" style="display: none;" required>
 									<span class="designinfo" style="display: none">- 8월 17일 이후로 지정하시면 <b>꽃다발 디자인이 변경됩니다.</b></span>
+								</div>
+							<%}else if(path.equals("/QuickContent.shop")){ %> <!-- 당일배송 경유 접속시 표시 --> 
+								<div class="label_div">
+									<label class="label_name" id="label_name_date">수령일<span class="required_mark"> *</span></label>
+									<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
+									
+									
+									<div class="select_time_right" style="display: none;">
+										<label class="label_name" id="label_name_date">수령시간<span class="required_mark"> *</span></label>
+										<select class="quick_option" name="quick_option" size="1" required>
+											<option hidden="" value="">수령시간을 선택해주세요.</option>
+											<option value="11:30:00">오전11시 30분 - 오후1시 30분</option>
+											<option value="13:30:00">오후1시 30분 - 오후3시 30분</option>
+											<option value="16:00:00">오후4시 - 오후6시</option>
+											<option value="18:00:00">오후6시 - 오후8시 수령</option>
+										</select>
+									</div>
+									<div class="check_address_right" style="display: none;">
+										<label class="label_name" id="label_name_date">주소검색<span class="required_mark"> *</span></label>
+										<input class="address_option" id="sample6_address" type="text" name="address_option" placeholder="주소 검색" required onclick="sample6_execDaumPostcode()">
+									</div>	
+								</div>
+							<%}else{ %> <!-- 일반배송 경유 접속시 표시 -->
+								<div class="label_div">
+									<label class="label_name" id="label_name_date">수령일<span class="required_mark"> *</span></label>
+									<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
 								</div>
 							<%} %>
 							<div class="label_div">
@@ -446,6 +518,15 @@ switch (i_category) {
 				$('.delivery_date').css('display','block');
 				$('.designinfo').css('display','block');
 			});
+			 // 당일배송 날짜 선택하면 시간선택창 보임
+			$('.delivery_date').change(function(){
+				$('.select_time_right').css('display','block');
+			});
+			 // 당일배송 시간 선택하면 주소창 보임
+			$('.quick_option').change(function(){
+				$('.check_address_right').css('display','block');
+			});
+			
 			
 			// 이미지 전환
 			$('.change_img').click(function(){
