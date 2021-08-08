@@ -163,12 +163,7 @@ switch (i_category) {
 					<div class="form_section">
 						<form method="post" name="order">
 							<input type="hidden" name="i_id" value=<%=i_id %>>
-							<%if(!path.equals("/SubContent.shop")){ %>
-								<div class="label_div">
-									<label class="label_name" id="label_name_date">수령일<span class="required_mark"> *</span></label>
-									<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
-								</div>
-							<%}else{ %> <!-- 정기구독 경유 접속시 표시 -->
+							<%if(path.equals("/SubContent.shop")){ %> <!-- 정기구독 경유 접속시 표시 -->
 								<div class="label_div">
 									<label class="label_name" id="label_name_option">구독 옵션<span class="required_mark"> *</span></label>
 									<select class="sub_option" name="sub_option" size="1" onchange="isLetter(<%=price %>)" required>
@@ -182,6 +177,32 @@ switch (i_category) {
 								<div class="calendar_right">
 									<input class="delivery_date" type="text" name="c_delivery_date" style="display: none;" required>
 									<span class="designinfo" style="display: none">- 8월 17일 이후로 지정하시면 <b>꽃다발 디자인이 변경됩니다.</b></span>
+								</div>
+							<%}else if(path.equals("/QuickContent.shop")){ %> <!-- 당일배송 경유 접속시 표시 --> 
+								<div class="label_div">
+									<label class="label_name" id="label_name_date">수령일<span class="required_mark"> *</span></label>
+									<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
+									
+									
+									<div class="select_time_right" style="display: none;">
+										<label class="label_name" id="label_name_date">수령시간<span class="required_mark"> *</span></label>
+										<select class="quick_option" name="quick_option" size="1" required>
+											<option hidden="" value="">수령시간을 선택해주세요.</option>
+											<option value="1">오전11시 30분 - 오후1시 30분</option>
+											<option value="2">오후1시 30분 - 오후3시 30분</option>
+											<option value="3">오후4시 - 오후6시</option>
+											<option value="4">오후6시 - 오후8시 수령</option>
+										</select>
+									</div>
+									<div class="check_address_right" style="display: none;">
+										<label class="label_name" id="label_name_date">주소검색<span class="required_mark"> *</span></label>
+										<input class="address_option" type="text" name="address_option" required>
+									</div>	
+								</div>
+							<%}else{ %> <!-- 일반배송 경유 접속시 표시 -->
+								<div class="label_div">
+									<label class="label_name" id="label_name_date">수령일<span class="required_mark"> *</span></label>
+									<input class="delivery_date" type="text" name="c_delivery_date" placeholder="수령일을 선택해주세요." required>
 								</div>
 							<%} %>
 							<div class="label_div">
@@ -446,6 +467,15 @@ switch (i_category) {
 				$('.delivery_date').css('display','block');
 				$('.designinfo').css('display','block');
 			});
+			 // 당일배송 날짜 선택하면 시간선택창 보임
+			$('.delivery_date').change(function(){
+				$('.select_time_right').css('display','block');
+			});
+			 // 당일배송 시간 선택하면 주소창 보임
+			$('.quick_option').change(function(){
+				$('.check_address_right').css('display','block');
+			});
+			
 			
 			// 이미지 전환
 			$('.change_img').click(function(){

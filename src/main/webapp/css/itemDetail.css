@@ -147,25 +147,32 @@ html {
 
 .label_div {
 	padding: 10px 0;
-	height: 60px;
+/* 	height: 60px; */
 }
 
-.sub_option {
-	padding: 11px 0;
+.select_time_right, .check_address_right {
+    padding-top: 10px;
+/*     height: 60px; */
+}
+
+.sub_option, .quick_option {
+	padding: 0 10px;
 	width: 323px;
+	height: 45px;
 	border: solid 1px #ffd324;
 	border-radius: 5px;
 	color: #999999;
 	font-size: 13px;
 }
 
-.sub_option option {
+.sub_option option, .quick_option option {
 	color: black;
 }
 
-.delivery_date, .showCalendar {
+.delivery_date, .showCalendar, .address_option {
 	padding: 13px;
 	width: 323px;
+	height: 45px;
 	border: solid 1px #ffd324;
 	border-radius: 5px;
 	color: #999999;
@@ -195,11 +202,12 @@ html {
 .button_qty {
 	font-size: 20px;
 	color: #999999;
-	padding: 4px 7px;
 	background-color: #eeeeee;
 	border-radius: 30px;
 	border: none;
 	cursor: pointer;
+	width: 20px;
+	height: 20px;
 }
 
 .c_qty {
