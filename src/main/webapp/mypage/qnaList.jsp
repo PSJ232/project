@@ -52,7 +52,11 @@
 			<%
 			if (qnaList.isEmpty()) {
 			%>
-			<br> <br>문의 내역이 존재하지 않습니다.
+			<div class="qnaList_div4">
+			<span class="qnaList_span8">
+			문의 내역이 존재하지 않습니다.
+			</span>
+			</div>
 			<%
  } else {
  %>
@@ -100,7 +104,7 @@
 							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden" style="height:60px">
 								<th class="qnaList_th"><span class="qnaList_span3">문의내용</span>
 								</th>
-								<td colspan="2" class="qnaList_td"><%=qnaList.get(i).getQ_content()%></td>
+								<td colspan="2" class="qnaList_td"><span class="qnaList_span3"><%=qnaList.get(i).getQ_content()%></span></td>
 							</tr>
 						<%
 							} else if (qnaList.get(i).getQ_re_lev() == 1) {
@@ -112,7 +116,7 @@
 								<td colspan="2" class="qnaList_td3" style="height:250px">
 								<span class="qnaList_span7"><%=qnaList.get(i).getQ_subject()%></span>
 								<span class="qnaList_span6"><small><%=qnaList.get(i).getQ_rdate()%></small></span><br>
-								<span class="qnaList_span5"><%=qnaList.get(i).getQ_content()%></span>
+								<div class="qnaList_answer"><span class="qnaList_span5"><%=qnaList.get(i).getQ_content()%></span></div>
 								</td>
 							</tr>
 
