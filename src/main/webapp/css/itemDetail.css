@@ -151,7 +151,8 @@ html {
 }
 
 .sub_option {
-	padding: 11px 157px 11px 10px;
+	padding: 11px 0;
+	width: 323px;
 	border: solid 1px #ffd324;
 	border-radius: 5px;
 	color: #999999;
@@ -164,7 +165,7 @@ html {
 
 .delivery_date, .showCalendar {
 	padding: 13px;
-	width: 330px;
+	width: 323px;
 	border: solid 1px #ffd324;
 	border-radius: 5px;
 	color: #999999;

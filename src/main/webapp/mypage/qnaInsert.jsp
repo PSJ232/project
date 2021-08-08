@@ -18,11 +18,12 @@
 $(document).on("change", ".file-input1", function(){
       
     $filename1 = $(this).val();
-
+    var split_res = $filename1.split('\\');
+    var result = split_res[2];
     if($filename1 == "")
       $filename1 = "파일을 선택해주세요.";
 
-    $(".filename1").val($filename1);
+    $(".filename1").val(result);
 
   })
 </script>

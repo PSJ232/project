@@ -14,6 +14,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	  rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).on("change", ".file-input1", function(){
+      
+    $filename = $(this).val();
+    var split_res = $filename.split('\\');
+    var result = split_res[2];
+    if($filename == "")
+      $filename = "파일을 선택해주세요.";
+
+    $(".filename").val(result);
+
+  })
+</script>
 </head>
 <body>
 	<%
@@ -70,7 +83,7 @@
 					<option id="mypage_Review_option" value="1">★</option>
 				</select></label><br> 
 				
-				<label id="mypage_Review_title">이미지 : <input id="mypage_Review_list_s" id="mypage_Review_title"  type="text"></label>
+				<label id="mypage_Review_title">이미지 : <input id="mypage_Review_list_s" id="mypage_Review_title"  type="text" class="filename"></label>
 				<label class="input-file-button" for="mypage_Review_li_inp" >사진첨부</label>
 					<input id="mypage_Review_li_inp" type="file" name="r_img" class="file-input1">
 	
