@@ -308,7 +308,9 @@ switch (i_category) {
 					</div>
 				</div>
 			</div>
+			<!-- 상품상세 시작 -->
 			<div class="category_product_description">
+				<!-- 중간 3버튼 네비게이션   -->
 				<ul class="middle_nav">
 					<li class="middle_li li_desc active" onclick="location.href='#desc_image'">상품설명</li>
 					<li class="middle_li li_review" onclick="location.href='#review_list'">리뷰</li>
@@ -318,6 +320,7 @@ switch (i_category) {
 					<img src="./admin_layout/upload/<%=itemDetail.getI_detailpage() %>">
 				</div>
 			</div>
+			<!-- 리뷰 시작 -->
 			<div id="review_list">
 				<div class="review_top">
 					<div class="review_title">
@@ -343,7 +346,7 @@ switch (i_category) {
 					</ul>
 					<div class="row">
 						<div id="tab-1" class="tab-content current">
-							<!-- 베스트 댓글 jsp파일  -->
+							<!-- 베스트 리뷰 jsp파일  -->
 							<jsp:include page="../inc/best_review.jsp"></jsp:include>
 						</div>
 						<div id="tab-2" class="tab-content">
@@ -579,7 +582,6 @@ switch (i_category) {
 					$('.middle_li').removeClass('active');
 					$('.li_deli_info').addClass('active');
 				}
-				
 				
 			});
 			
