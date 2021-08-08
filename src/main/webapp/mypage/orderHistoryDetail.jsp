@@ -97,8 +97,11 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		<dd id="mypage_orderHistoryDetail_dd">주문번호 : <%=orderBean.getO_id()%></dd>
 		</dl>
 		<span id="mypage_orderHistoryDetail_span">
-		<input id="mypage_orderHistoryDetail_btn" type="button" value="주문 취소하기" 
-				onclick="location.href='OrderCancel.od?o_id=<%=orderBean.getO_id()%>&i_category=<%=itemList.get(0).getI_category()%>'"></span>
+		<%if(orderDetailList.get(0).getOd_confirm()!=2) {
+			%><input id="mypage_orderHistoryDetail_btn" type="button" value="주문 취소하기" 
+				onclick="location.href='OrderCancel.od?o_id=<%=orderBean.getO_id()%>&i_category=<%=itemList.get(0).getI_category()%>'"><%
+		} else {}%>
+		</span>
 		<table class="mypage_orderHistoryDetail_table_t" >
 						
 						<tr>
