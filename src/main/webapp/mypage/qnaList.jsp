@@ -97,21 +97,21 @@
 										%>
 								</span></td>
 							</tr>
-							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden">
+							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden" style="height:60px">
 								<th class="qnaList_th"><span class="qnaList_span3">문의내용</span>
 								</th>
-								<td colspan="2" class="qnaList_td"><span class="qnaList_span3"><%=qnaList.get(i).getQ_content()%></span></td>
+								<td colspan="2" class="qnaList_td"><%=qnaList.get(i).getQ_content()%></td>
 							</tr>
 						<%
 							} else if (qnaList.get(i).getQ_re_lev() == 1) {
 			 			%> 
-							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden">
+							<tr class="css_test<%=qnaList.get(i).getQ_re_ref() %>"  id="hidden" style="height:60px">
 								<th class="qnaList_th" style="height:250px">
 								<span class="qnaList_span3">답변</span>
 								</th>
-								<td colspan="2" class="qnaList_td">
-								<span class="qnaList_span4"><%=qnaList.get(i).getQ_subject()%></span>
-								<span class="qnaList_span6"><%=qnaList.get(i).getQ_rdate()%></span><br>
+								<td colspan="2" class="qnaList_td3" style="height:250px">
+								<span class="qnaList_span7"><%=qnaList.get(i).getQ_subject()%></span>
+								<span class="qnaList_span6"><small><%=qnaList.get(i).getQ_rdate()%></small></span><br>
 								<span class="qnaList_span5"><%=qnaList.get(i).getQ_content()%></span>
 								</td>
 							</tr>

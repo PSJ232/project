@@ -36,6 +36,7 @@ if(request.getParameter("sub_option") != null){
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- header -->
 	
+	
 	<div class="cart_div">
 	<div class="cart_header">
 	<h5>장바구니(비회원 미리보기)</h5>

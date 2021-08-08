@@ -33,8 +33,10 @@ a, button {
 .qnaList_div {
 	width: 1120px;
 	height: 498.8px;
-	display: block;
-    float: right;
+	margin-left: 65px;
+	display: inline-block;
+    vertical-align: top;
+    height: 1080px;
     width: 68%;
     padding-bottom: 40px;
 }
@@ -200,7 +202,7 @@ tr {
 
 tbody {
 	width: 761.6px;
-	height: 376px;
+	height: 128px;
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
@@ -241,10 +243,10 @@ tbody {
     text-align: -internal-center;
 }
 
-.qnaList_span4 {
+.qnaList_span7 {
 	padding-left: 25px;
 /* 	position: relative; */
-    display: block;
+    display: inline-block;
 	font-size: 15px;
     line-height: 20px;
     font-weight: 300;
@@ -255,7 +257,7 @@ tbody {
 .qnaList_span5 {
 	margin-top: 10px;
 	padding-left: 0;
-	display: block;
+	display: inline-block;
 	font-size: 16px;
     line-height: 20px;
     font-weight: 100;
@@ -274,4 +276,10 @@ tbody {
     color: #787878;
 }
 
-
+.qnaList_td3 {
+	width: 441.73px;
+	height: 64px;
+	border-left: #ececec 1px solid;
+	position: relative;
+	padding: 20px;
+}
