@@ -95,7 +95,7 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		<dl id="mypage_orderHistoryDetail_dl">
 		<dt id="mypage_orderHistoryDetail_tltle_h3">주문내역 상세</dt>
 		<dd id="mypage_orderHistoryDetail_dd">주문번호 : <%=orderBean.getO_id()%></dd>
-		</dl>
+		</dl><br>
 		<span id="mypage_orderHistoryDetail_span">
 		<%if(orderDetailList.get(0).getOd_invoice().equals("주문접수")) {
 			%><input id="mypage_orderHistoryDetail_btn" type="button" value="주문 취소하기" 
@@ -162,7 +162,7 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		</div>
 
 
-		<h4 id="mypage_orderHistoryDetail_tltle_h3">결제 정보</h4>
+		<h3 id="mypage_orderHistoryDetail_tltle_h3">결제 정보</h3><br>
 		<table class="mypage_orderHistoryDetail_table_b" >
 			<tr id="mypage_orderHistoryDetail_del_tr">
 				<td id="mypage_orderHistoryDetail_del_td">주문 금액<br> <%=orderBean.getO_amount()%></td>
