@@ -39,7 +39,7 @@ if(request.getParameter("sub_option") != null){
 	
 	<div class="cart_div">
 	<div class="cart_header">
-	<h5>장바구니(비회원 미리보기)</h5>
+	<span>장바구니</span>
 	</div>
 	
 	<form action="VisitorOrderNow.od" method="post">
@@ -70,6 +70,7 @@ if(request.getParameter("sub_option") != null){
 				}
 
 				String sumAmount = NumberFormat.getInstance().format((i_price * c_qty * sub_option) + letterPrice); //각 상품에 대한 합계금액
+				int visitor_price = itemDetail.getI_price();
 				String visiorAmount = NumberFormat.getInstance().format((itemDetail.getI_price() * c_qty  * sub_option) + letterPrice); //각 상품에 대한 할인전 합계금액
 			%>
 			<tr class="cart_tr2">
@@ -83,7 +84,8 @@ if(request.getParameter("sub_option") != null){
 					<%=NumberFormat.getInstance().format(i_price * c_qty * sub_option)%>원<br>
 					<%}else{%> 
 					<span class="cart_span5">수령일 : <%=c_delivery_date%></span><br>
-					<span class="cart_span6"><%=NumberFormat.getInstance().format(i_price * c_qty)%>원</span><br>
+<%-- 					<span class="cart_span6"><%=NumberFormat.getInstance().format(i_price * c_qty)%>원</span><br> --%>
+					<span class="cart_span6"><%=NumberFormat.getInstance().format(visitor_price * c_qty)%>원</span><br>
 					<%} %>
 					<span class="cart_span23"><%=c_qty%> 개</span><br>
 					</div>
@@ -92,7 +94,8 @@ if(request.getParameter("sub_option") != null){
 				<span class="cart_span8"><%=letter%></span>
 				</td>
 				<td class="cart_td4">
-					<span class="cart_span9"><%=sumAmount%>원</span><br>
+<%-- 					<span class="cart_span9"><%=sumAmount%>원</span><br> --%>
+					<span class="cart_span9"><%=visiorAmount%>원</span><br>
 					<span class="cart_span10">무료배송</span>
 				</td>
 			</tr>
