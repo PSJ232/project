@@ -213,7 +213,7 @@ public class ReservDAO {
 				detailBean.setR_num(rs.getInt("r_num"));
 				detailBean.setR_payment(rs.getString("r_payment"));
 				detailBean.setR_date(rs.getString("r_date"));
-				detailBean.setR_confirm(rs.getInt("r_confirm"));
+				detailBean.setR_confirm(rs.getInt("r_comfirm"));
 				detailBean.setR_amount(rs.getInt("r_amount"));
 				detailBean.setF_subject(rs.getString("f_subject"));
 				reservList.add(detailBean);

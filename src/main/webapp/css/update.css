@@ -75,10 +75,13 @@ a, button {
     color: #222;
 }
 
+.inbox {
+    position: relative;
+}
+
 .update_box {
 	margin-bottom: 80px;
 }
-
 
 .update_box .inbox {
     border-top: #d3d3d3 1px solid;

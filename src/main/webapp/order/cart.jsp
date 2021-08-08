@@ -81,7 +81,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 	
 	<div class="cart_div">
 		<div class="cart_header">
-			<h5>장바구니</h5>
+			<span>장바구니</span>
 		</div>
 		<form action="OrderCart.od" method="post" onsubmit="return emptyCart()">
 			<div class="cart_div2">
@@ -89,7 +89,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 					<div class="cart_div4">
 						<table border="1" class="cart_table">
 							<tr class="cart_tr1">
-								<td class="cart_td1"><input type="checkbox" id="cart_check_all" class="cart_input" checked data-tab="0"><div class="cart_span1">상품정보</div></td>
+								<td class="cart_td1"><input type="checkbox" id="cart_check_all" class="cart_input" data-tab="0"  checked><div class="cart_span1">상품정보</div></td>
 								<td class="cart_td2"><span class="cart_span">추가상품</span></td>
 								<td class="cart_td3"><span class="cart_span">합계금액</span></td>
 							</tr>
@@ -202,7 +202,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 					</span>
 					<span class="cart_span19">=</span>
 					<span class="cart_span17">
-						<span class="cart_span18">총 결제 금액</span>
+						<span class="cart_span18">총 결제금액</span>
 						<span class="cart_span20" data-tap="<%=totalAmount%>"><%=NumberFormat.getInstance().format(totalAmount)%>원</span>
 					</span>
 				</p><br>
@@ -221,7 +221,7 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 		</table></div></div></div></form> <!-- if문안에서 태그가 짤려서 추가 -->
 		<p class="cart_p3">
 			<span class="cart_span21">장바구니가 비어있습니다. <br> 그 계절 가장 이쁜
-				꽃으로 행복을 채워보세요.
+				꽃으로 행복을 채워보세요.<br>
 			</span> <input type="button" class="cart_input6" value="쇼핑하러 가기"
 				onclick="location='./'">
 		</p>

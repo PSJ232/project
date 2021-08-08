@@ -8,7 +8,8 @@
 
 .cart_header {
 	padding: 50px 0;
-	font-size: 35px;
+	font-size: 30px;
+/* 	font-weight: 700; */
 	color: #222;
 }
 
@@ -33,13 +34,11 @@
 }
 
 .cart_input {
-	height: inherit;
 	float: left;
 	margin: 0 10px;
 }
 
 .cart_span1 {
-	padding-top: 18px;
     font-size: 16px;
     letter-spacing: -.24px;
     color: #222;
@@ -53,6 +52,11 @@
 
 .cart_tr2 td {
 	height: 210px;
+    border-left: none;
+    border-bottom: none;
+}
+.cart_tr2 .cart_td4 {
+    border-right: none;
 }
 
 .cart_img {
@@ -64,13 +68,12 @@
 
 .cart_desc {
 	margin-left: 200px;
-	display: block;
 	text-align: left;
 	
 }
 
 .cart_span4 {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 500;
     letter-spacing: -.24px;
     color: #222;
@@ -82,37 +85,48 @@
 }
 
 .cart_input3 {
+    float: right;
+    margin-right: 30px;
     width: 20px;
     height: 20px;
-    line-height: 40px;
+    border: solid 1px #dddddd;
+    background: none;
+    color: #888888;
+    font-weight: 100;
+    line-height: 0px;
+    cursor: pointer;
 }
 
 .cart_input4 {
-    width: 20px;
-    height: 20px;
-    border-radius: 9px;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 13px;
+    color: #999999;
+    font-size: 10px;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 .cart_span5 {
     font-size: 14px;
-    font-weight: 100;
-    line-height: 30px;
-    letter-spacing: -.21px;
+    font-weight: 300;
+    line-height: 23px;
     color: #787878;
 }
 
 .cart_span6 {
     font-size: 16px;
     font-weight: 500;
-    line-height: 19px;
-    letter-spacing: -.24px;
+    line-height: 25px;
     color: #0d0d0d;
 }
 
 .cart_span7 {
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: -.26px;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 9px;
+    line-height: 40px;
     color: #0d0d0d;
 }
 
@@ -122,43 +136,26 @@
 }
 
 .cart_span8 {
-	width: 304px;
-	height: 24px;
-	float: none;
-    margin-left: 0;
+	float: left;
+    margin-left: 37px;
     font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    letter-spacing: -.24px;
+    font-weight: 400;
     color: #0d0d0d;
 }
 
 
 .cart_span9 {
-	display: block;
-    text-align: center;
     font-size: 18px;
-    line-height: 0px;
     font-weight: 500;
-    letter-spacing: -.27px;
     color: #0d0d0d;
+    line-height: 37px
 }
 
 .cart_span10 {
-	margin-top: 0.2px;
-	position: static;
-	bottom: 0;
-    left: 0;
-    display: inline-block;
-    height: 20px;
-    padding: 0 8px;
+    padding: 1px 8px;
     border-radius: 10px;
-    border: #ececec 1px solid;
     background: #ececec;
-    font-size: 9px;
-    line-height: 18px;
-    font-weight: 300;
-    letter-spacing: -.14px;
+    font-size: 1px;
     color: #0d0d0d;
 } 
 
@@ -211,19 +208,14 @@ p {
     border-top: #ffcd32 2px solid;
     background: #fff9ee;
     text-align: center;
+    line-height: normal;
 }
 
 .cart_span12 {
-	width: 210px;
-    height: 31.38px;
-    display: inline-block;
     font-size: 18px;
     line-height: 29px;
     font-weight: 100;
-    letter-spacing: -.3px;
     color: #222;
-    margin: 0;
-    padding: 0;
 }
 
 .cart_span13 {
@@ -249,28 +241,15 @@ p {
 }
 
 .cart_span15 {
-	display: inline-block;
-	width: 40.4px;
-	height: 28.8px;
     padding: 0 15px;
     font-size: 23px;
-    line-height: 29px;
     font-weight: 100;
-    letter-spacing: -.3px;
     color: #222;
     vertical-align: -2px;
-    
 }
 
 .cart_span16 {
-	width: 60px;
-    height: 28.8px;
-    margin-left: 5px;
-    display: inline-block;
-    text-align: left;
-    vertical-align: bottom;
     font-weight: 500;
-    overflow: hidden;
 } 
 
 .cart_span17 {
@@ -284,30 +263,20 @@ p {
 
 .cart_span18 {
 	font-size: 23px;
-    line-height: 29px;
     font-weight: 500;
-    display: inline-block;
-    float: none;
-    margin-right: 0;
-    text-align: left;
 }
 
 .cart_span19 {
-	width: 40.4px;
-	height: 28.8px;
-	padding: 0 8px;
+	padding: 0 15px;
 	font-size: 23px;
+	vertical-align: -2px;
 }
 
 .cart_span20 {
-	width: 130px;
-	height: 31.2px;
 	font-size: 23px;
-    line-height: 29px;
-    display: inline-block;
     font-weight: 500;
-    letter-spacing: -.39px;
     color: #0d0d0d;
+    padding: 0 0 0 8px;
 }
 
 .cart_div6 {
@@ -356,7 +325,7 @@ p {
     line-height: 40px;
     font-weight: 300;
     letter-spacing: -.27px;
-    color: #787878;
+    color: #999999;
 }
 
 .cart_span21 {
@@ -368,20 +337,14 @@ p {
 }
 
 .cart_input6 {
-	padding: 0;
 	margin-top: 80px;
 	width: 360px;
     height: 52px;
-    margin: 70px auto;
     font-size: 16px;
-    line-height: 52px;
-    font-weight: 300;
-    letter-spacing: -.24px;
-    color: #1b1b1b;
+    font-weight: 400;
+    color: #222;
     border: none;
-    outline: 0;
     cursor: pointer;
-    display: block;
     border-radius: 5px;
     background: #ffcd32;
 }
@@ -472,11 +435,6 @@ b {
 	font-weight: bolder;
 }
 
-.cart_input3 {
-    width: 20px;
-    height: 20px;
-    line-height: 40px;
-}
 
 .cart_img2 {
 	width: 150px;
@@ -493,6 +451,4 @@ b {
     letter-spacing: -.24px;
     color: #0d0d0d;
 }
-
-
 

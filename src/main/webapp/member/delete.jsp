@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 탈퇴</title>
+<title>사계 | 회원 탈퇴</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link href="css/mypage.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/delete.css" type="text/css" />
@@ -16,37 +16,75 @@ String m_id = (String)session.getAttribute("m_id");
 <body>
 
 	<jsp:include page="../inc/header.jsp"></jsp:include>
-<%-- 	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include> --%>
-	<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
+	<div class="mypage_delete_container">
+		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
+		
+		<div class="mypage_delete_box">
+		
+				<div class="hidden">세션ID = <%=m_id%></div>
+				
+			<div class="mypage_center_c">
+				<div class="mypage_center_i">
+					<span class="delete_notice_title"><h3>회원 탈퇴 안내</h3></span>
+				</div>				
+			</div>
 
-		<div class="hidden">세션ID = <%=m_id%></div>
-		<hr size="1px" width=90% color="#878787">		
-		<div class="title"><h3>회원 탈퇴 안내</h3></div>
+		
+			<div class="delete_box">			
+				<div class="inbox">
+					<div class="inner">
+					
+						<form action="MemberDeletePro.me" id="formDelete" method="post">	
+							<div class="delete_form_wrap">
+							
+									<div class="delete_notice">
+										<span title="bold">(고객이름)</span> 고객님, <br>
+										탈퇴를 원하신다니 마음이 아프네요.<br>
+										
+										지금 탈퇴하시면 고객님의 (소지포인트) 포인트는 자동 소멸됨을 알려드립니다.<br>
+									</div>
+				
+									<div class="delete_title">
+										<span class="sadly_bye">회원 탈퇴하기</span>
+									</div>
+					
+									<div class="password_check">
 
-	<div class="deleteForm">
-		<form action="MemberDeletePro.me" id="formDelete" method="post">	
-		<hr size="1px" width=90% color="#878787">		
-			<div class="deleteNotice">
-			<span title="highlightText">(고객이름) </span> 고객님, <br>
-			탈퇴를 원하신다니 마음이 아프네요.<br>
+										<div class="row">
+											<div class="delete_name">비밀번호 확인(필수)</div>
+											<div class="delete_input">
+												<input type="password" class="textBox" name="m_pass" required>
+											</div>										
+										</div>
+
+									<div class="row">
+										<div class="delete_name">사계에 아쉬운 점<br>(선택)</div>
+										<div class="delete_input">
+											<input type="text" class="delete_reason">
+										</div>
+									</div>
+									
+								</div>
+						
+							<div class="delete_submit">
+								<div class="member_delete">
+									<input type="button" value="취소" class="btn_delete">
+									<input type="hidden" name="m_id" value="<%=m_id%>">
+									<input type="submit" value="탈퇴" class="btn_delete">
+								</div>
+							</div>
+					</div>
+		
+				</form>
+				</div>
 			
-			지금 탈퇴하시면 고객님의 (적립된포인트) 포인트는 자동 소멸됨을 알려드립니다.<br>
-			</div>
-		<hr size="1px" width=90% color="#878787">		
-			<div class="title"><h3>회원탈퇴하기</h3></div>
-		<hr size="1px" width=90% color="#878787">
-			<div class="deleteCheck">
-			<div class="label">비밀번호 확인(필수)</div> <input type="password" class="textBox" name="m_pass" required><br>
-
-		<hr size="1px" width=90% color="#878787">
-			<div class="label">kukka에 아쉬운점(선택)</div> <input type="text" class="contentTextBox">
-			</div>
-
-		<input type="button" value="취소">
-		<input type="hidden" name="m_id" value="<%=m_id%>">
-		<input type="submit" value="탈퇴">
-		<hr size="1px" width=90% color="#878787">
-		</form>
-	</div>
+			</div><!-- inbox -->
+		</div><!-- delete_box -->
+			
+	</div> <!-- mypage_delete_box -->	
+		
+</div><!-- mypage_delege_container -->
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>
 </html>

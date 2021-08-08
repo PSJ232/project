@@ -142,10 +142,12 @@
 				<label>서브 이미지1</label> <input type="file" name="class_sub_img1" ><br>
 				<label>서브 이미지2</label> <input type="file" name="class_sub_img2" ><br>
 				<label>서브 이미지3</label> <input type="file" name="class_sub_img3" ><br>
+				<label>설명 이미지</label> <input type="file" name="class_desc_img"><br>
 				<input type="hidden" name="ori_main_img" value="<%=classBean.getClass_main_img()%>">
 				<input type="hidden" name="ori_sub_img1" value="<%=classBean.getClass_sub_img1()%>">
 				<input type="hidden" name="ori_sub_img2" value="<%=classBean.getClass_sub_img2()%>">
 				<input type="hidden" name="ori_sub_img3" value="<%=classBean.getClass_sub_img3()%>">
+				<input type="hidden" name="ori_desc_img" value="<%=classBean.getF_desc_img()%>">
 				<fieldset><legend>클래스 설명</legend><textarea name="class_desc" rows="20" cols="65"><%=classBean.getClass_desc() %></textarea></fieldset><br>
 				<input type="submit" value="수정">
 			</div>

@@ -5,7 +5,10 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 import dao.ClassDAO;
+import dao.ClassDetailDAO;
 import vo.ClassBean;
+import vo.ClassDetailBean;
+
 import static db.JdbcUtil.*;
 
 public class ClassDetailViewService {
@@ -19,4 +22,13 @@ public class ClassDetailViewService {
 	}
 	
 
+	public int getClassDetailId(ClassDetailBean cdb, String fd_time) {
+		Connection con = getConnection();
+		ClassDetailDAO classDetailDAO = ClassDetailDAO.getInstance();
+		classDetailDAO.setConnection(con);
+
+		int fd_id = classDetailDAO.getClassDetailId(cdb, fd_time);
+		
+		return fd_id;
+	}
 }

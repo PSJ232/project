@@ -44,7 +44,7 @@ public class ClassDAO {
 				num++;
 			}
 			close(pstmt);
-			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,0,?,?,?,?,now(),?,0,?)";
+			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,0,?,?,?,?,now(),?,0,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, classBean.getClass_subject());
@@ -58,6 +58,7 @@ public class ClassDAO {
 			pstmt.setString(10, classBean.getClass_sub_img3());
 			pstmt.setString(11, classBean.getClass_date());
 			pstmt.setString(12, classBean.getClass_sub_desc());
+			pstmt.setString(13, classBean.getF_desc_img());
 			pstmt.executeUpdate();
 			 
 			for(String time: timeList) {
@@ -187,7 +188,7 @@ public class ClassDAO {
 		PreparedStatement pstmt = null;
 		int modifyCount = 0;
 		try {
-			String sql = "UPDATE fclass SET f_subject=?,f_desc=?,f_maxmem=?,f_main_img=?,f_sub_img1=?,f_sub_img2=?,f_sub_img3=?,f_sub_desc=? WHERE f_id=?";
+			String sql = "UPDATE fclass SET f_subject=?,f_desc=?,f_maxmem=?,f_main_img=?,f_sub_img1=?,f_sub_img2=?,f_sub_img3=?,f_sub_desc=?,f_desc_img=? WHERE f_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, classBean.getClass_subject());
 			pstmt.setString(2, classBean.getClass_desc());
@@ -197,7 +198,8 @@ public class ClassDAO {
 			pstmt.setString(6, classBean.getClass_sub_img2());
 			pstmt.setString(7, classBean.getClass_sub_img3());
 			pstmt.setString(8, classBean.getClass_sub_desc());
-			pstmt.setInt(9, classBean.getClass_id());
+			pstmt.setString(9, classBean.getF_desc_img());
+			pstmt.setInt(10, classBean.getClass_id());
 			modifyCount = pstmt.executeUpdate();
 			close(pstmt);
 			if(timeList != null) {

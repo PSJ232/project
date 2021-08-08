@@ -64,6 +64,7 @@ public class ReservInsertProAction implements Action {
 			forward = new ActionForward();
 			//결제페이지로 이동
 			forward.setPath("/ReservPay.od");
+//			forward.setPath("/ReservPay.od");
 			forward.setRedirect(false);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");

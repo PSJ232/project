@@ -29,7 +29,7 @@ public class ClassInsertProAction implements Action {
 		
 		String realFolder = "";
 		String saveFolder = "/img_upload";
-		int maxSize = 10 * 1024 * 1024;
+		int maxSize = 20 * 1024 * 1024;
 		
 		realFolder = context.getRealPath(saveFolder);
 		System.out.println(realFolder);
@@ -39,7 +39,6 @@ public class ClassInsertProAction implements Action {
 				maxSize, 
 				"utf-8", 
 				new DefaultFileRenamePolicy());
-		
 		request.setCharacterEncoding("utf-8");
 		ClassBean classBean = new ClassBean();
 		classBean.setClass_subject(multi.getParameter("class_subject"));
@@ -53,6 +52,7 @@ public class ClassInsertProAction implements Action {
 		classBean.setClass_sub_img2(multi.getFilesystemName("class_sub_img2"));
 		classBean.setClass_sub_img3(multi.getFilesystemName("class_sub_img3"));
 		classBean.setClass_sub_desc(multi.getParameter("class_sub_desc"));
+		classBean.setF_desc_img(multi.getParameter("class_desc_img"));
 		
 		// detail에 저장할 값들
 		

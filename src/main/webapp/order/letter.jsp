@@ -17,46 +17,6 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-	
-		$('ul.letter_ul li').click(function() {
-			var tab_id = $(this).attr('data-tab');
-	
-			$('ul.letter_ul li').removeClass('current');
-			$('.letter_div13').removeClass('current');
-	
-			$(this).addClass('current');
-			$("#" + tab_id).addClass('current');
-		})
-	
-	})
-</script>
-<style type="text/css">
-ul.letter_ul{
-	margin: 0px;
-	padding: 0px;
-	margin-top: 17px;
-	margin-left: 14px;
-	list-style: none;
-}
- ul.letter_ul li{ 
- 	background: none; 
- 	display: inline-block; 
- 	cursor: pointer; 
- } 
-ul.letter_ul li.current{
-	color: #222;
-}
-.letter_div13{
-	display: none;
-	padding: 15px;
-}
-.letter_div13.current{
-	display: inherit;
-}
-</style>
-
 </head>
 <%
 ArrayList<CartBean> checkList = (ArrayList<CartBean>) request.getAttribute("checkList"); //장바구니에서 가져온 목록
@@ -89,39 +49,39 @@ case 24:
 	<!-- header -->
 
 	<div class="letter_div">
-		<div class="letter_div2">
-			<h2 class="letter_h2">주문/결제</h2>
-			<br>
-		</div>
+		<h2 class="letter_h2">주문/결제</h2>
 		<div class="letter_div3">
 			<div class="letter_div4">
 				<form action="OrderLetter.od" method="post">
 				<div class="letter_div5">
 					<div class="letter_div6">
 						<h5 class="letter_h5">
-							<span class="letter_span">편지 작성<b class="letter_b">(<%=request.getParameter("letterCount")%>)
-							</b></span><span class="letter_span2"></span>
+							<span class="letter_span">
+								편지 작성
+								<b class="letter_b">(<%=request.getParameter("letterCount")%>)</b>
+							</span>
+							<span class="letter_span2"></span> <!-- 이거뭐지?????  -->
 						</h5>
 						<div class="letter_div7">
 							<div class="letter_div8">
 								<article class="letter_article">
 									<div class="letter_div9">
-										
-											<%
-											int i; // for문 돌때 각각의 주문구분번호 부여
-											for (i = 0; i < checkList.size(); i++) { // 장바구니와 아이템의 ArrayList에서 필요 정보 반복 추출
-												String i_img = itemList.get(i).getI_img(); //상품 이미지
-												String i_name = itemList.get(i).getI_name(); //상품 이름
-												String delivery_date = checkList.get(i).getC_delivery_date(); //상품 배송 요청일
-												int c_letter = checkList.get(i).getC_letter(); //편지지 선택 여부
-												int i_id = itemList.get(i).getI_id(); //상품 번호
-												int c_qty = checkList.get(i).getC_qty(); //상품 수량
-												int c_id = checkList.get(i).getC_id(); //장바구니 번호
+									
+										<%
+										int i; // for문 돌때 각각의 주문구분번호 부여
+										for (i = 0; i < checkList.size(); i++) { // 장바구니와 아이템의 ArrayList에서 필요 정보 반복 추출
+											String i_img = itemList.get(i).getI_img(); //상품 이미지
+											String i_name = itemList.get(i).getI_name(); //상품 이름
+											String delivery_date = checkList.get(i).getC_delivery_date(); //상품 배송 요청일
+											int c_letter = checkList.get(i).getC_letter(); //편지지 선택 여부
+											int i_id = itemList.get(i).getI_id(); //상품 번호
+											int c_qty = checkList.get(i).getC_qty(); //상품 수량
+											int c_id = checkList.get(i).getC_id(); //장바구니 번호
 
-												cal.setTime(Date.valueOf(checkList.get(i).getC_delivery_date())); // 요일
-												int dNum = cal.get(Calendar.DAY_OF_WEEK);
-												String day = "";
-												switch (dNum) {
+											cal.setTime(Date.valueOf(checkList.get(i).getC_delivery_date())); // 요일
+											int dNum = cal.get(Calendar.DAY_OF_WEEK);
+											String day = "";
+											switch (dNum) {
 												case 1:
 													day = "일요일";
 													break;
@@ -144,87 +104,84 @@ case 24:
 												case 7:
 													day = "토요일";
 													break;
-												}
+											}
 
-												if (c_letter == 1) { //편지 선택함
-											%>
-											<span class="letter_span20"></span>
-							
-											<img src="<%=i_img%>" class="letter_img">
-											<span class="letter_span3"></span>
-											<div class="letter_div10">
-												<span class="letter_span4"></span> 
-												<span class="letter_span5"><%=i_name%></span>
-
+										if (c_letter == 1) { //편지 선택함
+										%>
+										<span class="letter_span20"></span> <!--이건 또 뭐지??  -->
+										<img src="./admin_layout/upload/<%=i_img%>" class="letter_img">
+										<span class="letter_span3"></span> <!--이건 또 뭐지??  -->
+										<div class="letter_div10">
+											<span class="letter_span4"></span> <!--이건 또 뭐지??  -->
+											<span class="letter_span5"><%=i_name%></span>
+											
+											<span class="letter_span6">
+												<span class="letter_span7">
 												<%
 												if (sub_name.equals("")) {
 												%>
-												<span class="letter_span6"> 
-												<span class="letter_span7"> 
-												<span class="letter_span8">
-												수령일 : <%=day%>, <%=delivery_date%></span><br> 
+												
+												<span class="letter_span8">수령일 : <%=day%>, <%=delivery_date%></span><br>
 												<%
- 												} else {
- 												%> <!-- 정기구독 경유 접속시 표시 --> 
- 												<span class="letter_span8">첫 구독일 : <%=day%>, <%=delivery_date%></span><br> 
- 												<span class="letter_span8">구독내용 : <%=sub_name%></span><br> 
- 												<%
- 												}
- 												%> 
- 												<span class="letter_span9">추가상품 : 편지</span>
-												</span>
+												} else {
+												%> <!-- 정기구독 경유 접속시 표시 --> 
+												<span class="letter_span8">첫 구독일 : <%=day%>, <%=delivery_date%></span><br> 
+												<span class="letter_span8">구독내용 : <%=sub_name%></span><br> 
+												<%
+												}
+												%> 
+												<span class="letter_span9">추가상품 : 편지</span>
 												</span><br>
-											</div>
+											</span><br>
+										
+										</div>
 									</div>
 
 									<div class="letter_div11">
-										<h5 class="letter_h52">편지지를 선택해주세요.</h5>
 										<div class="letter_div12">
 											<ul class="letter_ul">
-												<li class="letter_li current" data-tab="tab-1">
+												<li class="letter_li letter_div13<%=i%>" id="letter_div13<%=i%>" data-tab="tab-1<%=i%>">
 													<label class="letter_label">
 														<input type="radio" class="letter_input" name="l_id<%=i%>" value=1> 
 														<span class="letter_span10"> 
-														<b></b>
+															<b></b> <!-- 이건뭐지? -->
 														</span> 
 														<span class="letter_span11">감사</span>
 													</label>
 												</li>
-												<li class="letter_li" data-tab="tab-2">
+												<li class="letter_li letter_div13<%=i%>" id="letter_div13<%=i%>" data-tab="tab-2<%=i%>">
 													<label class="letter_label">
 														<input type="radio" class="letter_input" name="l_id<%=i%>" value=2> 
 														<span class="letter_span12"> 
-														<b></b>
+															<b></b> <!-- 이건뭐지? -->
 														</span> 
 														<span class="letter_span11">응원</span>
 													</label>
-													</li>
-												<li class="letter_li" data-tab="tab-3">
+												</li>
+												<li class="letter_li letter_div13<%=i%>" id="letter_div13<%=i%>" data-tab="tab-3<%=i%>">
 													<label class="letter_label">
 														<input type="radio" class="letter_input" name="l_id<%=i%>" value=3> 
 														<span class="letter_span13"> 
-														<b></b>
+															<b></b> <!-- 이건뭐지? -->
 														</span> 
 														<span class="letter_span11">사랑</span>
 													</label>
 												</li>
-												<li class="letter_li" data-tab="tab-4">
+												<li class="letter_li current letter_div13<%=i%>" id="letter_div13<%=i%>" data-tab="tab-4<%=i%>">
 													<label class="letter_label">
 														<input type="radio" class="letter_input" name="l_id<%=i%>" value=4 checked> 
 														<span class="letter_span14">
-														<b></b>
+															<b></b><!-- 이건뭐지? -->
 														</span>
 														<span class="letter_span11">직접쓰기</span>
 													</label>
 												</li>
 											</ul>
 										</div>
-										
-										<div id="tab-1" class="letter_div13 current">
+										<div id="tab-1<%=i%>" class="letter_div13 letter_div13<%=i%>">
 											<div class="letter_div14">
 												<span class="letter_span15"> 
-												<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_thank_cover.png"
-													class="letter_img2">
+													<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_thank_cover.png" class="letter_img2">
 												</span> 
 												<strong class="letter_strong">앞면</strong>
 												<div class="letter_div15">
@@ -242,11 +199,10 @@ case 24:
 											</div>
 										</div>
 										
-										<div id="tab-2" class="letter_div13">
+										<div id="tab-2<%=i%>" class="letter_div13 letter_div13<%=i%>">
 											<div class="letter_div14">
 												<span class="letter_span15">
-												<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_cheer_cover.png"
-													class="letter_img2">
+													<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_cheer_cover.png" class="letter_img2">
 												</span> 
 												<strong class="letter_strong">앞면</strong>
 												<div class="letter_div15">
@@ -264,11 +220,10 @@ case 24:
 											</div>
 										</div>
 										
-										<div id="tab-3" class="letter_div13">
+										<div id="tab-3<%=i%>" class="letter_div13 letter_div13<%=i%>">
 											<div class="letter_div14">
 												<span class="letter_span15"> 
-												<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_love_cover.png"
-													class="letter_img2">
+													<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_love_cover.png" class="letter_img2">
 												</span> 
 												<strong class="letter_strong">앞면</strong>
 												<div class="letter_div15">
@@ -286,18 +241,18 @@ case 24:
 											</div>
 										</div>
 										
-										<div id="tab-4" class="letter_div13">
+										<div id="tab-4<%=i%>" class="letter_div13 current letter_div13<%=i%>">
 											<div class="letter_div14">
 												<span class="letter_span15"> 
-												<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_write_cover.png" class="letter_img2">
+													<img src="https://kukka-2-media-123.s3.amazonaws.com/static/kukkart_new/img/kukka/letter_write_cover.png" class="letter_img2">
 												</span> 
 												<strong class="letter_strong">앞면</strong>
 												<div class="letter_div15">
 													<div class="letter_div16">
 														<div class="letter_div17">
 															<div class="letter_div18">
-															<textarea class="letter_textarea" rows="8" maxlength="160" ></textarea>
-															<input type="text" class="letter_textarea" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)" >	
+																<textarea class="letter_textarea" maxlength="160" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)"></textarea>
+																<%-- <input type="text" class="letter_textarea" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)" > --%>	
 															</div>
 														</div>
 													</div>
@@ -325,15 +280,15 @@ case 24:
 										<input type="hidden" name="od_delivery_date<%=i%>" value="<%=delivery_date%>"> 
 										<input type="hidden" name="od_message<%=i%>" value=""> 
 										<input type="hidden" name="sub_option" value="<%=sub_option%>">
-										<%
-										}
-										}
-										%>
-										<p class="letter_p">
-										<span class="letter_span18">- 최대8줄, 한줄당 최대 20자까지 인쇄됩니다.(공백포함)</span> 
-										<span class="letter_span18">- 이모티콘은 편지 내용에 포함되지않습니다.</span>
-										<span class="letter_span18">- 붙여넣기 사용시 편지가 입력 되지 않습니다.</span>
+										<%} %>
+										<p class="letter_p letter_div13<%=i%> current">
+											<span class="letter_span18">- 최대8줄, 한줄당 최대 20자까지 인쇄됩니다.(공백포함)</span> 
+											<span class="letter_span18">- 이모티콘은 편지 내용에 포함되지않습니다.</span>
+											<span class="letter_span18">- 붙여넣기 사용시 편지가 입력 되지 않습니다.</span>
 										</p>
+										<div class=letter_bottom_space>
+										</div>
+										<%}	%>
 									</div>
 									<br>
 								</article>
@@ -361,6 +316,28 @@ case 24:
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
-
+	
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('ul.letter_ul li').click(function() {
+				var tab_id = $(this).attr('data-tab');
+				var letter_div13_id = $(this).attr('id');
+		
+				$('.' + letter_div13_id).removeClass('current');
+		
+				$(this).addClass('current');
+				$("#" + tab_id).addClass('current');
+				
+				if(tab_id.indexOf('tab-4')){
+					$('.letter_p.current.' + letter_div13_id).removeClass('current');
+				} else {
+					$('.letter_p.' + letter_div13_id).addClass('current');
+				}
+				
+			})
+		
+		})
+	</script>
 </body>
 </html>

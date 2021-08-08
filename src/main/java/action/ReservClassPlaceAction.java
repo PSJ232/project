@@ -16,7 +16,7 @@ public class ReservClassPlaceAction implements Action {
 		ActionForward forward = null;
 
 		String f_subject = request.getParameter("f_subject");
-		String f_place = request.getParameter("f_place");
+		String f_place = request.getParameter("z");
 		System.out.println("f_subject"+f_subject);
 		System.out.println("f_place"+f_place);
 		

@@ -40,6 +40,7 @@ if(request.getParameter("sub_option") != null){
 	<div class="cart_header">
 	<h5>장바구니(비회원 미리보기)</h5>
 	</div>
+	
 	<form action="VisitorOrderNow.od" method="post">
 		<div class="cart_div2">
 			<div class="cart_div3">
@@ -148,9 +149,10 @@ if(request.getParameter("sub_option") != null){
 </form>
 
 	<%
+	
 	} else {
 	%>
-	</table></div></div></form>
+	</table></div></form>
 	<!-- if문안에서 태그가 짤려서 추가 -->
 	<p class="cart_p3">
 	<span class="cart_span21">장바구니가 비어있습니다.<br>

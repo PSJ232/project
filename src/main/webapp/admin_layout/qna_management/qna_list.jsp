@@ -5,6 +5,11 @@
 <%
 	HashMap<String,Integer> qnaCount = (HashMap<String,Integer>)request.getAttribute("qnaCount");
 	int currentPage = (int)request.getAttribute("page");
+	String tab = "";
+	if(request.getAttribute("tab") != null){
+		tab = (String)request.getAttribute("tab");
+	}
+	System.out.println("curTab: " + tab);
 %>
 <!DOCTYPE html>
 <html>
@@ -69,6 +74,7 @@
 <script>
 	var curTab = "tab1";
 	$(function() {
+		
 		$('.admin_header_subtitle').text("문의 목록");
 		// tab operation
 		$('.tabmenu').click(function() {
@@ -83,6 +89,7 @@
 				curTab = "tab1";
 				$('#pageList').empty();
 			}
+			console.log(curTab);
 			$('.tabmenu').css('background-color', '#fff');
 			$(this).css('background-color', '#FFDF24');
 			$.ajax("GetQnaList.ad",{
@@ -93,13 +100,12 @@
 				},
 				dataType: "json",
 				success:function(data){ 
-					console.log(data.result);
 					
 					$('#tabcontent').empty();
 					var result = data.result;
 					for(var i=0; i < result.length; i++){
 						for(var j=0; j < result[i].length; j++){
-							$('#tabcontent').append("<tr><td>"+result[i][j].q_id+"</td><td>"+result[i][j].m_id+"</td><td><a href='QnaDetail.ad?q_id="+result[i][j].q_id+"'>"+result[i][j].q_subject+"</a></td><td>"+result[i][j].q_rdate+"</td></tr>");
+							$('#tabcontent').append("<tr><td>"+result[i][j].q_id+"</td><td width='200'>"+result[i][j].m_id+"</td><td width='250'><a href='QnaDetail.ad?q_id="+result[i][j].q_id+"'>"+result[i][j].q_subject+"</a></td width='150'><td>"+result[i][j].q_rdate+"</td></tr>");
 						}
 					}
 					var pages = data.page[0];
@@ -110,28 +116,33 @@
 						if(pages.page <= 1){
 							$('#pageList').append("<input class='page_btn' type='button' value='<<'> ");
 						}else {
-							$('#pageList').append("<input class='page_btn' type='button' value='<<' onclick='goPrevious("+page+")'> ");
+							$('#pageList').append("<input class='page_btn' type='button' value='<<' onclick='location.href=\"QnaList.ad?page="+ (pages.page-1) +"\"'> ");
 						}
 						for(var i = pages.startPage; i <= pages.endPage; i++){
 							if(i == pages.page){
 								$('#pageList').append("<span id='selected_page_num'> "+i+"</span>");
 							}else {
-								$('#pageList').append("<a id='page_num' href='QnaList.ad?page="+i+"'> " + i + " ");
+								$('#pageList').append("<a id='page_num' href='QnaList.ad?page="+i+"&tab="+curTab+"'> " + i + " ");
 							}
 						}
+						if(pages.page >= pages.maxPage){
+							$('#pageList').append("<input class='page_btn' type='button' value='>>'>");
+						}else {
+							$('#pageList').append("<input class='page_btn' type='button' value='>>' onclick='location.href=\"QnaList.ad?page="+ (pages.page + 1) +"&tab="+curTab+"\"'>");
+						}
+						
 					}
 					
-					console.log(pages);
-// 					$.each(data.result, function(i, value){
-// 						$('#tabcontent').append("<tr><td>"+value.q_id+"</td><td>"+value.m_id+"</td><td><a href='QnaDetail.ad?q_id="+value.q_id+"'>"+value.q_subject+"</a></td><td>"+value.q_rdate+"</td></tr>");
-// 					});
-					
+
 				},
+				error:function(request,status,error){
+			        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       },
 				async:false
 				
 			});	//getJSON
 		});
-		$('#default').click();          
+		$('#'+curTab).click();
 	});
 </script>
 </head>
@@ -153,11 +164,17 @@
 			</fieldset>
 <!-- 		</fieldset> -->
 		<ul id="qna_tab">
-			<li data-tab="tab1" class='tabmenu' id="default">미답변</li>
-			<li data-tab="tab2" class='tabmenu'>답변완료</li>
+			<li data-tab="tab1" class='tabmenu' id="tab1">미답변</li>
+			<li data-tab="tab2" class='tabmenu' id="tab2">답변완료</li>
 		</ul>
 		<table border=1>
 			<thead>
+				<tr>
+				<th>순번</th>
+				<th>작성자</th>
+				<th>제목</th>
+				<th>작성일시</th>
+				</tr>
 			</thead>
 			<tbody id="tabcontent">
 			

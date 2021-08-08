@@ -1083,22 +1083,9 @@ public class OrderDAO {
 			if(rs.next()) {
 				salesInfo.put("현금매출", rs.getInt(1));
 			}
-			close(rs);
-			close(pstmt);
-			sql = "SELECT SUM(result) "
-				+ "FROM (SELECT SUM(o_amount) result "
-				+ "FROM orders "
-				+ "UNION ALL "
-				+ "SELECT SUM(r_amount) result "
-				+ "FROM reservation) AS re";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				salesInfo.put("총매출", rs.getInt(1));
-			}
+			salesInfo.put("총매출", salesInfo.get("카드매출") + salesInfo.get("현금매출"));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(rs);
@@ -1165,7 +1152,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		HashMap<String,Integer> weekCardSales = new HashMap<String, Integer>();
 		try {
-			String sql = "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
+			String sql = "SELECT * FROM(SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
 					+ "	FROM orders"
@@ -1181,7 +1168,8 @@ public class OrderDAO {
 					+ "	) "
 					+ "AS r "
 					+ "ON o.odate=r.rdate "
-					+ "UNION "
+					+ "GROUP BY date "
+					+ "UNION ALL "
 					+ "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
@@ -1198,7 +1186,7 @@ public class OrderDAO {
 					+ "	) "
 					+ "AS r "
 					+ "ON o.odate=r.rdate "
-					+ "GROUP BY date LIMIT 7";
+					+ "GROUP BY date) AS t LIMIT 7";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -1230,6 +1218,27 @@ public class OrderDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return updateCount;
+	}
+
+	public int checkInven(int i_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int nowInven = 0;
+		try {
+			String sql = "SELECT * FROM item WHERE i_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, i_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				nowInven = rs.getInt("i_inven");
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류!(OrderDAO - getOrder(String o_id) - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return nowInven;
 	}
 
 }

@@ -22,7 +22,7 @@ public class ClassModifyProAction implements Action {
 		
 		String realFolder = "";
 		String saveFolder = "/img_upload";
-		int maxSize = 10 * 1024 * 1024;
+		int maxSize = 20 * 1024 * 1024;
 		
 		realFolder = context.getRealPath(saveFolder);
 		MultipartRequest multi = new MultipartRequest(
@@ -63,6 +63,11 @@ public class ClassModifyProAction implements Action {
 			classBean.setClass_sub_img3(multi.getParameter("ori_sub_img3"));
 		}else {
 			classBean.setClass_sub_img3(multi.getFilesystemName("class_sub_img3"));
+		}
+		if(multi.getFilesystemName("class_desc_img") == null) {
+			classBean.setF_desc_img(multi.getParameter("ori_desc_img"));
+		}else {
+			classBean.setF_desc_img(multi.getParameter("class_desc_img"));
 		}
 		
 		ClassModifyProService service = new ClassModifyProService();

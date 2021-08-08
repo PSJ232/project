@@ -19,10 +19,15 @@ import vo.QnaBean;
 public class AdminQnaGetListAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		JSONArray qnaList = new JSONArray();
 		String activeTab = request.getParameter("activeTab");
 		QnaService service = new QnaService();
-		int listCount = service.getListCount();
+		int listCount = 0;
+		if(activeTab.equals("tab1")) {
+			listCount = service.getBeforeListCount();
+		}else {
+			listCount = service.getAfterListCount();
+		}
+		
 		int page = 1;	
 		int limit = 10;	
 		
@@ -53,7 +58,7 @@ public class AdminQnaGetListAction {
 				}
 		}else {
 			String json = new Gson().toJson(service.getAfterQnaList(page, limit));
-			json = "{\"result\":["+json+"]}";
+			json = "{\"result\":["+json+"],\"page\":["+ pageJson +"]}";
 			try {
 				out = response.getWriter();
 				out.write(json);

@@ -97,7 +97,6 @@
 			<br><br>
 			<label>비용 </label><input type="text" value="<%=classBean.getClass_price() %>" readonly><br>
 			<label>정원 </label><input type="text" value="<%=classBean.getClass_max_member() %>" readonly><br>
-			<label>현재인원 </label><input type="text" value="<%=classBean.getClass_current_member() %>" readonly><br>
 			<label>게시일자 </label><input type="text" value="<%=classBean.getClass_create_date() %>" readonly><br>
 			<label>클래스일자 </label><input type="text" id="date" value="<%=classBean.getClass_date() %>" readonly><br>
 			<label>조회수 </label><input type="text" value="<%=classBean.getClass_readcount() %>" readonly><br>
