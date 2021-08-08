@@ -24,6 +24,7 @@ import action.MemberLogoutAction;
 import action.MemberMypageDetailAction;
 import action.MemberMypagePointDetailAction;
 import action.MemberUpdateProAction;
+import action.MypageOrderStatusAction;
 import action.PastMyClassListAction;
 import action.PlannedMyClassListAction;
 import action.VisitorJoinViewAction;
@@ -231,6 +232,13 @@ public class MemberFrontController extends HttpServlet {
 	         } catch (Exception e) {
 	        	 e.printStackTrace();
 	         }
+		} else if(command.equals("/MypageOrderStatus.me")) {
+			action = new MypageOrderStatusAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// -------------------------------------------------------------------------

@@ -619,7 +619,6 @@ public class MemberDAO {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
-		
 		return subscribeList;
 	}
 
@@ -642,6 +641,78 @@ public class MemberDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return listCount;
+	}
+
+	public ArrayList<Integer> getPurchaseCount(String m_id) {
+		System.out.println("MemberDAO - getMemberPointList()");
+		ArrayList<Integer> PurchaseList = new ArrayList<Integer>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select od_id from orders_detail where m_id =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int od_id = rs.getInt("od_id");
+				PurchaseList.add(od_id);
+			} 
+		} catch (Exception e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return PurchaseList;
+	}
+
+	public ArrayList<Integer> getMakingCount(String m_id) {
+		System.out.println("MemberDAO - getMakingCount()");
+		ArrayList<Integer> MakingList = new ArrayList<Integer>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select od_id from orders_detail where m_id =? AND od_invoice='주문접수'";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int od_id = rs.getInt("od_id");
+				MakingList.add(od_id);
+			} 
+		} catch (Exception e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return MakingList;
+	}
+
+	public ArrayList<Integer> getSendCount(String m_id) {
+		System.out.println("MemberDAO - getSendCount()");
+		ArrayList<Integer> SendList = new ArrayList<Integer>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select od_id from orders_detail where m_id=? AND od_confirm=2";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int od_id = rs.getInt("od_id");
+				SendList.add(od_id);
+			} 
+		} catch (Exception e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return SendList;
 	}
 
 	

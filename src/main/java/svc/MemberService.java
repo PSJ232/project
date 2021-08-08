@@ -190,4 +190,46 @@ public class MemberService {
 		return subscribeList;
 	}
 
+	public ArrayList<Integer> selectPurchaseCount(String m_id) {
+		System.out.println("MemberService - selectPurchaseCount()");
+		
+		Connection con = JdbcUtil.getConnection();
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		memberDAO.setConnection(con);
+		
+		ArrayList<Integer> purchaseCount = memberDAO.getPurchaseCount(m_id);
+	
+		JdbcUtil.close(con);
+				
+		return purchaseCount;
+	}
+
+	public ArrayList<Integer> selectMakingCount(String m_id) {
+		System.out.println("MemberService - selectMakingCount()");
+		
+		Connection con = JdbcUtil.getConnection();
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		memberDAO.setConnection(con);
+		
+		ArrayList<Integer> MakingCount = memberDAO.getMakingCount(m_id);
+	
+		JdbcUtil.close(con);
+				
+		return MakingCount;
+	}
+
+	public ArrayList<Integer> selectSendCount(String m_id) {
+		System.out.println("MemberService - selectSendCount()");
+		
+		Connection con = JdbcUtil.getConnection();
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		memberDAO.setConnection(con);
+		
+		ArrayList<Integer> sendCount = memberDAO.getSendCount(m_id);
+	
+		JdbcUtil.close(con);
+				
+		return sendCount;
+	}
+
 }

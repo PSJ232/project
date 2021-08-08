@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -10,12 +11,19 @@
 <link href="css/style.css" rel="stylesheet" >
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
-
 </head>
+<%
+ArrayList<Integer> purchaseCount = (ArrayList<Integer>)request.getAttribute("purchaseCount"); 
+ArrayList<Integer> makingCount = (ArrayList<Integer>)request.getAttribute("makingCount"); 
+ArrayList<Integer> sendCount = (ArrayList<Integer>)request.getAttribute("sendCount"); 
+System.out.println("purchaseCount = " + purchaseCount.size());
+System.out.println("makingCount = " + makingCount.size());
+System.out.println("sendCount = " + sendCount.size());
+%>
+
 <body>
 		<jsp:include page="../inc/header.jsp"></jsp:include>
 
@@ -41,19 +49,19 @@
 							</dd>
 						</dl>
 						<dl class="mypage_center_dl">
-							<dt class="mypage_center_dt">0</dt>
+							<dt class="mypage_center_dt"><%=purchaseCount.size() %></dt>
 							<dd class="mypage_center_dd">
 								결제완료 <a href=""> </a>
 							</dd>
 						</dl>
 						<dl class="mypage_center_dl">
-							<dt class="mypage_center_dt">0</dt>
+							<dt class="mypage_center_dt"><%=makingCount.size() %></dt>
 							<dd class="mypage_center_dd">
 								상품준비중<a href=""></a>
 							</dd>
 						</dl>
 						<dl class="mypage_center_dl">
-							<dt class="mypage_center_dt">0</dt>
+							<dt class="mypage_center_dt"><%=sendCount.size() %></dt>
 							<dd class="mypage_center_dd">
 								발송완료<a href=""></a>
 							</dd>
