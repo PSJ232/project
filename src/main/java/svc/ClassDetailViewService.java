@@ -28,7 +28,7 @@ public class ClassDetailViewService {
 		classDetailDAO.setConnection(con);
 
 		int fd_id = classDetailDAO.getClassDetailId(cdb, fd_time);
-		
+		close(con);
 		return fd_id;
 	}
 }
