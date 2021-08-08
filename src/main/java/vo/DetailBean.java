@@ -23,7 +23,6 @@ public class DetailBean {
 	private String fd_time;
 	private String fd_place;
 	private String f_subject;
-	
 	public String getF_subject() {
 		return f_subject;
 	}

@@ -377,25 +377,22 @@ public class MemberDAO {
 		return annDetail;
 	}
 	
-	public ArrayList<MemberBean> search(String memberName, String filter, int page, int limit){
+	public ArrayList<MemberBean> search(String memberName, String filter){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<MemberBean> resultList = new ArrayList<MemberBean>();
-		int startRow = (page - 1) * limit;
 		String sql = "";
 		try {
 			switch (filter) {
-			case "1": sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_name LIMIT ?,?"; break;
-			case "2": sql = "SELECT * FROM member WHERE m_id LIKE ? ORDER BY m_drop desc, m_id LIMIT ?,?"; break;
-			case "3": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,m_phone LIMIT ?,?"; break;
-			case "4": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,g_id LIMIT ?,?"; break;
-			default: sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_id LIMIT ?,?";
+			case "1": sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_name"; break;
+			case "2": sql = "SELECT * FROM member WHERE m_id LIKE ? ORDER BY m_drop desc, m_id"; break;
+			case "3": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,m_phone"; break;
+			case "4": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,g_id"; break;
+			default: sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_id";
 			}
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + memberName + "%");
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				MemberBean mb = new MemberBean();

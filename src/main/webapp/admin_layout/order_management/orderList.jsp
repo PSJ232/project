@@ -4,7 +4,6 @@
     pageEncoding="UTF-8"%>
 <%
 	HashMap<String,Integer> orderCount = (HashMap<String,Integer>)request.getAttribute("orderCount");
-	int currentPage = (int)request.getAttribute("page");
 	
 %>
 <!DOCTYPE html>
@@ -55,8 +54,7 @@
 	function searchFunction(){
 		var search_val = document.getElementById("search_val").value;
 		var filter = document.getElementById("filter").value;
-		var page = <%=currentPage%>;
-		request.open("Post", "http://localhost:8080/project/OrderSearch.ad?search_val=" + encodeURIComponent(search_val) + "&filter=" + encodeURIComponent(filter)+ "&page=" + encodeURIComponent(page), true);
+		request.open("Post", "http://localhost:8080/project/OrderSearch.ad?search_val=" + encodeURIComponent(search_val) + "&filter=" + encodeURIComponent(filter), true);
 		request.onreadystatechange = searchProcess;
 		request.send(null);
 	}
@@ -65,38 +63,6 @@
 		table.innerHTML = "";
 		if(request.readyState == 4 && request.status == 200){
 			var object = eval('('+request.responseText+')'); 
-			var pages = object.pages[0];
-			console.log(pages.maxPage);
-			if(pages.maxPage != 1){
-				var pageList = document.getElementById("pageList");
-				$('#pageList').empty();
-				var prev_btn = document.createElement("button");
-				var num_btn = document.createElement("button");
-				var next_btn = document.createElement("button");
-				if(pages.currentPage <= 1){
-					pageList.appendChild(prev_btn);
-					prev_btn.outerHTML = "<input class='page_btn' type='button' value='<<'>";
-				}else {
-					pageList.appendChild(prev_btn);
-					prev_btn.outerHTML = "<input class='page_btn' type='button' value='<<' onclick='location.href=\"OrderList.ad?page="+ (pages.page-1) +"\"'> ";
-				}
-				for(var i = pages.startPage; i <= pages.endPage; i++){
-					if(i == pages.page){
-						pageList.appendChild(num_btn);
-						num_btn.outerHTML = "<span id='selected_page_num'> "+i+"</span>";
-					}else {
-						pageList.appendChild(num_btn);
-						num_btn.outerHTML = "<a id='page_num' href='OrderList.ad?page="+i+"'> " + i + " ";
-					}
-				}
-				if(pages.page >= pages.maxPage){
-					pageList.appendChild(next_btn);
-					next_btn.outerHTML = "<input class='page_btn' type='button' value='>>'>";
-				}else {
-					pageList.appendChild(next_btn);
-					next_btn.outerHTML = "<input class='page_btn' type='button' value='>>' onclick='location.href=\"OrderList.ad?page="+ (pages.page+1) +"\"'> ";
-				}
-			}
 			var result = object.result;
 			for(var i = 0; i < result.length; i++){
 				var row = table.insertRow(0);
@@ -161,9 +127,6 @@
 				</tbody>
 			</table>
 		</div>
-		<section id="pageList">
-			
-		</section>
 	</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>

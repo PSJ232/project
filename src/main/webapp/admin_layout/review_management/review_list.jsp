@@ -87,12 +87,13 @@
 						<td><%=reviewList.get(i).getR_rdate() %></td>
 						<td><%=reviewList.get(i).getR_writer() %></td>
 						<td><%=reviewList.get(i).getR_title() %></td>
-						<td>
+						<td><span class="star">
 						<%
 						for(int j=0; j < reviewList.get(i).getR_rate(); j++){
 							%>★<%
 						}
 						%>
+						</span>
 						</td>	
 						</tr><%
 					}
