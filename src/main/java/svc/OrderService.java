@@ -230,7 +230,7 @@ public class OrderService {
 		if (nowInven < c_qty) {
 			isSoldOut = true;
 		}
-		
+		JdbcUtil.close(con);
 		return isSoldOut;
 	}
 	
