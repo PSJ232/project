@@ -341,16 +341,15 @@ case 24:
 		
 		function content_empty_check(){
 			var i = 0;
-			function reapeatFunction(){
-				if($('#od_message'+i).val()==""){
-					alert("직접쓰기 내용이 비어있습니다.");
+			while($('#od_message'+i).val()!=null){ // while문 중지를 위한 문법
+				if($('.current.letter_div13'+i+' #od_message'+i).val()==""){ // 편지 내용이 비었는지 판별
+					alert(i+1+"번 편지 내용이 비어있습니다.");
 					return false;
-				} else {
-					i++;
-					reapeatFunction();						
 				}
-			}			
+				i++;
+			}
 			
+			return true;
 		}
 	</script>
 </body>
