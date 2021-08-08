@@ -110,13 +110,13 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 						<%
 						if (nonOrderDetailArrayList.isEmpty()) {
 						%>
-
-							<tr class="mypage_reviewBefore_tr">
-								<td class="mypage_reviewBefore_tr" colspan="3"><span id="mypage_reviewBefore_tr">작성 가능한 후기가 존재하지 않습니다.</span> <input
-									type="button" onclick="location.href='Flowers.shop'"
-									value="꽃다발 보러가기">
+						<tbody class="mypage_orderHistory_can">
+							<tr class="mypage_orderHistory_can">
+								<td colspan="3">작성 가능한 후기가 존재하지 않습니다. 
+								<input id="mypage_reviewBefore_btn" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
 								</td>
 							</tr>
+						</tbody>
 						
 						<%
 						} else {
@@ -145,10 +145,13 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 						%>
 					</table>
 				</div>
-			<div class="mypage_orderHistory_table_tr">
+			
 				<div id="tab-2" class="tab-content">
+				 <div class="mypage_orderHistory_can">
 					<%if (orderDetailArrayList.isEmpty()) { %> 작성한 후기가 존재하지 않습니다. 
 					<input id="mypage_reviewBefore_btn" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
+				 </div>
+					
 					<%
 					} else {
 					%>
@@ -199,7 +202,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 					<%
 					}
 					%>
-				</div>
+				
 			</div>
 		</div>
 		</section>

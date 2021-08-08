@@ -136,7 +136,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 </head>
 <body>
 
-<!-- header -->
+	<!-- header -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- header -->
 <div class="container">
