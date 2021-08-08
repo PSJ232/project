@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="vo.ClassBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,7 +15,6 @@
 <link rel="stylesheet" href="css/quick.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-
 </head>
 	<body>	
 		<!-- header -->
@@ -50,7 +50,7 @@
 							<tr>
 								<td>
 									<a href="ClassReserv.od?f_id=<%=classList.get(i).getClass_id()%>">
-										<img src="img_upload/<%=classList.get(i).getClass_main_img()%>" class="quick_item_img">
+										<img src="./admin_layout/upload/<%=classList.get(i).getClass_main_img()%>" class="quick_item_img">
 									</a>
 								</td>
 							</tr>
@@ -61,7 +61,7 @@
 							</tr>
 							<tr class="quick_item_price">
 								<td>
-									<span><%=classList.get(i).getClass_price()%>원</span>
+									<span><%=NumberFormat.getInstance().format(classList.get(i).getClass_price())%>원</span>
 								</td>
 							</tr>
 							<tr class="quick_item_size">
