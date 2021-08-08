@@ -125,7 +125,8 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 						<tr id="mypage_orderHistory_tr">
 							<%if (nonCol.contains(i)) {%>
 							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=nonOrderArrayList.get(i).getO_rdate()%></td>
-							<%} else {}%>
+							<% count++; 
+							} else {}%>
 							<td>
 							<dl id="mypage_orderHistory_td">
 								<dt id="mypage_orderHistory_img"><img id="mypage_orderHistory_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
