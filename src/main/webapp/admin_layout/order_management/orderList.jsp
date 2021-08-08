@@ -4,13 +4,8 @@
     pageEncoding="UTF-8"%>
 <%
 	HashMap<String,Integer> orderCount = (HashMap<String,Integer>)request.getAttribute("orderCount");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int currentPage = (int)request.getAttribute("page");
 	
-	int currentPage = pageInfo.getPage();
-	int listCount = pageInfo.getListCount();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -70,6 +65,38 @@
 		table.innerHTML = "";
 		if(request.readyState == 4 && request.status == 200){
 			var object = eval('('+request.responseText+')'); 
+			var pages = object.pages[0];
+			console.log(pages.maxPage);
+			if(pages.maxPage != 1){
+				var pageList = document.getElementById("pageList");
+				$('#pageList').empty();
+				var prev_btn = document.createElement("button");
+				var num_btn = document.createElement("button");
+				var next_btn = document.createElement("button");
+				if(pages.currentPage <= 1){
+					pageList.appendChild(prev_btn);
+					prev_btn.outerHTML = "<input class='page_btn' type='button' value='<<'>";
+				}else {
+					pageList.appendChild(prev_btn);
+					prev_btn.outerHTML = "<input class='page_btn' type='button' value='<<' onclick='location.href=\"OrderList.ad?page="+ (pages.page-1) +"\"'> ";
+				}
+				for(var i = pages.startPage; i <= pages.endPage; i++){
+					if(i == pages.page){
+						pageList.appendChild(num_btn);
+						num_btn.outerHTML = "<span id='selected_page_num'> "+i+"</span>";
+					}else {
+						pageList.appendChild(num_btn);
+						num_btn.outerHTML = "<a id='page_num' href='OrderList.ad?page="+i+"'> " + i + " ";
+					}
+				}
+				if(pages.page >= pages.maxPage){
+					pageList.appendChild(next_btn);
+					next_btn.outerHTML = "<input class='page_btn' type='button' value='>>'>";
+				}else {
+					pageList.appendChild(next_btn);
+					next_btn.outerHTML = "<input class='page_btn' type='button' value='>>' onclick='location.href=\"OrderList.ad?page="+ (pages.page+1) +"\"'> ";
+				}
+			}
 			var result = object.result;
 			for(var i = 0; i < result.length; i++){
 				var row = table.insertRow(0);
@@ -135,27 +162,7 @@
 			</table>
 		</div>
 		<section id="pageList">
-		<% if(maxPage != 1){
-			if(currentPage <= 1) {%>
-					<input class="page_btn" type="button" value="<<">&nbsp;
-			<%} else {%>
-					<input class="page_btn" type="button" value="<<" onclick="location.href='OrderList.ad?page=<%=currentPage - 1 %>'">&nbsp;
-			<%} %>
 			
-			<%for(int i = startPage; i <= endPage; i++) { 
-					if(i == currentPage) { %>
-						<span id="selected_page_num"><%="  "+ i + "  " %></span>
-				<%} else {%>
-				<a id="page_num" href="OrderList.ad?page=<%=i %>"><%="  "+ i + "  " %></a>&nbsp;
-				<%} %>
-			<%} %>
-			
-			<%if(currentPage >= maxPage) {%>
-				<input class="page_btn" type="button" value=">>">
-			<%} else { %>
-				<input class="page_btn" type="button" value=">>" onclick="location.href='OrderList.ad?page=<%=currentPage + 1 %>'">
-			<% } 
-		}%>
 		</section>
 	</div>
 	<footer>

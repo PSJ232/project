@@ -3,6 +3,7 @@ package svc;
 import static db.JdbcUtil.*;
 
 import java.sql.Connection;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -26,7 +27,7 @@ public class AdminOrderSearchService {
 				result.append("[{\"value\": \"" + resultList.get(i).getO_id() + "\"},");
 				result.append("{\"value\": \"" + resultList.get(i).getM_id() + "\"},");
 				result.append("{\"value\": \"" + resultList.get(i).getI_name() + "\"},");
-				result.append("{\"value\": \"" + resultList.get(i).getO_amount() + "\"},");
+				result.append("{\"value\": \"" + NumberFormat.getInstance().format(resultList.get(i).getO_amount()) + "\"},");
 				result.append("{\"value\": \"" + resultList.get(i).getO_rdate() + "\"},");
 				if(!resultList.get(i).getOd_invoice().equals("주문접수") && resultList.get(i).getOd_confirm() == 0) {
 					result.append("{\"value\": \"" + "배송중" + "\"}],");
