@@ -247,7 +247,7 @@ switch (i_category) {
 									</div>
 									<div class="check_address_right" style="display: none;">
 										<label class="label_name" id="label_name_date">주소검색<span class="required_mark"> *</span></label>
-										<input class="address_option" id="sample6_address" type="text" name="address_option" placeholder="주소 검색" required onclick="sample6_execDaumPostcode()">
+										<input class="address_option" id="sample6_address" type="text" name="address_option" placeholder="주소 검색" required onclick="sample6_execDaumPostcode()" readonly>
 									</div>	
 								</div>
 							<%}else{ %> <!-- 일반배송 경유 접속시 표시 -->
