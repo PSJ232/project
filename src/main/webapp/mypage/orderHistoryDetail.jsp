@@ -11,7 +11,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title> <
+<title>Insert title here</title>
+<link href="css/mypage.css" rel="stylesheet">
+<link href="css/mypage_orderHistoryDetail.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/utility.css">
+<link rel="stylesheet" href="./css/mypage_subscribe.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	  rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
 <%
 String m_id = (String) session.getAttribute("m_id");
 MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
@@ -66,13 +75,6 @@ case 1:
 // 결제 일자 설정
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
-<link href="css/mypage.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-
-</head>
 <body>
 	<!-- 헤더 들어가는곳 -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -85,54 +87,58 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	<div class="mypage_container">
 		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 
+
 		<!-- 본문 내용 -->
+<div class="mypage_orderHistoryDetail_all">
+		<h1 id="mypage_orderHistoryDetail_tltle">주문 상세 정보</h1>
+<%-- 		<h2 id="mypage_orderHistoryDetail_tltle_h2">i_category : <%=itemList.get(0).getI_category()%></h2> --%>
+		<dl id="mypage_orderHistoryDetail_dl">
+		<dt id="mypage_orderHistoryDetail_tltle_h3">주문내역 상세</dt>
+		<dd id="mypage_orderHistoryDetail_dd">주문번호 : <%=orderBean.getO_id()%></dd>
+		</dl>
+		<span id="mypage_orderHistoryDetail_span">
+		<input id="mypage_orderHistoryDetail_btn" type="button" value="주문 취소하기" 
+				onclick="location.href='OrderCancel.od?o_id=<%=orderBean.getO_id()%>&i_category=<%=itemList.get(0).getI_category()%>'"></span>
+		<table class="mypage_orderHistoryDetail_table_t" >
+						
+						<tr>
+							<td id="mypage_orderHistoryDetail_table_td_s" >주문 일자</td>
+							<td id="mypage_orderHistoryDetail_table_td_b">상품 정보</td>
+							<td id="mypage_orderHistoryDetail_table_td_s">상태</td>
+						</tr>
 
-		<h1>OrderHistoryDetail</h1>
-		<input type="button" value="주문 취소하기"
-			onclick="location.href='OrderCancel.od?o_id=<%=orderBean.getO_id()%>&i_category=<%=itemList.get(0).getI_category()%>'">
-		<h2>i_category : <%=itemList.get(0).getI_category()%></h2>
-		<h3>주문내역 상세</h3>
-		주문번호 :
-		<%=orderBean.getO_id()%>
+			<%for (int i = 0; i < itemList.size(); i++) {%>
+			<tr id="mypage_orderHistoryDetail_tr">
 
-		<table border="1">
-			<tr>
-				<td>주문일자</td>
-				<td>상품정보</td>
-				<td>상태</td>
-			</tr>
-
-			<%
-			for (int i = 0; i < itemList.size(); i++) {
-			%>
-			<tr>
-
-				<%
-				if (i == 0) {
-				%><td rowspan=<%=itemList.size()%>><%=orderBean.getO_rdate()%></td>
+				<%if (i == 0) {%>
+				<td id="mypage_orderHistoryDetail_td" rowspan=<%=itemList.size()%>><%=orderBean.getO_rdate()%></td>
 				<%
 				} else {
 				}
 				%>
-
-				<td>상품 명 : <%=itemList.get(i).getI_name()%><br> 수령일 : <%=orderDetailList.get(i).getOd_delivery_date()%><br>
-					받는 분 : <%=orderBean.getO_receiver()%><br> 가격 : <%=(int) (itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100%>
-					/ <%=orderDetailList.get(i).getOd_qty()%>
+				<td >
+			<dl id="mypage_orderHistoryDetail_td">
+				<dt id="mypage_orderHistoryDetail_span_one">상품 명 : <%=itemList.get(i).getI_name()%></dt>
+				<dt id="mypage_orderHistoryDetail_span_two">수령일 : <%=orderDetailList.get(i).getOd_delivery_date()%></dt>
+				<dt id="mypage_orderHistoryDetail_span_two">받는 분 : <%=orderBean.getO_receiver()%></dt>
+				<dt id="mypage_orderHistoryDetail_span_one">가격 : <%=(int) (itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100%>
+					/ <%=orderDetailList.get(i).getOd_qty()%>개</dt>
+				</dl>
 				</td>
 
 				<%
 				if (i == 0) {
 					if (orderDetailList.get(i).getOd_confirm() == 2) {
-				%><td rowspan=<%=itemList.size()%>>주문 취소</td>
+				%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>주문 취소</td>
 				<%
 				} else if (orderDetailList.get(i).getOd_confirm() == 1) {
-				%><td rowspan=<%=itemList.size()%>>배송 완료</td>
+				%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>배송 완료</td>
 				<%
 				} else if (!orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
-				%><td rowspan=<%=itemList.size()%>>배송중</td>
+				%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>배송중</td>
 				<%
 				} else if (orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
-				%><td rowspan=<%=itemList.size()%>>주문 접수</td>
+				%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>주문 접수</td>
 				<%
 				}
 				} else {
@@ -143,37 +149,46 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			<%
 			}
 			%>
-		</table>
+		</table>	
+		<div id="mypage_orderHistoryDetail_del_div">
+		<h3 id="mypage_orderHistoryDetail_tltle_del_h3" >배송정보</h3><br>
+		<dl id="mypage_orderHistoryDetail_del_dl">
+		<dt id="mypage_orderHistoryDetail_del_dt"> <%=orderBean.getO_receiver()%>, <%=orderBean.getO_phone()%> (보내는 사람:<%=orderBean.getO_sender()%>)</dt>
+		<dd id="mypage_orderHistoryDetail_del_dd">[<%=address[0]%>] <%=address[1]%>, <%=address[2]%></dd>
+		</dl>
+		</div>
 
-		<h3>배송정보</h3>
-		<%=orderBean.getO_receiver()%>,
-		<%=orderBean.getO_phone()%>
-		(보내는 사람:
-		<%=orderBean.getO_sender()%>)<br> [<%=address[0]%>]
-		<%=address[1]%>,
-		<%=address[2]%>
 
-
-		<h4>결제 정보</h4>
-		<table border="1">
-			<tr>
-				<td>주문 금액<br> <%=orderBean.getO_amount()%></td>
-				<td>할인 금액<br> <%=orderBean.getO_point() + orderBean.getO_gdiscount()%></td>
-				<td>최종 결제 금액<br> <%=orderBean.getO_amount() + orderBean.getO_point() + orderBean.getO_gdiscount()%></td>
+		<h4 id="mypage_orderHistoryDetail_tltle_h3">결제 정보</h4>
+		<table class="mypage_orderHistoryDetail_table_b" >
+			<tr id="mypage_orderHistoryDetail_del_tr">
+				<td id="mypage_orderHistoryDetail_del_td">주문 금액<br> <%=orderBean.getO_amount()%></td>
+				<td id="mypage_orderHistoryDetail_del_td">할인 금액<br> <%=orderBean.getO_point() + orderBean.getO_gdiscount()%></td>
+				<td id="mypage_orderHistoryDetail_del_td">최종 결제 금액<br> <span id="mypage_orderHistoryDetail_del_td_span"><%=orderBean.getO_amount() + orderBean.getO_point() + orderBean.getO_gdiscount()%>원</span></td>
 			</tr>
 
-			<tr>
-				<td>총 상품 금액 <%=orderBean.getO_amount()%>원<br> 상품 금액 <%=orderBean.getO_amount() - addPrice%>원<br>
-					추가 상품 <%=addPrice%>원<br> 배송비 0원
+			<tr id="mypage_orderHistoryDetail_del_tr_b">
+				<td>
+				<span id="mypage_orderHistoryDetail_del_span_l">총 상품 금액 </span> <span id="mypage_orderHistoryDetail_del_span_r"><%=orderBean.getO_amount()%>원</span><br> 
+				<span id="mypage_orderHistoryDetail_del_span_l">상품 금액</span> <span id="mypage_orderHistoryDetail_del_span_r"><%=orderBean.getO_amount() - addPrice%>원</span><br>
+				<span id="mypage_orderHistoryDetail_del_span_l">	추가 상품</span><span id="mypage_orderHistoryDetail_del_span_r"><%=addPrice%>원</span><br> 
+				<span id="mypage_orderHistoryDetail_del_span_l">	배송비</span> <span id="mypage_orderHistoryDetail_del_span_r">0원</span>
 				</td>
-				<td>포인트 할인 <%=orderBean.getO_point()%><br> 등급 할인 <%=orderBean.getO_gdiscount()%></td>
-				<td>결제 방법 <%=paymentMethod%><br> 결제 일자 <%=simpleDateFormat.format(orderBean.getO_rdate2())%></td>
+				<td id="mypage_orderHistoryDetail_del_tr_b">포인트 할인 <span id="mypage_orderHistoryDetail_del_span_r"><%=orderBean.getO_point()%></span><br> 
+				등급 할인 <span id="mypage_orderHistoryDetail_del_span_r"><%=orderBean.getO_gdiscount()%></span></td>
+				<td id="mypage_orderHistoryDetail_del_tr_b">결제 방법 <span id="mypage_orderHistoryDetail_del_span_r"><%=paymentMethod%></span><br> 
+				결제 일자 <span id="mypage_orderHistoryDetail_del_span_r"><%=simpleDateFormat.format(orderBean.getO_rdate2())%></span></td>
 			</tr>
 		</table>
-		* 현금영수증 발행은 1:1 문의를 이용 부탁드립니다.
+		<p id="mypage_orderHistoryDetail_p">* 현금영수증 발행은 1:1 문의를 이용 부탁드립니다.</p>
 	</div>
-	<!-- 푸터 들어가는곳 -->
+	</div>
 
+
+	<!-- 푸터 들어가는곳 -->
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
 	<!-- 푸터 들어가는곳 -->
 </body>
 </html>
