@@ -81,6 +81,7 @@ $(document).ready(function(){
 			<label>정원</label> <input type="text" name="max_member" required><br>
 		</div>
 		<div class="sub_container2">
+			<label>썸네일 이미지</label> <input type="file" name="class_thumbnail_img" required><br>
 			<label>메인 이미지</label> <input type="file" name="class_main_img" required><br>
 			<label>서브 이미지1</label> <input type="file" name="class_sub_img1"><br>
 			<label>서브 이미지2</label> <input type="file" name="class_sub_img2"><br>

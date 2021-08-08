@@ -138,6 +138,7 @@
 				<label>정원</label> <input type="text" name="max_member" value="<%=classBean.getClass_max_member()%>" required><br>
 			</div>
 			<div class="sub_container2">
+				<label>썸네일 이미지</label> <input type="file" name="class_thumbnail_img"><br>
 				<label>메인 이미지</label> <input type="file" name="class_main_img" ><br>
 				<label>서브 이미지1</label> <input type="file" name="class_sub_img1" ><br>
 				<label>서브 이미지2</label> <input type="file" name="class_sub_img2" ><br>
@@ -148,6 +149,7 @@
 				<input type="hidden" name="ori_sub_img2" value="<%=classBean.getClass_sub_img2()%>">
 				<input type="hidden" name="ori_sub_img3" value="<%=classBean.getClass_sub_img3()%>">
 				<input type="hidden" name="ori_desc_img" value="<%=classBean.getF_desc_img()%>">
+				<input type="hidden" name="ori_thumbnail_img" value="<%=classBean.getF_thumbnail_img()%>">
 				<fieldset><legend>클래스 설명</legend><textarea name="class_desc" rows="20" cols="65"><%=classBean.getClass_desc() %></textarea></fieldset><br>
 				<input type="submit" value="수정">
 			</div>

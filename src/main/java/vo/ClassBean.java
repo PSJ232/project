@@ -19,7 +19,14 @@ public class ClassBean {
 	private int class_readcount;
 	private String class_sub_desc;
 	private String f_desc_img;
+	private String f_thumbnail_img;
 	
+	public String getF_thumbnail_img() {
+		return f_thumbnail_img;
+	}
+	public void setF_thumbnail_img(String f_thumbnail_img) {
+		this.f_thumbnail_img = f_thumbnail_img;
+	}
 	public String getF_desc_img() {
 		return f_desc_img;
 	}

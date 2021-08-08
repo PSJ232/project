@@ -45,7 +45,7 @@ public class ClassDAO {
 				num++;
 			}
 			close(pstmt);
-			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,0,?,?,?,?,now(),?,0,?,?)";
+			sql = "INSERT INTO fclass VALUES(?,?,?,?,?,?,0,?,?,?,?,now(),?,0,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, classBean.getClass_subject());
@@ -60,6 +60,7 @@ public class ClassDAO {
 			pstmt.setString(11, classBean.getClass_date());
 			pstmt.setString(12, classBean.getClass_sub_desc());
 			pstmt.setString(13, classBean.getF_desc_img());
+			pstmt.setString(14, classBean.getF_thumbnail_img());
 			pstmt.executeUpdate();
 			 
 			for(String time: timeList) {
@@ -104,6 +105,7 @@ public class ClassDAO {
 				classBean.setClass_sub_img1(rs.getString("f_sub_img1"));
 				classBean.setClass_sub_img2(rs.getString("f_sub_img2"));
 				classBean.setClass_sub_img3(rs.getString("f_sub_img3"));
+				classBean.setF_thumbnail_img(rs.getString("f_thumbnail"));
 				classList.add(classBean);
 			}
 		} catch (SQLException e) {
@@ -138,6 +140,7 @@ public class ClassDAO {
 				classBean.setClass_sub_img2(rs.getString("f_sub_img2"));
 				classBean.setClass_sub_img3(rs.getString("f_sub_img3"));
 				classBean.setClass_sub_desc(rs.getString("f_sub_desc"));
+				classBean.setF_thumbnail_img(rs.getString("f_thumbnail"));
 				classList.add(classBean);
 			}
 		} catch (SQLException e) {
@@ -189,7 +192,7 @@ public class ClassDAO {
 		PreparedStatement pstmt = null;
 		int modifyCount = 0;
 		try {
-			String sql = "UPDATE fclass SET f_subject=?,f_desc=?,f_maxmem=?,f_main_img=?,f_sub_img1=?,f_sub_img2=?,f_sub_img3=?,f_sub_desc=?,f_desc_img=? WHERE f_id=?";
+			String sql = "UPDATE fclass SET f_subject=?,f_desc=?,f_maxmem=?,f_main_img=?,f_sub_img1=?,f_sub_img2=?,f_sub_img3=?,f_sub_desc=?,f_desc_img=?,f_thumbnail=? WHERE f_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, classBean.getClass_subject());
 			pstmt.setString(2, classBean.getClass_desc());
@@ -200,7 +203,8 @@ public class ClassDAO {
 			pstmt.setString(7, classBean.getClass_sub_img3());
 			pstmt.setString(8, classBean.getClass_sub_desc());
 			pstmt.setString(9, classBean.getF_desc_img());
-			pstmt.setInt(10, classBean.getClass_id());
+			pstmt.setString(10, classBean.getF_thumbnail_img());
+			pstmt.setInt(11, classBean.getClass_id());
 			modifyCount = pstmt.executeUpdate();
 			close(pstmt);
 			if(timeList != null) {
@@ -342,7 +346,7 @@ public class ClassDAO {
 		ResultSet rs = null;
 		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
 		try {
-			String sql = "SELECT DISTINCT f.f_id,f.f_subject, fd.fd_place, f.f_price, f.f_main_img "
+			String sql = "SELECT DISTINCT f.f_id,f.f_subject, fd.fd_place, f.f_price, f.f_thumbnail, f.f_cdate "
 					+ "FROM fclass f, fclass_detail fd "
 					+ "WHERE f.f_id=fd.f_id "
 					+ "ORDER BY f.f_subject";
@@ -354,7 +358,8 @@ public class ClassDAO {
 				cb.setClass_subject(rs.getString("f_subject"));
 				cb.setClass_place(rs.getString("fd_place"));
 				cb.setClass_price(rs.getInt("f_price"));
-				cb.setClass_main_img(rs.getString("f_main_img"));
+				cb.setF_thumbnail_img(rs.getString("f_thumbnail"));
+				cb.setClass_date(rs.getString("f_cdate"));
 				classList.add(cb);
 			}
 		} catch (SQLException e) {

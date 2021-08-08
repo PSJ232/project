@@ -202,7 +202,7 @@ tr {
 
 tbody {
 	width: 761.6px;
-	height: 128px;
+	height: 64px;
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
@@ -312,3 +312,4 @@ tbody {
     letter-spacing: -.21px;
     color: #222;
 }
+

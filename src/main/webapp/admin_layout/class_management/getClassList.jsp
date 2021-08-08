@@ -12,7 +12,7 @@
 				%>
 				<table class="class_content">
 				<tr>
-				<td rowspan="4" width="5"><img id="img" src="<%="img_upload/"+cb.getClass_main_img() %>"/></td>
+				<td rowspan="4" width="5"><img id="img" src="./admin_layout/upload/<%=cb.getClass_main_img() %>"/></td>
 				<td width="500"><h1 ><a id="class_subject" href="ClassDetailView.ad?class_num=<%=cb.getClass_id()%>"><%=cb.getClass_subject() %></a></h1></td>
 				</tr>
 				<tr>
