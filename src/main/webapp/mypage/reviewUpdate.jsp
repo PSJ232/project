@@ -14,6 +14,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	  rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).on("change", ".file-input1", function(){
+      
+    $filename = $(this).val();
+    var split_res = $filename.split('\\');
+    var result = split_res[2];
+    if($filename == "")
+      $filename = "파일을 선택해주세요.";
+
+    $(".filename").val(result);
+
+  })
+</script>
 <body>
 <%
 MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
@@ -57,7 +70,6 @@ case 0:
 				<input id="mypage_ReviewUpdate_od_id" type="hidden" name="od_id" value="<%=rb.getOd_id()%>">
 				<input id="mypage_ReviewUpdate_r_id" type="hidden" name="r_id" value="<%=rb.getR_id()%>">
 				
-				<label id="mypage_Review_title"> r_id : 	<%=rb.getR_id()%></label><br>
 				<label id="mypage_Review_title"> 작성자 : <input id="mypage_Review_list" id="mypage_Review_title"  type="text" name="r_writer"	value="<%=m_id%>" readonly> </label><br>
 				<label id="mypage_Review_title">제목 : &nbsp;&nbsp;&nbsp;<input id="mypage_Review_list"   type="text" name="r_title" value="<%=rb.getR_title()%>"></label><br>
 				<label id="mypage_Review_title">내용 : <br>&nbsp;&nbsp;&nbsp;<textarea id="mypage_Review_list_t" rows="10" cols="20" name="r_content"><%=rb.getR_content()%></textarea></label><br>
@@ -89,10 +101,11 @@ case 0:
 					<option value="2" <%=s2%>>★★</option>
 					<option value="1" <%=s1%>>★</option>
 				</select></label><br> 
-				<label id="mypage_Review_title">이미지 : <input id="mypage_Review_list_s" id="mypage_Review_title"  type="text"></label>
+				<label id="mypage_Review_title">이미지 : <input id="mypage_Review_list_s" id="mypage_Review_title"  type="text" class="filename" value="<%=rb.getR_img()%>"></label>
 				<label class="input-file-button" for="mypage_Review_li_inp" >사진첨부</label>
-					<input id="mypage_Review_li_inp" type="file" name="q_img" class="file-input1"><%=rb.getR_img()%><br>
+					<input id="mypage_Review_li_inp" type="file" name="q_img" class="file-input1"><br>
 				<input type="hidden" name="oldr_img" value="<%=rb.getR_img()%>">
+				
 				<input id="mypage_Review_smt" type="submit" value="작성하기">
 			</form>
 
