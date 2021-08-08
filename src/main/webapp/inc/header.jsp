@@ -50,7 +50,7 @@ String moveMypage = "";
 if(m_id == null) {
 	moveMypage = "MemberLogin.me";
 } else {
-	moveMypage = "MemberMypageDetail.me";
+	moveMypage = "MypageOrderStatus.me";
 }
 %>
 </head>

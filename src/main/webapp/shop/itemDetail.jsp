@@ -479,6 +479,23 @@ switch (i_category) {
 				} else {
 					$('.sticky').removeClass('visible');
 				}
+				
+				if(point+700 > $(".desc_image").offset().top){
+					$('.middle_li').removeClass('active');
+					$('.li_desc').addClass('active');
+				}
+				
+				if(point+700 > $("#review_list").offset().top){
+					$('.middle_li').removeClass('active');
+					$('.li_review').addClass('active');
+				}
+				
+				if(point+700 > $("#delivery_info").offset().top){
+					$('.middle_li').removeClass('active');
+					$('.li_deli_info').addClass('active');
+				}
+				
+				
 			});
 			
 			// 배송안내 내용 보이기
@@ -488,7 +505,7 @@ switch (i_category) {
 				
 			});
 			
-			// 리뷰 탭 이동
+			// 리뷰 탭 변경기능
 			$('ul.tabs li').click(function(){
 				var tab_id = $(this).attr('data-tab');
 		

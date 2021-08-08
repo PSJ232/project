@@ -36,6 +36,7 @@ if(request.getParameter("sub_option") != null){
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- header -->
 	
+	
 	<div class="cart_div">
 	<div class="cart_header">
 	<h5>장바구니(비회원 미리보기)</h5>
@@ -152,7 +153,7 @@ if(request.getParameter("sub_option") != null){
 	
 	} else {
 	%>
-	</table></div></form>
+	</table></div></div></div></form>
 	<!-- if문안에서 태그가 짤려서 추가 -->
 	<p class="cart_p3">
 	<span class="cart_span21">장바구니가 비어있습니다.<br>
@@ -160,12 +161,13 @@ if(request.getParameter("sub_option") != null){
 	</span><br>
 
 	<input type="button" class="cart_input6" value="쇼핑하러 가기" onclick="location='./'">
+	</p>
 
 
 	<%
 	}
 	%>
-	
+	</div>
 	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
