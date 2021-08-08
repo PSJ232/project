@@ -48,10 +48,9 @@
 .join_us_box .row .join_name {
     float: left;
     width: 120px;
-    padding-top: 10px;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
+    padding: 15px 0;
+    font-size: 15px;
+    font-weight: 450;
     letter-spacing: -.24px;
     color: #555;
     position: relative;
@@ -65,18 +64,18 @@
 .join_us_box .row .join_input .textBox {
     display: block;
     width: 380px;
-    height: 44px;
+    height: 50px;
     padding: 0 20px;
     border-radius: 5px;
     border: #d3d3d3 1px solid;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 300;
     color: #222;
 }
 
 .join_us_box .row .join_input .textbox_long{
     width: 183px;
-    height: 44px;
+    height: 50px;
     margin-right: 10px;
     padding: 0 20px;
     border-radius: 5px;
@@ -88,7 +87,7 @@
 
 .join_us_box .row .join_input .textbox_short {
     width: 85px;
-    height: 44px;
+    height: 50px;
     margin-right: 10px;
     padding: 0 20px;
     border-radius: 5px;
@@ -106,7 +105,7 @@
     top: 0;
     right: 0;
     width: 100px;
-    height: 44px;
+    height: 50px;
     border-radius: 5px;
     font-size: 14px;
     line-height: 44px;
@@ -127,7 +126,7 @@ label {
 
 .join_us_box .row .join_input .gender_label {
 	width: 183px;
-	height: 44px;
+	height: 50px;
 	font-size: 14px;
 	font-weight: 400;
 	color: #222;	
@@ -306,6 +305,7 @@ label {
 }
 
 .terms_conditions, .personal_info {
+	cursor: pointer;
 	text-decoration: none;
 	color: #777777;
 	font-weight: 300;
