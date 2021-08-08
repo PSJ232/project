@@ -5,12 +5,15 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+
 import dao.MemberDAO;
 import dao.OrderDAO;
 import vo.DetailBean;
+import vo.PageInfo;
 
 public class AdminOrderSearchService {
-		public String getJSON(String search_val, String filter, int page, int limit) {
+		public String getJSON(String search_val, String filter, int page, int limit, PageInfo pageInfo) {
 			Connection con = getConnection();
 			if(search_val == null) search_val = "";
 			StringBuffer result = new StringBuffer("");
@@ -18,6 +21,7 @@ public class AdminOrderSearchService {
 			OrderDAO orderDAO = OrderDAO.getInstance();
 			orderDAO.setConnection(con);
 			ArrayList<DetailBean> resultList = orderDAO.search(search_val, filter, page, limit);
+			String pages = new Gson().toJson(pageInfo);
 			for(int i = 0; i < resultList.size(); i++) {
 				result.append("[{\"value\": \"" + resultList.get(i).getO_id() + "\"},");
 				result.append("{\"value\": \"" + resultList.get(i).getM_id() + "\"},");
@@ -32,7 +36,8 @@ public class AdminOrderSearchService {
 					result.append("{\"value\": \"" + resultList.get(i).getOd_invoice() + "\"}],");
 				}
 			}
-			result.append("]}");
+			System.out.println(pages);
+			result.append("],\"pages\":["+pages+"]}");
 			close(con);
 			
 			return result.toString();

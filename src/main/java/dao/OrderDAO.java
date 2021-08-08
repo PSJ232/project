@@ -268,7 +268,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT od.od_id,od.o_id,i.i_id,od.l_id,od.od_qty,od.od_message,od.m_id,od.od_delivery_date,od.od_invoice,od.od_confirm,i.i_name"
+			String sql = "SELECT od.od_id,od.o_id,i.i_id,od.l_id,od.od_qty,od.od_message,od.m_id,od.od_delivery_date,od.od_invoice,od.od_confirm,i.i_name,i.i_price"
 					+ " FROM orders_detail od, item i "
 					+ "WHERE i.i_id=od.i_id and o_id=?";
 			pstmt = con.prepareStatement(sql);
@@ -291,6 +291,7 @@ public class OrderDAO {
 				}
 				odb.setOd_confirm(rs.getInt("od_confirm"));
 				odb.setI_name(rs.getString("i_name"));
+				odb.setI_price(rs.getInt("i_price"));
 				orderDetailList.add(odb);
 			}
 		} catch (SQLException e) {
@@ -1062,7 +1063,7 @@ public class OrderDAO {
 					+ "UNION ALL "
 					+ "SELECT SUM(r_amount) result "
 					+ "FROM reservation "
-					+ "WHERE r_payment='카드') AS re";
+					+ "WHERE r_payment='card') AS re";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -1077,7 +1078,7 @@ public class OrderDAO {
 				+ "UNION ALL "
 				+ "SELECT SUM(r_amount) result "
 				+ "FROM reservation "
-				+ "WHERE r_payment='현금') AS re";
+				+ "WHERE r_payment='cash') AS re";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -1100,7 +1101,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		HashMap<String,Integer> weekCardSales = new HashMap<String, Integer>();
 		try {
-			String sql = "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) card "
+			String sql = "SELECT * FROM(SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
 					+ "	FROM orders"
@@ -1111,17 +1112,18 @@ public class OrderDAO {
 					+ "LEFT OUTER JOIN ("
 					+ "	SELECT DATE_FORMAT(r_date,'%m%d') rdate, SUM(r_amount) ramount"
 					+ "	FROM reservation"
-					+ "	WHERE r_payment='cash'"
+					+ "	WHERE r_payment='card'"
 					+ "	GROUP BY DATE_FORMAT(r_date,'%m%d')"
 					+ "	) "
 					+ "AS r "
 					+ "ON o.odate=r.rdate "
+					+ "GROUP BY date "
 					+ "UNION "
-					+ "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) card "
+					+ "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
 					+ "	FROM orders"
-					+ "	WHERE o_payment=0"
+					+ "	WHERE o_payment=1"
 					+ "	GROUP BY DATE_FORMAT(o_rdate,'%m%d')"
 					+ "	) "
 					+ "AS o "
@@ -1133,11 +1135,13 @@ public class OrderDAO {
 					+ "	) "
 					+ "AS r "
 					+ "ON o.odate=r.rdate "
-					+ "GROUP BY date LIMIT 7";
+					+ "GROUP BY date) AS t";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				weekCardSales.put(rs.getString(1), rs.getInt(2));
+				System.out.println("date: " + rs.getString(1));
+				System.out.println("card: " + rs.getInt(2));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1163,13 +1167,13 @@ public class OrderDAO {
 					+ "LEFT OUTER JOIN ("
 					+ "	SELECT DATE_FORMAT(r_date,'%m%d') rdate, SUM(r_amount) ramount"
 					+ "	FROM reservation"
-					+ "	WHERE r_payment='현금'"
+					+ "	WHERE r_payment='cash'"
 					+ "	GROUP BY DATE_FORMAT(r_date,'%m%d')"
 					+ "	) "
 					+ "AS r "
 					+ "ON o.odate=r.rdate "
 					+ "GROUP BY date "
-					+ "UNION ALL "
+					+ "UNION "
 					+ "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
@@ -1181,16 +1185,18 @@ public class OrderDAO {
 					+ "RIGHT OUTER JOIN ("
 					+ "	SELECT DATE_FORMAT(r_date,'%m%d') rdate, SUM(r_amount) ramount"
 					+ "	FROM reservation"
-					+ "	WHERE r_payment='현금'"
+					+ "	WHERE r_payment='cash'"
 					+ "	GROUP BY DATE_FORMAT(r_date,'%m%d')"
 					+ "	) "
 					+ "AS r "
 					+ "ON o.odate=r.rdate "
-					+ "GROUP BY date) AS t LIMIT 7";
+					+ "GROUP BY date) AS t";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				weekCardSales.put(rs.getString(1), rs.getInt(2));
+				System.out.println("date: " + rs.getString(1));
+				System.out.println("cash: " + rs.getInt(2));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
