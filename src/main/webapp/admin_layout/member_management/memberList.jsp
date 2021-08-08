@@ -5,13 +5,6 @@
 <!DOCTYPE html>
 <%
 	HashMap<String, Integer> memberData = (HashMap<String, Integer>)request.getAttribute("memberData");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	
-	int currentPage = pageInfo.getPage();
-	int listCount = pageInfo.getListCount();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
 %>
 <html>
 <head>
@@ -181,29 +174,6 @@
 			<tbody id="ajaxTable">
 			</tbody>
 		</table>
-		<section id="pageList">
-			<% if(maxPage != 1){
-				if(currentPage <= 1) {%>
-						<input class="page_btn" type="button" value="<<">&nbsp;
-				<%} else {%>
-						<input class="page_btn" type="button" value="<<" onclick="location.href='MemberList.ad?page=<%=currentPage - 1 %>'">&nbsp;
-				<%} %>
-				
-				<%for(int i = startPage; i <= endPage; i++) { 
-						if(i == currentPage) { %>
-							<span id="selected_page_num"><%="  "+ i + "  " %></span>
-					<%} else {%>
-					<a id="page_num" href="MemberList.ad?page=<%=i %>"><%="  "+ i + "  " %></a>&nbsp;
-					<%} %>
-				<%} %>
-				
-				<%if(currentPage >= maxPage) {%>
-					<input class="page_btn" type="button" value=">>">
-				<%} else { %>
-					<input class="page_btn" type="button" value=">>" onclick="location.href='MemberList.ad?page=<%=currentPage + 1 %>'">
-				<% } 
-			}%>
-		</section>
 	</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>

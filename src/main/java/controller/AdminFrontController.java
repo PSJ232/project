@@ -25,7 +25,6 @@ import action.AdminQnaGetListAction;
 import action.AdminQnaWriteAnswerAction;
 import action.AdminReviewListAction;
 import action.AdminSearchAction;
-import action.ChartAction;
 import action.ClassDeleteAction;
 import action.ClassDetailViewAction;
 import action.ClassDetailSelectTimelistAction;
@@ -37,6 +36,7 @@ import action.ItemDetailAction;
 import action.ItemInsertAction;
 import action.ItemListAction;
 import action.ItemUpdateAction;
+import action.MemberChartAction;
 import action.ReservClassNumAction;
 import action.ReservClassPlaceAction;
 import action.ReservClassTimeAction;
@@ -299,10 +299,7 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/Chart.ad")) {
-			forward = new ActionForward();
-			action = new ChartAction();
-		} else if(command.equals("/ReservClassTime.ad")) {
+		}else if(command.equals("/ReservClassTime.ad")) {
 			ReservClassTimeAction reservClassTimeAction = new ReservClassTimeAction();
 			try {
 				reservClassTimeAction.execute(request, response);
@@ -397,6 +394,14 @@ public class AdminFrontController extends HttpServlet {
 		}else if(command.equals("/DashBoard.ad")) {
 			forward = new ActionForward();
 			action = new AdminDashBoardAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/Chart.ad")) {
+			forward = new ActionForward();
+			action = new MemberChartAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

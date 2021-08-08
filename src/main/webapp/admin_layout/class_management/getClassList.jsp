@@ -29,7 +29,7 @@
 				%>
 				</td>
 				</tr>
-				<tr><td>정원: <%=cb.getClass_current_member() %> / <%=cb.getClass_max_member() %></td></tr>
+				<tr><td>정원: <%=cb.getClass_max_member() %>명</td></tr>
 				<tr><td> 클래스날짜: <%=cb.getClass_date() %></td></tr>
 				</table>
 				<%

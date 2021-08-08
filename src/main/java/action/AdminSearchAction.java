@@ -18,30 +18,12 @@ public class AdminSearchAction {
 		String search_val = request.getParameter("search_val");
 		String filter = request.getParameter("filter");
 		OrderService o_service = new OrderService();
-		// 페이징 처리를 위한 변수 선언
-		int page = 1;	// 현재 페이지번호
-		int limit = 10;	// 한 페이지에 표시할 게시물 개수
-		if(request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
-		int listCount = o_service.getListCount();
-		int maxPage = (int)((double)listCount / limit + 0.9);
-		
-		int pageLimit = 10; // 한페이지의 총 페이지 수
-		int startPage = ((int)((double)page / pageLimit + 0.9) - 1) * pageLimit + 1;
-		
-		int endPage = startPage + pageLimit - 1;
-		
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
-		PageInfo pageInfo = new PageInfo(page, listCount, maxPage, startPage, endPage);
 		if(command.equals("/OrderSearch.ad")) {
 			AdminOrderSearchService service = new AdminOrderSearchService();
 			PrintWriter out;
 			try {
 				out = response.getWriter();
-				out.write(service.getJSON(search_val, filter, page, limit, pageInfo));
+				out.write(service.getJSON(search_val, filter));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -50,7 +32,7 @@ public class AdminSearchAction {
 			PrintWriter out;
 			try {
 				out = response.getWriter();
-				out.write(service.getJSON(search_val, filter, page, limit));
+				out.write(service.getJSON(search_val, filter));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

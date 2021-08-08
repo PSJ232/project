@@ -69,6 +69,9 @@
 		width: 200px;
 		height: 200px;
 	}
+	.star {
+		color: #FFDF24;
+	}
 
 </style>
 <script>
@@ -143,12 +146,13 @@
 						<td><%=recentReview.get(i).getR_rdate() %></td>
 						<td><%=recentReview.get(i).getR_writer() %></td>
 						<td><%=recentReview.get(i).getR_title() %></td>
-						<td>
+						<td><span class="star">
 						<%
 						for(int j=0; j < recentReview.get(i).getR_rate(); j++){
 							%>★<%
 						}
 						%>
+						</span>
 						</td>	
 						</tr><%
 					}
