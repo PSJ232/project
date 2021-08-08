@@ -70,6 +70,12 @@ public class ClassModifyProAction implements Action {
 			classBean.setF_desc_img(multi.getParameter("class_desc_img"));
 		}
 		
+		if(multi.getFilesystemName("class_thumbnail_img") == null) {
+			classBean.setF_thumbnail_img(multi.getParameter("ori_thumbnail_img"));
+		}else {
+			classBean.setF_thumbnail_img(multi.getParameter("class_thumbnail_img"));
+		}
+		
 		ClassModifyProService service = new ClassModifyProService();
 		boolean isModifySuccess = service.modifyClass(classBean, timeList);
 		

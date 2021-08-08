@@ -12,9 +12,6 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 | 클래스 상세</title>
-<style>
-	
-</style>
 <link rel="stylesheet" href="./css/admin.css">
 <link rel="stylesheet" href="./css/admin_class_detail.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -77,11 +74,11 @@
 	<!-- nav -->
 	<div class="container">
 		<div class="images">
-			<img id="main_img" src='<%="img_upload/"+classBean.getClass_main_img()%>'>
+			<img id="main_img" src='<%="./admin_layout/upload/"+classBean.getClass_main_img()%>'>
 			<div class="sub_img">
-				<img src='<%="img_upload/"+classBean.getClass_sub_img1()%>'>
-				<img src='<%="img_upload/"+classBean.getClass_sub_img2()%>'>
-				<img src='<%="img_upload/"+classBean.getClass_sub_img3()%>'>
+				<img src='<%="./admin_layout/upload/"+classBean.getClass_sub_img1()%>'>
+				<img src='<%="./admin_layout/upload/"+classBean.getClass_sub_img2()%>'>
+				<img src='<%="./admin_layout/upload/"+classBean.getClass_sub_img3()%>'>
 			</div>
 		</div>
 		<div class="sub_container">

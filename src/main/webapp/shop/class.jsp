@@ -50,7 +50,7 @@
 							<tr>
 								<td>
 									<a href="ClassReserv.od?f_id=<%=classList.get(i).getClass_id()%>">
-										<img src="./admin_layout/upload/<%=classList.get(i).getClass_main_img()%>" class="quick_item_img">
+										<img src="./admin_layout/upload/<%=classList.get(i).getF_thumbnail_img()%>" class="quick_item_img">
 									</a>
 								</td>
 							</tr>
@@ -67,7 +67,7 @@
 							<tr class="quick_item_size">
 								<td>
 								<%for(int j = 0; j < classList.size(); j++){ 
-									if(classList.get(i).getClass_subject().equals(classList.get(j).getClass_subject())){
+									if(classList.get(i).getClass_subject().equals(classList.get(j).getClass_subject()) && classList.get(i).getClass_date().equals(classList.get(j).getClass_date()) ){
 								%>
 									<span class="quick_item_size_icon"><%=classList.get(j).getClass_place()%></span>
 								<%}
