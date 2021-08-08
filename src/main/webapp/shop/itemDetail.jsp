@@ -376,7 +376,11 @@ switch (i_category) {
 							%>
 								<tr onclick="$(this).next('tr').toggle()">
 									<td class="td1"><%=rate %></td>
-									<td class="td2"><%=rbList.get(i).getR_title() %><span class="icon_img"></span></td>
+									<td class="td2">
+										<%=rbList.get(i).getR_title() %>
+										<%if(rbList.get(i).getR_img()!=null){ %>
+										<span class="icon_img"></span><%} %>
+									</td>
 									<td class="td3"><%=editId %>님</td>
 									<td class="td4"><%=rbList.get(i).getR_rdate() %></td>
 								</tr>

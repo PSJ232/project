@@ -319,7 +319,7 @@ case 24:
 	
 	
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(document).ready(function() { // 편지지 선택하면 화면변경
 			$('ul.letter_ul li').click(function() {
 				var tab_id = $(this).attr('data-tab');
 				var letter_div13_id = $(this).attr('id');
@@ -335,9 +335,9 @@ case 24:
 					$('.letter_p.' + letter_div13_id).addClass('current');
 				}
 				
-			})
+			});
 		
-		})
+		});
 		
 		function content_empty_check(){
 			var i = 0;
