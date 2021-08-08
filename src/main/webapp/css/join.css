@@ -332,7 +332,9 @@
     border: none;    
 }
 
-
+.agree_terms a {
+	text-decoration: none;
+}
 
 
 

@@ -236,7 +236,11 @@
 						</div>
 								
 						<div class="terms_link">
-							<span class="agree_terms">이용약관 보기 · 개인정보 처리방침 보기</span>
+							<span class="agree_terms">
+								<a href="./member/terms_conditions.jsp" onclick="window.open(this.href, '약관 및 개인정보', 'width=600, height=1000, top=0'); return false;">
+								이용약관 보기</a> · 
+								<a href="./member/personal_info.jsp" onclick="window.open(this.href, '약관 및 개인정보', 'width=600, height=1000, top=0'); return false;">
+								개인정보 처리방침 보기</a></span>
 						</div>
 								
 						<div class="terms_submit">
