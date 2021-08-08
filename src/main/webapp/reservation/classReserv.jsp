@@ -79,20 +79,20 @@
 		<div class="shop_class_layout"><!-- 예약 정보 입력 레이아웃-->
 			<div class="category_product_image shop_class_layout_top">
 				<div class="shop_class_mainImg thumnail_main">
-					<img src="img_upload/<%=cb.getClass_main_img()%>">		
+					<img src="./admin_layout/upload/<%=cb.getClass_main_img()%>">		
 				</div>
 				<div class="shop_class_subImg_box">
 					<div class="change_img active shop_class_subImg">
-						<img src="img_upload/<%=cb.getClass_main_img()%>">
+						<img src="./admin_layout/upload/<%=cb.getClass_main_img()%>">
 					</div>
 					<div class="change_img shop_class_subImg">
-						<img src="img_upload/<%=cb.getClass_sub_img1()%>">
+						<img src="./admin_layout/upload/<%=cb.getClass_sub_img1()%>">
 					</div>
 					<div class="change_img shop_class_subImg">
-						<img src="img_upload/<%=cb.getClass_sub_img2()%>">
+						<img src="./admin_layout/upload/<%=cb.getClass_sub_img2()%>">
 					</div>
 					<div class="change_img shop_class_subImg">
-						<img src="img_upload/<%=cb.getClass_sub_img3()%>">
+						<img src="./admin_layout/upload/<%=cb.getClass_sub_img3()%>">
 					</div>
 				</div>
 			</div>
