@@ -175,10 +175,9 @@ public class OrderDAO {
 
 	}
 
-	public ArrayList<DetailBean> search(String search_val, String filter, int page, int limit) {
+	public ArrayList<DetailBean> search(String search_val, String filter) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int startRow = (page - 1) * limit;
 		ArrayList<DetailBean> resultList = new ArrayList<DetailBean>();
 		String sql = "";
 		try {
@@ -186,27 +185,25 @@ public class OrderDAO {
 			case "1":
 				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, COUNT(*) "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id LIMIT ?,?";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
 				break;
 			case "2":
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, COUNT(*) "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? " + "GROUP BY o_id LIMIT ?,?";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? " + "GROUP BY o_id";
 				break;
 			case "3":
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, COUNT(*) "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id LIMIT ?,?";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
 				break;
 			default:
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, COUNT(*) "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id LIMIT ?,?";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
 			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + search_val + "%");
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				DetailBean olb = new DetailBean();
