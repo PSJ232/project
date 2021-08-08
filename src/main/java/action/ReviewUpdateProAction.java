@@ -32,6 +32,8 @@ public class ReviewUpdateProAction implements Action {
 		String oldr_img = multi.getParameter("oldr_img");
 		String img = multi.getFilesystemName((String)multi.getFileNames().nextElement());
 		if(img == null) {
+			img = null;
+		} else {
 			img = oldr_img;
 		}
 		
