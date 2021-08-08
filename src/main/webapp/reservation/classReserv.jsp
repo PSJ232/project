@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>클래스 예약</title>
+<title><%=cb.getClass_subject() %></title>
 <link href="css/style.css" rel="stylesheet">
 <link href="css/classReserv.css" rel="stylesheet" >
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
