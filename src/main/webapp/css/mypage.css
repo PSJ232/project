@@ -105,6 +105,7 @@ strong {
 
 .mypage_left_div {
 	display: inline-block;
+	vertical-align: top;
 }
 
 .mypage_left_menu_section {

@@ -16,10 +16,10 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link href="css/mypage.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/update.css" type="text/css" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-</script>
 </head>
+
 <%
 	MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
 	ArrayList<AnniversaryBean> annList = (ArrayList<AnniversaryBean>) request.getAttribute("annList");
@@ -29,6 +29,7 @@
 	String month = date[1];
 	String day = date[2];
 %>
+
 <body>
 	<!-- 헤더 들어가는곳 -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -94,8 +95,8 @@
 								<div class="row">
 									<div class="update_name">성별</div>
 									<div class="update_input">
-										<input type="radio" name="m_gender" value="0" <%if(memberMypageDetail.getM_gender()==0){%>checked<%}%>>남
-										<input type="radio" name="m_gender" value="1" <%if(memberMypageDetail.getM_gender()==1){%>checked<%}%>>여								
+										<input type="radio" name="m_gender" value="0" <%if(memberMypageDetail.getM_gender()==0){%>checked<%}%>><span title="gender_radio">남</span>
+										<input type="radio" name="m_gender" value="1" <%if(memberMypageDetail.getM_gender()==1){%>checked<%}%>><span title="gender_radio">여</span>
 									</div>
 						  		</div>
 						  		
@@ -186,11 +187,11 @@
 								
 								<div class="more_info">
 									<input type="hidden" name="m_pass_origin" value="<%=memberMypageDetail.getM_pass() %>">
-									<input type="checkbox" name="m_agree" <%if(memberMypageDetail.getM_agree()!=null){%>checked<%}%> > <span class="infomation">꾸까가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요.</span>
+									<input type="checkbox" name="m_agree" <%if(memberMypageDetail.getM_agree()!=null){%>checked<%}%> > <span class="infomation">사계가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요.</span>
 								</div>
 								
 						  		<div class="member_update">									
-									<input type="submit" class="yellowBtn" value="수정하기"> <br>						  	
+									<input type="submit" class=btnUpdate value="수정하기"> <br>						  	
 							  	</div>
 						  							  	
 						
@@ -200,9 +201,7 @@
 									</div>
 								</div>
 								
-							</div>
-
-								
+							</div>								
 						</form>						
 
 					</div><!-- inner닫 -->

@@ -27,6 +27,11 @@ a, button {
   cursor: pointer;
 }
 
+.mypage_left_div {
+    display: inline-block;
+    vertical-align: top;
+}
+
 .mypage_update_container {
 	width: 1120px;
     margin: 53px auto 82px;
@@ -47,7 +52,7 @@ a, button {
 /* 본문 */
 .mypage_update_box {
 	display: inline-block;
-    position: absolute;
+    position: relative;
     margin-left: 50px;
     margin-top: 0px;
 }
@@ -82,7 +87,7 @@ a, button {
 
 .update_box .inbox .inner {
     max-width: 800px;    
-    margin: 30px 50px;
+    margin: 30px 5px;
 }
 
 .update_box .inbox .inner .update_info {
@@ -109,11 +114,23 @@ a, button {
 }
 
 .update_box .row .update_input {
+	font-size: 22px;
+	font-weight: 300;
 	margin-top: 0;
     overflow: hidden;
     padding-right: 140px;
     position: relative;
     display: block;
+}
+
+.update_box .row .update_input [type=radio] {
+	width: 100px;
+	height: 35px;
+	vertical-align: middle;
+}
+
+.update_box .row .update_input .gender_radio {
+    vertical-align: middle;
 }
 
 .update_box .row .update_input .textBox {
@@ -220,7 +237,7 @@ a, button {
 .textNormal {
 	color: #878787;
 	font-size: 14px;
-	font-weight: bold;
+	font-weight: 300;
 	text-align: center;
 	padding: 5px auto;
 }	
@@ -243,7 +260,7 @@ a, button {
 .textBlack {
 	color: #000000;
 	font-size: 14px;
-	font-weight: 800;
+	font-weight: 500;
 	text-align: center;
 
 }		
@@ -318,23 +335,66 @@ a, button {
 }
 
 .member_submit {
-    max-width: 620px;
+    max-width: 750px;
     margin: 20px auto 0;
     padding-top: 40px;
     border-top: #d3d3d3 1px solid;
 }
 
 .member_submit .more_info {
-    padding: 0 0 0 30px;
-}
-
-.member_submit .more_info .information {
-	font-size: 14px;
+    margin: 30px auto;
+    text-align: center;
+	font-size: 16px;
+	color: #222;
 }
 
 .member_submit .member_update {
     max-width: 320px;
     margin: 0 auto;
+}
+
+.member_submit .member_update .btnUpdate {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: 0 0;
+    cursor: pointer;
+    display: block;
+    width: 350px;
+    height: 48px;
+    background: #ececec;
+    color: #787878;
+    text-align: center;
+    font-size: 14px;
+    line-height: 48px;
+    font-weight: 300;
+    letter-spacing: -.21px;
+    border-radius: 5px;
+}
+
+.member_submit .member_delete .row_del {
+	margin-top: 10px;
+    text-align: right;
+}
+
+.member_submit .member_delete .row_del .btnDel {
+	padding: 0;
+    margin: 0;
+    border: none;
+    background: 0 0;
+    outline: 0;
+    cursor: pointer;
+    display: inline-block;
+    height: 38px;
+    padding: 0 35px;
+    border: #d3d3d3 1px solid;
+    border-radius: 19px;
+    background-color: #fff;
+    font-size: 12px;
+    line-height: 36px;
+    font-weight: 100;
+    letter-spacing: -.18px;
+    color: #787878;
 }
 
 

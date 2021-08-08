@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>사계 | 회원가입</title>
 <link rel="stylesheet" href="css/join.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 		
@@ -134,19 +135,20 @@
 </script>
 </head>
 <body>
-	<div class="container">
-   	<!-- header -->
+<div class="container">
    	<jsp:include page="../inc/header.jsp" ></jsp:include>
  	<!-- header -->
    	<div class="top_banner">
 		<div class="page_title"><h2>회원가입</h2></div>
 	</div>
 	
-	<div class="join_us_box">	
-		<form action="MemberJoinPro.me" name=formJoin method="post" onsubmit="return checkForm()">				
-				<div class="inbox">
-					<div class="inner">
-						
+	<div class="join_us_box">
+
+		<div class="inbox">
+			<div class="inner">	
+		 
+					<form action="MemberJoinPro.me" name=formJoin method="post" onsubmit="return checkForm()">				
+						<div class="join_info">						
 							 <div class="row">
 							 	<div class="join_name">이메일(아이디)</div>
 							 	<div class="join_input">
@@ -209,42 +211,44 @@
 							 		  	     	  	   					   <input type="radio" class="radio_gender" name="m_gender" value="0"><span class="gender_txt">남성</span>
 								</div>
 							</div>
-								
-							 
-						</div> <!-- inner -->
-					</div><!-- inbox -->
 							
+						</div><!-- join_info  -->
 					
-					<div class="bottomForm">
-						<div class="inner">
+										
+					<div class="terms_box">
+					
+						<div class="terms_title">
 							 <div class="row">
 							 	<div class="join_name">이용약관 동의</div>
-							 	<div class="join_input"></div>
+							 	<div class="join_input">&nbsp;</div>
 							 </div>
-							 <br><br>
-
-								<ul class="agreement_list">
-										<li class="agree_all"><input type="checkbox" id="termCAll">모두 동의합니다.<br></li>
-										<li class="agree_part"><input type="checkbox"  id="termC1" required>이용약관 동의 <span class="textRed">(필수)</span></li>
-										<li class="agree_part"><input type="checkbox"  id="termC2" required>개인정보 수집, 이용동의 <span class="textRed">(필수)</span></li>
-										<li class="agree_part"><input type="checkbox"  id="termC3" required>개인정보 이용 동의 <span class="textRed">(필수)</span></li>
-										<li class="agree_part"><input type="checkbox" name="m_agree"  id="termC4" >이벤트, 혜택정보 수신 동의 (선택)</li><!-- 원래 name이 m_agree였음 -->
-								</ul>
+						</div>
+						<br>
+						
+						<div class="terms_list">
+								<div class="agreement_list">
+										<div class="agree_all"><input type="checkbox" id="termCAll"><span title="terms_txt">모두 동의합니다.</span></div>
+										<div class="agree_part"><input type="checkbox"  id="termC1" required><span title="terms_txt">이용약관 동의</span> <span class="textRed">(필수)</span></div>
+										<div class="agree_part"><input type="checkbox"  id="termC2" required><span title="terms_txt">개인정보 수집, 이용동의</span> <span class="textRed">(필수)</span></div>
+										<div class="agree_part"><input type="checkbox"  id="termC3" required><span title="terms_txt">개인정보 이용 동의</span> <span class="textRed">(필수)</span></div>
+										<div class="agree_part"><input type="checkbox" name="m_agree"  id="termC4" ><span title="terms_txt">이벤트, 혜택정보 수신 동의 (선택)</span></div><!-- 원래 name이 m_agree였음 -->
+								</div>
+						</div>
 								
-							<div class="agree_terms">이용약관 보기 · 개인정보 처리방침 보기</div>
+						<div class="terms_link">
+							<span class="agree_terms">이용약관 보기 · 개인정보 처리방침 보기</span>
+						</div>
 								
-							<div class="inner">
-								<div class="row">
+						<div class="terms_submit">
+								<div class="submit_button">
 									<input type="submit" class="btn_submit" value="회원가입">
 								</div>
-							</div>
-						</div><!-- inner -->
-
-														
-					</div><!-- bottomForm -->
-			</form>
+						</div>							
+					</div><!-- terms_box -->										
+				</form>
 					
-			
+				</div><!-- inner 닫 -->
+			</div><!-- inbox 닫 -->
  		</div> <!-- join_us_box 닫기 -->		
 
 	

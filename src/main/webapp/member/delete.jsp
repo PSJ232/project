@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link href="css/mypage.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/delete.css" type="text/css" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <%
 String m_id = (String)session.getAttribute("m_id");
