@@ -183,8 +183,8 @@ ul.tabs li.current {
 	font-weight: 500;
 }
 #mypage_confirmPurchase_cbtn{
-		width: 80px;
-	height: 50px;
+	width: 80px;
+	height: 30px;
 	margin: 10px;
 	border-radius: 10px;
 	background-color: #aaaaaa;
