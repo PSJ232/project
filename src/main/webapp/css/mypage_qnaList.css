@@ -202,7 +202,7 @@ tr {
 
 tbody {
 	width: 761.6px;
-	height: 64px;
+	height: 128px;
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
@@ -285,18 +285,18 @@ tbody {
 	padding: 56px;
 }
 
-.qnaList_answer::before {
-	content: '';
-	display: block;
-    position: absolute;
-	background-image: url(../img/kukka.png);
-    background-position: -272px -775px;
-    width: 24px;
-    height: 24px;
-    background-size: 1252px 845px;
-    top: 117px;
-    left: 35px;
-}
+/* .qnaList_answer::before { */
+/* 	content: ''; */
+/* 	display: block; */
+/*     position: absolute; */
+/* 	background-image: url(../img/kukka.png); */
+/*     background-position: -272px -775px; */
+/*     width: 24px; */
+/*     height: 24px; */
+/*     background-size: 1252px 845px; */
+/*     top: 117px; */
+/*     left: 35px; */
+/* } */
 
 .qnaList_div4 {
 	width: 441.73px;
