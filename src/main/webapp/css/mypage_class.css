@@ -2,7 +2,7 @@
 
 #myclass_container {
 	display: inline-block;
-    position: absolute;
+    position: relative;
     margin-left: 108px;
 }
 

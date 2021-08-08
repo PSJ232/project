@@ -247,7 +247,7 @@ switch (i_category) {
 									</div>
 									<div class="check_address_right" style="display: none;">
 										<label class="label_name" id="label_name_date">주소검색<span class="required_mark"> *</span></label>
-										<input class="address_option" id="sample6_address" type="text" name="address_option" placeholder="주소 검색" required onclick="sample6_execDaumPostcode()">
+										<input class="address_option" id="sample6_address" type="text" name="address_option" placeholder="주소 검색" required onclick="sample6_execDaumPostcode()" readonly>
 									</div>	
 								</div>
 							<%}else{ %> <!-- 일반배송 경유 접속시 표시 -->
@@ -376,7 +376,11 @@ switch (i_category) {
 							%>
 								<tr onclick="$(this).next('tr').toggle()">
 									<td class="td1"><%=rate %></td>
-									<td class="td2"><%=rbList.get(i).getR_title() %><span class="icon_img"></span></td>
+									<td class="td2">
+										<%=rbList.get(i).getR_title() %>
+										<%if(rbList.get(i).getR_img()!=null){ %>
+										<span class="icon_img"></span><%} %>
+									</td>
 									<td class="td3"><%=editId %>님</td>
 									<td class="td4"><%=rbList.get(i).getR_rdate() %></td>
 								</tr>

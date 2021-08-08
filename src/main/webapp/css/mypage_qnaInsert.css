@@ -5,7 +5,11 @@
   margin: 0;
   box-sizing: inherit;
 }
-
+.container {
+		display: flex;
+		width: 1240px;
+		margin: 100px auto;
+}
 body {
   box-sizing: border-box;
 }
