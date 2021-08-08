@@ -9,7 +9,7 @@ import static db.JdbcUtil.*;
 
 public class ReservListService {
 
-	public ArrayList<ClassBean> getClassList() {
+	public ArrayList<ClassBean> getClassShopList() {
 		System.out.println("ReservListService - getClassList()");
 		ArrayList<ClassBean> classList = null;
 		
@@ -17,7 +17,7 @@ public class ReservListService {
 		ClassDAO classDAO = ClassDAO.getInstance();
 		classDAO.setConnection(con);
 		
-		classList = classDAO.getStartClassList();
+		classList = classDAO.getClassShopList();
 		
 		close(con);
 		

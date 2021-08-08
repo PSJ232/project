@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<ClassBean> classReservList = (ArrayList<ClassBean>) request.getAttribute("classList");
+	ArrayList<ClassBean> classList = (ArrayList<ClassBean>) request.getAttribute("classList");
 %>
 <!DOCTYPE html>
 <html>
@@ -42,33 +42,41 @@
 			<div id="shop_container">
 				<table class="quick_list_layout">
 					<%
-					for (ClassBean classList : classReservList) {
+					for (int i = 0; i < classList.size(); i++) {
+						if(i != 0 && !classList.get(i).getClass_subject().equals(classList.get(i-1).getClass_subject()) || i == 0){
 						%> 
+						
 						<tbody class="class_item_box">
 							<tr>
 								<td>
-									<a href="ClassReserv.od?f_id=<%=classList.getClass_id()%>">
-										<img src="img_upload/<%=classList.getClass_main_img()%>" class="quick_item_img">
+									<a href="ClassReserv.od?f_id=<%=classList.get(i).getClass_id()%>">
+										<img src="img_upload/<%=classList.get(i).getClass_main_img()%>" class="quick_item_img">
 									</a>
 								</td>
 							</tr>
 							<tr class="quick_item_name">
 								<td>
-									<a href="ClassReserv.od?f_id=<%=classList.getClass_id()%>"><%=classList.getClass_subject()%></a>
+									<a href="ClassReserv.od?f_id=<%=classList.get(i).getClass_id()%>"><%=classList.get(i).getClass_subject()%></a>
 								</td>
 							</tr>
 							<tr class="quick_item_price">
 								<td>
-									<span><%=classList.getClass_price()%>원</span>
+									<span><%=classList.get(i).getClass_price()%>원</span>
 								</td>
 							</tr>
 							<tr class="quick_item_size">
 								<td>
-									<span class="quick_item_size_icon"><%=classList.getClass_place()%></span>
+								<%for(int j = 0; j < classList.size(); j++){ 
+									if(classList.get(i).getClass_subject().equals(classList.get(j).getClass_subject())){
+								%>
+									<span class="quick_item_size_icon"><%=classList.get(j).getClass_place()%></span>
+								<%}
+								} %>
 								</td>
 							</tr>
 						</tbody>
 						<%
+						}else continue;
 					}
 					%>
 				</table>

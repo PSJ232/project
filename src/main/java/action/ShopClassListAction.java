@@ -18,7 +18,7 @@ public class ShopClassListAction implements Action {
 		System.out.println("ShopClassListAction - execute");
 		ReservListService reservListService = new ReservListService();
 		
-		ArrayList<ClassBean> classList = reservListService.getClassList();
+		ArrayList<ClassBean> classList = reservListService.getClassShopList();
 
 		request.setAttribute("classList", classList);
 		

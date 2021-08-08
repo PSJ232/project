@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import vo.ClassBean;
 import vo.ClassDetailBean;
+import vo.DetailBean;
 
 import static db.JdbcUtil.*;
 
@@ -336,5 +337,33 @@ public class ClassDAO {
 		return cb;
 	}
 	
+	public ArrayList<ClassBean> getClassShopList(){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ClassBean> classList = new ArrayList<ClassBean>();
+		try {
+			String sql = "SELECT DISTINCT f.f_id,f.f_subject, fd.fd_place, f.f_price, f.f_main_img "
+					+ "FROM fclass f, fclass_detail fd "
+					+ "WHERE f.f_id=fd.f_id "
+					+ "ORDER BY f.f_subject";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ClassBean cb = new ClassBean();
+				cb.setClass_id(rs.getInt("f_id"));
+				cb.setClass_subject(rs.getString("f_subject"));
+				cb.setClass_place(rs.getString("fd_place"));
+				cb.setClass_price(rs.getInt("f_price"));
+				cb.setClass_main_img(rs.getString("f_main_img"));
+				classList.add(cb);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문오류!(ClassDAO getClassShopList()) - " + e.getMessage());
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return classList;
+	}
 	
 }
