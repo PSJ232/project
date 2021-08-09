@@ -154,26 +154,3 @@
 	/* 	margin-top: 150px; */
 	line-height: 2.0;
 }
-
-#mypage_confirmPurchase_h1 {
-	font-size: 30px;
-	font-weight: 700;
-	margin-bottom: 50px;
-}
-
-#mypage_confirmPurchase_h3 {
-	font-size: 20px;
-	font-weight: 500;
-}
-
-#mypage_confirmPurchase_cbtn {
-	width: 80px;
-	height: 30px;
-	margin: 10px;
-	border-radius: 10px;
-	background-color: #aaaaaa;
-	border: none;
-	font-size: 15px;
-	font-weight: 500;
-	color: #f7f7f7;
-}

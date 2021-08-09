@@ -95,37 +95,48 @@
 #mypage_reviewBefore_situation {
 	text-align: center;
 	font-size: 15px;
-	font-weight: 500;
 	border-bottom: 1px solid #eeeeee;
+	font-weight: 400;
+	color: #222;
+}
+
+#mypage_reviewBefore_situation span {
+	font-size: 12px;
+	font-weight: 500;
+	color: #49e497;
 }
 
 #mypage_reviewBefore_td {
-	margin: 0;
 	text-align: left;
+	border-bottom: 1px solid #eeeeee;
+}
+
+#mypage_reviewBefore_td dl {
+	height: 160px;
+	padding: 22px 0 0px 20px;
+	border-right: solid 1px #eeeeee;
+	border-left: solid 1px #eeeeee;
 }
 
 #mypage_reviewBefore_img {
-	width: 100px;
-	height: auto;
-	background: no-repeat;
-	background-size: contain;
-	padding: 0;
+	width: 120px;
+	height: 120px;
 	float: left;
+	margin-right: 20px;
 }
 
 #mypage_reviewBefore_span_one {
-	font-weight: 500;
-	margin: 10px;
+	font-weight: 400;
+	margin: 7px;
 	font-size: 15px;
-	text-align: center;
+	color: #222;
 }
 
 #mypage_reviewBefore_span_two {
-/* 	color: #aaaaaa; */
-	margin: 10px;
-	font-size: 15px;
+	margin: 3px;
+	font-size: 13px;
 	font-weight: 300;
-	text-align: center;
+	color: #999999;
 }
 
 #mypage_reviewBefore_btn{

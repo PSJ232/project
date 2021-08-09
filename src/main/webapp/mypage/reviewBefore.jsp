@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="vo.MemberBean"%>
 <%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.ItemBean"%>
@@ -120,14 +121,17 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							+ nonOrderArrayList.get(i).getO_gdiscount() / 100) * 100;
 						%>
 						<tr id="mypage_reviewBefore_tr">
-							<td id="mypage_reviewBefore_situation" ><%=nonOrderArrayList.get(i).getO_rdate()%></td>
-							<td id="mypage_reviewBefore_situation" >
-							<dl id="mypage_reviewBefore_td">
+							<td id="mypage_reviewBefore_situation" ><%=nonOrderArrayList.get(i).getO_rdate()%>
+							<a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><span><br>상세보기</span></a></td>
+							
+							<td id="mypage_reviewBefore_td">
+							<dl>
 								<dt id="mypage_reviewBefore_img"><img id="mypage_reviewBefore_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
-								<dt id="mypage_reviewBefore_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
+								<dt id="mypage_reviewBefore_span_one"><a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
 								<dt id="mypage_reviewBefore_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dt>
-								<dt id="mypage_reviewBefore_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
-								<dt id="mypage_reviewBefore_span_one">가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>	/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
+								<dt id="mypage_reviewBefore_span_two">받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
+								<dt id="mypage_reviewBefore_span_one"><%=NumberFormat.getInstance().format((int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100)%>원
+										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
 							</dl>
 							</td>
 							<td id="mypage_reviewBefore_situation"><a href="ReviewInsert.rv?od_id=<%=nonOrderDetailArrayList.get(i).getOd_id()%>">리뷰 작성</a></td>
@@ -170,17 +174,18 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							int sumAmount = (orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point()
 							+ orderArrayList.get(i).getO_gdiscount() / 100) * 100;
 						%>
-						<tr>
-							<td><%=orderArrayList.get(i).getO_rdate()%></td>
-							<td>
-							<dl id="mypage_reviewBefore_td">
+						<tr id="mypage_reviewBefore_tr">
+							<td id="mypage_reviewBefore_situation"><%=orderArrayList.get(i).getO_rdate()%>
+							<a href="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id()%>"><span><br>상세보기</span></a></td>
+							<td id="mypage_reviewBefore_td">
+							<dl>
 								<dt id="mypage_reviewBefore_img"><img id="mypage_reviewBefore_img" src="./admin_layout/upload/<%=itemArrayList.get(i).getI_img() %>"/></dt>
-								<dt id="mypage_reviewBefore_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id()%>"><%=itemArrayList.get(i).getI_name()%></a></dt>
-								<dd id="mypage_reviewBefore_span_two">수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date()%></dd>
-								<dt id="mypage_reviewBefore_span_two"> 받는 분 : <%=orderArrayList.get(i).getO_receiver()%></dt>
-								<dd id="mypage_reviewBefore_span_one">가격 :<%=(int) (itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100%>
-										/ <%=orderDetailArrayList.get(i).getOd_qty()%>개</dd>
-							</dl>
+								<dt id="mypage_reviewBefore_span_one"><a href="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id()%>"><%=itemArrayList.get(i).getI_name()%></a></dt>
+								<dt id="mypage_reviewBefore_span_two">수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date()%></dt>
+								<dt id="mypage_reviewBefore_span_two"><%if(orderDetailArrayList.get(i).getL_id()!=0){%>추가상품 : 편지 추가<%}%></dt>
+								<dt id="mypage_reviewBefore_span_two">받는 분 : <%=orderArrayList.get(i).getO_receiver()%></dt>
+								<dt id="mypage_reviewBefore_span_one"><%=NumberFormat.getInstance().format((int) (itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100)%>원
+										/ <%=orderDetailArrayList.get(i).getOd_qty()%>개</dt></dl>
 							</td>
 							<!-- 				삭제된 리뷰와, 수정 및 삭제가 가능한 리뷰를 구분	   			 -->
 							<%
