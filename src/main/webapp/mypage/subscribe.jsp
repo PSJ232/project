@@ -188,7 +188,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 					} else {
 						int ccount = 0;
 						for(int i=0; i<orderArrayList.size(); i++) {
-							String invoiceNo = nonOrderDetailArrayList.get(i).getOd_invoice();
+							String invoiceNo = orderDetailArrayList.get(i).getOd_invoice();
 						%>
 	
 							<tr id="mysubscribe_order_tr">
