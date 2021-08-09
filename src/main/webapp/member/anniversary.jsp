@@ -24,7 +24,7 @@
 							<div class="row">
 								<div class="ann_name">기념일<span class="textStar">*</span></div>
 							    <div class="ann_input">
-							    	<input type="text" class="textBox" name="a_date" placeholder="날짜를 선택해주세요."><!-- (클릭하면 달력뜨도록 가능?) -->
+							    	<input type="date" class="textBox" name="a_date" placeholder="날짜를 선택해주세요."><!-- (클릭하면 달력뜨도록 가능?) -->
 							    </div>
 							</div>
 							
@@ -77,7 +77,7 @@ AnniversaryBean annDetail = (AnniversaryBean) request.getAttribute("annDetail");
 							<div class="row">
 								<div class="ann_name">기념일<span class="textStar">*</span></div> 
 								<div class="ann_input">
-									<input type="text" class="textBox" name="a_date" value="<%=annDetail.getA_date()%>"><!-- 클릭하면 달력뜨도록 가능?)--><br>
+									<input type="date" class="textBox" name="a_date" value="<%=annDetail.getA_date()%>"><!-- 클릭하면 달력뜨도록 가능?)--><br>
 								</div>
 							</div>
 							
