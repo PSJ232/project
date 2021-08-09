@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.ItemBean"%>
 <%@page import="vo.OrderBean"%>
@@ -133,16 +134,18 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 						<tr id="mypage_orderHistory_tr">
 							<%if (nonCol.contains(i)) {%>
-							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=nonOrderArrayList.get(i).getO_rdate()%></td>
+							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=nonOrderArrayList.get(i).getO_rdate()%>
+							<a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><span><br>상세보기</span></a></td>
 							<% count++; 
 							} else {}%>
 							<td id="mypage_orderHistory_td">
 							<dl>
 								<dt id="mypage_orderHistory_img"><img id="mypage_orderHistory_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
-								<dt id="mypage_orderHistory_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
+								<dt id="mypage_orderHistory_span_one"><a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
 								<dt id="mypage_orderHistory_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dt>
-								<dt id="mypage_orderHistory_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
-								<dt id="mypage_orderHistory_span_one">가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
+								<dt id="mypage_orderHistory_span_two"><%if(nonOrderDetailArrayList.get(i).getL_id()!=0){%>추가상품 : 편지 추가<%}%></dt>
+								<dt id="mypage_orderHistory_span_two">받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
+								<dt id="mypage_orderHistory_span_one"><%=NumberFormat.getInstance().format((int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100)%>원
 										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
 							</dl>
 							</td>

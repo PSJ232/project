@@ -95,38 +95,36 @@
 #mypage_orderHistory_situation {
 	text-align: center;
 	font-size: 15px;
-	font-weight: 500;
 	border-bottom: 1px solid #eeeeee;
+	font-weight: 400;
+	color: #222;
 }
 
 #mypage_orderHistory_td {
-	margin: 0;
 	text-align: left;
 	border-bottom: 1px solid #eeeeee;
 }
 
 #mypage_orderHistory_img {
-	width: 100px;
-	height: auto;
-	background: no-repeat;
-	background-size: contain;
-	padding: 0;
+	width: 120px;
+	height: 120px;
 	float: left;
+	margin-right: 20px;
 }
 
 #mypage_orderHistory_span_one {
-	font-weight: 500;
-	margin: 10px;
+	font-weight: 400;
+	margin: 7px;
 	font-size: 15px;
-	text-align: center;
+	color: #222;
 }
 
 #mypage_orderHistory_span_two {
-	/* 	color: #aaaaaa; */
-	margin: 10px;
-	font-size: 15px;
+	margin: 3px;
+	font-size: 13px;
 	font-weight: 300;
 	text-align: center;
+	color: #999999;
 }
 
 #mypage_orderHistory_btn {
@@ -143,7 +141,7 @@
 
 .mypage_confirmPurchase_all {
 	text-align: center;
-	/* 	margin-top: 150px; */
+/* 		margin-top: 150px; */
 	line-height: 2.0;
 }
 
@@ -168,4 +166,26 @@
 	font-size: 15px;
 	font-weight: 500;
 	color: #f7f7f7;
+}
+
+
+
+/* 신종현 추가 공통 적용 부분 */
+
+#mypage_orderHistory_td dt {
+	text-align: left;
+} 
+
+#mypage_orderHistory_td dl {
+	height: 160px;
+	padding: 22px 0 0px 20px;
+	border-right: solid 1px #eeeeee;
+	border-left: solid 1px #eeeeee;
+}
+
+#mypage_orderHistory_situation span {
+	font-size: 12px;
+	font-weight: 500;
+	color: #49e497;
+	
 }
