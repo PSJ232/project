@@ -203,9 +203,9 @@
 									</div>
 								</div>
 								
-							</div>								
-						</form>						
-
+							</div>
+						</form>
+						
 					</div><!-- inner닫 -->
 				</div> <!-- inbox 닫 -->							
 		 	</div> <!-- update_box 닫 -->			 	
