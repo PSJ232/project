@@ -6,7 +6,7 @@
 }
 #class_status {
 	margin-top: 10px;
-	margin-bottom: 15px;
+	margin-bottom: 25px;
 	font-size: 20px;
 	width: 700px;
 	
@@ -21,15 +21,15 @@
 }
 
 #img {
-		width: 230px;
-		height: 180px;
+		width: 300px;
+		height: 190px;
 		border-radius: 10px;
 		border: 1px solid #fff;
 }
 
 .class_content {
 	margin-bottom: 20px;
-	width: 800px ;
+	width: 900px ;
 	height: 150px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -51,7 +51,7 @@
 	border-radius: 7px;
 	background-color: #FFDF24;
 	font-size: 20px;
-	margin-left: 650px;
+	margin-left: 750px;
 	margin-bottom: 20px;
 }
 #btn:hover {

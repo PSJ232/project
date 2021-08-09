@@ -29,7 +29,6 @@ public class ClassDetailListService {
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
 		ArrayList<ReservBean> resultList = reservDAO.getReservInfo(place, time, date);
-		
 		for(int i = 0; i < resultList.size(); i++) {
 			result.append("[{\"value\": \"" + resultList.get(i).getR_id() + "\"},");
 			result.append("{\"value\": \"" + resultList.get(i).getM_id() + "\"},");

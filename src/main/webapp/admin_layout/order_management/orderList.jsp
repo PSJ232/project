@@ -70,9 +70,6 @@
 		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 	<div class="container">
-		<div class="chart-div">
-	        <canvas id="line" width="800px" height="400px"></canvas>
-   		</div>
 		<fieldset>
 			<legend>주문현황</legend>
 			<div id="order_status">

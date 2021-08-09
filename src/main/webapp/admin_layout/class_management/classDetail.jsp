@@ -14,6 +14,11 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 | 클래스 상세</title>
+<style>
+	.selected {
+		text-decoration: line-through;
+	}
+</style>
 <link rel="stylesheet" href="./css/admin.css">
 <link rel="stylesheet" href="./css/admin_class_detail.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -41,12 +46,23 @@
 		if(request.readyState == 4 && request.status == 200){
 			var object = eval('('+request.responseText+')'); 
 			var result = object.result;
+			
+			var num = 0;
 			for(var i = 0; i < result.length; i++){
 				var row = table.insertRow(0);
 				for(var j = 0; j < result[i].length; j++){
+					if(j == 2) num+= Number(result[i][j].value[0]);
 					var cell = row.insertCell(j);
 					cell.innerHTML = result[i][j].value;
 				}
+			}
+			if(num >= <%=classBean.getClass_max_member()%>){
+				var soldout = document.getElementById("soldout");
+				soldout.innerHTML = "(매진)";
+				soldout.style.color = "red";
+				console.log(soldout.parentNode.classList);
+				soldout.parentNode.classList += ' selected';
+				console.log(soldout.parentNode.classList);
 			}
 		}
 	}
@@ -95,10 +111,9 @@
 			%></span>
 			<br><br>
 			<label>비용 </label><input type="text" value="<%=price %>" readonly><br>
-			<label>정원 </label><input type="text" value="<%=classBean.getClass_max_member() %>" readonly><br>
+			<label>정원 </label><input type="text" value="<%=classBean.getClass_max_member() %>명" readonly><br>
 			<label>게시일자 </label><input type="text" value="<%=classBean.getClass_create_date() %>" readonly><br>
 			<label>클래스일자 </label><input type="text" id="date" value="<%=classBean.getClass_date() %>" readonly><br>
-			<label>조회수 </label><input type="text" value="<%=classBean.getClass_readcount() %>" readonly><br>
 			<label>클래스설명 </label><input type="text" value="<%=classBean.getClass_desc() %>" readonly><br>
 			<input type="button" name="listBtn" value="목록" onclick="location.href='ClassList.ad'">
 			<input type="button" name="modifyBtn" value="수정" onclick="location.href='ClassModifyForm.ad?class_num=<%=classBean.getClass_id()%>'">
@@ -109,7 +124,8 @@
 		<h1>예약정보</h1>
 		<%
 			for(Time time : selectedTimeList){
-				%><a href="#" class="times" onclick="getReservInfo(this)"><%=time%></a><%
+				%><a href="#" class="times" onclick="getReservInfo(this)"><%=time%><span id="soldout"></span></a><%
+				
 			}
 		%>
 		<table id="reserv_table" border="1">
