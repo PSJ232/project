@@ -1,22 +1,38 @@
 @charset "UTF-8";
-
-*, *::before, *::after {
-	padding: 0;
-	margin: 0;
-	box-sizing: inherit;
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
 }
 
-body {
-	box-sizing: border-box;
-}
-
-anniversary_container {
+.anniversary_container {
 	max-width: 490px;
-	padding: 40px 65px;
+	padding: 10px 25px;
 }
 
-.top_banner span {
-    height: auto;
+.anniversary_container .page_title{
+	position: static;
+	display: block;
+	max-width: 490px;
+    margin: 0 auto;
+    padding: 0 20px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;   
+}
+
+.page_title {
+	top: 36px;
+	position: static;
+	display: block;
+	max-width: 490px;
+	margin: 0 auto;
+	padding: 0 30px;
+	text-align: center;	
+}
+
+.page_title span {
     padding: 40px 0;
     border-bottom: none;
     font-size: 30px;
@@ -26,54 +42,102 @@ anniversary_container {
     color: #333;
 }
 
-.anniversary_container .ann_content_box {
+.ann_content_box {
 	margin-top: 15px;
 	padding-top: 20px;
-	border-top: #d3d3d3 1px solid;
 }
 
-.anniversaryForm {
-	display: inline-block;
-	box-sizing: content-box;
-	width: 70%;
+.anniversary_container .ann_content_box .inbox {
+	 position: relative;
+}
+
+.anniversary_container .ann_content_box .inbox .inner {
+	max-width: 490;
+    margin: 15px 5px;
+}
+
+.anniversary_container .ann_content_box .inbox .inner .ann_form {	
 	line-height: 25px;
 	text-align: center;
 	margin-top: 35px;
 }
 
 .ann_content_box .row {
+	display: block;
+    margin: 0;
 	padding: 0 5px;
+	
 }
 
 .ann_content_box .row .ann_name {
-	float: left;
-	width: 110px;
-	padding-top: 8px;
-	margin-right: 20px;
-	font-size: 18px;
-	line-height: 27px;
-	font-weight: 300;
-	letter-spacing: -.27px;
-	color: #222;
+    float: left;
+    width: 120px;
+    padding-top: 10px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    letter-spacing: -.24px;
+    color: #222;
+    position: relative;
 }
 
 .ann_content_box .row .ann_input {
-	width: 350px;
-	padding-top: 8px;
-	margin-right: 20px;
+	margin-top: 0;
+    overflow: hidden;
+    padding-right: 30px;
+    position: relative;
+    display: block;
 }
 
-.formAnniversary li {
-	margin-bottom: 30px;
+.ann_content_box .row .ann_input .textBox {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: 0 0;
+    outline: 0;
+    display: block;
+    width: 350px;
+    height: 44px;
+    margin-right: 110px;
+    padding: 0 20px;
+    border-radius: 5px;
+    border: #d3d3d3 1px solid;
+    font-size: 14px;
+    line-height: 44px;
+    font-weight: 300;
+    letter-spacing: -.21px;
+    color: #222;
 }
 
 .annSelect {
-	width: 300px;
-	height: 44px;
+	width: 200px;
+	height: 24px;
 	border: 1px solid #eaeaea;
 	border-radius: 5px;
 	font-size: 14px;
 	color: #000;
 	outline: none;
 	display: inline-block;
+}
+
+.submit_ area {
+	padding-bottom: 20px;	
+}
+
+.btn_submit {
+	padding: 0;
+    margin: 0;
+    border: none;
+	background: #ececec;
+    cursor: default;
+    display: block;
+    width: 350px;
+    height: 44px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 44px;
+    font-weight: 300;
+    letter-spacing: -.21px;
+    color: #222;
+    text-align: center;
 }
