@@ -95,8 +95,11 @@
 								<div class="row">
 									<div class="update_name">성별</div>
 									<div class="update_input">
-										<input type="radio" id="gender0" name="m_gender" value="0" <%if(memberMypageDetail.getM_gender()==0){%>checked<%}%>><label for="gender0" class="gender_label">남성</label>
-										<input type="radio" id="gender1" name="m_gender" value="1" <%if(memberMypageDetail.getM_gender()==1){%>checked<%}%>><label for="gender1" class="gender_label active">여성</label>
+										<input type="radio" id="gender0" name="m_gender" value="0" <%if(memberMypageDetail.getM_gender()==0){%>checked<%}%>>
+										<label for="gender0" class="gender_label <%if(memberMypageDetail.getM_gender()==0){%>active<%}%>">남성</label>
+										<input type="radio" id="gender1" name="m_gender" value="1" <%if(memberMypageDetail.getM_gender()==1){%>checked<%}%>>
+										<label for="gender1" class="gender_label <%if(memberMypageDetail.getM_gender()==1){%>active<%}%>">여성</label>
+									</div>
 						  		</div>
 						  		
 							</div> <!-- update_info 닫 -->
