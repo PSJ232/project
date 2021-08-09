@@ -36,14 +36,12 @@ $(document).ready(function(){
 // 멤버 정보
 String m_id = (String)session.getAttribute("m_id");
 MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail");
-
 ArrayList<OrderBean> nonOrderArrayList = (ArrayList<OrderBean>)request.getAttribute("nonOrderArrayList");
 ArrayList<OrderBean> orderArrayList = (ArrayList<OrderBean>)request.getAttribute("orderArrayList");
 ArrayList<ItemBean> nonItemArrayList = (ArrayList<ItemBean>)request.getAttribute("nonItemArrayList");
 ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>)request.getAttribute("itemArrayList");
 ArrayList<OrderDetailBean> nonOrderDetailArrayList = (ArrayList<OrderDetailBean>)request.getAttribute("nonOrderDetailArrayList");
 ArrayList<OrderDetailBean> orderDetailArrayList = (ArrayList<OrderDetailBean>)request.getAttribute("orderDetailArrayList");
-
 // 출력되는 행의 컬럼번호 받아오기(해당 행에만 <td rowspan="">부여)
 // 주문내역의 o_id에 따른 번호 리스트
 String o_id = "";
