@@ -109,8 +109,9 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 						%>
 						<tbody class="mypage_reviewBefore_can">
 							<tr>
-								<td colspan="3">작성 가능한 후기가 존재하지 않습니다. 
-								<input id="mypage_reviewBefore_btn" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
+								<td colspan="3">
+									<span>작성 가능한 후기가 존재하지 않습니다.</span> 
+									<input class="btn_wide btn_yellow" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
 								</td>
 							</tr>
 						</tbody>
