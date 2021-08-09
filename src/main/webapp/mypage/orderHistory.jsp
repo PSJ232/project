@@ -18,20 +18,22 @@
 	  rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-</head>
 <script type="text/javascript">
-$(document).ready(function() {
-	$('ul.tabs li').click(function() {
-		var tab_id = $(this).attr('data-tab');
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
-		$('.tabs').find('li').removeClass('current_clicked');
-		$(this).addClass('current_clicked');
-		$("#"+tab_id).addClass('current');
-	})
-})
+	$(document).ready(function() {
+		$('ul.tabs li').click(function() {
+			var tab_id = $(this).attr('data-tab');
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+			$('.tabs').find('li').removeClass('current_clicked');
+			$(this).addClass('current_clicked');
+			$("#"+tab_id).addClass('current');
+		})
+	});
+	
+	function confirmPurchase(od_id){
+		window.open("ConfirmPurchase.od?od_id="+od_id, "구매확정", "width=400, height=400, left=500, top=100");
+	}
 </script>
-
 <%
 // 멤버 정보
 String m_id = (String) session.getAttribute("m_id");
@@ -70,11 +72,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 	o_id = orderArrayList.get(i).getO_id() + "";
 }
 %>
-<script type="text/javascript">
-	function confirmPurchase(od_id){
-		window.open("ConfirmPurchase.od?od_id="+od_id, "구매확정", "width=400, height=400, left=500, top=100");
-	}
-</script>
+</head>
 <body>
 	<!-- 헤더 들어가는곳 -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -90,7 +88,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 		<!-- 본문 내용 -->
 
-		<div class="mypage_orderHistory_all">
+		<section class="mypage_orderHistory_all">
 			<h2 id="mypage_orderHistory_title">주문내역/배송조회</h2>
 
 			<!--   -------------------------------------------------- -->
@@ -109,18 +107,20 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<col width="20%">
 						</colgroup>
 						<thead class="mypage_orderHistory_head">
+						<tr>
 							<th><span>주문 일자</span></th>
 							<th><span>상품 정보</span></th>
 							<th><span>상태</span></th>
+						</tr>
 						</thead>
 
 						<%
 						if (nonOrderDetailArrayList.isEmpty()) {
 						%>
 						<tbody class="mypage_orderHistory_can">
-							<tr >
+							<tr>
 								<td colspan="3">
-									<span id="mypage_orderHistory_can" > 주문 / 배송내역이 존재하지 않습니다.</span>
+									<span> 주문 / 배송내역이 존재하지 않습니다.</span>
 									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flower.shop'" value="꽃다발 보러가기">
 								</td>
 							</tr>
@@ -224,7 +224,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 				</div>
 
 			</div>
-		</div>
+		</section>
 
 	</div>
 

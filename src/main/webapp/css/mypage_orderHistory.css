@@ -1,54 +1,55 @@
 @charset "UTF-8";
 
 .tabs {
-	list-style: none; 
+	list-style: none;
 	display: flex;
-} 
+}
 
-.tabs li{  
+.tabs li{
+	width: 360px;
 	background: none;
     cursor: pointer;
     font-size: 15px;
     color: #8e8d8d;
     font-weight: 300;
-    padding: 13px 136px;
+    padding: 13px 0;
+    text-align: center;
 }  
 
 .tab-content {
 	display: none;
 }
 
-.current{ 
-	display: inherit; 
-} 
+.current {
+	display: inherit;
+}
 
 .tabs .current_clicked {
 	border: 1px solid #e0e0e0;
-    border-bottom: none;
-    border-top: 2px solid #ffcd32;
+	border-bottom: none;
+	border-top: 2px solid #ffcd32;
 }
 
 .tab-link {
 	border: 1px solid #e0e0e0;
 }
 
-
 /* 본문 */
 .mypage_orderHistory_all {
 	display: inline-grid;
-    position: relative;
-    margin-left: 108px;
+	position: relative;
+	margin-left: 108px;
 }
 
 #mypage_orderHistory_title {
 	font-size: 22px;
-    font-weight: 500;
-    line-height: 35px;
-    margin-bottom: 15px;
+	font-weight: 500;
+	line-height: 35px;
+	margin-bottom: 15px;
 }
 
 .mypage_orderHistory_main {
-    margin-top: 39px;
+	margin-top: 39px;
 }
 
 #mypage_orderHistory_table {
@@ -58,50 +59,45 @@
 }
 
 .mypage_orderHistory_head th:first-child span {
-    padding: 0px 38px;
-    display: inline-block;
+	padding: 0px 38px;
+	display: inline-block;
 }
 
 .mypage_orderHistory_head th span {
-    font-size: 13px;
-    font-weight: 500;
+	font-size: 13px;
+	font-weight: 500;
 }
 
 .mypage_orderHistory_head th {
 	background-color: #f7f7f7;
 	border-top: 1px solid #d2d1d1;
-    padding: 20px 15px;
+	padding: 20px 15px;
 }
 
 .mypage_orderHistory_head th:not(:last-child) {
 	border-right: 1px solid #e8e8e8;
 }
 
-
 .mypage_orderHistory_can {
-    width: 100%;
-    height: 300px;
-    text-align: center;
+	width: 100%;
+	height: 300px;
+	text-align: center;
 }
 
 .mypage_orderHistory_can tr td span {
 	display: block;
-    margin: 18px 0;
-    font-size: 15px;
-    color: #222;
+	margin: 18px 0;
+	font-size: 15px;
+	color: #222;
 }
 
 /* -------------------------  */
-
-
-
 #mypage_orderHistory_situation {
 	text-align: center;
 	font-size: 15px;
 	font-weight: 500;
-	border-bottom: 1px solid #aaaaaa; 	
+	border-bottom: 1px solid #aaaaaa;
 }
-
 
 #mypage_orderHistory_td {
 	margin: 0;
@@ -126,15 +122,14 @@
 }
 
 #mypage_orderHistory_span_two {
-/* 	color: #aaaaaa; */
+	/* 	color: #aaaaaa; */
 	margin: 10px;
 	font-size: 15px;
 	font-weight: 300;
 	text-align: center;
 }
 
-
-#mypage_orderHistory_btn{
+#mypage_orderHistory_btn {
 	width: 80px;
 	height: 30px;
 	margin: 10px;
@@ -146,25 +141,24 @@
 	color: #f7f7f7;
 }
 
-
-
-
-.mypage_confirmPurchase_all{
+.mypage_confirmPurchase_all {
 	text-align: center;
-/* 	margin-top: 150px; */
+	/* 	margin-top: 150px; */
 	line-height: 2.0;
 }
 
-#mypage_confirmPurchase_h1{
-	 font-size: 30px;
-	 font-weight: 700;
-	 margin-bottom: 50px;	
+#mypage_confirmPurchase_h1 {
+	font-size: 30px;
+	font-weight: 700;
+	margin-bottom: 50px;
 }
-#mypage_confirmPurchase_h3{
+
+#mypage_confirmPurchase_h3 {
 	font-size: 20px;
 	font-weight: 500;
 }
-#mypage_confirmPurchase_cbtn{
+
+#mypage_confirmPurchase_cbtn {
 	width: 80px;
 	height: 30px;
 	margin: 10px;

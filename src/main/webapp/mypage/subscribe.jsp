@@ -29,12 +29,8 @@ $(document).ready(function(){
 		$(this).addClass('current_clicked');
 		$("#"+tab_id).addClass('current');
 	})
-
 })
 </script>
-<style type="text/css">
-
-</style>
 <%  
 // 멤버 정보
 String m_id = (String)session.getAttribute("m_id");
@@ -103,9 +99,11 @@ for(int i =0; i<orderArrayList.size(); i++) {
 						<col width="20%">
 					</colgroup>
 					<thead class="mysubscribe_head">
+					<tr>
 						<th><span>첫 구독일</span></th>
 						<th><span>상품 정보</span></th>
 						<th><span>상태</span></th>
+					</tr>
 					</thead>
 	
 				<%
