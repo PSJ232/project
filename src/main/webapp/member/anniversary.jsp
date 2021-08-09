@@ -15,6 +15,7 @@
 		<div class="page_title">
 			<span class="title">기념일 등록하기</span>
 		</div>	
+		
 		<div class="ann_content_box">
 			<div class="inbox">
 				<div class="inner">

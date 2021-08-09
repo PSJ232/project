@@ -36,14 +36,12 @@ $(document).ready(function(){
 // 멤버 정보
 String m_id = (String)session.getAttribute("m_id");
 MemberBean memberMypageDetail = (MemberBean)request.getAttribute("memberMypageDetail");
-
 ArrayList<OrderBean> nonOrderArrayList = (ArrayList<OrderBean>)request.getAttribute("nonOrderArrayList");
 ArrayList<OrderBean> orderArrayList = (ArrayList<OrderBean>)request.getAttribute("orderArrayList");
 ArrayList<ItemBean> nonItemArrayList = (ArrayList<ItemBean>)request.getAttribute("nonItemArrayList");
 ArrayList<ItemBean> itemArrayList = (ArrayList<ItemBean>)request.getAttribute("itemArrayList");
 ArrayList<OrderDetailBean> nonOrderDetailArrayList = (ArrayList<OrderDetailBean>)request.getAttribute("nonOrderDetailArrayList");
 ArrayList<OrderDetailBean> orderDetailArrayList = (ArrayList<OrderDetailBean>)request.getAttribute("orderDetailArrayList");
-
 // 출력되는 행의 컬럼번호 받아오기(해당 행에만 <td rowspan="">부여)
 // 주문내역의 o_id에 따른 번호 리스트
 String o_id = "";
@@ -190,7 +188,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 					} else {
 						int ccount = 0;
 						for(int i=0; i<orderArrayList.size(); i++) {
-							String invoiceNo = nonOrderDetailArrayList.get(i).getOd_invoice();
+							String invoiceNo = orderDetailArrayList.get(i).getOd_invoice();
 						%>
 	
 							<tr id="mysubscribe_order_tr">
@@ -203,13 +201,13 @@ for(int i =0; i<orderArrayList.size(); i++) {
 								%>
 								<td id="mysubscribe_order_td">
 								<dl>
-								<dt id="mysubscribe_order_img"><img id="mysubscribe_order_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
-									<dt id="mysubscribe_order_span_one"><a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a></dt>
-									<dt id="mysubscribe_order_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %></dt>
+								<dt id="mysubscribe_order_img"><img id="mysubscribe_order_img" src="./admin_layout/upload/<%=itemArrayList.get(i).getI_img() %>"/></dt>
+									<dt id="mysubscribe_order_span_one"><a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a></dt>
+									<dt id="mysubscribe_order_span_two">수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %></dt>
 									<dt id="mysubscribe_order_span_two"><%if(orderDetailArrayList.get(i).getL_id()!=0){%>추가상품 : 편지 추가<%}%></dt>
-									<dt id="mysubscribe_order_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %></dt>
-									<dt id="mysubscribe_order_span_one"><%=NumberFormat.getInstance().format((int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100)%>원
-										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
+									<dt id="mysubscribe_order_span_two"> 받는 분 : <%=orderArrayList.get(i).getO_receiver() %></dt>
+									<dt id="mysubscribe_order_span_one"><%=NumberFormat.getInstance().format((int) (itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100)%>원
+										/ <%=orderDetailArrayList.get(i).getOd_qty()%>개</dt>
 								</dl>
 								</td>
 								<%

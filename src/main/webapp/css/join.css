@@ -201,7 +201,6 @@ label {
     color: #787878;
 }
 
-
 .join_us_box .bottomForm .inner:last-of-type {
     padding-bottom: 100px;
 }
@@ -302,6 +301,10 @@ label {
     border-radius: 5px;
     border: none;    
     cursor: pointer;
+}
+
+.terms_submit  .submit_button .btn_submit:hover {
+	background: #ffcd32;
 }
 
 .terms_conditions, .personal_info {

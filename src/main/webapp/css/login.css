@@ -27,7 +27,7 @@ a:visited {
   text-decoration: none;
 }
 
-a, button {
+a, input[type=button], button, input[type=submit] {
   cursor: pointer;
 }
 /* 로그인 */
@@ -51,7 +51,7 @@ a, button {
 }
 
 .loginbutton {
-	background: #FFE146;
+	background: #ffcd32;
 	border: none;
 	border-radius: 10px;
 	width: 300px;
@@ -62,7 +62,7 @@ a, button {
 }
 
 .joinbutton {
-	background: #79FFCE;
+	background: #46cfa7;
 	border: none;
 	border-radius: 10px;
 	width: 300px;
@@ -86,7 +86,7 @@ a, button {
 
 
 #p1 {
-	color: #6FFFC4;
+	color: #46cfa7;
 	font-weight: 700;
 }
 
