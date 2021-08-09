@@ -131,7 +131,6 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							String invoiceNo = nonOrderDetailArrayList.get(i).getOd_invoice();
 						%>
 
-						<tbody class="mypage_orderHistory_can">
 						<tr id="mypage_orderHistory_tr">
 							<%if (nonCol.contains(i)) {%>
 							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=nonOrderArrayList.get(i).getO_rdate()%></td>
@@ -157,7 +156,6 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<%}
 							%>
 						</tr>
-						</tbody>
 						<%
 						}
 						}
@@ -173,9 +171,11 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<col width="20%">
 						</colgroup>
 						<thead class="mypage_orderHistory_head">
+						<tr>
 							<th><span>주문 일자</span></th>
 							<th><span>상품 정보</span></th>
 							<th><span>상태</span></th>
+						</tr>
 						</thead>
 
 						<%
@@ -192,7 +192,6 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 						<%} else {int ccount = 0;
 						for (int i = 0; i < orderArrayList.size(); i++) {
 						%>
-						<tbody class="mypage_orderHistory_can">
 						<tr>
 							<%if (col.contains(i)) {%>
 							<td rowspan="<%=col.get(ccount + 1) - col.get(ccount)%>"><%=orderArrayList.get(i).getO_rdate()%></td>
@@ -215,7 +214,6 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							}
 							%>
 						</tr>
-						</tbody>
 						<%
 						}
 						}

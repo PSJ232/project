@@ -119,7 +119,6 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							int sumAmount = (nonOrderArrayList.get(i).getO_amount() + nonOrderArrayList.get(i).getO_point()
 							+ nonOrderArrayList.get(i).getO_gdiscount() / 100) * 100;
 						%>
-						<tbody class="mypage_reviewBefore_can">
 						<tr id="mypage_reviewBefore_tr">
 							<td id="mypage_reviewBefore_situation" ><%=nonOrderArrayList.get(i).getO_rdate()%></td>
 							<td id="mypage_reviewBefore_situation" >
@@ -133,7 +132,6 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							</td>
 							<td id="mypage_reviewBefore_situation"><a href="ReviewInsert.rv?od_id=<%=nonOrderDetailArrayList.get(i).getOd_id()%>">리뷰 작성</a></td>
 						</tr>
-						</tbody>
 						<%
 						}
 						}
@@ -149,9 +147,11 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							<col width="20%">
 						</colgroup>
 						<thead class="mypage_reviewBefore_head">
-							<th><span>주문 일자</span></th>
-							<th><span>상품 정보</span></th>
-							<th><span>상태</span></th>
+							<tr>
+								<th><span>주문 일자</span></th>
+								<th><span>상품 정보</span></th>
+								<th><span>상태</span></th>
+							<tr>
 						</thead>
 						
 					<%if (orderDetailArrayList.isEmpty()) { %>
@@ -170,7 +170,6 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							int sumAmount = (orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point()
 							+ orderArrayList.get(i).getO_gdiscount() / 100) * 100;
 						%>
-						<tbody class="mypage_reviewBefore_can">
 						<tr>
 							<td><%=orderArrayList.get(i).getO_rdate()%></td>
 							<td>
@@ -198,7 +197,6 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							%>
 
 						</tr>
-						</tbody>
 						<%
 						}
 						%>
