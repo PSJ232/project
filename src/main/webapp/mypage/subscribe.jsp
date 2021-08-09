@@ -201,13 +201,13 @@ for(int i =0; i<orderArrayList.size(); i++) {
 								%>
 								<td id="mysubscribe_order_td">
 								<dl>
-								<dt id="mysubscribe_order_img"><img id="mysubscribe_order_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
-									<dt id="mysubscribe_order_span_one"><a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a></dt>
-									<dt id="mysubscribe_order_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %></dt>
+								<dt id="mysubscribe_order_img"><img id="mysubscribe_order_img" src="./admin_layout/upload/<%=itemArrayList.get(i).getI_img() %>"/></dt>
+									<dt id="mysubscribe_order_span_one"><a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a></dt>
+									<dt id="mysubscribe_order_span_two">수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %></dt>
 									<dt id="mysubscribe_order_span_two"><%if(orderDetailArrayList.get(i).getL_id()!=0){%>추가상품 : 편지 추가<%}%></dt>
-									<dt id="mysubscribe_order_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %></dt>
-									<dt id="mysubscribe_order_span_one"><%=NumberFormat.getInstance().format((int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100)%>원
-										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
+									<dt id="mysubscribe_order_span_two"> 받는 분 : <%=orderArrayList.get(i).getO_receiver() %></dt>
+									<dt id="mysubscribe_order_span_one"><%=NumberFormat.getInstance().format((int) (itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100)%>원
+										/ <%=orderDetailArrayList.get(i).getOd_qty()%>개</dt>
 								</dl>
 								</td>
 								<%
