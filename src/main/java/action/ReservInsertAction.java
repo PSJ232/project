@@ -36,10 +36,26 @@ public class ReservInsertAction implements Action {
 		String m_id = (String) session.getAttribute("m_id");
 		System.out.println("m_id!: " + m_id);
 		MemberService memberService = new MemberService();
-		MemberBean mb = memberService.selectMember(m_id);
-		//회원 등급 가져오기
-		int g_id = mb.getG_id();
-		float g_discount = memberService.getGradeDetail(g_id);
+		
+		try {
+			MemberBean mb;
+			float g_discount;
+			mb = memberService.selectMember(m_id);
+			//회원 등급 가져오기
+			int g_id = mb.getG_id();
+			g_discount = memberService.getGradeDetail(g_id);
+			request.setAttribute("member", mb);
+			request.setAttribute("grade", g_discount);
+		} catch (NullPointerException e) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('로그인시 수강신청이 가능합니다\\n로그인 페이지로 이동합니다');");
+			out.print("location.href='MemberLogin.me'");
+			out.print("</script>");
+			
+			return forward;
+		}
 		//classDetail 정보
 		ClassDetailViewService classDetailViewService = new ClassDetailViewService();
 		int f_id = Integer.parseInt(request.getParameter("f_id"));
@@ -78,14 +94,12 @@ public class ReservInsertAction implements Action {
 		case 7: startDate = "토"; break;
 		}
 		
-		if(mb!=null&&cb!=null&&cdb!=null) {
+		if(cb!=null&&cdb!=null) {
 			request.setAttribute("r_num", r_num);
-			request.setAttribute("member", mb);
 			request.setAttribute("fclass", cb);
 			request.setAttribute("fclass_detail", cdb);
 			request.setAttribute("startDate", startDate);
 			request.setAttribute("fd_time", fd_time);
-			request.setAttribute("grade", g_discount);
 			forward = new ActionForward();
 			forward.setPath("./reservation/reservInsert.jsp");
 			forward.setRedirect(false);

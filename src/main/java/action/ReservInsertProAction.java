@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import svc.ClassReservService;
 import svc.IdMakerService;
 import svc.ReservInsertProService;
 import svc.ReservSelectIdService;
@@ -21,13 +22,10 @@ public class ReservInsertProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ReservInsertProAction - execute");
 		ActionForward forward = null;
-		
 		ReservBean rb = new ReservBean();
 		rb.setF_id(Integer.parseInt(request.getParameter("f_id")));
-		
 		HttpSession session = request.getSession();
 		rb.setM_id((String)session.getAttribute("m_id"));
-
 		rb.setR_payment(request.getParameter("r_payment"));
 		rb.setFd_id(Integer.parseInt(request.getParameter("fd_id")));
 		rb.setR_num(Integer.parseInt(request.getParameter("r_num")));
@@ -36,6 +34,12 @@ public class ReservInsertProAction implements Action {
 		IdMakerService idMakerService = new IdMakerService(); // 번호생성 알고리즘 Service 
 		int r_id = idMakerService.newId("reservation", "r_id", 1);
 		rb.setR_id(r_id);
+		
+		//최종 인원 확인
+		ClassReservService classReservService = new ClassReservService();
+		boolean isFull = classReservService.numCheck(Integer.parseInt(request.getParameter("f_id")), Integer.parseInt(request.getParameter("r_num")));
+		System.out.println("isFull: " + isFull);
+		
 		System.out.println("reservation 아이디 :"+r_id);
 		ReservInsertProService reservInsertProService = new ReservInsertProService();	
 		boolean isInsertSuccess = reservInsertProService.insertReserv(rb);
@@ -50,21 +54,15 @@ public class ReservInsertProAction implements Action {
 			point_discount = Integer.parseInt(request.getParameter("point_discount"));
 		}
 		
-		
-		System.out.println("grade_discount: " + grade_discount);
-		System.out.println("point_discount: " + point_discount);
-		
 		if(isInsertSuccess) {
 			System.out.println("reservBean insert 성공");
-			rb.setR_id(r_id);
-			System.out.println(rb.getM_id());
 			request.setAttribute("reservBean", rb);
 			request.setAttribute("grade_discount", grade_discount);
 			request.setAttribute("point_discount", point_discount);
 			forward = new ActionForward();
 			//결제페이지로 이동
-//			forward.setPath("/Class.shop");
-			forward.setPath("/ReservPay.od");
+			forward.setPath("/Class.shop");
+//			forward.setPath("/ReservPay.od");
 			forward.setRedirect(false);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");

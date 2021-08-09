@@ -226,6 +226,29 @@ public class ReservDAO {
 		}
 		return reservList;
 	}
+
+	public int getReservNumCheck(int f_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int reservNum = 0;
+		try {
+			String sql = "SELECT SUM(r_num) FROM reservation WHERE f_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, f_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reservNum = rs.getInt("SUM(r_num)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+				close(rs);
+				close(pstmt);
+		}
+		
+		return reservNum;
+	}
+
 	
 	
 	

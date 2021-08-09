@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import vo.ClassBean;
 import vo.ClassDetailBean;
 import vo.DetailBean;
@@ -370,6 +373,34 @@ public class ClassDAO {
 			close(pstmt);
 		}
 		return classList;
+	}
+	
+	public JSONArray getPlaceNFidList(String f_subject) {
+		System.out.println("ClassDAO - getPlaceNFidList");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		JSONArray array = new JSONArray();
+		String sql = "SELECT f_id, f_place FROM fclass WHERE f_subject = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, f_subject);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				JSONObject jObject = new JSONObject();
+				jObject.put("f_id",rs.getInt("f_id"));
+				jObject.put("f_place", rs.getString("f_place"));
+				array.add(jObject);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL구문 오류 (ClassDAO placeNFidList()) -" + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return array;	
 	}
 	
 }

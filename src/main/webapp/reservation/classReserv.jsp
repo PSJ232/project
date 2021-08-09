@@ -19,56 +19,6 @@
 <link href="css/classReserv.css" rel="stylesheet" >
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<script>
-	$(document).ready(function(){
-        $.ajax('ReservClassPlace.od', {
-            type : 'GET',
-            data: {
-                'f_place': $('#place').val(),
-                'f_subject': $('#subject').val()
-             },
-            success:function(rdata){
-                $('#classPlace').append('<li><a>'+rdata+'</a></li>');
-            }
-        }); 
-        
-        $.ajax('ReservClassTime.od', {
-            type : 'GET',
-            data: { 'f_id': $('#f_id').val() },
-            datatype: 'json',
-            success:function(rdata){
-				$.each(rdata, function(i, value){
-					console.log("i: " + i + ", value: " + value);
-	                 	$.ajax('ReservClassMem.od', {
-                		type: 'POST',
-                		data: {
-                			'fc_date': $('#date').val(),
-                			'f_place': $('#place').val(),
-                			'fd_time': value+":00:00",
-                			'f_id': $('#f_id').val()
-                		},
-                		success:function(data){
-                			$('#classReservNum').append('<option value='+value+':00:00>'+value+'시 | '+data+'명 가능</option>');
-                		},
-                		async: false
-                	});   
-				});
-            },
-            async: false
-        }); 
-        
-		// 이미지 전환
-		$('.change_img').click(function(){
-			$('.change_img').removeClass('active');
-			$(this).addClass('active');
-			var imgUrl = $(this).find('img').attr('src')
-		 	$('.thumnail_main img').attr('src', imgUrl);
-		});
-		
-		$('.shop_class_price').val().toLocaleString();
-		$('.total_fee')
-	});
-</script>
 </head>
 <body>
 	<!-- header -->
@@ -115,7 +65,7 @@
 						
 						<div class="shop_class_time_box">
 							<label class="shop_class_label">수강 시간</label>
-							<select name="fd_time" id="classReservNum" class="shop_class_time_input">
+							<select name="fd_time" id="classReservNum" class="shop_class_time_input" onchange="timeSelect()">
 								<option value="">시간을 선택하세요</option>
 							</select>
 						</div>
@@ -146,20 +96,8 @@
 				</form>
 			</div>
 		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	</div>
+	
 		<!-- 상품상세 시작 -->
 		<div class="category_product_description">
 			<!-- 중간 3버튼 네비게이션   -->
@@ -286,56 +224,7 @@
 		</div>
 	</div> <!-- container 끝 -->
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<!-- footer  -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
-	<!-- footer  -->
-	
-	
-	
-	
 	<!-- 중간 네비게이션 sticky 기능에 필요 코드  -->
 	<div class="sticky">
 		<ul class="middle_nav">
@@ -349,33 +238,45 @@
 	
 </body>
 <script>
-	function ctlNum(num, price){
-		var currentNum = document.getElementById('r_num').value;
-		if(currentNum == 1){
-			if(num==1){
-				document.getElementById('r_num').value = Number(currentNum) + 1;
-			} 
-		} else if(currentNum == 5){
-			document.getElementById('shop_class_num_info').innerText = '최대 5명까지 예약할 수 있습니다';
-				if(num!=1) {
-				document.getElementById('shop_class_num_info').innerText = '';
-				document.getElementById('r_num').value = Number(currentNum) - 1;
-			}
-		} else if(currentNum > 1 && currentNum < 5){
-			if(num==1){
-				document.getElementById('r_num').value = Number(currentNum) + 1;
-			} else {
-				document.getElementById('r_num').value = Number(currentNum) - 1;
-			}
-		} 
-		
-		var elements = document.querySelectorAll('.total_fee');
-		for(var i=elements.length; i--;){
-			elements[i].textContent = (Number(price)*document.getElementById('r_num').value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원';
-		}
-
-	}
+function ctlNum(num, price){
 	
+	var availNum = Number($('#classReservNum option:selected').text());
+	var currentNum = document.getElementById('r_num').value;
+	
+	if(currentNum>=availNum){
+		if(num==1){
+			document.getElementById('shop_class_num_info').innerText = "예약인원을 초과하였습니다";
+			return;
+		} else {
+			document.getElementById('r_num').value = Number(currentNum) - 1;
+			document.getElementById('shop_class_num_info').innerText = "";
+		}
+		
+	} else if(currentNum == 1){
+		if(num==1){
+			document.getElementById('r_num').value = Number(currentNum) + 1;
+		} 
+	} else if(currentNum == 5){
+		document.getElementById('shop_class_num_info').innerText = '최대 5명까지 예약할 수 있습니다';
+			if(num!=1) {
+			document.getElementById('shop_class_num_info').innerText = '';
+			document.getElementById('r_num').value = Number(currentNum) - 1;
+		}
+	} else if(currentNum > 1 && currentNum < 5){
+		if(num==1){
+			document.getElementById('r_num').value = Number(currentNum) + 1;
+		} else {
+			document.getElementById('r_num').value = Number(currentNum) - 1;
+		}
+	} 
+
+	var elements = document.querySelectorAll('.total_fee');
+	for(var i=elements.length; i--;){
+		elements[i].textContent = (Number(price)*document.getElementById('r_num').value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원';
+	}
+
+}
+
 	function check(){
 		if(document.reservForm.fd_time.value==''){
 			alert('선택되지 않은 옵션이 있습니다');
@@ -383,8 +284,10 @@
 		}
 	}
 	
-	
-	
+	function timeSelect(){
+		document.getElementById('r_num').value = 1;
+		document.getElementById('shop_class_num_info').innerText ='';
+	}
 	$(document).ready(function(){
 		// 중간 네비게이션 바 선택
 		$('.middle_li').click(function(){
@@ -450,4 +353,60 @@
 		
 	});
 </script>
+	<script>
+		$(document).ready(function(){
+	        $.ajax('ReservClassPlace.od', {
+	            type : 'GET',
+	            data: {
+	                'f_subject': $('#subject').val()
+	             },
+	            success:function(rdata){
+	            	let str = JSON.stringify(rdata);
+	            	for(var i=0 ; i<rdata.length ; i++){
+	            		$('#classPlace').append('<li><a class="placebtn_'+rdata[i].f_id+'" href=ClassReserv.od?f_id='+rdata[i].f_id+'>'+rdata[i].f_place+'</a></li>');          		
+	            	}
+	            	$('.placebtn_'+$('#f_id').val()).addClass('shop_class_btn_yellow');
+	            }
+	        }); 
+	        
+	        $.ajax('ReservClassTime.od', {
+	            type : 'GET',
+	            data: { 'f_id': $('#f_id').val() },
+	            datatype: 'json',
+	            success:function(rdata){
+					$.each(rdata, function(i, value){
+						console.log("i: " + i + ", value: " + value);
+		                 	$.ajax('ReservClassMem.od', {
+	                		type: 'POST',
+	                		data: {
+	                			'fc_date': $('#date').val(),
+	                			'f_place': $('#place').val(),
+	                			'fd_time': value+":00:00",
+	                			'f_id': $('#f_id').val()
+	                		},
+	                		success:function(data){
+	                			$('#classReservNum').append('<option value='+value+':00:00  label="'+value+'시 | '+data+'명 가능">'+data+'</option>');
+	                		},
+	                		async: false
+	                	});   
+					});
+	            },
+	            async: false
+	        }); 
+	        
+			// 이미지 전환
+			$('.change_img').click(function(){
+				$('.change_img').removeClass('active');
+				$(this).addClass('active');
+				var imgUrl = $(this).find('img').attr('src')
+			 	$('.thumnail_main img').attr('src', imgUrl);
+			});
+			
+			$('.shop_class_price').val().toLocaleString();
+			$('.total_fee');
+			
+			//장소 버튼 색 변경
+			
+		});
+	</script>
 </html>

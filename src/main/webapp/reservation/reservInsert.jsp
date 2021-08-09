@@ -39,7 +39,7 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 	<!-- header -->
 
 	<div id="container">
-		<form action="ReservInsertPro.od" method="post">
+		<form action="ReservInsertPro.od" method="post" onsubmit="return checkValue()">
 			<h1 class="rpay_title">오프라인 주문</h1>
 			<div class="rpay_container">				
 				<div class="rpay_confirm_box">
@@ -48,7 +48,7 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 					</h5>
 					<div class="rpay_content">
 						<div class="rpay_content_left">
-							<img alt="class exmaple image" src="img_upload/<%=fclass.getClass_main_img()%>">
+							<img alt="class exmaple image" src="./admin_layout/upload/<%=fclass.getClass_main_img()%>">
 						
 						</div>
 						<div class="rpay_content_right">
@@ -142,17 +142,6 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 						<span class="rpay_subtitle">결제 수단</span>
 					</h5>
 					<table class="rpay_paymethod">
-<!-- 						<tr> -->
-<!-- 							<td>네이버 페이<input type="button" id="r_payment" name="r_payment" value="naverpay"></td> -->
-<!-- 							<td>카카오<input type="button" name="r_payment" value="kakaopay"></td> -->
-<!-- 							<td>신용카드<input type="button" name="r_payment" value="html5_inicis"></td> -->
-<!-- 							<td>payco<input type="button" name="r_payment" value="payco"></td> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td>무통장 입금<input type="radio" name="r_payment" value=""></td> -->
-<!-- 							<td>휴대폰 결제<input type="radio" name="r_payment" value="mobilians"></td> -->
-<!-- 							<td colspan="2"></td> -->
-<!-- 						</tr> -->
 						<tr>
 							<td><button type="button" id="rpay_cash" class="rpay_btn" onclick="btnclick('cash')">현금</button></td>
 							<td><button type="button" id="rpay_card" class="rpay_btn" onclick="btnclick('card')">카드</button></td>
@@ -162,16 +151,17 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 				<!-- r_date service 페이지에서 생성 -->
 				<!-- r_id 생성 -->
 				<div>
-					<input type="hidden" id="total_fee" name="total_fee" value="<%=gradeDiscount%>"> <!-- 처음에 등급 할인이 적용된 가격 설정-->
+					<!-- 처음에 등급 할인이 적용된 가격 설정, gradeApplyPrice와 동일-->
+					<input type="hidden" id="total_fee" name="total_fee" value="<%=(int)(fclass.getClass_price()*r_num*grade)%>"> 
 					<!-- 등급할인 금액 -->
 					<input type="hidden" id="grade_discount" name="grade_discount" value="<%=gradeDiscount%>">
 					<!-- 포인트 할인금액 -->
 					<input type="hidden" id="r_payment" name="r_payment" value="">
 					<input type="hidden" id="point_discount" name="point_discount" value="">
 					<input type="hidden" id="m_id" value="<%=mb.getM_id()%>">
-					<input type="text" name="f_id" value="<%=fclass.getClass_id()%>">
+					<input type="hidden" name="f_id" value="<%=fclass.getClass_id()%>">
 					<input type="hidden" value="<%=r_num%>">
-					<input type="text" name="fd_id" value="<%=fclassDetail.getClass_detail_id()%>">
+					<input type="hidden" name="fd_id" value="<%=fclassDetail.getClass_detail_id()%>">
 					<input type="hidden" name="r_num" value="<%=r_num%>">
 					<div class="rpay_btn_box">
 						<input type="submit" class="btn_wide btn_yellow" value="결제하기">
@@ -184,7 +174,7 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var grade_discount = $('#grade_discount').val();
+			var grade_discount = $('#grade_discount').val();//등급 할인 금액
 			$('#use_point').val(0);
 			
 			//포인트 전부 사용 체크박스 클릭
@@ -197,14 +187,19 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 			
 			//포인트 적용 버튼 클릭시
 			$('#pointApplybtn').click(function(){
-				let use_point = $('#use_point').val();
-				let avail_point = Number($('#avail_point').text().toString());
+				let use_point = $('#use_point').val();//사용할 포인트
+				let avail_point = Number($('#avail_point').text().toString());//사용가능한 포인트
+				let grade_apply_fee = $('#total_fee').val();
 				$('#pointAll').prop('checked', false);
 
 				if(use_point > avail_point) {
 					alert('사용가능한 포인트는 '+avail_point+'입니다');
 					return;
-				} else {
+				} else if (use_point > grade_apply_fee){
+					alert('포인트가 금액을 초과하였습니다');
+					$('#use_point').val(0);
+					return;
+				}else {
 					let fee = $('#fee').val(); //fee 인원에 따른 계산
 					if(use_point.trim()!=""){
 						$('#use_point2').html('- '+use_point+'원'); 
@@ -237,6 +232,13 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 		function colorChange(){
 			$('.rpay_mid_btn').addClass('rpay_mid_btn_yellow');
 			
+		}
+		
+		function checkValue(){
+			if($('#r_payment').val()==''){
+				alert('선택되지 않은 옵션이 있습니다');
+				return false;
+			}
 		}
 	</script>
 </body>

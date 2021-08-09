@@ -105,9 +105,11 @@ html {
 
 .shop_class_infobox3 ul li {
 	background-color: #f7f7f7;
-    padding: 0px 16px;
     display: inline-block;
     border-radius: 5px;
+    margin-right: 7px;
+    width: 74px;
+    text-align: center;
 }
 
 .shop_class_infobox3 ul li a{
@@ -157,6 +159,14 @@ html {
     color: gray;
     position: relative;
     top: 1px;
+}
+
+.shop_class_btn_yellow {
+	color: black;
+    background-color: #f7cc00;
+    display: inline-block;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .class_minus_btn {

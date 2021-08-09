@@ -88,7 +88,7 @@ if(m_id == null) {
 
 			<nav class="main_menu">
 				<div class="nav_bar_logo">
-					<a href="./"><span class="logo_small_black">Four Seasons</span></a>
+					<a href="FourSeason.shop"><span class="logo_small_black">Four Seasons</span></a>
 				</div>
 				<ul class="nav_bar_list">
 					<li class="item"><a href="Subscription.shop">꽃 정기구독</a></li>

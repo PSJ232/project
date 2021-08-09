@@ -50,6 +50,7 @@
   	        msg += '카드 승인번호 : ' + rsp.apply_num;
   	        console.log(msg);
   	        isSuccess = true;
+//   	        location.href=''
   	    } else {
   	    	//결제 실패시 
   	    	//ReservMiddleCancle.ad

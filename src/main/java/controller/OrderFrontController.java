@@ -154,7 +154,6 @@ public class OrderFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		//예약및 결제 페이지 
 		} else if(command.equals("/ReservInsert.od")){
 			System.out.println("ReservInsert.od");
 			forward = new ActionForward();
@@ -189,10 +188,9 @@ public class OrderFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/ReservClassPlace.od")) {
-			forward = new ActionForward();
-			action = new ReservClassPlaceAction();
+			ReservClassPlaceAction reservClassPlaceAction = new ReservClassPlaceAction();
 			try {
-				forward = action.execute(request, response);
+				reservClassPlaceAction.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

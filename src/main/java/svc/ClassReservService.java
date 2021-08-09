@@ -4,6 +4,9 @@ import static db.JdbcUtil.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Map;
+
+import org.json.simple.JSONArray;
 
 import dao.ClassDAO;
 import dao.ClassDetailDAO;
@@ -28,6 +31,21 @@ public class ClassReservService {
 		close(con);
 		
 		return classList;
+	}
+	
+	public JSONArray getPlaceNFidList(String f_subject) {
+		System.out.println("ClassReservService - getPlaceList(String f_subject)");
+		JSONArray placeNFidList = null;
+		//Conneciton 객체 전달
+		Connection con = getConnection();
+		ClassDAO classDAO = ClassDAO.getInstance();
+		classDAO.setConnection(con);
+		
+		placeNFidList = classDAO.getPlaceNFidList(f_subject);
+		
+		close(con);
+		
+		return placeNFidList;
 	}
 
 	public int getClassId(String f_place, String f_subject) {
@@ -68,6 +86,28 @@ public class ClassReservService {
 		ArrayList<DetailBean> reservList = reservDAO.getMemberReservList(m_id);
 		close(con);
 		return reservList;
+	}
+
+	public boolean numCheck(int f_id, int r_num) {
+		Connection con = getConnection();
+		ReservDAO reservDAO = ReservDAO.getInstance();
+		reservDAO.setConnection(con);
+		boolean isFull = false;
+		
+		ClassDAO classDAO = ClassDAO.getInstance();
+		classDAO.setConnection(con);
+		
+		int reservNum = reservDAO.getReservNumCheck(f_id);
+		int reservMaxNum = classDAO.getMaxmem(f_id);
+		
+		if(r_num+reservNum > reservMaxNum) {
+			isFull = true;
+		}
+		
+		close(con);
+		close(con);
+		
+		return isFull;
 	}
 
 
