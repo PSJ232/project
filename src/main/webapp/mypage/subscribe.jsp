@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 마이페이지</title>
 <link href="css/mypage.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/utility.css">
@@ -166,7 +166,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 						<col width="20%">
 					</colgroup>
 					<thead class="mysubscribe_head">
-						<th><span>주문 일자</span></th>
+						<th><span>첫 구독일</span></th>
 						<th><span>상품 정보</span></th>
 						<th><span>상태</span></th>
 					</thead>

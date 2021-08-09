@@ -1,27 +1,9 @@
 @charset "UTF-8";
 
-*, *::before, *::after {
-	padding: 0;
-	margin: 0;
-	box-sizing: inherit;
-}
-
-body {
-	height: 100%;
-	box-sizing: border-box;
-	font-size: 15px;
-	line-height: 16px;
-	font-family: 'Noto Sans KR', sans-serif, NanumGothic, '나눔고딕', Dotum,
-		'돋움', Helvetica, "Apple SD Gothic Neo";
-}
 .container {
 		display: flex;
 		width: 1240px;
 		margin: 100px auto;
-}
-li {
-	list-style: none;
-	text-decoration: none;
 }
 
 a, a:active, a:visited {
@@ -43,17 +25,22 @@ ul.tabs {
 	margin-right: 20px;
 }
 
-ul.tabs li {
+.mypage_orderHistory_all ul.tabs li {
 	background: none;
 	display: inline-block;
 	padding: 10px 15px;
 	cursor: pointer;
 	width: 395px;
 	text-align: center;
+	font-size: 15px;
+    color: #8e8d8d;
+    font-weight: 300;
+    border: 1px solid #e0e0e0;
 }
 
-ul.tabs li.current {
+ul.tabs li.current_clicked {
 	border-top: 2px solid #FFD228;
+	border-bottom: none;
 }
 
 .tab-content {

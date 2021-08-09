@@ -12,14 +12,14 @@
 	padding: 10px 25px;
 }
 
-.anniversary_container .page_title{
+.anniversary_container .page_title {
 	display: block;
 	max-width: 490px;
     margin: 0 auto;
     padding: 0 20px 15px;
     text-align: center;
     border-bottom: 1px solid #ccc;
-    text-align: center;	
+    text-align: center;
 }
 
 .anniversary_container .page_title .title {
@@ -33,8 +33,7 @@
 }
 
 .anniversary_container .ann_content_box {
-	margin-top: 15px;
-	padding-top: 20px;
+	margin-top: 30px;
 }
 
 .anniversary_container .ann_content_box .inbox {
@@ -43,20 +42,18 @@
 
 .anniversary_container .ann_content_box .inbox .inner {
 	max-width: 490;
-    margin: 15px 5px;
+    margin: 0 5px;
 }
 
 .anniversary_container .ann_content_box .inbox .inner .ann_form {	
 	line-height: 25px;
-	text-align: center;
-	margin-top: 35px;
 }
 
 .ann_content_box .row {
 	display: block;
     margin: 0;
-	padding: 0 5px;
-	
+	padding: 10px 0;
+	text-align: left;
 }
 
 .ann_content_box .row .ann_name {
@@ -65,10 +62,15 @@
     padding-top: 10px;
     font-size: 16px;
     line-height: 24px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -.24px;
     color: #222;
     position: relative;
+}
+
+.ann_content_box .row .ann_name .textStar{
+	color: #ffcd23;
+	margin-left: 3px;
 }
 
 .ann_content_box .row .ann_input {
@@ -80,16 +82,13 @@
 }
 
 .ann_content_box .row .ann_input .textBox {
-    padding: 0;
-    margin: 0;
     border: none;
     background: 0 0;
     outline: 0;
     display: block;
-    width: 350px;
+    width: 220px;
     height: 44px;
-    margin-right: 110px;
-    padding: 0 20px;
+    padding: 0 15px;
     border-radius: 5px;
     border: #d3d3d3 1px solid;
     font-size: 14px;
@@ -99,22 +98,23 @@
     color: #222;
 }
 
-.annSelect {
-	width: 200px;
-	height: 24px;
-	border: 1px solid #eaeaea;
+.ann_select {
+	width: 220px;
+	height: 44px;
+	border: 1px solid #d3d3d3;
+	padding: 0 15px;
 	border-radius: 5px;
 	font-size: 14px;
-	color: #000;
 	outline: none;
 	display: inline-block;
+    color: #222;
 }
 
-.submit_ area {
-	padding-bottom: 20px;	
+.ann_submit_area {
+	margin: 15px 40px;
 }
 
-.btn_submit {
+.ann_submit_area .btn_submit {
 	padding: 0;
     margin: 0;
     border: none;
@@ -126,7 +126,7 @@
     border-radius: 5px;
     font-size: 14px;
     line-height: 44px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: -.21px;
     color: #222;
     text-align: center;
