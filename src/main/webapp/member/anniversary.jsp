@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div class="anniversary_container">
 				<%if (request.getAttribute("annDetail") == null) {%>
+	<div class="anniversary_container">
 
 		<div class="page_title">
 			<span class="title">기념일 등록하기</span>
@@ -60,12 +60,12 @@
 				</div> <!--  inner -->
 			</div> <!--  inbox -->	
 		</div>	<!-- content_box -->
-	</div> <!-- container -->
-	
+</div><!-- container -->
 					
 				<%} else {
 				AnniversaryBean annDetail = (AnniversaryBean) request.getAttribute("annDetail");
 				%>
+		<div class="anniversary_container">			
 					<div class="page_title">
 						<span>기념일 수정하기</span>
 					</div>	
@@ -104,16 +104,15 @@
 					
 					<input type="hidden" name="a_id" value="<%=annDetail.getA_id()%>">
 					<input type="submit" value="수정하기">
-				</form>
+						</form>
+					</div> <!-- ann-form -->
+				</div><!-- inner -->
+			</div><!-- inbox-->		
+	</div><!-- container -->
 				<%
 				}
 				%>
 				
-					</div> <!-- ann-form -->
-				</div><!-- inner -->
-			</div><!-- inbox-->
-		</div><!-- container -->			
-
 
 </body>
 </html>
