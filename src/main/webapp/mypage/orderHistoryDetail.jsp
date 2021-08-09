@@ -74,6 +74,11 @@ case 1:
 
 // 결제 일자 설정
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+// 휴대전화 형식으로 설정
+String FormatPhone = orderBean.getO_phone().substring(0, 3) + "-" + orderBean.getO_phone().substring(3, 7) + "-" +
+		orderBean.getO_phone().substring(7, 11);
+System.out.println(FormatPhone);
 %>
 <body>
 	<!-- 헤더 들어가는곳 -->
@@ -110,7 +115,9 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 							<td id="mypage_orderHistoryDetail_table_td_s">상태</td>
 						</tr>
 
-			<%for (int i = 0; i < itemList.size(); i++) {%>
+			<%for (int i = 0; i < itemList.size(); i++) {
+				String editSum = String.format("%,d", (int) (itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100);
+			%>
 			<tr id="mypage_orderHistoryDetail_tr">
 
 				<%if (i == 0) {%>
@@ -124,30 +131,22 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				<dt id="mypage_orderHistoryDetail_span_one">상품 명 : <%=itemList.get(i).getI_name()%></dt>
 				<dt id="mypage_orderHistoryDetail_span_two">수령일 : <%=orderDetailList.get(i).getOd_delivery_date()%></dt>
 				<dt id="mypage_orderHistoryDetail_span_two">받는 분 : <%=orderBean.getO_receiver()%></dt>
-				<dt id="mypage_orderHistoryDetail_span_one">가격 : <%=(int) (itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100%>
-					/ <%=orderDetailList.get(i).getOd_qty()%>개</dt>
+				<dt id="mypage_orderHistoryDetail_span_one">가격 : <%=editSum%> / <%=orderDetailList.get(i).getOd_qty()%>개</dt>
 				</dl>
 				</td>
 
 				<%
 				if (i == 0) {
 					if (orderDetailList.get(i).getOd_confirm() == 2) {
-				%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>주문 취소</td>
-				<%
-				} else if (orderDetailList.get(i).getOd_confirm() == 1) {
-				%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>배송 완료</td>
-				<%
-				} else if (!orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
-				%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>배송중</td>
-				<%
-				} else if (orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
-				%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>주문 접수</td>
-				<%
-				}
-				} else {
-				}
-				%>
-
+							%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>주문 취소</td><%
+						} else if (orderDetailList.get(i).getOd_confirm() == 1) {
+							%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>배송 완료</td><%
+						} else if (!orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
+							%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>배송중</td><%
+						} else if (orderDetailList.get(i).getOd_invoice().equals("주문접수")) {
+							%><td id="mypage_orderHistoryDetail_situation" rowspan=<%=itemList.size()%>>주문 접수</td><%
+						}
+				} else {}%>
 			</tr>
 			<%
 			}
@@ -156,7 +155,7 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		<div id="mypage_orderHistoryDetail_del_div">
 		<h3 id="mypage_orderHistoryDetail_tltle_del_h3" >배송정보</h3><br>
 		<dl id="mypage_orderHistoryDetail_del_dl">
-		<dt id="mypage_orderHistoryDetail_del_dt"> <%=orderBean.getO_receiver()%>, <%=orderBean.getO_phone()%> (보내는 사람:<%=orderBean.getO_sender()%>)</dt>
+		<dt id="mypage_orderHistoryDetail_del_dt"> <%=orderBean.getO_receiver()%>, <%=FormatPhone %> (보내는 사람:<%=orderBean.getO_sender()%>)</dt>
 		<dd id="mypage_orderHistoryDetail_del_dd">[<%=address[0]%>] <%=address[1]%>, <%=address[2]%></dd>
 		</dl>
 		</div>
@@ -165,20 +164,20 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		<h3 id="mypage_orderHistoryDetail_tltle_h3">결제 정보</h3><br>
 		<table class="mypage_orderHistoryDetail_table_b" >
 			<tr id="mypage_orderHistoryDetail_del_tr">
-				<td id="mypage_orderHistoryDetail_del_td">주문 금액<br> <%=orderBean.getO_amount()%></td>
-				<td id="mypage_orderHistoryDetail_del_td">할인 금액<br> <%=orderBean.getO_point() + orderBean.getO_gdiscount()%></td>
-				<td id="mypage_orderHistoryDetail_del_td">최종 결제 금액<br> <span id="mypage_orderHistoryDetail_del_td_span"><%=orderBean.getO_amount() + orderBean.getO_point() + orderBean.getO_gdiscount()%>원</span></td>
+				<td id="mypage_orderHistoryDetail_del_td">주문 금액<br> <%=String.format("%,d", orderBean.getO_amount()) %></td>
+				<td id="mypage_orderHistoryDetail_del_td">할인 금액<br> <%= String.format("%,d", orderBean.getO_point() + orderBean.getO_gdiscount())%></td>
+				<td id="mypage_orderHistoryDetail_del_td">최종 결제 금액<br> <span id="mypage_orderHistoryDetail_del_td_span"><%= String.format("%,d", orderBean.getO_amount() + orderBean.getO_point() + orderBean.getO_gdiscount())%>원</span></td>
 			</tr>
 
 			<tr id="mypage_orderHistoryDetail_del_tr_b">
 				<td>
-				<span id="mypage_orderHistoryDetail_del_span_l">총 상품 금액 </span> <span id="mypage_orderHistoryDetail_del_span_r"><%=orderBean.getO_amount()%>원</span><br> 
-				<span id="mypage_orderHistoryDetail_del_span_l">상품 금액</span> <span id="mypage_orderHistoryDetail_del_span_r"><%=orderBean.getO_amount() - addPrice%>원</span><br>
-				<span id="mypage_orderHistoryDetail_del_span_l">	추가 상품</span><span id="mypage_orderHistoryDetail_del_span_r"><%=addPrice%>원</span><br> 
+				<span id="mypage_orderHistoryDetail_del_span_l">총 상품 금액 </span> <span id="mypage_orderHistoryDetail_del_span_r"><%= String.format("%,d", orderBean.getO_amount())%>원</span><br> 
+				<span id="mypage_orderHistoryDetail_del_span_l">상품 금액</span> <span id="mypage_orderHistoryDetail_del_span_r"><%= String.format("%,d", orderBean.getO_amount() - addPrice)%>원</span><br>
+				<span id="mypage_orderHistoryDetail_del_span_l">	추가 상품</span><span id="mypage_orderHistoryDetail_del_span_r"><%= String.format("%,d", addPrice)%>원</span><br> 
 				<span id="mypage_orderHistoryDetail_del_span_l">	배송비</span> <span id="mypage_orderHistoryDetail_del_span_r">0원</span>
 				</td>
-				<td id="mypage_orderHistoryDetail_del_tr_b">포인트 할인 <span id="mypage_orderHistoryDetail_del_span_r"><%=orderBean.getO_point()%></span><br> 
-				등급 할인 <span id="mypage_orderHistoryDetail_del_span_r"><%=orderBean.getO_gdiscount()%></span></td>
+				<td id="mypage_orderHistoryDetail_del_tr_b">포인트 할인 <span id="mypage_orderHistoryDetail_del_span_r"><%=String.format("%,d", orderBean.getO_point())%></span><br> 
+				등급 할인 <span id="mypage_orderHistoryDetail_del_span_r"><%=String.format("%,d", orderBean.getO_gdiscount())%></span></td>
 				<td id="mypage_orderHistoryDetail_del_tr_b">결제 방법 <span id="mypage_orderHistoryDetail_del_span_r"><%=paymentMethod%></span><br> 
 				결제 일자 <span id="mypage_orderHistoryDetail_del_span_r"><%=simpleDateFormat.format(orderBean.getO_rdate2())%></span></td>
 			</tr>

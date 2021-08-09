@@ -57,7 +57,7 @@
 						<strong class="memberGrade_strong"><%=realGrade%></strong>
 					</dd>
 					<dd class="memberGrade_dd2">
-						<strong class="memberGrade_strong2"> <%=m_id%>님의 <%=LocalDate.now().getMonthValue()%>월
+						<strong class="memberGrade_strong2"> <%=memberMypageDetail.getM_name()%>님의 <%=LocalDate.now().getMonthValue()%>월
 							회원 등급은 <%=realGrade%>입니다.<br>
 						</strong><span class="memberGrade_span2"> <%=LocalDate.now().getMonthValue() + 1%>월
 							예상 등급은 <%=realGrade%>입니다.

@@ -71,7 +71,7 @@
 								</thead>
 								<%
 								for (int i = 0; i < pbList.size(); i++) {
-
+									
 									if (pbList.get(i).getR_point() == 200) {
 										division = "적립";
 									} else if (pbList.get(i).getR_point() == 300) {
@@ -87,15 +87,19 @@
 									} else {
 										record = "포인트 사용";
 									}
-								%>
-								<tbody>
-								<tr>
-									<td><span><%=pbList.get(i).getR_rdate()%></span></td>
-									<td><span class="memberPoint_span3"><%=division%></span></td>
-									<td><span class="memberPoit_span4"><%=record%></span></td>
-									<td><span><%=pbList.get(i).getR_point()%></span></td>
-								</tr>
-								</tbody>
+									
+									if(pbList.get(i).getR_point()==0) {%>
+										
+									<%} else {%>
+										<tbody>
+										<tr>
+											<td><span><%=pbList.get(i).getR_rdate()%></span></td>
+											<td><span class="memberPoint_span3"><%=division%></span></td>
+											<td><span class="memberPoit_span4"><%=record%></span></td>
+											<td><span><%=pbList.get(i).getR_point()%></span></td>
+										</tr>
+										</tbody>
+									<%}%>
 								<%
 								}
 								%>
