@@ -90,12 +90,12 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 		<!-- 본문 내용 -->
 
-		<section class="mypage_orderHistory_all">
+		<div class="mypage_orderHistory_all">
 			<h2 id="mypage_orderHistory_title">주문내역/배송조회</h2>
 
 			<!--   -------------------------------------------------- -->
 			<ul class="tabs">
-				<li class="tab_link current_clicked" data-tab="tab-1">주문/배송내역</li>
+				<li class="tab-link current_clicked" data-tab="tab-1">주문/배송내역</li>
 				<li class="tab-link" data-tab="tab-2">취소/환불내역</li>
 			</ul>
 			<!--   -------------------------------------------------- -->
@@ -103,20 +103,27 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 			<div class="mypage_orderHistory_main">
 				<div id="tab-1" class="tab-content current">
 					<table id="mypage_orderHistory_table" >
-						
-						<tr>
-							<td id="mypage_orderHistory_table_td_s" >주문 일자</td>
-							<td id="mypage_orderHistory_table_td_b">상품 정보</td>
-							<td id="mypage_orderHistory_table_td_s">상태</td>
-						</tr>
+						<colgroup>
+							<col width="22%">
+							<col width="58%">
+							<col width="20%">
+						</colgroup>
+						<thead class="mypage_orderHistory_head">
+							<th><span>주문 일자</span></th>
+							<th><span>상품 정보</span></th>
+							<th><span>상태</span></th>
+						</thead>
 
 						<%
 						if (nonOrderDetailArrayList.isEmpty()) {
 						%>
 						<tbody class="mypage_orderHistory_can">
-						<tr >
-							<td class="mypage_orderHistory_can" colspan="3"><span id="mypage_orderHistory_can" > 주문 / 배송내역이 존재하지 않습니다.</span></td>
-						</tr>
+							<tr >
+								<td colspan="3">
+									<span id="mypage_orderHistory_can" > 주문 / 배송내역이 존재하지 않습니다.</span>
+									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flower.shop'" value="꽃다발 보러가기">
+								</td>
+							</tr>
 						</tbody>
 						<%
 						} else { int count = 0;
@@ -124,13 +131,14 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							String invoiceNo = nonOrderDetailArrayList.get(i).getOd_invoice();
 						%>
 
+						<tbody class="mypage_orderHistory_can">
 						<tr id="mypage_orderHistory_tr">
 							<%if (nonCol.contains(i)) {%>
 							<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=nonOrderArrayList.get(i).getO_rdate()%></td>
 							<% count++; 
 							} else {}%>
-							<td>
-							<dl id="mypage_orderHistory_td">
+							<td id="mypage_orderHistory_td">
+							<dl>
 								<dt id="mypage_orderHistory_img"><img id="mypage_orderHistory_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
 								<dt id="mypage_orderHistory_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
 								<dt id="mypage_orderHistory_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dt>
@@ -149,6 +157,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<%}
 							%>
 						</tr>
+						</tbody>
 						<%
 						}
 						}
@@ -158,25 +167,32 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 				<div id="tab-2" class="tab-content">
 					<table id="mypage_orderHistory_table">
-						
-						<tr>
-							<td id="mypage_orderHistory_table_td_s">주문 일자</td>
-							<td id="mypage_orderHistory_table_td_b">상품 정보</td>
-							<td id="mypage_orderHistory_table_td_s">상태</td>
-						</tr>
+						<colgroup>
+							<col width="22%">
+							<col width="58%">
+							<col width="20%">
+						</colgroup>
+						<thead class="mypage_orderHistory_head">
+							<th><span>주문 일자</span></th>
+							<th><span>상품 정보</span></th>
+							<th><span>상태</span></th>
+						</thead>
 
 						<%
 						if (orderDetailArrayList.isEmpty()) {
 						%>
 						<tbody class="mypage_orderHistory_can">
-						<tr>
-							<td class="mypage_orderHistory_can" colspan="3"> <span id="mypage_orderHistory_can" >취소 / 환불내역이 존재하지 않습니다.</span></td>
-						</tr>
+							<tr >
+								<td colspan="3">
+									<span id="mypage_orderHistory_can" > 취소 / 환불내역이 존재하지 않습니다.</span>
+									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flower.shop'" value="꽃다발 보러가기">
+								</td>
+							</tr>
 						</tbody>
 						<%} else {int ccount = 0;
 						for (int i = 0; i < orderArrayList.size(); i++) {
 						%>
-
+						<tbody class="mypage_orderHistory_can">
 						<tr>
 							<%if (col.contains(i)) {%>
 							<td rowspan="<%=col.get(ccount + 1) - col.get(ccount)%>"><%=orderArrayList.get(i).getO_rdate()%></td>
@@ -199,6 +215,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							}
 							%>
 						</tr>
+						</tbody>
 						<%
 						}
 						}
@@ -207,7 +224,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 				</div>
 
 			</div>
-		</section>
+		</div>
 
 	</div>
 
