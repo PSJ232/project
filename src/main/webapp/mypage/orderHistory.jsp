@@ -9,12 +9,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 마이페이지</title>
 <link href="css/mypage.css" rel="stylesheet">
 <link href="css/mypage_orderHistory.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<link rel="stylesheet" href="./css/utility.css">
-<link rel="stylesheet" href="./css/mypage_subscribe.css">
+<link href="./css/utility.css" rel="stylesheet" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	  rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -27,7 +26,7 @@ $(document).ready(function() {
 		$('ul.tabs li').removeClass('current');
 		$('.tab-content').removeClass('current');
 		$('.tabs').find('li').removeClass('current_clicked');
-		$(this).addClass('current current_clicked');
+		$(this).addClass('current_clicked');
 		$("#"+tab_id).addClass('current');
 	})
 })
@@ -96,7 +95,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 			<!--   -------------------------------------------------- -->
 			<ul class="tabs">
-				<li class="tab_link_current" data-tab="tab-1">주문/배송내역</li>
+				<li class="tab_link current_clicked" data-tab="tab-1">주문/배송내역</li>
 				<li class="tab-link" data-tab="tab-2">취소/환불내역</li>
 			</ul>
 			<!--   -------------------------------------------------- -->

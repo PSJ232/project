@@ -15,7 +15,7 @@
 		<div class="page_title">
 			<span class="title">기념일 등록하기</span>
 		</div>	
-		<div class="ann_content_ box">
+		<div class="ann_content_box">
 			<div class="inbox">
 				<div class="inner">
 					<form action="MemberAnnInsertPro.me" class="formAnniversary" method="post">
