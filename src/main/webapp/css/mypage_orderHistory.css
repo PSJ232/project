@@ -14,7 +14,11 @@ body {
 	font-family: 'Noto Sans KR', sans-serif, NanumGothic, '나눔고딕', Dotum,
 		'돋움', Helvetica, "Apple SD Gothic Neo";
 }
-
+.container {
+		display: flex;
+		width: 1240px;
+		margin: 100px auto;
+}
 li {
 	list-style: none;
 	text-decoration: none;
@@ -35,6 +39,8 @@ ul.tabs {
 	list-style: none;
 	margin-top: 30px;
 	margin-left: 3px;
+	width: 730px;
+	margin-right: 20px;
 }
 
 ul.tabs li {
@@ -71,15 +77,14 @@ ul.tabs li.current {
 
 #mypage_orderHistory_title {
 	font-size: 20px;
-	margin-left: 20px;
 }
 
 .mypage_orderHistory_main {
-	width: 800px;
+	width: 730px;
 }
 
 #mypage_orderHistory_table {
-	width: 800px;
+	width: 730px;
 	margin-bottom: 200px;
 	margin-top: 30px;
 }
@@ -143,4 +148,52 @@ ul.tabs li.current {
 	font-size: 15px;
 	font-weight: 300;
 	text-align: center;
+}
+.mypage_orderHistory_can{
+	text-align: center;
+	font-size: 15px;
+	font-weight: 500;
+	padding: 20px;
+	width: 730px;
+}
+#mypage_orderHistory_btn{
+	width: 80px;
+	height: 30px;
+	margin: 10px;
+	border-radius: 10px;
+	background-color: #FFD228;
+	border: none;
+	font-size: 15px;
+	font-weight: 500;
+	color: #f7f7f7;
+}
+
+
+
+
+.mypage_confirmPurchase_all{
+	text-align: center;
+/* 	margin-top: 150px; */
+	line-height: 2.0;
+}
+
+#mypage_confirmPurchase_h1{
+	 font-size: 30px;
+	 font-weight: 700;
+	 margin-bottom: 50px;	
+}
+#mypage_confirmPurchase_h3{
+	font-size: 20px;
+	font-weight: 500;
+}
+#mypage_confirmPurchase_cbtn{
+	width: 80px;
+	height: 30px;
+	margin: 10px;
+	border-radius: 10px;
+	background-color: #aaaaaa;
+	border: none;
+	font-size: 15px;
+	font-weight: 500;
+	color: #f7f7f7;
 }

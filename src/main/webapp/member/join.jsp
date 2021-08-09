@@ -20,7 +20,7 @@
 			}
 		      
 		      if(regex.exec(phone)) {
-// 		         element.innerHTML = '- 인증번호를 발송했습니다.(미구현)';
+		         element.innerHTML = '- 인증번호를 발송했습니다.'; //미구현부분
 		         checkPhoneResult = true;
 		      } else {
 		         element.innerHTML = '- 형식에 맞지 않는 번호입니다.';
@@ -115,6 +115,7 @@
 		      
 		      if(password == document.formJoin.m_pass.value) {
 		         element.innerHTML = '- 패스워드 일치';
+		         element.style.color = 'black';
 		         checkPasswordConfirmResult = true; 
 		      } else {
 		         element.innerHTML = '- 패스워드 불일치';
@@ -150,27 +151,27 @@
 					<form action="MemberJoinPro.me" name=formJoin method="post" onsubmit="return checkForm()">				
 						<div class="join_info">						
 							 <div class="row">
-							 	<div class="join_name">이메일(아이디)</div>
+							 	<div class="join_name">이메일 (아이디)</div>
 							 	<div class="join_input">
 							 		<input type="email" name="m_id" id="m_id" class="textBox" placeholder="예)four@season.kr" required>
-									<input type="button" id="idCheckBtn" class="btn" onclick="checkId(m_id.value)" value="중복확인"><br>
-									<span id="checkIdResult" class="checkMessage">&nbsp;</span><br><!-- 아이디 유효성 검사 -->
+									<input type="button" id="idCheckBtn" class="btn" onclick="checkId(m_id.value)" value="중복확인">
+									<span id="checkIdResult" class="checkMessage">&nbsp;</span><!-- 아이디 유효성 검사 -->
 								</div>
 							</div>
 								
 							 <div class="row">
 							 	<div class="join_name">비밀번호</div>
 							 	<div class="join_input">
-							 		<input type="password" name="m_pass" class="textBox" placeholder="비밀번호를 입력해주세요." required onkeyup="checkPassword(this.value)"><br>
-							 		<span id="checkPasswordResult" class="checkMessage"></span>  
+							 		<input type="password" name="m_pass" class="textBox" placeholder="비밀번호를 입력해주세요." required onkeyup="checkPassword(this.value)">
+							 		<span id="checkPasswordResult" class="checkMessage">&nbsp;</span>  
 							 	</div>
 							</div>
 							
 							 <div class="row">
 							 	<div class="join_name">비밀번호확인</div>
 							 	<div class="join_input">
-							 		<input type="password" class="textBox" placeholder="비밀번호를 한 번 더 입력해주세요." required onkeyup="checkPasswordConfirm(this.value)"><br>
-							 		<span id="passwordConfirmResult" class="checkMessage"></span>
+							 		<input type="password" class="textBox" placeholder="비밀번호를 한 번 더 입력해주세요." required onkeyup="checkPasswordConfirm(this.value)">
+							 		<span id="passwordConfirmResult" class="checkMessage">&nbsp;</span>
 							 	</div>
 							 </div>
 							 
@@ -184,8 +185,8 @@
 							 <div class="row">
 							 	<div class="join_name">휴대폰 본인인증</div>
 							 	<div class="join_input"><input type="tel" name="m_phone" class="textBox" placeholder="' - '없이 숫자만 입력해주세요." required>
-																		   <input type="button" id="phoneCheckBtn" class="btn" onclick="checkPhone(m_phone.value)" value="인증번호 받기"><br>
-							 											   <span id="checkPhoneResult" class="checkMessage">&nbsp;</span><br>
+													   <input type="button" id="phoneCheckBtn" class="btn" onclick="checkPhone(m_phone.value)" value="인증번호 받기">
+		 											   <span id="checkPhoneResult" class="checkMessage">&nbsp;</span><br>
 	 							</div> <!-- 폰번호 유효성 검사 -->
 	 						</div>
 	 							
@@ -201,14 +202,14 @@
 							 	<div class="join_name">생년월일</div>
 							 	<div class="join_input"><input type="text" class="textbox_long" name="year" placeholder="년도) 1999" required>
 													 					   <input type="text" class="textbox_short" name="month" placeholder="월" required>
-													 					   <input type="text" class="textbox_short" name="day" placeholder="일" required><br>
+													 					   <input type="text" class="textbox_short" name="day" placeholder="일" required><br><br>
 								</div>
 							</div>
-							
 							 <div class="row">
 							 	<div class="join_name">성별</div>
-							 	<div class="join_input"><input type="radio" class="radio_gender" name="m_gender" value="1" checked><span class="gender_txt">여성</span>
-							 		  	     	  	   					   <input type="radio" class="radio_gender" name="m_gender" value="0"><span class="gender_txt">남성</span>
+							 	<div class="join_input">
+							 		<input type="radio" id="gender1" class="radio_gender" name="m_gender" value="1" checked><label for="gender1" class="gender_label active">여성</label>
+     	  	   						<input type="radio" id="gender0" class="radio_gender" name="m_gender" value="0"><label for="gender0" class="gender_label">남성</label>
 								</div>
 							</div>
 							
@@ -227,16 +228,20 @@
 						
 						<div class="terms_list">
 								<div class="agreement_list">
-										<div class="agree_all"><input type="checkbox" id="termCAll"><span title="terms_txt">모두 동의합니다.</span></div>
-										<div class="agree_part"><input type="checkbox"  id="termC1" required><span title="terms_txt">이용약관 동의</span> <span class="textRed">(필수)</span></div>
-										<div class="agree_part"><input type="checkbox"  id="termC2" required><span title="terms_txt">개인정보 수집, 이용동의</span> <span class="textRed">(필수)</span></div>
-										<div class="agree_part"><input type="checkbox"  id="termC3" required><span title="terms_txt">개인정보 이용 동의</span> <span class="textRed">(필수)</span></div>
-										<div class="agree_part"><input type="checkbox" name="m_agree"  id="termC4" ><span title="terms_txt">이벤트, 혜택정보 수신 동의 (선택)</span></div><!-- 원래 name이 m_agree였음 -->
+										<div class="agree_all"><label><input type="checkbox" id="termCAll"><span title="terms_txt">모두 동의합니다.</span></label></div>
+										<div class="agree_part"><label><input type="checkbox"  id="termC1" required><span title="terms_txt">이용약관 동의</span></label><span class="textRed"> (필수)</span></div>
+										<div class="agree_part"><label><input type="checkbox"  id="termC2" required><span title="terms_txt">개인정보 수집, 이용동의</span></label><span class="textRed"> (필수)</span></div>
+										<div class="agree_part"><label><input type="checkbox"  id="termC3" required><span title="terms_txt">개인정보 이용 동의</span></label><span class="textRed"> (필수)</span></div>
+										<div class="agree_part"><label><input type="checkbox" name="m_agree"  id="termC4" ><span title="terms_txt">이벤트, 혜택정보 수신 동의 (선택)</span></div><!-- 원래 name이 m_agree였음 -->
 								</div>
 						</div>
 								
 						<div class="terms_link">
-							<span class="agree_terms">이용약관 보기 · 개인정보 처리방침 보기</span>
+							<span class="agree_terms">
+								<span class="terms_conditions" onclick="window.open('./member/terms_conditions.jsp', '약관 및 개인정보', 'width=600, height=1000, top=0'); return false;">
+								이용약관 보기</span> · 
+								<span class="personal_info" onclick="window.open('./member/personal_info.jsp', '약관 및 개인정보', 'width=600, height=1000, top=0'); return false;">
+								개인정보 처리방침 보기</span></span>
 						</div>
 								
 						<div class="terms_submit">
@@ -257,4 +262,14 @@
 	
 	
 </body>
+<script type="text/javascript">
+	// 성별 선택 색상 변경
+	$(document).ready(function(){
+		$('.gender_label').click(function(){
+			$('.gender_label').removeClass('active');
+			$(this).addClass('active');
+		});
+	
+	});
+</script>
 </html>

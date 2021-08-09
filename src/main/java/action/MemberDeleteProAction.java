@@ -2,6 +2,7 @@ package action;
 
 import java.io.PrintWriter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,6 +27,12 @@ public class MemberDeleteProAction implements Action {
 		if(isDeleteSuccess) {
 			HttpSession session = request.getSession();
 			session.invalidate();// 로그아웃처리
+			
+			// 자동로그인 해제
+			Cookie cookieId = new Cookie("m_id", null);
+			cookieId.setMaxAge(0); // 쿠키삭제(엎어쓰기)
+			response.addCookie(cookieId);
+			System.out.println("쿠키삭제!!!");
 			
 			forward = new ActionForward();
 			forward.setPath("./"); // 홈화면

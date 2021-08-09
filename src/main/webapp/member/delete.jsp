@@ -1,3 +1,5 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,7 +13,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <%
-String m_id = (String)session.getAttribute("m_id");
+MemberBean mb = (MemberBean) request.getAttribute("memberMypageDetail");
+String m_id = mb.getM_id();
+String m_name = mb.getM_name();
+int m_point = mb.getM_point();
 %>
 <body>
 
@@ -21,9 +26,6 @@ String m_id = (String)session.getAttribute("m_id");
 		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 		
 		<div class="mypage_delete_box">
-		
-				<div class="hidden">세션ID = <%=m_id%></div>
-				
 			<div class="mypage_center_c">
 				<div class="mypage_center_i">
 					<span class="delete_notice_title"><h3>회원 탈퇴 안내</h3></span>
@@ -39,10 +41,10 @@ String m_id = (String)session.getAttribute("m_id");
 							<div class="delete_form_wrap">
 							
 									<div class="delete_notice">
-										<span title="bold">(고객이름)</span> 고객님, <br>
+										<span title="bold"><%=m_name %></span> 고객님, <br>
 										탈퇴를 원하신다니 마음이 아프네요.<br>
 										
-										지금 탈퇴하시면 고객님의 (소지포인트) 포인트는 자동 소멸됨을 알려드립니다.<br>
+										지금 탈퇴하시면 고객님의 <%=NumberFormat.getInstance().format(m_point) %> 포인트는 자동 소멸됨을 알려드립니다.<br>
 									</div>
 				
 									<div class="delete_title">
@@ -69,7 +71,7 @@ String m_id = (String)session.getAttribute("m_id");
 						
 							<div class="delete_submit">
 								<div class="member_delete">
-									<input type="button" value="취소" class="btn_delete">
+									<input type="button" value="취소" class="btn_delete" onclick="history.back()">
 									<input type="hidden" name="m_id" value="<%=m_id%>">
 									<input type="submit" value="탈퇴" class="btn_delete">
 								</div>

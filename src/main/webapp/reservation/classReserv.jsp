@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>클래스 예약</title>
+<title><%=cb.getClass_subject() %></title>
 <link href="css/style.css" rel="stylesheet">
 <link href="css/classReserv.css" rel="stylesheet" >
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -187,7 +187,7 @@
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">
 						<button type="button" class="btn best_reviews">
-							<span>꽃다발 베스트 리뷰</span>
+							<span>CLASS 베스트 리뷰</span>
 						</button>
 					</li>
 					<li class="tab-link" data-tab="tab-2">
@@ -199,7 +199,7 @@
 				<div class="row">
 					<div id="tab-1" class="tab-content current">
 						<!-- 베스트 리뷰 jsp파일  -->
-						<jsp:include page="../inc/best_review.jsp"></jsp:include>
+						<jsp:include page="../inc/best_review_class.jsp"></jsp:include>
 					</div>
 					<div id="tab-2" class="tab-content">
 					<!-- 일반 리뷰 -->

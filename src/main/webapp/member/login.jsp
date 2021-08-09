@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 로그인</title>
 <%
 CartBean cartDetail = (CartBean) request.getAttribute("cartDetail"); // 비회원주문을 위한 정보
 String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 옵션 정보
@@ -50,7 +50,7 @@ String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 
 			<%if(sub_option!=null){ %>
 			<input type="hidden" name="sub_option" value="<%=sub_option%>">
 			<%} %>
-			<input type="submit" value="할인 없이 비회원 구매"><br>
+			<input class="loginsubmit" type="submit" value="할인 없이 비회원 구매"><br>
 		</form>
 		<%} %>
 	<p id="now">

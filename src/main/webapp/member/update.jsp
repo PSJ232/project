@@ -95,8 +95,10 @@
 								<div class="row">
 									<div class="update_name">성별</div>
 									<div class="update_input">
-										<input type="radio" name="m_gender" value="0" <%if(memberMypageDetail.getM_gender()==0){%>checked<%}%>><span title="gender_radio">남</span>
-										<input type="radio" name="m_gender" value="1" <%if(memberMypageDetail.getM_gender()==1){%>checked<%}%>><span title="gender_radio">여</span>
+										<input type="radio" id="gender0" name="m_gender" value="0" <%if(memberMypageDetail.getM_gender()==0){%>checked<%}%>>
+										<label for="gender0" class="gender_label <%if(memberMypageDetail.getM_gender()==0){%>active<%}%>">남성</label>
+										<input type="radio" id="gender1" name="m_gender" value="1" <%if(memberMypageDetail.getM_gender()==1){%>checked<%}%>>
+										<label for="gender1" class="gender_label <%if(memberMypageDetail.getM_gender()==1){%>active<%}%>">여성</label>
 									</div>
 						  		</div>
 						  		
@@ -187,7 +189,7 @@
 								
 								<div class="more_info">
 									<input type="hidden" name="m_pass_origin" value="<%=memberMypageDetail.getM_pass() %>">
-									<input type="checkbox" name="m_agree" <%if(memberMypageDetail.getM_agree()!=null){%>checked<%}%> > <span class="infomation">사계가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요.</span>
+									<label class="infomation"><input type="checkbox" name="m_agree" <%if(memberMypageDetail.getM_agree()!=null){%>checked<%}%> > 사계가 알려주는 꽃에 대한 정보와 다양한 소식을 받아보세요.</label>
 								</div>
 								
 						  		<div class="member_update">									
@@ -212,4 +214,14 @@
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	
 </body>
+<script type="text/javascript">
+	// 성별 선택 색상 변경
+	$(document).ready(function(){
+		$('.gender_label').click(function(){
+			$('.gender_label').removeClass('active');
+			$(this).addClass('active');
+		});
+	
+	});
+</script>
 </html>

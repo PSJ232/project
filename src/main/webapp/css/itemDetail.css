@@ -432,7 +432,8 @@ html {
 	width: 550px;
 	font-size: 16px;
 	font-weight: 300px;
-	color: #222222
+	color: #222222;
+	cursor: pointer;
 }
 
 .row .td3, .row .td4 {

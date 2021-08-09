@@ -35,6 +35,8 @@ ul.tabs {
 	list-style: none;
 	margin-top: 30px;
 	margin-left: 3px;
+	width: 730px;
+	margin-right: 20px;
 }
 
 ul.tabs li {
@@ -71,15 +73,14 @@ ul.tabs li.current {
 
 #mypage_reviewBefore_title {
 	font-size: 20px;
-	margin-left: 20px;
 }
 
 .mypage_reviewBefore_main {
-	width: 800px;
+	width: 730px;
 }
 
 #mypage_reviewBefore_table {
-	width: 800px;
+	width: 730px;
 	margin-bottom: 200px;
 	margin-top: 30px;
 }
@@ -99,13 +100,6 @@ ul.tabs li.current {
 	font-size: 13px;
 	font-weight: 700;
 	text-align: center;
-}
-
-.mypage_reviewBefore_table_tr {
-	margin-left:200px;
-	text-align: center;
-	font-size: 15px;
-	padding: 200px;
 }
 
 #mypage_reviewBefore_situation {
@@ -147,5 +141,20 @@ ul.tabs li.current {
 	text-align: center;
 }
 #mypage_reviewBefore_btn{
-	width: 50px;
+	width: 100px;
+	height: 30px;
+	border-radius: 10px;
+	background-color: #FFD228;
+	border: none;
+	font-size: 12px;
+	font-weight: 500;
+	color: #f7f7f7;
+}
+.mypage_orderHistory_can{
+	text-align: center;
+	font-size: 15px;
+	font-weight: 500;
+	width: 730px;
+	margin-top: 30px; 
+
 }
