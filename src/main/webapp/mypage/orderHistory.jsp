@@ -121,7 +121,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 						<tbody class="mypage_orderHistory_can">
 							<tr>
 								<td colspan="3">
-									<span> 주문 / 배송내역이 존재하지 않습니다.</span>
+									<span>주문/배송내역이 존재하지 않습니다.</span>
 									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flower.shop'" value="꽃다발 보러가기">
 								</td>
 							</tr>
@@ -187,7 +187,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 						<tbody class="mypage_orderHistory_can">
 							<tr >
 								<td colspan="3">
-									<span id="mypage_orderHistory_can" > 취소 / 환불내역이 존재하지 않습니다.</span>
+									<span>취소/환불내역이 존재하지 않습니다.</span>
 									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flower.shop'" value="꽃다발 보러가기">
 								</td>
 							</tr>

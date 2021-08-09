@@ -129,6 +129,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 								<dt id="mypage_reviewBefore_img"><img id="mypage_reviewBefore_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
 								<dt id="mypage_reviewBefore_span_one"><a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
 								<dt id="mypage_reviewBefore_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dt>
+								<dt id="mypage_reviewBefore_span_two"><%if(nonOrderDetailArrayList.get(i).getL_id()!=0){%>추가상품 : 편지 추가<%}%></dt>
 								<dt id="mypage_reviewBefore_span_two">받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
 								<dt id="mypage_reviewBefore_span_one"><%=NumberFormat.getInstance().format((int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100)%>원
 										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
@@ -177,6 +178,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 						<tr id="mypage_reviewBefore_tr">
 							<td id="mypage_reviewBefore_situation"><%=orderArrayList.get(i).getO_rdate()%>
 							<a href="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id()%>"><span><br>상세보기</span></a></td>
+							
 							<td id="mypage_reviewBefore_td">
 							<dl>
 								<dt id="mypage_reviewBefore_img"><img id="mypage_reviewBefore_img" src="./admin_layout/upload/<%=itemArrayList.get(i).getI_img() %>"/></dt>
