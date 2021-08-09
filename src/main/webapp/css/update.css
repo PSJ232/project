@@ -127,13 +127,29 @@ a, button {
 }
 
 .update_box .row .update_input [type=radio] {
-	width: 100px;
-	height: 35px;
-	vertical-align: middle;
+	display: none;
 }
 
-.update_box .row .update_input .gender_radio {
-    vertical-align: middle;
+.update_box .row .update_input .gender_label {
+   	width: 167px;
+	height: 44px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #222;	
+    border-radius: 5px;
+	display: inline-block;
+	margin-right: 10px;
+	text-align: center;
+	padding: 14px;
+	border: solid 1px #d3d3d3;
+}
+
+.update_box label {
+	cursor: pointer;
+}
+
+.gender_label.active {
+	background-color: #ffcd32;
 }
 
 .update_box .row .update_input .textBox {
