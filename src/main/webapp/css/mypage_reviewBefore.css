@@ -1,120 +1,107 @@
 @charset "UTF-8";
 
-*, *::before, *::after {
-	padding: 0;
-	margin: 0;
-	box-sizing: inherit;
-}
+.tabs {
+	list-style: none; 
+	display: flex;
+} 
 
-body {
-	height: 100%;
-	box-sizing: border-box;
-	font-size: 15px;
-	line-height: 16px;
-	font-family: 'Noto Sans KR', sans-serif, NanumGothic, '나눔고딕', Dotum,
-		'돋움', Helvetica, "Apple SD Gothic Neo";
-}
-
-li {
-	list-style: none;
-	text-decoration: none;
-}
-
-a, a:active, a:visited {
-	color: black;
-	text-decoration: none;
-}
-
-a, button {
-	cursor: pointer;
-}
-
-ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-	margin-top: 30px;
-	margin-left: 3px;
-	width: 730px;
-	margin-right: 20px;
-}
-
-ul.tabs li {
+.tabs li{
+	width: 360px;
 	background: none;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
-	width: 395px;
-	text-align: center;
-}
-
-ul.tabs li.current {
-	border-top: 2px solid #FFD228;
-}
+    cursor: pointer;
+    font-size: 15px;
+    color: #8e8d8d;
+    font-weight: 300;
+    padding: 13px 0;
+    text-align: center;
+}  
 
 .tab-content {
 	display: none;
 }
 
-.tab-content.current {
-	display: inherit;
-}
-.tabs.tab_link_current.tab_link{
-	font-size: 20px;
+.current{ 
+	display: inherit; 
+} 
+
+.tabs .current_clicked {
+	border: 1px solid #e0e0e0;
+    border-bottom: none;
+    border-top: 2px solid #ffcd32;
 }
 
+.tab-link {
+	border: 1px solid #e0e0e0;
+}
 
+/* 본문 */
 .mypage_reviewBefore_all {
-	float: right;
-	height: 100%;
-	padding: 0;
-	margin: 0;
+	display: inline-grid;
+	position: relative;
+	margin-left: 108px;
 }
 
 #mypage_reviewBefore_title {
-	font-size: 20px;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 35px;
+	margin-bottom: 15px;
 }
 
 .mypage_reviewBefore_main {
-	width: 730px;
+	margin-top: 39px;
 }
 
 #mypage_reviewBefore_table {
-	width: 730px;
-	margin-bottom: 200px;
-	margin-top: 30px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-top: 1px solid gray;
 }
 
-#mypage_reviewBefore_table_td_s {
-	background-color: #f7f7f7;
-	height: 50px;
-	font-size: 13px;
-	font-weight: 700;
-	text-align: center;
-	width: 150px;
+.mypage_reviewBefore_head th:first-child span {
+	padding: 0px 38px;
+	display: inline-block;
 }
 
-#mypage_reviewBefore_table_td_b {
-	background-color: #f7f7f7;
-	height: 50px;
+.mypage_reviewBefore_head th span {
 	font-size: 13px;
-	font-weight: 700;
+	font-weight: 500;
+}
+
+.mypage_reviewBefore_head th {
+	background-color: #f7f7f7;
+	border-top: 1px solid #d2d1d1;
+	padding: 20px 15px;
+	
+}
+
+.mypage_reviewBefore_head th:not(:last-child) {
+	border-right: 1px solid #e8e8e8;
+}
+
+.mypage_reviewBefore_can {
+	width: 100%;
+	height: 200px; /* 상품내용 부분 높이조절 */
 	text-align: center;
+}
+
+.mypage_reviewBefore_can tr td span {
+	display: block;
+	margin: 18px 0;
+	font-size: 15px;
+	color: #222;
 }
 
 #mypage_reviewBefore_situation {
 	text-align: center;
 	font-size: 15px;
 	font-weight: 500;
-	border-bottom: 1px solid #aaaaaa; 	
+	border-bottom: 1px solid #eeeeee;
 }
-
 
 #mypage_reviewBefore_td {
 	margin: 0;
 	text-align: left;
-	border-bottom: 1px solid #aaaaaa;
-	
 }
 
 #mypage_reviewBefore_img {
@@ -140,21 +127,17 @@ ul.tabs li.current {
 	font-weight: 300;
 	text-align: center;
 }
+
 #mypage_reviewBefore_btn{
-	width: 100px;
+	width: 80px;
 	height: 30px;
+	margin: 10px;
 	border-radius: 10px;
 	background-color: #FFD228;
 	border: none;
-	font-size: 12px;
+	font-size: 15px;
 	font-weight: 500;
 	color: #f7f7f7;
 }
-.mypage_orderHistory_can{
-	text-align: center;
-	font-size: 15px;
-	font-weight: 500;
-	width: 730px;
-	margin-top: 30px; 
 
-}
+

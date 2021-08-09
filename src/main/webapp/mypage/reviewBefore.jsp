@@ -9,37 +9,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 마이페이지</title>
 <link href="css/mypage.css" rel="stylesheet">
 <link href="css/mypage_reviewBefore.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/utility.css">
-<link rel="stylesheet" href="./css/mypage_subscribe.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	  rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <script type="text/javascript">
-	$(document).ready(function() {
-
-		$('ul.tabs li').click(function() {
+	$(document).ready(function(){
+		
+		$('ul.tabs li').click(function(){
 			var tab_id = $(this).attr('data-tab');
-
 			$('ul.tabs li').removeClass('current');
 			$('.tab-content').removeClass('current');
-
 			$('.tabs').find('li').removeClass('current_clicked');
-			$(this).addClass('current current_clicked');
+			$(this).addClass('current_clicked');
 			$("#"+tab_id).addClass('current');
 		})
-
 	})
 </script>
-
-<!-- ajax에 쓰이는 css : 수정 마음껏 하셔도 괜찮습니다. -->
-<style type="text/css">
-
-</style>
 </head>
 <body>
 
@@ -92,7 +82,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 
 			<!--   -------------------------------------------------- -->
 			<ul class="tabs">
-				<li class="tab-link current" data-tab="tab-1">작성 가능한 후기</li>
+				<li class="tab-link current_clicked" data-tab="tab-1">작성 가능한 후기</li>
 				<li class="tab-link" data-tab="tab-2">내 리뷰</li>
 			</ul>
 			<!--   -------------------------------------------------- -->
@@ -100,45 +90,50 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 			<div class="mypage_reviewBefore_main">
 				<div id="tab-1" class="tab-content current">
 					<table id="mypage_reviewBefore_table" >
-						
+						<colgroup>
+							<col width="22%">
+							<col width="58%">
+							<col width="20%">
+						</colgroup>
+						<thead class="mypage_reviewBefore_head">
 						<tr>
-							<td id="mypage_reviewBefore_table_td_s" >첫 구독일</td>
-							<td id="mypage_reviewBefore_table_td_b">상품 정보</td>
-							<td id="mypage_reviewBefore_table_td_s">상태</td>
+							<th><span>주문 일자</span></th>
+							<th><span>상품 정보</span></th>
+							<th><span>상태</span></th>
 						</tr>
+						</thead>
 						
 						<%
 						if (nonOrderDetailArrayList.isEmpty()) {
 						%>
-						<tbody class="mypage_orderHistory_can">
-							<tr class="mypage_orderHistory_can">
+						<tbody class="mypage_reviewBefore_can">
+							<tr>
 								<td colspan="3">작성 가능한 후기가 존재하지 않습니다. 
 								<input id="mypage_reviewBefore_btn" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
 								</td>
 							</tr>
 						</tbody>
-						
 						<%
 						} else {
-
 						for (int i = 0; i < nonOrderArrayList.size(); i++) {
 							int sumAmount = (nonOrderArrayList.get(i).getO_amount() + nonOrderArrayList.get(i).getO_point()
 							+ nonOrderArrayList.get(i).getO_gdiscount() / 100) * 100;
 						%>
+						<tbody class="mypage_reviewBefore_can">
 						<tr id="mypage_reviewBefore_tr">
 							<td id="mypage_reviewBefore_situation" ><%=nonOrderArrayList.get(i).getO_rdate()%></td>
-							<td>
+							<td id="mypage_reviewBefore_situation" >
 							<dl id="mypage_reviewBefore_td">
 								<dt id="mypage_reviewBefore_img"><img id="mypage_reviewBefore_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
 								<dt id="mypage_reviewBefore_span_one">  상품 명 : <a href="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id()%>"><%=nonItemArrayList.get(i).getI_name()%></a></dt>
 								<dt id="mypage_reviewBefore_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date()%></dt>
 								<dt id="mypage_reviewBefore_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver()%></dt>
-								<dt id="mypage_reviewBefore_span_one">가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>
-										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
+								<dt id="mypage_reviewBefore_span_one">가격 :<%=(int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100%>	/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
 							</dl>
 							</td>
 							<td id="mypage_reviewBefore_situation"><a href="ReviewInsert.rv?od_id=<%=nonOrderDetailArrayList.get(i).getOd_id()%>">리뷰 작성</a></td>
 						</tr>
+						</tbody>
 						<%
 						}
 						}
@@ -147,27 +142,35 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 				</div>
 			
 				<div id="tab-2" class="tab-content">
-				 <div class="mypage_orderHistory_can">
-					<%if (orderDetailArrayList.isEmpty()) { %> 작성한 후기가 존재하지 않습니다. 
-					<input id="mypage_reviewBefore_btn" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
-				 </div>
-					
+					<table id="mypage_reviewBefore_table">
+						<colgroup>
+							<col width="22%">
+							<col width="58%">
+							<col width="20%">
+						</colgroup>
+						<thead class="mypage_reviewBefore_head">
+							<th><span>주문 일자</span></th>
+							<th><span>상품 정보</span></th>
+							<th><span>상태</span></th>
+						</thead>
+						
+					<%if (orderDetailArrayList.isEmpty()) { %>
+					<tbody class="mypage_reviewBefore_can">
+							<tr >
+								<td colspan="3">
+									<span id="mypage_reviewBefore_can" > 작성한 후기가 존재하지 않습니다.</span>
+									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flower.shop'" value="꽃다발 보러가기">
+								</td>
+							</tr>
+					</tbody>
 					<%
 					} else {
-					%>
 			
-					<table id="mypage_reviewBefore_table">
-						
-						<tr>
-							<td id="mypage_reviewBefore_table_td_s">주문 일자</td>
-							<td id="mypage_reviewBefore_table_td_b">상품 정보</td>
-							<td id="mypage_reviewBefore_table_td_s">상태</td>
-						</tr>
-						<%
 						for (int i = 0; i < orderArrayList.size(); i++) {
 							int sumAmount = (orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point()
 							+ orderArrayList.get(i).getO_gdiscount() / 100) * 100;
 						%>
+						<tbody class="mypage_reviewBefore_can">
 						<tr>
 							<td><%=orderArrayList.get(i).getO_rdate()%></td>
 							<td>
@@ -195,6 +198,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 							%>
 
 						</tr>
+						</tbody>
 						<%
 						}
 						%>

@@ -76,9 +76,13 @@ case 1:
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 // 휴대전화 형식으로 설정
-String FormatPhone = orderBean.getO_phone().substring(0, 3) + "-" + orderBean.getO_phone().substring(3, 7) + "-" +
+String FormatPhone = "";
+if(orderBean.getO_phone().length()==11) {
+	FormatPhone = orderBean.getO_phone().substring(0, 3) + "-" + orderBean.getO_phone().substring(3, 7) + "-" +
 		orderBean.getO_phone().substring(7, 11);
-System.out.println(FormatPhone);
+} else {
+	FormatPhone = orderBean.getO_phone();
+}
 %>
 <body>
 	<!-- 헤더 들어가는곳 -->
