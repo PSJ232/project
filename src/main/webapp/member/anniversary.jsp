@@ -14,7 +14,7 @@
 				<%if (request.getAttribute("annDetail") == null) {%>
 
 		<div class="page_title">
-			<span>기념일 등록하기</span>
+			<span class="title">기념일 등록하기</span>
 		</div>	
 
 		<div class="ann_content_ box">

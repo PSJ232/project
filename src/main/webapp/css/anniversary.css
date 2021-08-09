@@ -13,26 +13,16 @@
 }
 
 .anniversary_container .page_title{
-	position: static;
 	display: block;
 	max-width: 490px;
     margin: 0 auto;
     padding: 0 20px 15px;
     text-align: center;
-    border-bottom: 1px solid #ccc;   
+    border-bottom: 1px solid #ccc;
+    text-align: center;	
 }
 
-.page_title {
-	top: 36px;
-	position: static;
-	display: block;
-	max-width: 490px;
-	margin: 0 auto;
-	padding: 0 30px;
-	text-align: center;	
-}
-
-.page_title span {
+.anniversary_container .page_title .title {
     padding: 40px 0;
     border-bottom: none;
     font-size: 30px;
@@ -42,7 +32,7 @@
     color: #333;
 }
 
-.ann_content_box {
+.anniversary_container .ann_content_box {
 	margin-top: 15px;
 	padding-top: 20px;
 }
