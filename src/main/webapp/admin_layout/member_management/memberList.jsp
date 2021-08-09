@@ -17,37 +17,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 <link rel="stylesheet" href="./css/admin.css">
 <link rel="stylesheet" href="./css/list_style.css">
+<link rel="stylesheet" href="./css/admin_member_list.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<style>
-	
-	.search_container {
-		display: flex;
-		margin-top: 50px;
-		justify-content: flex-start;
-	}
-	
-	.chart-div {
-		
-		display: flex;
-		margin: 0 auto;
-	}
-	
-	#pieChartCanvas {
-		margin-left: 120px;
-	}
-	
-	#pie {
-		margin-left: 50px;
-	}
-	
-	.container fieldset {
-		width: 800px;
-		padding: 15px;
-		border-radius: 10px;
-		border: 2px solid #ccc;
-	}
-
-</style>
 <script type="text/javascript">
 	var doughnutChartData = {
 		    labels: ["10대이하", "20대", "30대", "40대", "50대이상"],

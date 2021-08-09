@@ -10,7 +10,7 @@ import dao.ClassDAO;
 
 public class ClassInsertService {
 
-	public boolean registArticle(ClassBean classBean, String[] timeList) {
+	public boolean insertClass(ClassBean classBean, String[] timeList) {
 		Connection con = getConnection();
 		boolean isSuccess = false;
 		

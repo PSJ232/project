@@ -14,11 +14,8 @@ public class AdminGetReservInfoAction {
 		String place = request.getParameter("place");
 		String time = request.getParameter("time");
 		String date = request.getParameter("date");
-		System.out.println("AdminGetReservInfoAction");
-		System.out.println("place " + place + " time " + time  + " date " + date);
 		ClassDetailListService service = new ClassDetailListService();
 		PrintWriter out;
-		System.out.println(service.getReservInfo(place, time, date));
 		try {
 			out = response.getWriter();
 			out.write(service.getReservInfo(place, time, date));

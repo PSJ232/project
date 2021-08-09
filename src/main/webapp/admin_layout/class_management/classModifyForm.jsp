@@ -12,97 +12,11 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 | 클래스수정</title>
-<style>
-	#modify_form {
-		display: flex;
-		width: 1000px;
-		margin-left: 350px;
-		margin-top: 110px;
-	
-	}
-	.sub_container1,.sub_container2 {
-		display: inline-block;
-		width: 500px;
-	}
-	.sub_container1 {
-		height: 500px;
-	}
-	.sub_container2 {
-		margin-top: 45px;
-		margin-bottom: 50px;
-	}
-	label {
-		width: 120px;
-		float:left;
-		font-size: 15px;
-		font-weight: bold;
-		margin-top: 5px;
-	}
-	input[type=text], input[type=file], input[type=number]{
-		outline: none;
-		border: none;
-		margin-bottom: 15px;
- 		border-bottom: 2px solid #ccc; 
- 		width: 300px;
-	}
-	input[type=text]{
-		padding: 3px;
-	}
-	input[type=text]:hover, input[type=file]:hover, input[type=number]:hover {
-		border-bottom: 2px solid #FFDF24;
-	}
-	#title {
-		margin-bottom: 40px;
-	}
-	#timeList {
-		overflow: hidden;
-		width: 80px;
-		height: 150px;
-		text-align: center;
-		border: none;
-		display: inline-block;
-		font-size: 13px;
-		overflow: visible;
-		margin-bottom: 20px;
-	}
-	textarea {
-		border: none;
-		outline: none;
-	}
-	fieldset {
-		border-radius: 5px;
-		border: 2px solid #ccc;
-		padding: 8px;
-		width: 315px;
-	}
-	fieldset:hover {
-		border: 2px solid #FFDF24;
-	}
-	legend {
-		font-size: 15px;
-		padding: 5px;
-	}
-	input[type=submit]{
-		width: 70px;
-		height: 30px;
-		float: right;
-		margin-right: 75px;
-		border: 1px solid #fff;
-		border-radius: 5px;
-		background-color: #FFDF24;
-	}
-	input[type=submit]:hover{
-		background-color: #FFCD12;
-		cursor: pointer;
-	}
-	#timeList option:hover {
-		color: #FFDF24;
-	}
-</style>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="./css/admin.css">
+<link rel="stylesheet" href="./css/admin_class_modify_form.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script>
 	$(document).ready(function(){
