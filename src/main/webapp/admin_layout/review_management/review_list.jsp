@@ -57,6 +57,14 @@
 				location.href="ReviewList.ad?filter=rate_desc";
 			}
 		});
+		$('#deleteBtn').click(function(){
+			var conf = confirm("삭제하시겠습니까?");
+			if(conf){
+				var loc = $('input[name="review"]:checked').val();
+				location.href="DeleteReview.ad?r_id=" + loc;
+			}
+			
+		});
 	});
 </script>
 </head>
@@ -75,14 +83,16 @@
 			<option value="rate_asc">별점낮은순</option>
 			<option value="rate_desc">별점높은순</option>
 		</select>
+		<input style="margin-left: 615px" type="button" id="deleteBtn" class="btn" value="리뷰삭제">
 		<table border="1" id="reviewList">
 			<thead>
-				<tr><th width="50">순번</th><th width="120">작성날짜</th><th width="150">작성자</th><th width="250">제목</th><th width="100">별점</th></tr>
+				<tr><th width="50"></th><th width="50">순번</th><th width="120">작성날짜</th><th width="150">작성자</th><th width="250">제목</th><th width="100">별점</th></tr>
 			</thead>
 			<tbody>
 				<%
 					for(int i = 0; i < reviewList.size(); i++){
 						%><tr id="showContent" onclick="getContent(<%=reviewList.get(i).getR_id()%>,this)">
+						<td><input type="radio" name="review" id="review_<%=reviewList.get(i).getR_id() %>" value="<%=reviewList.get(i).getR_id() %>"></td>
 						<td><%=reviewList.get(i).getR_id() %></td>
 						<td><%=reviewList.get(i).getR_rdate() %></td>
 						<td><%=reviewList.get(i).getR_writer() %></td>
@@ -100,6 +110,7 @@
 				%>
 			</tbody>
 		</table>
+		
 		<section id="pageList">
 			<% if(maxPage != 1){
 				if(currentPage <= 1) {%>

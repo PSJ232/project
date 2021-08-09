@@ -627,5 +627,23 @@ public class ReviewDAO {
 		return listCount;
 	}
 
+	public int deleteAdminReview(int r_id) {
+		System.out.println("ReviewDAO - deleteReview()");
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM review WHERE r_id=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_id);
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("ReviewDAO - deleteAdminReview() SQL문 오류 : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		return deleteCount;
+	}
+
 
 }

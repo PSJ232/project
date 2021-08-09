@@ -23,6 +23,7 @@ import action.AdminQnaDetailAction;
 import action.AdminQnaListAction;
 import action.AdminQnaGetListAction;
 import action.AdminQnaWriteAnswerAction;
+import action.AdminReviewDeleteAction;
 import action.AdminReviewListAction;
 import action.AdminSearchAction;
 import action.ClassDeleteAction;
@@ -44,6 +45,7 @@ import action.ReservInsertAction;
 import action.ReservInsertProAction;
 import action.ReservMiddleCancleAction;
 import action.ReservPayAction;
+import svc.AdminDeleteReviewService;
 import action.ClassTimeAddAction;
 import action.ItemDeleteAction;
 import vo.ActionForward;
@@ -386,6 +388,14 @@ public class AdminFrontController extends HttpServlet {
 		}else if(command.equals("/ReviewList.ad")) {
 			forward = new ActionForward();
 			action = new AdminReviewListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/DeleteReview.ad")) {
+			forward = new ActionForward();
+			action = new AdminReviewDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
