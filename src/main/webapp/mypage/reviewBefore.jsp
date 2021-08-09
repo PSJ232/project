@@ -12,12 +12,11 @@
 <meta charset="UTF-8">
 <title>사계 | 마이페이지</title>
 <link href="css/mypage.css" rel="stylesheet">
-<link href="css/mypage_reviewBefore.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/mypage_reviewBefore.css">
 <link rel="stylesheet" href="./css/utility.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	  rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -31,9 +30,6 @@
 		})
 	})
 </script>
-</head>
-<body>
-
 <%
 MemberBean memberMypageDetail = (MemberBean) request.getAttribute("memberMypageDetail");
 String m_id = (String) session.getAttribute("m_id");
@@ -64,14 +60,13 @@ case 0:
 
 request.setAttribute("memberMypageDetail", memberMypageDetail);
 %>
-	<!-- 헤더 들어가는곳 -->
-	<jsp:include page="../inc/header.jsp"></jsp:include>
-	<!-- 헤더 들어가는곳 -->
+</head>
+<body>
 
-	<!-- 본문 메인 상단 -->
+	<jsp:include page="../inc/header.jsp" ></jsp:include>
+
 	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
-
-	<!-- 본문 왼쪽 메뉴 -->
+	
 	<div class="mypage_container">
 		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
 
@@ -81,13 +76,12 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 
 			<h2 id="mypage_reviewBefore_title">상품 리뷰</h2>
 
-			<!--   -------------------------------------------------- -->
+		
 			<ul class="tabs">
 				<li class="tab-link current_clicked" data-tab="tab-1">작성 가능한 후기</li>
 				<li class="tab-link" data-tab="tab-2">내 리뷰</li>
 			</ul>
-			<!--   -------------------------------------------------- -->
-
+			
 			<div class="mypage_reviewBefore_main">
 				<div id="tab-1" class="tab-content current">
 					<table id="mypage_reviewBefore_table" >
@@ -144,7 +138,6 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 						%>
 					</table>
 				</div>
-			
 				<div id="tab-2" class="tab-content">
 					<table id="mypage_reviewBefore_table">
 						<colgroup>
@@ -162,15 +155,14 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 						
 					<%if (orderDetailArrayList.isEmpty()) { %>
 					<tbody class="mypage_reviewBefore_can">
-							<tr >
+							<tr>
 								<td colspan="3">
 									<span id="mypage_reviewBefore_can" > 작성한 후기가 존재하지 않습니다.</span>
-									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flower.shop'" value="꽃다발 보러가기">
+									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
 								</td>
 							</tr>
 					</tbody>
-					<%
-					} else {
+					<%} else {
 			
 						for (int i = 0; i < orderArrayList.size(); i++) {
 							int sumAmount = (orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point()
@@ -190,7 +182,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 								<dt id="mypage_reviewBefore_span_one"><%=NumberFormat.getInstance().format((int) (itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100)%>원
 										/ <%=orderDetailArrayList.get(i).getOd_qty()%>개</dt></dl>
 							</td>
-							<!-- 				삭제된 리뷰와, 수정 및 삭제가 가능한 리뷰를 구분	   			 -->
+							<!-- 				삭제된 리뷰와, 수정 및 삭제가 가능한 리뷰를 구분	 -->
 							<%
 							if (deleteOdList.contains(orderDetailArrayList.get(i).getOd_id())) {
 							%>
@@ -213,21 +205,13 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 					}
 					%>
 				
+				</div>
 			</div>
-		</div>
 		</section>
 	</div>
 
-
-
 	<!-- 푸터 들어가는곳 -->
-	<footer>
-		<jsp:include page="../inc/footer.jsp"></jsp:include>
-	</footer>
-	<!-- 푸터 들어가는곳 -->
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+	
 </body>
 </html>
-
-
-
-

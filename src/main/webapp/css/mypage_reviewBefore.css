@@ -113,10 +113,14 @@
 
 #mypage_reviewBefore_td dl {
 	height: 160px;
-	padding: 22px 0 0px 20px;
+	padding: 22px 0 0 20px;
 	border-right: solid 1px #eeeeee;
 	border-left: solid 1px #eeeeee;
 }
+
+#mypage_reviewBefore_td dt {
+	text-align: left;
+} 
 
 #mypage_reviewBefore_t {
 	text-align: center;

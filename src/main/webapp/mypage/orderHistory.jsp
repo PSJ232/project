@@ -122,7 +122,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<tr>
 								<td colspan="3">
 									<span>주문/배송내역이 존재하지 않습니다.</span>
-									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flower.shop'" value="꽃다발 보러가기">
+									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
 								</td>
 							</tr>
 						</tbody>
@@ -188,7 +188,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 							<tr >
 								<td colspan="3">
 									<span>취소/환불내역이 존재하지 않습니다.</span>
-									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flower.shop'" value="꽃다발 보러가기">
+									<input class ="btn_wide btn_yellow" type="button" onclick="location.href='Flowers.shop'" value="꽃다발 보러가기">
 								</td>
 							</tr>
 						</tbody>

@@ -11,8 +11,7 @@
 <link href="css/style.css" rel="stylesheet" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="./css/mypage_memberGrade.css"
-	type="text/css" />
+<link rel="stylesheet" href="./css/mypage_memberGrade.css" type="text/css" />
 </head>
 <body>
 
