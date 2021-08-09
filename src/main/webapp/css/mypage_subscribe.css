@@ -23,14 +23,24 @@
 	display: inherit; 
 } 
 
+.tabs .current_clicked {
+	border: 1px solid #e0e0e0;
+    border-bottom: none;
+    border-top: 2px solid #ffcd32;
+}
+
+.tab-link {
+	border: 1px solid #e0e0e0;
+}
+
 /* ajax관련 속성 */
 
 
 /* 본문 */
 #mysubscribe_container {
-	display: inline-block;
-	position: absolute;
-	margin-left: 108px;
+	display: inline-grid;
+    position: relative;
+    margin-left: 108px;
 }
 
 .my_title {
@@ -42,16 +52,6 @@
 
 .mysubscribe_layout {
     margin-top: 39px;
-}
-
-.tabs .current_clicked {
-	border: 1px solid #e0e0e0;
-    border-bottom: none;
-    border-top: 2px solid #ffcd32;
-}
-
-.tab-link {
-	border: 1px solid #e0e0e0;
 }
 
 .mysubscribe_list_layout {
@@ -92,3 +92,88 @@
     font-size: 15px;
     color: #222;
 }
+
+#mysubscribe_order_situation {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 500;
+	border-bottom: 1px solid #aaaaaa; 	
+}
+
+#mysubscribe_order_td {
+	margin: 0;
+	text-align: left;
+}
+
+#mysubscribe_order_img {
+	width: 100px;
+	height: auto;
+	background: no-repeat;
+	background-size: contain;
+	padding: 0;
+	float: left;
+}
+
+#mysubscribe_order_span_one {
+	font-weight: 500;
+	margin: 10px;
+	font-size: 15px;
+	text-align: center;
+}
+
+#mysubscribe_order_span_two {
+/* 	color: #aaaaaa; */
+	margin: 10px;
+	font-size: 15px;
+	font-weight: 300;
+	text-align: center;
+}
+
+#mysubscribe_order_btn {
+	width: 80px;
+	height: 30px;
+	margin: 10px;
+	border-radius: 10px;
+	background-color: #FFD228;
+	border: none;
+	font-size: 15px;
+	font-weight: 500;
+	color: #f7f7f7;
+}
+
+
+
+
+
+
+
+
+.mypage_confirmPurchase_all{
+	text-align: center;
+/* 	margin-top: 150px; */
+	line-height: 2.0;
+}
+
+#mypage_confirmPurchase_h1{
+	 font-size: 30px;
+	 font-weight: 700;
+	 margin-bottom: 50px;	
+}
+#mypage_confirmPurchase_h3{
+	font-size: 20px;
+	font-weight: 500;
+}
+#mypage_confirmPurchase_cbtn{
+	width: 80px;
+	height: 30px;
+	margin: 10px;
+	border-radius: 10px;
+	background-color: #aaaaaa;
+	border: none;
+	font-size: 15px;
+	font-weight: 500;
+	color: #f7f7f7;
+}
+
+
+

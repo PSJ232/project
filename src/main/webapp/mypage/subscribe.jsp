@@ -23,12 +23,10 @@ $(document).ready(function(){
 	
 	$('ul.tabs li').click(function(){
 		var tab_id = $(this).attr('data-tab');
-
 		$('ul.tabs li').removeClass('current');
 		$('.tab-content').removeClass('current');
-		
 		$('.tabs').find('li').removeClass('current_clicked');
-		$(this).addClass('current current_clicked');
+		$(this).addClass('current_clicked');
 		$("#"+tab_id).addClass('current');
 	})
 
@@ -91,7 +89,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 	
 		<!--   -------------------------------------------------- -->
 		<ul class="tabs">
-			<li class="current tab-link current_clicked" data-tab="tab-1">주문/배송내역</li>
+			<li class="tab-link current_clicked" data-tab="tab-1">주문/배송내역</li>
 			<li class="tab-link" data-tab="tab-2">취소/환불내역</li>
 		</ul>
 		<!--   -------------------------------------------------- -->
@@ -128,25 +126,30 @@ for(int i =0; i<orderArrayList.size(); i++) {
 							String invoiceNo = nonOrderDetailArrayList.get(i).getOd_invoice();
 							%>
 	 						<tbody class="mysubscribe_order_none">
-								<tr>
+								<tr id="mysubscribe_order_tr">
 									<%
 									if(nonCol.contains(i)) {
-										%><td rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td><%
+										%><td id="mysubscribe_order_situation" rowspan="<%=nonCol.get(count+1)-nonCol.get(count) %>"><%=nonOrderArrayList.get(i).getO_rdate() %></td>
+									<%
 									} else {}
 										%>
-									<td>
-										상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a><br>
-										수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %><br>
-										받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %><br>
-										가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>
+									<td id="mysubscribe_order_situation" >
+									<dl id="mysubscribe_order_td">
+									<dt id="mysubscribe_order_img"><img id="mysubscribe_order_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
+									<dt id="mysubscribe_order_span_one">  상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a></dt>
+									<dt id="mysubscribe_order_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %></dt>
+									<dt id="mysubscribe_order_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %></dt>
+									<dt id="mysubscribe_order_span_one">가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>개</dt>
+									</dl>
 									</td>
 									<%if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%>
-									<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td>
+									<td id="mysubscribe_order_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td>
 									<%} else if (!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {%>
-									<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=invoiceNo %>
-																	<input type="button" onclick="confirmPurchase(<%=nonOrderDetailArrayList.get(i).getOd_id() %>)" value="구매확정"></td>
+									<td id="mysubscribe_order_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=invoiceNo %>
+										<input id="mysubscribe_order_btn" type="button" onclick="confirmPurchase(<%=nonOrderDetailArrayList.get(i).getOd_id() %>)" value="구매확정">
+									</td>
 									<%} else if (invoiceNo.equals("주문접수")) {%>
-									<td id="mypage_orderHistory_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">주문접수</td>
+									<td id="mysubscribe_order_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">주문접수</td>
 									<%}
 									%>
 								</tr>
@@ -186,8 +189,10 @@ for(int i =0; i<orderArrayList.size(); i++) {
 					} else {
 						int ccount = 0;
 						for(int i=0; i<orderArrayList.size(); i++) {
+							String invoiceNo = nonOrderDetailArrayList.get(i).getOd_invoice();
 						%>
 	
+						<tbody class="mysubscribe_order_none">
 							<tr>
 								<%
 								if(col.contains(i)) {
@@ -195,10 +200,31 @@ for(int i =0; i<orderArrayList.size(); i++) {
 								} else {}
 								%>
 								<td>
-									상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id() %>"><%=itemArrayList.get(i).getI_name() %></a><br>
-									수령일 : <%=orderDetailArrayList.get(i).getOd_delivery_date() %><br>
-									받는 분 : <%=orderArrayList.get(i).getO_receiver() %><br>
-									가격 : <%=(int)(itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=orderDetailArrayList.get(i).getOd_qty() %>
+<!-- 									 -->
+<%-- 									<dt id="mysubscribe_order_img"><img id="mysubscribe_order_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt> --%>
+<%-- 									<dt id="mysubscribe_order_span_one">  상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a></dt> --%>
+<%-- 									<dt id="mysubscribe_order_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %></dt> --%>
+<%-- 									<dt id="mysubscribe_order_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %></dt> --%>
+<%-- 									<dt id="mysubscribe_order_span_one">가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>개</dt> --%>
+<!-- 									</dl> -->
+<!-- 									</td> -->
+<%-- 									<%if (nonOrderDetailArrayList.get(i).getOd_confirm() == 1) {%> --%>
+<%-- 									<td id="mysubscribe_order_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">배송 완료</td> --%>
+<%-- 									<%} else if (!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {%> --%>
+<%-- 									<td id="mysubscribe_order_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>"><%=invoiceNo %> --%>
+<%-- 																	<input id="mysubscribe_order_btn" type="button" onclick="confirmPurchase(<%=nonOrderDetailArrayList.get(i).getOd_id() %>)" value="구매확정"></td> --%>
+<%-- 									<%} else if (invoiceNo.equals("주문접수")) {%> --%>
+<%-- 									<td id="mysubscribe_order_situation" rowspan="<%=nonCol.get(count + 1) - nonCol.get(count)%>">주문접수</td> --%>
+<%-- 									<%} --%>
+<%-- 									%> --%>
+								
+								<dl id="mysubscribe_order_td">
+								<dt id="mysubscribe_order_img"><img id="mysubscribe_order_img" src="./admin_layout/upload/<%=nonItemArrayList.get(i).getI_img() %>"/></dt>
+									<dt id="mysubscribe_order_span_one">  상품 명 : <a href ="OrderMypageDetail.od?o_id=<%=nonOrderArrayList.get(i).getO_id() %>"><%=nonItemArrayList.get(i).getI_name() %></a></dt>
+									<dt id="mysubscribe_order_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %></dt>
+									<dt id="mysubscribe_order_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %></dt>
+									<dt id="mysubscribe_order_span_one">가격 : <%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>개</dt>
+								</dl>
 								</td>
 								<%
 								if(col.contains(i)) {
@@ -209,6 +235,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 								} else {}
 								%>
 							</tr>
+							</tbody>
 							<%
 						}
 					}
