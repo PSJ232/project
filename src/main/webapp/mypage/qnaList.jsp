@@ -117,7 +117,7 @@
 								<td colspan="2" class="qnaList_td3" style="height:250px">
 								<span class="qnaList_span7"><%=qnaList.get(i).getQ_subject()%></span>
 								<span class="qnaList_span6"><small><%=qnaList.get(i).getQ_rdate()%></small></span><br>
-								<div class="qnaList_answer"><span class="qnaList_span5"><%=qnaList.get(i).getQ_content()%></span></div>
+								<span class="qnaList_span5"><%=qnaList.get(i).getQ_content()%></span>
 								</td>
 							</tr>
 

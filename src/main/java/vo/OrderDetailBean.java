@@ -15,6 +15,15 @@ public class OrderDetailBean {
 	private String od_invoice; // 송장정보
 	private int od_confirm; // 구매확정상태 0:미확정, 1:구매확정, 2:취소, 3:반품
 	private String i_name; // 팀장님 편의상 만든 항목 (상품이름)
+	private int i_price;// 팀장님 편의상 만든 항목 (상품가격)
+
+	public int getI_price() {
+		return i_price;
+	}
+
+	public void setI_price(int i_price) {
+		this.i_price = i_price;
+	}
 
 	public String getI_name() {
 		return i_name;

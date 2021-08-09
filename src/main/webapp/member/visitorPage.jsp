@@ -12,9 +12,11 @@
 <meta charset="UTF-8">
 <title>사계 | 비회원 주문 조회</title>
 <link rel="stylesheet" href="css/style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="css/order_insert.css">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <%
 OrderBean order = (OrderBean) request.getAttribute("visitorOrder");
 OrderDetailBean orderDetail = (OrderDetailBean) request.getAttribute("orderDetail");
@@ -47,8 +49,8 @@ case 1:
  	<!-- header -->
   	<jsp:include page="../inc/header.jsp" ></jsp:include>
   	<!-- header -->
-
-
+<div class="container">
+<div class="order_insert_all"> 
 
 
 	주문내역상세<br>
@@ -92,9 +94,11 @@ case 1:
 	
 	<input type="button" value="홈으로 돌아가기" onclick="location.href='./'">
 	
+</div>
+</div>
 	
 	
-		<!-- footer -->
+	<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
 </body>

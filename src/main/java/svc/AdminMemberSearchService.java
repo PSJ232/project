@@ -10,14 +10,14 @@ import static db.JdbcUtil.*;
 
 public class AdminMemberSearchService {
 
-	public String getJSON(String m_name, String filter, int page, int limit) {
+	public String getJSON(String m_name, String filter) {
 		Connection con = getConnection();
 		if(m_name == null) m_name = "";
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
-		ArrayList<MemberBean> resultList = memberDAO.search(m_name, filter, page, limit);
+		ArrayList<MemberBean> resultList = memberDAO.search(m_name, filter);
 		for(int i = 0; i < resultList.size(); i++) {
 			result.append("[{\"value\": \"" + resultList.get(i).getM_id() + "\"},");
 			result.append("{\"value\": \"" + resultList.get(i).getM_name() + "\"},");

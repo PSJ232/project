@@ -113,9 +113,12 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 						<%
 						if (nonOrderDetailArrayList.isEmpty()) {
-						%><tr>
-							<td id="mypage_orderHistory_table_th" colspan="3">주문 / 배송내역이 존재하지 않습니다.</td>
+						%>
+						<tbody class="mypage_orderHistory_can">
+						<tr >
+							<td class="mypage_orderHistory_can" colspan="3"><span id="mypage_orderHistory_can" > 주문 / 배송내역이 존재하지 않습니다.</span></td>
 						</tr>
+						</tbody>
 						<%
 						} else { int count = 0;
 						for (int i = 0; i < nonOrderArrayList.size(); i++) {
@@ -141,7 +144,7 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 								<td id="mypage_orderHistory_situation">배송 완료</td>
 							<%} else if (!nonOrderDetailArrayList.get(i).getOd_invoice().equals("주문접수")) {%>
 								<td id="mypage_orderHistory_situation"><%=invoiceNo %>
-															<input type="button" onclick="confirmPurchase(<%=nonOrderDetailArrayList.get(i).getOd_id() %>)" value="구매확정"></td>
+															<input id="mypage_orderHistory_btn" type="button" onclick="confirmPurchase(<%=nonOrderDetailArrayList.get(i).getOd_id() %>)" value="구매확정"></td>
 							<%} else if (invoiceNo.equals("주문접수")) {%>
 								<td id="mypage_orderHistory_situation">주문접수</td>
 							<%}
@@ -165,9 +168,12 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 
 						<%
 						if (orderDetailArrayList.isEmpty()) {
-						%><tr>
-							<td class="mypage_orderHistory_table_th" colspan="3">취소 / 환불내역이 존재하지 않습니다.</td>
+						%>
+						<tbody class="mypage_orderHistory_can">
+						<tr>
+							<td class="mypage_orderHistory_can" colspan="3"> <span id="mypage_orderHistory_can" >취소 / 환불내역이 존재하지 않습니다.</span></td>
 						</tr>
+						</tbody>
 						<%} else {int ccount = 0;
 						for (int i = 0; i < orderArrayList.size(); i++) {
 						%>

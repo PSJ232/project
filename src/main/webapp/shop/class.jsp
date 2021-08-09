@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 언제나 꽃과함께, NO.1 플라워브랜드</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/quick.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -247,7 +247,7 @@ switch (i_category) {
 									</div>
 									<div class="check_address_right" style="display: none;">
 										<label class="label_name" id="label_name_date">주소검색<span class="required_mark"> *</span></label>
-										<input class="address_option" id="sample6_address" type="text" name="address_option" placeholder="주소 검색" required onclick="sample6_execDaumPostcode()">
+										<input class="address_option" id="sample6_address" type="text" name="address_option" placeholder="주소 검색" required onclick="sample6_execDaumPostcode()" readonly>
 									</div>	
 								</div>
 							<%}else{ %> <!-- 일반배송 경유 접속시 표시 -->
@@ -308,7 +308,9 @@ switch (i_category) {
 					</div>
 				</div>
 			</div>
+			<!-- 상품상세 시작 -->
 			<div class="category_product_description">
+				<!-- 중간 3버튼 네비게이션   -->
 				<ul class="middle_nav">
 					<li class="middle_li li_desc active" onclick="location.href='#desc_image'">상품설명</li>
 					<li class="middle_li li_review" onclick="location.href='#review_list'">리뷰</li>
@@ -318,6 +320,7 @@ switch (i_category) {
 					<img src="./admin_layout/upload/<%=itemDetail.getI_detailpage() %>">
 				</div>
 			</div>
+			<!-- 리뷰 시작 -->
 			<div id="review_list">
 				<div class="review_top">
 					<div class="review_title">
@@ -343,7 +346,7 @@ switch (i_category) {
 					</ul>
 					<div class="row">
 						<div id="tab-1" class="tab-content current">
-							<!-- 베스트 댓글 jsp파일  -->
+							<!-- 베스트 리뷰 jsp파일  -->
 							<jsp:include page="../inc/best_review.jsp"></jsp:include>
 						</div>
 						<div id="tab-2" class="tab-content">
@@ -376,7 +379,11 @@ switch (i_category) {
 							%>
 								<tr onclick="$(this).next('tr').toggle()">
 									<td class="td1"><%=rate %></td>
-									<td class="td2"><%=rbList.get(i).getR_title() %><span class="icon_img"></span></td>
+									<td class="td2">
+										<%=rbList.get(i).getR_title() %>
+										<%if(rbList.get(i).getR_img()!=null){ %>
+										<span class="icon_img"></span><%} %>
+									</td>
 									<td class="td3"><%=editId %>님</td>
 									<td class="td4"><%=rbList.get(i).getR_rdate() %></td>
 								</tr>
@@ -575,7 +582,6 @@ switch (i_category) {
 					$('.middle_li').removeClass('active');
 					$('.li_deli_info').addClass('active');
 				}
-				
 				
 			});
 			

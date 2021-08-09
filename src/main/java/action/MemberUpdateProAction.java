@@ -47,7 +47,7 @@ public class MemberUpdateProAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("MemberUpdate.me");
+			forward.setPath("UpdateMyInfo.me");
 			forward.setRedirect(true);
 		}
 

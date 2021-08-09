@@ -178,6 +178,7 @@ public class ClassDAO {
 				classBean.setClass_date(rs.getString("f_cdate"));
 				classBean.setClass_readcount(rs.getInt("f_readcount"));
 				classBean.setClass_sub_desc(rs.getString("f_sub_desc"));
+				classBean.setF_desc_img(rs.getString("f_desc_img"));
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL구문 오류!(ClassDAO - getDetailContent) " + e.getMessage());

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 주문/결제</title>
 <link rel="stylesheet" href="./css/letter.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css">
 <link
@@ -52,7 +52,7 @@ case 24:
 		<h2 class="letter_h2">주문/결제</h2>
 		<div class="letter_div3">
 			<div class="letter_div4">
-				<form action="OrderLetter.od" method="post">
+				<form action="OrderLetter.od" id="letter_frm" method="post" onsubmit="return content_empty_check()">
 				<div class="letter_div5">
 					<div class="letter_div6">
 						<h5 class="letter_h5">
@@ -251,7 +251,7 @@ case 24:
 													<div class="letter_div16">
 														<div class="letter_div17">
 															<div class="letter_div18">
-																<textarea class="letter_textarea" maxlength="160" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)"></textarea>
+																<textarea class="letter_textarea" id="od_message<%=i%>" maxlength="160" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)"></textarea>
 																<%-- <input type="text" class="letter_textarea" name="od_message<%=i%>" placeholder="내용을 입력해주세요:)" > --%>	
 															</div>
 														</div>
@@ -319,7 +319,7 @@ case 24:
 	
 	
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(document).ready(function() { // 편지지 선택하면 화면변경
 			$('ul.letter_ul li').click(function() {
 				var tab_id = $(this).attr('data-tab');
 				var letter_div13_id = $(this).attr('id');
@@ -335,9 +335,22 @@ case 24:
 					$('.letter_p.' + letter_div13_id).addClass('current');
 				}
 				
-			})
+			});
 		
-		})
+		});
+		
+		function content_empty_check(){
+			var i = 0;
+			while($('#od_message'+i).val()!=null){ // while문 중지를 위한 문법
+				if($('.current.letter_div13'+i+' #od_message'+i).val()==""){ // 편지 내용이 비었는지 판별
+					alert(i+1+"번 편지 내용이 비어있습니다.");
+					return false;
+				}
+				i++;
+			}
+			
+			return true;
+		}
 	</script>
 </body>
 </html>

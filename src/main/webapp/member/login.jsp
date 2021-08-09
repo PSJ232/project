@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 로그인</title>
 <%
 CartBean cartDetail = (CartBean) request.getAttribute("cartDetail"); // 비회원주문을 위한 정보
 String sub_option = (String)request.getAttribute("sub_option"); // 정기구독 옵션 정보

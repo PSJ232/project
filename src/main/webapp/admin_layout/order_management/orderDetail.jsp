@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="vo.OrderDetailBean"%>
 <%@page import="vo.OrderBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -9,6 +10,16 @@
 	ArrayList<OrderDetailBean> orderDetailList = (ArrayList<OrderDetailBean>)request.getAttribute("orderDetailList");
 	String address = orderBean.getO_address();
 	address = address.replace("&", " ");
+	String payment = "";
+	if(orderBean.getO_payment() == 1){
+		payment = "카드";
+	}else {
+		payment = "현금";
+	}
+	int p_amount = 0;
+	for(int i = 0; i < orderDetailList.size(); i++){
+		p_amount += orderDetailList.get(i).getI_price();
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -77,6 +88,11 @@
 	}
 	#address {
 		width: 500px;
+	}
+	.btn {
+		margin-left: 960px;
+		margin-top: 10px;
+		cursor: pointer;
 	}
 </style>
 <link rel="stylesheet" href="./css/admin.css">
@@ -156,14 +172,15 @@
 			<fieldset>
 				<legend>결제정보</legend>
 				<div id="payment_info">
-					<label>총 상품금액</label><input type="text" value="50000원" readonly><br>
-					<label>할인금액</label><input type="text" value="5000원" readonly><br>
-					<label>적립금사용</label><input type="text" value="3000원" readonly><br>
-					<label>결제수단</label><input type="text" value="카드" readonly><br>
-					<label>최종결제금액</label><input type="text" value="42000원" readonly>
+					<label>총 상품금액</label><input type="text" value=<%=NumberFormat.getInstance().format(p_amount) %> readonly><br>
+					<label>할인금액</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_gdiscount()) %> " readonly><br>
+					<label>적립금사용</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_point()) %>" readonly><br>
+					<label>결제수단</label><input type="text" value="<%=payment %>" readonly><br>
+					<label>최종결제금액</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_amount()) %>" readonly>
 				</div>
 			</fieldset>
 		</div>
+		<input type="button" class="btn" value="목록" onclick="location.href='OrderList.ad'">
 	</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>
