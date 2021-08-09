@@ -209,7 +209,7 @@
 							 	<div class="join_name">성별</div>
 							 	<div class="join_input">
 							 		<input type="radio" id="gender1" class="radio_gender" name="m_gender" value="1" checked><label for="gender1" class="gender_label active">여성</label>
-     	  	   						<input type="radio" id="gender2" class="radio_gender" name="m_gender" value="0"><label for="gender2" class="gender_label">남성</label>
+     	  	   						<input type="radio" id="gender0" class="radio_gender" name="m_gender" value="0"><label for="gender0" class="gender_label">남성</label>
 								</div>
 							</div>
 							
