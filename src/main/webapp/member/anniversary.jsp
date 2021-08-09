@@ -24,21 +24,21 @@
 							<div class="row">
 								<div class="ann_name">기념일<span class="textStar">*</span></div>
 							    <div class="ann_input">
-							    	<input type="date" class="textBox" name="a_date" placeholder="날짜를 선택해주세요."><!-- (클릭하면 달력뜨도록 가능?) -->
+							    	<input type="date" class="textBox" name="a_date" placeholder="날짜를 선택해주세요." required><!-- (클릭하면 달력뜨도록 가능?) -->
 							    </div>
 							</div>
 							
 							<div class="row">
 								<div class="ann_name">기념일 이름<span class="textStar">*</span></div>
 								<div class="ann_input">
-									<input type="text" class="textBox"name="a_name" placeholder="기념일 명을 입력해주세요.">
+									<input type="text" class="textBox"name="a_name" placeholder="기념일 명을 입력해주세요." required>
 								</div>
 							</div>
 							
 							<div class="row">
 								<div class="ann_name">반복 주기<span class="textStar">*</span></div>
 								<div class="ann_input">
-									<select name="a_repeat" size="1"  class="ann_select" >
+									<select name="a_repeat" size="1"  class="ann_select"  required>
 										<option value="0" selected>주기를 선택해주세요.</option>
 										<option value="1">매년</option>
 										<option value="100">100일마다</option>
@@ -77,21 +77,21 @@ AnniversaryBean annDetail = (AnniversaryBean) request.getAttribute("annDetail");
 							<div class="row">
 								<div class="ann_name">기념일<span class="textStar">*</span></div> 
 								<div class="ann_input">
-									<input type="date" class="textBox" name="a_date" value="<%=annDetail.getA_date()%>"><!-- 클릭하면 달력뜨도록 가능?)-->
+									<input type="date" class="textBox" name="a_date" value="<%=annDetail.getA_date()%>" required>
 								</div>
 							</div>
 							
 							<div class="row">
 								<div class="ann_name">기념일 이름<span class="textStar">*</span></div>
 								<div class="ann_input">
-									<input type="text" class="textBox" name="a_name" value="<%=annDetail.getA_name()%>">
+									<input type="text" class="textBox" name="a_name" value="<%=annDetail.getA_name()%>" required>
 								</div>
 							</div>
 							
 							<div class="row">
 								<div class="ann_name">반복 주기<span class="textStar">*</span></div>
 								<div class="ann_input">						
-									<select name="a_repeat" size="1" class="ann_select" >								
+									<select name="a_repeat" size="1" class="ann_select">								
 										<option value="0" <%if(annDetail.getA_repeat()==0){%>selected<%}%>>주기를 선택해주세요.</option>
 										<option value="1" <%if(annDetail.getA_repeat()==1){%>selected<%}%>>매년</option>
 										<option value="100" <%if(annDetail.getA_repeat()==100){%>selected<%}%>>100일마다</option>

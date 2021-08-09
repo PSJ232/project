@@ -29,7 +29,7 @@ public class MemberAnnDeleteProAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("MemberUpdate.me"); // 메인화면 주소 미정
+			forward.setPath("UpdateMyInfo.me");
 			forward.setRedirect(true);
 		}
 

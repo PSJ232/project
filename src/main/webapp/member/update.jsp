@@ -171,7 +171,7 @@
 													<td class="ann_name_cell"><%=ab.getA_name()%></td>
 													<td class="repeat_cell"><%=repeat%></td>
 													<td class="update_cell"><a href="MemberAnnUpdateForm.me?a_id=<%=ab.getA_id()%>" onclick="window.open(this.href, 'anniversary', 'width=450, height=500'); return false;">수정</a></td>
-													<td class="delete_cell"><a href="MemberAnnDeletePro.me?a_id=<%=ab.getA_id()%>">삭제</a></td>
+													<td class="delete_cell"><a onclick="confirmAnnDelete(<%=ab.getA_id()%>)">삭제</a></td>
 												</tr>
 												<%
 												}
@@ -223,5 +223,16 @@
 		});
 	
 	});
+	
+	function confirmAnnDelete(a_id) {
+		var isDelete = confirm("기념일을 삭제하시겠습니까?");
+		if(isDelete){
+			var url = "MemberAnnDeletePro.me?a_id=" + a_id;
+			location.href=url;
+		}
+	}
+	
+	
+
 </script>
 </html>

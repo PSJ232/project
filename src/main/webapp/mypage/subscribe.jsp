@@ -196,7 +196,7 @@ for(int i =0; i<orderArrayList.size(); i++) {
 							<tr id="mysubscribe_order_tr">
 								<%
 								if(col.contains(i)) {
-									%><td rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_rdate() %>
+									%><td id="mysubscribe_order_situation" rowspan="<%=col.get(ccount+1)-col.get(ccount) %>"><%=orderArrayList.get(i).getO_rdate() %>
 									<a href="OrderMypageDetail.od?o_id=<%=orderArrayList.get(i).getO_id()%>"><span><br>상세보기</span></a></td>
 								<%
 								} else {}
@@ -208,13 +208,14 @@ for(int i =0; i<orderArrayList.size(); i++) {
 									<dt id="mysubscribe_order_span_two">수령일 : <%=nonOrderDetailArrayList.get(i).getOd_delivery_date() %></dt>
 									<dt id="mysubscribe_order_span_two"><%if(orderDetailArrayList.get(i).getL_id()!=0){%>추가상품 : 편지 추가<%}%></dt>
 									<dt id="mysubscribe_order_span_two"> 받는 분 : <%=nonOrderArrayList.get(i).getO_receiver() %></dt>
-									<dt id="mysubscribe_order_span_one"><%=(int)(nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100 %> / <%=nonOrderDetailArrayList.get(i).getOd_qty() %>개</dt>
+									<dt id="mysubscribe_order_span_one"><%=NumberFormat.getInstance().format((int) (nonItemArrayList.get(i).getI_price() * nonItemArrayList.get(i).getI_discount() / 100) * 100)%>원
+										/ <%=nonOrderDetailArrayList.get(i).getOd_qty()%>개</dt>
 								</dl>
 								</td>
 								<%
 								if(col.contains(i)) {
 									%>
-									<td id="mypage_orderHistory_situation" rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td>
+									<td id="mysubscribe_order_situation" rowspan="<%=col.get(ccount+1)-col.get(ccount) %>">주문 취소</td>
 									<%
 									ccount++;
 								} else {}
