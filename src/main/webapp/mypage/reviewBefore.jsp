@@ -162,7 +162,8 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 								</td>
 							</tr>
 					</tbody>
-					<%} else {
+					<%
+					} else {
 			
 						for (int i = 0; i < orderArrayList.size(); i++) {
 							int sumAmount = (orderArrayList.get(i).getO_amount() + orderArrayList.get(i).getO_point()
@@ -182,7 +183,7 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 								<dt id="mypage_reviewBefore_span_one"><%=NumberFormat.getInstance().format((int) (itemArrayList.get(i).getI_price() * itemArrayList.get(i).getI_discount() / 100) * 100)%>원
 										/ <%=orderDetailArrayList.get(i).getOd_qty()%>개</dt></dl>
 							</td>
-							<!-- 				삭제된 리뷰와, 수정 및 삭제가 가능한 리뷰를 구분	 -->
+							<!-- 				삭제된 리뷰와, 수정 및 삭제가 가능한 리뷰를 구분	   			 -->
 							<%
 							if (deleteOdList.contains(orderDetailArrayList.get(i).getOd_id())) {
 							%>
@@ -200,10 +201,10 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 						<%
 						}
 						%>
+						<%
+						}
+						%>
 					</table>
-					<%
-					}
-					%>
 				
 				</div>
 			</div>
@@ -212,6 +213,5 @@ request.setAttribute("memberMypageDetail", memberMypageDetail);
 
 	<!-- 푸터 들어가는곳 -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
-	
 </body>
 </html>

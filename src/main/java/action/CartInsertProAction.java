@@ -52,7 +52,7 @@ public class CartInsertProAction implements Action {
 			out.println("history.back();");
 			out.println("</script>");
 			
-			
+			//팝업창으로 대신하기때문에 직접 경로를 이동하지 않음
 //			forward = new ActionForward();
 //			forward.setPath("Cart.cr"); 
 //			forward.setRedirect(false);
