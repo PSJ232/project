@@ -39,17 +39,23 @@ public class CartInsertProAction implements Action {
 		CartService cartService = new CartService();
 		boolean isInsertSuccess = cartService.putCart(cartBean);
 		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		if(!isInsertSuccess) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('장바구니 담기 실패!');");
 			out.println("history.back();");
 			out.println("</script>");
 		} else {
-			forward = new ActionForward();
-			forward.setPath("Cart.cr"); 
-			forward.setRedirect(false);
+			out.println("<script>");
+			out.println("window.open('../project/order/cart_popup.jsp', 'cart', 'width=500, height=220, top=300, left=300');");
+			out.println("history.back();");
+			out.println("</script>");
+			
+			
+//			forward = new ActionForward();
+//			forward.setPath("Cart.cr"); 
+//			forward.setRedirect(false);
 		}
 		
 		return forward;
