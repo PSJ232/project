@@ -14,7 +14,11 @@ body {
 	font-family: 'Noto Sans KR', sans-serif, NanumGothic, '나눔고딕', Dotum,
 		'돋움', Helvetica, "Apple SD Gothic Neo";
 }
-
+.container {
+		display: flex;
+		width: 1240px;
+		margin: 100px auto;
+}
 li {
 	list-style: none;
 	text-decoration: none;
