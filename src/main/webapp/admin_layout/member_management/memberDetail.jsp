@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="vo.DetailBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
@@ -8,7 +9,7 @@
 	ArrayList<DetailBean> orderList = (ArrayList<DetailBean>)request.getAttribute("orderList");
 	ArrayList<DetailBean> reviewList = (ArrayList<DetailBean>)request.getAttribute("reviewList");
 	ArrayList<DetailBean> reservList = (ArrayList<DetailBean>)request.getAttribute("reservList");
-	
+	String point = NumberFormat.getInstance().format(memberBean.getM_point());
 	String grade = "";
 	switch(memberBean.getG_id()){
 	case 0: grade = "WHITE"; break;
@@ -93,7 +94,7 @@
 		%>
 		
 		<label>가입날짜</label> <input type="text" value="<%=memberBean.getM_rdate()%>"><br>
-		<label>보유포인트</label> <input type="text" value="<%=memberBean.getM_point()%>"><br>
+		<label>보유포인트</label> <input type="text" value="<%=point%>"><br>
 		<%
 		if(memberBean.getM_drop() != null){
 			%>탈퇴날짜: <%=memberBean.getM_drop()%><%
@@ -113,11 +114,12 @@
 			</tr>
 			<%
 			for(DetailBean order: orderList){
+				String amount = NumberFormat.getInstance().format(order.getO_amount());
 			%>
 					<tr>
 					<td><a target="_blank" onclick="openOrderDetail(<%=order.getO_id()%>)"><%=order.getO_id() %></a></td>
 					<td><%=order.getI_name() %></td>
-					<td><%=order.getO_amount() %></td>
+					<td><%=amount %></td>
 					<td><%=order.getO_rdate() %></td>
 					<td><%=order.getOd_invoice() %></td>
 					</tr>
@@ -172,6 +174,7 @@
 			</tr>
 			<%
 				for(int i = 0; i < reservList.size(); i++){
+					String amount = NumberFormat.getInstance().format(reservList.get(i).getR_amount());
 					%>
 						<tr>
 						<td><%=i+1 %></td>
@@ -180,7 +183,7 @@
 						<td><%=reservList.get(i).getFd_time() %></td>
 						<td><%=reservList.get(i).getF_subject() %></td>
 						<td><%=reservList.get(i).getR_num() %></td>
-						<td><%=reservList.get(i).getR_amount() %></td>
+						<td><%= amount%></td>
 						<td><%=reservList.get(i).getR_payment() %></td>
 						</tr>
 					<%
