@@ -116,6 +116,11 @@
     text-align: center;
 }
 
+.join_us_box .row .join_input .btn:hover {
+	background: black;
+	color: #FFFFFF;
+}
+
 .join_us_box .row .join_input .radio_gender {
 	display: none;
 }
@@ -305,6 +310,7 @@ label {
 
 .terms_submit  .submit_button .btn_submit:hover {
 	background: #ffcd32;
+	color: black;
 }
 
 .terms_conditions, .personal_info {
