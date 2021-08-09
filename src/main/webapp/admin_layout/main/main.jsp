@@ -21,59 +21,10 @@
 <title>메인</title>
 <link rel="stylesheet" href="./css/admin.css">
 <link rel="stylesheet" href="./css/list_style.css">
+<link rel="stylesheet" href="./css/admin_main.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<style>
-	#income_anal {
-		display: flex;
-		width: 900px;
-	}
-	#income_anal h1 {
-		margin-top: 10px;
-		margin-right: 20px;
-		margin-bottom: 40px;
-		border: 2px solid #ddd;
-		border-radius: 10px;
-		padding: 30px;
-		width: 280px;
-		font-size: 28px;
-		text-align: center;
-	}
-	.span {
-		display: block;
-		text-align: left;
-		font-size: 15px;
-		margin-bottom: 20px;
-	}
-	#chart,#recent_review {
-		width: 800px;
-		padding: 40px;
-		border-radius: 10px;
-		border: 2px solid #ddd;
-		margin-bottom: 50px;
-	}
-	#items {
-		float:right;
-		margin-right: 30px;
-		border: 2px solid #ddd;
-		padding: 10px;
-		margin-bottom: 10px;
-		border-radius: 10px;
-	}
-	.item {
-		margin-bottom: 10px;
-		padding: 10px;
-	}
-	.item img {
-		width: 200px;
-		height: 200px;
-	}
-	.star {
-		color: #FFDF24;
-	}
-
-</style>
 <script>
 	var request = new XMLHttpRequest();
 	function getContent(r_id, value){

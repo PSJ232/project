@@ -1,6 +1,7 @@
 package svc;
 
 import java.sql.Connection;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import dao.ClassDetailDAO;
@@ -34,7 +35,7 @@ public class ClassDetailListService {
 			result.append("{\"value\": \"" + resultList.get(i).getM_id() + "\"},");
 			result.append("{\"value\": \"" + resultList.get(i).getR_num() + "명\"},");
 			result.append("{\"value\": \"" + resultList.get(i).getR_date() + "\"},");
-			result.append("{\"value\": \"" + resultList.get(i).getR_amount() + "원\"},");
+			result.append("{\"value\": \"" + NumberFormat.getInstance().format(resultList.get(i).getR_amount()) + "원\"},");
 			result.append("{\"value\": \"" + resultList.get(i).getR_payment() + "\"}],");
 		}
 		result.append("]}");

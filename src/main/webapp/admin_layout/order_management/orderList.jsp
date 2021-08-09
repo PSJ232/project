@@ -1,9 +1,12 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	HashMap<String,Integer> orderCount = (HashMap<String,Integer>)request.getAttribute("orderCount");
+	HashMap<String,Integer> orderData = (HashMap<String,Integer>)request.getAttribute("orderData");
+	ArrayList<String> orderDataKeys = (ArrayList<String>)request.getAttribute("orderDataKeys");
 	
 %>
 <!DOCTYPE html>
@@ -14,42 +17,56 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 <link rel="stylesheet" href="./css/admin.css">
+<link rel="stylesheet" href="./css/admin_order_list.css">
 <link rel="stylesheet" href="./css/list_style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<style>
-	.search {
-		display: flex;
-		margin-top: 50px;
-		justify-content: flex-start;
-	}
-	#order_status {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 770px;
-		height: 70px;
-		padding-left: 50px;
-		padding-right: 50px;
-	}
-	
-	#order_status h2 {
-		
-		height: 50px;
-		font-size: 25px;
-		padding-top: 12px;
-		align-items: center;
-	}
-	fieldset {
-		width: 800px;
-		padding: 10px;
-		border-radius: 10px;
-		border: 2px solid #FFDF24;
-	}
-	
-	
-</style>
 <script type="text/javascript">
+	var order_date = [];
+	var order_count = [];
+	<%
+		for(String data: orderDataKeys){
+			System.out.println(data);
+			%>
+			order_date.push("<%=data%>");
+			order_count.push(<%=orderData.get(data) %>);
+			<%
+		}
+	%>
+	var lineChartData = {
+		    labels: order_date,
+		    datasets: [{
+		    	label: "주문량",
+		        data: order_count,
+		        fill: false,
+		        tension: 0.3
+		    }] 
+		};
+	
+	var lineChartDraw = function () {
+		var ctx = document.getElementById("line").getContext('2d');
+		window.lineChart = new Chart(ctx, {
+		    type: 'line',
+		    data: lineChartData,
+		    options: {
+		        responsive: false,
+		        plugins: {
+		            title: {
+		              display: true,
+		              text: 'Min and Max Settings'
+		            }
+		          },
+		        scales: {
+		            y: {
+		              min: 0,
+		              max: 10,
+		            }
+		          }
+	            }
+		    });
+	};
 	var request = new XMLHttpRequest();
 	function searchFunction(){
 		var search_val = document.getElementById("search_val").value;
@@ -79,11 +96,16 @@
 	}
 	window.onload = function(){
 		searchFunction();
+		lineChartDraw()
 	}
 	$(document).ready(function(){
 		$('.admin_header_subtitle').text("주문 목록");
 	});
+	
 </script>
+<style>
+	
+</style>
 </head>
 <body>
 <!-- 	<header> -->
@@ -93,6 +115,9 @@
 		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 	<div class="container">
+		<div class="chart-div">
+	        <canvas id="line" width="800px" height="400px"></canvas>
+   		</div>
 		<fieldset>
 			<legend>주문현황</legend>
 			<div id="order_status">
@@ -104,9 +129,9 @@
 		<div class="search">
 		<select name="filter" id="filter">
 			<option value="">filter</option>
-			<option value="m_id">id</option>
-			<option value="o_id">date</option>
-			<option value="od_invoice">status</option>
+			<option value="1">id</option>
+			<option value="2">date</option>
+			<option value="3">status</option>
 		</select> 
 		 <input type="text" name="search" id="search_val" onkeyup="searchFunction()">
 		</div>

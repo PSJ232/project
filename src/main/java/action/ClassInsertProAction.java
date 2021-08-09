@@ -32,7 +32,6 @@ public class ClassInsertProAction implements Action {
 		int maxSize = 20 * 1024 * 1024;
 		
 		realFolder = context.getRealPath(saveFolder);
-		System.out.println(realFolder);
 		MultipartRequest multi = new MultipartRequest(
 				request, 
 				realFolder , 
@@ -57,7 +56,7 @@ public class ClassInsertProAction implements Action {
 		
 		// detail에 저장할 값들
 		
-		boolean isWriteSuccess = service.registArticle(classBean, multi.getParameterValues("timeList"));
+		boolean isWriteSuccess = service.insertClass(classBean, multi.getParameterValues("timeList"));
 		if(isWriteSuccess) {
 			forward = new ActionForward();
 			forward.setPath("ClassList.ad");

@@ -195,7 +195,7 @@ public class OrderDAO {
 			case "3":
 				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, COUNT(*) "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.od_invoice like ? " + "GROUP BY o_id";
 				break;
 			default:
 				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, COUNT(*) "
@@ -1244,4 +1244,23 @@ public class OrderDAO {
 		return nowInven;
 	}
 
+	public HashMap<String, Integer> getOrderData(){
+		HashMap<String , Integer> orderData = new HashMap<String, Integer>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT DATE_FORMAT(o_rdate,'%m%d'), COUNT(o_id) FROM orders GROUP BY DATE_FORMAT(o_rdate,'%m%d') ORDER BY DATE_FORMAT(o_rdate,'%m%d') DESC LIMIT 7";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				orderData.put(rs.getString(1), rs.getInt(2));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류!(OrderDAO - getOrderData() - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return orderData;
+	}
 }

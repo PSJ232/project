@@ -1,6 +1,9 @@
 package action;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,13 +18,12 @@ public class AdminOrderListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		OrderService service = new OrderService();
-		// 페이징 처리를 위한 변수 선언
-		int page = 1;	// 현재 페이지번호
-		if(request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
-		request.setAttribute("page", page);
 		HashMap<String, Integer> orderCount = service.getOrderCount();
+		HashMap<String, Integer> orderData = service.getOrderData();
+		List<String> orderDataKeys = new ArrayList<String>(orderData.keySet());
+		Collections.sort(orderDataKeys);
+		request.setAttribute("orderData", orderData);
+		request.setAttribute("orderDataKeys", orderDataKeys);
 		request.setAttribute("orderCount", orderCount);
 		forward.setPath("./admin_layout/order_management/orderList.jsp");
 		return forward;
