@@ -118,6 +118,11 @@
 	border-left: solid 1px #eeeeee;
 }
 
+#mypage_reviewBefore_t {
+	text-align: center;
+	border-bottom: 1px solid #eeeeee;
+}
+
 #mypage_reviewBefore_img {
 	width: 120px;
 	height: 120px;
