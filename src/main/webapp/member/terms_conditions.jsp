@@ -20,6 +20,10 @@ div {
 	width: auto;
 	text-align: left;
 }
+
+ul {
+	list-style: none;
+}
 </style>
 </head>
 <body>

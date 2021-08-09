@@ -20,7 +20,7 @@
 			}
 		      
 		      if(regex.exec(phone)) {
-// 		         element.innerHTML = '- 인증번호를 발송했습니다.(미구현)';
+		         element.innerHTML = '- 인증번호를 발송했습니다.'; //미구현부분
 		         checkPhoneResult = true;
 		      } else {
 		         element.innerHTML = '- 형식에 맞지 않는 번호입니다.';
