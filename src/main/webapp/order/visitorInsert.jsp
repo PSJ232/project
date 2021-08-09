@@ -67,7 +67,7 @@
 <%
 Calendar cal = Calendar.getInstance();
 int sub_option = 1;
-if(!request.getParameter("sub_option").equals(null)) {
+if(request.getParameter("sub_option") != null) {
 	sub_option = Integer.parseInt(request.getParameter("sub_option"));
 }
 String sub_name = "";
