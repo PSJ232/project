@@ -46,7 +46,7 @@
 								</div>
 							</div>
 							
-							<div class="row">						
+							<div class="ann_submit_row">						
 								<div class="ann_submit_area">
 									<input type="submit" class="btn_submit" value="등록하기">
 								</div>	
@@ -77,14 +77,14 @@ AnniversaryBean annDetail = (AnniversaryBean) request.getAttribute("annDetail");
 							<div class="row">
 								<div class="ann_name">기념일<span class="textStar">*</span></div> 
 								<div class="ann_input">
-									<input type="date" class="textBox" name="a_date" value="<%=annDetail.getA_date()%>"><!-- 클릭하면 달력뜨도록 가능?)--><br>
+									<input type="date" class="textBox" name="a_date" value="<%=annDetail.getA_date()%>"><!-- 클릭하면 달력뜨도록 가능?)-->
 								</div>
 							</div>
 							
 							<div class="row">
 								<div class="ann_name">기념일 이름<span class="textStar">*</span></div>
 								<div class="ann_input">
-									<input type="text" class="textBox" name="a_name" value="<%=annDetail.getA_name()%>"><br>
+									<input type="text" class="textBox" name="a_name" value="<%=annDetail.getA_name()%>">
 								</div>
 							</div>
 							
@@ -99,7 +99,7 @@ AnniversaryBean annDetail = (AnniversaryBean) request.getAttribute("annDetail");
 								</div>
 							</div>
 							
-							<div class="row">						
+							<div class="ann_submit_row">						
 								<div class="ann_submit_area">
 									<input type="hidden" name="a_id" value="<%=annDetail.getA_id()%>">							
 									<input type="submit" class="btn_submit" value="수정하기">
