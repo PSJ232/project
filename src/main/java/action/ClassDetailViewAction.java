@@ -23,7 +23,6 @@ public class ClassDetailViewAction implements Action {
 		request.setAttribute("classBean", classBean);
 		ClassDetailSelectTimelistService time_service = new ClassDetailSelectTimelistService();
 		
-		
 		if(command.equals("/ClassModifyForm.ad")) {
 			// 가지고있던 timeList 값 반환
 			ArrayList<Time> selectableTimeList = time_service.getSelectableTimeList(classBean.getClass_place(), classBean.getClass_date());

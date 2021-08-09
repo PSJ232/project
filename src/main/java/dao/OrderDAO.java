@@ -1243,24 +1243,4 @@ public class OrderDAO {
 		}
 		return nowInven;
 	}
-
-	public HashMap<String, Integer> getOrderData(){
-		HashMap<String , Integer> orderData = new HashMap<String, Integer>();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			String sql = "SELECT DATE_FORMAT(o_rdate,'%m%d'), COUNT(o_id) FROM orders GROUP BY DATE_FORMAT(o_rdate,'%m%d') ORDER BY DATE_FORMAT(o_rdate,'%m%d') DESC LIMIT 7";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				orderData.put(rs.getString(1), rs.getInt(2));
-			}
-		} catch (SQLException e) {
-			System.out.println("SQL 구문 오류!(OrderDAO - getOrderData() - " + e.getMessage());
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-		return orderData;
-	}
 }

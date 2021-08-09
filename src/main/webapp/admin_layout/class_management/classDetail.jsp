@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="java.sql.Time"%>
 <%@page import="vo.ClassBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -6,6 +7,7 @@
 <%
 	ClassBean classBean = (ClassBean)request.getAttribute("classBean");
 	ArrayList<Time> selectedTimeList = (ArrayList<Time>)request.getAttribute("selectedTimeList");
+	String price = NumberFormat.getInstance().format(classBean.getClass_price());
 %>
 <!DOCTYPE html>
 <html>
@@ -92,7 +94,7 @@
 				}
 			%></span>
 			<br><br>
-			<label>비용 </label><input type="text" value="<%=classBean.getClass_price() %>" readonly><br>
+			<label>비용 </label><input type="text" value="<%=price %>" readonly><br>
 			<label>정원 </label><input type="text" value="<%=classBean.getClass_max_member() %>" readonly><br>
 			<label>게시일자 </label><input type="text" value="<%=classBean.getClass_create_date() %>" readonly><br>
 			<label>클래스일자 </label><input type="text" id="date" value="<%=classBean.getClass_date() %>" readonly><br>

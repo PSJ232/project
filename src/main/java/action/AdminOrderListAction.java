@@ -19,11 +19,6 @@ public class AdminOrderListAction implements Action {
 		ActionForward forward = new ActionForward();
 		OrderService service = new OrderService();
 		HashMap<String, Integer> orderCount = service.getOrderCount();
-		HashMap<String, Integer> orderData = service.getOrderData();
-		List<String> orderDataKeys = new ArrayList<String>(orderData.keySet());
-		Collections.sort(orderDataKeys);
-		request.setAttribute("orderData", orderData);
-		request.setAttribute("orderDataKeys", orderDataKeys);
 		request.setAttribute("orderCount", orderCount);
 		forward.setPath("./admin_layout/order_management/orderList.jsp");
 		return forward;

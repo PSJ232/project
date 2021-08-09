@@ -234,28 +234,5 @@ public class OrderService {
 		return isSoldOut;
 	}
 	
-	public HashMap<String, Integer> getOrderData(){
-		System.out.println("OrdersService - getOrderData()");
-		Connection con = JdbcUtil.getConnection();
-		OrderDAO orderDAO = OrderDAO.getInstance();
-		orderDAO.setConnection(con);
-		HashMap<String, Integer> orderData = orderDAO.getOrderData();
-		
-		JdbcUtil.close(con);
-		return orderData;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

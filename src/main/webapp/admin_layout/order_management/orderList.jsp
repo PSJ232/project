@@ -5,8 +5,6 @@
     pageEncoding="UTF-8"%>
 <%
 	HashMap<String,Integer> orderCount = (HashMap<String,Integer>)request.getAttribute("orderCount");
-	HashMap<String,Integer> orderData = (HashMap<String,Integer>)request.getAttribute("orderData");
-	ArrayList<String> orderDataKeys = (ArrayList<String>)request.getAttribute("orderDataKeys");
 	
 %>
 <!DOCTYPE html>
@@ -24,49 +22,6 @@
 <link rel="stylesheet" href="./css/list_style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script type="text/javascript">
-	var order_date = [];
-	var order_count = [];
-	<%
-		for(String data: orderDataKeys){
-			System.out.println(data);
-			%>
-			order_date.push("<%=data%>");
-			order_count.push(<%=orderData.get(data) %>);
-			<%
-		}
-	%>
-	var lineChartData = {
-		    labels: order_date,
-		    datasets: [{
-		    	label: "주문량",
-		        data: order_count,
-		        fill: false,
-		        tension: 0.3
-		    }] 
-		};
-	
-	var lineChartDraw = function () {
-		var ctx = document.getElementById("line").getContext('2d');
-		window.lineChart = new Chart(ctx, {
-		    type: 'line',
-		    data: lineChartData,
-		    options: {
-		        responsive: false,
-		        plugins: {
-		            title: {
-		              display: true,
-		              text: 'Min and Max Settings'
-		            }
-		          },
-		        scales: {
-		            y: {
-		              min: 0,
-		              max: 10,
-		            }
-		          }
-	            }
-		    });
-	};
 	var request = new XMLHttpRequest();
 	function searchFunction(){
 		var search_val = document.getElementById("search_val").value;

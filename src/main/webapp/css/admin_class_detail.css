@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.container {
+	.container {
 		display: flex;
 		width: 1240px;
 		margin: 100px auto;
@@ -11,14 +11,14 @@
 	}
 	.sub_container {
 		display: inline-block;
-		width: 500px;
+		width: 600px;
 		height: 500px;
 		margin-top: 15px;
 	}
 	.images {
 		margin-top: 15px;
 		display: inline-block;
-		width: 500px;
+		width: 380px;
 	}
 	#main_img {
 		width: 308px;
@@ -44,6 +44,7 @@
 		margin-bottom: 30px;
 		border: none;
 		outline:none;
+		width: 300px;
 	}
 	label, input[type=text]{
 		font-size: 15px;
