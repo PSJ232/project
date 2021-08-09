@@ -34,7 +34,7 @@ a, button {
 .login_all {
 	margin: 0px auto;
 	text-align: center;
-	width: 100%;
+	width: 750px;
 	clear: both;
 	height: 1000px;
 }
@@ -56,7 +56,7 @@ a, button {
 	border-radius: 10px;
 	width: 300px;
 	height: 50px;
-	margin: 50px;
+	margin: 20px;
 	font-weight: 700;
 	font-size: large;
 }
@@ -67,10 +67,23 @@ a, button {
 	border-radius: 10px;
 	width: 300px;
 	height: 50px;
-	margin: 20px;
+	margin: 10px;
 	font-weight: 700;
 	font-size: large;
 }
+.loginsubmit {
+	background: #ececec;
+	border: none;
+	border-radius: 10px;
+	width: 300px;
+	height: 50px;
+	margin: 10px;
+	font-weight: 700;
+	font-size: large;
+	color: #787878;
+}
+
+
 
 #p1 {
 	color: #6FFFC4;
@@ -133,7 +146,7 @@ a, button {
 	height: 40px;
 	border: 1px solid #969696;
 	border-radius: 10px;
-	margin-top: 30px;
+/* 	margin-top: 30px; */
 	margin-bottom: 30px;
 }
 

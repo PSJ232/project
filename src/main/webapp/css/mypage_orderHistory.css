@@ -14,7 +14,11 @@ body {
 	font-family: 'Noto Sans KR', sans-serif, NanumGothic, '나눔고딕', Dotum,
 		'돋움', Helvetica, "Apple SD Gothic Neo";
 }
-
+.container {
+		display: flex;
+		width: 1240px;
+		margin: 100px auto;
+}
 li {
 	list-style: none;
 	text-decoration: none;
@@ -183,8 +187,8 @@ ul.tabs li.current {
 	font-weight: 500;
 }
 #mypage_confirmPurchase_cbtn{
-		width: 80px;
-	height: 50px;
+	width: 80px;
+	height: 30px;
 	margin: 10px;
 	border-radius: 10px;
 	background-color: #aaaaaa;
