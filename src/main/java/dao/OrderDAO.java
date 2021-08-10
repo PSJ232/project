@@ -1099,7 +1099,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		HashMap<String,Integer> weekCardSales = new HashMap<String, Integer>();
 		try {
-			String sql = "SELECT * FROM(SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
+			String sql = "SELECT * FROM(SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
 					+ "	FROM orders"
@@ -1116,8 +1116,8 @@ public class OrderDAO {
 					+ "AS r "
 					+ "ON o.odate=r.rdate "
 					+ "GROUP BY date "
-					+ "UNION "
-					+ "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
+					+ "UNION ALL "
+					+ "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
 					+ "	FROM orders"
@@ -1154,7 +1154,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		HashMap<String,Integer> weekCardSales = new HashMap<String, Integer>();
 		try {
-			String sql = "SELECT * FROM(SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
+			String sql = "SELECT * FROM(SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
 					+ "	FROM orders"
@@ -1172,7 +1172,7 @@ public class OrderDAO {
 					+ "ON o.odate=r.rdate "
 					+ "GROUP BY date "
 					+ "UNION "
-					+ "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) cash "
+					+ "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
 					+ "	FROM orders"
