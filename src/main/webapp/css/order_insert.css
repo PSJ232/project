@@ -33,6 +33,12 @@ a, button {
   cursor: pointer;
 }/* qnainsert */
 
+
+input:focus {
+	outline:2px solid #FFD228;
+	border-radius: 10px;
+}
+
 .order_insert_all{
 	width: 650px;
 	padding-left: 50px;
@@ -79,13 +85,7 @@ a, button {
 	padding-left: 20px; 
 	width: 150px;
 }
-#order_insert_i:after{
-	content: '*';
-    display: inline-block;
-    vertical-align: 1px;
-    margin-left: 5px;
-    color: #ffcd32;
-}
+
 #order_insert_n{
 	float: left;
 	height: 50px;
@@ -95,6 +95,32 @@ a, button {
 	font-size: 15px;
 	padding-left: 20px; 
 }
+.order_insert_inp_one{
+	width: 300px;
+	float: right;
+	margin-right: 20px;
+	height: 50px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #969696; 
+	padding-left: 10px;
+	line-height: 3.0;
+/* 	clear: both; */
+}
+.order_insert_inp_two{
+	width: 180px;
+	float: right;
+	margin-right: 20px;
+	height: 50px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #969696; 
+	padding-left: 10px;
+	line-height: 3.0;
+}
+
+
+
 #order_insert_inp_one{
 	width: 300px;
 	float: right;
@@ -118,9 +144,8 @@ a, button {
 	padding-left: 10px;
 	line-height: 3.0;
 }
-#order_insert_inp_one:after{
-	border: 1px solid #FFD228;
-}
+
+
 #order_insert_pb{
 	font-size: 18px;
 	font-weight: 500;
@@ -137,7 +162,7 @@ a, button {
 }
 #order_insert_span{
 	float: right;
-	color: #7FFFD4;
+	color: #46cfa7;
 }
 #order_insert_b{
 	float: right;	
@@ -154,12 +179,17 @@ a, button {
 	float: right;
 	margin-right: 20px;
 }
+#order_insert_btn:hover {
+    background: #FFD228;
+    border-radius: 10px;
+    cursor: pointer;
+  }
 #order_insert_span_p{
 	float:  right;
 	text-align: right;
 	font-size: 18px;
 	font-weight: 500;
-	color: #7FFFD4;
+	color: #46cfa7;
 	padding: 20px;
 	margin-right: 20px;
 }
@@ -172,7 +202,7 @@ a, button {
 	font-weight: 500;
 }
 #col{
-	background-color: #FAFAD2;
+	background-color: #46cfa7;
 	border-top: 2px solid #FFD228;
 	width: 580px;
 }

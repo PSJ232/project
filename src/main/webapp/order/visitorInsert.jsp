@@ -159,7 +159,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<h3 id="order_insert_title_h3">휴대폰 본인 인증</h3>
 		<div id="order_insert_i">휴대폰번호 </div>
 		<input id="order_insert_btn"  type="button" value="인증번호 받기">
-		<input id="order_insert_inp_two" type="number"><br>
+		<input id="order_insert_inp_two" type="tel"><br>
 		<div class="order_insert_c">
 		<label><input id="order_insert_btn" type="button" value="확인">
 		<input id="order_insert_inp_two" type="tel" name="o_visitor"></label>
@@ -173,9 +173,10 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		
 		<div id="order_insert_i">우편번호 </div> 
 		<input id="order_insert_btn"  type="button" onclick="sample6_execDaumPostcode()" value="찾기"><br>
-		<input id="order_insert_inp_two" type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색" readonly>
-		<div id="order_insert_i">주소 </div> <input id="order_insert_inp_one" type="text" id="sample6_address" name="address2"  placeholder="주소" readonly><br>
-		<input id="order_insert_inp_one" type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소"><br>
+		<input class="order_insert_inp_two" type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색" readonly>
+		<div id="order_insert_i">주소 </div> 
+		<input class="order_insert_inp_one" type="text" id="sample6_address" name="address2"  placeholder="주소" readonly><br>
+		<input class="order_insert_inp_one" type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소"><br>
 		</div>
 		<div class="order_insert_c">
 		<div id="order_insert_p">

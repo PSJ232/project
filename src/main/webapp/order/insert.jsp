@@ -52,10 +52,10 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementsByClassName('sample6_postcode')[0].value = data.zonecode;
-                document.getElementsByClassName('sample6_address')[0].value = addr;
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementsByClassName('sample6_detailAddress')[0].focus();
+                document.getElementById("sample6_detailAddress").focus();
             }
         }).open();
     }
@@ -148,7 +148,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	int letterPrice;
 	for(int i = 0; i < checkList.size(); i++) {
 		if (checkList.get(i).getC_letter() == 1) { // 편지가 추가되면 해당 html 추가
-			addLetter = "추가상품:편지<br>"; 
+			addLetter = "추가상품:편지<br>";
 			letterPrice = 2500;
 		} else {
 			addLetter = "";
@@ -208,15 +208,18 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<h3 id="order_insert_title_h3">배송지 정보</h3>
 		<div id="order_insert_i">받는분 이름</div> <input id="order_insert_inp_one" type="text" name="o_receiver" placeholder="이름을 입력해주세요.">
 		<div id="order_insert_i">받는분 연락처</div><input id="order_insert_inp_one" type="text" name="o_phone">
-		<div id="order_insert_i">우편번호</div><input id="order_insert_inp_one" type="text" class="sample6_postcode" name="address1"  placeholder="우편번호 검색" readonly>
 		
-		<div id="order_insert_i">주소</div><input id="order_insert_inp_one" type="text" class="sample6_address" name="address2"  placeholder="주소"  readonly>
-		<input id="order_insert_inp_one" type="text" class="sample6_detailAddress" name="address3"  placeholder="상세주소">
+		<div id="order_insert_i">우편번호 </div> 
+		<input id="order_insert_btn"  type="button" onclick="sample6_execDaumPostcode()" value="찾기"><br>
+		<input class="order_insert_inp_two" type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색" readonly>
+		<div id="order_insert_i">주소 </div> 
+		<input class="order_insert_inp_one" type="text" id="sample6_address" name="address2"  placeholder="주소" readonly><br>
+		<input class="order_insert_inp_one" type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소"><br>
 		
 		<div id="order_insert_b">
-		<input id="order_insert_btn" type="button" onclick="sample6_execDaumPostcode()" value="찾기">
 		<input id="order_insert_btn" type="button" value="최근배송지" onClick="window.open('OrderAddress.od', 'address', 'width=450, height=500')">
 		</div>
+		
 		<div id="order_insert_p">
 		<p>토요일 수령 선택 시 주의사항<br>
 		토요일 수령을 선택하실 경우, 회사 주소는 배송이 어려워요.<br>
@@ -231,7 +234,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			
 		<span id="order_insert_n">포인트</span><br> <input id="order_insert_inp_one" type="text" name="o_point" placeholder="0" onkeyup="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>,<%=gradeDiscount%>)"><br>
 		<span id="order_insert_n">현재 포인트</span><br>
-			<input id="order_insert_btn" type="button" value="전액사용" onclick="pointFullAccept(<%=memberDetail.getM_point()%>, <%=totalPrice %>, <%=gradeDiscount%>)">
+		<input id="order_insert_btn" type="button" value="전액사용" onclick="pointFullAccept(<%=memberDetail.getM_point()%>, <%=totalPrice %>, <%=gradeDiscount%>)">
 		<span id="order_insert_inp_two"><%=NumberFormat.getInstance().format(memberDetail.getM_point()) %></span>
 		</div>
 		<div class="order_insert_c">
