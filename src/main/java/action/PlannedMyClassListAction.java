@@ -24,7 +24,7 @@ public class PlannedMyClassListAction implements Action {
 		String m_id = (String) session.getAttribute("m_id"); //request.getParameter("m_id");
 		System.out.println(m_id);
 		MypageClassService mypageClassService = new MypageClassService();
-		ArrayList<ReservBean> reservList = mypageClassService.getClassId(m_id);
+		ArrayList<ReservBean> reservList = mypageClassService.getReservList(m_id);
 		ArrayList<MyClassBean> plannedClassList = new ArrayList<MyClassBean>();
 		ArrayList<MyClassBean> pastClassList = new ArrayList<MyClassBean>();
 		
@@ -53,6 +53,8 @@ public class PlannedMyClassListAction implements Action {
 			System.out.println(compare);
 			
 			MyClassBean mcb = new MyClassBean();
+			mcb.setF_id(rb.getF_id());
+			mcb.setR_id(rb.getR_id());
 			mcb.setSubject(cb.getClass_subject());
 			mcb.setPlace(cb.getClass_place());
 			mcb.setPrice(cb.getClass_price());

@@ -1,6 +1,8 @@
 package vo;
 
 public class MyClassBean {
+	private int r_id;
+	private int f_id;
 	private String subject;
 	private String place;
 	private int price;
@@ -11,6 +13,18 @@ public class MyClassBean {
 	private String reserv_date; //클래스 예약일
 	
 	
+	public int getR_id() {
+		return r_id;
+	}
+	public void setR_id(int r_id) {
+		this.r_id = r_id;
+	}
+	public int getF_id() {
+		return f_id;
+	}
+	public void setF_id(int f_id) {
+		this.f_id = f_id;
+	}
 	public String getSubject() {
 		return subject;
 	}

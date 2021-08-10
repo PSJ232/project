@@ -34,7 +34,7 @@
 													$('#planned_myclass_list')
 															.append(
 																	'<tr class="planned_myclass_nothing">'
-																			+ '<td colspan="2">'
+																			+ '<td colspan="3">'
 																			+ '<p>등록된 클래스 정보가 존재하지 않습니다.</p>'
 																			+ '<button onclick="href='+'#'+'" class="btn_wide btn_yellow">클래스 보러가기</button>'
 																			+ '</td></tr>');
@@ -76,12 +76,14 @@
 				<div class="myclass_box">
 					<table class="myclass_list_layout">
 						<colgroup>
-							<col width="25%">
-							<col width="75%">
+							<col width="22%">
+							<col width="58%">
+							<col width="20%">
 						</colgroup>
 						<thead class="myclass_list_head">
 							<th><span>신청 일자</span></th>
 							<th><span>클래스 정보</span></th>
+							<th><span>상태</span></th>
 						</thead>
 						<tbody id="planned_myclass_list"></tbody>
 					</table>
@@ -98,7 +100,7 @@
 							<col width="25%">
 							<col width="75%">
 						</colgroup>
-						<thead class="myclass_list_head">
+						<thead class="myclass_list_head2">
 							<th><span>신청 일자</span></th>
 							<th><span>클래스 정보</span></th>
 						</thead>

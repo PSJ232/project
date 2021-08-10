@@ -53,7 +53,7 @@ public class ReservInsertProAction implements Action {
 		boolean isInsertSuccess = reservInsertProService.insertReserv(rb);
 		
 //		//등급할인 금액
-//		float grade_discount = Float.parseFloat(request.getParameter("grade_discount"));
+		float grade_discount = Float.parseFloat(request.getParameter("grade_discount"));
 		//사용 포인트
 		int point_discount;
 		if(request.getParameter("point_discount").equals("")) {
@@ -68,8 +68,8 @@ public class ReservInsertProAction implements Action {
 			System.out.println("reservBean insert 성공");
 			request.setAttribute("reservBean", rb);
 			request.setAttribute("name", name);
-//			request.setAttribute("grade_discount", grade_discount);
-//			request.setAttribute("point_discount", point_discount);
+			request.setAttribute("grade_discount", grade_discount);
+			request.setAttribute("point_discount", point_discount);
 			if(r_payment.equals("card")) {
 				forward = new ActionForward();
 				//결제페이지로 이동

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.CancleClassAction;
 import action.ClassReservAction;
 import action.MypageSbscribeListAction;
 import action.OrderAddressAction;
@@ -218,6 +219,13 @@ public class OrderFrontController extends HttpServlet {
 			forward.setPath("./mypage/confirmPurchase.jsp");
 		} else if(command.equals("/ConfirmPurchasePro.od")) {
 			action = new PurchaseConfirmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/CancleClass.od")) {
+			action = new CancleClassAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

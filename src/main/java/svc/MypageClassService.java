@@ -13,7 +13,7 @@ import vo.ReservBean;
 
 public class MypageClassService {
 
-	public ArrayList<ReservBean> getClassId(String m_id) {
+	public ArrayList<ReservBean> getReservList(String m_id) {
 		System.out.println("MypageClassService - getClassId(String m_id)");
 		//반환값 저장할 변수 선언 및 초기화
 		ArrayList<ReservBean> reservList = null;
@@ -59,6 +59,25 @@ public class MypageClassService {
 		close(con);
 		
 		return myClassTime;
+	}
+
+	public boolean cancleClass(int r_id) {
+		System.out.println("MypageClassService - cancleClass");
+		boolean isCancleSuccess = false;
+		int cancleCount = 0;
+		Connection con = getConnection();
+		ReservDAO reservDAO = ReservDAO.getInstance();
+		reservDAO.setConnection(con);
+		
+		cancleCount = reservDAO.deleteReserv(r_id);
+		if(cancleCount>0) {
+			commit(con);
+			isCancleSuccess = true;
+		} else {
+			rollback(con);
+		}
+		
+		return isCancleSuccess;
 	}
 	
 }

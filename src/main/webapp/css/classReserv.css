@@ -159,6 +159,7 @@ html {
     color: gray;
     position: relative;
     top: 1px;
+    cursor: pointer;
 }
 
 .shop_class_btn_yellow {
@@ -228,6 +229,7 @@ html {
     height: 50px;
     background-color: #f7cc00;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 
