@@ -149,7 +149,7 @@
 		<table class="table" border="1">
 			<thead>
 				<tr>
-					<th>아이디</th>
+					<th>아이디</th><input type="hidden">
 					<th>이름</th>
 					<th>휴대폰번호</th>
 					<th>성별</th>
