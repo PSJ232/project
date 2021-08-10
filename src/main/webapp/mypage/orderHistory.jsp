@@ -73,7 +73,6 @@ for (int i = 0; i < orderArrayList.size(); i++) {
 	o_id = orderArrayList.get(i).getO_id() + "";
 }
 
-
 %>
 </head>
 <body>
