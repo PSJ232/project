@@ -325,7 +325,6 @@ b {
 
 .letter_input2 {
     border: none;
-    cursor: pointer;
     width: 320px;
     height: 50px;
     background: #eeeeee;
@@ -335,6 +334,11 @@ b {
     color: #222;
     border-radius: 5px;
 }
+.letter_input2:hover {
+    background: #FFD228;
+    border-radius: 10px;
+    cursor: pointer;
+  }
 
 .letter_textarea {
 	width: 277px;
