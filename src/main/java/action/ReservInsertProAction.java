@@ -11,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 
 import svc.ClassReservService;
 import svc.IdMakerService;
+import svc.MemberService;
 import svc.ReservInsertProService;
 import svc.ReservSelectIdService;
 import vo.ActionForward;
@@ -26,10 +27,15 @@ public class ReservInsertProAction implements Action {
 		rb.setF_id(Integer.parseInt(request.getParameter("f_id")));
 		HttpSession session = request.getSession();
 		rb.setM_id((String)session.getAttribute("m_id"));
-		rb.setR_payment(request.getParameter("r_payment"));
+		String r_payment = request.getParameter("r_payment");
+		rb.setR_payment(r_payment);
 		rb.setFd_id(Integer.parseInt(request.getParameter("fd_id")));
 		rb.setR_num(Integer.parseInt(request.getParameter("r_num")));
 		rb.setR_amount(Integer.parseInt(request.getParameter("total_fee")));
+		
+		//회원 이름 
+		MemberService memberService = new MemberService();
+		String name = memberService.getName((String)session.getAttribute("m_id"));
 		
 		IdMakerService idMakerService = new IdMakerService(); // 번호생성 알고리즘 Service 
 		int r_id = idMakerService.newId("reservation", "r_id", 1);
@@ -44,26 +50,34 @@ public class ReservInsertProAction implements Action {
 		ReservInsertProService reservInsertProService = new ReservInsertProService();	
 		boolean isInsertSuccess = reservInsertProService.insertReserv(rb);
 		
-		//등급할인 금액
-		float grade_discount = Float.parseFloat(request.getParameter("grade_discount"));
-		//사용 포인트
-		int point_discount;
-		if(request.getParameter("point_discount").equals("")) {
-			point_discount = 0;
-		} else {
-			point_discount = Integer.parseInt(request.getParameter("point_discount"));
-		}
+//		//등급할인 금액
+//		float grade_discount = Float.parseFloat(request.getParameter("grade_discount"));
+//		//사용 포인트
+//		int point_discount;
+//		if(request.getParameter("point_discount").equals("")) {
+//			point_discount = 0;
+//		} else {
+//			point_discount = Integer.parseInt(request.getParameter("point_discount"));
+//		}
 		
 		if(isInsertSuccess) {
 			System.out.println("reservBean insert 성공");
 			request.setAttribute("reservBean", rb);
-			request.setAttribute("grade_discount", grade_discount);
-			request.setAttribute("point_discount", point_discount);
-			forward = new ActionForward();
-			//결제페이지로 이동
-			forward.setPath("/Class.shop");
-//			forward.setPath("/ReservPay.od");
-			forward.setRedirect(false);
+			request.setAttribute("name", name);
+//			request.setAttribute("grade_discount", grade_discount);
+//			request.setAttribute("point_discount", point_discount);
+			if(r_payment.equals("card")) {
+				forward = new ActionForward();
+				//결제페이지로 이동
+				forward.setPath("/ReservPay.od");
+				forward.setRedirect(false);
+			} else if(r_payment.equals("cash")){
+				forward = new ActionForward();
+				//결제 완료 페이지로 로 이동
+				forward.setPath("./reservation/payment_info.jsp");
+				forward.setRedirect(false);
+			}
+
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

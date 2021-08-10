@@ -53,12 +53,12 @@ if(cookie_check != null){
 <body>
   	<jsp:include page="inc/header.jsp" ></jsp:include>
 	<ul class="bxSlider">
-		<li><a href="#"><img src="./img/main/main_banner_1.jpg"></a></li>	
-		<li><a href="#"><img src="./img/main/main_banner_2.png"></a></li>	
-		<li><a href="#"><img src="./img/main/main_banner_3.png"></a></li>	
-		<li><a href="#"><img src="./img/main/main_banner_4.png"></a></li>	
-		<li><a href="#"><img src="./img/main/main_banner_5.png"></a></li>	
-		<li><a href="#"><img src="./img/main/main_banner_6.png"></a></li>	
+		<li><a href="Subscription.shop"><img src="./img/main/main_banner_1.jpg"></a></li>	
+		<li><a href="Flowers.shop"><img src="./img/main/main_banner_2.png"></a></li>	
+		<li><a href="FlowersContent.shop?i_id=18"><img src="./img/main/main_banner_3.png"></a></li>	
+		<li><a href="Class.shop"><img src="./img/main/main_banner_4.png"></a></li>	
+		<li><a href="FlowersContent.shop"><img src="./img/main/main_banner_5.png"></a></li>	
+		<li><a href="FlowersContent.shop"><img src="./img/main/main_banner_6.png"></a></li>	
 	</ul>
 	<div id="main_container">
 		<section class="main_subscribe_section">
@@ -130,7 +130,7 @@ if(cookie_check != null){
 					 			<a href="FlowersContent.shop?i_id=<%=ib.getI_id()%>"><img id="img" src="./admin_layout/upload/<%=ib.getI_img()%>"></a>
 					 			<div class="main_item_info">
 					 				<span class="main_item_desc"><%=ib.getI_desc()%></span>
-					 				<a class="main_item_name" href="#"><%=ib.getI_name()%></a><br>
+					 				<a class="main_item_name" href="FlowersContent.shop?i_id=<%=ib.getI_id()%>"><%=ib.getI_name()%></a><br>
 					 				<span class="main_item_pricebox2">
 					 					<%if(ib.getI_discount()!=1){%>
 						 					<span class="main_dc_percent"><%=dc.format((int)((1-ib.getI_discount())*100))%>%</span>
@@ -169,7 +169,7 @@ if(cookie_check != null){
 						 			<a href="QuickContent.shop?i_id=<%=ib.getI_id()%>"><img id="img" src="./admin_layout/upload/<%=ib.getI_img()%>"></a>
 						 			<div class="main_item_info">
 						 				<span class="main_item_desc"><%=ib.getI_desc()%></span>
-						 				<a class="main_item_name" href="#"><%=ib.getI_name()%></a><br>
+						 				<a class="main_item_name" href="QuickContent.shop?i_id=<%=ib.getI_id()%>"><%=ib.getI_name()%></a><br>
 						 				<span class="main_item_pricebox2">
 						 				<%if(ib.getI_discount()!=1){%>
 						 						<span class="main_dc_percent"><%=dc.format((int)((1-ib.getI_discount())*100))%>%</span>
@@ -190,7 +190,7 @@ if(cookie_check != null){
 				</div>
 			</section>
 		</div>
-		<div class="main_subbanner">
+		<div class="main_subbanner" onclick="location.href='FlowersContent.shop?i_id=18'">
 			<div>
 				<img alt="" src="./img/main_sub_banner.png">
 			</div>
@@ -205,7 +205,7 @@ if(cookie_check != null){
 					<a class="main_more">더보기</a>
 				</div>
 				<div class="main_class_content">
-					<div class="main_class_left">
+					<div onclick="location.href='Class.shop'" class="main_class_left">
 						<img class="main_Class_mainImg" alt="" src="img/main_class.png">
 						<div>
 							<span>2021년에도 꾸까 클래스와 함께</span><br>
@@ -214,26 +214,26 @@ if(cookie_check != null){
 					</div>
 					<div class="main_class_right">
 						<div class="main_class_top">
-							<div class="main_class_submig"><img alt="" src="img/franch_class.jpg"></div>
+							<div class="main_class_submig" onclick="location.href='ClassReserv.od?f_id=1'"><img alt="" src="img/franch_class.jpg"></div>
 							<div class="main_class_subInfo">
-								<p class="main_item_name">프랑스 명화 플라워 클래스</p>
+								<p onclick="location.href='ClassReserv.od?f_id=1'" class="main_item_name">프랑스 명화 플라워 클래스</p>
 								<p class="main_dc_price">59,900원</p>
 								<span>
-									<a class="main_place_btn seo_btn">서면점</a>
-									<a class="main_place_btn nam_btn">남포점</a>
-									<a class="main_place_btn hae_btn">해운대점</a>
+									<a href="ClassReserv.od?f_id=1" class="main_place_btn seo_btn">서면점</a>
+									<a href="ClassReserv.od?f_id=2" class="main_place_btn nam_btn">남포점</a>
+									<a href="ClassReserv.od?f_id=3" class="main_place_btn hae_btn">해운대점</a>
 								</span>
 							</div>
 						</div>	
 						<hr>
 						<div class="main_class_bottom">
-							<div class="main_class_submig"><img alt="" src="img/class6.jpg"></div>
+							<div class="main_class_submig" onclick="location.href='ClassReserv.od?f_id=6'"><img alt="" src="img/class6.jpg"></div>
 							<div class="main_class_subInfo">
-								<p class="main_item_name">베이직 코스(8주 과정)</p>
+								<p onclick="location.href='ClassReserv.od?f_id=6'" class="main_item_name">베이직 코스(8주 과정)</p>
 								<p class="main_dc_price">74,900원</p>
 								<span>
-									<a class="main_place_btn nam_btn">남포점</a>
-									<a class="main_place_btn hae_btn">해운대점</a>
+									<a href="ClassReserv.od?f_id=6" class="main_place_btn nam_btn">남포점</a>
+									<a href="ClassReserv.od?f_id=7" class="main_place_btn hae_btn">해운대점</a>
 								</span>
 							</div>
 						</div>

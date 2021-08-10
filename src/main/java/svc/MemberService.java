@@ -231,5 +231,19 @@ public class MemberService {
 				
 		return sendCount;
 	}
+	
+	public String getName(String m_id) {
+		System.out.println("MemberService - getName()");
+		
+		Connection con = JdbcUtil.getConnection();
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		memberDAO.setConnection(con);
+		
+		String name = memberDAO.getName(m_id);
+	
+		JdbcUtil.close(con);
+				
+		return name;
+	}
 
 }

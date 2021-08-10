@@ -50,7 +50,7 @@
   	        msg += '카드 승인번호 : ' + rsp.apply_num;
   	        console.log(msg);
   	        isSuccess = true;
-//   	        location.href=''
+  	        location.href='./reservation/payment_info.jsp?name=<%=mb.getM_name()%>&reservBean=<%=rb%>';
   	    } else {
   	    	//결제 실패시 
   	    	//ReservMiddleCancle.ad

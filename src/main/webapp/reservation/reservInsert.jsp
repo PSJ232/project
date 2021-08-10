@@ -39,7 +39,7 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 	<!-- header -->
 
 	<div id="container">
-		<form action="ReservInsertPro.od" method="post" onsubmit="return checkValue()">
+		<form action="ReservInsertPro.od" method="post" name="reservForm" onsubmit="return checkValue()">
 			<h1 class="rpay_title">오프라인 주문</h1>
 			<div class="rpay_container">				
 				<div class="rpay_confirm_box">
