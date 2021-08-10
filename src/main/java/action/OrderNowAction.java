@@ -1,6 +1,5 @@
 package action;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import svc.ItemDetailService;
-import svc.OrderService;
 import vo.ActionForward;
 import vo.CartBean;
 import vo.ItemBean;

@@ -87,13 +87,7 @@
     	document.getElementById('nowPoint').innerHTML = (m_point - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (보유포인트 - 사용포인트)연산 결과를 표시
     	document.getElementById('totalPrice').innerHTML = (finalPrice - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (상품 총금액 - 포인트)연산 결과를 표시
     }
-    
-    function defaultPoint(){ // 포인트 input 공백일 경우 오류 방지
-    	if(document.order.o_point.value == ""){
-    		document.order.o_point.value = 0;
-    	}
-    }
-    
+
 </script>
 <head>
 <meta charset="UTF-8">
@@ -307,15 +301,22 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 </div>
 
 	<script type="text/javascript">
+	    function defaultPoint(){ // 포인트 input 공백일 경우 오류 방지
+	    	if(document.order.o_point.value == ""){
+	    		document.order.o_point.value = 0;
+	    	}
+	    }
+	    
 		function payment_popup() {
 			defaultPoint();
 			document.payfrm.pay_point.value = document.order.o_point.value;
-			window.open('', 'payment', 'width=850, height=630');
+			window.open('', 'payment', 'width=850, height=630, top=300, left=300');
 			var payform = document.payfrm;
 			payform.action = "./order/payment.jsp";
 			payform.target = "payment";
 			payform.submit();
 		}
+	    
 	</script>
 	
 	<!-- footer -->
