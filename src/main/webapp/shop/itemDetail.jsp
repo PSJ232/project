@@ -91,8 +91,8 @@
 			document.order.c_qty.value = Number(qty)+sum;
 			isLetter(price);
 		} else {
-			document.getElementById('invenNotice').innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + inven + "개 입니다.<br>";
-		}
+			document.getElementById('invenNotice').innerHTML = "- 해당 상품의 <span class='invenNotice_red'>최대 구매 가능한 수량은 " + inven + "개</span> 입니다.";
+		} 
 	}
 	
 </script>

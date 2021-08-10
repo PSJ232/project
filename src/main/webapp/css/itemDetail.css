@@ -217,10 +217,6 @@ html {
 	font-size: 13px;
 }
 
-#invenNotice {
-	color: red;
-}
-
 .add_letter {
 	font-size: 14px;
 }
@@ -514,6 +510,10 @@ html {
 	line-height: 20px;
 	color: #222222;
 	letter-spacing: -.29px;
+}
+
+.invenNotice_red { /* 재고초과에 대한 안내부분 부분색상변경 */
+	color: red;
 }
 
 
