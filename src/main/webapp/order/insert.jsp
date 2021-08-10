@@ -63,15 +63,15 @@
     function pointAccept(m_point, totalPrice, gradeDiscount){ // 포인트 입력하면 실행
     	var finalPrice = totalPrice - gradeDiscount; // 포인트 계산을 위한 최종금액 확인
     	if(m_point >= document.order.o_point.value && finalPrice >= document.order.o_point.value){
-	    	document.getElementById('pointResult').innerHTML = document.order.o_point.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 사용 포인트를 표시
-	    	document.getElementById('nowPoint').innerHTML = (m_point - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (보유포인트 - 사용포인트)연산 결과를 표시
-	    	document.getElementById('totalPrice').innerHTML = (finalPrice - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (상품 총금액 - 포인트)연산 결과를 표시
+	    	document.getElementsByClassName('pointResult')[0].innerHTML = '-' + document.order.o_point.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원'; // 사용 포인트를 표시
+	    	document.getElementsByClassName('nowPoint')[0].innerHTML = '- 사용 가능 포인트: ' + (m_point - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (보유포인트 - 사용포인트)연산 결과를 표시
+	    	document.getElementsByClassName('totalPrice')[0].innerHTML = (finalPrice - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원'; // (상품 총금액 - 포인트)연산 결과를 표시
 	    	document.order.paymentAmount.value = finalPrice - document.order.o_point.value; // 결제api에 전달할 결제금액을 저장 -> 테스트 실제로 덮어써지는지 테스트 아직 못해봄
-    		document.getElementById('pointNotice').innerHTML = "";
+    		document.getElementsByClassName('pointNotice')[0].innerHTML = "";
     	} else {
     		document.order.o_point.value = "";
+    		document.getElementsByClassName('pointNotice')[0].innerHTML = "- 보유포인트 또는 상품금액을 초과할 수 없습니다.<br>";
     		pointAccept(m_point, totalPrice, gradeDiscount);
-    		document.getElementById('pointNotice').innerHTML = "- 보유포인트 또는 상품금액을 초과할 수 없습니다.<br>";
     	}
     }
     
@@ -82,10 +82,10 @@
     	} else {
     		document.order.o_point.value = m_point;
     	}
-    	document.getElementById('pointNotice').innerHTML = "";
-    	document.getElementById('pointResult').innerHTML = document.order.o_point.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 사용 포인트를 표시
-    	document.getElementById('nowPoint').innerHTML = (m_point - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (보유포인트 - 사용포인트)연산 결과를 표시
-    	document.getElementById('totalPrice').innerHTML = (finalPrice - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (상품 총금액 - 포인트)연산 결과를 표시
+    	document.getElementsByClassName('pointNotice')[0].innerHTML = "";
+    	document.getElementsByClassName('pointResult')[0].innerHTML = '-' + document.order.o_point.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원'; // 사용 포인트를 표시
+    	document.getElementsByClassName('nowPoint')[0].innerHTML = '- 사용 가능 포인트: ' + (m_point - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // (보유포인트 - 사용포인트)연산 결과를 표시
+    	document.getElementsByClassName('totalPrice')[0].innerHTML = (finalPrice - document.order.o_point.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원'; // (상품 총금액 - 포인트)연산 결과를 표시
     }
 
 </script>
@@ -135,7 +135,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	<!-- header -->
 <div class="container">
 <div class="order_insert_all"> 
-
+	<span class="" onclick="history.back()" style="cursor: pointer;">◁이전으로</span>
 	<h1 id="order_insert_title">주문/결제</h1>
 	<h3 id="order_insert_title_h3">주문내역 확인</h3>
 	<%
@@ -166,8 +166,8 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		totalPrice += price; // 모든 상품의 누적 총 금액(쿠폰 및 포인트, 등급할인 제외)
 	%>
 	<div class="order_insert_c">
-		<img src="<%=itemList.get(i).getI_img()%>">
-		<p id="order_insert_pb"><%=itemList.get(i).getI_name() %>
+		<img src="./admin_layout/upload/<%=itemList.get(i).getI_img()%>">
+	<div class="order_insert_cp"><p id="order_insert_pb"><%=itemList.get(i).getI_name() %>
 		<span id="order_insert_span"><%=NumberFormat.getInstance().format(price) %>원</span></p>
 		
 		<%if(sub_name.equals("")){%>
@@ -179,6 +179,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<p id="order_insert_p"><%=addLetter %>
 		<p id="order_insert_p">수량 : <%=checkList.get(i).getC_qty()%>개</p><br>
 		<br>
+	</div>
 	<%
 	}
 	gradeDiscount = ((int)(totalPrice *(1 - g_discount) / 100) * 100); // totalPrice에 등급할인 계산하여 할인금액 저장
@@ -192,58 +193,51 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	
 	
 	
-	<form action="OrderInsertPro.od" name="order" method="post" onsubmit="defaultPoint()">
+	<form action="OrderInsertPro.od" name="order" method="post">
 		<div class="order_insert_c">
 		<h3 id="order_insert_title_h3">발신인 정보</h3>
-		<span id="order_insert_n">이름</span> <input id="order_insert_inp_one" type="text" name="o_sender" value="<%=m_name%>">
+		<span id="order_insert_n">이름</span> <input id="order_insert_inp_one" type="text" name="o_sender" value="<%=m_name%>" required>
 		</div> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
 		
 		<div class="order_insert_c">
 		<h3 id="order_insert_title_h3">배송지 정보</h3>
-		<div id="order_insert_i">받는분 이름</div> <input id="order_insert_inp_one" type="text" name="o_receiver" placeholder="이름을 입력해주세요.">
-		<div id="order_insert_i">받는분 연락처</div><input id="order_insert_inp_one" type="text" name="o_phone">
+		<div id="order_insert_i">받는분 이름</div> <input id="order_insert_inp_one" type="text" name="o_receiver" placeholder="이름을 입력해주세요." required>
+		<div id="order_insert_i">받는분 연락처</div><input id="order_insert_inp_one" type="text" name="o_phone" required>
 		
 		<div id="order_insert_i">우편번호 </div> 
 		<input id="order_insert_btn"  type="button" onclick="sample6_execDaumPostcode()" value="찾기"><br>
 		<input class="order_insert_inp_two" type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색" readonly>
 		<div id="order_insert_i">주소 </div> 
 		<input class="order_insert_inp_one" type="text" id="sample6_address" name="address2"  placeholder="주소" readonly><br>
-		<input class="order_insert_inp_one" type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소"><br>
+		<div id="order_insert_i"></div> 
+		<input class="order_insert_inp_one" type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소" required><br>
 		
 		<div id="order_insert_b">
 		<input id="order_insert_btn" type="button" value="최근배송지" onClick="window.open('OrderAddress.od', 'address', 'width=450, height=500')">
 		</div>
-		
-		<div id="order_insert_p">
-		<p>토요일 수령 선택 시 주의사항<br>
-		토요일 수령을 선택하실 경우, 회사 주소는 배송이 어려워요.<br>
-		자택이나 수령인이 직접 받으실 수 있는 주소지로 입력 부탁드릴게요.<br>
-		</p>
-		</div>
-		
 		</div>	
 		<div class="order_insert_c">
 		<h3 id="order_insert_title_h3">쿠폰/포인트</h3>
-		<span id="order_insert_n">쿠폰 할인</span><br><input id="order_insert_btn" type="button" value="(미구현)"> <input id="order_insert_inp_two" type="text" placeholder="코드를 입력해주세요">
+		<span id="order_insert_n">쿠폰 할인</span><br><input id="order_insert_inp_one" type="text" placeholder="코드를 입력해주세요">
 			
 		<span id="order_insert_n">포인트</span><br> <input id="order_insert_inp_one" type="text" name="o_point" placeholder="0" onkeyup="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>,<%=gradeDiscount%>)"><br>
-		<span id="order_insert_n">현재 포인트</span><br>
-		<input id="order_insert_btn" type="button" value="전액사용" onclick="pointFullAccept(<%=memberDetail.getM_point()%>, <%=totalPrice %>, <%=gradeDiscount%>)">
-		<span id="order_insert_inp_two"><%=NumberFormat.getInstance().format(memberDetail.getM_point()) %></span>
+		<span id="order_insert_n2" class="pointNotice"></span><br>
+		<input id="order_insert_btn2" type="button" value="전액사용" onclick="pointFullAccept(<%=memberDetail.getM_point()%>, <%=totalPrice %>, <%=gradeDiscount%>)">
+		<span id="order_insert_inp_3" class="nowPoint">- 사용 가능 포인트: <%=NumberFormat.getInstance().format(memberDetail.getM_point()) %></span>
 		</div>
 		<div class="order_insert_c">
 		<h3 id="order_insert_title_h3">최종 결제 금액</h3>
 		<span id="order_insert_n">총 상품 금액</span><br> <span id="mypage_orderHistoryDetail_del_span_r"><%=NumberFormat.getInstance().format(totalPrice) %> 원</span><br>
 		<span id="order_insert_n">배송비</span><br> <span id="mypage_orderHistoryDetail_del_span_r">0 원</span><br>
-		<span id="order_insert_n">쿠폰 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r"> -0 원 (미구현)</span><br>
-		<span id="order_insert_n">포인트 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r">0 원</span><br>
+		<span id="order_insert_n">쿠폰 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r"> -0 원</span><br>
+		<span id="order_insert_n">포인트 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r" class="pointResult">-0 원</span><br>
 		<span id="order_insert_n">등급 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r"><%=NumberFormat.getInstance().format(gradeDiscount) %> 원</span><br>
 		</div>
 
 		<div class="order_insert_c">
 		<div id="col">
-		<span id="order_insert_n">총 결제 금액</span>
-		<span id="order_insert_span_p"><%=NumberFormat.getInstance().format(totalPrice-gradeDiscount) %>원</span></div> 
+		<span id="order_insert_nnn">총 결제 금액</span>
+		<span id="order_insert_span_p" class="totalPrice"><%=NumberFormat.getInstance().format(totalPrice-gradeDiscount) %>원</span></div> 
 		</div>
 		
 		<%
@@ -286,10 +280,8 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="sub_option" value="<%=sub_option%>"> <!-- 정기구독 옵션 번호 -->
 		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
 		<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
-		<input type="hidden" name="o_payment" value="1"> <!-- 비안씨 작업용 수정 다시 ""로 돌려놓기 -->
-		<input id="order_insert_submit" type="submit" value="결제하기"> 			<!-- 비안씨 작업용 임시용 코드 삭제예정 이거지우고 밑에꺼 활성화 -->
+		<input type="hidden" name="o_payment" value="">
 	</form>
-	</div>
 		
 	<form name="payfrm" method="post">
 		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>">
@@ -297,7 +289,8 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="pay_gdiscount" value="<%=gradeDiscount %>">
 		<input type="hidden" name="pay_amount" value="<%=totalPrice %>">
 	</form>
-	<!-- <input type="button" value="결제하기" onClick="payment_popup()" > -->
+	<input id="order_insert_submit" type="button" value="결제하기" onClick="payment_popup()" >
+	</div>
 </div>
 
 	<script type="text/javascript">
