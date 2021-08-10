@@ -131,9 +131,9 @@
 }
 
 #order_insert_span {
-	float: right;
 	color: #46cfa7;
-	margin-left: 320px;
+    display: inline-block;
+    padding-left: 50px;
 }
 
 #order_insert_b {

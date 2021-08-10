@@ -137,6 +137,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 <div class="order_insert_all"> 
 	<span class="" onclick="history.back()" style="cursor: pointer;">◁이전으로</span>
 	<h1 id="order_insert_title">주문/결제</h1>
+	<div class="order_insert_c">
 	<h3 id="order_insert_title_h3">주문내역 확인</h3>
 	<%
 	int letterPrice;

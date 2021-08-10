@@ -101,8 +101,8 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	<!-- header -->
 	<div class="container">
 <div class="order_insert_all"> 
-
-	<h1 id="order_insert_title">주문/결제(비회원)</h1>
+	<span class="" onclick="history.back()" style="cursor: pointer;">◁이전으로</span>
+	<h1 id="order_insert_title">주문/결제</h1>
 	<div class="order_insert_c">
 	<h3 id="order_insert_title_h3">주문내역 확인</h3>
 	<%
@@ -132,43 +132,45 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		price = (itemList.get(i).getI_price() * checkList.get(i).getC_qty() * sub_option) + letterPrice; // 단일상품금액 = (원가 * 수량) + 편지요금
 	%>
 	<div class="order_insert_c">
-		<img src="<%=itemList.get(i).getI_img()%>">
-		<p id="order_insert_pb"><%=itemList.get(i).getI_name() %>
+		<img src="./admin_layout/upload/<%=itemList.get(i).getI_img()%>">
+		<div class="order_insert_cp"><p id="order_insert_pb"><%=itemList.get(i).getI_name() %>
 		<span id="order_insert_span"><%=NumberFormat.getInstance().format(price) %></span></p>
 		
 		<%if(sub_name.equals("")){%>
-		<p id="order_insert_p">수령일:<%=day %>,<%=checkList.get(i).getC_delivery_date() %></p>
+		<p id="order_insert_p">수령일 : <%=day %>,<%=checkList.get(i).getC_delivery_date() %></p>
 		<%} else {%> <!-- 정기구독 경유 접속시 표시 -->
-		<p id="order_insert_p">첫 구독일:<%=day %>,<%=checkList.get(i).getC_delivery_date() %></p>
-		<p id="order_insert_p">구독내용:<%=sub_name %></p>
+		<p id="order_insert_p">첫 구독일 : <%=day %>,<%=checkList.get(i).getC_delivery_date() %></p>
+		<p id="order_insert_p">구독내용 : <%=sub_name %></p>
 		<%} %>
 		<p id="order_insert_p"><%=addLetter %></p>
-		<p id="order_insert_p">수량:<%=checkList.get(i).getC_qty()%></p><br>
+		<p id="order_insert_p">수량 : <%=checkList.get(i).getC_qty()%></p><br>
 		<br>
+	</div>
 	<%
 	}
 	%>
 	</div>
-	</div>
+	
+	
 	<form action="OrderInsertPro.od" name="order" method="post">
 		<div class="order_insert_c">
 		<h3 id="order_insert_title_h3">발신인 정보</h3>
-		<div id="order_insert_i">이름</div> <input id="order_insert_inp_one"  type="text" name="o_sender"><br>
+		<div id="order_insert_i">이름</div> <input id="order_insert_inp_one"  type="text" name="o_sender" required><br>
 		</div>
 		<div class="order_insert_c">
 		<h3 id="order_insert_title_h3">휴대폰 본인 인증</h3>
 		<div id="order_insert_i">휴대폰번호 </div>
 		<input id="order_insert_btn"  type="button" value="인증번호 받기">
-		<input id="order_insert_inp_two" type="tel"><br>
+		<input id="order_insert_inp_two" type="tel" name="o_visitor" placeholder="010" required><br>
 		<div class="order_insert_c">
 		<label><input id="order_insert_btn" type="button" value="확인">
-		<input id="order_insert_inp_two" type="tel" name="o_visitor"></label>
+		<input id="order_insert_inp_two" type="tel" required></label>
 		</div>
 		</div>
 		<div class="order_insert_c">
 		<h3 id="order_insert_title_h3">배송지 정보</h3>
-		<div id="order_insert_i">받는분 이름</div> <input id="order_insert_inp_one" type="text" name="o_receiver" placeholder="이름을 입력해주세요."><br>
-		<div id="order_insert_i">받는분 연락처</div> <input id="order_insert_inp_one" type="text" name="o_phone"><br>
+		<div id="order_insert_i">받는분 이름</div> <input id="order_insert_inp_one" type="text" name="o_receiver" placeholder="이름을 입력해주세요." required><br>
+		<div id="order_insert_i">받는분 연락처</div> <input id="order_insert_inp_one" type="text" name="o_phone" placeholder="010" required><br>
 	
 		
 		<div id="order_insert_i">우편번호 </div> 
@@ -176,21 +178,13 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input class="order_insert_inp_two" type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색" readonly>
 		<div id="order_insert_i">주소 </div> 
 		<input class="order_insert_inp_one" type="text" id="sample6_address" name="address2"  placeholder="주소" readonly><br>
-		<input class="order_insert_inp_one" type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소"><br>
-		</div>
-		<div class="order_insert_c">
-		<div id="order_insert_p">
-		토요일 수령 선택 시 주의사항<br>
-		토요일 수령을 선택하실 경우, 회사 주소는 배송이 어려워요.<br>
-		자택이나 수령인이 직접 받으실 수 있는 주소지로 입력 부탁드릴게요.<br>
-		<br>
-		</div>	
+		<div id="order_insert_i"></div> 
+		<input class="order_insert_inp_one" type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소" required><br>
 		</div>
 		
 		<div class="order_insert_c">
 		<h3 id="order_insert_title_h3">쿠폰/포인트</h3>
-		<span id="order_insert_n">쿠폰 할인 
-		</span><br><input id="order_insert_btn" type="button" value="(미구현)"><br>	<input id="order_insert_inp_two"  type="text" placeholder="코드를 입력해주세요">
+		<span id="order_insert_n">쿠폰 할인</span><br>	<input id="order_insert_inp_one"  type="text" placeholder="코드를 입력해주세요">
 		</div>
 		
 		<div class="order_insert_c">
@@ -203,9 +197,6 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<div id="col">
 		<span id="order_insert_n">총 결제 금액</span>
 		<span id="order_insert_span_p"><%=NumberFormat.getInstance().format(price) %> 원</span></div> 
-		</div>
-		<div class="order_insert_c">
-		<h3 id="order_insert_title_h3">결제 수단</h3>
 		</div>
 		<%
 		int i;
@@ -249,8 +240,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="o_amount" value="<%=price %>">
 		<input type="hidden" name="o_gdiscount" value="0">
 		<input type="hidden" name="o_point" value="0">
-		<input type="hidden" name="o_payment" value="1"> <!-- 편의상 1, 다시 ""으로 변경해야됨 -->
-		<input id="order_insert_submit" type="submit" value="결제하기"> <!-- 작업끝나면 이거지우고 밑에꺼 활성화  -->
+		<input type="hidden" name="o_payment" value="">
 	</form>
 	
 	<form name="payfrm" method="post">
@@ -258,19 +248,47 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="pay_gdiscount" value="0">
 		<input type="hidden" name="pay_amount" value="<%=price%>">
 	</form>
-<!-- 	<input id="order_insert_submit" type="button" value="결제하기" onClick="payment_popup()"> -->
+	<input id="order_insert_submit" type="button" value="결제하기" onClick="payment_popup()">
 	
 </div>
 </div>	
 
 	<script type="text/javascript">
 		function payment_popup() {
-			window.open('', 'payment', 'width=850, height=630');
+			window.open('', 'payment', 'width=850, height=630, top=300, left=300');
 			var payform = document.payfrm;
 			payform.action = "./order/payment.jsp";
 			payform.target = "payment";
 			payform.submit();
 		}
+		
+		
+		
+// 		$(document).ready(function() {
+// 			$('#join').click(function() {
+// 				if($('#id').val()==""){
+// 					alert("아이디 입력하세요");
+// 					$('#id').focus();
+// 					return false;
+// 				}
+// 				if($('#pass').val()==""){
+// 					alert("비밀번호 입력하세요");
+// 					$('#pass').focus();
+// 					return false;
+// 				}
+// 				if($('#name').val()==""){
+// 					alert("이름 입력하세요");
+// 					$('#name').focus();
+// 					return false;
+// 				}
+// 				if($('#email').val()==""){
+// 					alert("이메일 입력하세요");
+// 					$('#email').focus();
+// 					return false;
+// 				}
+// 			});
+			
+// 		});
 	</script>
 		<!-- footer -->
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
