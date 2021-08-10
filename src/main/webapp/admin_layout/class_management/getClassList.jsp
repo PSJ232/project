@@ -10,8 +10,8 @@
 <style>
 	.place {
 	background-color: #FFCD12;
-	border: solid 1px #FFCD12;
-	padding: 2px;
+	border: solid 1px #fff;
+	padding: 3px;
 	border-radius: 10px;
 	color: white;
 }

@@ -17,7 +17,6 @@ public class AdminSearchAction {
 		String command = request.getServletPath();
 		String search_val = request.getParameter("search_val");
 		String filter = request.getParameter("filter");
-		OrderService o_service = new OrderService();
 		if(command.equals("/OrderSearch.ad")) {
 			AdminOrderSearchService service = new AdminOrderSearchService();
 			PrintWriter out;

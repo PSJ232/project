@@ -138,11 +138,11 @@
    		</fieldset>
 		<div class="search_container">
 			<select name="filter" id="filter">
-				<option value="0">filter</option>
-				<option value="1">name</option>
-				<option value="2">id</option>
-				<option value="3">phone</option>
-				<option value="4">grade</option>
+				<option value="0">필터</option>
+				<option value="1">이름</option>
+				<option value="2">아이디</option>
+				<option value="3">휴대폰</option>
+				<option value="4">등급(number)</option>
 			</select>
 			<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
 		</div>

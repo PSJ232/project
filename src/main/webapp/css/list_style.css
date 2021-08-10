@@ -58,5 +58,16 @@
 		padding: 5px;
 		color: #FFDF24;
 	}
+	select {
+		border: none;
+		outline: none;
+		font-size: 15px;
+	}
+	#search_val {
+		border: none;
+		border-bottom: 2px solid #ccc;
+		outline: none;
+		padding: 5px;
+	}
 	
  	
