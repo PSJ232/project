@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 마이페이지</title>
 <link href="css/mypage.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet" >
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

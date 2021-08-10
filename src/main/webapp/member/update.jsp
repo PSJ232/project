@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사계 | 개인정보 수정</title>
+<title>사계 | 마이페이지</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link href="css/mypage.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/update.css" type="text/css" />
