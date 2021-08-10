@@ -33,7 +33,7 @@ public class ClassReservService {
 		return classList;
 	}
 	
-	public JSONArray getPlaceNFidList(String f_subject) {
+	public JSONArray getPlaceNFidList(String f_subject, String f_cdate) {
 		System.out.println("ClassReservService - getPlaceList(String f_subject)");
 		JSONArray placeNFidList = null;
 		//Conneciton 객체 전달
@@ -41,7 +41,7 @@ public class ClassReservService {
 		ClassDAO classDAO = ClassDAO.getInstance();
 		classDAO.setConnection(con);
 		
-		placeNFidList = classDAO.getPlaceNFidList(f_subject);
+		placeNFidList = classDAO.getPlaceNFidList(f_subject, f_cdate);
 		
 		close(con);
 		

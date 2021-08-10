@@ -152,7 +152,7 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 				<!-- r_id 생성 -->
 				<div>
 					<!-- 처음에 등급 할인이 적용된 가격 설정, gradeApplyPrice와 동일-->
-					<input type="hidden" id="total_fee" name="total_fee" value="<%=(int)(fclass.getClass_price()*r_num*grade)%>"> 
+					<input type="text" id="total_fee" name="total_fee" value="<%=(int)(fclass.getClass_price()*r_num*grade)%>"> 
 					<!-- 등급할인 금액 -->
 					<input type="hidden" id="grade_discount" name="grade_discount" value="<%=gradeDiscount%>">
 					<!-- 포인트 할인금액 -->
@@ -189,14 +189,14 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 			$('#pointApplybtn').click(function(){
 				let use_point = $('#use_point').val();//사용할 포인트
 				let avail_point = Number($('#avail_point').text().toString());//사용가능한 포인트
-				let grade_apply_fee = $('#total_fee').val();
+				let grade_apply_fee = $('#total_fee').val();//등급할인이 적용된(포인트 적용 안된 가격)
 				$('#pointAll').prop('checked', false);
 
-				if(use_point > avail_point) {
+				if(parseInt(use_point) > avail_point) {
 					alert('사용가능한 포인트는 '+avail_point+'입니다');
 					return;
-				} else if (use_point > grade_apply_fee){
-					alert('포인트가 금액을 초과하였습니다');
+				} else if (parseInt(use_point) > grade_apply_fee){
+					alert('use_point-'+use_point+ 'grade_apply_fee - '+grade_apply_fee+' 포인트가 금액을 초과하였습니다');
 					$('#use_point').val(0);
 					return;
 				}else {

@@ -375,15 +375,16 @@ public class ClassDAO {
 		return classList;
 	}
 	
-	public JSONArray getPlaceNFidList(String f_subject) {
+	public JSONArray getPlaceNFidList(String f_subject, String f_cdate) {
 		System.out.println("ClassDAO - getPlaceNFidList");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		JSONArray array = new JSONArray();
-		String sql = "SELECT f_id, f_place FROM fclass WHERE f_subject = ?";
+		String sql = "SELECT f_id, f_place FROM fclass WHERE f_subject = ? and f_cdate = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, f_subject);
+			pstmt.setString(2, f_cdate);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

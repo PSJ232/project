@@ -21,12 +21,13 @@ public class ReservClassPlaceAction{
 		ActionForward forward = null;
 
 		String f_subject = request.getParameter("f_subject");
+		String f_cdate = request.getParameter("f_cdate");
 		System.out.println("f_subject"+f_subject);
-		
+		System.out.println("f_cdate"+f_cdate);
 		ClassReservService classReservService = new ClassReservService();
 		
 		//1. 전달 받은 f_subject로 f_place, f_id들 받아서 배열로 저장 후 전달
-		JSONArray placeList = classReservService.getPlaceNFidList(f_subject);
+		JSONArray placeList = classReservService.getPlaceNFidList(f_subject, f_cdate);
 		System.out.println(placeList);
 		Gson gson = new Gson();
 		String jsonOutput = gson.toJson(placeList);

@@ -52,12 +52,14 @@ public class ReservInsertProAction implements Action {
 		
 //		//등급할인 금액
 //		float grade_discount = Float.parseFloat(request.getParameter("grade_discount"));
-//		//사용 포인트
+		//사용 포인트
 //		int point_discount;
 //		if(request.getParameter("point_discount").equals("")) {
 //			point_discount = 0;
 //		} else {
 //			point_discount = Integer.parseInt(request.getParameter("point_discount"));
+//			//포인트 차감
+//			
 //		}
 		
 		if(isInsertSuccess) {

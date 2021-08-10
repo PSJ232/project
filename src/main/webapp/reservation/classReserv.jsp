@@ -358,7 +358,8 @@ function ctlNum(num, price){
 	        $.ajax('ReservClassPlace.od', {
 	            type : 'GET',
 	            data: {
-	                'f_subject': $('#subject').val()
+	                'f_subject': $('#subject').val(),
+	                'f_cdate': $('#date').val()
 	             },
 	            success:function(rdata){
 	            	let str = JSON.stringify(rdata);
