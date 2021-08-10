@@ -77,12 +77,12 @@
 						 		</div>	
 						 			  						   
 								<div class="row">
-									<div class="update_name">휴대폰 본인인증</div>
+									<div class="update_name">휴대폰</div>
 									<div class="update_input">
 									   	   <input type="text"  class="textBox" name="m_phone" value="<%=memberMypageDetail.getM_phone() %>" required>
 									   	 </div>
 									</div>
-										<!-- 뷰페이지 참고 : 휴대폰번호 수정하면 본인인증 창이 나타남 -->
+										
 								<div class="row">
 									<div class="update_name">생년월일</div>
 									<div class="update_input">
