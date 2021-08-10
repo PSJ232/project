@@ -41,6 +41,7 @@ public class AdminMemberDetailService {
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
 		reviewDAO.setConnection(con);
 		int listCount = reviewDAO.getListCount();
+		close(con);
 		return listCount;
 	}
 }

@@ -30,12 +30,12 @@ public class ItemInsertService {
 		
 		if(insertCount>0) {
 			commit(con);
-			close(con);
+			
 			isInsertSuccess = true;
 		} else {
 			rollback(con);
 		}
-		
+		close(con);
 		return isInsertSuccess;
 	}
 	

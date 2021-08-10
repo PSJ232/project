@@ -1,6 +1,6 @@
 package svc;
 
-import static db.JdbcUtil.getConnection;
+import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class MainService {
 		
 		itemList = itemDAO.getItemList(i);
 		
-		
+		close(con);
 		return itemList;
 	}
 
