@@ -50,9 +50,9 @@ public class ClassInsertProAction implements Action {
 		classBean.setClass_sub_img1(multi.getFilesystemName("class_sub_img1"));
 		classBean.setClass_sub_img2(multi.getFilesystemName("class_sub_img2"));
 		classBean.setClass_sub_img3(multi.getFilesystemName("class_sub_img3"));
-		classBean.setClass_sub_desc(multi.getParameter("class_sub_desc"));
-		classBean.setF_desc_img(multi.getParameter("class_desc_img"));
-		classBean.setF_desc_img(multi.getParameter("class_thumbnail_img"));
+		classBean.setClass_sub_desc(multi.getFilesystemName("class_sub_desc"));
+		classBean.setF_desc_img(multi.getFilesystemName("class_desc_img"));
+		classBean.setF_thumbnail_img(multi.getFilesystemName("class_thumbnail_img"));
 		
 		// detail에 저장할 값들
 		

@@ -1134,6 +1134,7 @@ public class OrderDAO {
 					+ "AS r "
 					+ "ON o.odate=r.rdate "
 					+ "GROUP BY date) AS t";
+			
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
