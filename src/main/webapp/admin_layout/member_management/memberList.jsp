@@ -138,7 +138,7 @@
    		</fieldset>
 		<div class="search_container">
 			<select name="filter" id="filter">
-				<option value="0">필터</option><input type="hidden" value="">
+				<option value="0">필터</option>
 				<option value="1">이름</option>
 				<option value="2">아이디</option>
 				<option value="3">휴대폰</option>
