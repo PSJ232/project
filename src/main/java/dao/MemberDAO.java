@@ -384,11 +384,11 @@ public class MemberDAO {
 		String sql = "";
 		try {
 			switch (filter) {
-			case "1": sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_name"; break;
-			case "2": sql = "SELECT * FROM member WHERE m_id LIKE ? ORDER BY m_drop desc, m_id"; break;
-			case "3": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,m_phone"; break;
-			case "4": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,g_id"; break;
-			default: sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_id";
+			case "1": sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, m_name, m_rdate DESC"; break;
+			case "2": sql = "SELECT * FROM member WHERE m_id LIKE ? ORDER BY m_drop desc, m_id, m_rdate DESC"; break;
+			case "3": sql = "SELECT * FROM member WHERE m_phone LIKE ? ORDER BY m_drop desc,m_phone, m_rdate DESC"; break;
+			case "4": sql = "SELECT * FROM member WHERE g_id LIKE ? ORDER BY m_drop desc,g_id, m_rdate DESC"; break;
+			default: sql = "SELECT * FROM member WHERE m_name LIKE ? ORDER BY m_drop desc, g_id, m_rdate DESC";
 			}
 			
 			pstmt = con.prepareStatement(sql);
