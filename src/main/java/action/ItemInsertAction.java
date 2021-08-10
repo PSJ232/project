@@ -26,7 +26,7 @@ public class ItemInsertAction implements Action{
 		
 		String realFolder = "";
 		String uploadFolder = "/admin_layout/upload";
-		int fileSize = 1024 * 1024 * 10; //10MB
+		int fileSize = 1024 * 1024 * 20; //10MB
 		
 		//java.lang.IllegalArgumentException: Not a directory: 예외뜨면
 		//console에서 realFolder 디렉터리에 가서 upload 파일 생성해야합니다
