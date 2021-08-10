@@ -79,8 +79,6 @@ public class OrderInsertProAction implements Action {
 			
 			for (int i = 0 ; i < sub_option ; i++) {
 				orderDetailBean = new OrderDetailBean();
-	//			orderDetailBean.setOd_id(od_id);
-	//			orderDetailBean.setO_id(Integer.parseInt(request.getParameter("o_id")));
 				orderDetailBean.setL_id(Integer.parseInt(request.getParameter("l_id0")));
 				orderDetailBean.setI_id(Integer.parseInt(request.getParameter("i_id0")));
 				orderDetailBean.setOd_qty(Integer.parseInt(request.getParameter("od_qty0")));
