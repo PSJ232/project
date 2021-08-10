@@ -452,3 +452,6 @@ b {
     color: #0d0d0d;
 }
 
+.cartNotice_red { /* 수량초과 안내문구 색상 */
+	color: red;
+}

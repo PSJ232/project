@@ -71,6 +71,7 @@
     font-size: 15px;
     font-weight: 300;
     color: #222;
+    margin: 3px 0;
 }
 
 .join_us_box .row .join_input .textbox_long{
@@ -171,7 +172,6 @@ label {
 .join_us_box .row .agreement_list .agree_part {
     margin-top: 20px;
     padding-top: 10px;   
-    
 }
 
 .join_us_box .row .agreement_list .agree_part:first-of-type {

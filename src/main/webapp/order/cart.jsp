@@ -21,7 +21,7 @@ function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 
     	document.getElementById('cartNotice'+c_id).innerHTML = "";
     	location.href="CartUpdatePro.cr?c_id="+c_id+"&add=1";
 	} else {
-		document.getElementById('cartNotice'+c_id).innerHTML = "- 해당 상품의 최대 구매 가능한 수량은 " + i_inven + "개 입니다.";
+		document.getElementById('cartNotice'+c_id).innerHTML = "- 해당 상품의 <span class='cartNotice_red'>최대 구매 가능한 수량은 " + i_inven + "개</span> 입니다.";
 	}
 }
 

@@ -228,11 +228,11 @@
 						
 						<div class="terms_list">
 								<div class="agreement_list">
-										<div class="agree_all"><label><input type="checkbox" id="termCAll"><span title="terms_txt">모두 동의합니다.</span></label></div>
-										<div class="agree_part"><label><input type="checkbox"  id="termC1" required><span title="terms_txt">이용약관 동의</span></label><span class="textRed"> (필수)</span></div>
-										<div class="agree_part"><label><input type="checkbox"  id="termC2" required><span title="terms_txt">개인정보 수집, 이용동의</span></label><span class="textRed"> (필수)</span></div>
-										<div class="agree_part"><label><input type="checkbox"  id="termC3" required><span title="terms_txt">개인정보 이용 동의</span></label><span class="textRed"> (필수)</span></div>
-										<div class="agree_part"><label><input type="checkbox" name="m_agree"  id="termC4" ><span title="terms_txt">이벤트, 혜택정보 수신 동의 (선택)</span></div><!-- 원래 name이 m_agree였음 -->
+										<div class="agree_all"><label><input type="checkbox" id="termCAll"><span class="terms_txt">모두 동의합니다.</span></label></div>
+										<div class="agree_part"><label><input type="checkbox"  id="termC1" required><span class="terms_txt">이용약관 동의</span></label><span class="textRed"> (필수)</span></div>
+										<div class="agree_part"><label><input type="checkbox"  id="termC2" required><span class="terms_txt">개인정보 수집, 이용동의</span></label><span class="textRed"> (필수)</span></div>
+										<div class="agree_part"><label><input type="checkbox"  id="termC3" required><span class="terms_txt">개인정보 이용 동의</span></label><span class="textRed"> (필수)</span></div>
+										<div class="agree_part"><label><input type="checkbox" name="m_agree"  id="termC4" ><span class="terms_txt">이벤트, 혜택정보 수신 동의 (선택)</span></label></div><!-- 원래 name이 m_agree였음 -->
 								</div>
 						</div>
 								
