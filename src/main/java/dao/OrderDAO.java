@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import db.JdbcUtil;
 import vo.ItemBean;
@@ -183,24 +184,24 @@ public class OrderDAO {
 		try {
 			switch (filter) {
 			case "1":
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, od.od_delivery_date "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id ORDER BY od.od_invoice,od.od_delivery_date";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id ORDER BY od.od_confirm DESC, od.od_invoice";
 				break;
 			case "2":
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, od.od_delivery_date "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? " + "GROUP BY o_id ORDER BY od.od_invoice,od.od_delivery_date";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and o.o_rdate like ? " + "GROUP BY o_id ORDER BY od.od_confirm DESC, od.od_invoice";
 				break;
 			case "3":
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, od.od_delivery_date "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.od_invoice like ? " + "GROUP BY o_id ORDER BY od.od_invoice,od.od_delivery_date";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.od_invoice like ? " + "GROUP BY o_id ORDER BY od.od_confirm DESC, od.od_invoice";
 				break;
 			default:
-				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm, od.od_delivery_date "
+				sql = "SELECT o.o_id,od.od_id,CONCAT(i.i_name,IF(COUNT(od.i_id)>1,CONCAT(' 외',CONCAT(COUNT(od.i_id)-1,'건')),'')),od.m_id,o.o_amount,o.o_rdate,od.od_invoice,od.od_confirm "
 						+ "FROM orders o, orders_detail od, item i "
-						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id ORDER BY od.od_invoice,od.od_delivery_date";
+						+ "WHERE o.o_id=od.o_id and od.i_id=i.i_id and od.m_id like ? " + "GROUP BY o_id ORDER BY od.od_confirm DESC,od.od_invoice";
 			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + search_val + "%");
@@ -1137,8 +1138,7 @@ public class OrderDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				weekCardSales.put(rs.getString(1), rs.getInt(2));
-				System.out.println("date: " + rs.getString(1));
-				System.out.println("card: " + rs.getInt(2));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1192,8 +1192,6 @@ public class OrderDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				weekCardSales.put(rs.getString(1), rs.getInt(2));
-				System.out.println("date: " + rs.getString(1));
-				System.out.println("cash: " + rs.getInt(2));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

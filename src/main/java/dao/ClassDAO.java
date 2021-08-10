@@ -352,7 +352,7 @@ public class ClassDAO {
 		try {
 			String sql = "SELECT DISTINCT f.f_id,f.f_subject, fd.fd_place, f.f_price, f.f_thumbnail, f.f_cdate "
 					+ "FROM fclass f, fclass_detail fd "
-					+ "WHERE f.f_id=fd.f_id "
+					+ "WHERE f.f_id=fd.f_id AND date(f.f_cdate) > date(now())"
 					+ "ORDER BY f.f_subject";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();

@@ -18,7 +18,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인</title>
+<title>DashBoard</title>
 <link rel="stylesheet" href="./css/admin.css">
 <link rel="stylesheet" href="./css/list_style.css">
 <link rel="stylesheet" href="./css/admin_main.css">

@@ -83,6 +83,22 @@
 				var row = table.insertRow(0);
 				for(var j = 0; j < result[i].length; j++){
 					var cell = row.insertCell(j);
+					if(result[i][j].value == "탈퇴"){
+						row.style.backgroundColor = "#ddd";
+					}
+					if(result[i][j].value == "White"){
+						cell.style.color = "#A566FF";
+					}
+					if(result[i][j].value == "Red"){
+						cell.style.color = "#FF0000";
+					}
+					if(result[i][j].value == "Green"){
+						cell.style.color = "#47C83E";
+					}
+					if(result[i][j].value == "Black"){
+						cell.style.fontWeight = "bold";
+					}
+					
 					if(j == 0){
 						cell.innerHTML = "<a href='MemberDetail.ad?m_id=" + result[i][j].value + "'>" + result[i][j].value + "</a>";
 					}else {

@@ -40,6 +40,18 @@
 				var row = table.insertRow(0);
 				for(var j = 0; j < result[i].length; j++){
 					var cell = row.insertCell(j);
+					if(result[i][j].value == "주문취소"){
+						row.style.backgroundColor = "#ddd";
+					}
+					if(result[i][j].value == "배송중"){
+						cell.style.color = "#6B66FF";
+					}
+					if(result[i][j].value == "배송완료"){
+						cell.style.color = "#F15F5F";
+					}
+					if(result[i][j].value == "주문접수"){
+						cell.style.color = "#74D36D";
+					}
 					if(j == 2){
 						cell.innerHTML = "<a href='OrderDetail.ad?o_id=" + result[i][0].value + "'>" + result[i][j].value + "</a>";
 					}else {
