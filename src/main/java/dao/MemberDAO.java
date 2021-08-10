@@ -711,6 +711,27 @@ public class MemberDAO {
 		}
 		return SendList;
 	}
+	
+	public String getName(String m_id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String name = null;
+		try {
+			String sql = "SELECT m_name FROM member WHERE m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				name = rs.getString("m_name");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return name;
+	}
 
 	
 }
