@@ -38,7 +38,7 @@ String name = (String) request.getAttribute("name");
 							<div class="span_td"><b class="info_name">계좌번호</b> 기업은행 274-072066-01-041</div>
 							<div class="span_td"><b class="info_name">예금주</b> (주)사계</div>
 							<div class="span_td"><b class="info_name">입금금액</b> <%=NumberFormat.getInstance().format(rb.getR_amount()) %>원</div>
-							<div class="span_td"><b class="info_name">보내시는분</b> <%=name %></div>
+							<div class="span_td"><b class="info_name">보내시는분</b> <%=name%></div>
 							<div class="span_td"><b class="info_name">입금기한</b> 주문 후 이틀 이내</div>
 						</dd>
 					</dl>
@@ -56,7 +56,7 @@ String name = (String) request.getAttribute("name");
 					</div>
 					
 					<div class="submit_col">
-						<button class="show_detail" onclick="location.href='OrderMypageDetailList.od'">주문 내역 조회</button>
+						<button class="show_detail" onclick="location.href='MyClass.me'">주문 내역 조회</button>
 					</div>
 					
 				</div>
