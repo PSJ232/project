@@ -245,5 +245,21 @@ public class MemberService {
 				
 		return name;
 	}
+	
+	public void usePoint(String m_id, int point_discount) {
+		System.out.println("MemberService - getName()");
+		
+		Connection con = JdbcUtil.getConnection();
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		memberDAO.setConnection(con);
+		int updateCount = memberDAO.usePoint(m_id, point_discount);
+		if(updateCount!=0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+	}
 
 }

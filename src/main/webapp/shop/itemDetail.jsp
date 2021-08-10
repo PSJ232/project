@@ -622,10 +622,8 @@ switch (i_category) {
 		    $('.delivery_date').datepicker({
 		       dateFormat: "yy-mm-dd",
 		       changeMonth: true,
-<%-- 		       maxDate: "<%=maxDate%>", --%>
-<%-- 		       minDate: "<%=minDate%>", --%>
-		       maxDate: "",
-		       minDate: "",
+		       maxDate: "<%=maxDate%>",
+		       minDate: "<%=minDate%>",
 		       beforeShowDay: function(date) {
 		            var day = date.getDay();
 		            return [(day != 0 && day != 1), '']; //일,월 배송일 제외

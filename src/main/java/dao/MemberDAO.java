@@ -240,6 +240,30 @@ public class MemberDAO {
 
 		return updateCount;
 	}
+	
+	public int usePoint(String m_id, int point_discount) {
+		System.out.println("MemberDAO - usePoint()");
+
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "UPDATE member SET m_point = m_point- ? WHERE m_id=?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, point_discount);
+			pstmt.setString(2, m_id);
+
+			updateCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - " + e.getMessage());
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+
+		return updateCount;
+	}
 
 	public int insertAnn(AnniversaryBean anniversaryBean) {
 		System.out.println("MemberDAO - insertAnn()");
