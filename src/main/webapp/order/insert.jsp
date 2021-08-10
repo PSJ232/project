@@ -91,7 +91,7 @@
 </script>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 주문/결제</title>
 <%
 Calendar cal = Calendar.getInstance();
 int sub_option = 1;

@@ -62,7 +62,7 @@
 </script>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사계 | 주문/결제</title>
 </head>
 <%
 Calendar cal = Calendar.getInstance();
