@@ -32,7 +32,10 @@ public class AdminOrderSearchService {
 					result.append("{\"value\": \"" + "배송중" + "\"}],");
 				}else if(!resultList.get(i).getOd_invoice().equals("주문접수") && resultList.get(i).getOd_confirm() == 1) {
 					result.append("{\"value\": \"" + "배송완료" + "\"}],");
-				}else {
+				}else if(resultList.get(i).getOd_confirm() == 2) {
+					result.append("{\"value\": \"" + "주문취소" + "\"}],");
+				}
+				else {
 					result.append("{\"value\": \"" + resultList.get(i).getOd_invoice() + "\"}],");
 				}
 				
