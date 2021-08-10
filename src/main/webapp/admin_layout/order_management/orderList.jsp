@@ -92,10 +92,10 @@
 		</fieldset>
 		<div class="search">
 		<select name="filter" id="filter">
-			<option value="">filter</option>
-			<option value="1">id</option>
-			<option value="2">date</option>
-			<option value="3">status</option>
+			<option value="">필터</option>
+			<option value="1">아이디</option>
+			<option value="2">주문날짜</option>
+			<option value="3">주문상태(Number)</option>
 		</select> 
 		 <input type="text" name="search" id="search_val" onkeyup="searchFunction()">
 		</div>
