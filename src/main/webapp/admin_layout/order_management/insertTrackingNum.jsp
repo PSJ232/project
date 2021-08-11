@@ -24,7 +24,7 @@
 	}
 	function checkForm(){
 		if(checkLengthResult){
-			opener.location.reload();
+//			opener.location.reload();
 			return true;
 		}else{
 			alert("올바른 운송장이 아닙니다!");
