@@ -35,7 +35,7 @@ function emptyCart() { // 선택된 상품이 없으면 sumbit 안됨
 
 $(document).ready(function() {
 	//장바구니 체크기능 및 금액부분
-	var cart_totalAmount = 0;
+	var cart_totalAmount = Number($('.cart_span20').attr('data-tap'));
 	$('#cart_check_all').click(function() {
 		if($("input:checkbox[id='cart_check_all']") .prop("checked")) {
 	      	$("input[type=checkbox]").prop("checked" , true);
