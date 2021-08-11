@@ -113,68 +113,77 @@
 </script>
 </head>
 <body>
-	<div id="orderDetailContainer">
-		
-		<div id="product_list">
-			<fieldset>
-				<legend>주문상품 리스트</legend>
-				<table border="1">
-					<tr><th>순번</th><th>상품</th><th>수량</th><th>배송요청일</th><th>편지지</th><th>문구</th><th>운송장번호</th><th>구매확정</th></tr>
-					<%
-						for(int i = 0; i < orderDetailList.size(); i++){
-							%><tr><td><%=i+1 %></td>
-							<td><%=orderDetailList.get(i).getI_name() %></td>
-							<td><%=orderDetailList.get(i).getOd_qty() %></td>
-							<td><%=orderDetailList.get(i).getOd_delivery_date() %></td>
-							<td><%=orderDetailList.get(i).getL_id() %></td>
-							<td><%=orderDetailList.get(i).getOd_message() %></td>
-							<td><%=orderDetailList.get(i).getOd_invoice() %> 
-							<%
-								if(orderDetailList.get(i).getOd_invoice().equals("운송장을 입력해주세요")){
-									%><input type="button" value="운송장등록" id="insertBtn" onclick="insertTrackingNum(<%=orderDetailList.get(i).getOd_id()%>)"><%
-								}else {
-									%><input type="button" value="운송장수정" id="insertBtn" onclick="insertTrackingNum(<%=orderDetailList.get(i).getOd_id()%>)"><%
-								}
-							%>
-							
-							</td>
-							<%
-								if(orderDetailList.get(i).getOd_confirm() == 1){
-									%><td>O</td><%
-								}else {
-									%><td>X</td><%
-								}
-							%>
-							</tr><%
-						}
-					%>
-					
-				</table>
-			</fieldset>
+	<!-- header -->
+	<jsp:include page="/inc/adminHeader.jsp" ></jsp:include>
+	<!-- header -->
+	
+	<!-- nav -->
+	<jsp:include page="/inc/navigation.jsp" ></jsp:include>
+	<!-- nav -->
+	<div id="container">
+		<div id="orderDetailContainer">
+			<div id="product_list">
+				<fieldset>
+					<legend>주문상품 리스트</legend>
+					<table border="1">
+						<tr><th>순번</th><th>상품</th><th>수량</th><th>배송요청일</th><th>편지지</th><th>문구</th><th>운송장번호</th><th>구매확정</th></tr>
+						<%
+							for(int i = 0; i < orderDetailList.size(); i++){
+								%><tr><td><%=i+1 %></td>
+								<td><%=orderDetailList.get(i).getI_name() %></td>
+								<td><%=orderDetailList.get(i).getOd_qty() %></td>
+								<td><%=orderDetailList.get(i).getOd_delivery_date() %></td>
+								<td><%=orderDetailList.get(i).getL_id() %></td>
+								<td><%=orderDetailList.get(i).getOd_message() %></td>
+								<td><%=orderDetailList.get(i).getOd_invoice() %> 
+								<%
+									if(orderDetailList.get(i).getOd_invoice().equals("운송장을 입력해주세요")){
+										%><input type="button" value="운송장등록" id="insertBtn" onclick="insertTrackingNum(<%=orderDetailList.get(i).getOd_id()%>)"><%
+									}else {
+										%><input type="button" value="운송장수정" id="insertBtn" onclick="insertTrackingNum(<%=orderDetailList.get(i).getOd_id()%>)"><%
+									}
+								%>
+								
+								</td>
+								<%
+									if(orderDetailList.get(i).getOd_confirm() == 1){
+										%><td>O</td><%
+									}else {
+										%><td>X</td><%
+									}
+								%>
+								</tr><%
+							}
+						%>
+						
+					</table>
+				</fieldset>
+			</div>
+			<div class="sub_container">
+				<fieldset>
+					<legend>배송정보</legend>
+					<div id="delivery_info">
+						<label>주문자</label><input type="text" value="<%=orderBean.getM_id()%>" readonly><br>
+						<label>보내는자</label><input type="text" value="<%=orderBean.getO_sender()%>" readonly><br>
+						<label>받는자</label><input type="text" value="<%=orderBean.getO_receiver()%>" readonly><br>
+						<label>받는자 전화번호</label><input type="text" value="<%=orderBean.getO_phone()%>" readonly><br>
+						<label>주소</label><input type="text" id="address" value="<%=address%>" readonly><br>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>결제정보</legend>
+					<div id="payment_info">
+						<label>총 상품금액</label><input type="text" value=<%=NumberFormat.getInstance().format(orderBean.getO_amount()) %> readonly><br>
+						<label>할인금액</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_gdiscount()) %> " readonly><br>
+						<label>적립금사용</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_point()) %>" readonly><br>
+						<label>결제수단</label><input type="text" value="<%=payment %>" readonly><br>
+						<label>최종결제금액</label><input type="text" value="<%=NumberFormat.getInstance().format(final_amount) %>" readonly>
+					</div>
+				</fieldset>
+			</div>
+			<input type="button" class="btn" value="목록" onclick="location.href='OrderList.ad'">
 		</div>
-		<div class="sub_container">
-			<fieldset>
-				<legend>배송정보</legend>
-				<div id="delivery_info">
-					<label>주문자</label><input type="text" value="<%=orderBean.getM_id()%>" readonly><br>
-					<label>보내는자</label><input type="text" value="<%=orderBean.getO_sender()%>" readonly><br>
-					<label>받는자</label><input type="text" value="<%=orderBean.getO_receiver()%>" readonly><br>
-					<label>받는자 전화번호</label><input type="text" value="<%=orderBean.getO_phone()%>" readonly><br>
-					<label>주소</label><input type="text" id="address" value="<%=address%>" readonly><br>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend>결제정보</legend>
-				<div id="payment_info">
-					<label>총 상품금액</label><input type="text" value=<%=NumberFormat.getInstance().format(orderBean.getO_amount()) %> readonly><br>
-					<label>할인금액</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_gdiscount()) %> " readonly><br>
-					<label>적립금사용</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_point()) %>" readonly><br>
-					<label>결제수단</label><input type="text" value="<%=payment %>" readonly><br>
-					<label>최종결제금액</label><input type="text" value="<%=NumberFormat.getInstance().format(final_amount) %>" readonly>
-				</div>
-			</fieldset>
-		</div>
-		<input type="button" class="btn" value="목록" onclick="location.href='OrderList.ad'">
 	</div>
+	<jsp:include page="/inc/footer.jsp"></jsp:include>
 </body>
 </html>
