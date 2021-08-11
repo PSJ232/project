@@ -135,7 +135,6 @@ header {
     top: 68px;
     height: 100%;
     background-color: #f3f3f3;
-    z-index: -1;
 }
 
 #admin_nav div ul {
@@ -147,6 +146,7 @@ header {
 .admin_nav_list {
     margin-bottom: 12px;
     transition: .2s ease; 
+    width: 180px;
 }
 
 .admin_nav_list a:hover {

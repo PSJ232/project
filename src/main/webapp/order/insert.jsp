@@ -134,188 +134,185 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- header -->
 <div class="container">
-<div class="order_insert_all"> 
-	<span class="" onclick="history.back()" style="cursor: pointer;">◁이전으로</span>
-	<h1 id="order_insert_title">주문/결제</h1>
-	<div class="order_insert_c">
-	<h3 id="order_insert_title_h3">주문내역 확인</h3>
-	<%
-	int letterPrice;
-	for(int i = 0; i < checkList.size(); i++) {
-		if (checkList.get(i).getC_letter() == 1) { // 편지가 추가되면 해당 html 추가
-			addLetter = "추가상품:편지<br>";
-			letterPrice = 2500;
-		} else {
-			addLetter = "";
-			letterPrice = 0;
-		}
-		
-		cal.setTime(Date.valueOf(checkList.get(i).getC_delivery_date())); // 요일
-		int dNum = cal.get(Calendar.DAY_OF_WEEK);
-		String day = "";
-		switch(dNum){
-		case 1 : day = "일요일"; break;
-		case 2 : day = "월요일"; break;
-		case 3 : day = "화요일"; break;
-		case 4 : day = "수요일"; break;
-		case 5 : day = "목요일"; break;
-		case 6 : day = "금요일"; break;
-		case 7 : day = "토요일"; break;
-		}
-
-		price = ((int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100 * sub_option * checkList.get(i).getC_qty()) + letterPrice; // 단일상품금액 = (원가 * 할인) * 수량 + 편지요금
-		totalPrice += price; // 모든 상품의 누적 총 금액(쿠폰 및 포인트, 등급할인 제외)
-	%>
-	<div class="order_insert_c">
-		<img src="./admin_layout/upload/<%=itemList.get(i).getI_img()%>">
-	<div class="order_insert_cp"><p id="order_insert_pb"><%=itemList.get(i).getI_name() %>
-		<span id="order_insert_span"><%=NumberFormat.getInstance().format(price) %>원</span></p>
-		
-		<%if(sub_name.equals("")){%>
-		<p id="order_insert_p">수령일 : <%=day %>,<%=checkList.get(i).getC_delivery_date() %></p>
-		<%} else {%> <!-- 정기구독 경유 접속시 표시 -->
-		<p id="order_insert_p">첫 구독일 : <%=day %>,<%=checkList.get(i).getC_delivery_date() %></p>
-		<p id="order_insert_p">구독내용 : <%=sub_name %></p>
-		<%} %>
-		<p id="order_insert_p"><%=addLetter %>
-		<p id="order_insert_p">수량 : <%=checkList.get(i).getC_qty()%>개</p><br>
-		<br>
-	</div>
-	<%
-	}
-	gradeDiscount = ((int)(totalPrice *(1 - g_discount) / 100) * 100); // totalPrice에 등급할인 계산하여 할인금액 저장
-	%>
-	</div>
-	<div class="order_insert_c">
-	<h3 id="order_insert_title_h3">주문자 정보</h3>
-	<span id="order_insert_n">이름</span><br> <span id="order_insert_inp_one"><%=m_name %></span>
-	<span id="order_insert_n">전화번호</span><br> <span id="order_insert_inp_one"><%=memberDetail.getM_phone() %></span>
-	</div>
-	
-	
-	
-	<form action="OrderInsertPro.od" name="order" method="post">
+	<div class="order_insert_all"> 
+		<span class="" onclick="history.back()" style="cursor: pointer;">◁이전으로</span>
+		<h1 id="order_insert_title">주문/결제</h1>
 		<div class="order_insert_c">
-		<h3 id="order_insert_title_h3">발신인 정보</h3>
-		<span id="order_insert_n">이름</span> <input id="order_insert_inp_one" type="text" name="o_sender" value="<%=m_name%>" required>
-		</div> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
-		
-		<div class="order_insert_c">
-		<h3 id="order_insert_title_h3">배송지 정보</h3>
-		<div id="order_insert_i">받는분 이름</div> <input id="order_insert_inp_one" type="text" name="o_receiver" placeholder="이름을 입력해주세요." required>
-		<div id="order_insert_i">받는분 연락처</div><input id="order_insert_inp_one" type="text" name="o_phone" required>
-		
-		<div id="order_insert_i">우편번호 </div> 
-		<input id="order_insert_btn"  type="button" onclick="sample6_execDaumPostcode()" value="찾기"><br>
-		<input class="order_insert_inp_two" type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색" readonly>
-		<div id="order_insert_i">주소 </div> 
-		<input class="order_insert_inp_one" type="text" id="sample6_address" name="address2"  placeholder="주소" readonly><br>
-		<div id="order_insert_i"></div> 
-		<input class="order_insert_inp_one" type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소" required><br>
-		
-		<div id="order_insert_b">
-		<input id="order_insert_btn" type="button" value="최근배송지" onClick="window.open('OrderAddress.od', 'address', 'width=450, height=500')">
-		</div>
-		</div>	
-		<div class="order_insert_c">
-		<h3 id="order_insert_title_h3">쿠폰/포인트</h3>
-		<span id="order_insert_n">쿠폰 할인</span><br><input id="order_insert_inp_one" type="text" placeholder="코드를 입력해주세요">
-			
-		<span id="order_insert_n">포인트</span><br> <input id="order_insert_inp_one" type="text" name="o_point" placeholder="0" onkeyup="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>,<%=gradeDiscount%>)"><br>
-		<span id="order_insert_n2" class="pointNotice"></span><br>
-		<input id="order_insert_btn2" type="button" value="전액사용" onclick="pointFullAccept(<%=memberDetail.getM_point()%>, <%=totalPrice %>, <%=gradeDiscount%>)">
-		<span id="order_insert_inp_3" class="nowPoint">- 사용 가능 포인트: <%=NumberFormat.getInstance().format(memberDetail.getM_point()) %></span>
-		</div>
-		<div class="order_insert_c">
-		<h3 id="order_insert_title_h3">최종 결제 금액</h3>
-		<span id="order_insert_n">총 상품 금액</span><br> <span id="mypage_orderHistoryDetail_del_span_r"><%=NumberFormat.getInstance().format(totalPrice) %> 원</span><br>
-		<span id="order_insert_n">배송비</span><br> <span id="mypage_orderHistoryDetail_del_span_r">0 원</span><br>
-		<span id="order_insert_n">쿠폰 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r"> -0 원</span><br>
-		<span id="order_insert_n">포인트 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r" class="pointResult">-0 원</span><br>
-		<span id="order_insert_n">등급 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r"><%=NumberFormat.getInstance().format(gradeDiscount) %> 원</span><br>
-		</div>
-
-		<div class="order_insert_c">
-		<div id="col">
-		<span id="order_insert_nnn">총 결제 금액</span>
-		<span id="order_insert_span_p" class="totalPrice"><%=NumberFormat.getInstance().format(totalPrice-gradeDiscount) %>원</span></div> 
-		</div>
-		
+		<h3 id="order_insert_title_h3">주문내역 확인</h3>
 		<%
-		int i;
-		for (i = 0 ; i < checkList.size() ; i++){
-			if(orderFormInfo != null) {
-				if (checkList.get(i).getC_id() == orderFormInfo.get(i).getC_id()) {
-				%>
-				<input type="hidden" name="l_id<%=i %>" value="<%=orderFormInfo.get(i).getL_id()%>">
-				<input type="hidden" name="c_id<%=i %>" value="<%=orderFormInfo.get(i).getC_id()%>">
-				<input type="hidden" name="i_id<%=i %>" value="<%=orderFormInfo.get(i).getI_id()%>">
-				<input type="hidden" name="od_qty<%=i %>" value="<%=orderFormInfo.get(i).getOd_qty()%>">
-				<input type="hidden" name="od_message<%=i %>" value="<%=orderFormInfo.get(i).getOd_message()%>">
-				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=orderFormInfo.get(i).getOd_delivery_date()%>">
-				<%
-				} else {
-				%>
-				<input type="hidden" name="l_id<%=i %>" value="0">
-				<input type="hidden" name="c_id<%=i %>" value="<%=checkList.get(i).getC_id()%>">
-				<input type="hidden" name="i_id<%=i %>" value="<%=checkList.get(i).getI_id()%>">
-				<input type="hidden" name="od_qty<%=i %>" value="<%=checkList.get(i).getC_qty()%>">
-				<input type="hidden" name="od_message<%=i %>" value="">
-				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=checkList.get(i).getC_delivery_date()%>">
-				<%
-				}
+		int letterPrice;
+		for(int i = 0; i < checkList.size(); i++) {
+			if (checkList.get(i).getC_letter() == 1) { // 편지가 추가되면 해당 html 추가
+				addLetter = "추가상품:편지<br>";
+				letterPrice = 2500;
 			} else {
-				%>
-				<input type="hidden" name="l_id<%=i %>" value="0">
-				<input type="hidden" name="c_id<%=i %>" value="<%=checkList.get(i).getC_id()%>">
-				<input type="hidden" name="i_id<%=i %>" value="<%=checkList.get(i).getI_id()%>">
-				<input type="hidden" name="od_qty<%=i %>" value="<%=checkList.get(i).getC_qty()%>">
-				<input type="hidden" name="od_message<%=i %>" value="">
-				<input type="hidden" name="od_delivery_date<%=i %>" value="<%=checkList.get(i).getC_delivery_date()%>">
-				<%
+				addLetter = "";
+				letterPrice = 0;
 			}
-		}
+			
+			cal.setTime(Date.valueOf(checkList.get(i).getC_delivery_date())); // 요일
+			int dNum = cal.get(Calendar.DAY_OF_WEEK);
+			String day = "";
+			switch(dNum){
+			case 1 : day = "일요일"; break;
+			case 2 : day = "월요일"; break;
+			case 3 : day = "화요일"; break;
+			case 4 : day = "수요일"; break;
+			case 5 : day = "목요일"; break;
+			case 6 : day = "금요일"; break;
+			case 7 : day = "토요일"; break;
+			}
+	
+			price = ((int)(itemList.get(i).getI_price() * itemList.get(i).getI_discount() / 100) * 100 * sub_option * checkList.get(i).getC_qty()) + letterPrice; // 단일상품금액 = (원가 * 할인) * 수량 + 편지요금
+			totalPrice += price; // 모든 상품의 누적 총 금액(쿠폰 및 포인트, 등급할인 제외)
 		%>
-		<input type="hidden" name="iNum" value="<%=i %>">
-		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
-		<input type="hidden" name="sub_option" value="<%=sub_option%>"> <!-- 정기구독 옵션 번호 -->
-		<input type="hidden" name="o_amount" value="<%=totalPrice %>">
-		<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
-		<input type="hidden" name="o_payment" value="">
-	</form>
+		<div class="order_insert_c">
+			<img src="./admin_layout/upload/<%=itemList.get(i).getI_img()%>">
+		<div class="order_insert_cp"><p id="order_insert_pb"><%=itemList.get(i).getI_name() %>
+			<span id="order_insert_span"><%=NumberFormat.getInstance().format(price) %>원</span></p>
+			
+			<%if(sub_name.equals("")){%>
+			<p id="order_insert_p">수령일 : <%=day %>,<%=checkList.get(i).getC_delivery_date() %></p>
+			<%} else {%> <!-- 정기구독 경유 접속시 표시 -->
+			<p id="order_insert_p">첫 구독일 : <%=day %>,<%=checkList.get(i).getC_delivery_date() %></p>
+			<p id="order_insert_p">구독내용 : <%=sub_name %></p>
+			<%} %>
+			<p id="order_insert_p"><%=addLetter %>
+			<p id="order_insert_p">수량 : <%=checkList.get(i).getC_qty()%>개</p><br>
+			<br>
+		</div>
+		<%
+		}
+		gradeDiscount = ((int)(totalPrice *(1 - g_discount) / 100) * 100); // totalPrice에 등급할인 계산하여 할인금액 저장
+		%>
+		</div>
+		<div class="order_insert_c">
+		<h3 id="order_insert_title_h3">주문자 정보</h3>
+		<span id="order_insert_n">이름</span><br> <span id="order_insert_inp_one"><%=m_name %></span>
+		<span id="order_insert_n">전화번호</span><br> <span id="order_insert_inp_one"><%=memberDetail.getM_phone() %></span>
+		</div>
 		
-	<form name="payfrm" method="post">
-		<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>">
-		<input type="hidden" name="pay_point" value="">
-		<input type="hidden" name="pay_gdiscount" value="<%=gradeDiscount %>">
-		<input type="hidden" name="pay_amount" value="<%=totalPrice %>">
-	</form>
-	<input id="order_insert_submit" type="button" value="결제하기" onClick="payment_popup()" >
+		
+		
+		<form action="OrderInsertPro.od" name="order" method="post">
+			<div class="order_insert_c">
+			<h3 id="order_insert_title_h3">발신인 정보</h3>
+			<span id="order_insert_n">이름</span> <input id="order_insert_inp_one" type="text" name="o_sender" value="<%=m_name%>" required>
+			</div> <!--기본값은 회원이름, 수정시 수정이름으로 변경  -->
+			
+			<div class="order_insert_c">
+			<h3 id="order_insert_title_h3">배송지 정보</h3>
+			<div id="order_insert_i">받는분 이름</div> <input id="order_insert_inp_one" type="text" name="o_receiver" placeholder="이름을 입력해주세요." required>
+			<div id="order_insert_i">받는분 연락처</div><input id="order_insert_inp_one" type="text" name="o_phone" required>
+			
+			<div id="order_insert_i">우편번호 </div> 
+			<input id="order_insert_btn"  type="button" onclick="sample6_execDaumPostcode()" value="찾기"><br>
+			<input class="order_insert_inp_two" type="text" id="sample6_postcode" name="address1"  placeholder="우편번호 검색" readonly>
+			<div id="order_insert_i">주소 </div> 
+			<input class="order_insert_inp_one" type="text" id="sample6_address" name="address2"  placeholder="주소" readonly><br>
+			<div id="order_insert_i"></div> 
+			<input class="order_insert_inp_one" type="text" id="sample6_detailAddress" name="address3"  placeholder="상세주소" required><br>
+			
+			<div id="order_insert_b">
+			<input id="order_insert_btn" type="button" value="최근배송지" onClick="window.open('OrderAddress.od', 'address', 'width=450, height=500')">
+			</div>
+			</div>	
+			<div class="order_insert_c">
+			<h3 id="order_insert_title_h3">쿠폰/포인트</h3>
+			<span id="order_insert_n">쿠폰 할인</span><br><input id="order_insert_inp_one" type="text" placeholder="코드를 입력해주세요">
+				
+			<span id="order_insert_n">포인트</span><br> <input id="order_insert_inp_one" type="text" name="o_point" placeholder="0" onkeyup="pointAccept(<%=memberDetail.getM_point()%>,<%=totalPrice %>,<%=gradeDiscount%>)"><br>
+			<span id="order_insert_n2" class="pointNotice"></span><br>
+			<input id="order_insert_btn2" type="button" value="전액사용" onclick="pointFullAccept(<%=memberDetail.getM_point()%>, <%=totalPrice %>, <%=gradeDiscount%>)">
+			<span id="order_insert_inp_3" class="nowPoint">- 사용 가능 포인트: <%=NumberFormat.getInstance().format(memberDetail.getM_point()) %></span>
+			</div>
+			<div class="order_insert_c">
+			<h3 id="order_insert_title_h3">최종 결제 금액</h3>
+			<span id="order_insert_n">총 상품 금액</span><br> <span id="mypage_orderHistoryDetail_del_span_r"><%=NumberFormat.getInstance().format(totalPrice) %> 원</span><br>
+			<span id="order_insert_n">배송비</span><br> <span id="mypage_orderHistoryDetail_del_span_r">0 원</span><br>
+			<span id="order_insert_n">쿠폰 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r"> -0 원</span><br>
+			<span id="order_insert_n">포인트 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r" class="pointResult">-0 원</span><br>
+			<span id="order_insert_n">등급 할인</span><br><span id="mypage_orderHistoryDetail_del_span_r"><%=NumberFormat.getInstance().format(gradeDiscount) %> 원</span><br>
+			</div>
+	
+			<div class="order_insert_c">
+			<div id="col">
+			<span id="order_insert_nnn">총 결제 금액</span>
+			<span id="order_insert_span_p" class="totalPrice"><%=NumberFormat.getInstance().format(totalPrice-gradeDiscount) %>원</span></div> 
+			</div>
+			
+			<%
+			int i;
+			for (i = 0 ; i < checkList.size() ; i++){
+				if(orderFormInfo != null) {
+					if (checkList.get(i).getC_id() == orderFormInfo.get(i).getC_id()) {
+					%>
+					<input type="hidden" name="l_id<%=i %>" value="<%=orderFormInfo.get(i).getL_id()%>">
+					<input type="hidden" name="c_id<%=i %>" value="<%=orderFormInfo.get(i).getC_id()%>">
+					<input type="hidden" name="i_id<%=i %>" value="<%=orderFormInfo.get(i).getI_id()%>">
+					<input type="hidden" name="od_qty<%=i %>" value="<%=orderFormInfo.get(i).getOd_qty()%>">
+					<input type="hidden" name="od_message<%=i %>" value="<%=orderFormInfo.get(i).getOd_message()%>">
+					<input type="hidden" name="od_delivery_date<%=i %>" value="<%=orderFormInfo.get(i).getOd_delivery_date()%>">
+					<%
+					} else {
+					%>
+					<input type="hidden" name="l_id<%=i %>" value="0">
+					<input type="hidden" name="c_id<%=i %>" value="<%=checkList.get(i).getC_id()%>">
+					<input type="hidden" name="i_id<%=i %>" value="<%=checkList.get(i).getI_id()%>">
+					<input type="hidden" name="od_qty<%=i %>" value="<%=checkList.get(i).getC_qty()%>">
+					<input type="hidden" name="od_message<%=i %>" value="">
+					<input type="hidden" name="od_delivery_date<%=i %>" value="<%=checkList.get(i).getC_delivery_date()%>">
+					<%
+					}
+				} else {
+					%>
+					<input type="hidden" name="l_id<%=i %>" value="0">
+					<input type="hidden" name="c_id<%=i %>" value="<%=checkList.get(i).getC_id()%>">
+					<input type="hidden" name="i_id<%=i %>" value="<%=checkList.get(i).getI_id()%>">
+					<input type="hidden" name="od_qty<%=i %>" value="<%=checkList.get(i).getC_qty()%>">
+					<input type="hidden" name="od_message<%=i %>" value="">
+					<input type="hidden" name="od_delivery_date<%=i %>" value="<%=checkList.get(i).getC_delivery_date()%>">
+					<%
+				}
+			}
+			%>
+			<input type="hidden" name="iNum" value="<%=i %>">
+			<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>"> <!-- 회원ID -->
+			<input type="hidden" name="sub_option" value="<%=sub_option%>"> <!-- 정기구독 옵션 번호 -->
+			<input type="hidden" name="o_amount" value="<%=totalPrice %>">
+			<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
+			<input type="hidden" name="o_payment" value="">
+		</form>
+			
+		<form name="payfrm" method="post">
+			<input type="hidden" name="m_id" value="<%=memberDetail.getM_id()%>">
+			<input type="hidden" name="pay_point" value="">
+			<input type="hidden" name="pay_gdiscount" value="<%=gradeDiscount %>">
+			<input type="hidden" name="pay_amount" value="<%=totalPrice %>">
+		</form>
+		<input id="order_insert_submit" type="button" value="결제하기" onClick="payment_popup()" >
+		</div>
 	</div>
 </div>
-
-	<script type="text/javascript">
-	    function defaultPoint(){ // 포인트 input 공백일 경우 오류 방지
-	    	if(document.order.o_point.value == ""){
-	    		document.order.o_point.value = 0;
-	    	}
-	    }
-	    
-		function payment_popup() {
-			defaultPoint();
-			document.payfrm.pay_point.value = document.order.o_point.value;
-			window.open('', 'payment', 'width=850, height=630, top=300, left=300');
-			var payform = document.payfrm;
-			payform.action = "./order/payment.jsp";
-			payform.target = "payment";
-			payform.submit();
-		}
-	    
-	</script>
-	
-	<!-- footer -->
-	<jsp:include page="../inc/footer.jsp"></jsp:include>
-	<!-- footer -->
-	
+<!-- footer -->
+<jsp:include page="../inc/footer.jsp"></jsp:include>
+<!-- footer -->
+<script type="text/javascript">
+    function defaultPoint(){ // 포인트 input 공백일 경우 오류 방지
+    	if(document.order.o_point.value == ""){
+    		document.order.o_point.value = 0;
+    	}
+    }
+    
+	function payment_popup() {
+		defaultPoint();
+		document.payfrm.pay_point.value = document.order.o_point.value;
+		window.open('', 'payment', 'width=850, height=630, top=300, left=300');
+		var payform = document.payfrm;
+		payform.action = "./order/payment.jsp";
+		payform.target = "payment";
+		payform.submit();
+	}	    
+</script>
 </body>
 </html>

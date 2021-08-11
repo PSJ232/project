@@ -1171,7 +1171,7 @@ public class OrderDAO {
 					+ "AS r "
 					+ "ON o.odate=r.rdate "
 					+ "GROUP BY date "
-					+ "UNION "
+					+ "UNION ALL "
 					+ "SELECT COALESCE(odate, rdate) date, IFNULL(oamount,0)+IFNULL(ramount,0) "
 					+ "FROM ("
 					+ "	SELECT DATE_FORMAT(o_rdate,'%m%d') odate, SUM(o_amount) oamount"
