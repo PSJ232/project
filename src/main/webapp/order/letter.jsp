@@ -260,7 +260,11 @@ case 24:
 												</div>
 											</div>
 										</div>
-										
+										<p class="letter_p letter_div13<%=i%> current">
+											<span class="letter_span18">- 최대8줄, 한줄당 최대 20자까지 인쇄됩니다.(공백포함)</span> 
+											<span class="letter_span18">- 이모티콘은 편지 내용에 포함되지않습니다.</span>
+											<span class="letter_span18">- 붙여넣기 사용시 편지가 입력 되지 않습니다.</span>
+										</p>
 										
 										<input type="hidden" name="c_id<%=i%>" value="<%=c_id%>"> 
 										<input type="hidden" name="i_id<%=i%>" value="<%=i_id%>"> 
@@ -281,11 +285,7 @@ case 24:
 										<input type="hidden" name="od_message<%=i%>" value=""> 
 										<input type="hidden" name="sub_option" value="<%=sub_option%>">
 										<%} %>
-										<p class="letter_p letter_div13<%=i%> current">
-											<span class="letter_span18">- 최대8줄, 한줄당 최대 20자까지 인쇄됩니다.(공백포함)</span> 
-											<span class="letter_span18">- 이모티콘은 편지 내용에 포함되지않습니다.</span>
-											<span class="letter_span18">- 붙여넣기 사용시 편지가 입력 되지 않습니다.</span>
-										</p>
+										
 										<div class=letter_bottom_space>
 										</div>
 										<%}	%>
