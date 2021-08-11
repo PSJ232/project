@@ -30,9 +30,6 @@ a:visited {
 a, input[type=button], button, input[type=submit] {
   cursor: pointer;
 }
-input:focus{
-	border: 2px solid  #ffcd32;
-}
 
 /* 로그인 */
 .login_all {
@@ -102,7 +99,7 @@ input:focus{
 	font-weight: 700;
 }
 
-#inp {
+.inp {
 	border: 1px solid #969696;
 	border-radius: 5px;
 	width: 300px;
@@ -112,9 +109,14 @@ input:focus{
 	text-align: left;
 	font-size: 15px;
 }
-#inp:focus{
+.inp:active{
+	border: 2px solid #ffcd32;
+	background-color: #ffcd32;
+}
+input[type=hidden]:focus{
 	border: 2px solid #ffcd32;
 }
+
 #fin {
 	width: 300px;
 	height: 50px;

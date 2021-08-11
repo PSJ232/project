@@ -177,12 +177,13 @@ if(orderBean.getO_phone().length()==11) {
 				<td>
 				<span id="mypage_orderHistoryDetail_del_span_l">총 상품 금액 </span> <span id="mypage_orderHistoryDetail_del_span_r"><%= String.format("%,d", orderBean.getO_amount())%>원</span><br> 
 				<span id="mypage_orderHistoryDetail_del_span_l">상품 금액</span> <span id="mypage_orderHistoryDetail_del_span_r"><%= String.format("%,d", orderBean.getO_amount() - addPrice)%>원</span><br>
-				<span id="mypage_orderHistoryDetail_del_span_l">	추가 상품</span><span id="mypage_orderHistoryDetail_del_span_r"><%= String.format("%,d", addPrice)%>원</span><br> 
-				<span id="mypage_orderHistoryDetail_del_span_l">	배송비</span> <span id="mypage_orderHistoryDetail_del_span_r">0원</span>
+				<span id="mypage_orderHistoryDetail_del_span_l">추가 상품</span><span id="mypage_orderHistoryDetail_del_span_r"><%= String.format("%,d", addPrice)%>원</span><br> 
+				<span id="mypage_orderHistoryDetail_del_span_l">배송비</span> <span id="mypage_orderHistoryDetail_del_span_r">0원</span>
 				</td>
 				<td id="mypage_orderHistoryDetail_del_tr_b">포인트 할인 <span id="mypage_orderHistoryDetail_del_span_r"><%=String.format("%,d", orderBean.getO_point())%></span><br> 
 				등급 할인 <span id="mypage_orderHistoryDetail_del_span_r"><%=String.format("%,d", orderBean.getO_gdiscount())%></span></td>
-				<td id="mypage_orderHistoryDetail_del_tr_b">결제 방법 <span id="mypage_orderHistoryDetail_del_span_r"><%=paymentMethod%></span><br> 
+				<td id="mypage_orderHistoryDetail_del_tr_b">
+				결제 방법 <span id="mypage_orderHistoryDetail_del_span_r"><%=paymentMethod%></span><br> 
 				결제 일자 <span id="mypage_orderHistoryDetail_del_span_r"><%=simpleDateFormat.format(orderBean.getO_rdate2())%></span></td>
 			</tr>
 		</table>

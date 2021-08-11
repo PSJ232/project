@@ -49,18 +49,12 @@ case 1:
 %>
 </head>
 <body>
+	
 	<!-- 헤더 들어가는곳 -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- 헤더 들어가는곳 -->
-
-	<!-- 본문 메인 상단 -->
-	<jsp:include page="../inc/mypagebanner.jsp"></jsp:include>
-
-	<!-- 본문 왼쪽 메뉴 -->
 	<div class="mypage_container">
-		<jsp:include page="../inc/mypagemenu.jsp"></jsp:include>
-
-
+	
 		<!-- 본문 내용 -->
 <div class="mypage_orderHistoryDetail_all">
 <h1 id="mypage_orderHistoryDetail_tltle">비회원 주문 상세 정보</h1>
@@ -76,45 +70,61 @@ case 1:
 			<td id="mypage_orderHistoryDetail_table_td_s" >배송비</td>
 			<td id="mypage_orderHistoryDetail_table_td_s" >상태</td>
 		</tr>
+		<tbody class="mypage_tbody">
 		<tr>
-			<td><%=orderDetail.getOd_delivery_date() %></td>
-			<td><%=itemDetail.getI_name() %></td>
-			<td><%=NumberFormat.getInstance().format(order.getO_amount()) %></td>
-			<td>0 원</td>
-			<td><%=status %></td>
+			<td id="mypage_orderHistoryDetail_situation"><%=orderDetail.getOd_delivery_date() %></td>
+			<td id="mypage_orderHistoryDetail_situation"><%=itemDetail.getI_name() %></td>
+			<td id="mypage_orderHistoryDetail_situation"><%=NumberFormat.getInstance().format(order.getO_amount()) %></td>
+			<td id="mypage_orderHistoryDetail_situation">0 원</td>
+			<td id="mypage_orderHistoryDetail_situation"><%=status %></td>
 		</tr>
+		</tbody>
 	</table>
 	<div id="mypage_orderHistoryDetail_del_div">
-	<h3 id="mypage_orderHistoryDetail_tltle_del_h3" >배송지정보<br>
+	<h3 id="mypage_orderHistoryDetail_tltle_del_h3" >배송지정보</h3><br>
 	<dl id="mypage_orderHistoryDetail_del_dl">
 		<dt id="mypage_orderHistoryDetail_del_dt">수령인이름 <%=order.getO_receiver() %><br></dt>
 	<dt id="mypage_orderHistoryDetail_del_dt">주소 <%=address[0]+" "+address[1]+" "+address[2] %><br></dt>
 	<dt id="mypage_orderHistoryDetail_del_dt">연락처 <%=order.getO_phone() %><br></dt>
-	
 	</dl>
-	편지정보-비회원<br>
-	상품명 <%=itemDetail.getI_name() %>
-	<textarea rows="10" cols="20"><%=orderDetail.getOd_message() %></textarea><br>
 	
-	<h3 id="mypage_orderHistoryDetail_tltle_h3">결제정보</h3><br>
+	<div id="mypage_orderHistoryDetail_del_div">
+	<dl id="mypage_orderHistoryDetail_dl">
+	
+	<h3 id="mypage_orderHistoryDetail_tltle_del_h3" >편지정보-비회원</h3><br>
+	<dt id="mypage_orderHistoryDetail_del_dt"> 상품명</dt>
+	<dt id="mypage_orderHistoryDetail_del_dt"><%=itemDetail.getI_name() %></dt>
+	<dt id="mypage_orderHistoryDetail_del_dt"><textarea class="mypage_textarea" rows="10" cols="20"><%=orderDetail.getOd_message() %></textarea></dt>
+	</dl>
+	</div>
+	<div class="mypage_div">
+	<h3 >결제정보</h3><br>
 	<span id="mypage_orderHistoryDetail_del_span_l">상품 합계</span> <span id="mypage_orderHistoryDetail_del_span_r"> <%=NumberFormat.getInstance().format(order.getO_amount()) %>원</span><br> 
 	<span id="mypage_orderHistoryDetail_del_span_l">배송비</span> <span id="mypage_orderHistoryDetail_del_span_r"> 0원</span><br> 
 	<span id="mypage_orderHistoryDetail_del_span_l">쿠폰 할인</span> <span id="mypage_orderHistoryDetail_del_span_r"> -0원</span><br> 
 	<span id="mypage_orderHistoryDetail_del_span_l">총 결제금액</span> <span id="mypage_orderHistoryDetail_del_span_r"> <%=NumberFormat.getInstance().format(order.getO_amount()) %>원</span><br> 
+	</div>
+	<div class="mypage_div">
 	
-	결제방법:<%=payment %><br>
-	결제일시:<%=sdf.format(order.getO_rdate2())%><br>
+	<span id="mypage_orderHistoryDetail_del_span_l">결제방법:</span><span id="mypage_orderHistoryDetail_del_span_r"><%=payment %></span><br>
+	<span id="mypage_orderHistoryDetail_del_span_l">결제일시:</span><span id="mypage_orderHistoryDetail_del_span_r"><%=sdf.format(order.getO_rdate2())%></span><br>
+	<div class="mypage_div">
 	
-	*현금 영수증 발행은 1:1문의를 이용 부탁드립니다.<br>
+	<p id="mypage_orderHistoryDetail_p">*현금 영수증 발행은 1:1문의를 이용 부탁드립니다.</p>
 	
-	<input type="button" value="홈으로 돌아가기" onclick="location.href='./'">
-	
+	<input class="mypage_button" type="button" value="홈으로 돌아가기" onclick="location.href='./'">
+	</div>
 </div>
 </div>
-	
-	
-	<!-- footer -->
-	<jsp:include page="../inc/footer.jsp"></jsp:include>
-	<!-- footer -->
+	</div>
+
+
+
+	<!-- 푸터 들어가는곳 -->
+	<footer>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</footer>
+	<!-- 푸터 들어가는곳 -->
+
 </body>
 </html>
