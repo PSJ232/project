@@ -70,7 +70,7 @@ $(document).ready(function(){
 			<h1 id="title">클래스 등록</h1>
 			<label>클래스 명</label> <input type="text" name="class_subject" required><br>
 			<label>클래스 요약설명</label> <input type="text" name="class_sub_desc" required><br>
-			<label>날짜</label> <input type="text" id="date" name="date" readonly><br>
+			<label>날짜</label> <input type="text" id="date" name="date" readonly required><br>
 			<label>장소</label>
 			<input type="radio" name="place" class="radio" value="서면"> 서면  
 			<input type="radio" name="place" class="radio" value="남포"> 남포 
