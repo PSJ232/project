@@ -15,58 +15,7 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-<script type="text/javascript">
-function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 재고수량보다 많이 담을 경우 더 이상 담을 수 없다고 정보 표시함
-	if(i_inven > c_qty) {
-    	document.getElementById('cartNotice'+c_id).innerHTML = "";
-    	location.href="CartUpdatePro.cr?c_id="+c_id+"&add=1";
-	} else {
-		document.getElementById('cartNotice'+c_id).innerHTML = "- 해당 상품의 <span class='cartNotice_red'>최대 구매 가능한 수량은 " + i_inven + "개</span> 입니다.";
-	}
-}
 
-
-function emptyCart() { // 선택된 상품이 없으면 sumbit 안됨
-	if(!$('.cart_input2').prop('checked')){
-		alert('선택된 상품이 없습니다');
-		return false;
-	}
-}
-
-$(document).ready(function() {
-	//장바구니 체크기능 및 금액부분
-	var cart_totalAmount = 0;
-	$('#cart_check_all').click(function() {
-		if($("input:checkbox[id='cart_check_all']") .prop("checked")) {
-	      	$("input[type=checkbox]").prop("checked" , true);
-	      	$(".cart_span20").text($('.cart_span20').attr('data-tap').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
-	      	$(".cart_span14").text($('.cart_span20').attr('data-tap').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
-			cart_totalAmount = Number($('.cart_span20').attr('data-tap'));
-	   	} else {  
-	    	$("input[type=checkbox]").prop("checked", false);
-		    $(".cart_span20").text('0원');
-		    $(".cart_span14").text('0원');
-			cart_totalAmount = 0;
-	   	}
-	});
-	//장바구니 체크기능 및 금액부분
-	$('.cart_input2').click(function() {
-		if($(this).prop("checked")) {
-			var id_name = $(this).attr('id');
-			$(this).attr('name', id_name);
-			
-			cart_totalAmount += Number($(this).attr('data-tab'));
-		} else {  
-			$(this).attr('name', '');
-			$("input:checkbox[id='cart_check_all']") .prop('checked', false);
-			cart_totalAmount -= Number($(this).attr('data-tab'));
-	   	}
-		$(".cart_span20").text(cart_totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
-		$(".cart_span14").text(cart_totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
-	});
-	
-});
-</script>
 <%
 ArrayList<CartBean> cartList = (ArrayList<CartBean>) request.getAttribute("cartList"); //장바구니에서 가져온 목록
 ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemList"); //장바구니에 담긴 아이템의 목록(위 장바구니 ArrayList와 순서동일)
@@ -235,4 +184,57 @@ ArrayList<ItemBean> itemList = (ArrayList<ItemBean>) request.getAttribute("itemL
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- footer -->
 </body>
+<script type="text/javascript">
+function qtyUpdate(c_id, i_inven, c_qty){ // 버튼을 누르면 증감 수행, 재고수량보다 많이 담을 경우 더 이상 담을 수 없다고 정보 표시함
+	if(i_inven > c_qty) {
+    	document.getElementById('cartNotice'+c_id).innerHTML = "";
+    	location.href="CartUpdatePro.cr?c_id="+c_id+"&add=1";
+	} else {
+		document.getElementById('cartNotice'+c_id).innerHTML = "- 해당 상품의 <span class='cartNotice_red'>최대 구매 가능한 수량은 " + i_inven + "개</span> 입니다.";
+	}
+}
+
+
+function emptyCart() { // 선택된 상품이 없으면 sumbit 안됨
+	if(!$('.cart_input2').prop('checked')){
+		alert('선택된 상품이 없습니다');
+		return false;
+	}
+}
+
+$(document).ready(function() {
+	//장바구니 체크기능 및 금액부분
+ 	var cart_totalAmount = Number($('.cart_span20').attr('data-tap')); // 장바구니
+	
+	$('#cart_check_all').click(function() {
+		if($("input:checkbox[id='cart_check_all']") .prop("checked")) {
+	      	$("input[type=checkbox]").prop("checked" , true);
+	      	$(".cart_span20").text($('.cart_span20').attr('data-tap').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
+	      	$(".cart_span14").text($('.cart_span20').attr('data-tap').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
+			cart_totalAmount = Number($('.cart_span20').attr('data-tap'));
+	   	} else {  
+	    	$("input[type=checkbox]").prop("checked", false);
+		    $(".cart_span20").text('0원');
+		    $(".cart_span14").text('0원');
+			cart_totalAmount = 0;
+	   	}
+	});
+	//장바구니 체크기능 및 금액부분
+	$('.cart_input2').click(function() {
+		if($(this).prop("checked")) {
+			var id_name = $(this).attr('id');
+			$(this).attr('name', id_name);
+			
+			cart_totalAmount += Number($(this).attr('data-tab'));
+		} else {  
+			$(this).attr('name', '');
+			$("input:checkbox[id='cart_check_all']") .prop('checked', false);
+			cart_totalAmount -= Number($(this).attr('data-tab'));
+	   	}
+		$(".cart_span20").text(cart_totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
+		$(".cart_span14").text(cart_totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원');
+	});
+	
+});
+</script>
 </html>
