@@ -20,7 +20,7 @@
 	<h3 id="visitorLogin_title">비회원 구매 조회</h3>
 	<form action="VisitorPage.me" method="post">
 		<input id="visitorLogin_inp" type="text" name="o_sender" placeholder="주문자명"><br>
-		<input id="visitorLogin_inp" type="number" name="o_id" placeholder="주문번호"><br>
+		<input id="visitorLogin_inp" type="tel" name="o_id" placeholder="주문번호"><br>
 		<input id="visitorLogin_smt" type="submit" value="확인하기">
 	</form>
 	<input id="visitorLogin_btn" type="button" value="회원으로 구매하셨나요?" onclick="location.href='MemberLogin.me'">

@@ -37,7 +37,9 @@ a:visited {
 a, button {
   cursor: pointer;
 }
-
+a, input[type=button], button, input[type=submit] {
+  cursor: pointer;
+}
 
 .visitorLogin_all{
 	width: 730px;
@@ -59,10 +61,12 @@ a, button {
 	margin: 10px;
 	padding: 10px;
 	font-size: 18px;
-	border: 2px solid #FFD228;
+	border: 2px solid #ffcd32
 		
 }
-
+#visitorLogin_inp:focus{
+	border: 2px solid  #ffcd32;
+}
 
 #visitorLogin_smt{
 	width: 200px;
@@ -90,4 +94,7 @@ a, button {
 	font-size: 15px;
 	font-weight: 500;
 	color: #f7f7f7;
+}
+#visitorLogin_btn:hover{
+	background: #ffcd32;
 }
