@@ -22,6 +22,7 @@ public class AdminInsertTrackingNumProAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('운송장 등록 완료!');");
+			out.println("opener.location.reload()");
 			out.println("window.close()");
 			out.println("</script>");
 		}else {
