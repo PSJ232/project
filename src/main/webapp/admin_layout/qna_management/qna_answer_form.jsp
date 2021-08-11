@@ -27,19 +27,21 @@
 <!-- 	<nav> -->
 	<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
-	<div class="container">
-		<form action="WriteAnswerPro.ad" method="POST">
-			<h1 id="title">답변등록</h1>
-			<label>ID</label><input type="text" name="m_id" value="admin@admin.com" readonly><br>
-			<label>주문번호</label><input type="text" name="o_id" value="<%=qnaBean.getO_id() %>" readonly><br>
-			<label>제목</label><input type="text" name="q_subject" value="ANSWER: <%=qnaBean.getQ_subject() %>"><br>
-			<label>내용</label><textarea name="q_content" rows="20" cols="70"></textarea><br>
-			<input type="hidden" name="q_id" value="<%=qnaBean.getQ_id() %>">
-			<div id="buttons">
-				<input type="submit" class="btn" value="작성" onclick="location.href='AnswerWritePro.ad'">
-				<input type="button" class="btn" value="목록" onclick="location.href='QnaList.ad'">
-			</div>
-		</form>
+	<div class="container qna_text_center">
+		<div class="qna_answer_layout">
+			<form action="WriteAnswerPro.ad" method="POST">
+				<h1 id="title">답변등록</h1>
+				<label>ID</label><input type="text" name="m_id" value="admin@admin.com" readonly><br>
+				<label>주문번호</label><input type="text" name="o_id" value="<%=qnaBean.getO_id() %>" readonly><br>
+				<label>제목</label><input type="text" name="q_subject" value="ANSWER: <%=qnaBean.getQ_subject() %>"><br>
+				<label>내용</label><textarea name="q_content" rows="20" cols="70"></textarea><br>
+				<input type="hidden" name="q_id" value="<%=qnaBean.getQ_id() %>">
+				<div id="buttons">
+					<input type="submit" class="btn" value="작성" onclick="location.href='AnswerWritePro.ad'">
+					<input type="button" class="btn" value="목록" onclick="location.href='QnaList.ad'">
+				</div>
+			</form>
+		</div>
 	</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>

@@ -37,7 +37,7 @@
 					var object = eval('('+request.responseText+')'); 
 					var result = object.result;
 					var row = table.insertRow(value_idx + 2);
-					row.innerHTML = "<td id=content_" + r_id + " colspan='5'>" + result[0].value + "</td>";
+					row.innerHTML = "<td id=content_" + r_id + " class='review_list_content' colspan='6'>" + result[0].value + "</td>";
 				}
 			};
 			request.send(null);
@@ -83,7 +83,7 @@
 			<option value="rate_asc">별점낮은순</option>
 			<option value="rate_desc">별점높은순</option>
 		</select>
-		<input style="margin-left: 615px" type="button" id="deleteBtn" class="btn" value="리뷰삭제">
+		<input type="button" id="deleteBtn" class="btn" value="리뷰삭제">
 		<table border="1" id="reviewList">
 			<thead>
 				<tr><th width="50"></th><th width="50">순번</th><th width="120">작성날짜</th><th width="150">작성자</th><th width="250">제목</th><th width="100">별점</th></tr>

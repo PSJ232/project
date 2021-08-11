@@ -93,7 +93,6 @@ header {
 .product_title {
 	position: relative;
     top: 19px;
-    left: 24px;
     font-size: 32px;
 }
 
@@ -127,168 +126,30 @@ header {
 }
 
 
-/*
- * Made by Erik Terwan
- * 24th of November 2015
- * MIT License
- *
- *
- * If you are thinking of using this in
- * production code, beware of the browser
- * prefixes.
- */
+/*//////////////////////////////// 관리자 nav //////////////////////////////*/
 
-#admin_nav{
+#admin_nav {
+	width: 310px;
+    display: inline-block;
     position: fixed;
-    z-index: 100;
-    font-family: 'Noto Sans KR',sans-serif,NanumGothic,'나눔고딕',Dotum,'돋움',Helvetica,"Apple SD Gothic Neo";
-	top: 60px;
+    top: 68px;
+    height: 100%;
 }
 
-#menuToggle
-{
-  display: block;
-  position: relative;
-  top: 57px;
-  left: 48px;
-  
-  z-index: 1;
-  
-  -webkit-user-select: none;
-  user-select: none;
+#admin_nav div ul {
+    font-size: 26px;
+    line-height: 34px;
+    padding: 42px 77px;	
 }
 
-#menuToggle a
-{
-  text-decoration: none;
-  color: #232323;
-  
-  transition: color 0.3s ease;
+.admin_nav_list {
+    margin-bottom: 12px;
+    transition: .2s ease; 
 }
 
-#menuToggle a:hover
-{
-  color: #ffcd32;
+.admin_nav_list a:hover {
+	color: #ffcd32;
 }
-
-
-#menuToggle input
-{
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  top: -7px;
-  left: -5px;
-  
-  cursor: pointer;
-  
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
-  
-  -webkit-touch-callout: none;
-}
-
-/*
- * Just a quick hamburger
- */
-#menuToggle span
-{
-  display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
-  position: relative;
-  
-  background: #cdcdcd;
-  border-radius: 3px;
-  
-  z-index: 1;
-  
-  transform-origin: 4px 0px;
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
-}
-
-#menuToggle span:first-child
-{
-  transform-origin: 0% 0%;
-}
-
-#menuToggle span:nth-last-child(2)
-{
-  transform-origin: 0% 100%;
-}
-
-/* 
- * Transform all the slices of hamburger
- * into a crossmark.
- */
-#menuToggle input:checked ~ span
-{
-  opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
-  background: #232323;
-}
-
-/*
- * But let's hide the middle one.
- */
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-/*
- * Ohyeah and the last one should go the other direction
- */
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
-  transform: rotate(-45deg) translate(0, -1px);
-}
-
-/*
- * Make this absolute positioned
- * at the top left of the screen
- */
-#menu
-{
-  position: absolute;
-  width: 300px;
-  height: 101vh;
-  margin: -100px 0 0 -50px;
-  padding: 50px;
-  padding-top: 125px;
-  
-  background: #ededed;
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
-  
-  transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-}
-
-#menu li
-{
-  padding: 10px 0;
-  font-size: 22px;
-}
-
-/*
- * And let's slide it in from the left
- */
-#menuToggle input:checked ~ ul
-{
-  transform: none;
-}
-
-
 /*item_manage > itemManageList.jsp */
 /* category */
 
@@ -655,7 +516,16 @@ footer{
 }
 
 
+.img_hidden  {
+    width: 84px !important; 
+}
 
+.span_show{
+	width: 100px;
+    display: inline-block;
+    line-height: 20px;
+    font-size: 15px;
+}
 
 
 

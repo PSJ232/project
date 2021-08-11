@@ -152,7 +152,7 @@ int gradeDiscount = (int)(fclass.getClass_price()-(grade*fclass.getClass_price()
 				<!-- r_id 생성 -->
 				<div>
 					<!-- 처음에 등급 할인이 적용된 가격 설정, gradeApplyPrice와 동일-->
-					<input type="text" id="total_fee" name="total_fee" value="<%=(int)(fclass.getClass_price()*r_num*grade)%>"> 
+					<input type="hidden" id="total_fee" name="total_fee" value="<%=(int)(fclass.getClass_price()*r_num*grade)%>"> 
 					<!-- 등급할인 금액 -->
 					<input type="hidden" id="grade_discount" name="grade_discount" value="<%=gradeDiscount%>">
 					<!-- 포인트 할인금액 -->

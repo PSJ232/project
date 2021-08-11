@@ -39,13 +39,6 @@
       		<span class="product_title">상품관리 페이지</span>
       		<input type="button" onclick="location.href='ItemRegister.ad'" class="btn_m btn_yellow" value="상품등록">	
       	</div>
-        <div class="product_array_box">
-          <select class="product_array" name="product_array">
-              <option value="product_order_rank" class="product_order_list">추천순</option>
-              <option value="product_order_highSelling" class="product_order_list">인기순</option>
-              <option value="product_order_new" class="product_order_list">신상품순</option>
-          </select>
-        </div>
         <main class="fontsize_zero">
           <ul>
           <%

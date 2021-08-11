@@ -280,18 +280,6 @@ html {
 	background-color: #dddddd;
 }
 
-.nowbuy_Quick {
-	width: -webkit-fill-available;
-	height: 50px;
-	margin: 25px 0;
-	border: none;
-	border-radius: 6px;
-	font-size: 14px;
-	cursor: pointer;
-	background-color: #ffd324;
-	
-}
-
 .clear {
 	clear: both;
 }

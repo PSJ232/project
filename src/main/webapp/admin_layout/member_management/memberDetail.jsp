@@ -29,7 +29,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 <link rel="stylesheet" href="./css/admin.css">
-<link rel="stylesheet" href="./css/list_style.css">
 <link rel="stylesheet" href="./css/admin_member_detail.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script type="text/javascript">
@@ -58,7 +57,7 @@
 		$('.admin_header_subtitle').text("회원 상세");
 	});
 	function openOrderDetail(o_id){
-		window.open('OrderDetail.ad?o_id='+o_id,'PopupWin','width=1700,height=900')
+		window.open('OrderDetail.ad?o_id='+o_id,'PopupWin','width=1300,height=700')
 	}
 </script>
 </head>
@@ -70,8 +69,8 @@
 		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 <div class="container">
-	<fieldset id="info_field">
-		<legend>회원정보</legend>
+	<article id="info_field">
+		<div class="info_title">회원정보</div>
 		<label>아이디</label> <input type="text" value="<%=memberBean.getM_id()%>"><br>
 		<label>이름</label> <input type="text" value="<%=memberBean.getM_name()%>"><br>
 		<label>전화번호</label> <input type="text" value="<%=memberBean.getM_phone()%>"><br>
@@ -100,10 +99,10 @@
 			%>탈퇴날짜: <%=memberBean.getM_drop()%><%
 		}
 		%><br>
-	</fieldset>
+	</article>
 	
-	<fieldset id="order_field">
-		<legend>회원주문목록</legend>
+	<article id="order_field">
+		<div class="info_title">회원주문목록</div>
 		<table id="orderList" border="1">
 			<tr>
 				<th>주문번호</th>
@@ -127,9 +126,9 @@
 				}
 			%>
 		</table>
-	</fieldset>
-	<fieldset id="review_field">
-		<legend>회원리뷰목록</legend>
+	</article>
+	<article id="review_field">
+		<div class="info_title">회원리뷰목록</div>
 		<table id="reviewList" border="1">
 			<tr>
 				<th width="50px">순번</th>
@@ -158,19 +157,19 @@
 				}
 			%>
 		</table>
-	</fieldset>
-	<fieldset id="review_field">
-		<legend>클래스 수강 목록</legend>
+	</article>
+	<article id="review_field">
+		<div class="info_title">클래스 수강 목록</div>
 		<table id="reviewList" border="1">
 			<tr>
 				<th width="50px">순번</th>
 				<th>수강날짜</th>
-				<th width="100px">수강장소</th>
-				<th width="100px">수강시간</th>
-				<th width="250px">클래스명</th>
-				<th width="50px">인원</th>
-				<th width="70px">결제금액</th>
-				<th width="70px">결제방법</th>
+				<th width="107px">수강장소</th>
+				<th width="118px">수강시간</th>
+				<th width="300px">클래스명</th>
+				<th width="80px">인원</th>
+				<th width="90px">결제금액</th>
+				<th width="80px">결제방법</th>
 			</tr>
 			<%
 				for(int i = 0; i < reservList.size(); i++){
@@ -190,7 +189,7 @@
 				}
 			%>
 		</table>
-	</fieldset>
+	</article>
 	<input type="button" value="목록" id="listBtn" onclick="location.href='MemberList.ad'">
 	</div>
 	<footer>

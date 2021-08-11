@@ -96,8 +96,7 @@
 				</form>
 			</div>
 		</div>
-	</div>
-	
+		<div id="class_detail_page">
 		<!-- 상품상세 시작 -->
 		<div class="category_product_description">
 			<!-- 중간 3버튼 네비게이션   -->
@@ -223,7 +222,9 @@
 			</div>
 		</div>
 	</div> <!-- container 끝 -->
-
+		
+	</div>
+	
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	<!-- 중간 네비게이션 sticky 기능에 필요 코드  -->
 	<div class="sticky">
@@ -233,7 +234,7 @@
 			<li class="middle_li li_deli_info" onclick="location.href='#delivery_info'">수강안내</li>
 		</ul>
 	</div>
-	
+
 	
 	
 </body>

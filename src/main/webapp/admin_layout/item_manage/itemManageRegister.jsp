@@ -98,15 +98,15 @@
                                 </li>
                                 <li>
                                     <label>서브이미지1</label>
-                                    <input type="file" name="i_subimg2" class="product_manage_subimg1">
+                                    <input type="file" name="i_subimg2" class="product_manage_subimg1" required>
                                 </li>
                                 <li>
                                     <label>서브이미지2</label>
-                                    <input type="file" name="i_subimg3" class="product_manage_subimg2">
+                                    <input type="file" name="i_subimg3" class="product_manage_subimg2" required>
                                 </li>
                                 <li>
                                     <label>서브이미지3</label>
-                                    <input type="file" name="i_subimg4" class="product_manage_subimg3">
+                                    <input type="file" name="i_subimg4" class="product_manage_subimg3" required>
                                 </li>
                                 <li>
                                     <label>상세설명</label>

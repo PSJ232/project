@@ -1,4 +1,81 @@
 @charset "UTF-8";
+.container {
+	margin: 100px auto;
+	width: 1240px;
+	padding-left:60px;
+}
+
+.qna_text_center {
+	text-align: center;
+}
+
+.container table {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ececec;
+    border-collapse: collapse;
+    border-radius: 10px;
+    line-height: 25px;
+    font-size: 18px;
+}
+.container table th,td {
+	padding: 10px;
+}
+.container table th {
+	background-color: #f7f7f7;
+}
+.container table tr:hover {
+	background-color: #ffdf243b;
+}
+.container legend {
+	padding: 10px;
+	font-size: 25px;
+}
+.btn { 
+		width: 100px; 
+		height: 40px; 
+		border: 1px solid #fff; 
+		border-radius: 5px; 
+		background-color: #FFDF24; 
+	} 
+	.page_btn {
+	border: none;
+	background-color: white;
+	
+}
+.page_btn:hover {
+	cursor: pointer;
+	color: #FFDF24;
+}
+#pageList {
+    margin: 0 auto;
+    font-size: 15px;
+    text-align: center;
+}
+#page_num {
+	padding: 5px;
+}
+#page_num:hover {
+	color: #FFDF24;
+}
+#selected_page_num {
+	font-weight: bold;
+	padding: 5px;
+	color: #FFDF24;
+}
+select {
+	border: none;
+	outline: none;
+	font-size: 15px;
+}
+#search_val {
+	border: none;
+	border-bottom: 2px solid #ccc;
+	outline: none;
+	padding: 5px;
+}
 .container input[type=text], textarea{
 	font-size: 15px;
 	border: none;
@@ -15,20 +92,79 @@
 	font-size: 17px;
 	float:left;
 }
+
+.btn {
+	float: right;
+}
+#qna_status {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 700px;
+    height: 150px;
+    margin-bottom: 50px;
+    text-align: center;
+    border-radius: 10px;
+    padding-left: 20px;
+	margin: 0 auto 50px;
+}
+#qna_status legend {
+	text-align: left;
+	padding: 10px;
+}
+
+#qna_status h1 {
+	height: 50px;
+	font-size: 35px;
+	align-items: center;
+/* 		border: 2px solid #ccc; */
+/* 		border-radius: 10px; */
+	padding: 20px 0 20px 0;
+	width: 260px;
+	height: 100px;
+}
+#qna_tab {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	font-size: 20px;
+	width: 700px;
+	
+}	
+#qna_tab li {
+	display: inline-block;
+	cursor: pointer;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	padding: 15px;
+	font-family: 'Gowun Dodum', sans-serif;
+}
+.span {
+	display: block;
+	font-size: 15px;
+	text-align: left;
+}
+
+
 #title {
 	margin-bottom: 30px;
 }
 .link:hover {
-	color: #FFDF24;
+	color: #ffdf243b;
 	cursor: pointer;
 }
-.btn {
-	float:right;
-}
+
 .btn:hover {
 	background-color: #FFCD12;
 	cursor: pointer;
 }
-#buttons {
-	margin-right: 480px;
+#tabcontent {
+    font-weight: 300;
+}
+
+.qna_detail_layout {
+	display: inline-block;
+}
+
+.qna_answer_layout {
+	display: inline-block;
 }

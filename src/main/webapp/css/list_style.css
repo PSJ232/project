@@ -5,13 +5,15 @@
 		padding-left:60px;
 	}
 	.container table {
-		margin-top: 30px;
-		margin-bottom: 50px;
-		width: 800px;
-		text-align: center;
-		border: 1px solid #ececec;
-		border-collapse: collapse;
-		border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ececec;
+    border-collapse: collapse;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 25px;
 	}
 	.container table th,td {
 		padding: 10px;
@@ -20,7 +22,7 @@
 		background-color: #f7f7f7;
 	}
 	.container table tr:hover {
-		background-color: #FFDF24;
+		background-color: #ffdf243b;
 	}
 	.container legend {
 		padding: 10px;
@@ -43,9 +45,8 @@
 		color: #FFDF24;
 	}
 	#pageList {
-		margin: 0 auto;
-		width: 530px;
-		font-size: 15px;
+	    text-align: center;
+	    font-size: 15px;
 	}
 	#page_num {
 		padding: 5px;
@@ -70,4 +71,11 @@
 		padding: 5px;
 	}
 	
+	#deleteBtn {
+		float: right;
+	}
+	
+	.review_list_content {
+		line-height: 50px;
+	}
  	

@@ -1,13 +1,13 @@
 @charset "UTF-8";
 #insert_form {
-	display: flex;
-	margin: 100px auto;
-	width: 1240px;
-
+    display: flex;
+    margin: 100px auto;
+    width: 1240px;
+    justify-content: space-around;
+    padding: 20px 88px;
 }
 .sub_container1,.sub_container2 {
 	display: inline-block;
-	width: 500px;
 }
 .sub_container1 {
 	height: 500px;

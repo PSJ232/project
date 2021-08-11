@@ -1,27 +1,122 @@
 @charset "UTF-8";
+
+.container {
+    margin: 100px auto;
+    width: 1240px;
+    padding-left: 60px;
+}
+
+.admin_memlist_chartbox legend {
+    padding: 10px;
+    font-size: 25px;
+}
+
+.container table {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ececec;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+
+.container table tr:hover {
+    background-color: #ffdf243b;
+}
+
+.container table th {
+    background-color: #f7f7f7;
+    font-weight: 500;
+    padding: 16px 18px;
+}
+
+.container table td {
+    padding: 16px 18px;
+    font-weight: 400;
+}
+
 .search_container {
 	display: flex;
-	margin-top: 50px;
+    margin-top: 34px;
 	justify-content: flex-start;
 }
 
+.admin_memlist_chartbox {
+	width: 889px;
+    padding: 20px 0 41px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    margin: 0 auto;
+}
+
+.chart-div {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-evenly;
+}
 .chart-div {
 	
 	display: flex;
 	margin: 0 auto;
 }
 
-#pieChartCanvas {
-	margin-left: 120px;
+.memList_content{
+	margin-top: 63px;
 }
 
-#pie {
-	margin-left: 50px;
+.admin_memList_height {
+    line-height: 30px;
+    font-size: 19px;
 }
 
-.container fieldset {
-	width: 800px;
-	padding: 15px;
-	border-radius: 10px;
-	border: 2px solid #ccc;
+.admin_memList_height th {
+	
 }
+
+.admin_memlist_chart {
+	height: 270px;
+    width: 270px;
+}
+
+.admin_memlist_content > tr{
+	line-height: 20px;
+    font-size: 17px;
+}
+
+.admin_memlist_conten {
+	font-size: 16px;
+	
+}
+
+.admin_memlist_select {
+	    width: 132px;
+    height: 36px;
+    font-size: 18px;
+    padding: 0 10px;
+    margin-right: 10px;
+}
+
+.search_container > input {
+    width: 250px;
+    padding: 0 5px;
+}
+
+.admin_memlist_title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 39px;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

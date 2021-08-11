@@ -34,50 +34,51 @@
 <!-- 	<nav> -->
 	<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
-	<div class="container">
-		<h1 id="title">문의상세</h1>
-		<label>ID</label><input type="text" value="<%=qnaBean.getM_id() %>" readonly><br>
-		<label>주문번호</label><a href="OrderDetail.ad?o_id=<%=qnaBean.getO_id() %>"><input type="text" value="<%=qnaBean.getO_id() %>" readonly></a><br>
-		<label>제목</label><input type="text" value="<%=qnaBean.getQ_subject() %>" readonly><br>
-		<label>내용</label><textarea rows="20" cols="70" readonly><%=qnaBean.getQ_content() %></textarea><br>
-		<label>첨부파일1</label>
-		<%
-			if(qnaBean.getQ_img() != null){
-				%><a href="./boardUpload/<%=qnaBean.getQ_img() %>" download="<%=qnaBean.getQ_img() %>"><input class="link" type="text" value="<%=qnaBean.getQ_img() %>" readonly></a><br><%
-			}else{
-				%><input type="text" value="" readonly><br><%
-			}
-		%>
-		<label>첨부파일2</label>
-		<%
-			if(qnaBean.getQ_img2() != null){
-				%><a href="./boardUpload/<%=qnaBean.getQ_img2() %>" download="<%=qnaBean.getQ_img2() %>"><input class="link" type="text" value="<%=qnaBean.getQ_img2() %>" readonly></a><br><%
-			}else{
-				%><input type="text" value="" readonly><br><%
-			}
-		%>
-		<label>첨부파일3</label>
-		<%
-			if(qnaBean.getQ_img3() != null){
-				%><a href="./boardUpload/<%=qnaBean.getQ_img3() %>" download="<%=qnaBean.getQ_img3() %>"><input class="link" type="text" value="<%=qnaBean.getQ_img3() %>" readonly></a><br><%
-			}else{
-				%><input type="text" value="" readonly><br><%
-			}
-		%>
-		<div id="buttons">
-		<%
-			if(qnaBean.getQ_answered() == 0){
-				%><input type="button" class="btn" value="답변작성" onclick="location.href='WriteAnswer.ad?q_id=<%=qnaBean.getQ_id() %>'"><%
-			}
-		%>
-			<input type="button" class="btn" value="목록" onclick="location.href='QnaList.ad'">
-			<%if(qnaBean.getM_id().equals("admin")){
-				%><input type="button" class="btn" value="삭제" onclick="deleteAnswer()"><%
-			}
+	<div class="container qna_text_center">
+		<div class="qna_detail_layout">
+			<h1 id="title">문의상세</h1>
+			<label>ID</label><input type="text" value="<%=qnaBean.getM_id() %>" readonly><br>
+			<label>주문번호</label><a href="OrderDetail.ad?o_id=<%=qnaBean.getO_id() %>"><input type="text" value="<%=qnaBean.getO_id() %>" readonly></a><br>
+			<label>제목</label><input type="text" value="<%=qnaBean.getQ_subject() %>" readonly><br>
+			<label>내용</label><textarea rows="20" cols="70" readonly><%=qnaBean.getQ_content() %></textarea><br>
+			<label>첨부파일1</label>
+			<%
+				if(qnaBean.getQ_img() != null){
+					%><a href="./boardUpload/<%=qnaBean.getQ_img() %>" download="<%=qnaBean.getQ_img() %>"><input class="link" type="text" value="<%=qnaBean.getQ_img() %>" readonly></a><br><%
+				}else{
+					%><input type="text" value="" readonly><br><%
+				}
 			%>
+			<label>첨부파일2</label>
+			<%
+				if(qnaBean.getQ_img2() != null){
+					%><a href="./boardUpload/<%=qnaBean.getQ_img2() %>" download="<%=qnaBean.getQ_img2() %>"><input class="link" type="text" value="<%=qnaBean.getQ_img2() %>" readonly></a><br><%
+				}else{
+					%><input type="text" value="" readonly><br><%
+				}
+			%>
+			<label>첨부파일3</label>
+			<%
+				if(qnaBean.getQ_img3() != null){
+					%><a href="./boardUpload/<%=qnaBean.getQ_img3() %>" download="<%=qnaBean.getQ_img3() %>"><input class="link" type="text" value="<%=qnaBean.getQ_img3() %>" readonly></a><br><%
+				}else{
+					%><input type="text" value="" readonly><br><%
+				}
+			%>
+			<div id="buttons">
+			<%
+				if(qnaBean.getQ_answered() == 0){
+					%><input type="button" class="btn" value="답변작성" onclick="location.href='WriteAnswer.ad?q_id=<%=qnaBean.getQ_id() %>'"><%
+				}
+			%>
+				<input type="button" class="btn" value="목록" onclick="location.href='QnaList.ad'">
+				<%if(qnaBean.getM_id().equals("admin")){
+					%><input type="button" class="btn" value="삭제" onclick="deleteAnswer()"><%
+				}
+				%>
+			</div>
 		</div>
 	</div>
-
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</footer>

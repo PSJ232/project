@@ -16,7 +16,10 @@
 	}else {
 		payment = "현금";
 	}
-	int final_amount = orderBean.getO_amount() - orderBean.getO_gdiscount() + orderBean.getO_point();
+	int p_amount = 0;
+	for(int i = 0; i < orderDetailList.size(); i++){
+		p_amount += orderDetailList.get(i).getI_price();
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -24,6 +27,10 @@
 <meta charset="UTF-8">
 <title>관리자 | 주문상세</title>
 <style>
+
+	#orderDetailContainer{
+		margin: 50px;
+	}
 	fieldset {
 		padding: 20px;
 		border: 2px solid #FFCD12;
@@ -108,15 +115,7 @@
 </script>
 </head>
 <body>
-   	<!-- header -->
-   	<jsp:include page="/inc/adminHeader.jsp" ></jsp:include>
-   	<!-- header -->
-   	
-    <!-- nav -->
-	<jsp:include page="/inc/navigation.jsp" ></jsp:include>
-	<!-- nav -->
-	
-	<div class="container">
+	<div id="orderDetailContainer">
 		
 		<div id="product_list">
 			<fieldset>
@@ -169,18 +168,15 @@
 			<fieldset>
 				<legend>결제정보</legend>
 				<div id="payment_info">
-					<label>총 상품금액</label><input type="text" value=<%=NumberFormat.getInstance().format(orderBean.getO_amount()) %> readonly><br>
+					<label>총 상품금액</label><input type="text" value=<%=NumberFormat.getInstance().format(p_amount) %> readonly><br>
 					<label>할인금액</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_gdiscount()) %> " readonly><br>
 					<label>적립금사용</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_point()) %>" readonly><br>
 					<label>결제수단</label><input type="text" value="<%=payment %>" readonly><br>
-					<label>최종결제금액</label><input type="text" value="<%=NumberFormat.getInstance().format(final_amount) %>" readonly>
+					<label>최종결제금액</label><input type="text" value="<%=NumberFormat.getInstance().format(orderBean.getO_amount()) %>" readonly>
 				</div>
 			</fieldset>
 		</div>
 		<input type="button" class="btn" value="목록" onclick="location.href='OrderList.ad'">
 	</div>
-	<footer>
-		<jsp:include page="/inc/footer.jsp"></jsp:include>
-	</footer>
 </body>
 </html>

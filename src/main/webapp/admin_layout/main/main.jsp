@@ -20,7 +20,6 @@
 <meta charset="UTF-8">
 <title>DashBoard</title>
 <link rel="stylesheet" href="./css/admin.css">
-<link rel="stylesheet" href="./css/list_style.css">
 <link rel="stylesheet" href="./css/admin_main.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -38,7 +37,7 @@
 					var object = eval('('+request.responseText+')'); 
 					var result = object.result;
 					var row = table.insertRow(value_idx + 2);
-					row.innerHTML = "<td id=content_" + r_id + " colspan='5'>" + result[0].value + "</td>";
+					row.innerHTML = "<td id=content_" + r_id + " class='admin_review_content' colspan='5'>" + result[0].value + "</td>";
 				}
 			};
 			request.send(null);
@@ -86,25 +85,25 @@
 		<fieldset id="recent_review">
 			<legend>Recent Review</legend>
 			<table border="1" id="reviewList">
-			<thead>
-				<tr><th width="50">순번</th><th width="120">작성날짜</th><th width="150">작성자</th><th width="250">제목</th><th width="100">평점</th></tr>
+			<thead  class="dash_padding">
+				<tr><th class="dash_table_volume_th" width="50">순번</th><th class="dash_table_volume_th" width="120">작성날짜</th><th class="dash_table_volume_th" width="150">작성자</th><th class="dash_table_volume_th" width="250">제목</th><th class="dash_table_volume_th" width="100">평점</th></tr>
 			</thead>
-			<tbody>
+			<tbody class="dash_padding">
 				<%
 					for(int i = 0; i < recentReview.size(); i++){
-						%><tr id="showContent" onclick="getContent(<%=recentReview.get(i).getR_id()%>,this)">
-						<td><%=recentReview.get(i).getR_id() %></td>
-						<td><%=recentReview.get(i).getR_rdate() %></td>
-						<td><%=recentReview.get(i).getR_writer() %></td>
-						<td><%=recentReview.get(i).getR_title() %></td>
-						<td><span class="star">
-						<%
-						for(int j=0; j < recentReview.get(i).getR_rate(); j++){
-							%>★<%
-						}
-						%>
-						</span>
-						</td>	
+						%><tr class="dash_table_volume" id="showContent" onclick="getContent(<%=recentReview.get(i).getR_id()%>,this)">
+							<td><%=recentReview.get(i).getR_id() %></td>
+							<td><%=recentReview.get(i).getR_rdate() %></td>
+							<td><%=recentReview.get(i).getR_writer() %></td>
+							<td><%=recentReview.get(i).getR_title() %></td>
+							<td><span class="star">
+							<%
+							for(int j=0; j < recentReview.get(i).getR_rate(); j++){
+								%>★<%
+							}
+							%>
+							</span>
+							</td>	
 						</tr><%
 					}
 				%>

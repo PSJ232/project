@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 html {
 	scroll-behavior: smooth;
 }
@@ -113,7 +114,6 @@ html {
 }
 
 .shop_class_infobox3 ul li a{
-	color: gray;
     font-size: 15px;
 }
 
@@ -260,7 +260,7 @@ html {
 
 .middle_nav {
 	height: 53px;
-	margin-bottom: 60px;
+/* 	margin-bottom: 60px; */
 	position: relative;
 	display: flex;
 	justify-content: center;

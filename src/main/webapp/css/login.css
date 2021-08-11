@@ -143,11 +143,7 @@ a, input[type=button], button, input[type=submit] {
 	margin: 0px auto;
 	text-align: center; 
 }
-.find_class{
-	margin: 0px auto;
-	width: 650px;
-	height: 100px;
-}
+
 #phone {
 	width: 90px;
 	height: 40px;

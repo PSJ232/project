@@ -16,7 +16,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 <link rel="stylesheet" href="./css/admin.css">
-<link rel="stylesheet" href="./css/list_style.css">
 <link rel="stylesheet" href="./css/admin_member_list.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script type="text/javascript">
@@ -128,39 +127,44 @@
 		<jsp:include page="/inc/navigation.jsp"></jsp:include>
 <!-- 	</nav> -->
 
-	<div class="container">
-		<fieldset>
-			<legend>회원통계</legend>
-			<div class="chart-div">
-		        <canvas id="pieChartCanvas" width="250px" height="250px" ></canvas>
-		        <canvas id="pie" width="250px" height="250px"></canvas>
-	   		</div>
-   		</fieldset>
-		<div class="search_container">
-			<select name="filter" id="filter">
-				<option value="0">필터</option>
-				<option value="1">이름</option>
-				<option value="2">아이디</option>
-				<option value="3">휴대폰</option>
-				<option value="4">등급(number)</option>
-			</select>
-			<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
+		<div class="container">
+		<div>
+			<fieldset class="admin_memlist_chartbox">
+				<legend>회원통계</legend>
+				<div class="chart-div">
+			        <canvas id="pieChartCanvas" class="admin_memlist_chart" width="270px" height="270px"></canvas>
+			        <canvas id="pie" class="admin_memlist_chart" width="270px" height="270px"></canvas>
+		   		</div>
+	   		</fieldset>
+	   		<div class="memList_content">
+	   			<div class="admin_memlist_title">회원 목록 및 상세</div>
+				<div class="search_container">
+					<select name="filter" id="filter" class="admin_memlist_select">
+						<option value="0">필터</option>
+						<option value="1">이름</option>
+						<option value="2">아이디</option>
+						<option value="3">휴대폰</option>
+						<option value="4">등급(number)</option>
+					</select>
+					<input type="text" name="search" id="search_val" onkeyup="searchFunction()">
+				</div>
+				<table class="table" border="1">
+					<thead>
+						<tr class="admin_memList_height">
+							<th>아이디</th>
+							<th>이름</th>
+							<th>휴대폰번호</th>
+							<th>성별</th>
+							<th>등급</th>
+							<th>가입일자</th>
+							<th>탈퇴여부</th>
+						</tr>
+					</thead>
+					<tbody id="ajaxTable" class="admin_memlist_content">
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<table class="table" border="1">
-			<thead>
-				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>휴대폰번호</th>
-					<th>성별</th>
-					<th>등급</th>
-					<th>가입일자</th>
-					<th>탈퇴여부</th>
-				</tr>
-			</thead>
-			<tbody id="ajaxTable">
-			</tbody>
-		</table>
 	</div>
 	<footer>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>

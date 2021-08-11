@@ -1,15 +1,15 @@
 @charset "UTF-8";
 
 .class_list_container {
-	margin: 100px auto;
+    margin: 100px auto 150px;
 	width: 1240px;
 }
 #class_status {
 	margin-top: 10px;
-	margin-bottom: 25px;
-	font-size: 20px;
-	width: 700px;
-	
+    margin-bottom: 25px;
+    font-size: 20px;
+    width: 900px;
+    margin: 0 auto;
 }	
 #class_status li {
 	display: inline-block;
@@ -28,12 +28,13 @@
 }
 
 .class_content {
-	margin-bottom: 20px;
-	width: 900px ;
-	height: 150px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	padding: 10px;
+    margin-bottom: 20px;
+    width: 900px;
+    height: 168px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 33px auto;
 }
 
 .class_content:nth-child(odd) #img{
@@ -45,14 +46,15 @@
 }
 
 #btn {
-	width: 150px;
-	height: 45px;
-	border: 1px solid #fff;
-	border-radius: 7px;
-	background-color: #FFDF24;
-	font-size: 20px;
-	margin-left: 750px;
-	margin-bottom: 20px;
+    width: 150px;
+    height: 45px;
+    border: 1px solid #fff;
+    border-radius: 7px;
+    background-color: #FFDF24;
+    font-size: 20px;
+    display: block;
+    float: right;
+    margin: 0 167px;
 }
 #btn:hover {
 	background-color: #FFCD12;
@@ -64,4 +66,8 @@
 }
 #class_subject:hover {
 	color: #FFDF24;
+}
+
+#tabcontent {
+	min-height: 300px;
 }

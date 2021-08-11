@@ -20,7 +20,7 @@
 <div class="purchase_complete_container">
 	<div class="inbox">
 		<div class="checkout">
-			<div class="checkout_title">클래스 예약이 정상적을 취소되었습니다.</div>
+			<div class="checkout_title">클래스 예약이 정상적으로 취소되었습니다.</div>
 			<p class="checkout_desc">더좋은 클래스로 찾아오겠습니다 감사합니다</p>
 		</div>
 		

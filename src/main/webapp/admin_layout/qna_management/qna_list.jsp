@@ -20,57 +20,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="./css/admin.css">
-<link rel="stylesheet" href="./css/list_style.css">
+<link rel="stylesheet" href="./css/admin_qna.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<style>
-	#qna_status {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		width: 700px;
-		height: 150px;
-		margin-bottom: 50px;
-		text-align: center;
-		border-radius: 10px;
- 		padding-left: 20px; 
-/* 		padding-right: 50px; */
-	}
-	#qna_status legend {
-		text-align: left;
-		padding: 10px;
-	}
-	
-	#qna_status h1 {
-		height: 50px;
-		font-size: 35px;
-		align-items: center;
-/* 		border: 2px solid #ccc; */
-/* 		border-radius: 10px; */
-		padding: 20px 0 20px 0;
-		width: 260px;
-		height: 100px;
-	}
-	#qna_tab {
-		margin-top: 10px;
-		margin-bottom: 15px;
-		font-size: 20px;
-		width: 700px;
-		
-	}	
-	#qna_tab li {
-		display: inline-block;
-		cursor: pointer;
-		border: 1px solid #fff;
-		border-radius: 10px;
-		padding: 15px;
-		font-family: 'Gowun Dodum', sans-serif;
-	}
-	.span {
-		display: block;
-		font-size: 15px;
-		text-align: left;
-	}
-</style>
 <script>
 	var curTab = "tab1";
 	$(function() {

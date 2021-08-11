@@ -247,7 +247,7 @@ switch (i_category) {
 									</div>
 									<div class="check_address_right" style="display: none;">
 										<label class="label_name" id="label_name_date">주소검색<span class="required_mark"> *</span></label>
-										<input class="address_option" id="sample6_address" type="text" name="address_option" placeholder="주소 검색" onclick="sample6_execDaumPostcode()" required>
+										<input class="address_option" id="sample6_address" type="text" name="address_option" placeholder="주소 검색" required onclick="sample6_execDaumPostcode()" readonly>
 									</div>	
 								</div>
 							<%}else{ %> <!-- 일반배송 경유 접속시 표시 -->
@@ -286,21 +286,17 @@ switch (i_category) {
 							<div class="total">총 주문금액&emsp;<span id="totalPrice"><%=NumberFormat.getInstance().format(price+2500) %>원</span></div>
 							<div>
 							<%if(session.getAttribute("m_id") == null){ 
-									if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->  <!-- 정기구독(비회원) 경유 접속시 표시 -->
+									if(path.equals("/SubContent.shop")){%> <!-- 비회원 접속시 표시 -->
 									<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='VisitorCart.cr'">
-									<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='VisitorJoin.me'">
-								<%}else if(path.equals("/QuickContent.shop")){%> <!-- 당일배송 경유 접속시 표시  -->
-									<input class="nowbuy_Quick" type="submit" value="바로 구매" onclick="javascript:form.action='VisitorJoin.me'"> 
+									<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='VisitorJoin.me'"> <!-- 정기구독(비회원) 경유 접속시 표시 -->
 								<%}else{%>
 									<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='VisitorCart.cr'"> 
 									<input class="nowbuy" type="submit" value="바로 구매" onclick="javascript:form.action='VisitorJoin.me'">
 								<%} %>
 							<%}else{
-								if(path.equals("/SubContent.shop")){%> <!-- 정기구독 경유 접속시 표시 -->
+								if(path.equals("/SubContent.shop")){%>
 									<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'">  
-									<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='OrderSub.od'">
-								<%}else if(path.equals("/QuickContent.shop")){%> <!-- 당일배송 경유 접속시 표시  -->
-									<input class="nowbuy_Quick" type="submit" value="바로 구매" onclick="javascript:form.action='OrderNow.od'"> 
+									<input class="subbuy" type="submit" value="구독 신청" onclick="javascript:form.action='OrderSub.od'"> <!-- 정기구독 경유 접속시 표시 -->
 								<%}else{%>
 									<input class="cartbuy" type="submit" value="장바구니" onclick="javascript:form.action='CartInsertPro.cr'"> 
 									<input class="nowbuy" type="submit" value="바로 구매" onclick="javascript:form.action='OrderNow.od'"> 

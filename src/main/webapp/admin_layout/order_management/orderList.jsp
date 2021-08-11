@@ -19,7 +19,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 <link rel="stylesheet" href="./css/admin.css">
 <link rel="stylesheet" href="./css/admin_order_list.css">
-<link rel="stylesheet" href="./css/list_style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <script type="text/javascript">
 	var request = new XMLHttpRequest();
@@ -91,11 +90,11 @@
 			</div>
 		</fieldset>
 		<div class="search">
-		<select name="filter" id="filter">
-			<option value="">필터</option>
-			<option value="1">아이디</option>
-			<option value="2">주문날짜</option>
-			<option value="3">주문상태(Number)</option>
+		<select name="filter" id="filter" class="admin_memlist_select">
+			<option value="">filter</option>
+			<option value="1">id</option>
+			<option value="2">date</option>
+			<option value="3">status</option>
 		</select> 
 		 <input type="text" name="search" id="search_val" onkeyup="searchFunction()">
 		</div>
