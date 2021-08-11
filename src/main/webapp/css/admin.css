@@ -129,11 +129,13 @@ header {
 /*//////////////////////////////// 관리자 nav //////////////////////////////*/
 
 #admin_nav {
-	width: 310px;
+	width: 285px;
     display: inline-block;
     position: fixed;
     top: 68px;
     height: 100%;
+    background-color: #f3f3f3;
+    z-index: -1;
 }
 
 #admin_nav div ul {
