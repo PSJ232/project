@@ -240,7 +240,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="o_amount" value="<%=price %>">
 		<input type="hidden" name="o_gdiscount" value="0">
 		<input type="hidden" name="o_point" value="0">
-		<input type="hidden" name="o_payment" value="">
+		<input type="hidden" name="o_payment" value="0">
 	</form>
 	
 	<form name="payfrm" method="post">
@@ -248,8 +248,10 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 		<input type="hidden" name="pay_gdiscount" value="0">
 		<input type="hidden" name="pay_amount" value="<%=price%>">
 	</form>
+	<div class="button_set">
+	<input id="order_insert_submit1" type="button" value="계좌이체" onclick="order.submit()">
 	<input id="order_insert_submit" type="button" value="결제하기" onClick="payment_popup()">
-	
+	</div>
 </div>
 </div>	
 

@@ -204,20 +204,38 @@
 #order_insert_submit {
 	background-color: #FFD228;
 	border-radius: 5px;
-	width: 400px;
+	width: 250px;
 	height: 50px;
-	text-align: center;
 	border: none;
-	margin-top: 10px;
-	margin-left: 100px;
-	margin-bottom: 100px;
 	font-size: 17px;
 	font-weight: 400;
+	cursor: pointer;
+	margin: 0 10px;
 }
+
+#order_insert_submit1 {
+	background-color: #dddddd;
+	border-radius: 5px;
+	width: 250px;
+	height: 50px;
+	border: none;
+	font-size: 17px;
+	font-weight: 400;
+	cursor: pointer;
+	margin: 0 10px;
+}
+
 
 #order_insert_nnn {
 	line-height: 53px;
 	font-weight: 500;
 	font-size: 18px;
 	padding-left: 30px;
+}
+
+.button_set {
+    display: inline-block;
+    text-align: center;
+    width: -webkit-fill-available;
+    margin: 40px 0 100px 0;
 }

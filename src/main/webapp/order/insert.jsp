@@ -281,7 +281,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			<input type="hidden" name="sub_option" value="<%=sub_option%>"> <!-- 정기구독 옵션 번호 -->
 			<input type="hidden" name="o_amount" value="<%=totalPrice %>">
 			<input type="hidden" name="o_gdiscount" value="<%=gradeDiscount %>">
-			<input type="hidden" name="o_payment" value="">
+			<input type="hidden" name="o_payment" value="0">
 		</form>
 			
 		<form name="payfrm" method="post">
@@ -290,7 +290,10 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 			<input type="hidden" name="pay_gdiscount" value="<%=gradeDiscount %>">
 			<input type="hidden" name="pay_amount" value="<%=totalPrice %>">
 		</form>
-		<input id="order_insert_submit" type="button" value="결제하기" onClick="payment_popup()" >
+		<div class="button_set">
+		<input id="order_insert_submit1" type="button" value="계좌이체" onclick="payment_cash()">
+		<input id="order_insert_submit" type="button" value="카드결제" onClick="payment_popup()" >
+		</div>
 		</div>
 	</div>
 </div>
@@ -302,6 +305,11 @@ String addLetter;// 편지가 추가되면 해당 html 추가
     	if(document.order.o_point.value == ""){
     		document.order.o_point.value = 0;
     	}
+    }
+    
+    function payment_cash() {
+    	defaultPoint();
+    	order.submit();
     }
     
 	function payment_popup() {
