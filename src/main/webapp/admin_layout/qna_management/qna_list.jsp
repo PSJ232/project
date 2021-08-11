@@ -56,7 +56,7 @@
 					var result = data.result;
 					for(var i=0; i < result.length; i++){
 						for(var j=0; j < result[i].length; j++){
-							$('#tabcontent').append("<tr><td>"+result[i][j].q_id+"</td><td width='200'>"+result[i][j].m_id+"</td><td width='250'><a href='QnaDetail.ad?q_id="+result[i][j].q_id+"'>"+result[i][j].q_subject+"</a></td width='150'><td>"+result[i][j].q_rdate+"</td></tr>");
+							$('#tabcontent').append("<tr><td width='70'>"+result[i][j].q_id+"</td><td width='250'>"+result[i][j].m_id+"</td><td align='left'><a href='QnaDetail.ad?q_id="+result[i][j].q_id+"'>"+result[i][j].q_subject+"</a></td><td width='300'>"+result[i][j].q_rdate+"</td></tr>");
 						}
 					}
 					var pages = data.page[0];

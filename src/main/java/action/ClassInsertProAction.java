@@ -32,6 +32,7 @@ public class ClassInsertProAction implements Action {
 		int maxSize = 20 * 1024 * 1024;
 		
 		realFolder = context.getRealPath(saveFolder);
+		System.out.println(realFolder);
 		MultipartRequest multi = new MultipartRequest(
 				request, 
 				realFolder , 
