@@ -250,7 +250,7 @@ String addLetter;// 편지가 추가되면 해당 html 추가
 	</form>
 	<div class="button_set">
 	<input id="order_insert_submit1" type="button" value="계좌이체" onclick="order.submit()">
-	<input id="order_insert_submit" type="button" value="결제하기" onClick="payment_popup()">
+	<input id="order_insert_submit" type="button" value="카드결제" onClick="payment_popup()">
 	</div>
 </div>
 </div>	
