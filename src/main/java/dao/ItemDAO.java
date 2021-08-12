@@ -354,7 +354,7 @@ public class ItemDAO {
 		ResultSet rs = null;
 		ArrayList<ItemBean> itemList = new ArrayList<ItemBean>();
 		
-		String sql = "SELECT * FROM Item where i_category = ? and i_dpstatus = '판매'";
+		String sql = "SELECT * FROM Item where i_category = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, i);
@@ -386,7 +386,7 @@ public class ItemDAO {
 		ResultSet rs = null;
 		ArrayList<ItemBean> itemList = new ArrayList<ItemBean>();
 		
-		String sql = "SELECT * FROM Item where i_category = ? and i_dpstatus = '판매' limit 6";
+		String sql = "SELECT * FROM Item where i_category = ? limit 6";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, i);
