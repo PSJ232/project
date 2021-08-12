@@ -6,26 +6,21 @@
 		type="javax.sql.DataSource"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/team3_flower?useSSL=false"
-		username="root"
-		password="1234"
+		url="jdbc:mysql://localhost/itwillbs15?useSSL=false"
+		username="itwillbs15"
+		password="itwillbs8030909"
 		maxActive="500"
 	/>
 </Context>
 
-
-<!--학원 공용 DB를 사용할 경우
-
-url="jdbc:mysql://192.168.3.23:3306/team3_flower?useSSL=false"
-
--->
-<!-- 개인 DB를 사용할 경우
-
-url="jdbc:mysql://localhost:3306/team3_flower?useSSL=false"
-
--->
+<!-- 		url="jdbc:mysql://localhost:3306/team3_flower?useSSL=false" -->
+<!-- 		username="root" -->
+<!-- 		password="1234" -->
 
 
+<!-- 		url="jdbc:mysql://localhost/itwillbs15?useSSL=false" -->
+<!-- 		username="itwillbs15" -->
+<!-- 		password="itwillbs8030909" -->
 
 
 
