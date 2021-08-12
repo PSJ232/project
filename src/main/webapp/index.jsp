@@ -112,7 +112,6 @@ if(cookie_check != null){
 		</section>
 	</div>
 	<div id="main_display_layout">
-<<<<<<< HEAD
 		<div id="main_container2" class="gray_background">
 			<section class="main_section">
 				<div>
@@ -151,47 +150,6 @@ if(cookie_check != null){
 				</div>
 			</section>
 		</div>
-=======
-<!-- 		<div id="main_container2" class="gray_background"> -->
-<!-- 			<section class="main_section"> -->
-<!-- 				<div> -->
-<!-- 					<h5 class="main_title"> -->
-<!-- 						<span>꽃이 필요한 순간,</span> -->
-<!-- 						<span>꾸까 꽃다발</span> -->
-<!-- 					</h5> -->
-<!-- 					<a class="main_more">더보기</a> -->
-<!-- 				</div> -->
-<!-- 				<div class="main_flower_content"> -->
-<!-- 					<div class = "wrapper main_flower_wrapper"> -->
-<!-- 						<div class="bxSlider3"> -->
-<%-- 							<%for(int i=0; i < 6;i++) { --%>
-<%-- 								ItemBean ib = mainFlowerList.get(i);%> --%>
-<!-- 					 		<div class="main_slider_subbox"> -->
-<%-- 					 			<a href="FlowersContent.shop?i_id=<%=ib.getI_id()%>"><img id="img" src="./admin_layout/upload/<%=ib.getI_img()%>"></a> --%>
-<!-- 					 			<div class="main_item_info"> -->
-<%-- 					 				<span class="main_item_desc"><%=ib.getI_desc()%></span> --%>
-<%-- 					 				<a class="main_item_name" href="FlowersContent.shop?i_id=<%=ib.getI_id()%>"><%=ib.getI_name()%></a><br> --%>
-<!-- 					 				<span class="main_item_pricebox2"> -->
-<%-- 					 					<%if(ib.getI_discount()!=1){%> --%>
-<%-- 						 					<span class="main_dc_percent"><%=dc.format((int)((1-ib.getI_discount())*100))%>%</span> --%>
-<%-- 						 					<del class="main_price"><%=dc.format((int)(ib.getI_price()))%>원-></del> --%>
-<%-- 					 					<%}%> --%>
-<%-- 					 					<span class="main_dc_price"><%=dc.format((int)(ib.getI_price()*ib.getI_discount()))%>원</span> --%>
-<!-- 					 				</span><br> -->
-<!-- 					 				<span> -->
-<%-- 					 					<span class="main_size_icon"><%=ib.getI_size()%></span> --%>
-<!-- 					 					<span class="main_size">size</span> -->
-<!-- 					 					<span class="main_free_icon">무료배송</span> -->
-<!-- 					 				</span> -->
-<!-- 					 			</div> -->
-<!-- 					 		</div> -->
-<%-- 					 		<%}%> --%>
-<!-- 						 </div> -->
-<!-- 					 </div> -->
-<!-- 				</div> -->
-<!-- 			</section> -->
-<!-- 		</div> -->
->>>>>>> branch 'master' of https://github.com/PSJ232/project.git
 		<div id="main_container2">
 			<section class="main_section">
 				<div>
