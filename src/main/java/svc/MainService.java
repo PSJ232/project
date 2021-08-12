@@ -24,4 +24,19 @@ public class MainService {
 		return itemList;
 	}
 
+	
+	public ArrayList<ItemBean> getItemListLimit6(int i) {
+		System.out.println("MainService - geItemList");
+		ArrayList<ItemBean> itemList = null;
+		//Conneciton 객체 전달
+		Connection con = getConnection();
+		ItemDAO itemDAO = ItemDAO.getInstance();
+		itemDAO.setConnection(con);
+		
+		itemList = itemDAO.getItemListLimit6(i);
+		
+		close(con);
+		return itemList;
+	}
+
 }

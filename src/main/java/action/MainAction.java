@@ -20,9 +20,9 @@ public class MainAction implements Action {
 		//정기 구독 목록 가져오기
 		ArrayList<ItemBean> mainSubscribeList = mainService.geItemList(3);
 		//꽃다발
-		ArrayList<ItemBean> mainflowerList = mainService.geItemList(1);
+		ArrayList<ItemBean> mainflowerList = mainService.getItemListLimit6(1);
 		//당일배송
-		ArrayList<ItemBean> mainQuickList = mainService.geItemList(2);
+		ArrayList<ItemBean> mainQuickList = mainService.getItemListLimit6(2);
 
 		request.setAttribute("mainSubscribeList", mainSubscribeList);
 		request.setAttribute("mainflowerList", mainflowerList);

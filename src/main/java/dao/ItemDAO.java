@@ -379,5 +379,37 @@ public class ItemDAO {
 		
 		return itemList;
 	}
+	
+	public ArrayList<ItemBean> getItemListLimit6(int i) {
+		System.out.println("ItemDAO - getItemList");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ItemBean> itemList = new ArrayList<ItemBean>();
+		
+		String sql = "SELECT * FROM Item where i_category = ? and i_dpstatus = '판매' limit 6";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, i);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ItemBean ib = new ItemBean();
+				ib.setI_id(rs.getInt("i_id"));
+				ib.setI_name(rs.getString("i_name"));
+				ib.setI_desc(rs.getString("i_desc"));
+				ib.setI_price(rs.getInt("i_price"));
+				ib.setI_img(rs.getString("i_img"));
+				ib.setI_discount(rs.getFloat("i_discount"));
+				ib.setI_size(rs.getString("i_size"));
+				itemList.add(ib);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return itemList;
+	}
 
 }
